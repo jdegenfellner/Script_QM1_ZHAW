@@ -17,7 +17,7 @@ github-repo: rstudio/bookdown-demo
 
 # Introduction
 
-This script is a collection of notes and exercises for the course "Quantitative Methods 1" at ZHAW in Winterthur, Switzerland. It is permanently evolving and github repository is public: https://github.com/jdegenfellner/Script_QM1_ZHAW. 
+This script is a collection of notes and exercises for the course "Quantitative Methods 1" at ZHAW in Winterthur, Switzerland. It is permanently evolving and the github repository is public: https://github.com/jdegenfellner/Script_QM1_ZHAW. 
 
 At the end of each chapter, you will find a list of exercises.
 
@@ -25,12 +25,18 @@ A lot of content can be found in the ZHAW_teaching folder, which contains many R
 
 https://github.com/jdegenfellner/ZHAW_Teaching
 
+We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data. 
+Statistical modeling, hypothesis testing, and regression analysis will be covered later.
+
+GPT4o and Github Copilot where used as assisting tools for writing this script.
+
 ## Books I can recommend
 
-- Statistical rethinking (https://xcelab.net/rm/)
-- Understanding Regression Analysis A Conditional Distribution Approach (Understanding Regression Analysis
-A Conditional Distribution Approach)
+- [Statistical Rethinking](https://xcelab.net/rm/), Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
+- [Understanding Regression Analysis: A Conditional Distribution Approach](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)
+- (Free) [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
 
+These books are well-written, approachable, and not overly technical.
 
 Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
 
