@@ -38,13 +38,9 @@ GPT4o and Github Copilot where used as assisting tools for writing this script.
 
 These books are well-written, approachable, and not overly technical.
 
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
-
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
-
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
 ## R
+
+In this course, we use R as our main tool for data analysis. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS.
 
 - [R for Data Science](https://r4ds.had.co.nz/)
 
