@@ -3,7 +3,7 @@
     "path": "~/Library/CloudStorage/GoogleDrive-jdegenfellner@gmail.com/My Drive/1_ZHAW/8_Quantitative_Methoden_1/Script_QM1_ZHAW_JD/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1658936881",
     "contents": "",
     "dirty": false,
     "created": 1726553746099.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "46,0",
-        "scrollLine": "24"
+        "cursorPosition": "3,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1726555998,
+    "lastKnownWriteTime": 1726557658,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1726555998226,
+    "last_content_update": 1726557658690,
     "read_only": false,
     "read_only_alternatives": []
 }
