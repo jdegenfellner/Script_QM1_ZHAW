@@ -17,7 +17,7 @@ github-repo: rstudio/bookdown-demo
 
 # Introduction
 
-This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. 
+This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. Feel free to use any content for your own purposes.
 
 At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in the respective Moodle folder to help you prepare. 
 
@@ -32,7 +32,7 @@ GPT4o and Github Copilot where used as assisting tools for writing this script.
 
 ## Books I can (highly) recommend
 
-- [Statistical Rethinking](https://xcelab.net/rm/), Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
+- [Statistical Rethinking](https://xcelab.net/rm/), YouTube-Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
 - [Understanding Regression Analysis: A Conditional Distribution Approach](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)
 - (Free) [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
 
@@ -44,7 +44,12 @@ In this course, we use R as our main tool for data analysis. R is a free softwar
 
 - [R for Data Science](https://r4ds.had.co.nz/)
 
+## Additional Tools
 
+Currently I use a combination of Github Copilot (paid), GPT4o (paid), and RStudio for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
+As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet. Maybe, we'll work on that soon as a side project. 
+
+Large Language Models (LMM) like GPT4o enable you to write/adapt code using natural language. Very often, debugging attempts get stuck. They is far from perfect yet, but an impressive feat of engineering.
 
 
 ```{r include=FALSE}
