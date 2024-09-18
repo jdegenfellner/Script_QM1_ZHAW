@@ -19,7 +19,9 @@ github-repo: rstudio/bookdown-demo
 
 This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the github repository is public: https://github.com/jdegenfellner/Script_QM1_ZHAW. 
 
-At the end of each chapter, you will find a list of exercises.
+At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in the respective Moodle folder to help you prepare. 
+
+The most important lessons you'll learn are not part of the final exam: Intellectual honesty and humility.
 
 A lot of content can be found in the ZHAW_teaching folder, which contains many R scripts (among other stuff):
 
@@ -40,31 +42,11 @@ These books are well-written, approachable, and not overly technical.
 
 ## R
 
-In this course, we use R as our main tool for data analysis. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS.
+In this course, we use R as our main tool for data analysis. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS. You may want to give Hadley Wickham's book a try:
 
 - [R for Data Science](https://r4ds.had.co.nz/)
 
-You can render the HTML version of this example book without changing anything:
 
-1. Find the **Build** pane in the RStudio IDE, and
-
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
-
-Or build the book from the R console:
-
-```{r, eval=FALSE}
-bookdown::render_book()
-```
-
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-```{r eval=FALSE}
-bookdown::serve_book()
-```
 
 
 ```{r include=FALSE}
