@@ -17,7 +17,7 @@ github-repo: rstudio/bookdown-demo
 
 # Introduction
 
-This script is a collection of notes and exercises for the course "Quantitative Methods 1" at ZHAW in Winterthur, Switzerland. It is permanently evolving and the github repository is public: https://github.com/jdegenfellner/Script_QM1_ZHAW. 
+This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the github repository is public: https://github.com/jdegenfellner/Script_QM1_ZHAW. 
 
 At the end of each chapter, you will find a list of exercises.
 
@@ -30,7 +30,7 @@ Statistical modeling, hypothesis testing, and regression analysis will be covere
 
 GPT4o and Github Copilot where used as assisting tools for writing this script.
 
-## Books I can recommend
+## Books I can (highly) recommend
 
 - [Statistical Rethinking](https://xcelab.net/rm/), Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
 - [Understanding Regression Analysis: A Conditional Distribution Approach](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)
