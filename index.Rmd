@@ -47,9 +47,9 @@ In this course, we use R as our main tool for data analysis. R is a free softwar
 ## Additional Tools
 
 Currently I use a combination of Github Copilot (paid), GPT4o (paid), and RStudio for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
-As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet. Maybe, we'll work on that soon as a side project. 
+As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet (in the style of AutoGPT or similar approaches). Maybe, we'll work on that soon as a side project. 
 
-Large Language Models (LMM) like GPT4o enable you to write/adapt code using natural language. Very often, debugging attempts get stuck. They is far from perfect yet, but an impressive feat of engineering.
+Large Language Models (LMM) like GPT4o enable you to write/adapt code using natural language. Among other tasks, this helps create complicated aesthetic plots. Very often, debugging attempts get stuck. They is far from perfect yet, but an impressive feat of engineering.
 
 
 ```{r include=FALSE}
