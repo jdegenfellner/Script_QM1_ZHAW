@@ -17,15 +17,13 @@ github-repo: rstudio/bookdown-demo
 
 # Introduction
 
-This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the github repository is public: https://github.com/jdegenfellner/Script_QM1_ZHAW. 
+This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. 
 
 At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in the respective Moodle folder to help you prepare. 
 
 The most important lessons you'll learn are not part of the final exam: Intellectual honesty and humility.
 
-A lot of content can be found in the ZHAW_teaching folder, which contains many R scripts (among other stuff):
-
-https://github.com/jdegenfellner/ZHAW_Teaching
+A lot of content relevant for this course can be found in the [ZHAW_teaching](https://github.com/jdegenfellner/ZHAW_Teaching) folder, which contains many R scripts (among other stuff):
 
 We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data. 
 Statistical modeling, hypothesis testing, and regression analysis will be covered later.
