@@ -17,7 +17,7 @@ github-repo: rstudio/bookdown-demo
 
 # Introduction
 
-This script is a collection of notes and exercises for the course "Quantitative Methods 1" at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. Feel free to use any content for your own purposes.
+This script is a collection of notes and exercises for the course "Quantitative Methods 1" (Codename for: Statistical foundations) at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. Feel free to use any content for your own purposes.
 
 At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in the respective Moodle folder to help you prepare. 
 
@@ -28,15 +28,20 @@ A lot of content relevant for this course can be found in the [ZHAW_teaching](ht
 We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data. 
 Statistical modeling, hypothesis testing, and regression analysis will be covered later.
 
-GPT4o and Github Copilot where used as assisting tools for writing this script.
+GPT4o and Github Copilot where used for writing this script.
 
-## Books I can (highly) recommend
+## Books I can (highly) recommend (not just for QM1)
 
 - [Statistical Rethinking](https://xcelab.net/rm/), YouTube-Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
 - [Understanding Regression Analysis: A Conditional Distribution Approach](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)
 - (Free) [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
 
 These books are well-written, approachable, and not overly technical.
+
+For more theoretically advanced approaches, I can recommend:
+
+- (Free) [Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/)
+- (Free) [Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
 
 ## R
 
