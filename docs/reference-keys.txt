@@ -2,10 +2,10 @@ fig:nice-fig
 tab:nice-tab
 eq:binom
 thm:tri
-about
-usage
-render-book
-preview-book
+introduction
+books-i-can-highly-recommend-not-just-for-qm1
+r
+additional-tools
 hello-bookdown
 a-section
 cross
@@ -23,10 +23,3 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
-introduction
-books-i-can-recommend
-r
-books-i-can-recommend-1
-books-i-can-highly-recommend
-additional-tools
-books-i-can-highly-recommend-not-just-for-qm1
