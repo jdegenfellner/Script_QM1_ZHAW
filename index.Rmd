@@ -43,6 +43,7 @@ For more theoretically advanced approaches, I can recommend:
 
 - (Free) [Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/)
 - (Free) [Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
+- (Free) [Unterstanding Advanced Statistical Methods] (https://students.aiu.edu/submissions/profiles/resources/onlineBook/y6z7i8_t4q6Z9_advanced%20statistics.pdf)
 
 ## R
 
