@@ -2,6 +2,7 @@
 title: "Quantitative Methods 1, ZHAW"
 author: "Jürgen Degenfellner"
 date: "`r Sys.Date()`"
+pdf-cover-image: "images/Cover_QM1.pdf"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:
@@ -15,10 +16,6 @@ description: |
 link-citations: true
 github-repo: "rstudio/bookdown-demo"
 ---
-
-```{r, include=FALSE}
-cat("\\begin{center}\\includegraphics[width=\\textwidth]{./images/Cover_QM1.png}\\end{center}\n")
-```
 
 # Introduction
 
