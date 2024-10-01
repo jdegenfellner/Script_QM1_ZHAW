@@ -105,4 +105,30 @@ Package pdftex.def Info: images/CoverQM1.png  used on input line 5.
 
 ]
 
-./template.tex:7: LaTeX Error:
+./template.tex:7: LaTeX Error: No \title given.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 \maketitle
+              
+? 
+./template.tex:7: Emergency stop.
+ ...                                              
+                                                  
+l.7 \maketitle
+              
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 1188 strings out of 478994
+ 18081 string characters out of 5858185
+ 302606 words of memory out of 5000000
+ 18719 multiletter control sequences out of 15000+600000
+ 404379 words of font info for 30 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 68i,4n,74p,201b,174s stack positions out of 5000i,500n,10000p,200000b,80000s
+./template.tex:7:  ==> Fatal error occurred, no output PDF file produced!

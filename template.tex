@@ -1,5 +1,49 @@
 \documentclass[12pt]{book}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{amsthm}
+
+\usepackage{framed} % For the shaded environment used in code chunks
+\usepackage{color}  % To manage colors used in code shading
+
+% Define the Shaded environment used by Pandoc
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+
+% Add the definition for \tightlist here
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+  
+ \usepackage{listings}   % To handle code listings
+\usepackage{fancyvrb}   % To manage fancy verbatim environments for code chunks
+\usepackage{xcolor}     % For custom color definitions in code
+
+% Set up the highlighting environment used for R Markdown code blocks
+\lstset{
+  backgroundcolor=\color{gray!10}, % Light gray background
+  basicstyle=\ttfamily\small,      % Typewriter font
+  breaklines=true,                 % Allow line breaking
+  frame=single,                    % Frame around the code block
+  language=R                       % Assuming R language for syntax highlighting
+}
+
+% Define the Highlighting environment used by Pandoc
+\newenvironment{Highlighting}{}{}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{exercise}{Exercise}[chapter]
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 
 \begin{document}
 
@@ -8,19 +52,15 @@
 \includegraphics[width=\textwidth]{images/CoverQM1.png}
 \end{center}
 
-% Insert title, author, and date from YAML
-$if(title)$
-\title{$title$}
-$endif$
-
-$if(author)$
-\author{$for(author)$$author$$sep$ \\ $endfor$}
-$endif$
-
-$if(date)$
-\date{$date$}
-$endif$
-
+\title{Quantitative Methods 1, ZHAW}
+\author{Jürgen Degenfellner}
+\date{2024-10-01}
 \maketitle
+
+% Optionally add a table of contents here
+\tableofcontents
+
+% Add the main content of the book
+$body$
 
 \end{document}
