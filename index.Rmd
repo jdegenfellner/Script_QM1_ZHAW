@@ -2,7 +2,7 @@
 title: "Quantitative Methods 1, ZHAW"
 author: "Jürgen Degenfellner"
 date: "`r Sys.Date()`"
-pdf-cover-image: "images/Cover_QM1.pdf"
+pdf-cover-image: "images/CoverQM1.pdf"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:
