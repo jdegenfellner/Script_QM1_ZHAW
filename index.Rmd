@@ -16,6 +16,8 @@ link-citations: true
 github-repo: "rstudio/bookdown-demo"
 ---
 
+<!-- Cover image is difficult. template.tex in progress, hard to get it right -->
+
 # Introduction
 
 This script is a collection of notes and exercises for the course "Quantitative Methods 1" (Codename for: Statistical foundations) at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. Feel free to use any content for your own purposes.
