@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  cover_image: "images/CoverQM1.pdf"
+  cover_image: "images/CoverQM1.png"
   css: style.css
   config:
     favicon: "favicon.ico"
@@ -18,4 +18,4 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: 
-  cover_image: "images/CoverQM1.pdf"
+  cover_image: "images/CoverQM1.png"
