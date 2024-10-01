@@ -1,4 +1,5 @@
 bookdown::gitbook:
+  cover_image: "./images/Cover_QM1.png"
   css: style.css
   config:
     favicon: "favicon.ico"
@@ -10,6 +11,7 @@ bookdown::gitbook:
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
+  cover_image: "./images/Cover_QM1.png"
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
