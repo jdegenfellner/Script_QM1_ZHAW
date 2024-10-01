@@ -2,7 +2,6 @@
 title: "Quantitative Methods 1, ZHAW"
 author: "Jürgen Degenfellner"
 date: "`r Sys.Date()`"
-cover-image: "images/CoverQM1.pdf"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:
@@ -18,6 +17,10 @@ github-repo: "rstudio/bookdown-demo"
 ---
 
 # Introduction
+
+```{r, include=FALSE}
+cat("\\includegraphics[width=0.8\\textwidth]{./images/Cover_QM1.png}\n")
+```
 
 This script is a collection of notes and exercises for the course "Quantitative Methods 1" (Codename for: Statistical foundations) at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. Feel free to use any content for your own purposes.
 
