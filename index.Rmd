@@ -48,13 +48,13 @@ For more theoretically advanced approaches, I can recommend:
 
 ## R
 
-In this course, we use R as our main tool for data analysis. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS. You may want to give Hadley Wickham's book a try:
+In this course, we use [R](https://www.r-project.org/) as our main tool for data analysis. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS. You may want to give Hadley Wickham's book a try:
 
 - [R for Data Science](https://r4ds.had.co.nz/)
 
 ## Additional Tools
 
-Currently I use a combination of Github Copilot (paid), GPT4o (paid), and RStudio for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
+Currently I use a combination of [Github Copilot](https://github.com/features/copilot) (paid), [GPT4o](https://chatgpt.com/) (paid), and [RStudio](https://posit.co/download/rstudio-desktop/) for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
 As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet (in the style of AutoGPT or similar approaches). Maybe, we'll work on that soon as a side project. 
 
 Large Language Models (LLM) like GPT4o enable you to write/adapt code using natural language. Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck. They are far from perfect yet, but an impressive feat of engineering.
