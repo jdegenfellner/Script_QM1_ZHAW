@@ -4,8 +4,8 @@ language:
     chapter_name: "Chapter "
 rmd_files:
   - index.Rmd
-  - 01-intro.Rmd
-  #- 02-probs.Rmd
+  #- 01-intro.Rmd
+  - 02-probs.Rmd
   #- 03-parts.Rmd
   #- 04-citations.Rmd
   #- 05-blocks.Rmd
