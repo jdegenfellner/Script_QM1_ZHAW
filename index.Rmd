@@ -68,6 +68,10 @@ you can also use VSCode with the Github Copilot extension to write your R-Code.
 
 Large Language Models (LLM) like GPT4o enable you to write/adapt code using natural language. Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck. They are far from perfect yet, but an impressive feat of engineering.
 
+## Workflow suggestion
+
+You could use RStudio to write and execute your code. In the global options of RStudio (below), you can add your github copilot account. Additionally, you can have your GPT4o(1) window open and copy-paste images of your plots or code in order to achieve your current objective.
+![Alt text](./images/RStudio_Global_Options.png)
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
