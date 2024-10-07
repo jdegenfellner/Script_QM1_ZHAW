@@ -13,7 +13,7 @@ description: |
   set in the _output.yml file.
   The HTML output format for this example is bookdown::gitbook,
 link-citations: true
-github-repo: "rstudio/bookdown-demo"
+github-repo: "jdegenfellner/Script_QM1_ZHAW"
 ---
 
 <!-- Cover image is difficult. template.tex in progress, hard to get it right -->
