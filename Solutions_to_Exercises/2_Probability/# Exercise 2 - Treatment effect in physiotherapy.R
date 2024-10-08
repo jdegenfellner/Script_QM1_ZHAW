@@ -1,18 +1,25 @@
 # Exercise 2 - Treatment effect in physiotherapy
 
-# theta) = 0.3 # from previous studies we know that the therapy is effective in 30% of the cases
-p_theta = 0.3 # Probability of a clinically relevant treatment effect.
+# For simplicity, let's just test two theta values: 0.3 (as in the previous study) and 0.4
 
-#  p(data|theta) = # probability to see 20 out of 50 patients improve under the therapy
-# This is binomially distributed
+# Prior probability for theta = 0.3
+p_theta1 <- 0.85 # most weight is on the previous study, maybe because it was well executed and had a large sample size.
+# This part could be argued to be subjective. 
 
-# p(data|theta) = dbinom(20, 50, 0.3)
-p_data_theta = dbinom(20, 50, 0.3) # = 0.037 Probability to see 20 out of 50 patients improve under the therapy, assuming theta=0.3
+# Prior probability for theta = 20/50 = 0.4
+p_theta2 <- 0.25
 
-# p(data) = sum(p(data|theta) * p(theta)) = dbinom(20, 50, 0.3) + dbinom(20, 50, 20/50)
-# We restrict our options to two options: theta = 0.3 or theta = 20/50
-p_data = dbinom(15, 50, 0.3) + dbinom(20, 50, 20/50) #  = 0.2369
+# Likelihood of the data given theta = 0.3
+p_data_theta1 <- dbinom(20, 50, 0.3)
+
+# Likelihood of the data given theta = 20/50 = 0.4
+p_data_theta2 <- dbinom(20, 50, 20/50)
+
+# Marginal likelihood p(data), as a weighted sum of likelihoods
+p_data <- p_data_theta1 * p_theta1 + p_data_theta2 * p_theta2
 
 # Bayes' Theorem: p(theta|data) = p(data|theta) * p(theta) / p(data)
-p_theta_data = p_data_theta * p_theta / p_data
+p_theta_data <- p_data_theta1 * p_theta1 / p_data
+
+# Output the posterior probability
 p_theta_data
