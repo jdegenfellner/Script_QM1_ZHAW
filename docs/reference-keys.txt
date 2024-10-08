@@ -7,3 +7,5 @@ probs
 frequentist-vs.-bayesian-statistics
 frequentist-statistics
 bayesian-statistics
+exercises
+exercise1

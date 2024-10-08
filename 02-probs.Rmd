@@ -46,7 +46,7 @@ if I throw the die infinitely many times, the frequency of getting a 3 will conv
 \mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6},
 \]
 
-where \(\mathbb{P}\) is the probability measure which we will define more formally later.
+where \(\mathbb{P}\) is the probability measure which we will define more formally later (see [Exercise 1](#exercise1)).
 
 More genereally, in frequentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP). 
 In the dice example, the process of repeatedly throwing the die is the data generating process.
@@ -61,4 +61,8 @@ With all birthweights, we would know the true mean of the population of interest
 ### Bayesian statistics
 
 Bayesian statistics, on the other hand, is based on the idea that [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
+
+## Exercises
+
+### Exercise 1 - throwing a die very often {#exercise1}
 
