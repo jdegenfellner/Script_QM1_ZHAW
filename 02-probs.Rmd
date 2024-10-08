@@ -97,7 +97,8 @@ where:
 Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain. 
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
 This is your **prior probability**: \( p(\theta) = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
-Now, you run a small trial with 50 patients and observe that 20 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
+Your coelleagues are not convinced that the therapy is effective and argue that the probability is 40%.
+Now, you run a small trial with 50 patients and observe that 22 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
 This new data (the result of the trial) updates your belief about the effectiveness of the therapy.
 Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior probability \( p(\theta) = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
@@ -118,8 +119,8 @@ We need to know some basic concepts of probability theory in order to dive in de
 
 ### Exercise 2 {#exercise2}
 Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).
-For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign high confidence (say 85%) in the prior knowledge that the parameter 
-$\theta=0.3$, since the previous study was well executed and had a large sample size.
+For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter 
+$\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
 
 ## Solutions
 Solutions for this chapter can be found here...
