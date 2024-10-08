@@ -1,10 +1,7 @@
-fig:nice-fig
-tab:nice-tab
 introduction
 books-i-can-highly-recommend-not-just-for-qm1
 r
 additional-tools
 workflow-suggestion
 probs
-chapters-and-sub-chapters
-captioned-figures-and-tables
+frequentist-vs.-bayesian-statistics

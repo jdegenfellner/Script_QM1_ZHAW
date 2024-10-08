@@ -60,70 +60,6 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
   
@@ -155,8 +91,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="probs.html"><a href="probs.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="probs.html"><a href="probs.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>2.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="2.2" data-path="probs.html"><a href="probs.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>2.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="2.1" data-path="probs.html"><a href="probs.html#frequentist-vs.-bayesian-statistics"><i class="fa fa-check"></i><b>2.1</b> Frequentist vs. Bayesian statistics</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -196,93 +131,25 @@ its conclusion. Gombaud approached mathematician Blaise Pascal, who collaborated
 the groundwork for modern probability theory. Fermat’s method involved listing all possible outcomes and calculating each player’s
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
 and influenced fields like economics and actuarial science.</p>
-<p>Philosophically speaking, there are two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven’t happened yet.</p>
-<p>An example for a repeatable event is getting a 6 when throwing a fair dice. We can do this experiment right now by fetching a dice and throwing it.</p>
+<p>Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven’t happened yet.</p>
+<p>An example for a repeatable event is getting a 6 when throwing a fair die. We can do this experiment right now by fetching a die and throwing it.</p>
 <p>An example for the latter is the probability of a patient dying within the next 5 years after a certain diagnosis.
 It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different whereas the dice are typically much more similar.
 Here, we could at least put forward that other similar patients have a certain proportion of dying within 5 years.</p>
 <p>There are of course events that have not happend ever before, like the creation of artificial general intelligence (<a href="https://en.wikipedia.org/wiki/Artificial_general_intelligence">AGI</a>).
 Nevertheless, one can still try assign probabilities <a href="https://research.aimultiple.com/artificial-general-intelligence-singularity-timing/">when</a> such an event would happen.</p>
-<div id="chapters-and-sub-chapters" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Chapters and sub-chapters<a href="probs.html#chapters-and-sub-chapters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are two steps to cross-reference any heading:</p>
-<ol style="list-style-type: decimal">
-<li>Label the heading: <code># Hello world {#nice-label}</code>.
-<ul>
-<li>Leave the label off if you like the automated heading generated based on your heading title: for example, <code># Hello world</code> = <code># Hello world {#hello-world}</code>.</li>
-<li>To label an un-numbered heading, use: <code># Hello world {-#nice-label}</code> or <code>{# Hello world .unnumbered}</code>.</li>
-</ul></li>
-<li>Next,</li>
-</ol>
-</div>
-<div id="captioned-figures-and-tables" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Captioned figures and tables<a href="probs.html#captioned-figures-and-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Figures and tables <em>with captions</em> can also be cross-referenced from elsewhere in your book using <code>\@ref(fig:chunk-label)</code> and <code>\@ref(tab:chunk-label)</code>, respectively.</p>
-<p>See Figure <a href="probs.html#fig:nice-fig">2.1</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="probs.html#cb1-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))</span>
-<span id="cb1-2"><a href="probs.html#cb1-2" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nice-fig"></span>
-<img src="_main_files/figure-html/nice-fig-1.png" alt="Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases." width="80%" />
-<p class="caption">
-Figure 2.1: Here is a nice figure!
-</p>
-</div>
-<p>Don’t miss Table <a href="probs.html#tab:nice-tab">2.1</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="probs.html#cb2-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb2-2"><a href="probs.html#cb2-2" tabindex="-1"></a>  <span class="fu">head</span>(pressure, <span class="dv">10</span>), <span class="at">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
-<span id="cb2-3"><a href="probs.html#cb2-3" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb2-4"><a href="probs.html#cb2-4" tabindex="-1"></a>)</span></code></pre></div>
-<table>
-<caption><span id="tab:nice-tab">Table 2.1: </span>Here is a nice table!</caption>
-<thead>
-<tr class="header">
-<th align="right">temperature</th>
-<th align="right">pressure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0.0002</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="right">0.0012</td>
-</tr>
-<tr class="odd">
-<td align="right">40</td>
-<td align="right">0.0060</td>
-</tr>
-<tr class="even">
-<td align="right">60</td>
-<td align="right">0.0300</td>
-</tr>
-<tr class="odd">
-<td align="right">80</td>
-<td align="right">0.0900</td>
-</tr>
-<tr class="even">
-<td align="right">100</td>
-<td align="right">0.2700</td>
-</tr>
-<tr class="odd">
-<td align="right">120</td>
-<td align="right">0.7500</td>
-</tr>
-<tr class="even">
-<td align="right">140</td>
-<td align="right">1.8500</td>
-</tr>
-<tr class="odd">
-<td align="right">160</td>
-<td align="right">4.2000</td>
-</tr>
-<tr class="even">
-<td align="right">180</td>
-<td align="right">8.8000</td>
-</tr>
-</tbody>
-</table>
+<div id="frequentist-vs.-bayesian-statistics" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Frequentist vs. Bayesian statistics<a href="probs.html#frequentist-vs.-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two main schools of thought in statistics: Frequentist and Bayesian.</p>
+<p>Frequentist statistics is based on the idea that probability is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit,
+if I throw the die infinitely many times, the frequency of getting a 3 will converge to 1/6. In mathematical notation, we would write</p>
+<p><span class="math display">\[
+\mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6}
+\]</span></p>
+<p>More genereally, in freuqentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP).
+In the dice example, the process of repeatedly throwing the die is the data generating process.
+Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data.
+Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.</p>
 
 </div>
 </div>
@@ -347,6 +214,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -22,9 +22,9 @@ the groundwork for modern probability theory. Fermat’s method involved listing
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
 and influenced fields like economics and actuarial science.
 
-Philosophically speaking, there are two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven't happened yet.
+Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven't happened yet.
 
-An example for a repeatable event is getting a 6 when throwing a fair dice. We can do this experiment right now by fetching a dice and throwing it.
+An example for a repeatable event is getting a 6 when throwing a fair die. We can do this experiment right now by fetching a die and throwing it.
 
 An example for the latter is the probability of a patient dying within the next 5 years after a certain diagnosis. 
 It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different whereas the dice are typically much more similar.
@@ -33,32 +33,18 @@ Here, we could at least put forward that other similar patients have a certain p
 There are of course events that have not happend ever before, like the creation of artificial general intelligence ([AGI](https://en.wikipedia.org/wiki/Artificial_general_intelligence)). 
 Nevertheless, one can still try assign probabilities [when](https://research.aimultiple.com/artificial-general-intelligence-singularity-timing/) such an event would happen.
 
-## Chapters and sub-chapters
+## Frequentist vs. Bayesian statistics
 
-There are two steps to cross-reference any heading:
+There are two main schools of thought in statistics: Frequentist and Bayesian.
 
-1. Label the heading: `# Hello world {#nice-label}`. 
-    - Leave the label off if you like the automated heading generated based on your heading title: for example, `# Hello world` = `# Hello world {#hello-world}`.
-    - To label an un-numbered heading, use: `# Hello world {-#nice-label}` or `{# Hello world .unnumbered}`.
+Frequentist statistics is based on the idea that probability is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit, 
+if I throw the die infinitely many times, the frequency of getting a 3 will converge to 1/6. In mathematical notation, we would write 
 
-1. Next, 
+\[
+\mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6}
+\]
 
-## Captioned figures and tables
-
-Figures and tables *with captions* can also be cross-referenced from elsewhere in your book using `\@ref(fig:chunk-label)` and `\@ref(tab:chunk-label)`, respectively.
-
-See Figure \@ref(fig:nice-fig).
-
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.alt='Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases.'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
-
-Don't miss Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(pressure, 10), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
+More genereally, in freuqentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP). 
+In the dice example, the process of repeatedly throwing the die is the data generating process.
+Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data. 
+Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.
