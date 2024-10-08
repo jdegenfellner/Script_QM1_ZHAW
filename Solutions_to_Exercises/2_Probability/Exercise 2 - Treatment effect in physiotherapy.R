@@ -19,6 +19,4 @@ p_data <- p_data_theta1 * p_theta1 + p_data_theta2 * p_theta2
 
 # Bayes' Theorem: p(theta|data) = p(data|theta) * p(theta) / p(data)
 p_theta_data <- p_data_theta1 * p_theta1 / p_data
-
-# Output the posterior probability
 p_theta_data
