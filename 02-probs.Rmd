@@ -37,6 +37,20 @@ Nevertheless, one can still try assign probabilities [when](https://research.aim
 
 There are two main schools of thought in statistics: Frequentist and Bayesian.
 
+It is *not* our place to say which one is better. Both have their strengths and weaknesses and are used in different contexts.
+
+I would consider the rapant misuse of [p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub) and the 
+cookbook-like application of frequentist statistics as a weakness of this approach (in its widely used form at least). 
+Of course, this is not the methods fault but the fault of the user.
+
+Bayesian statistics is often considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
+Computation time is often still an issue in comparison for instance in regression modelling when using a end user laptop.
+
+There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.
+
+Especially one of the early eminent statisticians, [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), was an oponent of Bayesian statistics, 
+or as he called it: ["inverse probability"](https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf).
+
 ### Frequentist statistics
 
 Frequentist statistics is based on the idea that [probability](https://en.wikipedia.org/wiki/Frequentist_probability) is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit, 
@@ -61,6 +75,36 @@ With all birthweights, we would know the true mean of the population of interest
 ### Bayesian statistics
 
 Bayesian statistics, on the other hand, is based on the idea that [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
+Here, we use prior knowledge about a parameter and update this knowledge with new data using the famous Bayes' theorem:
+
+\[
+p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
+\]
+
+where:
+
+- \( p(\theta | \text{data}) \) is the **posterior probability**: the updated probability of the parameter \( \theta \) given the observed data.
+
+- \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data given a certain value of the parameter \( \theta \).
+
+- \( p(\theta) \) is the **prior probability**: the initial belief about the parameter \( \theta \) before seeing the data.
+
+- \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
+
+#### Example in applied health sciences (physiotherapy)
+
+Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain. 
+You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
+This is your **prior probability**: \( p(\theta) = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
+Now, you run a small trial with 50 patients and observe that 20 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
+This new data (the result of the trial) updates your belief about the effectiveness of the therapy.
+Using Bayes' theorem, you combine the prior probability \( p(\theta) = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
+the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
+
+Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.
+
+## Foundations of probability theory
+We need to know some basic concepts of probability theory in order dive in deeper. 
 
 ## Exercises
 

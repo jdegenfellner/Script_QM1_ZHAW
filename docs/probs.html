@@ -96,9 +96,11 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 <li class="chapter" data-level="2.1.1" data-path="probs.html"><a href="probs.html#frequentist-statistics"><i class="fa fa-check"></i><b>2.1.1</b> Frequentist statistics</a></li>
 <li class="chapter" data-level="2.1.2" data-path="probs.html"><a href="probs.html#bayesian-statistics"><i class="fa fa-check"></i><b>2.1.2</b> Bayesian statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.2</b> Exercises</a>
+<li class="chapter" data-level="2.2" data-path="probs.html"><a href="probs.html#foundations-of-probability-theory"><i class="fa fa-check"></i><b>2.2</b> Foundations of probability theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="probs.html"><a href="probs.html#exercise1"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 1 - throwing a die very often</a></li>
+<li class="chapter" data-level="2.3.1" data-path="probs.html"><a href="probs.html#exercise1"><i class="fa fa-check"></i><b>2.3.1</b> Exercise 1 - throwing a die very often</a></li>
+<li class="chapter" data-level="2.3.2" data-path="probs.html"><a href="probs.html#exercise-2"><i class="fa fa-check"></i><b>2.3.2</b> Exercise 2</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -149,6 +151,15 @@ Nevertheless, one can still try assign probabilities <a href="https://research.a
 <div id="frequentist-vs.-bayesian-statistics" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Frequentist vs. Bayesian statistics<a href="probs.html#frequentist-vs.-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are two main schools of thought in statistics: Frequentist and Bayesian.</p>
+<p>It is <em>not</em> our place to say which one is better. Both have their strengths and weaknesses and are used in different contexts.</p>
+<p>I would consider the rapant misuse of <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub">p-values</a> and the
+cookbook-like application of frequentist statistics as a weakness of this approach (in its widely used form at least).
+Of course, this is not the methods fault but the fault of the user.</p>
+<p>Bayesian statistics is often considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
+Computation time is often still an issue in comparison for instance in regression modelling when using a end user laptop.</p>
+<p>There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.</p>
+<p>Especially one of the early eminent statisticians, <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Ronald Fisher</a>, was an oponent of Bayesian statistics,
+or as he called it: <a href="https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf">“inverse probability”</a>.</p>
 <div id="frequentist-statistics" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Frequentist statistics<a href="probs.html#frequentist-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Frequentist statistics is based on the idea that <a href="https://en.wikipedia.org/wiki/Frequentist_probability">probability</a> is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit,
@@ -160,20 +171,46 @@ if I throw the die infinitely many times, the frequency of getting a 3 will conv
 <p>More genereally, in frequentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP).
 In the dice example, the process of repeatedly throwing the die is the data generating process.
 Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data.</p>
-<p><strong>Example</strong>: Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.</p>
+<p><strong>Example</strong>: Throw your (fair or unfair) die often enough and you will get a good estimate of the probability of getting a 3.</p>
 <p><strong>Example</strong>: We could try to estimate the mean birth weight of all babies from smoking parents born in Switzerland in 2022.
 We would draw a sample of birthweights and calculate the mean. With a sample large enough, we could estimate this parameter fairly well.
 With all birthweights, we would know the true mean of the population of interest (for that year alone).</p>
 </div>
 <div id="bayesian-statistics" class="section level3 hasAnchor" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Bayesian statistics<a href="probs.html#bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Bayesian statistics, on the other hand, is based on the idea that <a href="https://en.wikipedia.org/wiki/Bayesian_probability">probability</a> is a measure of our uncertainty about an event or a parameter.</p>
+<p>Bayesian statistics, on the other hand, is based on the idea that <a href="https://en.wikipedia.org/wiki/Bayesian_probability">probability</a> is a measure of our uncertainty about an event or a parameter.
+Here, we use prior knowledge about a parameter and update this knowledge with new data using the famous Bayes’ theorem:</p>
+<p><span class="math display">\[
+p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(p(\theta | \text{data})\)</span> is the <strong>posterior probability</strong>: the updated probability of the parameter <span class="math inline">\(\theta\)</span> given the observed data.</p></li>
+<li><p><span class="math inline">\(p(\text{data} | \theta)\)</span> is the <strong>likelihood</strong>: the probability of observing the data given a certain value of the parameter <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><span class="math inline">\(p(\theta)\)</span> is the <strong>prior probability</strong>: the initial belief about the parameter <span class="math inline">\(\theta\)</span> before seeing the data.</p></li>
+<li><p><span class="math inline">\(p(\text{data})\)</span> is the <strong>marginal likelihood</strong> or <strong>evidence</strong>: the probability of observing the data under all possible parameter values.</p></li>
+</ul>
+<div id="example-in-applied-health-sciences-physiotherapy" class="section level4 hasAnchor" number="2.1.2.1">
+<h4><span class="header-section-number">2.1.2.1</span> Example in applied health sciences (physiotherapy)<a href="probs.html#example-in-applied-health-sciences-physiotherapy" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose you’re a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain.
+You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients.
+This is your <strong>prior probability</strong>: <span class="math inline">\(p(\theta) = 0.30\)</span>, where <span class="math inline">\(\theta\)</span> is the probability that the therapy is effective.
+Now, you run a small trial with 50 patients and observe that 20 of them showed clinically relevant improvement in mobility (self-reported from the patient).
+This new data (the result of the trial) updates your belief about the effectiveness of the therapy.
+Using Bayes’ theorem, you combine the prior probability <span class="math inline">\(p(\theta) = 0.30\)</span> with the likelihood of the new data <span class="math inline">\(p(\text{data} | \theta)\)</span>, and you calculate
+the <strong>posterior probability</strong>, <span class="math inline">\(p(\theta | \text{data})\)</span>, which reflects your updated belief about the effectiveness of the therapy after observing the trial data.</p>
+<p>Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.</p>
 </div>
 </div>
-<div id="exercises" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Exercises<a href="probs.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise1" class="section level3 hasAnchor" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Exercise 1 - throwing a die very often<a href="probs.html#exercise1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="foundations-of-probability-theory" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Foundations of probability theory<a href="probs.html#foundations-of-probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We need to know some basic concepts of probability theory in order dive in deeper.</p>
+</div>
+<div id="exercises" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Exercises<a href="probs.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise1" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Exercise 1 - throwing a die very often<a href="probs.html#exercise1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Use your favourite large language model (LLM) to create an R-Script to simulate throwing a fair die 1000 times.</li>
 <li>Try to run the script. If it does not run, try to debug it using the LLM.</li>
@@ -181,6 +218,9 @@ With all birthweights, we would know the true mean of the population of interest
 <li>Plot the frequency of each number (1-6) (after 1000 throws) and compare it to the theoretical probability of getting each number (<span class="math inline">\(\frac{1}{6}\)</span>).</li>
 <li>Plot the relative frequency of 3s on the y-axis and the number of throws on the x-axis. This should give a converging pattern towards <span class="math inline">\(y=\frac{1}{6}\)</span>.</li>
 </ul>
+</div>
+<div id="exercise-2" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Exercise 2<a href="probs.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>
