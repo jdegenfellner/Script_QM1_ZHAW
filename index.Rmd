@@ -68,6 +68,7 @@ In this course, we use [R](https://www.r-project.org/) as our main tool for data
 Further resources:
 
 [(Example) Introduction to R](https://www.youtube.com/watch?v=V8eKsto3Ug&t=140s)
+
 In this video, many basic commands are explained. There are many more R introductions. 
 My tip: Watch the beginning of a few different ones and see which explanations work best for you individually.
 
