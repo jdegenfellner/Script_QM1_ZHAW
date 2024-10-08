@@ -4,6 +4,16 @@ Probability is a measure of the likelihood that an event will occur. Probability
 where 0 indicates impossibility and 1 indicates certainty, although we will see later that a probability of 0 does not necessarily mean that such an event can never occur. 
 The higher the probability of an event, the more likely it is that the event will occur. 
 
+Why is probability important in our field of study (applied health sciences)?
+
+Quantative research methods (often a code name for statistics) use probability theory to make statements about a larger 
+population or a data generating process (DGP), as it should be more appropriately called.
+
+In observational studies, we often have to make statements about associations between variables.
+
+In experimental studies (e.g., a randomized controlled trial), we often try to make statements about the effect of an intervention on a 
+certain outcome - for instance if a therapy lowers pain by at least 2 points.
+
 Probability theory has its roots in gambling and betting. [Blaise Pascal](https://en.wikipedia.org/wiki/Blaise_Pascal) wrote a letter to [Pierre de Fermat](https://en.wikipedia.org/wiki/Pierre_de_Fermat) in 1654 when a 
 French essayist Antoine Gombaud, intrigued by gambling, sought to solve "the problem of points," 
 first posed by Luca Paccioli in 1494. The problem asked how to fairly divide the winnings if a game is interrupted before 
@@ -12,17 +22,16 @@ the groundwork for modern probability theory. Fermat’s method involved listing
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
 and influenced fields like economics and actuarial science.
 
-Why is probability important in our field of study (applied health sciences)?
+Philosophically speaking, there are two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven't happened yet.
 
-Quantative research methods (often a code name for statistics) use probability theory to make statements about a larger 
-population or a data generating process, as it should be more appropriately called.
+An example for a repeatable event is getting a 6 when throwing a fair dice. We can do this experiment right now by fetching a dice and throwing it.
 
-In observational studies, we often have to make statements about associations between variables.
+An example for the latter is the probability of a patient dying within the next 5 years after a certain diagnosis. 
+It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different.
+Here, we could at least put forward that other similar patients have a certain proportion of dying within 5 years.
 
-In experimental studies (e.g., a randomized controlled trial), we often try to make statements about the effect of an intervention on a 
-certain outcome - for instance if a therapy lowers pain by at least 2 points.
-
-
+There are of course events that have not happend ever before, like the creation of artificial general intelligence ([AGI](https://en.wikipedia.org/wiki/Artificial_general_intelligence)). 
+Nevertheless, one can still try assign probabilities [when](https://research.aimultiple.com/artificial-general-intelligence-singularity-timing/) such an event would happen.
 
 ## Chapters and sub-chapters
 
