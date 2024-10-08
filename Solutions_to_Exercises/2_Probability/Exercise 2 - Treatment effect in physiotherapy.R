@@ -15,8 +15,12 @@ p_data_theta1 <- dbinom(22, 50, 0.3)
 p_data_theta2 <- dbinom(22, 50, 20/50)
 
 # Marginal likelihood p(data), as a weighted sum of likelihoods
-p_data <- p_data_theta1 * p_theta1 + p_data_theta2 * p_theta2
+p_data_theta_marginal <- p_data_theta1 * p_theta1 + p_data_theta2 * p_theta2
 
 # Bayes' Theorem: p(theta|data) = p(data|theta) * p(theta) / p(data)
-p_theta_data <- p_data_theta1 * p_theta1 / p_data
-p_theta_data
+p_theta1_data <- p_data_theta1 * p_theta1 / p_data_theta_marginal
+p_theta2_data <- p_data_theta2 * p_theta2 / p_data_theta_marginal
+
+p_theta1_data
+p_theta2_data
+
