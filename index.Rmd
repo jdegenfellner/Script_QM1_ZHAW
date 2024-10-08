@@ -9,9 +9,7 @@ bibliography:
 - packages.bib
 url: https://jdegenfellner.github.io/Script_QM1_ZHAW/
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  set in the _output.yml file.
-  The HTML output format for this example is bookdown::gitbook,
+  Script Quantitative Methods 1, ZHAW,
 link-citations: true
 github-repo: "jdegenfellner/Script_QM1_ZHAW"
 ---
@@ -23,7 +21,7 @@ github-repo: "jdegenfellner/Script_QM1_ZHAW"
 This script is a collection of notes and exercises for the course "Quantitative Methods 1" (Codename for: Statistical foundations) at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. 
 It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. 
 
-The idea is to write this script in collaboration with students. If you find any errors, have suggestions, or want to contribute, feel free to contact me. 
+The idea is to write this script in **collaboration with students**. If you find any errors, have suggestions, or want to contribute, feel free to contact me. 
 Which (online) content (video, book, blog...) helped you understand the topic at hand better? We should link those resources in the script!
 
 Feel free to use any content for your own purposes.
