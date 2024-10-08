@@ -65,6 +65,15 @@ In this course, we use [R](https://www.r-project.org/) as our main tool for data
 
 - [R for Data Science](https://r4ds.had.co.nz/)
 
+Further resources:
+
+[(Example) Introduction to R](https://www.youtube.com/watch?v=V8eKsto3Ug&t=140s)
+In this video, many basic commands are explained. There are many more R introductions. 
+My tip: Watch the beginning of a few different ones and see which explanations work best for you individually.
+
+[Overview of introductory resources](https://cran.r-project.org/other-docs.html)
+
+
 ## Additional Tools
 
 Currently I use a combination of [Github Copilot](https://github.com/features/copilot) (paid), [GPT4o](https://chatgpt.com/) (paid), and [RStudio](https://posit.co/download/rstudio-desktop/) for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
