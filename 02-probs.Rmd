@@ -91,14 +91,14 @@ where:
 
 - \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
 
-#### Example in applied health sciences (physiotherapy)
+#### Example in applied health sciences (physiotherapy) {#example1_physio}
 
 Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain. 
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
 This is your **prior probability**: \( p(\theta) = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
 Now, you run a small trial with 50 patients and observe that 20 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
 This new data (the result of the trial) updates your belief about the effectiveness of the therapy.
-Using Bayes' theorem, you combine the prior probability \( p(\theta) = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
+Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior probability \( p(\theta) = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
 
 Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.
@@ -115,4 +115,5 @@ We need to know some basic concepts of probability theory in order dive in deepe
 - Plot the frequency of each number (1-6) (after 1000 throws) and compare it to the theoretical probability of getting each number ($\frac{1}{6}$).
 - Plot the relative frequency of 3s on the y-axis and the number of throws on the x-axis. This should give a converging pattern towards $y=\frac{1}{6}$.
 
-### Exercise 2
+### Exercise 2 {#exercise2}
+Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).

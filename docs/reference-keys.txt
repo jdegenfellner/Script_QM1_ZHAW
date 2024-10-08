@@ -7,8 +7,8 @@ probs
 frequentist-vs.-bayesian-statistics
 frequentist-statistics
 bayesian-statistics
-example-in-applied-health-sciences-physiotherapy
+example1_physio
 foundations-of-probability-theory
 exercises
 exercise1
-exercise-2
+exercise2
