@@ -52,7 +52,7 @@ More genereally, in frequentist statistics, we are looking for a fixed but unkno
 In the dice example, the process of repeatedly throwing the die is the data generating process.
 Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data. 
 
-**Example**: Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.
+**Example**: Throw your (fair or unfair) die often enough and you will get a good estimate of the probability of getting a 3.
 
 **Example**: We could try to estimate the mean birth weight of all babies from smoking parents born in Switzerland in 2022. 
 We would draw a sample of birthweights and calculate the mean. With a sample large enough, we could estimate this parameter fairly well.
@@ -65,4 +65,10 @@ Bayesian statistics, on the other hand, is based on the idea that [probability](
 ## Exercises
 
 ### Exercise 1 - throwing a die very often {#exercise1}
+- Use your favourite large language model (LLM) to create an R-Script to simulate throwing a fair die 1000 times.
+- Try to run the script. If it does not run, try to debug it using the LLM. 
+- Once, the script runs, let the LLM explain the code and outputs ("Please explain this script in detail...").
+- Plot the frequency of each number (1-6) (after 1000 throws) and compare it to the theoretical probability of getting each number ($\frac{1}{6}$).
+- Plot the relative frequency of 3s on the y-axis and the number of throws on the x-axis. This should give a converging pattern towards $y=\frac{1}{6}$.
 
+### Exercise 2
