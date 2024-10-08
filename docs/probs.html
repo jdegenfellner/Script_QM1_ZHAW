@@ -91,7 +91,11 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 </ul></li>
 <li class="chapter" data-level="2" data-path="probs.html"><a href="probs.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="probs.html"><a href="probs.html#frequentist-vs.-bayesian-statistics"><i class="fa fa-check"></i><b>2.1</b> Frequentist vs. Bayesian statistics</a></li>
+<li class="chapter" data-level="2.1" data-path="probs.html"><a href="probs.html#frequentist-vs.-bayesian-statistics"><i class="fa fa-check"></i><b>2.1</b> Frequentist vs. Bayesian statistics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="probs.html"><a href="probs.html#frequentist-statistics"><i class="fa fa-check"></i><b>2.1.1</b> Frequentist statistics</a></li>
+<li class="chapter" data-level="2.1.2" data-path="probs.html"><a href="probs.html#bayesian-statistics"><i class="fa fa-check"></i><b>2.1.2</b> Bayesian statistics</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -141,16 +145,27 @@ Nevertheless, one can still try assign probabilities <a href="https://research.a
 <div id="frequentist-vs.-bayesian-statistics" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Frequentist vs. Bayesian statistics<a href="probs.html#frequentist-vs.-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are two main schools of thought in statistics: Frequentist and Bayesian.</p>
-<p>Frequentist statistics is based on the idea that probability is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit,
+<div id="frequentist-statistics" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Frequentist statistics<a href="probs.html#frequentist-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Frequentist statistics is based on the idea that <a href="https://en.wikipedia.org/wiki/Frequentist_probability">probability</a> is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit,
 if I throw the die infinitely many times, the frequency of getting a 3 will converge to 1/6. In mathematical notation, we would write</p>
 <p><span class="math display">\[
-\mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6}
+\mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6},
 \]</span></p>
-<p>More genereally, in freuqentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP).
+<p>where <span class="math inline">\(\mathbb{P}\)</span> is the probability measure which we will define more formally later.</p>
+<p>More genereally, in frequentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP).
 In the dice example, the process of repeatedly throwing the die is the data generating process.
-Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data.
-Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.</p>
+Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data.</p>
+<p><strong>Example</strong>: Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.</p>
+<p><strong>Example</strong>: We could try to estimate the mean birth weight of all babies from smoking parents born in Switzerland in 2022.
+We would draw a sample of birthweights and calculate the mean. With a sample large enough, we could estimate this parameter fairly well.
+With all birthweights, we would know the true mean of the population of interest (for that year alone).</p>
+</div>
+<div id="bayesian-statistics" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Bayesian statistics<a href="probs.html#bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Bayesian statistics, on the other hand, is based on the idea that <a href="https://en.wikipedia.org/wiki/Bayesian_probability">probability</a> is a measure of our uncertainty about an event or a parameter.</p>
 
+</div>
 </div>
 </div>
             </section>

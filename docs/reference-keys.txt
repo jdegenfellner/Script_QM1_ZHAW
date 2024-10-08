@@ -5,3 +5,5 @@ additional-tools
 workflow-suggestion
 probs
 frequentist-vs.-bayesian-statistics
+frequentist-statistics
+bayesian-statistics

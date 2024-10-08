@@ -37,14 +37,28 @@ Nevertheless, one can still try assign probabilities [when](https://research.aim
 
 There are two main schools of thought in statistics: Frequentist and Bayesian.
 
-Frequentist statistics is based on the idea that probability is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit, 
+### Frequentist statistics
+
+Frequentist statistics is based on the idea that [probability](https://en.wikipedia.org/wiki/Frequentist_probability) is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit, 
 if I throw the die infinitely many times, the frequency of getting a 3 will converge to 1/6. In mathematical notation, we would write 
 
 \[
-\mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6}
+\mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6},
 \]
 
-More genereally, in freuqentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP). 
+where \(\mathbb{P}\) is the probability measure which we will define more formally later.
+
+More genereally, in frequentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP). 
 In the dice example, the process of repeatedly throwing the die is the data generating process.
 Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data. 
-Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.
+
+**Example**: Throw your (unfair) die often enough and you will get a good estimate of the probability of getting a 3.
+
+**Example**: We could try to estimate the mean birth weight of all babies from smoking parents born in Switzerland in 2022. 
+We would draw a sample of birthweights and calculate the mean. With a sample large enough, we could estimate this parameter fairly well.
+With all birthweights, we would know the true mean of the population of interest (for that year alone).
+
+### Bayesian statistics
+
+Bayesian statistics, on the other hand, is based on the idea that [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
+
