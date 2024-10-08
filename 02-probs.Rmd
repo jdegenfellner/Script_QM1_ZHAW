@@ -27,7 +27,7 @@ Philosophically speaking, there are two flavors of probability: Probabilities fo
 An example for a repeatable event is getting a 6 when throwing a fair dice. We can do this experiment right now by fetching a dice and throwing it.
 
 An example for the latter is the probability of a patient dying within the next 5 years after a certain diagnosis. 
-It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different.
+It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different whereas the dice are typically much more similar.
 Here, we could at least put forward that other similar patients have a certain proportion of dying within 5 years.
 
 There are of course events that have not happend ever before, like the creation of artificial general intelligence ([AGI](https://en.wikipedia.org/wiki/Artificial_general_intelligence)). 
