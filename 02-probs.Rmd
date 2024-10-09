@@ -4,7 +4,7 @@ Probability is a measure of the likelihood that an event will occur. Probability
 where 0 indicates impossibility and 1 indicates certainty, although we will see later that a probability of 0 does not necessarily mean that such an event can never occur. 
 The higher the probability of an event, the more likely it is that the event will occur. 
 
-Why is probability important in our field of study (applied health sciences)?
+**Why is probability important in our field of study (applied health sciences)?**
 
 Quantative research methods (often a code name for statistics) use probability theory to make statements about a larger 
 population or a data generating process (DGP), as it should be more appropriately called.
