@@ -12,4 +12,5 @@ foundations-of-probability-theory
 exercises
 exercise1
 exercise2
+exercise3
 solutions

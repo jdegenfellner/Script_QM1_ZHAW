@@ -12,7 +12,7 @@ population or a data generating process (DGP), as it should be more appropriatel
 In observational studies, we often make statements about associations between variables.
 
 In experimental studies (e.g., a randomized controlled trial), we often try to make statements about the effect of an intervention on a 
-certain outcome - for instance if a therapy lowers pain by at least 2 points.
+certain outcome - for instance if a therapy lowers [pain](https://jamanetwork.com/journals/jama/fullarticle/2794765) by at least 1 point.
 
 Probability theory has its roots in gambling and betting. [Blaise Pascal](https://en.wikipedia.org/wiki/Blaise_Pascal) wrote a letter to [Pierre de Fermat](https://en.wikipedia.org/wiki/Pierre_de_Fermat) in 1654 when a 
 French essayist Antoine Gombaud, intrigued by gambling, sought to solve "the problem of points," 
@@ -44,7 +44,7 @@ cookbook-like application of frequentist statistics as a weakness of this approa
 Of course, this is not the method's fault but the fault of the user.
 
 Bayesian statistics is often considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
-Computation time is often still an issue in comparison for instance in regression modelling when using an end user laptop.
+Computation time is sometimes still an issue in comparison for instance in regression modelling when using an end user laptop.
 It is also argued that for large sample size frequentist and Bayesian statistics converge to the same result.
 
 There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.
@@ -52,10 +52,14 @@ There are very smart proponents on both sides and we will try to use and contras
 Especially one of the early eminent statisticians, [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), was an oponent of Bayesian statistics, 
 or as he called it: ["inverse probability"](https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf).
 
+The only thing we are interested in is the pracitcal application of both methods in the field of applied health sciences. 
+How well can we describe data and make predictions, how well can we learn from data in our field?
+
 ### Frequentist statistics
 
-Frequentist statistics is based on the idea that [probability](https://en.wikipedia.org/wiki/Frequentist_probability) is the long-run frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) 1/6. In the limit, 
-if I throw the die infinitely many times, the frequency of getting a 3 will converge to 1/6. In mathematical notation, we would write 
+Frequentist statistics is based on the idea that [probability](https://en.wikipedia.org/wiki/Frequentist_probability) is the long-run 
+frequency of events. For instance, if I throw a fair die 1000 times, the frequency of getting a 3 is (approximately) $\frac{1}{6}$. In the limit, 
+if I throw the die infinitely many times, the frequency of getting a 3 will converge to $\frac{1}{6}$. In mathematical notation, we would write 
 
 \[
 \mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6},
@@ -70,13 +74,13 @@ Basically, we could estimate the parameter of interest arbitrarily well by reape
 **Example**: Throw your (fair or unfair) die often enough and you will get a good estimate of the probability of getting a 3.
 
 **Example**: We could try to estimate the mean birth weight of all babies from smoking parents born in Switzerland in 2022. 
-We would draw a sample of birthweights and calculate the mean. With a sample large enough, we could estimate this parameter fairly well.
+We would draw a (random) sample of birthweights and calculate the mean. With a sample large enough, we could estimate this parameter fairly well.
 With all birthweights, we would know the true mean of the population of interest (for that year alone).
 
 ### Bayesian statistics
 
 Bayesian statistics, on the other hand, is based on the idea that [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
-Here, we use prior knowledge about a parameter and update this knowledge with new data using the famous Bayes' theorem:
+Here, we use *prior* (i.e., before our experiment) knowledge about a parameter and update this knowledge with new data using the famous Bayes' theorem:
 
 \[
 p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
@@ -94,19 +98,21 @@ where:
 
 #### Example in applied health sciences (physiotherapy) {#example1_physio}
 
-Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain. 
+Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain (Improvement Yes/No). 
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
 This is your **prior probability**: \( p(\theta) = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
 Your coelleagues are not convinced that the therapy is effective and argue that the probability is 40%.
 Now, you run a small trial with 50 patients and observe that 22 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
-This new data (the result of the trial) updates your belief about the effectiveness of the therapy.
+This new data (the result of the trial) *updates* your belief about the effectiveness of the therapy.
 Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior probability \( p(\theta) = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
 
 Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.
 
 ## Foundations of probability theory
-We need to know some basic concepts of probability theory in order to dive in deeper. 
+We need to know some basic concepts of probability theory in order to dive in deeper. We will try to introduce them playfully and find formality as we go along.
+As stated above, in the frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?
+
 
 ## Exercises
 
@@ -121,6 +127,16 @@ We need to know some basic concepts of probability theory in order to dive in de
 Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).
 For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter 
 $\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
+
+### Exercise 3 {#exercise3}
+Use Google or your favourite search engine to find scientific journals in *your* field (physiotherapy, midwifery, nursing, etc.). 
+Look at the latest articles. We are interested in articles that used statistics (no qualitative studies). 
+
+- What was the research question? What where they trying to find out/confirm? Write down at least 10 research questions!
+- Which statistical *methods* were used? Write down at least 10 methods!
+- Was prior knowledge used in any of the analysis?
+
+
 
 ## Solutions
 Solutions for this chapter can be found here...
