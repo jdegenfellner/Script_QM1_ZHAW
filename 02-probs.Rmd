@@ -12,7 +12,7 @@ population or a data generating process (DGP), as it should be more appropriatel
 In observational studies, we often make statements about associations between variables.
 
 In experimental studies (e.g., a randomized controlled trial), we often try to make statements about the effect of an intervention on a 
-certain outcome - for instance if a therapy lowers [pain](https://jamanetwork.com/journals/jama/fullarticle/2794765) by at least 1 point.
+certain outcome - for instance if a therapy lowers [pain](https://jamanetwork.com/journals/jama/fullarticle/2794765) by at least 1 point better compared to usual therapies.
 
 Probability theory has its roots in gambling and betting. [Blaise Pascal](https://en.wikipedia.org/wiki/Blaise_Pascal) wrote a letter to [Pierre de Fermat](https://en.wikipedia.org/wiki/Pierre_de_Fermat) in 1654 when a 
 French essayist Antoine Gombaud, intrigued by gambling, sought to solve "the problem of points," 
@@ -113,6 +113,13 @@ Bayesian analysis allows you to update your estimates as new evidence becomes av
 We need to know some basic concepts of probability theory in order to dive in deeper. We will try to introduce them playfully and find formality as we go along.
 As stated above, in the frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?
 
+**Heureka?**
+
+Let's imagine we are in a research department with 1000 researches all trying to answer the same question: 
+Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let's assume (unrealistically) that they are all working on this one question and they are not
+talking about their experiments or their research methodology to each other. The statistician in the department has calculated (due to the variability of such treatment effects in the relevant population)
+that even under the assumption of the therapy not working *at all*, one would see an effect just *by chance* in 4% of the study results.
+
 
 ## Exercises
 
@@ -135,6 +142,7 @@ Look at the latest articles. We are interested in articles that used statistics 
 - What was the research question? What where they trying to find out/confirm? Write down at least 10 research questions!
 - Which statistical *methods* were used? Write down at least 10 methods!
 - Was prior knowledge used in any of the analysis?
+- Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
 
 
 

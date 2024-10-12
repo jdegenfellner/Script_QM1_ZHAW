@@ -21,8 +21,10 @@ github-repo: "jdegenfellner/Script_QM1_ZHAW"
 This script is a collection of notes and exercises for the course "Quantitative Methods 1" (Codename for: Statistical foundations) at [ZHAW](https://www.zhaw.ch/en/university/) in Winterthur, Switzerland. 
 It is permanently evolving and the [github repository](https://github.com/jdegenfellner/Script_QM1_ZHAW) is public. 
 
-The idea is to write this script in **collaboration with students**. If you find any errors, have suggestions, or want to contribute, feel free to contact me. 
+The **vision** is to write this script in **collaboration with students**. If you find any errors, have suggestions, or want to contribute, feel free to contact me. 
 Which (online) content (video, book, blog...) helped you understand the topic at hand better? We should link those resources in the script!
+
+The **goal** of this script is to provide a starting point for further reading and learning. It should function as an initial start to get you going. We are all learners.
 
 Feel free to use any content for your own purposes.
 
