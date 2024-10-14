@@ -155,9 +155,9 @@ if (knitr::is_html_output()) {
   grid.circle(x = 0.25, y = 0.5, r = 0.3, gp = gpar(fill = "lightblue"), name = "A")
   grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = gpar(fill = "pink"), name = "B")
   
-  grid.text("A", x = 0.25, y = 0.9, gp = gpar(fontsize = 16))
-  grid.text("B", x = 0.75, y = 0.9, gp = gpar(fontsize = 16))
-  grid.text("P(A ∩ B) = 0", x = 0.5, y = 0.0, gp = gpar(fontsize = 16, col = "darkred"))
+  grid.text("A_1", x = 0.25, y = 0.9, gp = gpar(fontsize = 16))
+  grid.text("A_2", x = 0.75, y = 0.9, gp = gpar(fontsize = 16))
+  grid.text("P(A_1 ∩ A_2) = 0", x = 0.5, y = 0.0, gp = gpar(fontsize = 16, col = "darkred"))
   
 } else {
   # Render TikZ code for PDF
@@ -256,9 +256,31 @@ might as well be that their statistical training was very similar and they both 
 
 ### Difference between independence and disjointness
 
-**Example** Events that are disjoint but not independent
+**Example: disjoint but not independent**
 
-**Example** Events that are independent but not disjoint
+- Event A: Patient receives treatment A and shows improvement.
+- Event B: Patient receives treatment B (or is in the control group) and shows improvement.
+
+These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. 
+If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together. Thus,  $P(A \cap B) = 0$.
+However, these events are not independent, because the probability of receiving one treatment depends on not receiving the other. 
+In this setup, if the patient received treatment A, the probability of receiving treatment B is zero. So, they are dependent.
+
+**Example: independent but not disjoint**
+
+- Event A: The patient shows a treatment effect during a study.
+- Event B: The patient wins the lottery during the study.
+
+These two events are independent because the probability of a patient showing a treatment effect is not influenced by whether they win the lottery or not 
+(at least if we assume that lottery participants do not have different propoerties compared to non-lottery particiants that are conducive to showing a treatment effect). 
+The events are unrelated: one depends on the treatment, while the other is purely a matter of luck.
+However, these events are not disjoint because both can happen at the same time. 
+A patient could experience the treatment effect and also win the lottery during the study. Thus,  $P(A \cap B) \neq 0$ , meaning both events can occur together.
+
+**Example: independent and disjoint**
+
+**Example: neither independent nor disjoint**
+
 
 
 
@@ -277,6 +299,7 @@ For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous stu
 $\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
 
 ### Exercise 3 {#exercise3}
+**Note: This is among the most important exercises of the course:**
 Use Google or your favourite search engine to find scientific journals in *your* field (physiotherapy, midwifery, nursing, etc.). 
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies). 
 

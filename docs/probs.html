@@ -302,8 +302,27 @@ might as well be that their statistical training was very similar and they both 
 </div>
 <div id="difference-between-independence-and-disjointness" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Difference between independence and disjointness<a href="probs.html#difference-between-independence-and-disjointness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Example</strong> Events that are disjoint but not independent</p>
-<p><strong>Example</strong> Events that are independent but not disjoint</p>
+<p><strong>Example: disjoint but not independent</strong></p>
+<ul>
+<li>Event A: Patient receives treatment A and shows improvement.</li>
+<li>Event B: Patient receives treatment B (or is in the control group) and shows improvement.</li>
+</ul>
+<p>These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time.
+If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together. Thus, <span class="math inline">\(P(A \cap B) = 0\)</span>.
+However, these events are not independent, because the probability of receiving one treatment depends on not receiving the other.
+In this setup, if the patient received treatment A, the probability of receiving treatment B is zero. So, they are dependent.</p>
+<p><strong>Example: independent but not disjoint</strong></p>
+<ul>
+<li>Event A: The patient shows a treatment effect during a study.</li>
+<li>Event B: The patient wins the lottery during the study.</li>
+</ul>
+<p>These two events are independent because the probability of a patient showing a treatment effect is not influenced by whether they win the lottery or not
+(at least if we assume that lottery participants do not have different propoerties compared to non-lottery particiants that are conducive to showing a treatment effect).
+The events are unrelated: one depends on the treatment, while the other is purely a matter of luck.
+However, these events are not disjoint because both can happen at the same time.
+A patient could experience the treatment effect and also win the lottery during the study. Thus, <span class="math inline">\(P(A \cap B) \neq 0\)</span> , meaning both events can occur together.</p>
+<p><strong>Example: independent and disjoint</strong></p>
+<p><strong>Example: neither independent nor disjoint</strong></p>
 </div>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
@@ -326,7 +345,8 @@ For simplicity, let’s just test two <span class="math inline">\(\theta\)</span
 </div>
 <div id="exercise3" class="section level3 hasAnchor" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Exercise 3<a href="probs.html#exercise3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Use Google or your favourite search engine to find scientific journals in <em>your</em> field (physiotherapy, midwifery, nursing, etc.).
+<p><strong>Note: This is among the most important exercises of the course:</strong>
+Use Google or your favourite search engine to find scientific journals in <em>your</em> field (physiotherapy, midwifery, nursing, etc.).
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies).</p>
 <ul>
 <li>What was the research question? What where they trying to find out/confirm? Write down at least 10 research questions!</li>
