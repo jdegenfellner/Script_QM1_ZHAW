@@ -277,9 +277,12 @@ The events are unrelated: one depends on the treatment, while the other is purel
 However, these events are not disjoint because both can happen at the same time. 
 A patient could experience the treatment effect and also win the lottery during the study. Thus,  $P(A \cap B) \neq 0$ , meaning both events can occur together.
 
-**Example: independent and disjoint**
-
 **Example: neither independent nor disjoint**
+- Event A: The patient shows a treatment effect during a study.
+- Event B: The patient is a heavily motivated and self-sufficient. 
+
+These two events are neither independent nor disjoint. The patient's motivation could influence the treatment effect, making the events dependent.
+However, the patient's motivation is not mutually exclusive with the treatment effect, so the events are not disjoint either. They can occur together.
 
 
 
@@ -309,7 +312,9 @@ Look at the latest articles. We are interested in articles that used statistics 
 - Was prior knowledge used in any of the analysis?
 - Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
 
-
+### Exercise4: {#exercise4} -  independent and disjoint
+Look at the definitions above and try to come up with examples for independent and disjoint events in your field of study.
+Is this possible? Why or why not?
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
