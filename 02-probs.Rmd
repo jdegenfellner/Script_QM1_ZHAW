@@ -161,7 +161,7 @@ We can summarize these informally stated properties more formally ([Kolmogorov's
 3. &\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}
 
-The $\infty$-symbol in axiom 3. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
+The $\infty$-symbol in **axiom 3**. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
 treatment effect being between $0$ and $0.1$, or between $0.11$ and $0.2$, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
 As concrete example for law 3 in our example, we can put the following:
 \begin{align}
@@ -183,9 +183,9 @@ In our example, the probability that exactly 3 researchers find an effect is $\b
 Still small, but much higher than before.
 
 
-As we will see later, axiom 1 above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
+As we will see later, **axiom 1** above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
 
-Axiom 2 is always true. Some result *has* to occur in our random experiment.
+**Axiom 2** is always true. Some result *has* to occur in our random experiment.
 
 
 
@@ -218,4 +218,4 @@ Look at the latest articles. We are interested in articles that used statistics 
 
 
 ## Solutions
-Solutions for this chapter can be found here...
+Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).

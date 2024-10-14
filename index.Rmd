@@ -32,20 +32,22 @@ At the end of each chapter, you will find a list of exercises. Last year's exam 
 
 The most important lessons you'll learn are not part of the final exam: Intellectual honesty and humility.
 
-A lot of content relevant for this course can be found in the [ZHAW_teaching](https://github.com/jdegenfellner/ZHAW_Teaching) folder, which contains many R scripts (among other stuff):
+A lot of content relevant for this course can be found in the [ZHAW_teaching](https://github.com/jdegenfellner/ZHAW_Teaching) folder, 
+which contains many R scripts (among other stuff).
 
 We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data. 
-Statistical modeling, hypothesis testing, and regression analysis will be covered later.
+Statistical modeling will be covered later.
 
-One thing to consider for health sciences with respect to quantitaive methods is the following: We do not *have* to use quantitative methods for each and every 
-question arsising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., n=10) often do not warrant the use of inferential 
+One thing to consider for health sciences with respect to quantitative methods is the following: We do not *have* to use quantitative methods for each and every 
+question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., n=10) often do not warrant the use of inferential 
 statistics or estimation or at least make it considerably harder to answer the question at hand. 
 *If* one decides to answer questions in a statistical way, we are bound to the rules of the game. 
 
 GPT4o and Github Copilot where used for writing this script.
 
-## Books I can (highly) recommend (not just for QM1)
+## Books I can (highly) recommend:
 
+- FILL in HERE: book recommendation for Probability and descriptive statistics....
 - [Statistical Rethinking](https://xcelab.net/rm/), YouTube-Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
 - (Free) [Understanding Regression Analysis: A Conditional Distribution Approach](https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0)
 - (Free) [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
