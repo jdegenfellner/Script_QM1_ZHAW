@@ -292,6 +292,7 @@ A patient could experience the treatment effect and also win the lottery during 
 - Once, the script runs, let the LLM explain the code and outputs ("Please explain this script in detail...").
 - Plot the frequency of each number (1-6) (after 1000 throws) and compare it to the theoretical probability of getting each number ($\frac{1}{6}$).
 - Plot the relative frequency of 3s on the y-axis and the number of throws on the x-axis. This should give a converging pattern towards $y=\frac{1}{6}$.
+- Which law of probability theory is illustrated by this simulation?
 
 ### Exercise 2 {#exercise2}
 Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).
