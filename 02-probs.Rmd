@@ -138,13 +138,15 @@ out of 50 studies showed a treatment effect. What is the problem?
 We will try answer such questions in the following sections.
 
 First, it seems intuitive that Probability *within* an experiment should add up *if* the events are **disjoint**. 
-The event $A_1=$"researcher 45 gets a positive result" and $A_2=$"researcher 897 gets a positive result" are mutually exclusive. We would ask here:
-Which researchers got a positive results in both events? The answer is: None, zero, empty set. Hence, the two events are said to disjoint.
+The event $A_1=$ "only researcher 45 gets a positive result" and $A_2=$ "only researcher 897 gets a positive result" are mutually exclusive. 
+If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. Hence, the two events are said to disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. We say that the probability of all elementary events (called $\omega$) sums to 1.
 
 An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1=$"researcher 45 gets a positive result" and the event $A_3=$"researcher 45 and reasearcher 67 gets a positive result".
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can't just
 add up the probabilities here, since we would count the probability of researcher 45 twice.
+
+TEST
 
 The probability of the event "" should be zero, were "" denotes the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed *never* happen.
@@ -185,9 +187,22 @@ Still small, but much higher than before.
 
 As we will see later, **axiom 1** above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
 
-**Axiom 2** is always true. Some result *has* to occur in our random experiment.
+**Axiom 2** is always true. Some result *has* to occur in our random experiment. 
+But **what is $\Omega$**? In our countable case of researchers, $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$ would be the set of all possible outcomes if we let 1000 researchers conduct the experiment. 
+Each researcher can either find an effect or not. Hence, we have $2^{1000}$ possible outcomes of our 1000-researcher experiment. This is a *very* large number. Adding up all
+these probabilities would sum to 1 according to axiom 3. Combining different elementary events $\omega$ from the whole collection of possible outcomes $\Omega$
+gives us "events" like the ones we used above ($A_1, A_2, A_3$).
 
+Note that there is a difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment of 1000 researchers we are looking at.
+Do not make the mistake to add the single probabilities of finding an effect (under $H_0$) of 0.04 to get the probability of finding an effect in the whole experiment: 
+This would result in: $1000 \cdot 0.04 = 40 > 1$, which is hardly a probability anymore. 
 
+This leads us to the concept of independence of events.
+
+### Independence of events
+Two events $A$ and $B$ are independent if the occurrence of one event does not affect the occurrence of the other event. Although "aff"
+
+### Difference between independence and disjointness
 
 
 

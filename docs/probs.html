@@ -93,6 +93,8 @@
 <li class="chapter" data-level="2.2" data-path="probs.html"><a href="probs.html#foundations-of-probability-theory"><i class="fa fa-check"></i><b>2.2</b> Foundations of probability theory</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="probs.html"><a href="probs.html#axioms-of-probability-theory"><i class="fa fa-check"></i><b>2.2.1</b> Axioms of probability theory</a></li>
+<li class="chapter" data-level="2.2.2" data-path="probs.html"><a href="probs.html#independence-of-events"><i class="fa fa-check"></i><b>2.2.2</b> Independence of events</a></li>
+<li class="chapter" data-level="2.2.3" data-path="probs.html"><a href="probs.html#difference-between-independence-and-disjointness"><i class="fa fa-check"></i><b>2.2.3</b> Difference between independence and disjointness</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
 <ul>
@@ -232,12 +234,13 @@ out of 50 studies showed a treatment effect. What is the problem?</li>
 </ol>
 <p>We will try answer such questions in the following sections.</p>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
-The event <span class="math inline">\(A_1=\)</span>“researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span>“researcher 897 gets a positive result” are mutually exclusive. We would ask here:
-Which researchers got a positive results in both events? The answer is: None, zero, empty set. Hence, the two events are said to disjoint.
+The event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span> “only researcher 897 gets a positive result” are mutually exclusive.
+If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. Hence, the two events are said to disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1.</p>
 <p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span>“researcher 45 gets a positive result” and the event <span class="math inline">\(A_3=\)</span>“researcher 45 and reasearcher 67 gets a positive result”.
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
 add up the probabilities here, since we would count the probability of researcher 45 twice.</p>
+<p>TEST</p>
 <p>The probability of the event “” should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed <em>never</em> happen.</p>
 <p>Obviously, the probability of an event should at a mininum be zero and at a maximum be one.</p>
@@ -269,7 +272,22 @@ This <a href="https://www.youtube.com/watch?v=WWv0RUxDfbs&amp;ab_channel=KhanAca
 In our example, the probability that exactly 3 researchers find an effect is <span class="math inline">\(\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}\)</span>.
 Still small, but much higher than before.</p>
 <p>As we will see later, <strong>axiom 1</strong> above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.</p>
-<p><strong>Axiom 2</strong> is always true. Some result <em>has</em> to occur in our random experiment.</p>
+<p><strong>Axiom 2</strong> is always true. Some result <em>has</em> to occur in our random experiment.
+But <strong>what is <span class="math inline">\(\Omega\)</span></strong>? In our countable case of researchers, <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span> would be the set of all possible outcomes if we let 1000 researchers conduct the experiment.
+Each researcher can either find an effect or not. Hence, we have <span class="math inline">\(2^{1000}\)</span> possible outcomes of our 1000-researcher experiment. This is a <em>very</em> large number. Adding up all
+these probabilities would sum to 1 according to axiom 3. Combining different elementary events <span class="math inline">\(\omega\)</span> from the whole collection of possible outcomes <span class="math inline">\(\Omega\)</span>
+gives us “events” like the ones we used above (<span class="math inline">\(A_1, A_2, A_3\)</span>).</p>
+<p>Note that there is a difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment of 1000 researchers we are looking at.
+Do not make the mistake to add the single probabilities of finding an effect (under <span class="math inline">\(H_0\)</span>) of 0.04 to get the probability of finding an effect in the whole experiment:
+This would result in: <span class="math inline">\(1000 \cdot 0.04 = 40 &gt; 1\)</span>, which is hardly a probability anymore.</p>
+<p>This leads us to the concept of independence of events.</p>
+</div>
+<div id="independence-of-events" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Independence of events<a href="probs.html#independence-of-events" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if the occurrence of one event does not affect the occurrence of the other event. Although “aff”</p>
+</div>
+<div id="difference-between-independence-and-disjointness" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Difference between independence and disjointness<a href="probs.html#difference-between-independence-and-disjointness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
@@ -345,7 +363,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-probs.Rmd",
+"link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/02-probs.Rmd",
 "text": "Edit"
 },
 "history": {

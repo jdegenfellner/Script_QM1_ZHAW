@@ -10,6 +10,8 @@ bayesian-statistics
 example1_physio
 foundations-of-probability-theory
 axioms-of-probability-theory
+independence-of-events
+difference-between-independence-and-disjointness
 exercises
 exercise1
 exercise2
