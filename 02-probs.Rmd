@@ -204,6 +204,9 @@ Two events $A$ and $B$ are independent if the occurrence of one event does not a
 
 ### Difference between independence and disjointness
 
+**Example** Events that are disjoint but not independent
+
+**Example** Events that are independent but not disjoint
 
 
 
