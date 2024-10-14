@@ -138,11 +138,11 @@ out of 50 studies showed a treatment effect. What is the problem?
 We will try answer such questions in the following sections.
 
 First, it seems intuitive that Probability *within* an experiment should add up *if* the events are **disjoint**. 
-The event "researcher 45 gets a positive result" and "researcher 897 gets a positive result" are mutually exclusive. We would ask here:
+The event $A_1=$"researcher 45 gets a positive result" and $A_2=$"researcher 897 gets a positive result" are mutually exclusive. We would ask here:
 Which researchers got a positive results in both events? The answer is: None, zero, empty set. Hence, the two events are said to disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. We say that the probability of all elementary events (called $\omega$) sums to 1.
 
-An example of **non-disjoint** (within our 1000-researcher experiment) would be the event "researcher 45 gets a positive result" and "researcher 45 and reasearcher 67 gets a positive result".
+An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1=$"researcher 45 gets a positive result" and the event $A_3=$"researcher 45 and reasearcher 67 gets a positive result".
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can't just
 add up the probabilities here, since we would count the probability of researcher 45 twice.
 
@@ -154,10 +154,23 @@ Obviously, the probability of an event should at a mininum be zero and at a maxi
 We can summarize these informally stated properties more formally:
 
 \begin{align}
-1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event}\\
-2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs}\\
+1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event.}\\
+2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
 3. &\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}
+
+The $\infty$-symbol in 3. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
+treatment effect being between $0$ and $0.1$, or between $0.11$ and $0.2$, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
+As concrete example for law 3 in our example, we can put the following:
+\begin{align}
+\tiny
+$\mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result" or "(only) researchers 1 and 5 get a pos. results"}) =\\
+\mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result"}) + \mathbb{P}(\text{"(only) researchers 1 and 5 get a pos. results"})$
+\end{align}
+
+As we will see later, law 1 does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
+
+Law 2 is always true. Some result *has* to occur in our random experiment.
 
 
 

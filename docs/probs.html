@@ -229,10 +229,10 @@ out of 50 studies showed a treatment effect. What is the problem?</li>
 </ol>
 <p>We will try answer such questions in the following sections.</p>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
-The event “researcher 45 gets a positive result” and “researcher 897 gets a positive result” are mutually exclusive. We would ask here:
+The event <span class="math inline">\(A_1=\)</span>“researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span>“researcher 897 gets a positive result” are mutually exclusive. We would ask here:
 Which researchers got a positive results in both events? The answer is: None, zero, empty set. Hence, the two events are said to disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1.</p>
-<p>An example of <strong>non-disjoint</strong> (within our 1000-researcher experiment) would be the event “researcher 45 gets a positive result” and “researcher 45 and reasearcher 67 gets a positive result”.
+<p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span>“researcher 45 gets a positive result” and the event <span class="math inline">\(A_3=\)</span>“researcher 45 and reasearcher 67 gets a positive result”.
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
 add up the probabilities here, since we would count the probability of researcher 45 twice.</p>
 <p>The probability of the event “” should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
@@ -240,10 +240,20 @@ We would therefore define this probability as zero and (if we can count the numb
 <p>Obviously, the probability of an event should at a mininum be zero and at a maximum be one.</p>
 <p>We can summarize these informally stated properties more formally:</p>
 <p><span class="math display">\[\begin{align}
-1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event}\\
-2. &amp;\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs}\\
+1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event.}\\
+2. &amp;\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
 3. &amp;\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}\]</span></p>
+<p>The <span class="math inline">\(\infty\)</span>-symbol in 3. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
+treatment effect being between <span class="math inline">\(0\)</span> and <span class="math inline">\(0.1\)</span>, or between <span class="math inline">\(0.11\)</span> and <span class="math inline">\(0.2\)</span>, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
+As concrete example for law 3 in our example, we can put the following:
+<span class="math display">\[\begin{align}
+\tiny
+$\mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot; or &quot;(only) researchers 1 and 5 get a pos. results&quot;}) =\\
+\mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot;}) + \mathbb{P}(\text{&quot;(only) researchers 1 and 5 get a pos. results&quot;})$
+\end{align}\]</span></p>
+<p>As we will see later, law 1 does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.</p>
+<p>Law 2 is always true. Some result <em>has</em> to occur in our random experiment.</p>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Exercises<a href="probs.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
