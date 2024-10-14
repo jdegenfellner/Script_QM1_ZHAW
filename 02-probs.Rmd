@@ -184,8 +184,8 @@ if (knitr::is_html_output()) {
 
 Again, this refers to being mutually exclusive within our 1000-researcher experiment. Both events cannot happen at the same time in this context.
 
-An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1= $ "researcher 45 gets a positive result" and
- the event $A_3 =$ "researcher 45 and reasearcher 67 gets a positive result".
+An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1=$ "researcher 45 gets a positive result" and
+ the event $A_3=$ "researcher 45 and reasearcher 67 gets a positive result".
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can't just
 add up the probabilities here, since we would count the probability of researcher 45 twice.
 
