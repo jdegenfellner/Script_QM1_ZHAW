@@ -326,14 +326,26 @@ plot(0:n, probs, type = "h", lwd = 2, col = "blue",
      main = "Binomial distribution for treatment effect (yes/no) in 1000 researchers")
 abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 ```
+
 Note, this form of distribution looks like a bell curve, aka a normal distribution.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
 
 
 
 **The second question** asked about observing 137 positively reporting researchers. 
-We can calculate the probability of observing 137 or more positive results using the binomial distribution (plug into the formula): 
-$\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^(1000-i)$
+We can calculate the probability of observing 137 or more positive results using the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
+(plug into the formula): 
+$\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^{1000-i}$:
+```{r}
+# Calculate the probability of observing 137 or more positive results
+1 - sum(dbinom(0:136, size = 1000, prob = 0.04))
+
+# Compare to winning the Swiss lottery
+(1/31474716)/(1 - sum(dbinom(0:136, size = 1000, prob = 0.04)))
+```
+
+57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
+
 
 ## Exercises
 
