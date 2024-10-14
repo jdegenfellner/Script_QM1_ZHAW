@@ -9,6 +9,7 @@ frequentist-statistics
 bayesian-statistics
 example1_physio
 foundations-of-probability-theory
+axioms-of-probability-theory
 exercises
 exercise1
 exercise2

@@ -151,7 +151,9 @@ We would therefore define this probability as zero and (if we can count the numb
 
 Obviously, the probability of an event should at a mininum be zero and at a maximum be one. 
 
-We can summarize these informally stated properties more formally:
+### Axioms of probability theory
+
+We can summarize these informally stated properties more formally ([Kolmogorov's axioms](https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf)):
 
 \begin{align}
 1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event.}\\
@@ -159,7 +161,7 @@ We can summarize these informally stated properties more formally:
 3. &\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}
 
-The $\infty$-symbol in 3. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
+The $\infty$-symbol in axiom 3. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
 treatment effect being between $0$ and $0.1$, or between $0.11$ and $0.2$, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
 As concrete example for law 3 in our example, we can put the following:
 \begin{align}
@@ -177,13 +179,13 @@ we get much larer numbers. We say, the number $X$ of positive results under $H_0
 The YouTube-channel [3Blue1Brown](https://www.youtube.com/@3blue1brown) is highly recommended in general. You should watch this 
 [video](https://www.youtube.com/watch?v=8idr1WZ1A7Q&ab_channel=3Blue1Brown) on the binomial distribution to get a clearer picture. 
 This [video](https://www.youtube.com/watch?v=WWv0RUxDfbs&ab_channel=KhanAcademy) from [KhanAcademy](https://www.youtube.com/@khanacademy) could also be helpful.
-In our example, the probability that exacatly 3 researchers find an effect is $\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}$. 
+In our example, the probability that exactly 3 researchers find an effect is $\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}$. 
 Still small, but much higher than before.
 
 
-As we will see later, law 1 above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
+As we will see later, axiom 1 above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
 
-Law 2 is always true. Some result *has* to occur in our random experiment.
+Axiom 2 is always true. Some result *has* to occur in our random experiment.
 
 
 
