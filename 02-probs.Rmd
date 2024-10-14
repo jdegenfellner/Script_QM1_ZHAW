@@ -126,7 +126,9 @@ Instead of throwing a fair die, we do a round of "research" with 1000 researcher
 give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can 
 (unrealistically) assume that their results will be not influenced by each other.
 
-Now we could ask different questions:
+Now we could ask different 
+
+### Questions about the 1000 researcher-experiment (among many others): {#Questions_about_the_1000-researcher_experiment}
 
 1. If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?
 2. If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?
@@ -155,9 +157,12 @@ if (knitr::is_html_output()) {
   grid.circle(x = 0.25, y = 0.5, r = 0.3, gp = gpar(fill = "lightblue"), name = "A")
   grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = gpar(fill = "pink"), name = "B")
   
-  grid.text("A_1", x = 0.25, y = 0.9, gp = gpar(fontsize = 16))
-  grid.text("A_2", x = 0.75, y = 0.9, gp = gpar(fontsize = 16))
-  grid.text("P(A_1 ∩ A_2) = 0", x = 0.5, y = 0.0, gp = gpar(fontsize = 16, col = "darkred"))
+ 
+  # Use expression() to get subscript notation
+  grid.text(expression(A[1]), x = 0.25, y = 0.9, gp = gpar(fontsize = 16))
+  grid.text(expression(A[2]), x = 0.75, y = 0.9, gp = gpar(fontsize = 16))
+  grid.text(expression(P(A[1] * " ∩ " * A[2]) == 0), x = 0.5, y = 0.0, gp = gpar(fontsize = 16, col = "darkred"))
+
   
 } else {
   # Render TikZ code for PDF
@@ -278,14 +283,57 @@ However, these events are not disjoint because both can happen at the same time.
 A patient could experience the treatment effect and also win the lottery during the study. Thus,  $P(A \cap B) \neq 0$ , meaning both events can occur together.
 
 **Example: neither independent nor disjoint**
+
 - Event A: The patient shows a treatment effect during a study.
 - Event B: The patient is a heavily motivated and self-sufficient. 
 
-These two events are neither independent nor disjoint. The patient's motivation could influence the treatment effect, making the events dependent.
+These two events are neither independent nor disjoint. The patient's motivation could influence the treatment effect (if for instance home exercises 
+are part of the therapy), making the events dependent.
 However, the patient's motivation is not mutually exclusive with the treatment effect, so the events are not disjoint either. They can occur together.
 
+ see also ([Exercise 4](#exercise4))
 
 
+Maybe, we can already answer some of the [questions from above](#Questions_about_the_1000-researcher_experiment) using what we have learned so far.
+
+**For the first question** we would probably bet on the maximum probability of the binomial distribution. The number of positive experiments out of $1000$ has to be between $0$ and $1000$.
+Each one of them has $0.04$ probability of happening. With R, we quickly calculate the maximum probability:
+
+```{r}
+# Calculate the maximum probability using binomial distribution
+n <- 1000  # number of researchers
+p <- 0.04  # probability of a treatment effect for each researcher
+
+# Calculate the probabilities for each possible number of positive results
+probs <- dbinom(0:n, size = n, prob = p)
+
+# Find the number of experiments with the highest probability
+max_prob_number <- which.max(probs) # index of the maximum probability starting with 1
+
+# Show the result
+max_prob_number - 1 # since we started with 0
+
+dbinom(39:41, size = 1000, prob = 0.04) # 40 is the most likely number of positive results
+```
+Now, let’s visualize the binomial distribution for this case using base R syntax:
+
+```{r}
+# Plot the binomial distribution
+plot(0:n, probs, type = "h", lwd = 2, col = "blue", 
+     xlab = "Number of positive results", 
+     ylab = "Probability", 
+     xlim= c(0,100),
+     main = "Binomial distribution for treatment effect (yes/no) in 1000 researchers")
+abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
+```
+Note, this form of distribution looks like a bell curve, aka a normal distribution.
+So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
+
+
+
+**The second question** asked about observing 137 positively reporting researchers. 
+We can calculate the probability of observing 137 or more positive results using the binomial distribution (plug into the formula): 
+$\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^(1000-i)$
 
 ## Exercises
 
@@ -312,9 +360,14 @@ Look at the latest articles. We are interested in articles that used statistics 
 - Was prior knowledge used in any of the analysis?
 - Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
 
-### Exercise4: {#exercise4} -  independent and disjoint
+### Exercise 4 -  independent and disjoint {#exercise4} 
+
 Look at the definitions above and try to come up with examples for independent and disjoint events in your field of study.
-Is this possible? Why or why not?
+
+- Is this possible? 
+- Why or why not? 
+- What would that imply? 
+- Draw a Venn diagram if possible!
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).

@@ -63,9 +63,14 @@ For more theoretically advanced approaches, I can recommend:
 
 ## R
 
-In this course, we use [R](https://www.r-project.org/) as our main tool for data analysis. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS. You may want to give Hadley Wickham's book a try:
+In this course, we use [R](https://www.r-project.org/) as our main tool for data analysis. R is a free software environment for statistical computing and graphics. 
+It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS. 
+
+You may want to give Hadley Wickham's book a try:
 
 - (Free) [R for Data Science](https://r4ds.had.co.nz/)
+
+Especially, the chapter on [exploratory data analysis](https://r4ds.hadley.nz/eda#introduction) is very helpful.
 
 Further resources:
 
