@@ -248,11 +248,22 @@ We would therefore define this probability as zero and (if we can count the numb
 treatment effect being between <span class="math inline">\(0\)</span> and <span class="math inline">\(0.1\)</span>, or between <span class="math inline">\(0.11\)</span> and <span class="math inline">\(0.2\)</span>, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
 As concrete example for law 3 in our example, we can put the following:
 <span class="math display">\[\begin{align}
-\tiny
-$\mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot; or &quot;(only) researchers 1 and 5 get a pos. results&quot;}) =\\
-\mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot;}) + \mathbb{P}(\text{&quot;(only) researchers 1 and 5 get a pos. results&quot;})$
+\scriptsize \mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot; or &quot;(only) researchers 1 and 5 get a pos. results&quot;}) =\\
+\scriptsize \mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot;}) + \mathbb{P}(\text{&quot;(only) researchers 1 and 5 get a pos. results&quot;})
 \end{align}\]</span></p>
-<p>As we will see later, law 1 does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.</p>
+<p>Since the researchers are working independently from each other, we can simply multiply the probabilities of their individual positive or negative results in
+our larger 1000-researcher experiment. For example, for the first probability there are exactly 3 positive results (=effect found) and 997 negative results (=no effect found).
+This can be calculated as:
+<span class="math inline">\(0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}\)</span>, which yields a very small number (<span class="math inline">\(1.350826 \cdot 10^{-22}\)</span>)
+since we are fixating on specific researchers to find the effect.
+If we relax the question to the <em>number of researchers</em> that find an effect,
+we get much larer numbers. We say, the number <span class="math inline">\(X\)</span> of positive results under <span class="math inline">\(H_0\)</span> (there is no true effect)) for a positive effect is binomially distributed: <span class="math inline">\(X \sim Bin(n=1000, p=0.04)\)</span>.
+The YouTube-channel <a href="https://www.youtube.com/@3blue1brown">3Blue1Brown</a> is highly recommended in general. You should watch this
+<a href="https://www.youtube.com/watch?v=8idr1WZ1A7Q&amp;ab_channel=3Blue1Brown">video</a> on the binomial distribution to get a clearer picture.
+This <a href="https://www.youtube.com/watch?v=WWv0RUxDfbs&amp;ab_channel=KhanAcademy">video</a> from <a href="https://www.youtube.com/@khanacademy">KhanAcademy</a> could also be helpful.
+In our example, the probability that exacatly 3 researchers find an effect is <span class="math inline">\(\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}\)</span>.
+Still small, but much higher than before.</p>
+<p>As we will see later, law 1 above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.</p>
 <p>Law 2 is always true. Some result <em>has</em> to occur in our random experiment.</p>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
