@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-10-11" />
+<meta name="date" content="2024-10-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -211,8 +211,39 @@ As stated above, in the frequentist sense, we are interested in the long-run fre
 <p><strong>Heureka?</strong></p>
 <p>Let’s imagine we are in a research department with 1000 researches all trying to answer the same question:
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let’s assume (unrealistically) that they are all working on this one question and they are not
-talking about their experiments or their research methodology to each other. The statistician in the department has calculated (due to the variability of such treatment effects in the relevant population)
-that even under the assumption of the therapy not working <em>at all</em>, one would see an effect just <em>by chance</em> in 4% of the study results.</p>
+talking about their experiments or their research methodology to each other. The statistician in the department has calculated
+(due to the variability of such treatment effects in the relevant population and theoretical considerations)
+that even under the assumption of the therapy is not working <em>at all</em>, one would see an effect just <em>by chance</em> in 4% of the study results.</p>
+<p>We now conduct an experiment. All 1000 ressearches are conducting a study with 50 patients to answer the same question. This is our random experiment.
+Instead of throwing a fair die, we do a round of “research” with 1000 researchers. You as observer
+give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can
+(unrealistically) assume that their results will be not influenced by each other.</p>
+<p>Now we could ask different questions:</p>
+<ol style="list-style-type: decimal">
+<li>If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?</li>
+<li>If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?</li>
+<li>How many experiments showed a treatment effect if you assume that the therapy is working for 12% (instead of 4%) of the patients?</li>
+<li>Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47
+out of 50 studies showed a treatment effect. What is the problem?</li>
+<li>Assuming 1 very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?</li>
+</ol>
+<p>We will try answer such questions in the following sections.</p>
+<p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
+The event “researcher 45 gets a positive result” and “researcher 897 gets a positive result” are mutually exclusive. We would ask here:
+Which researchers got a positive results in both events? The answer is: None, zero, empty set. Hence, the two events are said to disjoint.
+If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1.</p>
+<p>An example of <strong>non-disjoint</strong> (within our 1000-researcher experiment) would be the event “researcher 45 gets a positive result” and “researcher 45 and reasearcher 67 gets a positive result”.
+Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
+add up the probabilities here, since we would count the probability of researcher 45 twice.</p>
+<p>The probability of the event “” should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
+We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed <em>never</em> happen.</p>
+<p>Obviously, the probability of an event should at a mininum be zero and at a maximum be one.</p>
+<p>We can summarize these informally stated properties more formally:</p>
+<p><span class="math display">\[\begin{align}
+1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event}\\
+2. &amp;\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs}\\
+3. &amp;\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
+\end{align}\]</span></p>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Exercises<a href="probs.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
