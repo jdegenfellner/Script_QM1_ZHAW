@@ -1,7 +1,7 @@
 # Probability {#probs}
 
 Probability is a measure of the likelihood that an event will occur. Probability is quantified as a number between 0 and 1 (or 0 to 100%), 
-where 0 indicates impossibility and 1 indicates certainty, although we will see later that a probability of 0 does not necessarily mean that such an event can never occur. 
+where 0 indicates impossibility and 1 indicates certainty, although we will see later that a [probability of 0](https://stats.stackexchange.com/questions/273382/how-can-the-probability-of-each-point-be-zero-in-continuous-random-variable) does not necessarily mean that such an event can never occur. 
 The higher the probability of an event, the more likely it is that the event will occur. 
 
 **Why is probability important in our field of study (applied health sciences)?**
@@ -137,7 +137,7 @@ Now we could ask different
 out of 50 studies showed a treatment effect. What is the problem?
 5. Assuming 1 very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?
 
-We will try answer such questions in the following sections.
+We will try to answer such questions in the following sections.
 
 First, it seems intuitive that Probability *within* an experiment should add up *if* the events are **disjoint**. 
 The event $A_1=$ "only researcher 45 gets a positive result" and $A_2=$ "only researcher 897 gets a positive result" are mutually exclusive. 

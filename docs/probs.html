@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-10-14" />
+<meta name="date" content="2024-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,7 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="probs" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Probability<a href="probs.html#probs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Probability is a measure of the likelihood that an event will occur. Probability is quantified as a number between 0 and 1 (or 0 to 100%),
-where 0 indicates impossibility and 1 indicates certainty, although we will see later that a probability of 0 does not necessarily mean that such an event can never occur.
+where 0 indicates impossibility and 1 indicates certainty, although we will see later that a <a href="https://stats.stackexchange.com/questions/273382/how-can-the-probability-of-each-point-be-zero-in-continuous-random-variable">probability of 0</a> does not necessarily mean that such an event can never occur.
 The higher the probability of an event, the more likely it is that the event will occur.</p>
 <p><strong>Why is probability important in our field of study (applied health sciences)?</strong></p>
 <p>Quantative research methods (often a code name for statistics) use probability theory to make statements about a larger
@@ -300,7 +300,7 @@ give the assignment to the researchers and come back as soon as all 1000 researe
 out of 50 studies showed a treatment effect. What is the problem?</li>
 <li>Assuming 1 very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?</li>
 </ol>
-<p>We will try answer such questions in the following sections.</p>
+<p>We will try to answer such questions in the following sections.</p>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
 The event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span> “only researcher 897 gets a positive result” are mutually exclusive.
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. Hence, the two events are said to be disjoint.
@@ -308,7 +308,8 @@ If we add up the probabilities of all mutually exclusive events, we should get 1
 We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Again, this refers to being mutually exclusive within our 1000-researcher experiment. Both events cannot happen at the same time in this context.</p>
-<p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event $A_1= $“researcher 45 gets a positive result” and the event $A_3= $“researcher 45 and reasearcher 67 gets a positive result”.
+<p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span> “researcher 45 gets a positive result” and
+the event <span class="math inline">\(A_3=\)</span> “researcher 45 and reasearcher 67 gets a positive result”.
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
 add up the probabilities here, since we would count the probability of researcher 45 twice.</p>
 <p>The probability of the event “” should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
