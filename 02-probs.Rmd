@@ -264,6 +264,8 @@ library(eulerr)
 plot(euler(c(A = 1, B = 1, "A&B" = 1)))
 ```
 
+For the probability of event A, we a now only interested in the light-grey area with respect to the whole area of event B since event B 
+is our reference frame now (as opposed to the whole space $\Omega$ before).
 Note that even if the probability of event A changes when B has happend, B could still have no *causal* effect on A. They could have a common cause, for instance.
 
 **Example in our context**: 
@@ -305,7 +307,10 @@ These two events are neither independent nor disjoint. The patient's motivation 
 are part of the therapy), making the events dependent.
 However, the patient's motivation is not mutually exclusive with the treatment effect, so the events are not disjoint either. They can occur together.
 
- see also ([Exercise 4](#exercise4))
+**Example 4: independent and disjoint** 
+
+See [Exercise 4](#exercise4).
+
 
 ### Answers to questions about the 1000 researcher-experiment (among many others): {#Answers_Questions_about_the_1000-researcher_experiment}
 Maybe, we can already answer some of the [questions from above](#Questions_about_the_1000-researcher_experiment) using what we have learned so far.
