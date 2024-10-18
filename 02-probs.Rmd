@@ -211,7 +211,7 @@ This is a very large number ($\sim 10^{300}$) - more than there are particles in
 
 We call the set of all elementary events $\Omega$ (the Greek letter Omega): $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$.
 
-Note, that we collect elementary events to form events like we just did for event "A3".
+Note, that we collect elementary events to form events like we just did for event $A_3$.
 
 The probability of the event "" (nothing occurred) should be zero, were "" denotes the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed *never* happen.
@@ -223,13 +223,15 @@ Obviously, the probability of an event should at a mininum be zero and at a maxi
 We can summarize these informally stated properties more formally ([Kolmogorov's axioms](https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf)):
 
 \begin{align}
-1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event.}\\
+1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event should be zero.}\\
 2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
 3. &\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}
 
-The $\infty$-symbol in **axiom 3**. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
-treatment effect being between $0$ and $0.1$, or between $0.11$ and $0.2$, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
+The $\infty$-symbol in **axiom 3** comes into play if we are dealing with (potentially) infinitely many events. 
+For instance, we could ask for the number of researchers we need to look at until we see the first 
+positive result ([geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)). 
+We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
 As concrete example for law 3 in our example, we can put the following:
 \begin{align}
 \scriptsize \mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result" or "(only) researchers 1 and 5 get a pos. results"}) =\\
@@ -242,17 +244,18 @@ This can be calculated as:
 $0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}$, which yields a very small number ($1.350826 \cdot 10^{-22}$) 
 since we are fixating on specific researchers to find the effect. 
 If we relax the question to the *number of researchers* that find an effect,
-we get much larer numbers. We say, the number $X$ of positive results under $H_0$ (there is no true effect)) for a positive effect is binomially distributed: $X \sim Bin(n=1000, p=0.04)$. 
+we get much larer numbers. We say, the number $X$ of positive results under $H_0$ (there is no true effect)) for a positive effect is **binomially distributed**: $X \sim Bin(n=1000, p=0.04)$. 
 The YouTube-channel [3Blue1Brown](https://www.youtube.com/@3blue1brown) is highly recommended in general. You should watch this 
 [video](https://www.youtube.com/watch?v=8idr1WZ1A7Q&ab_channel=3Blue1Brown) on the binomial distribution to get a clearer picture. 
 This [video](https://www.youtube.com/watch?v=WWv0RUxDfbs&ab_channel=KhanAcademy) from [KhanAcademy](https://www.youtube.com/@khanacademy) could also be helpful.
 In our example, the probability that exactly 3 researchers find an effect is $\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}$. 
-Still small, but much higher than before.
+Still small, but much higher than before. Of course, the commands in R can be found easily via Google or your favourite large language model (LLM): 
+"Give me the commands for the binomial distribution in R and a nice example too".
 
-As we will see later, **axiom 1** above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.
+As we will see later, **axiom 1** above does not mean, that the event can never occur. For every continuous random variable (e.g. with a [normal](https://en.wikipedia.org/wiki/Normal_distribution) or a [uniform distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)), the probability of a single point is zero.
 
 **Axiom 2** is always true. Some result *has* to occur in our random experiment. 
-But **what is $\Omega$**? In our countable case of researchers, $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$ would be the set of all possible outcomes if we let 1000 researchers conduct the experiment. 
+What is $\Omega$ again? In our countable case of researchers, $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$ would be the set of all possible outcomes if we let 1000 researchers conduct the experiment. 
 Each researcher can either find an effect or not. Hence, we have $2^{1000}$ possible outcomes of our 1000-researcher experiment. This is a *very* large number. Adding up all
 these probabilities would sum to 1 according to axiom 3. Combining different elementary events $\omega$ from the whole collection of possible outcomes $\Omega$
 gives us "events" like the ones we used above ($A_1, A_2, A_3$).
@@ -274,7 +277,68 @@ A simple **example in our context**:
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.
 
 Here, we used the very important concept of **conditional probability**. 
-The probability of event $A$ given that event $B$ has occurred (not necessarily chronologically different!) is denoted as $\mathbb{P}(A | B)$.
+The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as $\mathbb{P}(A | B)$.
+
+```{r echo=FALSE}
+if (knitr::is_html_output()) {
+  library(ggplot2)
+  library(grid)
+  
+  # Create a basic Venn diagram with intersection area for HTML output
+  grid.newpage()
+  pushViewport(viewport(width = 0.8, height = 0.8))
+  
+  # Draw circles B and A (reversed roles)
+  grid.circle(x = 0.3, y = 0.5, r = 0.25, gp = gpar(fill = rgb(0.8, 0.2, 0.2, 0.5)), name = "B")
+  grid.circle(x = 0.6, y = 0.5, r = 0.25, gp = gpar(fill = rgb(0.1, 0.5, 0.8, 0.5)), name = "A")
+  
+  # Labels for sets B and A
+  grid.text("B", x = 0.2, y = 0.75, gp = gpar(fontsize = 18))
+  grid.text("A", x = 0.7, y = 0.75, gp = gpar(fontsize = 18))
+  
+  # Label for intersection (B ∩ A)
+  grid.text(expression(B %cap% A), x = 0.45, y = 0.5, gp = gpar(fontsize = 18))
+  
+  # Add arrow and second diagram
+  grid.text("→", x = 0.8, y = 0.5, gp = gpar(fontsize = 24))
+  
+  # Second diagram with only event A and its intersection with B
+  grid.circle(x = 1.1, y = 0.5, r = 0.25, gp = gpar(fill = rgb(0.1, 0.5, 0.8, 0.5)), name = "A_conditional")
+  grid.circle(x = 1.1, y = 0.5, r = 0.15, gp = gpar(fill = rgb(0.5, 0.2, 0.5, 0.5)), name = "A_int_B")
+  
+  # Labels for second diagram
+  grid.text("A", x = 1.0, y = 0.75, gp = gpar(fontsize = 18))
+  grid.text(expression(A %cap% B), x = 1.1, y = 0.5, gp = gpar(fontsize = 18))
+  
+} else {
+  # Render TikZ code for PDF output
+  cat('
+  \\begin{center}
+  \\begin{tikzpicture}
+      % Draw circles for sets B and A (reversed)
+      \\draw[fill=red!30] (0,0) circle [radius=1.5] node at (-1.5,1.5) {\\textbf{B}};
+      \\draw[fill=blue!30] (3,0) circle [radius=1.5] node at (4.5,1.5) {\\textbf{A}};
+      
+      % Intersection area shading
+      \\begin{scope}
+          \\clip (0,0) circle [radius=1.5];
+          \\fill[blue!60] (3,0) circle [radius=1.5];
+      \\end{scope}
+      
+      % Add label for intersection
+      \\node at (1.5, 0) {\\Large $B \\cap A$};
+      
+      % Add arrow and second diagram
+      \\node at (5, 0) {\\huge $\\rightarrow$};
+      \\draw[fill=blue!30] (8,0) circle [radius=1.5] node at (6.5,1.5) {\\textbf{A}};
+      
+      % Intersection in second diagram
+      \\draw[fill=red!60] (8,0) circle [radius=1] node at (8,0) {\\Large $A \\cap B$};
+  \\end{tikzpicture}
+  \\end{center}
+  ')
+}
+```
 
 Note that even if the probability of event A changes when B has happend, B could still have no *causal* effect on A. They could have a common cause, for instance.
 

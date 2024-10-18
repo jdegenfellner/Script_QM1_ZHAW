@@ -325,7 +325,7 @@ The sets look like this:</p>
 Hence, we have <span class="math inline">\(2 \cdot 2 \cdot 2 \cdots = 2^{1000}\)</span> elementary events in our set of all possible outcomes.
 This is a very large number (<span class="math inline">\(\sim 10^{300}\)</span>) - more than there are particles in the universe (<span class="math inline">\(\sim 10^{80}\)</span>).</p>
 <p>We call the set of all elementary events <span class="math inline">\(\Omega\)</span> (the Greek letter Omega): <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span>.</p>
-<p>Note, that we collect elementary events to form events like we just did for event “A3”.</p>
+<p>Note, that we collect elementary events to form events like we just did for event <span class="math inline">\(A_3\)</span>.</p>
 <p>The probability of the event “” (nothing occurred) should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed <em>never</em> happen.</p>
 <p>Obviously, the probability of an event should at a mininum be zero and at a maximum be one.</p>
@@ -334,12 +334,14 @@ We would therefore define this probability as zero and (if we can count the numb
 <h3><span class="header-section-number">2.2.2</span> Axioms of probability theory<a href="probs.html#axioms-of-probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can summarize these informally stated properties more formally (<a href="https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf">Kolmogorov’s axioms</a>):</p>
 <p><span class="math display">\[\begin{align}
-1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event.}\\
+1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event should be zero.}\\
 2. &amp;\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
 3. &amp;\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}\]</span></p>
-<p>The <span class="math inline">\(\infty\)</span>-symbol in <strong>axiom 3</strong>. comes into play if we are dealing with (potentially) infinitely many events. For instance, we could ask for the probability of the
-treatment effect being between <span class="math inline">\(0\)</span> and <span class="math inline">\(0.1\)</span>, or between <span class="math inline">\(0.11\)</span> and <span class="math inline">\(0.2\)</span>, and so on. We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
+<p>The <span class="math inline">\(\infty\)</span>-symbol in <strong>axiom 3</strong> comes into play if we are dealing with (potentially) infinitely many events.
+For instance, we could ask for the number of researchers we need to look at until we see the first
+positive result (<a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a>).
+We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
 As concrete example for law 3 in our example, we can put the following:
 <span class="math display">\[\begin{align}
 \scriptsize \mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot; or &quot;(only) researchers 1 and 5 get a pos. results&quot;}) =\\
@@ -351,15 +353,16 @@ This can be calculated as:
 <span class="math inline">\(0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}\)</span>, which yields a very small number (<span class="math inline">\(1.350826 \cdot 10^{-22}\)</span>)
 since we are fixating on specific researchers to find the effect.
 If we relax the question to the <em>number of researchers</em> that find an effect,
-we get much larer numbers. We say, the number <span class="math inline">\(X\)</span> of positive results under <span class="math inline">\(H_0\)</span> (there is no true effect)) for a positive effect is binomially distributed: <span class="math inline">\(X \sim Bin(n=1000, p=0.04)\)</span>.
+we get much larer numbers. We say, the number <span class="math inline">\(X\)</span> of positive results under <span class="math inline">\(H_0\)</span> (there is no true effect)) for a positive effect is <strong>binomially distributed</strong>: <span class="math inline">\(X \sim Bin(n=1000, p=0.04)\)</span>.
 The YouTube-channel <a href="https://www.youtube.com/@3blue1brown">3Blue1Brown</a> is highly recommended in general. You should watch this
 <a href="https://www.youtube.com/watch?v=8idr1WZ1A7Q&amp;ab_channel=3Blue1Brown">video</a> on the binomial distribution to get a clearer picture.
 This <a href="https://www.youtube.com/watch?v=WWv0RUxDfbs&amp;ab_channel=KhanAcademy">video</a> from <a href="https://www.youtube.com/@khanacademy">KhanAcademy</a> could also be helpful.
 In our example, the probability that exactly 3 researchers find an effect is <span class="math inline">\(\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}\)</span>.
-Still small, but much higher than before.</p>
-<p>As we will see later, <strong>axiom 1</strong> above does not mean, that the event can never occur. For every conintuous random variable, the probability of a single point is zero.</p>
+Still small, but much higher than before. Of course, the commands in R can be found easily via Google or your favourite large language model (LLM):
+“Give me the commands for the binomial distribution in R and a nice example too”.</p>
+<p>As we will see later, <strong>axiom 1</strong> above does not mean, that the event can never occur. For every continuous random variable (e.g. with a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal</a> or a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform distribution</a>), the probability of a single point is zero.</p>
 <p><strong>Axiom 2</strong> is always true. Some result <em>has</em> to occur in our random experiment.
-But <strong>what is <span class="math inline">\(\Omega\)</span></strong>? In our countable case of researchers, <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span> would be the set of all possible outcomes if we let 1000 researchers conduct the experiment.
+What is <span class="math inline">\(\Omega\)</span> again? In our countable case of researchers, <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span> would be the set of all possible outcomes if we let 1000 researchers conduct the experiment.
 Each researcher can either find an effect or not. Hence, we have <span class="math inline">\(2^{1000}\)</span> possible outcomes of our 1000-researcher experiment. This is a <em>very</em> large number. Adding up all
 these probabilities would sum to 1 according to axiom 3. Combining different elementary events <span class="math inline">\(\omega\)</span> from the whole collection of possible outcomes <span class="math inline">\(\Omega\)</span>
 gives us “events” like the ones we used above (<span class="math inline">\(A_1, A_2, A_3\)</span>).</p>
@@ -377,7 +380,8 @@ the probability of event <span class="math inline">\(A\)</span> happening is the
 <p>A simple <strong>example in our context</strong>:
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.</p>
 <p>Here, we used the very important concept of <strong>conditional probability</strong>.
-The probability of event <span class="math inline">\(A\)</span> given that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as <span class="math inline">\(\mathbb{P}(A | B)\)</span>.</p>
+The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as <span class="math inline">\(\mathbb{P}(A | B)\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Note that even if the probability of event A changes when B has happend, B could still have no <em>causal</em> effect on A. They could have a common cause, for instance.</p>
 <p><strong>Example in our context</strong>:
 Let’s assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect.
@@ -440,7 +444,7 @@ Each one of them has <span class="math inline">\(0.04\)</span> probability of ha
 <span id="cb5-5"><a href="probs.html#cb5-5" tabindex="-1"></a>     <span class="at">xlim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
 <span id="cb5-6"><a href="probs.html#cb5-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial distribution for treatment effect (yes/no) in 1000 researchers&quot;</span>)</span>
 <span id="cb5-7"><a href="probs.html#cb5-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Note, this form of distribution looks like a bell curve, aka a normal distribution.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.</p>
 <p><strong>The second question</strong> asked about observing 137 positively reporting researchers.
