@@ -381,6 +381,14 @@ You only look at the studies that showed a treatment effect and ignore the ones 
 This is also relevant in [finance](https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.).
 You may want to read this excellent [article](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124) by John Ioannidis for a humbling big-picture of how relevant published results can be.
 
+**The fifth question** asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem). 
+If you test many hypotheses, you will find some "significant" results by chance alone.
+One could also call the practice of testing many hypotheses to find "significant" ones [p-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
+This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
+Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
+If you report those 4 results as legitimate finding, you are p-hacking.
+
+
 ## Exercises
 
 ### Exercise 1 - throwing a die very often {#exercise1}
