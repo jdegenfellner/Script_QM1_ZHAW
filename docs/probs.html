@@ -381,7 +381,6 @@ the probability of event <span class="math inline">\(A\)</span> happening is the
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.</p>
 <p>Here, we used the very important concept of <strong>conditional probability</strong>.
 The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as <span class="math inline">\(\mathbb{P}(A | B)\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Note that even if the probability of event A changes when B has happend, B could still have no <em>causal</em> effect on A. They could have a common cause, for instance.</p>
 <p><strong>Example in our context</strong>:
 Let’s assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect.
@@ -444,7 +443,7 @@ Each one of them has <span class="math inline">\(0.04\)</span> probability of ha
 <span id="cb5-5"><a href="probs.html#cb5-5" tabindex="-1"></a>     <span class="at">xlim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
 <span id="cb5-6"><a href="probs.html#cb5-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial distribution for treatment effect (yes/no) in 1000 researchers&quot;</span>)</span>
 <span id="cb5-7"><a href="probs.html#cb5-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Note, this form of distribution looks like a bell curve, aka a normal distribution.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.</p>
 <p><strong>The second question</strong> asked about observing 137 positively reporting researchers.

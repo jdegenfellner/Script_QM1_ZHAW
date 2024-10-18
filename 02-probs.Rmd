@@ -279,67 +279,6 @@ The probability of researcher 45 finding an effect (event A) is the same whether
 Here, we used the very important concept of **conditional probability**. 
 The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as $\mathbb{P}(A | B)$.
 
-```{r echo=FALSE}
-if (knitr::is_html_output()) {
-  library(ggplot2)
-  library(grid)
-  
-  # Create a basic Venn diagram with intersection area for HTML output
-  grid.newpage()
-  pushViewport(viewport(width = 0.8, height = 0.8))
-  
-  # Draw circles B and A (reversed roles)
-  grid.circle(x = 0.3, y = 0.5, r = 0.25, gp = gpar(fill = rgb(0.8, 0.2, 0.2, 0.5)), name = "B")
-  grid.circle(x = 0.6, y = 0.5, r = 0.25, gp = gpar(fill = rgb(0.1, 0.5, 0.8, 0.5)), name = "A")
-  
-  # Labels for sets B and A
-  grid.text("B", x = 0.2, y = 0.75, gp = gpar(fontsize = 18))
-  grid.text("A", x = 0.7, y = 0.75, gp = gpar(fontsize = 18))
-  
-  # Label for intersection (B ∩ A)
-  grid.text(expression(B %cap% A), x = 0.45, y = 0.5, gp = gpar(fontsize = 18))
-  
-  # Add arrow and second diagram
-  grid.text("→", x = 0.8, y = 0.5, gp = gpar(fontsize = 24))
-  
-  # Second diagram with only event A and its intersection with B
-  grid.circle(x = 1.1, y = 0.5, r = 0.25, gp = gpar(fill = rgb(0.1, 0.5, 0.8, 0.5)), name = "A_conditional")
-  grid.circle(x = 1.1, y = 0.5, r = 0.15, gp = gpar(fill = rgb(0.5, 0.2, 0.5, 0.5)), name = "A_int_B")
-  
-  # Labels for second diagram
-  grid.text("A", x = 1.0, y = 0.75, gp = gpar(fontsize = 18))
-  grid.text(expression(A %cap% B), x = 1.1, y = 0.5, gp = gpar(fontsize = 18))
-  
-} else {
-  # Render TikZ code for PDF output
-  cat('
-  \\begin{center}
-  \\begin{tikzpicture}
-      % Draw circles for sets B and A (reversed)
-      \\draw[fill=red!30] (0,0) circle [radius=1.5] node at (-1.5,1.5) {\\textbf{B}};
-      \\draw[fill=blue!30] (3,0) circle [radius=1.5] node at (4.5,1.5) {\\textbf{A}};
-      
-      % Intersection area shading
-      \\begin{scope}
-          \\clip (0,0) circle [radius=1.5];
-          \\fill[blue!60] (3,0) circle [radius=1.5];
-      \\end{scope}
-      
-      % Add label for intersection
-      \\node at (1.5, 0) {\\Large $B \\cap A$};
-      
-      % Add arrow and second diagram
-      \\node at (5, 0) {\\huge $\\rightarrow$};
-      \\draw[fill=blue!30] (8,0) circle [radius=1.5] node at (6.5,1.5) {\\textbf{A}};
-      
-      % Intersection in second diagram
-      \\draw[fill=red!60] (8,0) circle [radius=1] node at (8,0) {\\Large $A \\cap B$};
-  \\end{tikzpicture}
-  \\end{center}
-  ')
-}
-```
-
 Note that even if the probability of event A changes when B has happend, B could still have no *causal* effect on A. They could have a common cause, for instance.
 
 **Example in our context**: 
