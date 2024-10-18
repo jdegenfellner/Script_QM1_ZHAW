@@ -408,17 +408,54 @@ What is the probability that at least one of the researchers finds an effect?
 Our event space $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
 $\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1$
 
-$\mathbb{P}(A_1) = 0.04^2 + 0.04 \times 0.96$
+$\mathbb{P}(A_1) = 0.04^2 + 0.04 \times 0.96$ (First researcher finds an effect or both find an effect)
 
-$\mathbb{P}(A_2) = 0.04^2 + 0.96 \times 0.04$
+$\mathbb{P}(A_2) = 0.04^2 + 0.96 \times 0.04$ (Second researcher finds an effect or both find an effect)
 
 $\mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) - \mathbb{P}(A_1 \cap A_2)=$ 
 $0.04^2 + 0.04 \times 0.96 +$
 $0.04^2 + 0.96 \times 0.04 - 0.04^2=$
 $0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04.$
 
+```{r echo=FALSE}
+# Define the sets A1 and A2 with their intersection
+fit <- euler(c(A1 = 1, A2 = 1, "A1&A2" = 2))
+
+# Plot the Euler diagram with both sets and intersection completely filled in gray
+plot(fit, fills = c("gray", "gray", "gray"), 
+     labels = list(labels = c("A1", "A2")), 
+     main = "")
+```
+
+Here is another helpful depiction of the situation:
+
+```{r echo=FALSE}
+library(DiagrammeR)
+
+# Create the path diagram with a top-to-bottom layout
+grViz("
+digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  # Nodes
+  A [label = 'Researcher 1: Finds effect', shape = box]
+  B [label = 'Researcher 1: No effect', shape = box]
+  C [label = 'Researcher 2: Finds effect', shape = box]
+  D [label = 'Researcher 2: No effect', shape = box]
+  E [label = 'Researcher 2: Finds effect', shape = box]
+  F [label = 'Researcher 2: No effect', shape = box]
+  
+  # Paths
+  A -> C [label = 'Effect found']
+  A -> D [label = 'No effect']
+  B -> E [label = 'Effect found']
+  B -> F [label = 'No effect']
+}
+")
+```
+
 So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
-the probability of both finding an effect, wich is the same as that both or exactly one of them finds an effect.
+the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.
 
 ## Exercises
 
