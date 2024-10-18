@@ -13,6 +13,7 @@ Questions_about_the_1000-researcher_experiment
 axioms-of-probability-theory
 independence-of-events
 difference-between-independence-and-disjointness
+answers-to-questions-about-the-1000-researcher-experiment-among-many-others
 exercises
 exercise1
 exercise2

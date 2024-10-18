@@ -136,10 +136,11 @@ Now we could ask different questions:
 
 1. If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?
 2. If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?
-3. How many experiments showed a treatment effect if you assume that the therapy is "working" (positive result by chance) in 12% (instead of 4%) of the patients?
+3. How many experiments (would you expect) showed a treatment effect if you assume that the therapy is "working" (positive result by chance) in 12% (instead of 4%) of the patients?
 4. Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47 
 out of 50 studies showed a treatment effect. What is the problem?
 5. Assuming one very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?
+6. Suppose there are many large research departments in the world with 1000 researchers. How strongly would the number of positive results vary between these large departments?
 
 We will try to answer such questions in the following sections.
 
@@ -224,6 +225,11 @@ This [video](https://www.youtube.com/watch?v=WWv0RUxDfbs&ab_channel=KhanAcademy)
 In our example, the probability that exactly 3 researchers find an effect is $\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}$. 
 Still small, but much higher than before. Of course, the commands in R can be found easily via Google or your favourite large language model (LLM): 
 "Give me the commands for the binomial distribution in R and a nice example too".
+Note that the sum of all elementary events (all possible outcomes) indeed adds up to 1 in our 1000-researcher-experiment: $\sum_{i=0}^{1000} \binom{1000}{i}0.04^i 0.96^{1000-i} = 1$
+
+```{r}
+sum(dbinom(0:1000, prob = 0.04, size = 1000))
+```
 
 As we will see later, **axiom 1** above does not mean, that the event can never occur. For every continuous random variable (e.g. with a [normal](https://en.wikipedia.org/wiki/Normal_distribution) or a [uniform distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)), the probability of a single point is zero.
 
@@ -301,7 +307,7 @@ However, the patient's motivation is not mutually exclusive with the treatment e
 
  see also ([Exercise 4](#exercise4))
 
-
+### Answers to questions about the 1000 researcher-experiment (among many others):
 Maybe, we can already answer some of the [questions from above](#Questions_about_the_1000-researcher_experiment) using what we have learned so far.
 
 **For the first question** we would probably bet on the maximum probability of the binomial distribution. The number of positive experiments out of $1000$ has to be between $0$ and $1000$.
@@ -335,9 +341,15 @@ plot(0:n, probs, type = "h", lwd = 2, col = "blue",
 abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 ```
 
-Note, this form of distribution looks like a bell curve, aka a normal distribution.
+Note, this form of distribution looks like a bell curve, aka a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), 
+probably the most important distribution in statistics.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
-
+This guess would also not be too bad since we can expect the number of successes above, let's say, 65 and below, let's say, 15 to be very unlikely.
+```{r}
+sum(dbinom(0:14, size = 1000, prob = 0.04)) # prob of 14 or less
+sum(dbinom(66:100, size = 1000, prob = 0.04)) # prob of 66 or more
+sum(dbinom(15:65, size = 1000, prob = 0.04)) # prob of 15 to 65
+```
 
 
 **The second question** asked about observing 137 positively reporting researchers. 
@@ -354,6 +366,20 @@ $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0
 
 57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
 
+**The third question** asked about the expected number of positive results if the therapy is working in 12% of the patients.
+As you can probably guess by now: We would guess $1000 \times 0.12 = 120$ positive results.
+This is the so-called **[expected value](https://en.wikipedia.org/wiki/Expected_value)** $\mathbb{E}(X)$ of the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution). 
+It is not always the maximum probability (the so-called [mode](https://en.wikipedia.org/wiki/Mode_(statistics))) of the distribution though:
+Consider a binomial distribution \( \text{Bin}(10, 0.7) \):
+
+- The **mean** is \( \mathbb{E}(X) = 10 \times 0.77 = 7.7 \). This number is not an integer and we can therefore not calculate the density at this point.
+- The **mode** is 8.
+
+**The fourth question** asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
+Well, this would be scientific fraud and a case of [survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.).
+You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
+This is also relevant in [finance](https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.).
+You may want to read this excellent [article](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124) by John Ioannidis for a humbling big-picture of how relevant published results can be.
 
 ## Exercises
 

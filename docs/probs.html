@@ -160,6 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="probs.html"><a href="probs.html#axioms-of-probability-theory"><i class="fa fa-check"></i><b>2.2.2</b> Axioms of probability theory</a></li>
 <li class="chapter" data-level="2.2.3" data-path="probs.html"><a href="probs.html#independence-of-events"><i class="fa fa-check"></i><b>2.2.3</b> Independence of events</a></li>
 <li class="chapter" data-level="2.2.4" data-path="probs.html"><a href="probs.html#difference-between-independence-and-disjointness"><i class="fa fa-check"></i><b>2.2.4</b> Difference between independence and disjointness</a></li>
+<li class="chapter" data-level="2.2.5" data-path="probs.html"><a href="probs.html#answers-to-questions-about-the-1000-researcher-experiment-among-many-others"><i class="fa fa-check"></i><b>2.2.5</b> Answers to questions about the 1000 researcher-experiment (among many others):</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
 <ul>
@@ -297,10 +298,11 @@ give the assignment to the researchers and come back as soon as all 1000 researe
 <ol style="list-style-type: decimal">
 <li>If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?</li>
 <li>If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?</li>
-<li>How many experiments showed a treatment effect if you assume that the therapy is “working” (positive result by chance) in 12% (instead of 4%) of the patients?</li>
+<li>How many experiments (would you expect) showed a treatment effect if you assume that the therapy is “working” (positive result by chance) in 12% (instead of 4%) of the patients?</li>
 <li>Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47
 out of 50 studies showed a treatment effect. What is the problem?</li>
 <li>Assuming one very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?</li>
+<li>Suppose there are many large research departments in the world with 1000 researchers. How strongly would the number of positive results vary between these large departments?</li>
 </ol>
 <p>We will try to answer such questions in the following sections.</p>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
@@ -360,7 +362,10 @@ The YouTube-channel <a href="https://www.youtube.com/@3blue1brown">3Blue1Brown</
 This <a href="https://www.youtube.com/watch?v=WWv0RUxDfbs&amp;ab_channel=KhanAcademy">video</a> from <a href="https://www.youtube.com/@khanacademy">KhanAcademy</a> could also be helpful.
 In our example, the probability that exactly 3 researchers find an effect is <span class="math inline">\(\binom{1000}{3} \cdot 0.04^3 \cdot 0.96^{997} = 2.244627 \cdot 10^{-14}\)</span>.
 Still small, but much higher than before. Of course, the commands in R can be found easily via Google or your favourite large language model (LLM):
-“Give me the commands for the binomial distribution in R and a nice example too”.</p>
+“Give me the commands for the binomial distribution in R and a nice example too”.
+Note that the sum of all elementary events (all possible outcomes) indeed adds up to 1 in our 1000-researcher-experiment: <span class="math inline">\(\sum_{i=0}^{1000} \binom{1000}{i}0.04^i 0.96^{1000-i} = 1\)</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="probs.html#cb1-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>, <span class="at">size =</span> <span class="dv">1000</span>))</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 <p>As we will see later, <strong>axiom 1</strong> above does not mean, that the event can never occur. For every continuous random variable (e.g. with a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal</a> or a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform distribution</a>), the probability of a single point is zero.</p>
 <p><strong>Axiom 2</strong> is always true. Some result <em>has</em> to occur in our random experiment.
 What is <span class="math inline">\(\Omega\)</span> again? In our countable case of researchers, <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span> would be the set of all possible outcomes if we let 1000 researchers conduct the experiment.
@@ -383,7 +388,7 @@ The probability of researcher 45 finding an effect (event A) is the same whether
 <p>Here, we used the very important concept of <strong>conditional probability</strong>.
 The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as
 <span class="math inline">\(\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}\)</span>. This <a href="https://www.youtube.com/watch?v=ibINrxJLvlM&amp;ab_channel=Dr.TreforBazett">video</a> explains it well.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Note that even if the probability of event A changes when B has happend, B could still have no <em>causal</em> effect on A. They could have a common cause, for instance.</p>
 <p><strong>Example in our context</strong>:
 Let’s assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect.
@@ -420,46 +425,71 @@ A patient could experience the treatment effect and also win the lottery during 
 are part of the therapy), making the events dependent.
 However, the patient’s motivation is not mutually exclusive with the treatment effect, so the events are not disjoint either. They can occur together.</p>
 <p>see also (<a href="probs.html#exercise4">Exercise 4</a>)</p>
+</div>
+<div id="answers-to-questions-about-the-1000-researcher-experiment-among-many-others" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Answers to questions about the 1000 researcher-experiment (among many others):<a href="probs.html#answers-to-questions-about-the-1000-researcher-experiment-among-many-others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Maybe, we can already answer some of the <a href="probs.html#Questions_about_the_1000-researcher_experiment">questions from above</a> using what we have learned so far.</p>
 <p><strong>For the first question</strong> we would probably bet on the maximum probability of the binomial distribution. The number of positive experiments out of <span class="math inline">\(1000\)</span> has to be between <span class="math inline">\(0\)</span> and <span class="math inline">\(1000\)</span>.
 Each one of them has <span class="math inline">\(0.04\)</span> probability of happening. With R, we quickly calculate the maximum probability:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="probs.html#cb1-1" tabindex="-1"></a><span class="co"># Calculate the maximum probability using binomial distribution</span></span>
-<span id="cb1-2"><a href="probs.html#cb1-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span>  <span class="co"># number of researchers</span></span>
-<span id="cb1-3"><a href="probs.html#cb1-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.04</span>  <span class="co"># probability of a treatment effect for each researcher</span></span>
-<span id="cb1-4"><a href="probs.html#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="probs.html#cb1-5" tabindex="-1"></a><span class="co"># Calculate the probabilities for each possible number of positive results</span></span>
-<span id="cb1-6"><a href="probs.html#cb1-6" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
-<span id="cb1-7"><a href="probs.html#cb1-7" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="probs.html#cb1-8" tabindex="-1"></a><span class="co"># Find the number of experiments with the highest probability</span></span>
-<span id="cb1-9"><a href="probs.html#cb1-9" tabindex="-1"></a>max_prob_number <span class="ot">&lt;-</span> <span class="fu">which.max</span>(probs) <span class="co"># index of the maximum probability starting with 1</span></span>
-<span id="cb1-10"><a href="probs.html#cb1-10" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="probs.html#cb1-11" tabindex="-1"></a><span class="co"># Show the result</span></span>
-<span id="cb1-12"><a href="probs.html#cb1-12" tabindex="-1"></a>max_prob_number <span class="sc">-</span> <span class="dv">1</span> <span class="co"># since we started with 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="probs.html#cb3-1" tabindex="-1"></a><span class="co"># Calculate the maximum probability using binomial distribution</span></span>
+<span id="cb3-2"><a href="probs.html#cb3-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span>  <span class="co"># number of researchers</span></span>
+<span id="cb3-3"><a href="probs.html#cb3-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.04</span>  <span class="co"># probability of a treatment effect for each researcher</span></span>
+<span id="cb3-4"><a href="probs.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="probs.html#cb3-5" tabindex="-1"></a><span class="co"># Calculate the probabilities for each possible number of positive results</span></span>
+<span id="cb3-6"><a href="probs.html#cb3-6" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb3-7"><a href="probs.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="probs.html#cb3-8" tabindex="-1"></a><span class="co"># Find the number of experiments with the highest probability</span></span>
+<span id="cb3-9"><a href="probs.html#cb3-9" tabindex="-1"></a>max_prob_number <span class="ot">&lt;-</span> <span class="fu">which.max</span>(probs) <span class="co"># index of the maximum probability starting with 1</span></span>
+<span id="cb3-10"><a href="probs.html#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="probs.html#cb3-11" tabindex="-1"></a><span class="co"># Show the result</span></span>
+<span id="cb3-12"><a href="probs.html#cb3-12" tabindex="-1"></a>max_prob_number <span class="sc">-</span> <span class="dv">1</span> <span class="co"># since we started with 0</span></span></code></pre></div>
 <pre><code>## [1] 40</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="probs.html#cb3-1" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">39</span><span class="sc">:</span><span class="dv">41</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>) <span class="co"># 40 is the most likely number of positive results</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="probs.html#cb5-1" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">39</span><span class="sc">:</span><span class="dv">41</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>) <span class="co"># 40 is the most likely number of positive results</span></span></code></pre></div>
 <pre><code>## [1] 0.06417798 0.06424483 0.06267788</code></pre>
 <p>Now, let’s visualize the binomial distribution for this case using base R syntax:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="probs.html#cb5-1" tabindex="-1"></a><span class="co"># Plot the binomial distribution</span></span>
-<span id="cb5-2"><a href="probs.html#cb5-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>n, probs, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb5-3"><a href="probs.html#cb5-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Number of positive results&quot;</span>, </span>
-<span id="cb5-4"><a href="probs.html#cb5-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>, </span>
-<span id="cb5-5"><a href="probs.html#cb5-5" tabindex="-1"></a>     <span class="at">xlim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb5-6"><a href="probs.html#cb5-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial distribution for treatment effect (yes/no) in 1000 researchers&quot;</span>)</span>
-<span id="cb5-7"><a href="probs.html#cb5-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Note, this form of distribution looks like a bell curve, aka a normal distribution.
-So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="probs.html#cb7-1" tabindex="-1"></a><span class="co"># Plot the binomial distribution</span></span>
+<span id="cb7-2"><a href="probs.html#cb7-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>n, probs, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb7-3"><a href="probs.html#cb7-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Number of positive results&quot;</span>, </span>
+<span id="cb7-4"><a href="probs.html#cb7-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>, </span>
+<span id="cb7-5"><a href="probs.html#cb7-5" tabindex="-1"></a>     <span class="at">xlim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb7-6"><a href="probs.html#cb7-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial distribution for treatment effect (yes/no) in 1000 researchers&quot;</span>)</span>
+<span id="cb7-7"><a href="probs.html#cb7-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Note, this form of distribution looks like a bell curve, aka a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>,
+probably the most important distribution in statistics.
+So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
+This guess would also not be too bad since we can expect the number of successes above, let’s say, 65 and below, let’s say, 15 to be very unlikely.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="probs.html#cb8-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)) <span class="co"># prob of 14 or less</span></span></code></pre></div>
+<pre><code>## [1] 1.384829e-06</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="probs.html#cb10-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">66</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)) <span class="co"># prob of 66 or more</span></span></code></pre></div>
+<pre><code>## [1] 7.160623e-05</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="probs.html#cb12-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">65</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)) <span class="co"># prob of 15 to 65</span></span></code></pre></div>
+<pre><code>## [1] 0.999927</code></pre>
 <p><strong>The second question</strong> asked about observing 137 positively reporting researchers.
 We can calculate the probability of observing 137 or more positive results using the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>
 (plug into the formula):
 <span class="math inline">\(\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^{1000-i}\)</span>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="probs.html#cb6-1" tabindex="-1"></a><span class="co"># Calculate the probability of observing 137 or more positive results</span></span>
-<span id="cb6-2"><a href="probs.html#cb6-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="probs.html#cb14-1" tabindex="-1"></a><span class="co"># Calculate the probability of observing 137 or more positive results</span></span>
+<span id="cb14-2"><a href="probs.html#cb14-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>))</span></code></pre></div>
 <pre><code>## [1] 5.551115e-16</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="probs.html#cb8-1" tabindex="-1"></a><span class="co"># Compare to winning the Swiss lottery</span></span>
-<span id="cb8-2"><a href="probs.html#cb8-2" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">31474716</span>)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="probs.html#cb16-1" tabindex="-1"></a><span class="co"># Compare to winning the Swiss lottery</span></span>
+<span id="cb16-2"><a href="probs.html#cb16-2" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">31474716</span>)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)))</span></code></pre></div>
 <pre><code>## [1] 57234507</code></pre>
 <p>57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.</p>
+<p><strong>The third question</strong> asked about the expected number of positive results if the therapy is working in 12% of the patients.
+As you can probably guess by now: We would guess <span class="math inline">\(1000 \times 0.12 = 120\)</span> positive results.
+This is the so-called <strong><a href="https://en.wikipedia.org/wiki/Expected_value">expected value</a></strong> <span class="math inline">\(\mathbb{E}(X)\)</span> of the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>.
+It is not always the maximum probability (the so-called <a href="https://en.wikipedia.org/wiki/Mode_(statistics)">mode</a>) of the distribution though:
+Consider a binomial distribution <span class="math inline">\(\text{Bin}(10, 0.7)\)</span>:</p>
+<ul>
+<li>The <strong>mean</strong> is <span class="math inline">\(\mathbb{E}(X) = 10 \times 0.77 = 7.7\)</span>. This number is not an integer and we can therefore not calculate the density at this point.</li>
+<li>The <strong>mode</strong> is 8.</li>
+</ul>
+<p><strong>The fourth question</strong> asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
+Well, this would be scientific fraud and a case of <a href="https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.">survivorship bias</a>.
+You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
+This is also relevant in <a href="https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.">finance</a>.
+You may want to read this excellent <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124">article</a> by John Ioannidis for a humbling big-picture of how relevant published results can be.</p>
 </div>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
