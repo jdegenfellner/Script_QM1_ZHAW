@@ -150,44 +150,12 @@ If we add up the probabilities of all mutually exclusive events, we should get 1
 We say that the probability of all elementary events (called $\omega$) sums to 1. Let's look at a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram) to illustrate the concept of being mutually exclusive (disjoint).
 
 ```{r echo=FALSE}
-if (knitr::is_html_output()) {
-  # Use ggplot2 to create a similar diagram in HTML output
-  library(ggplot2)
-  library(grid)
-  
-  # Create a simple Venn diagram for mutually exclusive events A and B
-  grid.newpage()
-  pushViewport(viewport(width = 0.8, height = 0.8))
-  grid.circle(x = 0.25, y = 0.5, r = 0.3, gp = gpar(fill = "lightblue"), name = "A")
-  grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = gpar(fill = "pink"), name = "B")
-  
- 
-  # Use expression() to get subscript notation
-  grid.text(expression(A[1]), x = 0.25, y = 0.9, gp = gpar(fontsize = 16))
-  grid.text(expression(A[2]), x = 0.75, y = 0.9, gp = gpar(fontsize = 16))
-  grid.text(expression(P(A[1] * " ∩ " * A[2]) == 0), x = 0.5, y = 0.0, gp = gpar(fontsize = 16, col = "darkred"))
-
-  
-} else {
-  # Render TikZ code for PDF
-  cat('
-  \\begin{center}
-  \\begin{tikzpicture}
-      % Draw circles for sets A and B
-      \\draw (0,0) circle [radius=1.5] node at (0,2) {\\textbf{A}};
-      \\draw (4,0) circle [radius=1.5] node at (4,2) {\\textbf{B}};
-      % Text for Mutually Exclusive Title
-      \\node at (2, 3.5) {\\textbf{\\Huge Mutually Exclusive}};
-      % Probability equation below the circles
-      \\node at (2, -2) {\\huge $P(A \\cap B) = 0$};
-  \\end{tikzpicture}
-  \\end{center}
-  ')
-}
+library(eulerr)
+plot(euler(c(A1 = 1, A2 = 1, "A1&A2" = 0)))
 ```
 
 Again, this refers to being mutually exclusive within our 1000-researcher experiment. 
-Both events cannot happen at the same time in this context so we assign $0$ to the event that both occur simultaneously. The $\cap$-Symbol refers to all elementary events 
+Both events cannot happen at the same time in this context, so we assign $0$ to the event that both occur simultaneously: $\mathbb{P}(A_1 \cap A_2)=0$. The $\cap$-Symbol refers to all elementary events 
 that are in both [sets](https://en.wikipedia.org/wiki/Set_(mathematics)). In our case we have the sets 
 
 $A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}$ and 
@@ -204,6 +172,11 @@ The sets look like this:
 $A_1 = \{ (\dots ,R_{45} = pos, \dots) \}$ and 
 
 $A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}$.
+
+```{r echo=FALSE}
+library(eulerr)
+plot(euler(c(A1 = 1, A3 = 2, "A1&A3" = 1)))
+```
 
 How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment? For every researcher, there are two possible outcomes: positive or negative result. 
 Hence, we have $2 \cdot 2 \cdot 2 \cdots = 2^{1000}$ elementary events in our set of all possible outcomes. 
@@ -277,7 +250,13 @@ A simple **example in our context**:
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.
 
 Here, we used the very important concept of **conditional probability**. 
-The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as $\mathbb{P}(A | B)$.
+The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as 
+$\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$. This [video](https://www.youtube.com/watch?v=ibINrxJLvlM&ab_channel=Dr.TreforBazett) explains it well.
+
+```{r echo=FALSE}
+library(eulerr)
+plot(euler(c(A = 1, B = 1, "A&B" = 1)))
+```
 
 Note that even if the probability of event A changes when B has happend, B could still have no *causal* effect on A. They could have a common cause, for instance.
 
@@ -289,17 +268,18 @@ might as well be that their statistical training was very similar and they both 
 
 ### Difference between independence and disjointness
 
-**Example: disjoint but not independent**
+There are four possible scenarios when considering two events:
 
-- Event A: Patient receives treatment A and shows improvement.
-- Event B: Patient receives treatment B (or is in the control group) and shows improvement.
+**Example 1: disjoint but not independent**
 
-These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. 
-If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together. Thus,  $P(A \cap B) = 0$.
+- Event A: Patient receives treatment A.
+- Event B: Patient receives treatment B (or is in the control group).
+
+These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together in this setting. Thus,  $P(A \cap B) = 0$.
 However, these events are not independent, because the probability of receiving one treatment depends on not receiving the other. 
 In this setup, if the patient received treatment A, the probability of receiving treatment B is zero. So, they are dependent.
 
-**Example: independent but not disjoint**
+**Example 2: independent but not disjoint**
 
 - Event A: The patient shows a treatment effect during a study.
 - Event B: The patient wins the lottery during the study.
@@ -310,7 +290,7 @@ The events are unrelated: one depends on the treatment, while the other is purel
 However, these events are not disjoint because both can happen at the same time. 
 A patient could experience the treatment effect and also win the lottery during the study. Thus,  $P(A \cap B) \neq 0$ , meaning both events can occur together.
 
-**Example: neither independent nor disjoint**
+**Example 3: neither independent nor disjoint**
 
 - Event A: The patient shows a treatment effect during a study.
 - Event B: The patient is a heavily motivated and self-sufficient. 

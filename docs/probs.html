@@ -310,7 +310,7 @@ If we add up the probabilities of all mutually exclusive events, we should get 1
 We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Again, this refers to being mutually exclusive within our 1000-researcher experiment.
-Both events cannot happen at the same time in this context so we assign <span class="math inline">\(0\)</span> to the event that both occur simultaneously. The <span class="math inline">\(\cap\)</span>-Symbol refers to all elementary events
+Both events cannot happen at the same time in this context, so we assign <span class="math inline">\(0\)</span> to the event that both occur simultaneously: <span class="math inline">\(\mathbb{P}(A_1 \cap A_2)=0\)</span>. The <span class="math inline">\(\cap\)</span>-Symbol refers to all elementary events
 that are in both <a href="https://en.wikipedia.org/wiki/Set_(mathematics)">sets</a>. In our case we have the sets</p>
 <p><span class="math inline">\(A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\)</span> and</p>
 <p><span class="math inline">\(A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}\)</span>.</p>
@@ -321,6 +321,7 @@ add up the probabilities (of events <span class="math inline">\(A_1\)</span> and
 The sets look like this:</p>
 <p><span class="math inline">\(A_1 = \{ (\dots ,R_{45} = pos, \dots) \}\)</span> and</p>
 <p><span class="math inline">\(A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment? For every researcher, there are two possible outcomes: positive or negative result.
 Hence, we have <span class="math inline">\(2 \cdot 2 \cdot 2 \cdots = 2^{1000}\)</span> elementary events in our set of all possible outcomes.
 This is a very large number (<span class="math inline">\(\sim 10^{300}\)</span>) - more than there are particles in the universe (<span class="math inline">\(\sim 10^{80}\)</span>).</p>
@@ -380,7 +381,9 @@ the probability of event <span class="math inline">\(A\)</span> happening is the
 <p>A simple <strong>example in our context</strong>:
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.</p>
 <p>Here, we used the very important concept of <strong>conditional probability</strong>.
-The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as <span class="math inline">\(\mathbb{P}(A | B)\)</span>.</p>
+The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as
+<span class="math inline">\(\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}\)</span>. This <a href="https://www.youtube.com/watch?v=ibINrxJLvlM&amp;ab_channel=Dr.TreforBazett">video</a> explains it well.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Note that even if the probability of event A changes when B has happend, B could still have no <em>causal</em> effect on A. They could have a common cause, for instance.</p>
 <p><strong>Example in our context</strong>:
 Let’s assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect.
@@ -389,16 +392,16 @@ might as well be that their statistical training was very similar and they both 
 </div>
 <div id="difference-between-independence-and-disjointness" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Difference between independence and disjointness<a href="probs.html#difference-between-independence-and-disjointness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Example: disjoint but not independent</strong></p>
+<p>There are four possible scenarios when considering two events:</p>
+<p><strong>Example 1: disjoint but not independent</strong></p>
 <ul>
-<li>Event A: Patient receives treatment A and shows improvement.</li>
-<li>Event B: Patient receives treatment B (or is in the control group) and shows improvement.</li>
+<li>Event A: Patient receives treatment A.</li>
+<li>Event B: Patient receives treatment B (or is in the control group).</li>
 </ul>
-<p>These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time.
-If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together. Thus, <span class="math inline">\(P(A \cap B) = 0\)</span>.
+<p>These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together in this setting. Thus, <span class="math inline">\(P(A \cap B) = 0\)</span>.
 However, these events are not independent, because the probability of receiving one treatment depends on not receiving the other.
 In this setup, if the patient received treatment A, the probability of receiving treatment B is zero. So, they are dependent.</p>
-<p><strong>Example: independent but not disjoint</strong></p>
+<p><strong>Example 2: independent but not disjoint</strong></p>
 <ul>
 <li>Event A: The patient shows a treatment effect during a study.</li>
 <li>Event B: The patient wins the lottery during the study.</li>
@@ -408,7 +411,7 @@ In this setup, if the patient received treatment A, the probability of receiving
 The events are unrelated: one depends on the treatment, while the other is purely a matter of luck.
 However, these events are not disjoint because both can happen at the same time.
 A patient could experience the treatment effect and also win the lottery during the study. Thus, <span class="math inline">\(P(A \cap B) \neq 0\)</span> , meaning both events can occur together.</p>
-<p><strong>Example: neither independent nor disjoint</strong></p>
+<p><strong>Example 3: neither independent nor disjoint</strong></p>
 <ul>
 <li>Event A: The patient shows a treatment effect during a study.</li>
 <li>Event B: The patient is a heavily motivated and self-sufficient.</li>
@@ -443,7 +446,7 @@ Each one of them has <span class="math inline">\(0.04\)</span> probability of ha
 <span id="cb5-5"><a href="probs.html#cb5-5" tabindex="-1"></a>     <span class="at">xlim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
 <span id="cb5-6"><a href="probs.html#cb5-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial distribution for treatment effect (yes/no) in 1000 researchers&quot;</span>)</span>
 <span id="cb5-7"><a href="probs.html#cb5-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Note, this form of distribution looks like a bell curve, aka a normal distribution.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.</p>
 <p><strong>The second question</strong> asked about observing 137 positively reporting researchers.
