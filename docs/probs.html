@@ -286,11 +286,12 @@ talking about their experiments or their research methodology to each other (ass
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
 that even under the assumption of the therapy is not working <em>at all</em>, one would see an effect just <em>by chance</em> in 4% of the study results.</p>
 <p>What would be considered a discovery under these cicumstances?</p>
-<p>We now conduct an experiment. All 1000 ressearches are conducting a study with 50 patients to answer the same question. This is our random experiment.
+<p>We now conduct an experiment. All 1000 ressearches are conducting a study with 50 patients to answer the same question. This is our random experiment (instead of throwing dice).
 Instead of throwing a fair die, we do a round of “research” with 1000 researchers. You as observer
 give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can
 (unrealistically) assume that their results will be not influenced by each other.</p>
-<p>Now we could ask different</p>
+<p><img src="images/thousand_researchers.jpg" /></p>
+<p>Now we could ask different questions:</p>
 <div id="Questions_about_the_1000-researcher_experiment" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Questions about the 1000 researcher-experiment (among many others):<a href="probs.html#Questions_about_the_1000-researcher_experiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
@@ -309,13 +310,23 @@ If we add up the probabilities of all mutually exclusive events, we should get 1
 We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Again, this refers to being mutually exclusive within our 1000-researcher experiment.
-Both events cannot happen at the same time in this context so we assign <span class="math inline">\(0\)</span> to the event that both occur simultaneously. The <span class="math inline">\(\cap\)</span>-Symbol refers to all elements
-that are in both sets. In our case we have the sets <span class="math inline">\(A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\)</span> and <span class="math inline">\(A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}\)</span>.</p>
-<p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span> “researcher 45 gets a positive result” and
-the event <span class="math inline">\(A_3=\)</span> “researcher 45 and reasearcher 67 gets a positive result”.
+Both events cannot happen at the same time in this context so we assign <span class="math inline">\(0\)</span> to the event that both occur simultaneously. The <span class="math inline">\(\cap\)</span>-Symbol refers to all elementary events
+that are in both <a href="https://en.wikipedia.org/wiki/Set_(mathematics)">sets</a>. In our case we have the sets</p>
+<p><span class="math inline">\(A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\)</span> and</p>
+<p><span class="math inline">\(A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}\)</span>.</p>
+<p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and
+the event <span class="math inline">\(A_3=\)</span> “only researcher 45 or only reasearcher 67 gets a positive result”.
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
-add up the probabilities here, since we would count the probability of researcher 45 twice.</p>
-<p>The probability of the event “” should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
+add up the probabilities (of events <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_3\)</span>) here, since we would count the probability of researcher 45 twice.
+The sets look like this:</p>
+<p><span class="math inline">\(A_1 = \{ (\dots ,R_{45} = pos, \dots) \}\)</span> and</p>
+<p><span class="math inline">\(A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}\)</span>.</p>
+<p>How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment? For every researcher, there are two possible outcomes: positive or negative result.
+Hence, we have <span class="math inline">\(2 \cdot 2 \cdot 2 \cdots = 2^{1000}\)</span> elementary events in our set of all possible outcomes.
+This is a very large number (<span class="math inline">\(\sim 10^{300}\)</span>) - more than there are particles in the universe (<span class="math inline">\(\sim 10^{80}\)</span>).</p>
+<p>We call the set of all elementary events <span class="math inline">\(\Omega\)</span> (the Greek letter Omega): <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span>.</p>
+<p>Note, that we collect elementary events to form events like we just did for event “A3”.</p>
+<p>The probability of the event “” (nothing occurred) should be zero, were “” denotes the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed <em>never</em> happen.</p>
 <p>Obviously, the probability of an event should at a mininum be zero and at a maximum be one.</p>
 </div>
