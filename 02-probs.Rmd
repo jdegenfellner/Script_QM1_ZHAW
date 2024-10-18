@@ -192,7 +192,7 @@ We would therefore define this probability as zero and (if we can count the numb
 
 Obviously, the probability of an event should at a mininum be zero and at a maximum be one. 
 
-### Axioms of probability theory
+### Axioms of probability theory {#axioms_of_probability_theory}
 
 We can summarize these informally stated properties more formally ([Kolmogorov's axioms](https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf)):
 
@@ -347,7 +347,7 @@ abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 ```
 
 Note, this form of distribution looks like a bell curve, aka a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), 
-probably the most important distribution in statistics.
+probably the most important distribution in statistics. One can [show formally](https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf) that the binomial distribution converges to the normal distribution under certain conditions.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
 This guess would also not be too bad since we can expect the number of successes above, let's say, 65 and below, let's say, 15 to be very unlikely.
 ```{r}
@@ -398,6 +398,27 @@ their (over-)interpretation as "significant" (relevant) or "non-significant" (no
 The expected quadratic deviation from the mean: $\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}$. In simple terms: 
 How much does the number of positive results vary around the mean of 40 on average?
 See also [Exercise 5](#exercise5).
+
+### Addition of probabilities {#addition_of_probabilities}
+[Above](#axioms_of_probability_theory) in axiom 3, we stated that the probability of the union of pairwise disjoint events is the sum of the 
+probabilities of the individual events.
+What if the events are not disjoint? For simplicity, let's consider only 2 researchers (doing 2 parallel experiments) and define event $A_1$ as "researcher 1 finds an effect" and 
+$A_2$ as "researcher 2 finds an effect".
+What is the probability that at least one of the researchers finds an effect?
+Our event space $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
+$\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1$
+
+$\mathbb{P}(A_1) = 0.04^2 + 0.04 \times 0.96$
+
+$\mathbb{P}(A_2) = 0.04^2 + 0.96 \times 0.04$
+
+$\mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) - \mathbb{P}(A_1 \cap A_2)=$ 
+$0.04^2 + 0.04 \times 0.96 +$
+$0.04^2 + 0.96 \times 0.04 - 0.04^2=$
+$0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04.$
+
+So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
+the probability of both finding an effect, wich is the same as that both or exactly one of them finds an effect.
 
 ## Exercises
 

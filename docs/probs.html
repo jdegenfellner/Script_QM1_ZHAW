@@ -157,10 +157,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="probs.html"><a href="probs.html#foundations-of-probability-theory"><i class="fa fa-check"></i><b>2.2</b> Foundations of probability theory</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="probs.html"><a href="probs.html#Questions_about_the_1000-researcher_experiment"><i class="fa fa-check"></i><b>2.2.1</b> Questions about the 1000 researcher-experiment (among many others):</a></li>
-<li class="chapter" data-level="2.2.2" data-path="probs.html"><a href="probs.html#axioms-of-probability-theory"><i class="fa fa-check"></i><b>2.2.2</b> Axioms of probability theory</a></li>
+<li class="chapter" data-level="2.2.2" data-path="probs.html"><a href="probs.html#axioms_of_probability_theory"><i class="fa fa-check"></i><b>2.2.2</b> Axioms of probability theory</a></li>
 <li class="chapter" data-level="2.2.3" data-path="probs.html"><a href="probs.html#independence-of-events"><i class="fa fa-check"></i><b>2.2.3</b> Independence of events</a></li>
 <li class="chapter" data-level="2.2.4" data-path="probs.html"><a href="probs.html#difference-between-independence-and-disjointness"><i class="fa fa-check"></i><b>2.2.4</b> Difference between independence and disjointness</a></li>
 <li class="chapter" data-level="2.2.5" data-path="probs.html"><a href="probs.html#Answers_Questions_about_the_1000-researcher_experiment"><i class="fa fa-check"></i><b>2.2.5</b> Answers to questions about the 1000 researcher-experiment (among many others):</a></li>
+<li class="chapter" data-level="2.2.6" data-path="probs.html"><a href="probs.html#addition_of_probabilities"><i class="fa fa-check"></i><b>2.2.6</b> Addition of probabilities</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
 <ul>
@@ -334,8 +335,8 @@ This is a very large number (<span class="math inline">\(\sim 10^{300}\)</span>)
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed <em>never</em> happen.</p>
 <p>Obviously, the probability of an event should at a mininum be zero and at a maximum be one.</p>
 </div>
-<div id="axioms-of-probability-theory" class="section level3 hasAnchor" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Axioms of probability theory<a href="probs.html#axioms-of-probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="axioms_of_probability_theory" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Axioms of probability theory<a href="probs.html#axioms_of_probability_theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can summarize these informally stated properties more formally (<a href="https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf">Kolmogorov’s axioms</a>):</p>
 <p><span class="math display">\[\begin{align}
 1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event should be zero.}\\
@@ -460,7 +461,7 @@ Each one of them has <span class="math inline">\(0.04\)</span> probability of ha
 <span id="cb7-7"><a href="probs.html#cb7-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Note, this form of distribution looks like a bell curve, aka a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>,
-probably the most important distribution in statistics.
+probably the most important distribution in statistics. One can <a href="https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf">show formally</a> that the binomial distribution converges to the normal distribution under certain conditions.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
 This guess would also not be too bad since we can expect the number of successes above, let’s say, 65 and below, let’s say, 15 to be very unlikely.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="probs.html#cb8-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)) <span class="co"># prob of 14 or less</span></span></code></pre></div>
@@ -505,6 +506,24 @@ their (over-)interpretation as “significant” (relevant) or “non-significan
 The expected quadratic deviation from the mean: <span class="math inline">\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}\)</span>. In simple terms:
 How much does the number of positive results vary around the mean of 40 on average?
 See also <a href="probs.html#exercise5">Exercise 5</a>.</p>
+</div>
+<div id="addition_of_probabilities" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Addition of probabilities<a href="probs.html#addition_of_probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="probs.html#axioms_of_probability_theory">Above</a> in axiom 3, we stated that the probability of the union of pairwise disjoint events is the sum of the
+probabilities of the individual events.
+What if the events are not disjoint? For simplicity, let’s consider only 2 researchers (doing 2 parallel experiments) and define event <span class="math inline">\(A_1\)</span> as “researcher 1 finds an effect” and
+<span class="math inline">\(A_2\)</span> as “researcher 2 finds an effect”.
+What is the probability that at least one of the researchers finds an effect?
+Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>.
+<span class="math inline">\(\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1\)</span></p>
+<p><span class="math inline">\(\mathbb{P}(A_1) = 0.04^2 + 0.04 \times 0.96\)</span></p>
+<p><span class="math inline">\(\mathbb{P}(A_2) = 0.04^2 + 0.96 \times 0.04\)</span></p>
+<p><span class="math inline">\(\mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) - \mathbb{P}(A_1 \cap A_2)=\)</span>
+<span class="math inline">\(0.04^2 + 0.04 \times 0.96 +\)</span>
+<span class="math inline">\(0.04^2 + 0.96 \times 0.04 - 0.04^2=\)</span>
+<span class="math inline">\(0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04.\)</span></p>
+<p>So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
+the probability of both finding an effect, wich is the same as that both or exactly one of them finds an effect.</p>
 </div>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
