@@ -117,9 +117,11 @@ As stated above, in the frequentist sense, we are interested in the long-run fre
 
 Let's imagine we are in a research department with 1000 researches all trying to answer the same question: 
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let's assume (unrealistically) that they are all working on this one question and they are not
-talking about their experiments or their research methodology to each other. The statistician in the department has calculated 
+talking about their experiments or their research methodology to each other (assumption of independence). The statistician in the department has calculated 
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
 that even under the assumption of the therapy is not working *at all*, one would see an effect just *by chance* in 4% of the study results.
+
+What would be considered a discovery under these cicumstances?
 
 We now conduct an experiment. All 1000 ressearches are conducting a study with 50 patients to answer the same question. This is our random experiment. 
 Instead of throwing a fair die, we do a round of "research" with 1000 researchers. You as observer
@@ -132,10 +134,10 @@ Now we could ask different
 
 1. If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?
 2. If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?
-3. How many experiments showed a treatment effect if you assume that the therapy is working for 12% (instead of 4%) of the patients?
+3. How many experiments showed a treatment effect if you assume that the therapy is "working" (positive result by chance) in 12% (instead of 4%) of the patients?
 4. Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47 
 out of 50 studies showed a treatment effect. What is the problem?
-5. Assuming 1 very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?
+5. Assuming one very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?
 
 We will try to answer such questions in the following sections.
 
@@ -182,7 +184,10 @@ if (knitr::is_html_output()) {
 }
 ```
 
-Again, this refers to being mutually exclusive within our 1000-researcher experiment. Both events cannot happen at the same time in this context.
+Again, this refers to being mutually exclusive within our 1000-researcher experiment. 
+Both events cannot happen at the same time in this context so we assign $0$ to the event that both occur simultaneously. The $\cap$-Symbol refers to all elements 
+that are in both sets. In our case we have the sets $A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}$ and $A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}$.
+
 
 An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1=$ "researcher 45 gets a positive result" and
  the event $A_3=$ "researcher 45 and reasearcher 67 gets a positive result".

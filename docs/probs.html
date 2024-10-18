@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-10-15" />
+<meta name="date" content="2024-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -282,9 +282,10 @@ As stated above, in the frequentist sense, we are interested in the long-run fre
 <p><strong>Heureka?</strong></p>
 <p>Let’s imagine we are in a research department with 1000 researches all trying to answer the same question:
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let’s assume (unrealistically) that they are all working on this one question and they are not
-talking about their experiments or their research methodology to each other. The statistician in the department has calculated
+talking about their experiments or their research methodology to each other (assumption of independence). The statistician in the department has calculated
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
 that even under the assumption of the therapy is not working <em>at all</em>, one would see an effect just <em>by chance</em> in 4% of the study results.</p>
+<p>What would be considered a discovery under these cicumstances?</p>
 <p>We now conduct an experiment. All 1000 ressearches are conducting a study with 50 patients to answer the same question. This is our random experiment.
 Instead of throwing a fair die, we do a round of “research” with 1000 researchers. You as observer
 give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can
@@ -295,10 +296,10 @@ give the assignment to the researchers and come back as soon as all 1000 researe
 <ol style="list-style-type: decimal">
 <li>If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?</li>
 <li>If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?</li>
-<li>How many experiments showed a treatment effect if you assume that the therapy is working for 12% (instead of 4%) of the patients?</li>
+<li>How many experiments showed a treatment effect if you assume that the therapy is “working” (positive result by chance) in 12% (instead of 4%) of the patients?</li>
 <li>Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47
 out of 50 studies showed a treatment effect. What is the problem?</li>
-<li>Assuming 1 very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?</li>
+<li>Assuming one very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?</li>
 </ol>
 <p>We will try to answer such questions in the following sections.</p>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
@@ -307,7 +308,9 @@ If only researcher 45 finds an effect, then researcher 897 does not find an effe
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%.
 We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Again, this refers to being mutually exclusive within our 1000-researcher experiment. Both events cannot happen at the same time in this context.</p>
+<p>Again, this refers to being mutually exclusive within our 1000-researcher experiment.
+Both events cannot happen at the same time in this context so we assign <span class="math inline">\(0\)</span> to the event that both occur simultaneously. The <span class="math inline">\(\cap\)</span>-Symbol refers to all elements
+that are in both sets. In our case we have the sets <span class="math inline">\(A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\)</span> and <span class="math inline">\(A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}\)</span>.</p>
 <p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span> “researcher 45 gets a positive result” and
 the event <span class="math inline">\(A_3=\)</span> “researcher 45 and reasearcher 67 gets a positive result”.
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
