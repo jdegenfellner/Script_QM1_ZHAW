@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="probs.html"><a href="probs.html#axioms-of-probability-theory"><i class="fa fa-check"></i><b>2.2.2</b> Axioms of probability theory</a></li>
 <li class="chapter" data-level="2.2.3" data-path="probs.html"><a href="probs.html#independence-of-events"><i class="fa fa-check"></i><b>2.2.3</b> Independence of events</a></li>
 <li class="chapter" data-level="2.2.4" data-path="probs.html"><a href="probs.html#difference-between-independence-and-disjointness"><i class="fa fa-check"></i><b>2.2.4</b> Difference between independence and disjointness</a></li>
-<li class="chapter" data-level="2.2.5" data-path="probs.html"><a href="probs.html#answers-to-questions-about-the-1000-researcher-experiment-among-many-others"><i class="fa fa-check"></i><b>2.2.5</b> Answers to questions about the 1000 researcher-experiment (among many others):</a></li>
+<li class="chapter" data-level="2.2.5" data-path="probs.html"><a href="probs.html#Answers_Questions_about_the_1000-researcher_experiment"><i class="fa fa-check"></i><b>2.2.5</b> Answers to questions about the 1000 researcher-experiment (among many others):</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
 <ul>
@@ -168,6 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>2.3.2</b> Exercise 2</a></li>
 <li class="chapter" data-level="2.3.3" data-path="probs.html"><a href="probs.html#exercise3"><i class="fa fa-check"></i><b>2.3.3</b> Exercise 3</a></li>
 <li class="chapter" data-level="2.3.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.3.4</b> Exercise 4 - independent and disjoint</a></li>
+<li class="chapter" data-level="2.3.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.3.5</b> Exercise 5 - variance</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
 </ul></li>
@@ -304,7 +305,7 @@ out of 50 studies showed a treatment effect. What is the problem?</li>
 <li>Assuming one very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?</li>
 <li>Suppose there are many large research departments in the world with 1000 researchers. How strongly would the number of positive results vary between these large departments?</li>
 </ol>
-<p>We will try to answer such questions in the following sections.</p>
+<p>We will try to answer these questions <a href="probs.html#Answers_Questions_about_the_1000-researcher_experiment">below</a>.</p>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
 The event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span> “only researcher 897 gets a positive result” are mutually exclusive.
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. Hence, the two events are said to be disjoint.
@@ -426,8 +427,8 @@ are part of the therapy), making the events dependent.
 However, the patient’s motivation is not mutually exclusive with the treatment effect, so the events are not disjoint either. They can occur together.</p>
 <p>see also (<a href="probs.html#exercise4">Exercise 4</a>)</p>
 </div>
-<div id="answers-to-questions-about-the-1000-researcher-experiment-among-many-others" class="section level3 hasAnchor" number="2.2.5">
-<h3><span class="header-section-number">2.2.5</span> Answers to questions about the 1000 researcher-experiment (among many others):<a href="probs.html#answers-to-questions-about-the-1000-researcher-experiment-among-many-others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="Answers_Questions_about_the_1000-researcher_experiment" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Answers to questions about the 1000 researcher-experiment (among many others):<a href="probs.html#Answers_Questions_about_the_1000-researcher_experiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Maybe, we can already answer some of the <a href="probs.html#Questions_about_the_1000-researcher_experiment">questions from above</a> using what we have learned so far.</p>
 <p><strong>For the first question</strong> we would probably bet on the maximum probability of the binomial distribution. The number of positive experiments out of <span class="math inline">\(1000\)</span> has to be between <span class="math inline">\(0\)</span> and <span class="math inline">\(1000\)</span>.
 Each one of them has <span class="math inline">\(0.04\)</span> probability of happening. With R, we quickly calculate the maximum probability:</p>
@@ -495,7 +496,12 @@ If you test many hypotheses, you will find some “significant” results by cha
 One could also call the practice of testing many hypotheses to find “significant” ones <a href="https://en.wikipedia.org/wiki/Data_dredging">p-hacking</a>.
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 “significant” results by chance alone.
-If you report those 4 results as legitimate finding, you are p-hacking.</p>
+If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of p-values and
+their (over-)interpretation as “significant” (relevant) or “non-significant” (not relevant).</p>
+<p><strong>The sixth question</strong> asked about the variation of positive results between large research departments. This demands the very important concept of <a href="https://en.wikipedia.org/wiki/Variance">variance</a>:
+The expected quadratic deviation from the mean: <span class="math inline">\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}\)</span>. In simple terms:
+How much does the number of positive results vary around the mean of 40 on average?
+See also <a href="probs.html#exercise5">Exercise 5</a>.</p>
 </div>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
@@ -537,6 +543,17 @@ Look at the latest articles. We are interested in articles that used statistics 
 <li>Why or why not?</li>
 <li>What would that imply?</li>
 <li>Draw a Venn diagram if possible!</li>
+</ul>
+</div>
+<div id="exercise5" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Exercise 5 - variance<a href="probs.html#exercise5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Simulate the number of positive results in our 1000-researcher-experiment under the assumption that the therapy is not working at all (<span class="math inline">\(p=0.04\)</span>).</li>
+<li>Do this experiment in R 10,000 times and visualize the results in a histogram.</li>
+<li>How often do you get 65 or more positive results? How often do you get 15 or less positive results?</li>
+<li>Can you find the limits of a 90% interval around the mean (of 40) - using the so-called <a href="https://en.wikipedia.org/wiki/Quantile">quantiles</a> - for the number of positive results?</li>
+<li>What is the theoretical variance for our experiment?</li>
+<li>How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?</li>
 </ul>
 </div>
 </div>

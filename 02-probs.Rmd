@@ -142,7 +142,7 @@ out of 50 studies showed a treatment effect. What is the problem?
 5. Assuming one very motivated researcher has tested 65 (secondary) hypotheses in her experiments and found 4 results that are difficult to explain by chance alone. What is the problem?
 6. Suppose there are many large research departments in the world with 1000 researchers. How strongly would the number of positive results vary between these large departments?
 
-We will try to answer such questions in the following sections.
+We will try to answer these questions [below](#Answers_Questions_about_the_1000-researcher_experiment).
 
 First, it seems intuitive that Probability *within* an experiment should add up *if* the events are **disjoint**. 
 The event $A_1=$ "only researcher 45 gets a positive result" and $A_2=$ "only researcher 897 gets a positive result" are mutually exclusive. 
@@ -307,7 +307,7 @@ However, the patient's motivation is not mutually exclusive with the treatment e
 
  see also ([Exercise 4](#exercise4))
 
-### Answers to questions about the 1000 researcher-experiment (among many others):
+### Answers to questions about the 1000 researcher-experiment (among many others): {#Answers_Questions_about_the_1000-researcher_experiment}
 Maybe, we can already answer some of the [questions from above](#Questions_about_the_1000-researcher_experiment) using what we have learned so far.
 
 **For the first question** we would probably bet on the maximum probability of the binomial distribution. The number of positive experiments out of $1000$ has to be between $0$ and $1000$.
@@ -386,8 +386,13 @@ If you test many hypotheses, you will find some "significant" results by chance 
 One could also call the practice of testing many hypotheses to find "significant" ones [p-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
-If you report those 4 results as legitimate finding, you are p-hacking.
+If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of p-values and 
+their (over-)interpretation as "significant" (relevant) or "non-significant" (not relevant).
 
+**The sixth question** asked about the variation of positive results between large research departments. This demands the very important concept of [variance](https://en.wikipedia.org/wiki/Variance): 
+The expected quadratic deviation from the mean: $\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}$. In simple terms: 
+How much does the number of positive results vary around the mean of 40 on average?
+See also [Exercise 5](#exercise5).
 
 ## Exercises
 
@@ -422,6 +427,15 @@ Look at the definitions above and try to come up with examples for independent a
 - Why or why not? 
 - What would that imply? 
 - Draw a Venn diagram if possible!
+
+### Exercise 5 - variance {#exercise5}
+
+- Simulate the number of positive results in our 1000-researcher-experiment under the assumption that the therapy is not working at all ($p=0.04$).
+- Do this experiment in R 10,000 times and visualize the results in a histogram.
+- How often do you get 65 or more positive results? How often do you get 15 or less positive results?
+- Can you find the limits of a 90% interval around the mean (of 40) - using the so-called [quantiles](https://en.wikipedia.org/wiki/Quantile) - for the number of positive results?
+- What is the theoretical variance for our experiment?
+- How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
