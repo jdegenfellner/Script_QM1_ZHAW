@@ -128,7 +128,7 @@ Instead of throwing a fair die, we do a round of "research" with 1000 researcher
 give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can 
 (unrealistically) assume that their results will be not influenced by each other.
 
-![](./images/thousand_researchers.jpg)
+![](./images/thousand_researchers_ducks.jpg)
 
 Now we could ask different questions:
 
