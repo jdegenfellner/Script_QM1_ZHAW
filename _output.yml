@@ -1,4 +1,6 @@
 bookdown::gitbook:
+  includes:
+    in_header: preamble.tex
   cover_image: "images/CoverQM1.png"
   css: style.css
   config:
@@ -13,7 +15,7 @@ bookdown::gitbook:
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  template: template.tex
+  #template: template.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes

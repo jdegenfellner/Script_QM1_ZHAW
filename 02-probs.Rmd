@@ -119,7 +119,7 @@ Let's imagine we are in a research department with 1000 researches all trying to
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let's assume (unrealistically) that they are all working on this one question and they are not
 talking about their experiments or their research methodology to each other (assumption of independence). The statistician in the department has calculated 
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
-that even under the assumption of the therapy is not working *at all*, one would see an effect just *by chance* in 4% of the study results.
+that even under the assumption of the therapy is not working *at all* - **which we will assume for the time being** - , one would see an effect just *by chance* in 4% of the study results.
 
 What would be considered a discovery under these cicumstances?
 
@@ -338,10 +338,10 @@ Now, let’s visualize the binomial distribution for this case using base R synt
 
 ```{r}
 # Plot the binomial distribution
-plot(0:n, probs, type = "h", lwd = 2, col = "blue", 
-     xlab = "Number of positive results", 
-     ylab = "Probability", 
-     xlim= c(0,100),
+plot(0:n, probs, type = "h", lwd = 2, col = "blue",
+     xlab = "Number of positive results",
+     ylab = "Probability",
+     xlim = c(0, 100),
      main = "Binomial distribution for treatment effect (yes/no) in 1000 researchers")
 abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 ```
@@ -366,7 +366,7 @@ $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0
 1 - sum(dbinom(0:136, size = 1000, prob = 0.04))
 
 # Compare to winning the Swiss lottery
-(1/31474716)/(1 - sum(dbinom(0:136, size = 1000, prob = 0.04)))
+(1 / 31474716) / (1 - sum(dbinom(0:136, size = 1000, prob = 0.04)))
 ```
 
 57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
@@ -422,8 +422,8 @@ $0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04.$
 fit <- euler(c(A1 = 1, A2 = 1, "A1&A2" = 2))
 
 # Plot the Euler diagram with both sets and intersection completely filled in gray
-plot(fit, fills = c("gray", "gray", "gray"), 
-     labels = list(labels = c("A1", "A2")), 
+plot(fit, fills = c("gray", "gray", "gray"),
+     labels = list(labels = c("A1", "A2")),
      main = "")
 ```
 
@@ -493,8 +493,8 @@ Look at the definitions above and try to come up with examples for independent a
 
 ### Exercise 5 - variance {#exercise5}
 
-- Simulate the number of positive results in our 1000-researcher-experiment under the assumption that the therapy is not working at all ($p=0.04$).
-- Do this experiment in R 10,000 times and visualize the results in a histogram.
+- Simulate the number of positive results (found an effect even though there is none) in our 1000-researcher-experiment under the assumption that the therapy is not working at all ($p=0.04$).
+- Do this experiment in $\Rlogo$ 10,000 times and visualize the results in a histogram.
 - How often do you get 65 or more positive results? How often do you get 15 or less positive results?
 - Can you find the limits of a 90% interval around the mean (of 40) - using the so-called [quantiles](https://en.wikipedia.org/wiki/Quantile) - for the number of positive results?
 - What is the theoretical variance for our experiment?

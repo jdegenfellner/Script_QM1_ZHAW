@@ -13,3 +13,20 @@ rmd_files:
   #- 06-share.Rmd
   #- 07-references.Rmd
 output_dir: "docs"
+
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+
+bookdown::gitbook:
+  includes:
+    in_header: preamble.tex
+  cover_image: "images/CoverQM1.png"
+  css: style.css
+  config:
+    favicon: "favicon.ico"
+    toc:
+      before: |
+        <li><a href="./">Quantitative Methods 1</a></li>
+      after: |
+        <li><a href="

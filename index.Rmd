@@ -12,6 +12,9 @@ description: |
   Script Quantitative Methods 1, ZHAW,
 link-citations: true
 github-repo: "jdegenfellner/Script_QM1_ZHAW"
+bookdown::gitbook:
+  includes:
+    in_header: preamble.tex
 ---
 
 <!-- Cover image is difficult. template.tex in progress, hard to get it right -->
@@ -72,6 +75,10 @@ You may want to give Hadley Wickham's book a try:
 
 Especially, the chapter on [exploratory data analysis](https://r4ds.hadley.nz/eda#introduction) is very helpful.
 
+This free book seems also very helpful for beginners:
+
+ - (Free) [R for non-programmers R4NP](https://bookdown.org/daniel_dauber_io/r4np_book/)
+
 Further resources:
 
 [(Example) Introduction to R](https://www.youtube.com/watch?v=V8eKsto3Ug&t=140s)
@@ -98,6 +105,6 @@ You could use RStudio to write and execute your code. In the global options of R
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
+  .packages(), "bookdown", "knitr", "rmarkdown"
+), "packages.bib")
 ```
