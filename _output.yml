@@ -1,6 +1,4 @@
 bookdown::gitbook:
-  includes:
-    in_header: preamble.tex
   cover_image: "images/CoverQM1.png"
   css: style.css
   config:

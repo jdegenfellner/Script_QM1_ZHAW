@@ -12,9 +12,6 @@ description: |
   Script Quantitative Methods 1, ZHAW,
 link-citations: true
 github-repo: "jdegenfellner/Script_QM1_ZHAW"
-bookdown::gitbook:
-  includes:
-    in_header: preamble.tex
 ---
 
 <!-- Cover image is difficult. template.tex in progress, hard to get it right -->
