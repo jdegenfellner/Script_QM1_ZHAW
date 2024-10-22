@@ -467,12 +467,12 @@ the probability of both finding an effect, which is the same as that both or exa
 - Plot the relative frequency of 3s on the y-axis and the number of throws on the x-axis. This should give a converging pattern towards $y=\frac{1}{6}$.
 - Which law of probability theory is illustrated by this simulation?
 
-### Exercise 2 {#exercise2}
+### Exercise 2 - Bayes-teaser {#exercise2}
 Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).
 For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter 
 $\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
 
-### Exercise 3 {#exercise3}
+### Exercise 3 - find journals {#exercise3}
 **Note: This is among the most important exercises of the course:**
 Use Google or your favourite search engine to find scientific journals in *your* field (physiotherapy, midwifery, nursing, etc.). 
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies). 
