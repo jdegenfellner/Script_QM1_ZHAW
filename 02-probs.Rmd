@@ -479,7 +479,7 @@ Look at the latest articles. We are interested in articles that used statistics 
 
 - What was the research question? What where they trying to find out/confirm? Write down at least 10 research questions!
 - Which statistical *methods* were used? Write down at least 10 methods!
-- Was prior knowledge used in any of the analysis?
+- Was prior/external knowledge used in any of the analysis?
 - Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
 
 ### Exercise 4 -  independent and disjoint {#exercise4} 
@@ -494,11 +494,12 @@ Look at the definitions above and try to come up with examples for independent a
 ### Exercise 5 - variance {#exercise5}
 
 - Simulate the number of positive results (found an effect even though there is none) in our 1000-researcher-experiment under the assumption that the therapy is not working at all ($p=0.04$).
-- Do this experiment in $\Rlogo$ 10,000 times and visualize the results in a histogram.
+- Do this experiment in `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'` 10,000 times and visualize the results in a histogram.
 - How often do you get 65 or more positive results? How often do you get 15 or less positive results?
 - Can you find the limits of a 90% interval around the mean (of 40) - using the so-called [quantiles](https://en.wikipedia.org/wiki/Quantile) - for the number of positive results?
 - What is the theoretical variance for our experiment?
 - How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?
+
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
