@@ -21,13 +21,13 @@ sum(results <= 15) / n_sim
 
 # Calculate the 90% interval around the mean (40)
 quantile(results, probs = c(0.05, 0.95)) # By definition, approx. 5% of results should be below 30 and 5% above 50
-#5% 95% 
+# 5% 95% 
 #  30  50 
 sum(results <= 30) / n_sim # approx. correct
 sum(results >= 50) / n_sim # approx. correct
 
 # Theoretical variance for the experiment (binomial distribution variance formula)
-theoretical_variance <- n_experiments * p_value * (1 - p_value)
+theoretical_variance <- n_experiments * p_value * (1 - p_value) # https://en.wikipedia.org/wiki/Binomial_distribution#Expected_value_and_variance
 theoretical_variance
 sqrt(theoretical_variance) # ~ 2/3 of results should be within 40 +/- 6.19
 conflicts_prefer(base::`%in%`) # if you have the same function in two packages, you can use this to see which one is being used
