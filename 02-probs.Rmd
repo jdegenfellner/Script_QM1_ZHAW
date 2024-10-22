@@ -218,7 +218,7 @@ This can be calculated as:
 $0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}$, which yields a very small number ($1.350826 \cdot 10^{-22}$) 
 since we are fixating on specific researchers to find the effect. 
 If we relax the question to the *number of researchers* that find an effect,
-we get much larer numbers. We say, the number $X$ of positive results under $H_0$ (there is no true effect)) for a positive effect is **binomially distributed**: $X \sim Bin(n=1000, p=0.04)$. 
+we get much larger numbers. We say, the number $X$ of positive results under $H_0$ (there is no true effect)) for a positive effect is **binomially distributed**: $X \sim Bin(n=1000, p=0.04)$. 
 The YouTube-channel [3Blue1Brown](https://www.youtube.com/@3blue1brown) is highly recommended in general. You should watch this 
 [video](https://www.youtube.com/watch?v=8idr1WZ1A7Q&ab_channel=3Blue1Brown) on the binomial distribution to get a clearer picture. 
 This [video](https://www.youtube.com/watch?v=WWv0RUxDfbs&ab_channel=KhanAcademy) from [KhanAcademy](https://www.youtube.com/@khanacademy) could also be helpful.
@@ -491,24 +491,6 @@ We can always ask ourselves: Where is this entity (proportion, effect, etc.) wit
 
 ### Prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
 
-## Descriptive statistics
-
-There are a myriad sources (books, webistes, videos) explaining the concepts of [descriptive statistics](https://en.wikipedia.org/wiki/Descriptive_statistics). 
-We do not need to reiterate everything here. You can go through these sources to get started:
-
-- [R for non-programmers](https://bookdown.org/daniel_dauber_io/r4np_book/descriptive-statistics.html)
-- [Science direct](https://www.sciencedirect.com/topics/social-sciences/descriptive-statistics)
-
-The goal is to describe data in a meaningful way. 
-We **summarize** data to make them **more easily digestable** for us humans to answer questions like 
-
-- Where are the data points located? 
-  These questions are answered (at least attempted) by the location measures such as 
-  [mean](https://en.wikipedia.org/wiki/Mean), [median](https://en.wikipedia.org/wiki/Median), and [mode](https://en.wikipedia.org/wiki/Mode_(statistics)).
-- How widely are they spread?
-  These questions are answered by the dispersion measures such as variance, standard deviation, or range.
-- Are there any outliers (a rare data point that is far away from the rest [@westfall2020, p. 405].) and why?
-  This is a bit more complicated.
 
 
 ## Exercises
