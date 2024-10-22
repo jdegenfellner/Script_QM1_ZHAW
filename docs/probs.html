@@ -128,6 +128,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -168,16 +191,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.5" data-path="probs.html"><a href="probs.html#Answers_Questions_about_the_1000-researcher_experiment"><i class="fa fa-check"></i><b>2.2.5</b> Answers to questions about the 1000 researcher-experiment (among many others):</a></li>
 <li class="chapter" data-level="2.2.6" data-path="probs.html"><a href="probs.html#addition_of_probabilities"><i class="fa fa-check"></i><b>2.2.6</b> Addition of probabilities</a></li>
 <li class="chapter" data-level="2.2.7" data-path="probs.html"><a href="probs.html#probabilities_for_health_sciences"><i class="fa fa-check"></i><b>2.2.7</b> Probabilities for health science</a></li>
+<li class="chapter" data-level="2.2.8" data-path="probs.html"><a href="probs.html#prominent_probability_distributions_in_health_sciences"><i class="fa fa-check"></i><b>2.2.8</b> Prominent probability distributions used in health sciences</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
+<li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="probs.html"><a href="probs.html#exercise1"><i class="fa fa-check"></i><b>2.3.1</b> Exercise 1 - throwing a die very often</a></li>
-<li class="chapter" data-level="2.3.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>2.3.2</b> Exercise 2 - Bayes-teaser</a></li>
-<li class="chapter" data-level="2.3.3" data-path="probs.html"><a href="probs.html#exercise3"><i class="fa fa-check"></i><b>2.3.3</b> Exercise 3 - find journals</a></li>
-<li class="chapter" data-level="2.3.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.3.4</b> Exercise 4 - independent and disjoint</a></li>
-<li class="chapter" data-level="2.3.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.3.5</b> Exercise 5 - variance</a></li>
+<li class="chapter" data-level="2.4.1" data-path="probs.html"><a href="probs.html#exercise1"><i class="fa fa-check"></i><b>2.4.1</b> Exercise 1 - throwing a die very often</a></li>
+<li class="chapter" data-level="2.4.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>2.4.2</b> Exercise 2 - Bayes-teaser</a></li>
+<li class="chapter" data-level="2.4.3" data-path="probs.html"><a href="probs.html#exercise3"><i class="fa fa-check"></i><b>2.4.3</b> Exercise 3 - find journals</a></li>
+<li class="chapter" data-level="2.4.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.4.4</b> Exercise 4 - independent and disjoint</a></li>
+<li class="chapter" data-level="2.4.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.4.5</b> Exercise 5 - variance</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
+<li class="chapter" data-level="2.5" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.5</b> Solutions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -540,8 +565,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <span class="math inline">\(0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04.\)</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-c03f83c7f871b063b66a" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-c03f83c7f871b063b66a">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-bd6ab8f52ee7e0cc42bb" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-bd6ab8f52ee7e0cc42bb">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 </div>
@@ -555,14 +580,41 @@ How does probability theory fit into the big picture of statistics for health sc
 <li>Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better?
 What is the probability that the treatment effect is between x and y points on some scale?),</li>
 <li>Estimate therapy effects (e.g., the effect of a new therapy on pain reduction:
-How many points does the pain decrease? How is the pain reduction distributed? Are there participants that to not benefit from the therapy?),</li>
+How many points does the pain decrease? How is the pain reduction distributed?
+Are there outliers and why? Are there participants that to not benefit from the therapy?)</li>
+</ul>
+<p>In all such cases, probability theory is the established tool to answer questions that are afflicted with uncertainty. Would there be no variation in results/effects,
+we would probably argue differently. In our world, probability theory is the tool to <strong>quantify uncertainty</strong>.</p>
+<p>We can always ask ourselves: Where is this entity (proportion, effect, etc.) with which frequency/probability?</p>
+</div>
+<div id="prominent_probability_distributions_in_health_sciences" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Prominent probability distributions used in health sciences<a href="probs.html#prominent_probability_distributions_in_health_sciences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="descriptive-statistics" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Descriptive statistics<a href="probs.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are a myriad sources (books, webistes, videos) explaining the concepts of <a href="https://en.wikipedia.org/wiki/Descriptive_statistics">descriptive statistics</a>.
+We do not need to reiterate everything here. You can go through these sources to get started:</p>
+<ul>
+<li><a href="https://bookdown.org/daniel_dauber_io/r4np_book/descriptive-statistics.html">R for non-programmers</a></li>
+<li><a href="https://www.sciencedirect.com/topics/social-sciences/descriptive-statistics">Science direct</a></li>
+</ul>
+<p>The goal is to describe data in a meaningful way.
+We <strong>summarize</strong> data to make them <strong>more easily digestable</strong> for us humans to answer questions like</p>
+<ul>
+<li>Where are the data points located?
+These questions are answered (at least attempted) by the location measures such as
+<a href="https://en.wikipedia.org/wiki/Mean">mean</a>, <a href="https://en.wikipedia.org/wiki/Median">median</a>, and <a href="https://en.wikipedia.org/wiki/Mode_(statistics)">mode</a>.</li>
+<li>How widely are they spread?
+These questions are answered by the dispersion measures such as variance, standard deviation, or range.</li>
+<li>Are there any outliers (a rare data point that is far away from the rest <span class="citation">(<a href="#ref-westfall2020">Westfall 2020, 405</a>)</span>.) and why?
+This is a bit more complicated.</li>
 </ul>
 </div>
-</div>
-<div id="exercises" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Exercises<a href="probs.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise1" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Exercise 1 - throwing a die very often<a href="probs.html#exercise1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Exercises<a href="probs.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise1" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Exercise 1 - throwing a die very often<a href="probs.html#exercise1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Use your favourite large language model (LLM) to create an R-Script to simulate throwing a fair die 1000 times.</li>
 <li>Try to run the script. If it does not run, try to debug it using the LLM.</li>
@@ -572,14 +624,14 @@ How many points does the pain decrease? How is the pain reduction distributed? A
 <li>Which law of probability theory is illustrated by this simulation?</li>
 </ul>
 </div>
-<div id="exercise2" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Exercise 2 - Bayes-teaser<a href="probs.html#exercise2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise2" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Exercise 2 - Bayes-teaser<a href="probs.html#exercise2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Use Bayes’ theorem to calculate the posterior probability of the therapy’s effectiveness in the physiotherapy example above (<a href="probs.html#example1_physio">Example</a>).
 For simplicity, let’s just test two <span class="math inline">\(\theta\)</span>-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter
 <span class="math inline">\(\theta=0.3\)</span>, and 50% to <span class="math inline">\(\theta=0.4\)</span> since we trust our colleagues as well.</p>
 </div>
-<div id="exercise3" class="section level3 hasAnchor" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Exercise 3 - find journals<a href="probs.html#exercise3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise3" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Exercise 3 - find journals<a href="probs.html#exercise3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Note: This is among the most important exercises of the course:</strong>
 Use Google or your favourite search engine to find scientific journals in <em>your</em> field (physiotherapy, midwifery, nursing, etc.).
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies).</p>
@@ -590,8 +642,8 @@ Look at the latest articles. We are interested in articles that used statistics 
 <li>Where the results presented in a dichotomous way; meaning, was there a “significant”/“non-significant” result or not?</li>
 </ul>
 </div>
-<div id="exercise4" class="section level3 hasAnchor" number="2.3.4">
-<h3><span class="header-section-number">2.3.4</span> Exercise 4 - independent and disjoint<a href="probs.html#exercise4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise4" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Exercise 4 - independent and disjoint<a href="probs.html#exercise4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Look at the definitions above and try to come up with examples for independent and disjoint events in your field of study.</p>
 <ul>
 <li>Is this possible?</li>
@@ -600,8 +652,8 @@ Look at the latest articles. We are interested in articles that used statistics 
 <li>Draw a Venn diagram if possible!</li>
 </ul>
 </div>
-<div id="exercise5" class="section level3 hasAnchor" number="2.3.5">
-<h3><span class="header-section-number">2.3.5</span> Exercise 5 - variance<a href="probs.html#exercise5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise5" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Exercise 5 - variance<a href="probs.html#exercise5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Simulate the number of positive results (found an effect even though there is none) in our 1000-researcher-experiment under the assumption that the therapy is not working at all (<span class="math inline">\(p=0.04\)</span>).</li>
 <li>Do this experiment in <img src="images/Rlogo.png" height="20px"/> 10,000 times and visualize the results in a histogram.</li>
@@ -612,10 +664,21 @@ Look at the latest articles. We are interested in articles that used statistics 
 </ul>
 </div>
 </div>
-<div id="solutions" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Solutions<a href="probs.html#solutions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solutions" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Solutions<a href="probs.html#solutions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises">here</a>.</p>
 
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Westfall, Peter. 2020. <em>Understanding Regression Analysis: An Conditional Distribution Approach</em>. Wiley.
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-westfall2020" class="csl-entry">
+Westfall, Peter. 2020. <em>Understanding Regression Analysis: An Conditional Distribution Approach</em>. Wiley.
 </div>
 </div>
             </section>

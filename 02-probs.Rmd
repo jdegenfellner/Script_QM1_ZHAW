@@ -481,7 +481,35 @@ In many health-related studies, we want to perform one or more of the following 
 - Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better? 
 What is the probability that the treatment effect is between x and y points on some scale?),
 - Estimate therapy effects (e.g., the effect of a new therapy on pain reduction: 
-  How many points does the pain decrease? How is the pain reduction distributed? Are there participants that to not benefit from the therapy?),
+  How many points does the pain decrease? How is the pain reduction distributed? 
+  Are there outliers and why? Are there participants that to not benefit from the therapy?)
+
+In all such cases, probability theory is the established tool to answer questions that are afflicted with uncertainty. Would there be no variation in results/effects, 
+we would probably argue differently. In our world, probability theory is the tool to **quantify uncertainty**.
+
+We can always ask ourselves: Where is this entity (proportion, effect, etc.) with which frequency/probability?
+
+### Prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
+
+## Descriptive statistics
+
+There are a myriad sources (books, webistes, videos) explaining the concepts of [descriptive statistics](https://en.wikipedia.org/wiki/Descriptive_statistics). 
+We do not need to reiterate everything here. You can go through these sources to get started:
+
+- [R for non-programmers](https://bookdown.org/daniel_dauber_io/r4np_book/descriptive-statistics.html)
+- [Science direct](https://www.sciencedirect.com/topics/social-sciences/descriptive-statistics)
+
+The goal is to describe data in a meaningful way. 
+We **summarize** data to make them **more easily digestable** for us humans to answer questions like 
+
+- Where are the data points located? 
+  These questions are answered (at least attempted) by the location measures such as 
+  [mean](https://en.wikipedia.org/wiki/Mean), [median](https://en.wikipedia.org/wiki/Median), and [mode](https://en.wikipedia.org/wiki/Mode_(statistics)).
+- How widely are they spread?
+  These questions are answered by the dispersion measures such as variance, standard deviation, or range.
+- Are there any outliers (a rare data point that is far away from the rest [@westfall2020, p. 405].) and why?
+  This is a bit more complicated.
+
 
 ## Exercises
 
