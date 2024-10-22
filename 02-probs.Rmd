@@ -185,7 +185,7 @@ This is a very large number ($\sim 10^{300}$) - more than there are particles in
 
 We call the set of all elementary events $\Omega$ (the Greek letter Omega): $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$.
 
-Note, that we collect elementary events to form events like we just did for event $A_3$.
+Note, that **we collect elementary events to form events** like we just did for event $A_3$.
 
 The probability of the event "" (nothing occurred) should be zero, were "" denotes the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed *never* happen.
@@ -239,7 +239,7 @@ Each researcher can either find an effect or not. Hence, we have $2^{1000}$ poss
 these probabilities would sum to 1 according to axiom 3. Combining different elementary events $\omega$ from the whole collection of possible outcomes $\Omega$
 gives us "events" like the ones we used above ($A_1, A_2, A_3$).
 
-Note that there is a difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment of 1000 researchers we are looking at.
+Note that there is a **difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment** of 1000 researchers we are looking at.
 Do not make the mistake to add the single probabilities of finding an effect (under $H_0$) of 0.04 to get the probability of finding an effect in the whole experiment: 
 This would result in: $1000 \cdot 0.04 = 40 > 1$, which is hardly a probability anymore. 
 
@@ -285,7 +285,8 @@ There are four possible scenarios when considering two events:
 
 These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together in this setting. Thus,  $P(A \cap B) = 0$.
 However, these events are not independent, because the probability of receiving one treatment depends on not receiving the other. 
-In this setup, if the patient received treatment A, the probability of receiving treatment B is zero. So, they are dependent.
+In this setup, if the patient received treatment A, the probability of receiving treatment B is zero: $\mathbb{P}(B|A) = 0$. 
+The probability of the patient receiving therapy B could be 50% (if randomized): $\mathbb{P}(B) = 0.5$. Hence, they are dependent.
 
 **Example 2: independent but not disjoint**
 
@@ -294,6 +295,8 @@ In this setup, if the patient received treatment A, the probability of receiving
 
 These two events are independent because the probability of a patient showing a treatment effect is not influenced by whether they win the lottery or not 
 (at least if we assume that lottery participants do not have different propoerties compared to non-lottery particiants that are conducive to showing a treatment effect). 
+Also, the probability of winning the lottery is not influenced by whether the patient shows a treatment effect or not. We would probably see a surge
+in volunteers in our studies.
 The events are unrelated: one depends on the treatment, while the other is purely a matter of luck.
 However, these events are not disjoint because both can happen at the same time. 
 A patient could experience the treatment effect and also win the lottery during the study. Thus,  $P(A \cap B) \neq 0$ , meaning both events can occur together.
@@ -305,7 +308,9 @@ A patient could experience the treatment effect and also win the lottery during 
 
 These two events are neither independent nor disjoint. The patient's motivation could influence the treatment effect (if for instance home exercises 
 are part of the therapy), making the events dependent.
-However, the patient's motivation is not mutually exclusive with the treatment effect, so the events are not disjoint either. They can occur together.
+However, the patient's motivation is not mutually exclusive with the treatment effect: The patient can be heavily motivated and show a 
+treatment effect at the same time.
+Hence, the events are not disjoint either. They can occur together.
 
 **Example 4: independent and disjoint** 
 
@@ -349,10 +354,10 @@ abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 Note, this form of distribution looks like a bell curve, aka a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), 
 probably the most important distribution in statistics. One can [show formally](https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf) that the binomial distribution converges to the normal distribution under certain conditions.
 So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
-This guess would also not be too bad since we can expect the number of successes above, let's say, 65 and below, let's say, 15 to be very unlikely.
+This guess would also not be too bad considering the whole range (0 to 1000) since we can expect the number of successes above, let's say, 65 and below, let's say, 15 to be very unlikely.
 ```{r}
 sum(dbinom(0:14, size = 1000, prob = 0.04)) # prob of 14 or less
-sum(dbinom(66:100, size = 1000, prob = 0.04)) # prob of 66 or more
+sum(dbinom(66:1000, size = 1000, prob = 0.04)) # prob of 66 or more
 sum(dbinom(15:65, size = 1000, prob = 0.04)) # prob of 15 to 65
 ```
 
@@ -370,6 +375,14 @@ $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0
 ```
 
 57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
+
+In the calculation above, we used the [complement rule](https://en.wikipedia.org/wiki/Complement_(set_theory)) to calculate the probability of 
+observing 137 or more positive results: $1 - \mathbb{P}(\text{observing 136 or less})$. In general, for an event $A$: 
+
+$\mathbb{P}(A^C) = 1 - \mathbb{P}(A)$, 
+
+where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
+$\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)$.
 
 **The third question** asked about the expected number of positive results if the therapy is working in 12% of the patients.
 As you can probably guess by now: We would guess $1000 \times 0.12 = 120$ positive results.
@@ -456,6 +469,19 @@ digraph {
 
 So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.
+
+### Probabilities for health science {#probabilities_for_health_sciences}
+
+We have learned a lot so far: The axioms of probability theory, the difference between independence and disjointness, and the addition of probabilities.
+How does probability theory fit into the big picture of statistics for health sciences?
+
+In many health-related studies, we want to perform one or more of the following tasks: 
+
+- Estimate proportions (e.g., the proportion of patients with lower back pain. How big is the problem from a public health perspective?),
+- Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better? 
+What is the probability that the treatment effect is between x and y points on some scale?),
+- Estimate therapy effects (e.g., the effect of a new therapy on pain reduction: 
+  How many points does the pain decrease? How is the pain reduction distributed? Are there participants that to not benefit from the therapy?),
 
 ## Exercises
 
