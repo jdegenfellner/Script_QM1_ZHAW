@@ -6,7 +6,7 @@ n_experiments <- 1000  # Number of researcher experiments
 p_value <- 0.04  # Probability of finding a positive result when there is none
 
 # Simulate the number of positive results in each simulation
-set.seed(123)  # Set seed for reproducibility
+set.seed(123)  # Set seed for reproducibility - with this, you always get the same results below.
 results <- replicate(n_sim, sum(rbinom(n_experiments, 1, p_value)))
 
 # Visualize the results in a histogram
@@ -20,8 +20,11 @@ sum(results >= 65) / n_sim
 sum(results <= 15) / n_sim
 
 # Calculate the 90% interval around the mean (40)
-quantile(results, probs = c(0.05, 0.95))
-# Note that his only works since the distribution is symmetric. 
+quantile(results, probs = c(0.05, 0.95)) # By definition, approx. 5% of results should be below 30 and 5% above 50
+#5% 95% 
+#  30  50 
+sum(results <= 30) / n_sim # approx. correct
+sum(results >= 50) / n_sim # approx. correct
 
 # Theoretical variance for the experiment (binomial distribution variance formula)
 theoretical_variance <- n_experiments * p_value * (1 - p_value)
