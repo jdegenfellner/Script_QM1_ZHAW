@@ -15,6 +15,7 @@ results <- replicate(n_sim, sum(rbinom(n_experiments, 1, p_value)))
 # Visualize the results in a histogram
 hist(results, breaks = 50, main = "Histogram of Positive Results", 
      xlab = "Number of Positive Results", col = "lightblue", border = "black")
+table(results)  # a nice frequency table: 40 came most often
 
 # How often do we get 65 or more positive results?
 sum(results >= 65) / n_sim
