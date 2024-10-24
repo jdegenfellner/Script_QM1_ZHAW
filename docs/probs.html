@@ -208,6 +208,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#continue-here."><i class="fa fa-check"></i><b>3.2</b> CONTINUE HERE.</a></li>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreating-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -579,8 +583,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-fd871d96018cf4c9ef87" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-fd871d96018cf4c9ef87">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b707435f1d18a468b6d0" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b707435f1d18a468b6d0">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
@@ -669,6 +673,7 @@ Let’s now consider 3 researchers simulatenously conducting the experiment.</p>
 <li>Which elementary events are in the set of all possible outcomes of our 3-researcher experiment and how many are there?</li>
 <li>Draw the corresponding trinary (?) tree for this experiment.</li>
 <li>Which elementary events are in the following event: “Researcher 3 finds a positive effect”?</li>
+<li>Are the events “only researcher 1 finds an effect” and “only researcher 3 finds an effect” disjoint and/or independent?</li>
 </ul>
 </div>
 </div>

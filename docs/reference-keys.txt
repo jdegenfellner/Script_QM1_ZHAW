@@ -28,3 +28,5 @@ solutions
 descriptive-statistics
 example_study1_physio
 continue-here.
+exercises-1
+exercise-1---recreating-data
