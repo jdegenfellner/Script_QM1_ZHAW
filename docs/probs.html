@@ -201,6 +201,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.3.4</b> Exercise 4 - Independent and disjoint</a></li>
 <li class="chapter" data-level="2.3.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.3.5</b> Exercise 5 - Variance</a></li>
 <li class="chapter" data-level="2.3.6" data-path="probs.html"><a href="probs.html#exercise6"><i class="fa fa-check"></i><b>2.3.6</b> Exercise 6 - Three researchers</a></li>
+<li class="chapter" data-level="2.3.7" data-path="probs.html"><a href="probs.html#exercise7"><i class="fa fa-check"></i><b>2.3.7</b> Exercise 7 - Conditional probability</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
 </ul></li>
@@ -210,7 +211,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#continue-here."><i class="fa fa-check"></i><b>3.2</b> CONTINUE HERE.</a></li>
 <li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreating-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data</a></li>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreating-data-in-table"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data in Table</a></li>
+<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-2---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.2</b> Exercise 2 - Recreate table with fake data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -429,8 +431,9 @@ the probability of event <span class="math inline">\(A\)</span> happening is the
 <p>A simple <strong>example in our context</strong>:
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.</p>
 <p>Here, we used the very important concept of <strong>conditional probability</strong>.
-The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as
-<span class="math inline">\(\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}\)</span>. This <a href="https://www.youtube.com/watch?v=ibINrxJLvlM&amp;ab_channel=Dr.TreforBazett">video</a> explains it well.</p>
+The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as</p>
+<p><span class="math inline">\(\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}\)</span>.</p>
+<p>This <a href="https://www.youtube.com/watch?v=ibINrxJLvlM&amp;ab_channel=Dr.TreforBazett">video</a> explains it well.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>For the probability of event A, we a now only interested in the light-grey area with respect to the whole area of event B since event B
 is our reference frame now (as opposed to the whole space <span class="math inline">\(\Omega\)</span> before).
@@ -583,8 +586,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e30c489e92381f34c057" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e30c489e92381f34c057">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-37bae75dc7c45e09bbb0" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-37bae75dc7c45e09bbb0">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
@@ -675,6 +678,11 @@ Let’s now consider 3 researchers simulatenously conducting the experiment.</p>
 <li>Which elementary events are in the following event: “Researcher 3 finds a positive effect”?</li>
 <li>Are the events “only researcher 1 finds an effect” and “only researcher 3 finds an effect” disjoint and/or independent?</li>
 </ul>
+</div>
+<div id="exercise7" class="section level3 hasAnchor" number="2.3.7">
+<h3><span class="header-section-number">2.3.7</span> Exercise 7 - Conditional probability<a href="probs.html#exercise7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s consider again the 2 reasearcher situation from above (<a href="probs.html#addition_of_probabilities">Addition of probabilites</a>).</p>
+<p><span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>.</p>
 </div>
 </div>
 <div id="solutions" class="section level2 hasAnchor" number="2.4">

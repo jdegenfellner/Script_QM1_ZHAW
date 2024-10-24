@@ -53,7 +53,7 @@ dfdfdf
 
 ## Exercises
 
-### Exercise 1 - Recreating data
+### Exercise 1 - Recreating data in Table
 Go back to the paper mentioned [above](#example_study1_physio) and recreate the data in Table 2. 
 We now want to recreate parts of the data using `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'`.
 We assume that *age* in both groups is normally distributed with a mean of 48 (47) years 
@@ -90,5 +90,10 @@ sum(probabilities) # Question: Why is this sum not equal to 1?
 data.frame(integer = 0:10, probabilities)
 ```
 - Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare 
-  the proportion of samples that are smaller than 3. How good is the approximation? Good enough?
+  the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?
 - What if the *Pain intensity* had not 10 levels but 3 (0 to 3)? How good would the approximation be then?
+
+### Exercise 2 - Recreate table with fake data
+ - Recreate Table 2 of the paper mentioned [above](#example_study1_physio) with fake data in R (using GPT, the R package *gtsummary* and other useful packages). 
+   This is rather useful later on in your master thesis.
+ - Try to export the table to an Excel file.

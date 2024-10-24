@@ -201,6 +201,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.3.4</b> Exercise 4 - Independent and disjoint</a></li>
 <li class="chapter" data-level="2.3.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.3.5</b> Exercise 5 - Variance</a></li>
 <li class="chapter" data-level="2.3.6" data-path="probs.html"><a href="probs.html#exercise6"><i class="fa fa-check"></i><b>2.3.6</b> Exercise 6 - Three researchers</a></li>
+<li class="chapter" data-level="2.3.7" data-path="probs.html"><a href="probs.html#exercise7"><i class="fa fa-check"></i><b>2.3.7</b> Exercise 7 - Conditional probability</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
 </ul></li>
@@ -210,7 +211,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#continue-here."><i class="fa fa-check"></i><b>3.2</b> CONTINUE HERE.</a></li>
 <li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreating-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data</a></li>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreating-data-in-table"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data in Table</a></li>
+<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-2---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.2</b> Exercise 2 - Recreate table with fake data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -285,8 +287,8 @@ result in a negatively skewed distribution of course.</p>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1---recreating-data" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Exercise 1 - Recreating data<a href="descriptive-statistics.html#exercise-1---recreating-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-1---recreating-data-in-table" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Exercise 1 - Recreating data in Table<a href="descriptive-statistics.html#exercise-1---recreating-data-in-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Go back to the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> and recreate the data in Table 2.
 We now want to recreate parts of the data using <img src="images/Rlogo.png" height="20px"/>.
 We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years
@@ -335,8 +337,16 @@ good an approximation the normal distribution is for this variable. We assume a 
 ## 11      10  0.0119113383</code></pre>
 <ul>
 <li>Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare
-the proportion of samples that are smaller than 3. How good is the approximation? Good enough?</li>
+the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?</li>
 <li>What if the <em>Pain intensity</em> had not 10 levels but 3 (0 to 3)? How good would the approximation be then?</li>
+</ul>
+</div>
+<div id="exercise-2---recreate-table-with-fake-data" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Exercise 2 - Recreate table with fake data<a href="descriptive-statistics.html#exercise-2---recreate-table-with-fake-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Recreate Table 2 of the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> with fake data in R (using GPT, the R package <em>gtsummary</em> and other useful packages).
+This is rather useful later on in your master thesis.</li>
+<li>Try to export the table to an Excel file.</li>
 </ul>
 
 </div>

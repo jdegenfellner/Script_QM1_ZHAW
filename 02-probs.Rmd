@@ -257,7 +257,10 @@ The probability of researcher 45 finding an effect (event A) is the same whether
 
 Here, we used the very important concept of **conditional probability**. 
 The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as 
-$\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$. This [video](https://www.youtube.com/watch?v=ibINrxJLvlM&ab_channel=Dr.TreforBazett) explains it well.
+
+$\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$. 
+
+This [video](https://www.youtube.com/watch?v=ibINrxJLvlM&ab_channel=Dr.TreforBazett) explains it well.
 
 ```{r echo=FALSE}
 library(eulerr)
@@ -580,6 +583,13 @@ Let's now consider 3 researchers simulatenously conducting the experiment.
 - Draw the corresponding trinary (?) tree for this experiment.
 - Which elementary events are in the following event: "Researcher 3 finds a positive effect"?
 - Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?
+
+### Exercise 7 - Conditional probability {#exercise7}
+Let's consider again the 2 reasearcher situation from above ([Addition of probabilites](#addition_of_probabilities)).
+
+$\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
+
+- What is the probability that researcher 1 finds an effect given that researcher 2 found an effect?
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
