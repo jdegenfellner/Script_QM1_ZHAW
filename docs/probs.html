@@ -591,8 +591,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-6a31a57a4e8a6e826854" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6a31a57a4e8a6e826854">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-bb80c899944b3c64020c" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-bb80c899944b3c64020c">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
@@ -660,6 +660,33 @@ The sum of all probabilities is: <span class="math inline">\(\sum_{i \in \mathbb
 0.1 + 2 \cdot \frac{0.2}{1-0.2} = 0.6\)</span>. Hence, we need to divide every probability by 0.6 to get in sum 1.
 The final definition is then:
 <span class="math inline">\(\mathbb{P}(X=0) = \frac{1}{6}\)</span> and if <span class="math inline">\(X \neq 0\)</span>: <span class="math inline">\(\mathbb{P}(X) = \frac{5}{3} 0.2^{|X|}\)</span>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="probs.html#cb19-1" tabindex="-1"></a><span class="co"># Define the probability function</span></span>
+<span id="cb19-2"><a href="probs.html#cb19-2" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="cf">function</span>(X) {</span>
+<span id="cb19-3"><a href="probs.html#cb19-3" tabindex="-1"></a>  <span class="cf">if</span> (X <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb19-4"><a href="probs.html#cb19-4" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>)</span>
+<span id="cb19-5"><a href="probs.html#cb19-5" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb19-6"><a href="probs.html#cb19-6" tabindex="-1"></a>    <span class="fu">return</span>((<span class="dv">5</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">*</span> (<span class="fl">0.2</span><span class="sc">^</span><span class="fu">abs</span>(X)))</span>
+<span id="cb19-7"><a href="probs.html#cb19-7" tabindex="-1"></a>  }</span>
+<span id="cb19-8"><a href="probs.html#cb19-8" tabindex="-1"></a>}</span>
+<span id="cb19-9"><a href="probs.html#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="probs.html#cb19-10" tabindex="-1"></a><span class="co"># Create a sequence of X values from -10 to 10</span></span>
+<span id="cb19-11"><a href="probs.html#cb19-11" tabindex="-1"></a>X_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb19-12"><a href="probs.html#cb19-12" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="probs.html#cb19-13" tabindex="-1"></a><span class="co"># Compute the probabilities for each X value</span></span>
+<span id="cb19-14"><a href="probs.html#cb19-14" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(X_values, P)</span>
+<span id="cb19-15"><a href="probs.html#cb19-15" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="probs.html#cb19-16" tabindex="-1"></a><span class="co"># Plot the probabilities</span></span>
+<span id="cb19-17"><a href="probs.html#cb19-17" tabindex="-1"></a><span class="fu">plot</span>(X_values, probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb19-18"><a href="probs.html#cb19-18" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
+<span id="cb19-19"><a href="probs.html#cb19-19" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Probability Distribution of X from -10 to 10&quot;</span>)</span>
+<span id="cb19-20"><a href="probs.html#cb19-20" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="probs.html#cb19-21" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
+<span id="cb19-22"><a href="probs.html#cb19-22" tabindex="-1"></a><span class="fu">points</span>(X_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="probs.html#cb20-1" tabindex="-1"></a><span class="co"># Check if it sums to 1 (approximately):</span></span>
+<span id="cb20-2"><a href="probs.html#cb20-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span></span>
+<span id="cb20-3"><a href="probs.html#cb20-3" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 </div>
 </div>
 <div id="prominent_probability_distributions_in_health_sciences" class="section level3 hasAnchor" number="2.2.9">
