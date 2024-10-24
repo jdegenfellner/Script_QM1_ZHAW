@@ -5,6 +5,8 @@
 \usepackage{graphicx}
 \usepackage{tikz} % If you plan to draw the tree
 \usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
 
 \begin{document}
 
@@ -30,11 +32,44 @@
     
     \item \textbf{Draw the corresponding trinary tree for this experiment.}
     
-    The corresponding tree is a binary tree with 3 levels, where each level represents one researcher's result (either "pos" or "neg"). Here's how you can represent it in LaTeX:
-    \[
-    \text{Trinary tree (TikZ drawing can be added here if desired).}
-    \]
-    
+
+\begin{center}
+\begin{tikzpicture}[level distance=3cm, sibling distance=3.5cm, 
+  edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}, 
+  scale=0.9, transform shape]
+    % Root node (Start of the experiment)
+    \node {\small Start}
+    % Level 1: Researcher 1
+    child {
+        node {\small R1pos}
+        % Level 2: Researcher 2
+        child { 
+            node {\small R2pos}
+            % Level 3: Researcher 3
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+        child { 
+            node {\small R2neg}
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+    }
+    child {
+        node {\small R1neg}
+        child {
+            node {\small R2pos}
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+        child {
+            node {\small R2neg}
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+    };
+\end{tikzpicture}
+\end{center}
     \item \textbf{Which elementary events are in the following event: "Researcher 3 finds a positive effect"?}
     
     The event that "Researcher 3 finds a positive effect" consists of all outcomes where the third researcher's result is "pos". Thus, the event set is:

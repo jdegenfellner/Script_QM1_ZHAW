@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.9)  24 OCT 2024 12:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.9)  24 OCT 2024 12:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -549,6 +549,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip52
 )
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count296
@@ -557,24 +561,24 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 (./Solutions_three_researchers.aux)
 \openout1 = `Solutions_three_researchers.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -598,7 +602,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 9.
+Package hyperref Info: Link coloring OFF on input line 11.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -612,26 +616,26 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count303
 )
-LaTeX Info: Redefining \ref on input line 9.
-LaTeX Info: Redefining \pageref on input line 9.
-LaTeX Info: Redefining \nameref on input line 9.
+LaTeX Info: Redefining \ref on input line 11.
+LaTeX Info: Redefining \pageref on input line 11.
+LaTeX Info: Redefining \nameref on input line 11.
  (./Solutions_three_researchers.out) (./Solutions_three_researchers.out)
 \@outlinefile=\write4
 \openout4 = `Solutions_three_researchers.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (18.81071pt too wide) detected at line 19
+Overfull \hbox (18.81071pt too wide) detected at line 21
 \OT1/cmr/m/n/12 
  = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML
 /cmm/m/it/12 ; R\OT1/cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OML
@@ -643,13 +647,13 @@ it/12 ; R\OT1/cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OMS/cmsy/m
  []
 
 
-Overfull \hbox (2.59416pt too wide) in paragraph at lines 21--22
+Overfull \hbox (2.59416pt too wide) in paragraph at lines 23--24
 \OT1/cmr/bx/n/12 comes of our 3-researcher ex-per-i-ment and how many are there
 ? 
  []
 
 
-Overfull \hbox (79.59373pt too wide) detected at line 26
+Overfull \hbox (79.59373pt too wide) detected at line 28
 \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cm
 m/m/it/12 ; R\OT1/cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OML/cm
 m/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cmm/m/it
@@ -661,7 +665,7 @@ cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OML/cmm/m/it/12 ;
  []
 
 
-Overfull \hbox (77.08543pt too wide) detected at line 29
+Overfull \hbox (77.08543pt too wide) detected at line 31
 \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cmm/m/it/12 ; R\OT1/
 cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OML/cmm/m/it/12 ; \OT1/c
 mr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/
@@ -672,8 +676,10 @@ OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 2[]\OML
 /cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OMS/cmsy/m/n/12 g
  []
 
+[1
 
-Overfull \hbox (82.3299pt too wide) detected at line 43
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (82.3299pt too wide) detected at line 78
 \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cm
 m/m/it/12 ; R\OT1/cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OML/cm
 m/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R\OT1/cmr/m/n/12 1[]\OML/cmm/m/it
@@ -684,10 +690,8 @@ R\OT1/cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OML/cmm/m/it/12 ;
 cmr/m/n/12 2[]\OML/cmm/m/it/12 ; R\OT1/cmr/m/n/12 3[])\OMS/cmsy/m/n/12 g
  []
 
-[1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (18.8127pt too wide) in paragraph at lines 61--63
+Overfull \hbox (18.8127pt too wide) in paragraph at lines 96--98
 \U/msb/m/n/12 P\OT1/cmr/m/n/12 ([]) \OMS/cmsy/m/n/12 ^^B \U/msb/m/n/12 P\OT1/cm
 r/m/n/12 ([]) \OMS/cmsy/m/n/12 6\OT1/cmr/m/n/12 =
  []
@@ -698,23 +702,24 @@ nged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 19114 strings out of 478994
- 348378 string characters out of 5858185
- 623579 words of memory out of 5000000
- 36271 multiletter control sequences out of 15000+600000
- 408988 words of font info for 48 fonts, out of 8000000 for 9000
+ 19319 strings out of 478994
+ 353769 string characters out of 5858185
+ 627512 words of memory out of 5000000
+ 36473 multiletter control sequences out of 15000+600000
+ 409288 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,5n,89p,429b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,12n,89p,429b,1286s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
-usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
-/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Solutions_three_researchers.pdf (2 pages, 62821 bytes).
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
+cal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Solutions_three_researchers.pdf (2 pages, 74310 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 56 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  9 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
