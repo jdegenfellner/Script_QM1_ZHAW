@@ -32,13 +32,21 @@ These are birds-eye views on the data. Let's look at a paper which was recently 
 The reasearch question was "Do five baseline moderators identify patients with chronic low back pain who respond best to cognitive 
 functional therapy (CFT) when compared with usual care?".
 
-In table 2 of the paper, the authors present the baseline characteristics of the patients stratified by the treatment group (ususal care vs CFT).
+In **Table 2** of the paper, the authors present the baseline characteristics of the patients stratified by the treatment group (ususal care vs CFT).
 We find absolute numbers, percentages, means, and standard deviations for the continuous variables, medians, and interquartile ranges for the ordinal variables.
 This should give an idea of the sample. In the population paradigm, we draw a [sample](https://en.wikipedia.org/wiki/Sampling_(statistics)) from 
 the [population](https://en.wikipedia.org/wiki/Statistical_population) of interest and try to make inferences about the population. Want to learn
-more about the population respectively that data generating mechanism (DGP) producing the data [@westfall2020, pp. 6-8]. How did the data come about?
+more about the population respectively that data generating process (DGP) producing the data [@westfall2020, pp. 6-8]. How did the data come about?
 Note that this **sample varies everytime we draw from the population**. 
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).
+
+Often, variables in a study are (approximately) normally distributed. 
+We can then summarize the variable with it's mean and standard deviation (location and scale parameter) as is done 
+in the paper for Age in years for instance. We do not want to present p-values in such an overview table since we merely *describe* data instead of
+making inferences about the population or the DGP.
+It is by no means given that age has to be normally distributed in our sample. We could easily have a sample with many young people and few elderly ones.
+This would result in a (positively) [*skewed*](https://en.wikipedia.org/wiki/Skewness) distribution. Having many elderly people and few young ones would 
+result in a negatively skewed distribution of course.
 
 ## CONTINUE HERE.
 dfdfdf
