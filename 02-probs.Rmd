@@ -231,7 +231,10 @@ Note that the sum of all elementary events (all possible outcomes) indeed adds u
 sum(dbinom(0:1000, prob = 0.04, size = 1000))
 ```
 
-As we will see later, **axiom 1** above does not mean, that the event can never occur. For every continuous random variable (e.g. with a [normal](https://en.wikipedia.org/wiki/Normal_distribution) or a [uniform distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)), the probability of a single point is zero.
+As we will see later, **axiom 1** above does not mean, that the event can never occur. 
+For every continuous random variable (e.g. with a [normal](https://en.wikipedia.org/wiki/Normal_distribution) 
+or a [uniform distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)), the probability of a single point is zero.
+This [video](https://www.youtube.com/watch?v=ZA4JkHKZM50&list=PLIhj5_pQwhMQfGZNQZREjDdJRt0t0sn51&index=10&ab_channel=3Blue1Brown) could help.
 
 **Axiom 2** is always true. Some result *has* to occur in our random experiment. 
 What is $\Omega$ again? In our countable case of researchers, $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$ would be the set of all possible outcomes if we let 1000 researchers conduct the experiment. 
@@ -527,6 +530,62 @@ we would probably argue differently. In our world, probability theory is the too
 
 We can always ask ourselves: Where is this entity (proportion, effect, etc.) with which frequency/probability?
 
+### Discrete vs. continuous probability distributions {#discrete_vs_continuous_probability_distributions}
+As one of the most prominent examples of a discrete distribution, we have already seen the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) in our 1000-researcher-experiment.
+A special case of it is the [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution), 
+where you only throw the coin once or let one researcher conduct the experiment.
+
+As an example of a continuous distribution we have mentioned the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) above. 
+It is the most important distribution in statistics for reasons that become increasingly clear as we go along. 
+One of them is the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) which we have already mentioned in the 
+introduction slides. Feel free to watch this [video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&t=28s&ab_channel=3Blue1Brown). 
+The theorem states that, under appropriate conditions, the distribution of a normalized version of the sample 
+mean ($\bar{X} = \sum_{i=1}^{n} X_i$) converges to a standard normal distribution. 
+By this theorem, we can link **any** distribution to the normal distribution.
+
+Discrete or continuous, the **goal** is the same: We want to now **where** the realization of my **random variable** lands **with what probability** 
+when I do the experiment?
+How often will I get heads?
+
+- How often will the researcher find an effect?
+
+- With what probability will I get a pain-score reduction of at least 1 point in this patient in front of me given his/her 
+  characteristics and history?
+
+- When looking at ZHAW students, female, soccer lovers, what kind of hourly intense sports activity can I expect and does that differ to other groups?
+
+For us, the following definitions should suffice.
+
+#### Discrete probability distrubtions are used when we can count the outcomes, which includes infinitely many.
+Some examples of [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) are:
+- **[Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)**: A single trial with two outcomes (e.g., find an effect or do not find an effect).
+- **[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)**: The number of successes in a fixed number of trials (e.g., the number of false effects found among 1000 researchers).
+- **[Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution)**: The number of events in a fixed interval of time or space.
+- **[Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)**: The number of trials until the first success. This number has no upper limit.
+
+We always assign probabilites to the countable outcomes of these distributions, like in the example of the binomial distribution when 
+we throw the dice 20 times and are interested in the number of 3:
+
+```{r}
+plot(dbinom(0:20, size = 20, prob = 1/6))
+```
+
+Each outcome has a probability $>0$ assigned to it. The sum of all probabilities is 1: $\sum_{i \in \text{Possible outcomes}} \mathbb{P}(X=i) = 1$.
+For every event, we just add the probabilities of the elementary outcomes that are in the event:
+
+$\mathbb{P}(X \in (3,8,9,14)) = \mathbb{P}(X = 3) + \mathbb{P}(X = 8) + \mathbb{P}(X = 9) + \mathbb{P}(X = 14)$.
+This is true for all discrete probability distributions. Rather simple and elegant.
+
+We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), we'll call it the MSc-ZHAW-distribution:
+$X \in \mathbb{Z}$. Every whole number gets the following probability:
+$\mathbb{P}(X=0) = 0.1$ and if $X \neq 0$: $\mathbb{P}(X) = 0.2^{|X|}$. 
+The sum of all probabilities is: $\sum_{i \in \mathbb{Z}} \mathbb{P}(X=i) = \mathbb{P}(X=0) + 2 \cdot \sum_{i \in \mathbb{N}} 0.2^i = 
+0.1 + 2 \cdot \frac{0.2}{1-0.2} = 0.6$. Hence, we need to divide every probability by 0.6 to get in sum 1.
+The final definition is then:
+$\mathbb{P}(X=0) = \frac{1}{6}$ and if $X \neq 0$: $\mathbb{P}(X) = \frac{5}{3} 0.2^{|X|}$. 
+
+
+
 ### Prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
 
 
@@ -590,6 +649,10 @@ Let's consider again the 2 reasearcher situation from above ([Addition of probab
 $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
 
 - What is the probability that researcher 1 finds an effect given that researcher 2 found an effect?
+
+### Exercise 8 - Invent a discrete probability distribution {#exercise8}
+
+- Invent your own discrete probability distribution.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
