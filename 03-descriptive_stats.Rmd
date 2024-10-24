@@ -74,3 +74,21 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 - What is the probability, that we would see no man in a sample of 10 persons in the *CFT* group?
 - Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%. 
   (We could solve this with simulation.) 
+
+Let's look at *Pain intensity* which is actually ordinal, an ordered scale from 0 to 10. We want to check how
+good an approximation the normal distribution is for this variable. We assume a normal distribution: 
+$PainIntensity \sim N(5.8,1.7)$ and we discretize the variable to the nearest integer:
+```{r}
+# Define the lower and upper bounds for the intervals
+bounds <- seq(-0.5, 10.5, by = 1)
+
+# Compute the difference in cumulative probabilities for each interval
+probabilities <- diff(pnorm(bounds, mean = 5.8, sd = 1.7))
+probabilities
+sum(probabilities) # Question: Why is this sum not equal to 1?
+
+data.frame(integer = 0:10, probabilities)
+```
+- Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare 
+  the proportion of samples that are smaller than 3. How good is the approximation? Good enough?
+- What if the *Pain intensity* had not 10 levels but 3 (0 to 3)? How good would the approximation be then?
