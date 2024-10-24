@@ -1,0 +1,63 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz} % If you plan to draw the tree
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{Exercise 6 - Three Researchers}
+
+\begin{enumerate}
+    \item \textbf{What does the event space $\Omega$ look like?}
+    
+    The event space $\Omega$ for 3 researchers consists of all possible combinations of the researchers either finding a positive effect or not finding an effect. Each researcher can either find a positive effect (denoted by "pos") or not (denoted by "neg"). Thus, the event space $\Omega$ consists of $2^3 = 8$ elementary events.
+    \[
+    \Omega = \{(R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{neg}}), \dots, (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{neg}})\}
+    \]
+  
+    \item \textbf{Which elementary events are in the set of all possible outcomes of our 3-researcher experiment and how many are there?}
+    
+    The total number of elementary events is $2^3 = 8$. The set of all possible outcomes is:
+    \[
+    \{(R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{neg}}), (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{neg}}),
+    \]
+    \[
+    (R1_{\text{neg}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{pos}}, R3_{\text{neg}}), (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{neg}})\}
+    \]
+    
+    \item \textbf{Draw the corresponding trinary tree for this experiment.}
+    
+    The corresponding tree is a binary tree with 3 levels, where each level represents one researcher's result (either "pos" or "neg"). Here's how you can represent it in LaTeX:
+    \[
+    \text{Trinary tree (TikZ drawing can be added here if desired).}
+    \]
+    
+    \item \textbf{Which elementary events are in the following event: "Researcher 3 finds a positive effect"?}
+    
+    The event that "Researcher 3 finds a positive effect" consists of all outcomes where the third researcher's result is "pos". Thus, the event set is:
+    \[
+    \{(R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{pos}})\}
+    \]
+    
+    \item \textbf{Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?}
+    
+    The event "only researcher 1 finds an effect" is represented by the elementary event:
+    \[
+    (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{neg}})
+    \]
+    
+    The event "only researcher 3 finds an effect" is represented by the elementary event:
+    \[
+    (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{pos}})
+    \]
+    
+    These two events are \textbf{disjoint} because they cannot happen simultaneously (i.e., one requires researcher 1 to find an effect while the other requires researcher 1 not to find an effect). 
+    
+    However, they are not necessarily independent because the occurrence of one event could provide information about the other (depending on the underlying probabilities).
+    
+\end{enumerate}
+
+\end{document}

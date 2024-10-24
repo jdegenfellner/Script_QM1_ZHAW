@@ -443,6 +443,8 @@ Or simpler with the **complement rule**:
 
 $\mathbb{P}(A_1 \cup A_2) = 1 - \mathbb{P}(\text{neither }A_1 \text{ nor }A_2) = 1-0.96^2 = 0.0784$.
 
+See also [Exercise 6](#exercise6).
+
 ```{r echo=FALSE}
 # Define the sets A1 and A2 with their intersection
 fit <- euler(c(A1 = 1, A2 = 1, "A1&A2" = 2))
@@ -569,6 +571,15 @@ Look at the definitions above and try to come up with examples for independent a
 - What is the theoretical variance for our experiment?
 - How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?
 
+### Exercise 6 - Three researchers {#exercise6}
+Above in [Addition of probabilites](#addition_of_probabilities) we went through in detail the case of 2 researchers finding an effect. 
+Let's now consider 3 researchers simulatenously conducting the experiment.
+
+- What does the event space $\Omega$ look like?
+- Which elementary events are in the set of all possible outcomes of our 3-researcher experiment and how many are there?
+- Draw the corresponding trinary (?) tree for this experiment.
+- Which elementary events are in the following event: "Researcher 3 finds a positive effect"?
+- Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
