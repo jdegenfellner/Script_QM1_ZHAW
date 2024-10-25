@@ -205,6 +205,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.7" data-path="probs.html"><a href="probs.html#exercise7"><i class="fa fa-check"></i><b>2.3.7</b> Exercise 7 - Conditional probability</a></li>
 <li class="chapter" data-level="2.3.8" data-path="probs.html"><a href="probs.html#exercise8"><i class="fa fa-check"></i><b>2.3.8</b> Exercise 8 - Invent a discrete probability distribution</a></li>
 <li class="chapter" data-level="2.3.9" data-path="probs.html"><a href="probs.html#exercise9"><i class="fa fa-check"></i><b>2.3.9</b> Exercise 9 - Continuous probability distributions</a></li>
+<li class="chapter" data-level="2.3.10" data-path="probs.html"><a href="probs.html#exercise10"><i class="fa fa-check"></i><b>2.3.10</b> Exercise 10 - MSc-ZHAW-distribution</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
 </ul></li>
@@ -314,18 +315,18 @@ where we would expect a new person drawn from the same population.</li>
 <p>Let’s look at <em>Pain intensity</em> which is actually ordinal, an ordered scale from 0 to 10. We want to check how
 good an approximation the normal distribution is for this variable. We assume a normal distribution:
 <span class="math inline">\(PainIntensity \sim N(5.8,1.7)\)</span> and we discretize the variable to the nearest integer:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="descriptive-statistics.html#cb22-1" tabindex="-1"></a><span class="co"># Define the lower and upper bounds for the intervals</span></span>
-<span id="cb22-2"><a href="descriptive-statistics.html#cb22-2" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb22-3"><a href="descriptive-statistics.html#cb22-3" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="descriptive-statistics.html#cb22-4" tabindex="-1"></a><span class="co"># Compute the difference in cumulative probabilities for each interval</span></span>
-<span id="cb22-5"><a href="descriptive-statistics.html#cb22-5" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">pnorm</span>(bounds, <span class="at">mean =</span> <span class="fl">5.8</span>, <span class="at">sd =</span> <span class="fl">1.7</span>))</span>
-<span id="cb22-6"><a href="descriptive-statistics.html#cb22-6" tabindex="-1"></a>probabilities</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics.html#cb24-1" tabindex="-1"></a><span class="co"># Define the lower and upper bounds for the intervals</span></span>
+<span id="cb24-2"><a href="descriptive-statistics.html#cb24-2" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb24-3"><a href="descriptive-statistics.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="descriptive-statistics.html#cb24-4" tabindex="-1"></a><span class="co"># Compute the difference in cumulative probabilities for each interval</span></span>
+<span id="cb24-5"><a href="descriptive-statistics.html#cb24-5" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">pnorm</span>(bounds, <span class="at">mean =</span> <span class="fl">5.8</span>, <span class="at">sd =</span> <span class="fl">1.7</span>))</span>
+<span id="cb24-6"><a href="descriptive-statistics.html#cb24-6" tabindex="-1"></a>probabilities</span></code></pre></div>
 <pre><code>##  [1] 0.0008061768 0.0048011900 0.0204057431 0.0619187737 0.1341861396
 ##  [6] 0.2077387753 0.2297819269 0.1816006925 0.1025386824 0.0413565262
 ## [11] 0.0119113383</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics.html#cb24-1" tabindex="-1"></a><span class="fu">sum</span>(probabilities) <span class="co"># Question: Why is this sum not equal to 1?</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics.html#cb26-1" tabindex="-1"></a><span class="fu">sum</span>(probabilities) <span class="co"># Question: Why is this sum not equal to 1?</span></span></code></pre></div>
 <pre><code>## [1] 0.997046</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics.html#cb26-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">integer =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, probabilities)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">integer =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, probabilities)</span></code></pre></div>
 <pre><code>##    integer probabilities
 ## 1        0  0.0008061768
 ## 2        1  0.0048011900

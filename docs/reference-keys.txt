@@ -17,7 +17,7 @@ Answers_Questions_about_the_1000-researcher_experiment
 addition_of_probabilities
 probabilities_for_health_sciences
 discrete_vs_continuous_probability_distributions
-discrete-probability-distrubtions-are-used-when-we-can-count-the-outcomes-which-includes-infinitely-many.
+discrete_probability_distributions
 prominent_probability_distributions_in_health_sciences
 exercises
 exercise1
@@ -29,6 +29,7 @@ exercise6
 exercise7
 exercise8
 exercise9
+exercise10
 solutions
 descriptive-statistics
 example_study1_physio

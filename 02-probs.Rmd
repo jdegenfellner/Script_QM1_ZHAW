@@ -556,7 +556,7 @@ How often will I get heads?
 
 For us, the following definitions should suffice.
 
-#### Discrete probability distrubtions are used when we can count the outcomes, which includes infinitely many.
+#### Discrete probability distrubtions are used when we can count the outcomes, which includes infinitely many. {#discrete_probability_distributions}
 Some examples of [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) are:
 - **[Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)**: A single trial with two outcomes (e.g., find an effect or do not find an effect).
 - **[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)**: The number of successes in a fixed number of trials (e.g., the number of false effects found among 1000 researchers).
@@ -567,7 +567,17 @@ We always assign probabilites to the countable outcomes of these distributions, 
 we throw the dice 20 times and are interested in the number of 3:
 
 ```{r}
-plot(dbinom(0:20, size = 20, prob = 1/6))
+# Define parameters for the binomial distribution
+x_values <- 0:20
+probabilities <- dbinom(x_values, size = 20, prob = 1/6)
+
+# Plot the binomial distribution with styling
+plot(x_values, probabilities, type = "h", lwd = 2, col = "blue",
+     xlab = "X", ylab = "Probability",
+     main = "Binomial Probability Distribution (n = 20, p = 1/6)")
+
+# Add points for clarity
+points(x_values, probabilities, pch = 19, col = "red")
 ```
 
 Each outcome has a probability $>0$ assigned to it. The sum of all probabilities is 1: $\sum_{i \in \text{Possible outcomes}} \mathbb{P}(X=i) = 1$.
@@ -582,11 +592,12 @@ where $X$ ist the random variable (which takes values $x_i$ when the random expe
 
 We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), we'll call it the MSc-ZHAW-distribution:
 $X \in \mathbb{Z}$. Every whole number gets the following probability:
-$\mathbb{P}(X=0) = 0.1$ and if $X \neq 0$: $\mathbb{P}(X) = 0.2^{|X|}$. 
-The sum of all probabilities is: $\sum_{i \in \mathbb{Z}} \mathbb{P}(X=i) = \mathbb{P}(X=0) + 2 \cdot \sum_{i \in \mathbb{N}} 0.2^i = 
+$\mathbb{P}(X=0) = 0.1$ and for $x_i \neq 0$: $\mathbb{P}(X = x_i) = 0.2^{|x_i|}$. 
+The sum of all probabilities is: $\sum_{x_i \in \mathbb{Z}} \mathbb{P}(X=x_i) = \mathbb{P}(X=0) + 2 \cdot \sum_{i \in \mathbb{N}} 0.2^i = 
 0.1 + 2 \cdot \frac{0.2}{1-0.2} = 0.6$. Hence, we need to divide every probability by 0.6 to get in sum 1.
 The final definition is then:
-$\mathbb{P}(X=0) = \frac{1}{6}$ and if $X \neq 0$: $\mathbb{P}(X) = \frac{5}{3} 0.2^{|X|}$. 
+
+$\mathbb{P}(X=0) = \frac{1}{6}$ and for $x_i \neq 0$: $\mathbb{P}(X = x_i) = \frac{5}{3} 0.2^{|x_i|}$. 
 
 ```{r}
 # Define the probability function
@@ -607,13 +618,24 @@ probabilities <- sapply(X_values, P)
 # Plot the probabilities
 plot(X_values, probabilities, type = "h", lwd = 2, col = "blue",
      xlab = "X", ylab = "Probability",
-     main = "Probability Distribution of X from -10 to 10")
+     main = "MSc-ZHAW Probability Distribution of X from -10 to 10")
 
 # Add points for clarity
 points(X_values, probabilities, pch = 19, col = "red")
 
 # Check if it sums to 1 (approximately):
 x_values <- -1000:1000
+sum(sapply(x_values, P))
+```
+
+Deviations from zero ($\pm 1$) are hihgly likely with this distribution. The probability of $X=0$ is also rather high with 0.1.
+Larger deviations from zero are less likely and go exponentially towards zero (very fast). So we would expect almost never to see values outside
+of $\pm 10$. This does of course not mean that we will never see them. Do the experiment often enough and you will seen them with 
+probability 1 (see [Exercise 10](#exercise10)).
+
+
+```{r}
+x_values <- setdiff(-1000:1000, -10:10) # exclude values from -10 to 10
 sum(sapply(x_values, P))
 ```
 
@@ -695,6 +717,13 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$.
 - What is the expected value of your distribution?
 - What is the variance of your distribution?
 - Think of something in the real world that could be modeled by your distribution.
+
+### Exercise 10 - MSc-ZHAW-distribution {#exercise10}
+
+ - Create sufficiently many random numbers (sample) from the MSc-ZHAW-distribution (see [above](#discrete_probability_distributions)) 
+   and see if you can produce values outside of $\pm 10$.
+ - What is the mode of this distribution and how could we estimate it from the sample?
+ - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
