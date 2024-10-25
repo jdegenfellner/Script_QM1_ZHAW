@@ -192,7 +192,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.6" data-path="probs.html"><a href="probs.html#addition_of_probabilities"><i class="fa fa-check"></i><b>2.2.6</b> Addition of probabilities</a></li>
 <li class="chapter" data-level="2.2.7" data-path="probs.html"><a href="probs.html#probabilities_for_health_sciences"><i class="fa fa-check"></i><b>2.2.7</b> Probabilities for health science</a></li>
 <li class="chapter" data-level="2.2.8" data-path="probs.html"><a href="probs.html#discrete_vs_continuous_probability_distributions"><i class="fa fa-check"></i><b>2.2.8</b> Discrete vs. continuous probability distributions</a></li>
-<li class="chapter" data-level="2.2.9" data-path="probs.html"><a href="probs.html#prominent_probability_distributions_in_health_sciences"><i class="fa fa-check"></i><b>2.2.9</b> Prominent probability distributions used in health sciences</a></li>
+<li class="chapter" data-level="2.2.9" data-path="probs.html"><a href="probs.html#prominent_probability_distributions_in_health_sciences"><i class="fa fa-check"></i><b>2.2.9</b> Examples of prominent probability distributions used in health sciences</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
 <ul>
@@ -215,7 +215,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#continue-here."><i class="fa fa-check"></i><b>3.2</b> CONTINUE HERE.</a></li>
 <li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreating-data-in-table"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data in Table</a></li>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise1_descriptive_stats"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreating data in Table</a></li>
 <li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-2---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.2</b> Exercise 2 - Recreate table with fake data</a></li>
 </ul></li>
 </ul></li>
@@ -291,8 +291,8 @@ result in a negatively skewed distribution of course.</p>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1---recreating-data-in-table" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Exercise 1 - Recreating data in Table<a href="descriptive-statistics.html#exercise-1---recreating-data-in-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise1_descriptive_stats" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Exercise 1 - Recreating data in Table<a href="descriptive-statistics.html#exercise1_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Go back to the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> and recreate the data in Table 2.
 We now want to recreate parts of the data using <img src="images/Rlogo.png" height="20px"/>.
 We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years
@@ -315,18 +315,18 @@ where we would expect a new person drawn from the same population.</li>
 <p>Let’s look at <em>Pain intensity</em> which is actually ordinal, an ordered scale from 0 to 10. We want to check how
 good an approximation the normal distribution is for this variable. We assume a normal distribution:
 <span class="math inline">\(PainIntensity \sim N(5.8,1.7)\)</span> and we discretize the variable to the nearest integer:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics.html#cb24-1" tabindex="-1"></a><span class="co"># Define the lower and upper bounds for the intervals</span></span>
-<span id="cb24-2"><a href="descriptive-statistics.html#cb24-2" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb24-3"><a href="descriptive-statistics.html#cb24-3" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="descriptive-statistics.html#cb24-4" tabindex="-1"></a><span class="co"># Compute the difference in cumulative probabilities for each interval</span></span>
-<span id="cb24-5"><a href="descriptive-statistics.html#cb24-5" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">pnorm</span>(bounds, <span class="at">mean =</span> <span class="fl">5.8</span>, <span class="at">sd =</span> <span class="fl">1.7</span>))</span>
-<span id="cb24-6"><a href="descriptive-statistics.html#cb24-6" tabindex="-1"></a>probabilities</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics.html#cb27-1" tabindex="-1"></a><span class="co"># Define the lower and upper bounds for the intervals</span></span>
+<span id="cb27-2"><a href="descriptive-statistics.html#cb27-2" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="descriptive-statistics.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="descriptive-statistics.html#cb27-4" tabindex="-1"></a><span class="co"># Compute the difference in cumulative probabilities for each interval</span></span>
+<span id="cb27-5"><a href="descriptive-statistics.html#cb27-5" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">pnorm</span>(bounds, <span class="at">mean =</span> <span class="fl">5.8</span>, <span class="at">sd =</span> <span class="fl">1.7</span>))</span>
+<span id="cb27-6"><a href="descriptive-statistics.html#cb27-6" tabindex="-1"></a>probabilities</span></code></pre></div>
 <pre><code>##  [1] 0.0008061768 0.0048011900 0.0204057431 0.0619187737 0.1341861396
 ##  [6] 0.2077387753 0.2297819269 0.1816006925 0.1025386824 0.0413565262
 ## [11] 0.0119113383</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics.html#cb26-1" tabindex="-1"></a><span class="fu">sum</span>(probabilities) <span class="co"># Question: Why is this sum not equal to 1?</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" tabindex="-1"></a><span class="fu">sum</span>(probabilities) <span class="co"># Question: Why is this sum not equal to 1?</span></span></code></pre></div>
 <pre><code>## [1] 0.997046</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">integer =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, probabilities)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics.html#cb31-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">integer =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, probabilities)</span></code></pre></div>
 <pre><code>##    integer probabilities
 ## 1        0  0.0008061768
 ## 2        1  0.0048011900

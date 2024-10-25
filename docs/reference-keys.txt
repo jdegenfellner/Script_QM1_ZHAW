@@ -18,6 +18,7 @@ addition_of_probabilities
 probabilities_for_health_sciences
 discrete_vs_continuous_probability_distributions
 discrete_probability_distributions
+continuous_probability_distributions
 prominent_probability_distributions_in_health_sciences
 exercises
 exercise1
@@ -35,5 +36,5 @@ descriptive-statistics
 example_study1_physio
 continue-here.
 exercises-1
-exercise-1---recreating-data-in-table
+exercise1_descriptive_stats
 exercise-2---recreate-table-with-fake-data

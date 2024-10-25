@@ -591,7 +591,8 @@ $\sum_{i} \mathbb{P}(X = x_i) = 1$,
 where $X$ ist the random variable (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
 We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), we'll call it the MSc-ZHAW-distribution:
-$X \in \mathbb{Z}$. Every whole number gets the following probability:
+
+Let $X \in \mathbb{Z}$. Every whole number gets the following probability:
 $\mathbb{P}(X=0) = 0.1$ and for $x_i \neq 0$: $\mathbb{P}(X = x_i) = 0.2^{|x_i|}$. 
 The sum of all probabilities is: $\sum_{x_i \in \mathbb{Z}} \mathbb{P}(X=x_i) = \mathbb{P}(X=0) + 2 \cdot \sum_{i \in \mathbb{N}} 0.2^i = 
 0.1 + 2 \cdot \frac{0.2}{1-0.2} = 0.6$. Hence, we need to divide every probability by 0.6 to get in sum 1.
@@ -628,7 +629,7 @@ x_values <- -1000:1000
 sum(sapply(x_values, P))
 ```
 
-Deviations from zero ($\pm 1$) are hihgly likely with this distribution. The probability of $X=0$ is also rather high with 0.1.
+Deviations from zero ($\pm 1$) are highly likely with this distribution. The probability of $X=0$ is also rather high with 0.1.
 Larger deviations from zero are less likely and go exponentially towards zero (very fast). So we would expect almost never to see values outside
 of $\pm 10$. This does of course not mean that we will never see them. Do the experiment often enough and you will seen them with 
 probability 1 (see [Exercise 10](#exercise10)).
@@ -639,9 +640,85 @@ x_values <- setdiff(-1000:1000, -10:10) # exclude values from -10 to 10
 sum(sapply(x_values, P))
 ```
 
+**Expectation $\mathbb{E}(X)$ of a discrete random variable**: The expectation of a discrete random variable $X$ is defined as:
 
-### Prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
+$\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i)$.
 
+The term "expectation" is probably somewhat misleading. It is not necessarily the value we "expect to see" when we do the experiment. For instance,
+the expected value of a Bernoulli distribution is: $\mu = \mathbb{E}(X) = 0 \cdot (1-p) + 1 \cdot p = p$, which could be $0.5$. The individual outcomes are $0$ and $1$, 
+and not $0.5$. But $0.5$ would be the mean of many experiments.
+
+The expectation can be interpreted as the [center of mass](https://mathcenter.oxford.emory.edu/site/math117/expectedValueAndCenterOfMass/) 
+of the distribution. It is the value that the distribution "balances" around.
+
+The cool thing is that we can learn the true (but unknown) expectation of a distribution by the sample mean. The more samples we collect, the closer we will be.
+This is (roughly) the statement of the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers): 
+
+$\bar{X}_n \rightarrow \mu \quad \text{as} \quad n \rightarrow \infty.$
+
+#### Continuous probability distrubtions are used when we cannot count the outcomes. {#continuous_probability_distributions}
+The most famous continuous probability distribution is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
+```{r}
+# Load necessary library
+
+
+# Load necessary library
+if (!require(pacman)) install.packages("pacman")
+pacman::p_load(ggplot2)
+
+# Define parameters for the normal distribution
+mu <- 0    # Mean
+sigma <- 1 # Standard deviation
+
+# Define the limits for the area to be shaded
+a <- -2  # Lower bound
+b <- -1   # Upper bound
+
+# Create a sequence of x values to evaluate the PDF
+x_vals <- seq(mu - 4 * sigma, mu + 4 * sigma, length.out = 1000)
+
+# Compute the corresponding density values using dnorm
+y_vals <- dnorm(x_vals, mean = mu, sd = sigma)
+
+# Create a data frame for plotting
+df <- data.frame(x = x_vals, density = y_vals)
+
+# Create a subset of the data for shading the area between a and b
+df_shaded <- df[df$x >= a & df$x <= b, ]
+
+# Plot the normal density and shade the area between a and b
+ggplot(df, aes(x = x, y = density)) +
+  geom_line(color = "blue", linewidth = 1) +  # Use linewidth instead of size
+  geom_ribbon(data = df_shaded, aes(ymin = 0, ymax = density), fill = "blue", alpha = 0.3) +  # Shaded area
+  ggtitle(paste("Standard Normal Distribution: N(", mu, ", ", sigma^2, ")", sep = "")) +
+  xlab("X") +
+  ylab("Density") +
+  theme_minimal() +
+  geom_vline(xintercept = mu, color = "red", linetype = "dashed") +
+  annotate("text", x = mu + 0.2, y = max(y_vals)/2, label = paste("E(X) =", mu), color = "red") +
+  geom_vline(xintercept = a, color = "black", linetype = "dashed") +
+  geom_vline(xintercept = b, color = "black", linetype = "dashed") +
+  annotate("text", x = a - 0.2, y = max(y_vals)/4, label = paste("a =", a), color = "black") +
+  annotate("text", x = b + 0.2, y = max(y_vals)/4, label = paste("b =", b), color = "black") + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+Here, like in any other "nice" continuous distribution, the area under the curve is 1: $\int_{-\infty}^{\infty} f(x) dx = 1$.
+
+The probability of a single point is zero ($\mathbb{P}(\{ x_i \}) = 0$).
+In any continuous distribution, we use the area under the curve to calculate probabilities. The probability of $X$ being between $a$ and $b$ is the area under the curve (blue shade) between $a$ and $b$: 
+$\mathbb{P}(X \in (a,b))$. Note that the area over a single point would be zero and therefore the probability of a single point is zero.
+
+The graph above is called a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF). 
+Over every point, we express the probability by the height of the curve.
+See [exercise 1](#exercise1_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
+
+**Expectation $\mathbb{E}(X)$ of a continuous random variable**: The expectation of a continuous random variable $X$ is defined as:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla auctor, tincidunt nunc nec, ultricies nunc.
+
+
+### Examples of prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla auctor, tincidunt nunc nec, ultricies nunc.
 
 
 ## Exercises
@@ -717,6 +794,8 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$.
 - What is the expected value of your distribution?
 - What is the variance of your distribution?
 - Think of something in the real world that could be modeled by your distribution.
+
+Hint: You can use simple shapes for the densitiy function defined by lines.
 
 ### Exercise 10 - MSc-ZHAW-distribution {#exercise10}
 
