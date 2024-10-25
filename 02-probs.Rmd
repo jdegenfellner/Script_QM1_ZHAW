@@ -656,6 +656,8 @@ This is (roughly) the statement of the [law of large numbers](https://en.wikiped
 
 $\bar{X}_n \rightarrow \mu \quad \text{as} \quad n \rightarrow \infty.$
 
+See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R) for an animated example of this law.
+
 #### Continuous probability distrubtions are used when we cannot count the outcomes. {#continuous_probability_distributions}
 The most famous continuous probability distribution is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 ```{r}
@@ -800,7 +802,7 @@ Hint: You can use simple shapes for the densitiy function defined by lines.
 ### Exercise 10 - MSc-ZHAW-distribution {#exercise10}
 
  - Create sufficiently many random numbers (sample) from the MSc-ZHAW-distribution (see [above](#discrete_probability_distributions)) 
-   and see if you can produce values outside of $\pm 10$.
+   and see if you can produce values outside of $\pm 6$.
  - What is the mode of this distribution and how could we estimate it from the sample?
  - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
 
