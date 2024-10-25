@@ -574,7 +574,11 @@ Each outcome has a probability $>0$ assigned to it. The sum of all probabilities
 For every event, we just add the probabilities of the elementary outcomes that are in the event:
 
 $\mathbb{P}(X \in (3,8,9,14)) = \mathbb{P}(X = 3) + \mathbb{P}(X = 8) + \mathbb{P}(X = 9) + \mathbb{P}(X = 14)$.
-This is true for all discrete probability distributions. Rather simple and elegant.
+This principle is true for all discrete probability distributions. Rather simple and elegant:
+
+$\sum_{i} \mathbb{P}(X = x_i) = 1$,
+
+where $X$ ist the random variable (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
 We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), we'll call it the MSc-ZHAW-distribution:
 $X \in \mathbb{Z}$. Every whole number gets the following probability:
@@ -681,6 +685,16 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$.
 ### Exercise 8 - Invent a discrete probability distribution {#exercise8}
 
 - Invent your own discrete probability distribution.
+- What is the expected value of your distribution?
+- What is the variance of your distribution?
+- Think of something in the real world that could be modeled by your distribution.
+
+### Exercise 9 - Continuous probability distributions {#exercise9}
+
+- Invent your own continuous probability distribution.
+- What is the expected value of your distribution?
+- What is the variance of your distribution?
+- Think of something in the real world that could be modeled by your distribution.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
