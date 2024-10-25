@@ -36,5 +36,5 @@ descriptive-statistics
 example_study1_physio
 continue-here.
 exercises-1
+exercise-1---recreate-table-with-fake-data
 exercise1_descriptive_stats
-exercise-2---recreate-table-with-fake-data

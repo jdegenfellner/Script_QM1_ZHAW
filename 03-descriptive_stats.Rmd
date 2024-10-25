@@ -41,10 +41,10 @@ Note that this **sample varies everytime we draw from the population**.
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).
 
 Often, variables in a study are (approximately) normally distributed. 
-We can then summarize the variable with it's mean and standard deviation (location and scale parameter) as is done 
-in the paper for Age in years for instance. We do not want to present p-values in such an overview table since we merely *describe* data instead of
+We can then summarize the variable with its mean and standard deviation (location and scale parameter) as is done 
+in the paper for *Age* in years for instance. We do not want to present p-values in such an overview table since we merely *describe* data instead of
 making inferences about the population or the DGP.
-It is by no means given that age has to be normally distributed in our sample. We could easily have a sample with many young people and few elderly ones.
+It is by no means given that *age* has to be normally distributed in our sample. We could easily have a sample with many young people and few elderly ones.
 This would result in a (positively) [*skewed*](https://en.wikipedia.org/wiki/Skewness) distribution. Having many elderly people and few young ones would 
 result in a negatively skewed distribution of course.
 
@@ -53,7 +53,13 @@ dfdfdf
 
 ## Exercises
 
-### Exercise 1 - Recreating data in Table {#exercise1_descriptive_stats}
+### Exercise 1 - Recreate table with fake data
+ - Create fake data for the study mentioned [above](#example_study1_physio) in R.
+ - Recreate Table 2 of the paper mentioned [above](#example_study1_physio) with fake data in R (using GPT, the R package *gtsummary* and other useful packages). 
+   This is rather useful later on in your master thesis.
+ - Try to export the table to an Excel file.
+
+### Exercise XXXX - Recreating data in Table 2 {#exercise1_descriptive_stats}
 Go back to the paper mentioned [above](#example_study1_physio) and recreate the data in Table 2. 
 We now want to recreate parts of the data using `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'`.
 We assume that *age* in both groups is normally distributed with a mean of 48 (47) years 
@@ -63,7 +69,7 @@ $Age_{UsualCare} \sim Normal(\mu = 48, \sigma = 16)$ and
 
 $Age_{CFT} \sim Normal(\mu = 47,\sigma = 15)$.
 
-- Unter these assumptions, what is the probability, that we would see a person of age 60 or older in a new sample?
+- Under these assumptions, what is the probability, that we would see a person of age 60 or older in a new sample (in either group)?
 - What is the probability, that we would see a person of age 18 or younger in a new sample?
 - Give a 99% interval for the age in CFT, 
   where we would expect a new person drawn from the same population.
@@ -74,6 +80,8 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 - What is the probability, that we would see no man in a sample of 10 persons in the *CFT* group?
 - Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%. 
   (We could solve this with simulation.) 
+
+**Advanced**:
 
 Let's look at *Pain intensity* which is actually ordinal, an ordered scale from 0 to 10. We want to check how
 good an approximation the normal distribution is for this variable. We assume a normal distribution: 
@@ -92,8 +100,3 @@ data.frame(integer = 0:10, probabilities)
 - Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare 
   the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?
 - What if the *Pain intensity* had not 10 levels but 3 (0 to 3)? How good would the approximation be then?
-
-### Exercise 2 - Recreate table with fake data
- - Recreate Table 2 of the paper mentioned [above](#example_study1_physio) with fake data in R (using GPT, the R package *gtsummary* and other useful packages). 
-   This is rather useful later on in your master thesis.
- - Try to export the table to an Excel file.

@@ -713,7 +713,7 @@ $\mathbb{P}(X \in (a,b))$. Note that the area over a single point would be zero 
 
 The graph above is called a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF). 
 Over every point, we express the probability by the height of the curve.
-See [exercise 1](#exercise1_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
+See [exercise XXXX](#exercise1_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
 
 **Expectation $\mathbb{E}(X)$ of a continuous random variable**: The expectation of a continuous random variable $X$ is defined as:
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla auctor, tincidunt nunc nec, ultricies nunc.
