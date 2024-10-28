@@ -48,8 +48,15 @@ It is by no means given that *age* has to be normally distributed in our sample.
 This would result in a (positively) [*skewed*](https://en.wikipedia.org/wiki/Skewness) distribution. Having many elderly people and few young ones would 
 result in a negatively skewed distribution of course.
 
-## CONTINUE HERE.
-dfdfdf
+## Univarate vs. bivariate statisics 
+One can distinguish between [univariate](https://en.wikipedia.org/wiki/Univariate_analysis) and [bivariate](https://en.wikipedia.org/wiki/Bivariate_analysis) statistics.
+In univariate statistics, we look at one variable at a time, for instance *Age* in the example above, 
+where we could draw a [boxplot](https://en.wikipedia.org/wiki/Box_plot) or a [histogram](https://en.wikipedia.org/wiki/Histogram). 
+Table 2 in the paper is a good example of univariate statistics. We are not so much interested in the relationship between variables.
+
+In bivariate statistics, we look at two variables *simultaneously*. 
+An example could a [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot) of *Age* and *Cognitive flexibility*, 
+where we would possible find a falling relationship.
 
 ## Exercises
 
