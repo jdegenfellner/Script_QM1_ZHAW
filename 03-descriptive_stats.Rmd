@@ -78,7 +78,7 @@ Let's assume we know that the *Cognitive flexibility* is normally distributed wi
 - When we try to estimate the location of our *Cognitive flexibility* distribution with the median, 
   how many outliers of what magnitude are necessary to disturb the estimate by 5 points? 
 
-### Exercise 3 - Recreating data in Table 2 {#exercise1_descriptive_stats}
+### Exercise 3 - Recreating data in Table 2 {#exercise3_descriptive_stats}
 We assume that *age* in both groups is normally distributed with a mean of 48 (47) years 
 and a standard deviation of 16 (15) years: 
 

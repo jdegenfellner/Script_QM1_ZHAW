@@ -419,7 +419,7 @@ This [article](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.158391
 **The sixth question** asked about the variation of positive results between large research departments. This demands the very important concept of [variance](https://en.wikipedia.org/wiki/Variance): 
 The expected quadratic deviation from the mean: $\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}$. In simple terms: 
 How much does the number of positive results vary around the mean of 40 on average?
-See also [Exercise 5](#exercise5).
+See also [Exercise 5](#exercise5). Maybe this [video](https://www.youtube.com/watch?v=SzZ6GpcfoQY) helps as well.
 
 ### Addition of probabilities {#addition_of_probabilities}
 [Above](#axioms_of_probability_theory) in axiom 3, we stated that the probability of the union of pairwise disjoint events is the sum of the 
@@ -657,6 +657,8 @@ and not $0.5$. But $0.5$ would be the mean of many experiments.
 The expectation can be interpreted as the [center of mass](https://mathcenter.oxford.emory.edu/site/math117/expectedValueAndCenterOfMass/) 
 of the distribution. It is the value that the distribution "balances" around.
 
+Maybe this [video](https://www.youtube.com/watch?v=KLs_7b7SKi4) helps too.
+
 The cool thing is that we can learn the true (but unknown) expectation of a distribution by the sample mean. The more samples we collect, the closer we will be.
 This is (roughly) the statement of the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers): 
 
@@ -664,7 +666,21 @@ $\bar{X}_n \rightarrow \mu \quad \text{as} \quad n \rightarrow \infty.$
 
 See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R) for an animated example of this law.
 
-#### Continuous probability distrubtions are used when we cannot count the outcomes. {#continuous_probability_distributions}
+**Remember**: The sample mean $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ is a (really good) estimator for the expectation $\mu = \mathbb{E}(X)$ of a distribution. 
+This is true for discrete and continuous distributions. 
+
+The **variance of a discrete random variable** is defined as:
+
+$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \sum_i (\mathbb{E}(X) - x_i)^2 \mathbb{P}(X = x_i)$,
+
+the expected squared deviation from the mean. It is a measure of how much the values of the random variable differ from the mean.
+
+**Remember**: The sample variance $s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$ is an estimator for the variance $\mathbb{V}ar(X)$ of a distribution.
+This is true for discrete and continuous distributions. 
+
+A more natural interpretation of variability is the **standard deviation**: $\sigma = \sqrt{\mathbb{V}ar(X)}$, since it's on the same scale as X.
+
+#### Continuous probability distributions are used when we cannot count the outcomes. {#continuous_probability_distributions}
 The most famous continuous probability distribution is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 ```{r}
 # Load necessary library
@@ -721,13 +737,21 @@ $\mathbb{P}(X \in (a,b))$. Note that the area over a single point would be zero 
 
 The graph above is called a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF). 
 Over every point, we express the probability by the height of the curve.
-See [exercise XXXX](#exercise1_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
+See [exercise 3](#exercise3_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
 
 **Expectation $\mathbb{E}(X)$ of a continuous random variable**: The expectation of a continuous random variable $X$ is defined as:
 
 $\mu = \mathbb{E}(X) = \int x \cdot f(x) dx$,
 
 where $x$ are the possible values of $X$ and $f(x)$ is the probability density function of $X$.
+
+**Variance of a continuous random variable**: The variance of a continuous random variable $X$ is defined as:
+
+$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \int (\mathbb{E}(X) - x)^2 f(x) dx$.
+
+Example: Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, this means that approx. 
+68% of the students are between $(24-3=)21$ and $(24+3=)27$ years old.
+
 
 
 ### Examples of prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
