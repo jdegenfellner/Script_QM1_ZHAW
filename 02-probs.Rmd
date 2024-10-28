@@ -568,7 +568,7 @@ Some examples of [discrete probability distributions](https://en.wikipedia.org/w
 - **[Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)**: The number of trials until the first success. This number has no upper limit.
 
 We always assign probabilites to the countable outcomes of these distributions, like in the example of the binomial distribution when 
-we throw the dice 20 times and are interested in the number of 3:
+we throw the dice 20 times and are interested in the number of 3s:
 
 ```{r}
 # Define parameters for the binomial distribution
@@ -633,7 +633,7 @@ x_values <- -1000:1000
 sum(sapply(x_values, P))
 ```
 
-Deviations from zero ($\pm 1$) are highly likely with this distribution. The probability of $X=0$ is also rather high with 0.1.
+Deviations from zero ($\pm 1$) are highly likely with this distribution. The probability of $X=0$ is also rather high with $\frac{1}{6}$.
 Larger deviations from zero are less likely and go exponentially towards zero (very fast). So we would expect almost never to see values outside
 of $\pm 10$. This does of course not mean that we will never see them. Do the experiment often enough and you will seen them with 
 probability 1 (see [Exercise 10](#exercise10)).
@@ -646,7 +646,9 @@ sum(sapply(x_values, P))
 
 **Expectation $\mathbb{E}(X)$ of a discrete random variable**: The expectation of a discrete random variable $X$ is defined as:
 
-$\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i)$.
+$\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i)$,
+
+a weighted sum of possible values $x_i$ with their respsective probabilities $\mathbb{P}(X = x_i)$.
 
 The term "expectation" is probably somewhat misleading. It is not necessarily the value we "expect to see" when we do the experiment. For instance,
 the expected value of a Bernoulli distribution is: $\mu = \mathbb{E}(X) = 0 \cdot (1-p) + 1 \cdot p = p$, which could be $0.5$. The individual outcomes are $0$ and $1$, 
@@ -666,11 +668,8 @@ See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large
 The most famous continuous probability distribution is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 ```{r}
 # Load necessary library
-
-
-# Load necessary library
-if (!require(pacman)) install.packages("pacman")
-pacman::p_load(ggplot2)
+if (!require(pacman)) install.packages("pacman") 
+pacman::p_load(ggplot2) # Installs and loads the package at the same time
 
 # Define parameters for the normal distribution
 mu <- 0    # Mean
@@ -701,15 +700,20 @@ ggplot(df, aes(x = x, y = density)) +
   ylab("Density") +
   theme_minimal() +
   geom_vline(xintercept = mu, color = "red", linetype = "dashed") +
-  annotate("text", x = mu + 0.2, y = max(y_vals)/2, label = paste("E(X) =", mu), color = "red") +
+  annotate("text", x = mu + 0.2, y = max(y_vals)/2, 
+  label = paste("E(X) =", mu), color = "red") +
   geom_vline(xintercept = a, color = "black", linetype = "dashed") +
   geom_vline(xintercept = b, color = "black", linetype = "dashed") +
-  annotate("text", x = a - 0.2, y = max(y_vals)/4, label = paste("a =", a), color = "black") +
-  annotate("text", x = b + 0.2, y = max(y_vals)/4, label = paste("b =", b), color = "black") + 
+  annotate("text", x = a - 0.2, y = max(y_vals)/4, 
+  label = paste("a =", a), color = "black") +
+  annotate("text", x = b + 0.2, y = max(y_vals)/4, 
+  label = paste("b =", b), color = "black") + 
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-Here, like in any other "nice" continuous distribution, the area under the curve is 1: $\int_{-\infty}^{\infty} f(x) dx = 1$.
+Here, like in any other "nice" continuous distribution, the area under the curve is 1: 
+
+$\int_{-\infty}^{\infty} f(x) dx = 1$.
 
 The probability of a single point is zero ($\mathbb{P}(\{ x_i \}) = 0$).
 In any continuous distribution, we use the area under the curve to calculate probabilities. The probability of $X$ being between $a$ and $b$ is the area under the curve (blue shade) between $a$ and $b$: 
@@ -720,7 +724,10 @@ Over every point, we express the probability by the height of the curve.
 See [exercise XXXX](#exercise1_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
 
 **Expectation $\mathbb{E}(X)$ of a continuous random variable**: The expectation of a continuous random variable $X$ is defined as:
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla auctor, tincidunt nunc nec, ultricies nunc.
+
+$\mu = \mathbb{E}(X) = \int x \cdot f(x) dx$,
+
+where $x$ are the possible values of $X$ and $f(x)$ is the probability density function of $X$.
 
 
 ### Examples of prominent probability distributions used in health sciences {#prominent_probability_distributions_in_health_sciences}
@@ -801,7 +808,7 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$.
 - What is the variance of your distribution?
 - Think of something in the real world that could be modeled by your distribution.
 
-Hint: You can use simple shapes for the densitiy function defined by lines.
+Hint: You can use simple shapes for the densitiy function defined by lines. And you can use simulation to answer questions about expected value and variance.
 
 ### Exercise 10 - MSc-ZHAW-distribution {#exercise10}
 
@@ -811,4 +818,4 @@ Hint: You can use simple shapes for the densitiy function defined by lines.
  - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
 
 ## Solutions
-Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises).
+Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/2_Probability).

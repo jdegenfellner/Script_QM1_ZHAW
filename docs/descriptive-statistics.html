@@ -218,6 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreate table with fake data</a></li>
 <li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise1_descriptive_stats"><i class="fa fa-check"></i><b>3.3.2</b> Exercise XXXX - Recreating data in Table 2</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.4</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -248,7 +249,7 @@ We do not need to reiterate everything here. You can go through these sources to
 <li><a href="https://bookdown.org/daniel_dauber_io/r4np_book/descriptive-statistics.html">R for non-programmers</a></li>
 <li><a href="https://www.sciencedirect.com/topics/social-sciences/descriptive-statistics">Science direct</a></li>
 </ul>
-<p>The goal is to describe data in a meaningful way.
+<p>The goal is to describe data in a meaningful and honest way.
 We <strong>summarize</strong> data to make them <strong>more easily digestable</strong> for us humans to answer questions like</p>
 <ul>
 <li>Where are the data points <strong>located</strong>?
@@ -258,7 +259,7 @@ These questions are answered (at least attempted) by the location measures such 
 These questions are answered by the dispersion measures such as <a href="https://en.wikipedia.org/wiki/Variance">variance</a>,
 <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> (root of the variance),
 <a href="https://en.wikipedia.org/wiki/Interquartile_range#:~:text=The%20IQR%20of%20a%20set,a%20median%20calculated%20as%20follows.&amp;text=The%20second%20quartile%20Q2%20is%20the%20same%20as%20the%20ordinary%20median.">interquantile range</a>
-or just the <a href="https://en.wikipedia.org/wiki/Range_(statistics)">range</a>.</li>
+or just the <a href="https://en.wikipedia.org/wiki/Range_(statistics)">range</a>; or even <a href="https://www.dss.uniroma1.it/RePec/mtn/articoli/2003-2-8.pdf">Gini’s mean difference</a>.</li>
 <li>Are there any <strong>outliers</strong> (rare data points that are far away from the rest <span class="citation">(<a href="#ref-westfall2020">Westfall 2020, 405</a>)</span>.) and why?
 This is a bit more complicated.</li>
 </ul>
@@ -268,12 +269,12 @@ This is a bit more complicated.</li>
 <a href="https://www.sciencedirect.com/journal/journal-of-physiotherapy">Journal of Physiotherapy</a> in order to get a running start:</p>
 <p><a href="https://www.sciencedirect.com/science/article/pii/S183695532400081X?via%3Dihub">Patients with worse disability respond best to cognitive functional therapy for chronic low back pain: a pre-planned secondary analysis of a randomised trial</a></p>
 <p>(This should be open access.)</p>
-<p>The reasearch question was “Do five baseline moderators identify patients with chronic low back pain who respond best to cognitive
+<p>The research question was “Do five baseline moderators identify patients with chronic low back pain who respond best to cognitive
 functional therapy (CFT) when compared with usual care?”.</p>
 <p>In <strong>Table 2</strong> of the paper, the authors present the baseline characteristics of the patients stratified by the treatment group (ususal care vs CFT).
 We find absolute numbers, percentages, means, and standard deviations for the continuous variables, medians, and interquartile ranges for the ordinal variables.
-This should give an idea of the sample. In the population paradigm, we draw a <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sample</a> from
-the <a href="https://en.wikipedia.org/wiki/Statistical_population">population</a> of interest and try to make inferences about the population. Want to learn
+This should give an idea of the sample. In the population paradigm of statistics, we draw a <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sample</a> from
+the <a href="https://en.wikipedia.org/wiki/Statistical_population">population</a> of interest and try to make inferences about the population. We want to learn
 more about the population respectively that data generating process (DGP) producing the data <span class="citation">(<a href="#ref-westfall2020">Westfall 2020, 6–8</a>)</span>. How did the data come about?
 Note that this <strong>sample varies everytime we draw from the population</strong>.
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).</p>
@@ -354,8 +355,12 @@ good an approximation the normal distribution is for this variable. We assume a 
 the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?</li>
 <li>What if the <em>Pain intensity</em> had not 10 levels but 3 (0 to 3)? How good would the approximation be then?</li>
 </ul>
-
 </div>
+</div>
+<div id="solutions-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Solutions<a href="descriptive-statistics.html#solutions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics">here</a>.</p>
+
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>

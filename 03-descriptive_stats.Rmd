@@ -6,7 +6,7 @@ We do not need to reiterate everything here. You can go through these sources to
 - [R for non-programmers](https://bookdown.org/daniel_dauber_io/r4np_book/descriptive-statistics.html)
 - [Science direct](https://www.sciencedirect.com/topics/social-sciences/descriptive-statistics)
 
-The goal is to describe data in a meaningful way. 
+The goal is to describe data in a meaningful and honest way. 
 We **summarize** data to make them **more easily digestable** for us humans to answer questions like 
 
 - Where are the data points **located**? 
@@ -16,7 +16,7 @@ We **summarize** data to make them **more easily digestable** for us humans to a
   These questions are answered by the dispersion measures such as [variance](https://en.wikipedia.org/wiki/Variance), 
   [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) (root of the variance), 
   [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range#:~:text=The%20IQR%20of%20a%20set,a%20median%20calculated%20as%20follows.&text=The%20second%20quartile%20Q2%20is%20the%20same%20as%20the%20ordinary%20median.) 
-  or just the [range](https://en.wikipedia.org/wiki/Range_(statistics)).
+  or just the [range](https://en.wikipedia.org/wiki/Range_(statistics)); or even [Gini's mean difference](https://www.dss.uniroma1.it/RePec/mtn/articoli/2003-2-8.pdf).
 - Are there any **outliers** (rare data points that are far away from the rest [@westfall2020, p. 405].) and why?
   This is a bit more complicated.
 
@@ -29,13 +29,13 @@ These are birds-eye views on the data. Let's look at a paper which was recently 
 
 (This should be open access.)
 
-The reasearch question was "Do five baseline moderators identify patients with chronic low back pain who respond best to cognitive 
+The research question was "Do five baseline moderators identify patients with chronic low back pain who respond best to cognitive 
 functional therapy (CFT) when compared with usual care?".
 
 In **Table 2** of the paper, the authors present the baseline characteristics of the patients stratified by the treatment group (ususal care vs CFT).
 We find absolute numbers, percentages, means, and standard deviations for the continuous variables, medians, and interquartile ranges for the ordinal variables.
-This should give an idea of the sample. In the population paradigm, we draw a [sample](https://en.wikipedia.org/wiki/Sampling_(statistics)) from 
-the [population](https://en.wikipedia.org/wiki/Statistical_population) of interest and try to make inferences about the population. Want to learn
+This should give an idea of the sample. In the population paradigm of statistics, we draw a [sample](https://en.wikipedia.org/wiki/Sampling_(statistics)) from 
+the [population](https://en.wikipedia.org/wiki/Statistical_population) of interest and try to make inferences about the population. We want to learn
 more about the population respectively that data generating process (DGP) producing the data [@westfall2020, pp. 6-8]. How did the data come about?
 Note that this **sample varies everytime we draw from the population**. 
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).
@@ -100,3 +100,6 @@ data.frame(integer = 0:10, probabilities)
 - Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare 
   the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?
 - What if the *Pain intensity* had not 10 levels but 3 (0 to 3)? How good would the approximation be then?
+
+## Solutions
+Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics).
