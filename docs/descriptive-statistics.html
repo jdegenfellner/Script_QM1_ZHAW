@@ -216,7 +216,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreate table with fake data</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise1_descriptive_stats"><i class="fa fa-check"></i><b>3.3.2</b> Exercise XXXX - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.3.2</b> Exercsie 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise1_descriptive_stats"><i class="fa fa-check"></i><b>3.3.3</b> Exercise XXXX - Recreating data in Table 2</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.4</b> Solutions</a></li>
 </ul></li>
@@ -279,7 +280,7 @@ more about the population respectively that data generating process (DGP) produc
 Note that this <strong>sample varies everytime we draw from the population</strong>.
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).</p>
 <p>Often, variables in a study are (approximately) normally distributed.
-We can then summarize the variable with its mean and standard deviation (location and scale parameter) as is done
+We can then efficiently summarize the variable with its mean and standard deviation (location and scale parameter) as is done
 in the paper for <em>Age</em> in years for instance. We do not want to present p-values in such an overview table since we merely <em>describe</em> data instead of
 making inferences about the population or the DGP.
 It is by no means given that <em>age</em> has to be normally distributed in our sample. We could easily have a sample with many young people and few elderly ones.
@@ -297,12 +298,24 @@ result in a negatively skewed distribution of course.</p>
 <ul>
 <li>Create fake data for the study mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> in R.</li>
 <li>Recreate Table 2 of the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> with fake data in R (using GPT, the R package <em>gtsummary</em> and other useful packages).
-This is rather useful later on in your master thesis.</li>
-<li>Try to export the table to an Excel file.</li>
+This is rather helpful later on in your master thesis.</li>
+<li>Try to export the table to Excel and Word.</li>
 </ul>
 </div>
-<div id="exercise1_descriptive_stats" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Exercise XXXX - Recreating data in Table 2<a href="descriptive-statistics.html#exercise1_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercsie-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Exercsie 2 - Outliers and estimates<a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s assume we know that the <em>Cognitive flexibility</em> is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): <span class="math inline">\(CognFlex \sim N(60,7.4)\)</span>.</p>
+<ul>
+<li>Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample.
+How good is the estimate of the true (and in this case: known) meand and standard deviation?</li>
+<li>Let’s replace some of the data points with outliers. Change the score of 5 persons with to inmpossible CognFlex score of 100.
+Calculate the mean and standard deviation of the sample. How do the estimates change?</li>
+<li>When we try to estimate the location of our <em>Cognitive flexibility</em> distribution with the median,
+how many outliers of what magnitude are necessary to disturb the estimate by 5 points?</li>
+</ul>
+</div>
+<div id="exercise1_descriptive_stats" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Exercise XXXX - Recreating data in Table 2<a href="descriptive-statistics.html#exercise1_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Go back to the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> and recreate the data in Table 2.
 We now want to recreate parts of the data using <img src="images/Rlogo.png" height="20px"/>.
 We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years

@@ -37,5 +37,6 @@ example_study1_physio
 continue-here.
 exercises-1
 exercise-1---recreate-table-with-fake-data
+exercsie-2---outliers-and-estimates
 exercise1_descriptive_stats
 solutions-1
