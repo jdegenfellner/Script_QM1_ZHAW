@@ -58,6 +58,8 @@ In bivariate statistics, we look at two variables *simultaneously*.
 An example could a [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot) of *Age* and *Cognitive flexibility*, 
 where we would possible find a falling relationship.
 
+[Multivariate statistics](https://en.wikipedia.org/wiki/Multivariate_statistics) is the next step, where we look at more than two variables at the same time.
+
 ## Exercises
 
 ### Exercise 1 - Recreate table with fake data
