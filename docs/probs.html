@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-10-25" />
+<meta name="date" content="2024-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -424,7 +424,8 @@ What is <span class="math inline">\(\Omega\)</span> again? In our countable case
 Each researcher can either find an effect or not. Hence, we have <span class="math inline">\(2^{1000}\)</span> possible outcomes of our 1000-researcher experiment. This is a <em>very</em> large number. Adding up all
 these probabilities would sum to 1 according to axiom 3. Combining different elementary events <span class="math inline">\(\omega\)</span> from the whole collection of possible outcomes <span class="math inline">\(\Omega\)</span>
 gives us “events” like the ones we used above (<span class="math inline">\(A_1, A_2, A_3\)</span>).</p>
-<p>Note that there is a <strong>difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment</strong> of 1000 researchers we are looking at.
+<p>Note that there is a <strong>difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment</strong> of
+1000 researchers we are looking at (simulatenously).
 Do not make the mistake to add the single probabilities of finding an effect (under <span class="math inline">\(H_0\)</span>) of 0.04 to get the probability of finding an effect in the whole experiment:
 This would result in: <span class="math inline">\(1000 \cdot 0.04 = 40 &gt; 1\)</span>, which is hardly a probability anymore.</p>
 <p>This leads us to the concept of independence of events.</p>
@@ -468,7 +469,7 @@ The probability of the patient receiving therapy B could be 50% (if randomized):
 <li>Event B: The patient wins the lottery during the study.</li>
 </ul>
 <p>These two events are independent because the probability of a patient showing a treatment effect is not influenced by whether they win the lottery or not
-(at least if we assume that lottery participants do not have different propoerties compared to non-lottery particiants that are conducive to showing a treatment effect).
+(at least if we assume that lottery participants do not have different properties compared to non-lottery particiants that are conducive to showing a treatment effect).
 Also, the probability of winning the lottery is not influenced by whether the patient shows a treatment effect or not. We would probably see a surge
 in volunteers in our studies.
 The events are unrelated: one depends on the treatment, while the other is purely a matter of luck.
@@ -531,7 +532,8 @@ We can calculate the probability of observing 137 or more positive results using
 (plug into the formula):
 <span class="math inline">\(\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^{1000-i}\)</span>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="probs.html#cb14-1" tabindex="-1"></a><span class="co"># Calculate the probability of observing 137 or more positive results</span></span>
-<span id="cb14-2"><a href="probs.html#cb14-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>))</span></code></pre></div>
+<span id="cb14-2"><a href="probs.html#cb14-2" tabindex="-1"></a><span class="co"># (using the complement rule)</span></span>
+<span id="cb14-3"><a href="probs.html#cb14-3" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>))</span></code></pre></div>
 <pre><code>## [1] 5.551115e-16</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="probs.html#cb16-1" tabindex="-1"></a><span class="co"># Compare to winning the Swiss lottery</span></span>
 <span id="cb16-2"><a href="probs.html#cb16-2" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">31474716</span>) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)))</span></code></pre></div>
@@ -546,10 +548,10 @@ observing 137 or more positive results: <span class="math inline">\(1 - \mathbb{
 As you can probably guess by now: We would guess <span class="math inline">\(1000 \times 0.12 = 120\)</span> positive results.
 This is the so-called <strong><a href="https://en.wikipedia.org/wiki/Expected_value">expected value</a></strong> <span class="math inline">\(\mathbb{E}(X)\)</span> of the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>.
 It is not always the maximum probability (the so-called <a href="https://en.wikipedia.org/wiki/Mode_(statistics)">mode</a>) of the distribution though:
-Consider a binomial distribution <span class="math inline">\(\text{Bin}(10, 0.7)\)</span>:</p>
+Consider a binomial distribution <span class="math inline">\(\text{Bin}(10, 0.77)\)</span>:</p>
 <ul>
 <li>The <strong>mean</strong> is <span class="math inline">\(\mathbb{E}(X) = 10 \times 0.77 = 7.7\)</span>. This number is not an integer and we can therefore not calculate the density at this point.</li>
-<li>The <strong>mode</strong> is 8.</li>
+<li>The <strong><a href="https://en.wikipedia.org/wiki/Mode_(statistics)">mode</a></strong> is 8.</li>
 </ul>
 <p><strong>The fourth question</strong> asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
 Well, this would be scientific fraud and a case of <a href="https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.">survivorship bias</a>.
@@ -562,7 +564,8 @@ One could also call the practice of testing many hypotheses to find “significa
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 “significant” results by chance alone.
 If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of p-values and
-their (over-)interpretation as “significant” (relevant) or “non-significant” (not relevant).</p>
+their (over-)interpretation as “significant” (relevant) or “non-significant” (not relevant).
+This <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">article</a> is recommendable to get away from a too strict dichotomous interpretation of research results.</p>
 <p><strong>The sixth question</strong> asked about the variation of positive results between large research departments. This demands the very important concept of <a href="https://en.wikipedia.org/wiki/Variance">variance</a>:
 The expected quadratic deviation from the mean: <span class="math inline">\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}\)</span>. In simple terms:
 How much does the number of positive results vary around the mean of 40 on average?
@@ -582,7 +585,7 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p><span class="math inline">\(A_2 = \{ (R1pos, R2pos), (R1neg, R2pos)\}\)</span></p>
 <p><span class="math inline">\(\mathbb{P}(A_1) = 0.04^2 + 0.04 \times 0.96\)</span> (First researcher finds an effect or both find an effect)</p>
 <p><span class="math inline">\(\mathbb{P}(A_2) = 0.04^2 + 0.96 \times 0.04\)</span> (Second researcher finds an effect or both find an effect)</p>
-<p>In, general, we can write the probability of the union of two events as:
+<p>In, general, we can write the <a href="https://en.wikipedia.org/wiki/Probability#Not_(necessarily)_mutually_exclusive_events">probability of the union of two events</a> as:
 <span class="math inline">\(\mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) - \mathbb{P}(A_1 \cap A_2)\)</span></p>
 <p>Put in the values:
 <span class="math inline">\(0.04^2 + 0.04 \times 0.96 +\)</span>
@@ -593,18 +596,18 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-868a95eef3e5b617fc5b" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-868a95eef3e5b617fc5b">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<p>So the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
+<div class="grViz html-widget html-fill-item" id="htmlwidget-e73cd4e6ce660a76ca67" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e73cd4e6ce660a76ca67">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
-<p>We can also visualize the 4 disjoint events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
-4 events in the event space must add up to 1 since they are disjoint and one of them has to happen. There is no “room” left.</p>
+<p>We can also visualize the 4 disjoint elementary events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
+4 events in the event space <span class="math inline">\(\Omega\)</span> must add up to 1 since they are disjoint and one of them has to happen. There is no “room” left.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div id="probabilities_for_health_sciences" class="section level3 hasAnchor" number="2.2.7">
 <h3><span class="header-section-number">2.2.7</span> Probabilities for health science<a href="probs.html#probabilities_for_health_sciences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We have learned a lot so far: The axioms of probability theory, the difference between independence and disjointness, and the addition of probabilities.
-How does probability theory fit into the big picture of statistics for health sciences?</p>
+<p>We have learned a lot so far: The axioms of probability theory, the difference between independence and disjointness, and the addition of probabilities.</p>
+<p><strong>How does probability theory fit into the big picture of statistics for health sciences?</strong></p>
 <p>In many health-related studies, we want to perform one or more of the following tasks:</p>
 <ul>
 <li>Estimate proportions (e.g., the proportion of patients with lower back pain. How big is the problem from a public health perspective?),</li>
