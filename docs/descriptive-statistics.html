@@ -217,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreate table with fake data</a></li>
 <li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.3.2</b> Exercsie 2 - Outliers and estimates</a></li>
-<li class="chapter" data-level="3.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise1_descriptive_stats"><i class="fa fa-check"></i><b>3.3.3</b> Exercise XXXX - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise1_descriptive_stats"><i class="fa fa-check"></i><b>3.3.3</b> Exercise 3 - Recreating data in Table 2</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.4</b> Solutions</a></li>
 </ul></li>
@@ -307,18 +307,16 @@ This is rather helpful later on in your master thesis.</li>
 <p>Let’s assume we know that the <em>Cognitive flexibility</em> is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): <span class="math inline">\(CognFlex \sim N(60,7.4)\)</span>.</p>
 <ul>
 <li>Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample.
-How good is the estimate of the true (and in this case: known) meand and standard deviation?</li>
-<li>Let’s replace some of the data points with outliers. Change the score of 5 persons with to inmpossible CognFlex score of 100.
+How good is the estimate of the true (and in this case: known) mean and standard deviation?</li>
+<li>Let’s replace some of the data points with outliers. Change the score of 5 persons with to impossible CognFlex score of 100.
 Calculate the mean and standard deviation of the sample. How do the estimates change?</li>
 <li>When we try to estimate the location of our <em>Cognitive flexibility</em> distribution with the median,
 how many outliers of what magnitude are necessary to disturb the estimate by 5 points?</li>
 </ul>
 </div>
 <div id="exercise1_descriptive_stats" class="section level3 hasAnchor" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Exercise XXXX - Recreating data in Table 2<a href="descriptive-statistics.html#exercise1_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Go back to the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> and recreate the data in Table 2.
-We now want to recreate parts of the data using <img src="images/Rlogo.png" height="20px"/>.
-We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years
+<h3><span class="header-section-number">3.3.3</span> Exercise 3 - Recreating data in Table 2<a href="descriptive-statistics.html#exercise1_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years
 and a standard deviation of 16 (15) years:</p>
 <p><span class="math inline">\(Age_{UsualCare} \sim Normal(\mu = 48, \sigma = 16)\)</span> and</p>
 <p><span class="math inline">\(Age_{CFT} \sim Normal(\mu = 47,\sigma = 15)\)</span>.</p>
@@ -334,39 +332,6 @@ where we would expect a new person drawn from the same population.</li>
 <li>What is the probability, that we would see no man in a sample of 10 persons in the <em>CFT</em> group?</li>
 <li>Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%.
 (We could solve this with simulation.)</li>
-</ul>
-<p><strong>Advanced</strong>:</p>
-<p>Let’s look at <em>Pain intensity</em> which is actually ordinal, an ordered scale from 0 to 10. We want to check how
-good an approximation the normal distribution is for this variable. We assume a normal distribution:
-<span class="math inline">\(PainIntensity \sim N(5.8,1.7)\)</span> and we discretize the variable to the nearest integer:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics.html#cb27-1" tabindex="-1"></a><span class="co"># Define the lower and upper bounds for the intervals</span></span>
-<span id="cb27-2"><a href="descriptive-statistics.html#cb27-2" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb27-3"><a href="descriptive-statistics.html#cb27-3" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="descriptive-statistics.html#cb27-4" tabindex="-1"></a><span class="co"># Compute the difference in cumulative probabilities for each interval</span></span>
-<span id="cb27-5"><a href="descriptive-statistics.html#cb27-5" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">pnorm</span>(bounds, <span class="at">mean =</span> <span class="fl">5.8</span>, <span class="at">sd =</span> <span class="fl">1.7</span>))</span>
-<span id="cb27-6"><a href="descriptive-statistics.html#cb27-6" tabindex="-1"></a>probabilities</span></code></pre></div>
-<pre><code>##  [1] 0.0008061768 0.0048011900 0.0204057431 0.0619187737 0.1341861396
-##  [6] 0.2077387753 0.2297819269 0.1816006925 0.1025386824 0.0413565262
-## [11] 0.0119113383</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" tabindex="-1"></a><span class="fu">sum</span>(probabilities) <span class="co"># Question: Why is this sum not equal to 1?</span></span></code></pre></div>
-<pre><code>## [1] 0.997046</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics.html#cb31-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">integer =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, probabilities)</span></code></pre></div>
-<pre><code>##    integer probabilities
-## 1        0  0.0008061768
-## 2        1  0.0048011900
-## 3        2  0.0204057431
-## 4        3  0.0619187737
-## 5        4  0.1341861396
-## 6        5  0.2077387753
-## 7        6  0.2297819269
-## 8        7  0.1816006925
-## 9        8  0.1025386824
-## 10       9  0.0413565262
-## 11      10  0.0119113383</code></pre>
-<ul>
-<li>Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare
-the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?</li>
-<li>What if the <em>Pain intensity</em> had not 10 levels but 3 (0 to 3)? How good would the approximation be then?</li>
 </ul>
 </div>
 </div>

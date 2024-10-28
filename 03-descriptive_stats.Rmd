@@ -63,15 +63,13 @@ dfdfdf
 Let's assume we know that the *Cognitive flexibility* is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): $CognFlex \sim N(60,7.4)$.
 
 - Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample. 
-  How good is the estimate of the true (and in this case: known) meand and standard deviation?
-- Let's replace some of the data points with outliers. Change the score of 5 persons with to inmpossible CognFlex score of 100. 
+  How good is the estimate of the true (and in this case: known) mean and standard deviation?
+- Let's replace some of the data points with outliers. Change the score of 5 persons with to impossible CognFlex score of 100. 
   Calculate the mean and standard deviation of the sample. How do the estimates change?
 - When we try to estimate the location of our *Cognitive flexibility* distribution with the median, 
   how many outliers of what magnitude are necessary to disturb the estimate by 5 points? 
 
-### Exercise XXXX - Recreating data in Table 2 {#exercise1_descriptive_stats}
-Go back to the paper mentioned [above](#example_study1_physio) and recreate the data in Table 2. 
-We now want to recreate parts of the data using `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'`.
+### Exercise 3 - Recreating data in Table 2 {#exercise1_descriptive_stats}
 We assume that *age* in both groups is normally distributed with a mean of 48 (47) years 
 and a standard deviation of 16 (15) years: 
 
@@ -90,26 +88,6 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 - What is the probability, that we would see no man in a sample of 10 persons in the *CFT* group?
 - Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%. 
   (We could solve this with simulation.) 
-
-**Advanced**:
-
-Let's look at *Pain intensity* which is actually ordinal, an ordered scale from 0 to 10. We want to check how
-good an approximation the normal distribution is for this variable. We assume a normal distribution: 
-$PainIntensity \sim N(5.8,1.7)$ and we discretize the variable to the nearest integer:
-```{r}
-# Define the lower and upper bounds for the intervals
-bounds <- seq(-0.5, 10.5, by = 1)
-
-# Compute the difference in cumulative probabilities for each interval
-probabilities <- diff(pnorm(bounds, mean = 5.8, sd = 1.7))
-probabilities
-sum(probabilities) # Question: Why is this sum not equal to 1?
-
-data.frame(integer = 0:10, probabilities)
-```
-- Simulate 10000 random numbers from the discretized normal and the underlying normal distribution and compare 
-  the proportion of samples that are smaller than 3/3.5/4/4.5. How good is the approximation? Good enough?
-- What if the *Pain intensity* had not 10 levels but 3 (0 to 3)? How good would the approximation be then?
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics).
