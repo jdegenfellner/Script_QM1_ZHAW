@@ -793,6 +793,10 @@ The first 2 are absolutely essential.
 
 There are infinitely (!) many more [distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions).
 
+Our goal is to learn: How can we describe (the distribution of) what we see in our data? 
+How can we make predictions? How can we make decisions based on our data?
+Probability theory and statistics are (for us) a very large tool box to answer these questions. 
+
 ## Exercises
 
 ### Exercise 1 - Throwing a die very often {#exercise1}
@@ -877,7 +881,9 @@ Hint: You can use simple shapes for the densitiy function defined by lines. And 
  - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
 
 ### Exercise 11 - Independence and disjointness for dice events {#exercise11}
+
 Find examples of dice events when throwing a die once that are:
+
 - Not independent and not disjoint.
 - Not independent but disjoint.
 - Independent but not disjoint.

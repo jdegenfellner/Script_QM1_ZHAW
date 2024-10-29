@@ -604,8 +604,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-ca863ab425854e43098f" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-ca863ab425854e43098f">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-7c4d57ea0b04dcf5a1cf" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7c4d57ea0b04dcf5a1cf">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
@@ -831,6 +831,9 @@ For example, the number of patients arriving at an emergency department in a fix
 For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.</p></li>
 </ul>
 <p>There are infinitely (!) many more <a href="https://en.wikipedia.org/wiki/List_of_probability_distributions">distributions</a>.</p>
+<p>Our goal is to learn: How can we describe (the distribution of) what we see in our data?
+How can we make predictions? How can we make decisions based on our data?
+Probability theory and statistics are (for us) a very large tool box to answer these questions.</p>
 </div>
 </div>
 <div id="exercises" class="section level2 hasAnchor" number="2.3">
@@ -935,10 +938,12 @@ and see if you can produce values outside of <span class="math inline">\(\pm 6\)
 </div>
 <div id="exercise11" class="section level3 hasAnchor" number="2.3.11">
 <h3><span class="header-section-number">2.3.11</span> Exercise 11 - Independence and disjointness for dice events<a href="probs.html#exercise11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Find examples of dice events when throwing a die once that are:
-- Not independent and not disjoint.
-- Not independent but disjoint.
-- Independent but not disjoint.</p>
+<p>Find examples of dice events when throwing a die once that are:</p>
+<ul>
+<li>Not independent and not disjoint.</li>
+<li>Not independent but disjoint.</li>
+<li>Independent but not disjoint.</li>
+</ul>
 </div>
 </div>
 <div id="solutions" class="section level2 hasAnchor" number="2.4">
