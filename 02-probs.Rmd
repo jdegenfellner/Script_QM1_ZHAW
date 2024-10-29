@@ -52,7 +52,7 @@ There are very smart proponents on both sides and we will try to use and contras
 Especially one of the early eminent statisticians, [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), was an oponent of Bayesian statistics, 
 or as he called it: ["inverse probability"](https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf).
 
-The only thing we are interested in is the pracitcal application of both methods in the field of applied health sciences. 
+The only thing we are interested in is the practical application of both methods in the field of applied health sciences. 
 How well can we describe data and make predictions, how well can we learn from data in our field?
 
 ### Frequentist statistics
@@ -80,7 +80,7 @@ With all birthweights, we would know the true mean of the population of interest
 ### Bayesian statistics
 
 Bayesian statistics, on the other hand, is based on the idea that [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
-Here, we use *prior* (i.e., before our experiment) knowledge about a parameter and update this knowledge with new data using the famous Bayes' theorem:
+Here, we use *prior* (i.e., before/outside of our experiment) knowledge about a parameter and update this knowledge with new data using the famous Bayes' theorem:
 
 \[
 p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
@@ -100,12 +100,13 @@ where:
 
 Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain (Improvement Yes/No). 
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
-This is your **prior probability**: \( p(\theta) = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
-Your coelleagues are not convinced that the therapy is effective and argue that the probability is 40%.
+This is your **prior knowledge**: \( \theta = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
+Your colleagues are not convinced that the therapy is effective and argue that the probability is 40%.
 Now, you run a small trial with 50 patients and observe that 22 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
 This new data (the result of the trial) *updates* your belief about the effectiveness of the therapy.
-Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior probability \( p(\theta) = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
+Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior knowledge \( \theta = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
+We could assign the probability of $\theta = 0.3$ or $\theta = 0.4$ equally: $p(\theta = 0.3) = p(\theta = 0.4) = 0.5$. 
 
 Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.
 

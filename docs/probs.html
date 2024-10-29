@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2024-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -280,7 +280,7 @@ It is also argued that for large sample size frequentist and Bayesian statistics
 <p>There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.</p>
 <p>Especially one of the early eminent statisticians, <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Ronald Fisher</a>, was an oponent of Bayesian statistics,
 or as he called it: <a href="https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf">“inverse probability”</a>.</p>
-<p>The only thing we are interested in is the pracitcal application of both methods in the field of applied health sciences.
+<p>The only thing we are interested in is the practical application of both methods in the field of applied health sciences.
 How well can we describe data and make predictions, how well can we learn from data in our field?</p>
 <div id="frequentist-statistics" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Frequentist statistics<a href="probs.html#frequentist-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -302,7 +302,7 @@ With all birthweights, we would know the true mean of the population of interest
 <div id="bayesian-statistics" class="section level3 hasAnchor" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Bayesian statistics<a href="probs.html#bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Bayesian statistics, on the other hand, is based on the idea that <a href="https://en.wikipedia.org/wiki/Bayesian_probability">probability</a> is a measure of our uncertainty about an event or a parameter.
-Here, we use <em>prior</em> (i.e., before our experiment) knowledge about a parameter and update this knowledge with new data using the famous Bayes’ theorem:</p>
+Here, we use <em>prior</em> (i.e., before/outside of our experiment) knowledge about a parameter and update this knowledge with new data using the famous Bayes’ theorem:</p>
 <p><span class="math display">\[
 p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
 \]</span></p>
@@ -317,12 +317,13 @@ p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text
 <h4><span class="header-section-number">2.1.2.1</span> Example in applied health sciences (physiotherapy)<a href="probs.html#example1_physio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Suppose you’re a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain (Improvement Yes/No).
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients.
-This is your <strong>prior probability</strong>: <span class="math inline">\(p(\theta) = 0.30\)</span>, where <span class="math inline">\(\theta\)</span> is the probability that the therapy is effective.
-Your coelleagues are not convinced that the therapy is effective and argue that the probability is 40%.
+This is your <strong>prior knowledge</strong>: <span class="math inline">\(\theta = 0.30\)</span>, where <span class="math inline">\(\theta\)</span> is the probability that the therapy is effective.
+Your colleagues are not convinced that the therapy is effective and argue that the probability is 40%.
 Now, you run a small trial with 50 patients and observe that 22 of them showed a clinically relevant improvement in mobility (self-reported from the patient).
 This new data (the result of the trial) <em>updates</em> your belief about the effectiveness of the therapy.
-Using Bayes’ theorem (<a href="probs.html#exercise2">Exercise 2</a>), you combine the prior probability <span class="math inline">\(p(\theta) = 0.30\)</span> with the likelihood of the new data <span class="math inline">\(p(\text{data} | \theta)\)</span>, and you calculate
-the <strong>posterior probability</strong>, <span class="math inline">\(p(\theta | \text{data})\)</span>, which reflects your updated belief about the effectiveness of the therapy after observing the trial data.</p>
+Using Bayes’ theorem (<a href="probs.html#exercise2">Exercise 2</a>), you combine the prior knowledge <span class="math inline">\(\theta = 0.30\)</span> with the likelihood of the new data <span class="math inline">\(p(\text{data} | \theta)\)</span>, and you calculate
+the <strong>posterior probability</strong>, <span class="math inline">\(p(\theta | \text{data})\)</span>, which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
+We could assign the probability of <span class="math inline">\(\theta = 0.3\)</span> or <span class="math inline">\(\theta = 0.4\)</span> equally: <span class="math inline">\(p(\theta = 0.3) = p(\theta = 0.4) = 0.5\)</span>.</p>
 <p>Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.</p>
 </div>
 </div>
@@ -598,8 +599,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-9dc6b95f5dbb17a6ca08" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9dc6b95f5dbb17a6ca08">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-1b442cf3ac16fe0df7ff" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1b442cf3ac16fe0df7ff">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
