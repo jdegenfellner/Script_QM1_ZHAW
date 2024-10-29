@@ -147,7 +147,8 @@ We will try to answer these questions [below](#Answers_Questions_about_the_1000-
 
 First, it seems intuitive that Probability *within* an experiment should add up *if* the events are **disjoint**. 
 The event $A_1=$ "only researcher 45 gets a positive result" and $A_2=$ "only researcher 897 gets a positive result" are mutually exclusive. 
-If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. Hence, the two events are said to be disjoint.
+If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. They cannot happen at the same time within that one 
+experiment. Hence, the two events are said to be disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. 
 We say that the probability of all elementary events (called $\omega$) sums to 1. Let's look at a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram) to illustrate the concept of being mutually exclusive (disjoint).
 
@@ -188,10 +189,14 @@ We call the set of all elementary events $\Omega$ (the Greek letter Omega): $\Om
 
 Note, that **we collect elementary events to form events** like we just did for event $A_3$.
 
-The probability of the event "" (nothing occurred) should be zero, were "" denotes the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). This is impossible due to the design of the experiment.
+Note, that the **$2^{1000}$ elementary events in the 1000 researcher experiment are also disjoint**. Why? For every elementary event, 
+certain researchers found something and others did not. The combinations are all different from each other. Hence, 
+all the elementary events cannot happen at the same time within that one experiment. All of them are disjoint. 
+
+The probability of the event "" (nothing occurred) should be zero ($\mathbb{P}(\emptyset)=0$), were "" denotes the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed *never* happen.
 
-Obviously, the probability of an event should at a mininum be zero and at a maximum be one. 
+Obviously, the probability of an event should at a mininum be zero and at a maximum be one: $0 \le \mathbb{P}(A) \le 1$. 
 
 ### Axioms of probability theory {#axioms_of_probability_theory}
 
@@ -206,7 +211,8 @@ We can summarize these informally stated properties more formally ([Kolmogorov's
 The $\infty$-symbol in **axiom 3** comes into play if we are dealing with (potentially) infinitely many events. 
 For instance, we could ask for the number of researchers we need to look at until we see the first 
 positive result ([geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)). 
-We could construct infinitely many such (disjoint) intervals and law 3 should still hold.
+We could find the first positive result in the first researcher, or the second, etc. There is no upper limit. 
+
 As concrete example for law 3 in our example, we can put the following:
 \begin{align}
 \scriptsize \mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result" or "(only) researchers 1 and 5 get a pos. results"}) =\\
@@ -843,6 +849,12 @@ Hint: You can use simple shapes for the densitiy function defined by lines. And 
    and see if you can produce values outside of $\pm 6$.
  - What is the mode of this distribution and how could we estimate it from the sample?
  - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
+
+### Exercise 11 - Independence and disjointness for dice events {#exercise11}
+Find examples of dice events when throwing a die once that are:
+- Not independent and not disjoint.
+- Not independent but disjoint.
+- Independent but not disjoint.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/2_Probability).

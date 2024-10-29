@@ -31,6 +31,7 @@ exercise7
 exercise8
 exercise9
 exercise10
+exercise11
 solutions
 descriptive-statistics
 example_study1_physio
