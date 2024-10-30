@@ -915,12 +915,12 @@ and use the so-called [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t
 - According to the article, the data is normally distributed. Draw 3 normal distributions in one graph with the respective parameters
   for baseline, 8 weeks and 20 weeks for both groups. Make two graphs, one for each group.
 - According to the text, [Figure 2](https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg) shows the means 
-  $\pm$ standard errors (SE) of the ISWT at baseline, 8 weeks and 20 weeks for both groups. Look at Figure 2, a. 
+  $\pm$ standard errors ($SE = \frac{s}{\sqrt{n}}$) of the ISWT at baseline, 8 weeks and 20 weeks for both groups. Look at Figure 2, a. 
   Does this match the description for instance at 8 weeks in the acappella+pulmonary group? Do the bars make sense?
 - Now, let's simulate the differences at week 8 (ISWT) using the parameters given: Group sizes, 15 and 12, 
   means ($338.7$ and $344.2$) and standard deviations ($42.2$ and $115.5$).
   Draw a histogram of the simulated differences.
-  Calculate the 1.5% and 98.5% quantiles.
+  Calculate the 1.5% and 98.5% quantiles of the differences.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/2_Probability).
