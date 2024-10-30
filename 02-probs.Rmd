@@ -791,6 +791,12 @@ The first 2 are absolutely essential.
 - [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). 
    For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.
 
+- [Student's t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) (small "t" please) generalizes 
+  the standard normal distribution. Like the latter, it is symmetric around zero and bell-shaped, but 
+  has [fatter tails](https://en.wikipedia.org/wiki/Fat-tailed_distribution) (compared to the normal distribution), i.e.,
+  "extreme" values are more likely. It is a very well known distribution underlying the [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test).
+  See [Exercise 12](#exercise12) for a practical example.
+
 There are infinitely (!) many more [distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions).
 
 Our goal is to learn: How can we describe (the distribution of) what we see in our data? 
@@ -887,6 +893,30 @@ Find examples of dice events when throwing a die once that are:
 - Not independent and not disjoint.
 - Not independent but disjoint.
 - Independent but not disjoint.
+
+### Exercise 12 - Student's t-distribution {#exercise12}
+Let's look at a [paper](https://www.sciencedirect.com/science/article/pii/S0954611112002958#aep-abstract-id3), 
+where the t-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary 
+rehabilitation in addition to regular chest physiotherapy in non cystic fibrosis bronchiectasis.
+Table 1 describes the patient characteristics in both groups.
+Table 2 shows the primary endpoint (incremental shuttle walk test - ISWT) at baseline and follow-up time points.
+[Figure 2](https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg) shows the outcomes 
+at baseline, 8 weeks and 20 weeks for both groups.)
+They want to find out if the ISWT is different between the two groups.
+(Note, that an arbitrary threshold for the p-value of 0.05 is used to decide if the groups 
+are "significantly" different. One should [avoid](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) these formulations.
+There is no reason not to use a different threshold (like 4.3%).)
+**The standardized difference of the group means is t-distributed**. This case is a bit more complex than the simple ones, 
+since we have different sample sizes (15 vs. 12) and different variances in the groups. The statistics software will take care of this
+and use the so-called [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).
+
+- What do you think about the baseline values for ISWT in the two groups?
+- What is the number in brackets next to the ISWT-values?
+- According to the article, the data is normally distributed. Draw 3 normal distributions in one graph with the respective parameters
+  for baseline, 8 weeks and 20 weeks for both groups. Make two graphs, one for each group.
+- According to the text, [Figure 2](https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg) shows the means 
+  $\pm$ standard errors (SE) of the ISWT at baseline, 8 weeks and 20 weeks for both groups. Look at Figure 2, a. 
+  Does this match the description for instance at 8 weeks in the acappella+pulmonary group? Do the bars make sense?
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/2_Probability).
