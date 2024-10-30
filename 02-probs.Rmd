@@ -669,7 +669,7 @@ Maybe this [video](https://www.youtube.com/watch?v=KLs_7b7SKi4) helps too.
 The cool thing is that we can learn the true (but unknown) expectation of a distribution by the sample mean. The more samples we collect, the closer we will be.
 This is (roughly) the statement of the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers): 
 
-$\bar{X}_n \rightarrow \mu \quad \text{as} \quad n \rightarrow \infty.$
+$\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow \infty.$
 
 See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R) for an animated example of this law.
 
