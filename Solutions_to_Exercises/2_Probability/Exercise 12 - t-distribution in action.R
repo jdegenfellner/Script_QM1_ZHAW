@@ -59,16 +59,25 @@ ggplot(combined_data, aes(x = distance, color = time, linetype = group)) +
 
 
 # Question 4:
-# The bars seem not to be estimate +/- standard error.
+# The bars seem not to be the estimate +/- standard error (=s/sqrt(n)).
 # What they probably meant was an approximate 95% confidence interval
 # for the mean, which is:
-# x_bar +/- t_{n-1, 0.025} * s / sqrt(n)
+# x_bar +/- t_{n-1, 0.975} * s / sqrt(n)
+# https://en.wikipedia.org/wiki/Standard_error
+
 # Example at 8 weeks:
 344.2 + qt(0.975, 11) * 115.5 / sqrt(12)
 344.2 - qt(0.975, 11) * 115.5 / sqrt(12)
+
+# or:
+344.2 + qnorm(0.975) * 115.5 / sqrt(12)
+344.2 - qnorm(0.975) * 115.5 / sqrt(12)
+
 # These seem to fit the bars better.
 
 
+
+# Question 5:
 n_sim <- 1000
 diffs <- numeric(n_sim)
 for(i in 1:n_sim){
@@ -81,3 +90,5 @@ for(i in 1:n_sim){
 hist(diffs, breaks = 30, col = "steelblue", border = "black", 
      xlab = "Difference in means", main = "Histogram of differences in means")
 quantile(diffs, c(0.025, 0.975))
+
+# How would the distribution change if we took the same group means?
