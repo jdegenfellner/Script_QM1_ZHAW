@@ -215,13 +215,14 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#univarate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univarate vs. bivariate statisics</a></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a></li>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.4</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreate table with fake data</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.3.2</b> Exercsie 2 - Outliers and estimates</a></li>
-<li class="chapter" data-level="3.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.3.3</b> Exercise 3 - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.4.1</b> Exercise 1 - Recreate table with fake data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.4.2</b> Exercsie 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.4.3</b> Exercise 3 - Recreating data in Table 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.4</b> Solutions</a></li>
+<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.5</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -300,10 +301,108 @@ An example could a <a href="https://en.wikipedia.org/wiki/Scatter_plot">scatter 
 where we would possible find a falling relationship.</p>
 <p><a href="https://en.wikipedia.org/wiki/Multivariate_statistics">Multivariate statistics</a> is the next step, where we look at more than two variables at the same time.</p>
 </div>
-<div id="exercises-1" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1---recreate-table-with-fake-data" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Exercise 1 - Recreate table with fake data<a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-histogram" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> The histogram<a href="descriptive-statistics.html#the-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One way to visualize the distribution of a continuous variable is the <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a>.
+This <a href="https://www.youtube.com/watch?v=gSEYtAjuZ-Y&amp;ab_channel=KhanAcademy">video</a> might be helpful to cover the basics of a histrogram.
+I recommend plotting the histogram with a <a href="https://en.wikipedia.org/wiki/Box_plot">boxplot</a> below:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb27-2"><a href="descriptive-statistics.html#cb27-2" tabindex="-1"></a><span class="fu">p_load</span>(tidyverse)</span>
+<span id="cb27-3"><a href="descriptive-statistics.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="descriptive-statistics.html#cb27-4" tabindex="-1"></a><span class="co"># Set working directory to source file location</span></span>
+<span id="cb27-5"><a href="descriptive-statistics.html#cb27-5" tabindex="-1"></a><span class="co"># setwd(dirname(rstudioapi::getActiveDocumentContext()$path))</span></span>
+<span id="cb27-6"><a href="descriptive-statistics.html#cb27-6" tabindex="-1"></a><span class="co"># only available in RStudio</span></span>
+<span id="cb27-7"><a href="descriptive-statistics.html#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="descriptive-statistics.html#cb27-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4433</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb27-9"><a href="descriptive-statistics.html#cb27-9" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="descriptive-statistics.html#cb27-10" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
+<span id="cb27-11"><a href="descriptive-statistics.html#cb27-11" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="fl">23.4</span>, <span class="at">sd =</span> <span class="fl">5.6</span>)</span>
+<span id="cb27-12"><a href="descriptive-statistics.html#cb27-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb27-13"><a href="descriptive-statistics.html#cb27-13" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="descriptive-statistics.html#cb27-14" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb27-15"><a href="descriptive-statistics.html#cb27-15" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb27-16"><a href="descriptive-statistics.html#cb27-16" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="descriptive-statistics.html#cb27-17" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb27-18"><a href="descriptive-statistics.html#cb27-18" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values),</span>
+<span id="cb27-19"><a href="descriptive-statistics.html#cb27-19" tabindex="-1"></a>               <span class="at">width =</span> <span class="fl">0.02</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb27-20"><a href="descriptive-statistics.html#cb27-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
+<span id="cb27-21"><a href="descriptive-statistics.html#cb27-21" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
+<span id="cb27-22"><a href="descriptive-statistics.html#cb27-22" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb27-23"><a href="descriptive-statistics.html#cb27-23" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-24"><a href="descriptive-statistics.html#cb27-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb27-25"><a href="descriptive-statistics.html#cb27-25" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Some researchers would discard the values below 10 and above 40 as outliers, but we know here
+that the data points are perfectly legitimate.
+One important thing we should be aware of in connection with small sample sizes ist
+variability. Let’s create not <span class="math inline">\(10000\)</span> samples of a normally distributed variable, but only <span class="math inline">\(25\)</span> samples:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
+<span id="cb28-2"><a href="descriptive-statistics.html#cb28-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb28-3"><a href="descriptive-statistics.html#cb28-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="fl">23.4</span>, <span class="at">sd =</span> <span class="fl">5.6</span>)</span>
+<span id="cb28-4"><a href="descriptive-statistics.html#cb28-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb28-5"><a href="descriptive-statistics.html#cb28-5" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="descriptive-statistics.html#cb28-6" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="descriptive-statistics.html#cb28-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb28-8"><a href="descriptive-statistics.html#cb28-8" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color=</span><span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="descriptive-statistics.html#cb28-9" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="descriptive-statistics.html#cb28-10" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>, </span>
+<span id="cb28-11"><a href="descriptive-statistics.html#cb28-11" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="descriptive-statistics.html#cb28-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>), </span>
+<span id="cb28-13"><a href="descriptive-statistics.html#cb28-13" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>), </span>
+<span id="cb28-14"><a href="descriptive-statistics.html#cb28-14" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb28-15"><a href="descriptive-statistics.html#cb28-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-16"><a href="descriptive-statistics.html#cb28-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb28-17"><a href="descriptive-statistics.html#cb28-17" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+We <em>know</em> (in this case) that these values come from a normal distribution with a mean
+of <span class="math inline">\(23.4\)</span> and a standard deviation of <span class="math inline">\(5.6\)</span>. Let’s estimate these parameters from the sample
+and use the often but not recommended shapiro-wilk test for normality:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" tabindex="-1"></a><span class="co"># Estimate mean and standard deviation</span></span>
+<span id="cb29-2"><a href="descriptive-statistics.html#cb29-2" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
+<pre><code>## [1] 20.6017</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics.html#cb31-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<pre><code>## [1] 4.622042</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="descriptive-statistics.html#cb33-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.95059, p-value = 0.2585</code></pre>
+<p>Firstly, the histogram looks rather differently when using a different seed. Secondly, we would probability
+not be able to tell if the data stems from a normal distribution. Thirdly, the sample mean and standard deviation
+are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
+the shapiro test would not reject the null hypothesis of normality in this case.</p>
+<p>Let’s try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="descriptive-statistics.html#cb35-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb35-2"><a href="descriptive-statistics.html#cb35-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">25</span>, <span class="at">df =</span> <span class="dv">3</span>) <span class="co"># random numbers from t-distribution</span></span>
+<span id="cb35-3"><a href="descriptive-statistics.html#cb35-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb35-4"><a href="descriptive-statistics.html#cb35-4" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="descriptive-statistics.html#cb35-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="descriptive-statistics.html#cb35-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb35-7"><a href="descriptive-statistics.html#cb35-7" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color=</span><span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-8"><a href="descriptive-statistics.html#cb35-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb35-9"><a href="descriptive-statistics.html#cb35-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>, </span>
+<span id="cb35-10"><a href="descriptive-statistics.html#cb35-10" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="descriptive-statistics.html#cb35-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>), </span>
+<span id="cb35-12"><a href="descriptive-statistics.html#cb35-12" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>), </span>
+<span id="cb35-13"><a href="descriptive-statistics.html#cb35-13" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb35-14"><a href="descriptive-statistics.html#cb35-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-15"><a href="descriptive-statistics.html#cb35-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb35-16"><a href="descriptive-statistics.html#cb35-16" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="descriptive-statistics.html#cb36-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.95827, p-value = 0.3811</code></pre>
+<p>Some researchers would argue, that the distribution is normal (since the p-value is rather large),
+but we know it is not. We will be cautious with such ugly rule of thumbs.</p>
+</div>
+<div id="exercises-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1---recreate-table-with-fake-data" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Exercise 1 - Recreate table with fake data<a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create fake data for the study mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> in R.</li>
 <li>Recreate Table 2 of the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> with fake data in R (using GPT, the R package <em>gtsummary</em> and other useful packages).
@@ -311,8 +410,8 @@ This is rather helpful later on in your master thesis.</li>
 <li>Try to export the table to Excel and Word.</li>
 </ul>
 </div>
-<div id="exercsie-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Exercsie 2 - Outliers and estimates<a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercsie-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Exercsie 2 - Outliers and estimates<a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s assume we know that the <em>Cognitive flexibility</em> is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): <span class="math inline">\(CognFlex \sim N(60,7.4)\)</span>.</p>
 <ul>
 <li>Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample.
@@ -323,8 +422,8 @@ Calculate the mean and standard deviation of the sample. How do the estimates ch
 how many outliers of what magnitude are necessary to disturb the estimate by 5 points?</li>
 </ul>
 </div>
-<div id="exercise3_descriptive_stats" class="section level3 hasAnchor" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Exercise 3 - Recreating data in Table 2<a href="descriptive-statistics.html#exercise3_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise3_descriptive_stats" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Exercise 3 - Recreating data in Table 2<a href="descriptive-statistics.html#exercise3_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years
 and a standard deviation of 16 (15) years:</p>
 <p><span class="math inline">\(Age_{UsualCare} \sim Normal(\mu = 48, \sigma = 16)\)</span> and</p>
@@ -344,8 +443,8 @@ where we would expect a new person drawn from the same population.</li>
 </ul>
 </div>
 </div>
-<div id="solutions-1" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Solutions<a href="descriptive-statistics.html#solutions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solutions-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Solutions<a href="descriptive-statistics.html#solutions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics">here</a>.</p>
 
 </div>

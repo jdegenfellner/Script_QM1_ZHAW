@@ -548,7 +548,8 @@ we would probably argue differently. In our world, probability theory is the too
 We can always ask ourselves: Where is this entity (proportion, effect, etc.) with which frequency/probability?
 
 ### Discrete vs. continuous probability distributions {#discrete_vs_continuous_probability_distributions}
-As one of the most prominent examples of a discrete distribution, we have already seen the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) in our 1000-researcher-experiment.
+As one of the most prominent examples of a discrete distribution, we have already seen 
+the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) in our 1000-researcher-experiment.
 A special case of it is the [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution), 
 where you only throw the coin once or let one researcher conduct the experiment.
 
@@ -694,7 +695,10 @@ This is true for discrete and continuous distributions.
 A more natural interpretation of variability is the **standard deviation**: $\sigma = \sqrt{\mathbb{V}ar(X)}$, since it's on the same scale as X.
 
 #### Continuous probability distributions are used when we cannot count the outcomes. {#continuous_probability_distributions}
-The most famous continuous probability distribution is the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
+The most famous continuous probability distribution is the 
+[normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
+This [video](https://www.youtube.com/watch?v=k5sbE1_MDwU&ab_channel=VeryNormal) 
+about probability distributions in general might be helpful.
 ```{r}
 # Load necessary library
 if (!require(pacman)) install.packages("pacman")

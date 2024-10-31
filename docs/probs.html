@@ -215,13 +215,14 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#univarate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univarate vs. bivariate statisics</a></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.3</b> Exercises</a>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a></li>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.4</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.3.1</b> Exercise 1 - Recreate table with fake data</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.3.2</b> Exercsie 2 - Outliers and estimates</a></li>
-<li class="chapter" data-level="3.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.3.3</b> Exercise 3 - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.4.1</b> Exercise 1 - Recreate table with fake data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.4.2</b> Exercsie 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.4.3</b> Exercise 3 - Recreating data in Table 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.4</b> Solutions</a></li>
+<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.5</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -608,8 +609,8 @@ Our event space <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, 
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-3f0050dd8f06cf585f6f" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-3f0050dd8f06cf585f6f">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-f06bc5bf74d13bc4f5f3" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f06bc5bf74d13bc4f5f3">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events (<span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)</span>) in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilites of these
@@ -635,7 +636,8 @@ we would probably argue differently. In our world, probability theory is the too
 </div>
 <div id="discrete_vs_continuous_probability_distributions" class="section level3 hasAnchor" number="2.2.8">
 <h3><span class="header-section-number">2.2.8</span> Discrete vs. continuous probability distributions<a href="probs.html#discrete_vs_continuous_probability_distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As one of the most prominent examples of a discrete distribution, we have already seen the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a> in our 1000-researcher-experiment.
+<p>As one of the most prominent examples of a discrete distribution, we have already seen
+the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a> in our 1000-researcher-experiment.
 A special case of it is the <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a>,
 where you only throw the coin once or let one researcher conduct the experiment.</p>
 <p>As an example of a continuous distribution we have mentioned the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a> above.
@@ -747,7 +749,10 @@ This is true for discrete and continuous distributions.</p>
 </div>
 <div id="continuous_probability_distributions" class="section level4 hasAnchor" number="2.2.8.2">
 <h4><span class="header-section-number">2.2.8.2</span> Continuous probability distributions are used when we cannot count the outcomes.<a href="probs.html#continuous_probability_distributions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The most famous continuous probability distribution is the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>.</p>
+<p>The most famous continuous probability distribution is the
+<a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>.
+This <a href="https://www.youtube.com/watch?v=k5sbE1_MDwU&amp;ab_channel=VeryNormal">video</a>
+about probability distributions in general might be helpful.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="probs.html#cb24-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
 <span id="cb24-2"><a href="probs.html#cb24-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: pacman</code></pre>

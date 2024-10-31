@@ -60,6 +60,101 @@ where we would possible find a falling relationship.
 
 [Multivariate statistics](https://en.wikipedia.org/wiki/Multivariate_statistics) is the next step, where we look at more than two variables at the same time.
 
+## The histogram
+One way to visualize the distribution of a continuous variable is the [histogram](https://en.wikipedia.org/wiki/Histogram). 
+This [video](https://www.youtube.com/watch?v=gSEYtAjuZ-Y&ab_channel=KhanAcademy) might be helpful to cover the basics of a histrogram.
+I recommend plotting the histogram with a [boxplot](https://en.wikipedia.org/wiki/Box_plot) below:
+```{r}
+library(pacman)
+p_load(tidyverse)
+
+# Set working directory to source file location
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# only available in RStudio
+
+set.seed(4433) # to get the same plot every time
+
+# Generate normally distributed sample
+x <- rnorm(10000, mean = 23.4, sd = 5.6)
+df <- data.frame(values = x)
+
+p2 <- ggplot(df, aes(x = values)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, alpha = 0.7, color = "darkgrey") +
+  geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
+  geom_boxplot(aes(y = -0.01, x = values),
+               width = 0.02, position = position_nudge(y = -0.00)) +
+  geom_point(aes(y = -0.01),
+             position = position_jitter(width = 0.002, height = 0.01),
+             size = 1, alpha = 0.05) +
+  ggtitle("Histogram with density plot and boxplot below") +
+  theme(plot.title = element_text(hjust = 0.5))
+p2
+```
+
+Some researchers would discard the values below 10 and above 40 as outliers, but we know here
+that the data points are perfectly legitimate. 
+One important thing we should be aware of in connection with small sample sizes ist
+variability. Let's create not $10000$ samples of a normally distributed variable, but only $25$ samples:
+```{r}
+# Generate normally distributed sample
+set.seed(1245) # to get the same plot every time
+x <- rnorm(25, mean = 23.4, sd = 5.6)
+df <- data.frame(values = x)
+
+p2 <- ggplot(df, aes(x = values)) +
+  geom_histogram(aes(y = after_stat(density)), 
+                 bins = 30, alpha = 0.7, color="darkgrey") +
+  geom_density(aes(y = after_stat(density)), color = "blue", linewidth=1) +
+  geom_boxplot(aes(y = -0.01, x = values), width = 0.02, 
+               position = position_nudge(y = -0.00)) +
+  geom_point(aes(y = -0.01), 
+             position = position_jitter(width = 0.002, height = 0.01), 
+             size = 1, alpha = 0.05) +
+  ggtitle("Histogram with density plot and boxplot below") +
+  theme(plot.title = element_text(hjust = 0.5))
+p2
+```
+We *know* (in this case) that these values come from a normal distribution with a mean 
+of $23.4$ and a standard deviation of $5.6$. Let's estimate these parameters from the sample
+and use the often but not recommended shapiro-wilk test for normality:
+```{r}
+# Estimate mean and standard deviation
+mean(x)
+sd(x)
+shapiro.test(x)
+```
+
+Firstly, the histogram looks rather differently when using a different seed. Secondly, we would probability
+not be able to tell if the data stems from a normal distribution. Thirdly, the sample mean and standard deviation
+are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
+the shapiro test would not reject the null hypothesis of normality in this case.
+
+Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:
+```{r}
+set.seed(1245) # to get the same plot every time
+x <- rt(25, df = 3) # random numbers from t-distribution
+df <- data.frame(values = x)
+
+p2 <- ggplot(df, aes(x = values)) +
+  geom_histogram(aes(y = after_stat(density)), 
+                 bins = 30, alpha = 0.7, color="darkgrey") +
+  geom_density(aes(y = after_stat(density)), color = "blue", linewidth=1) +
+  geom_boxplot(aes(y = -0.01, x = values), width = 0.02, 
+               position = position_nudge(y = -0.00)) +
+  geom_point(aes(y = -0.01), 
+             position = position_jitter(width = 0.002, height = 0.01), 
+             size = 1, alpha = 0.05) +
+  ggtitle("Histogram with density plot and boxplot below") +
+  theme(plot.title = element_text(hjust = 0.5))
+p2
+
+shapiro.test(x)
+```
+
+Some researchers would argue, that the distribution is normal (since the p-value is rather large), 
+but we know it is not. We will be cautious with such ugly rule of thumbs.
+
 ## Exercises
 
 ### Exercise 1 - Recreate table with fake data
