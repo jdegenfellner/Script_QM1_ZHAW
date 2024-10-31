@@ -82,9 +82,9 @@ With all birthweights, we would know the true mean of the population of interest
 Bayesian statistics, on the other hand, is based on the idea that [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
 Here, we use *prior* (i.e., before/outside of our experiment) knowledge about a parameter and update this knowledge with new data using the famous Bayes' theorem:
 
-\[
+$$
 p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
-\]
+$$
 
 where:
 
@@ -161,9 +161,12 @@ Again, this refers to being mutually exclusive within our 1000-researcher experi
 Both events cannot happen at the same time in this context, so we assign $0$ to the event that both occur simultaneously: $\mathbb{P}(A_1 \cap A_2)=0$. The $\cap$-Symbol refers to all elementary events 
 that are in both [sets](https://en.wikipedia.org/wiki/Set_(mathematics)). In our case we have the sets 
 
-$A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}$ and 
 
-$A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}$.
+$$A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}$$ 
+
+$$and$$ 
+
+$$A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.$$
 
 
 An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1=$ "only researcher 45 gets a positive result" and
@@ -172,9 +175,11 @@ Which researchers got a positive result in both events? The answer is: Researche
 add up the probabilities (of events $A_1$ and $A_3$) here, since we would count the probability of researcher 45 twice.
 The sets look like this: 
 
-$A_1 = \{ (\dots ,R_{45} = pos, \dots) \}$ and 
+$$A_1 = \{ (\dots ,R_{45} = pos, \dots) \}$$ 
 
-$A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}$.
+$$and$$ 
+
+$$A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}.$$
 
 ```{r echo=FALSE}
 library(eulerr)
@@ -185,7 +190,8 @@ How many elementary events are in the set of all possible outcomes of our 1000-r
 Hence, we have $2 \cdot 2 \cdot 2 \cdots = 2^{1000}$ elementary events in our set of all possible outcomes. 
 This is a very large number ($\sim 10^{300}$) - more than there are particles in the universe ($\sim 10^{80}$).
 
-We call the set of all elementary events $\Omega$ (the Greek letter Omega): $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$.
+We call the set of all elementary events $\Omega$ (the Greek letter Omega): 
+$$\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}.$$
 
 Note, that **we collect elementary events to form events** like we just did for event $A_3$.
 
@@ -193,10 +199,15 @@ Note, that the **$2^{1000}$ elementary events in the 1000 researcher experiment 
 certain researchers found something and others did not. The combinations are all different from each other. Hence, 
 all the elementary events cannot happen at the same time within that one experiment. All of them are disjoint. 
 
-The probability of the event "" (nothing occurred) should be zero ($\mathbb{P}(\emptyset)=0$), were "" denotes the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). This is impossible due to the design of the experiment.
-We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed *never* happen.
+The probability of the event "" (nothing occurred) should be zero ($\mathbb{P}(\emptyset)=0$), were "" denotes 
+the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). 
+This is impossible due to the design of the experiment.
+We would therefore define this probability as zero and (if we can count the number of different outcomes) 
+this event can indeed *never* happen.
 
-Obviously, the probability of an event should at a mininum be zero and at a maximum be one: $0 \le \mathbb{P}(A) \le 1$. 
+Obviously, the probability of an event should at a mininum be zero and at a maximum be one: 
+
+$$0 \le \mathbb{P}(A) \le 1$$. 
 
 ### Axioms of probability theory {#axioms_of_probability_theory}
 
@@ -260,8 +271,8 @@ This leads us to the concept of independence of events.
 Two events $A$ and $B$ are independent if the occurrence of one event does not affect the occurrence of the other event. In plain English, 
 the probability of event $A$ happening is the same whether event $B$ happens or not. Mathematically, we can write this as:
 
-$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$ or equivalently: 
-$\mathbb{P}(A | B) = \mathbb{P}(A)$.
+$$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$$ or equivalently: 
+$$\mathbb{P}(A | B) = \mathbb{P}(A).$$
 
 A simple **example in our context**: 
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.
@@ -269,7 +280,7 @@ The probability of researcher 45 finding an effect (event A) is the same whether
 Here, we used the very important concept of **conditional probability**. 
 The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as 
 
-$\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$. 
+$$\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.$$ 
 
 This [video](https://www.youtube.com/watch?v=ibINrxJLvlM&ab_channel=Dr.TreforBazett) explains it well.
 
@@ -364,7 +375,7 @@ plot(0:n, probs, type = "h", lwd = 2, col = "blue",
      ylab = "Probability",
      xlim = c(0, 100),
      main = "Binomial distribution for treatment effect 
-     # (yes/no) in 1000 researchers")
+     (yes/no) in 1000 researchers")
 abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 ```
 
@@ -395,9 +406,11 @@ $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0
 57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
 
 In the calculation above, we used the [complement rule](https://en.wikipedia.org/wiki/Complement_(set_theory)) to calculate the probability of 
-observing 137 or more positive results: $1 - \mathbb{P}(\text{observing 136 or less})$. In general, for an event $A$: 
+observing 137 or more positive results: $1 - \mathbb{P}(\text{observing 136 or less})$. 
 
-$\mathbb{P}(A^C) = 1 - \mathbb{P}(A)$, 
+In general, for an event $A$: 
+
+$$\mathbb{P}(A^C) = 1 - \mathbb{P}(A),$$ 
 
 where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
 $\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)$.
@@ -437,7 +450,9 @@ probabilities of the individual events.
 What if the events are not disjoint? For simplicity, let's consider only 2 researchers (doing 2 parallel experiments) and define event $A_1$ as "researcher 1 finds an effect" and 
 $A_2$ as "researcher 2 finds an effect".
 What is the probability that at least one of the researchers finds an effect?
-Our event space $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
+Our event space 
+$\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}.$
+
 $\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1$
 
 $A_1 \cup A_2 = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos)\}$
@@ -505,7 +520,9 @@ digraph {
 So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.
 
-We can also visualize the 4 disjoint elementary events ($\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$) in a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram). The probabilites of these
+We can also visualize the 4 disjoint elementary events 
+$$\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$$ 
+in a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram). The probabilites of these
 4 events in the event space $\Omega$ must add up to 1 since they are disjoint and one of them has to happen. There is no "room" left.
 
 ```{r echo=FALSE}
@@ -604,7 +621,7 @@ For every event, we just add the probabilities of the elementary outcomes that a
 $\mathbb{P}(X \in (3,8,9,14)) = \mathbb{P}(X = 3) + \mathbb{P}(X = 8) + \mathbb{P}(X = 9) + \mathbb{P}(X = 14)$.
 This principle is true for all discrete probability distributions. Rather simple and elegant:
 
-$\sum_{i} \mathbb{P}(X = x_i) = 1$,
+$$\sum_{i} \mathbb{P}(X = x_i) = 1,$$
 
 where $X$ ist the random variable (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
@@ -660,7 +677,7 @@ sum(sapply(x_values, P))
 
 **Expectation $\mathbb{E}(X)$ of a discrete random variable**: The expectation of a discrete random variable $X$ is defined as:
 
-$\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i)$,
+$$\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i),$$
 
 a weighted sum of possible values $x_i$ with their respsective probabilities $\mathbb{P}(X = x_i)$.
 
@@ -676,7 +693,7 @@ Maybe this [video](https://www.youtube.com/watch?v=KLs_7b7SKi4) helps too.
 The cool thing is that we can learn the true (but unknown) expectation of a distribution by the sample mean. The more samples we collect, the closer we will be.
 This is (roughly) the statement of the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers): 
 
-$\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow \infty.$
+$$\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow \infty.$$
 
 See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R) for an animated example of this law.
 
@@ -685,14 +702,18 @@ This is true for discrete and continuous distributions.
 
 The **variance of a discrete random variable** is defined as:
 
-$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \sum_i (\mathbb{E}(X) - x_i)^2 \mathbb{P}(X = x_i)$,
+$$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \sum_i (\mathbb{E}(X) - x_i)^2 \mathbb{P}(X = x_i),$$
 
 the expected squared deviation from the mean. It is a measure of how much the values of the random variable differ from the mean.
 
 **Remember**: The sample variance $s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$ is an estimator for the variance $\mathbb{V}ar(X)$ of a distribution.
 This is true for discrete and continuous distributions. 
 
-A more natural interpretation of variability is the **standard deviation**: $\sigma = \sqrt{\mathbb{V}ar(X)}$, since it's on the same scale as X.
+A more natural interpretation of variability is the **standard deviation**: 
+
+$$\sigma = \sqrt{\mathbb{V}ar(X)},$$
+
+since it's on the same scale as X.
 
 #### Continuous probability distributions are used when we cannot count the outcomes. {#continuous_probability_distributions}
 The most famous continuous probability distribution is the 
@@ -748,7 +769,7 @@ ggplot(df, aes(x = x, y = density)) +
 
 Here, like in any other "nice" continuous distribution, the area under the curve is 1: 
 
-$\int_{-\infty}^{\infty} f(x) dx = 1$.
+$$\int_{-\infty}^{\infty} f(x) dx = 1.$$
 
 The probability of a single point is zero ($\mathbb{P}(\{ x_i \}) = 0$).
 In any continuous distribution, we use the area under the curve to calculate probabilities. The probability of $X$ being between $a$ and $b$ is the area under the curve (blue shade) between $a$ and $b$: 
@@ -760,18 +781,22 @@ See [exercise 3](#exercise3_descriptive_stats) in the next chapter for a practic
 
 **Expectation $\mathbb{E}(X)$ of a continuous random variable**: The expectation of a continuous random variable $X$ is defined as:
 
-$\mu = \mathbb{E}(X) = \int x \cdot f(x) dx$,
+$$\mu = \mathbb{E}(X) = \int x \cdot f(x) dx,$$
 
 where $x$ are the possible values of $X$ and $f(x)$ is the probability density function of $X$.
 
 **Variance of a continuous random variable**: The variance of a continuous random variable $X$ is defined as:
 
-$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \int (\mathbb{E}(X) - x)^2 f(x) dx$.
+$$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \int (\mathbb{E}(X) - x)^2 f(x) dx.$$
 
-A more natural interpretation of variability is the **standard deviation**: $\sigma = \sqrt{\mathbb{V}ar(X)}$, since it's on the same scale as X.
+A more natural interpretation of variability is the **standard deviation**: 
 
-Example: Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, this means that approx. 
-68% of the students are between $(24-3=)21$ and $(24+3=)27$ years old.
+$$\sigma = \sqrt{\mathbb{V}ar(X)},$$
+
+since it's on the same scale as X.
+
+Example: Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, 
+this means that approx. 68% of the students are between $(24-3=)21$ and $(24+3=)27$ years old.
 
 
 
