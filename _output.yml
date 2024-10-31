@@ -13,7 +13,7 @@ bookdown::gitbook:
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  #template: template.tex
+  template: template.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
