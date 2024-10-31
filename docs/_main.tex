@@ -103,12 +103,13 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
-\usepackage{bookdown}
+%\usepackage{bookdown}
 %library(bookdown)
 \usepackage{pdfpages}  % Ensure this is added to load the pdfpages package
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{tikz}
+\newcommand{\pandocbounded}[1]{#1}
 \usetikzlibrary{arrows,shapes,backgrounds,calc,positioning,fit}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -613,7 +614,8 @@ Each one of them has \(0.04\) probability of happening. With R, we quickly calcu
 \NormalTok{probs }\OtherTok{\textless{}{-}} \FunctionTok{dbinom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{n, }\AttributeTok{size =}\NormalTok{ n, }\AttributeTok{prob =}\NormalTok{ p)}
 
 \CommentTok{\# Find the number of experiments with the highest probability}
-\NormalTok{max\_prob\_number }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(probs) }\CommentTok{\# index of the maximum probability starting with 1}
+\CommentTok{\# index of the maximum probability starting with 1}
+\NormalTok{max\_prob\_number }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(probs)}
 
 \CommentTok{\# Show the result}
 \NormalTok{max\_prob\_number }\SpecialCharTok{{-}} \DecValTok{1} \CommentTok{\# since we started with 0}
@@ -626,7 +628,8 @@ Each one of them has \(0.04\) probability of happening. With R, we quickly calcu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{dbinom}\NormalTok{(}\DecValTok{39}\SpecialCharTok{:}\DecValTok{41}\NormalTok{, }\AttributeTok{size =} \DecValTok{1000}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.04}\NormalTok{) }\CommentTok{\# 40 is the most likely number of positive results}
+\CommentTok{\# 40 is the most likely number of positive results}
+\FunctionTok{dbinom}\NormalTok{(}\DecValTok{39}\SpecialCharTok{:}\DecValTok{41}\NormalTok{, }\AttributeTok{size =} \DecValTok{1000}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.04}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -643,7 +646,8 @@ Now, let's visualize the binomial distribution for this case using base R syntax
      \AttributeTok{xlab =} \StringTok{"Number of positive results"}\NormalTok{,}
      \AttributeTok{ylab =} \StringTok{"Probability"}\NormalTok{,}
      \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{),}
-     \AttributeTok{main =} \StringTok{"Binomial distribution for treatment effect (yes/no) in 1000 researchers"}\NormalTok{)}
+     \AttributeTok{main =} \StringTok{"Binomial distribution for treatment effect }
+\StringTok{     \# (yes/no) in 1000 researchers"}\NormalTok{)}
 \FunctionTok{abline}\NormalTok{(}\AttributeTok{v =}\NormalTok{ max\_prob\_number }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
