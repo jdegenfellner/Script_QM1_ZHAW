@@ -4,7 +4,6 @@ language:
     chapter_name: "Chapter "
 rmd_files:
   - index.Rmd
-  
   #- 01-intro.Rmd
   - 02-probs.Rmd
   - 03-descriptive_stats.Rmd
@@ -17,3 +16,4 @@ output_dir: "docs"
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
+  template: template.tex

@@ -2,7 +2,9 @@
 title: "Quantitative Methods 1, ZHAW"
 author: "Jürgen Degenfellner"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
+output:
+  pdf_document: default
+  word_document: default
 documentclass: book
 bibliography:
 - book.bib
@@ -11,7 +13,8 @@ url: https://jdegenfellner.github.io/Script_QM1_ZHAW/
 description: |
   Script Quantitative Methods 1, ZHAW,
 link-citations: true
-github-repo: "jdegenfellner/Script_QM1_ZHAW"
+github-repo: jdegenfellner/Script_QM1_ZHAW
+site: bookdown::bookdown_site
 ---
 
 <!-- Cover image is difficult. template.tex in progress, hard to get it right -->
