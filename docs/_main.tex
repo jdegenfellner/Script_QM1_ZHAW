@@ -414,9 +414,11 @@ Again, this refers to being mutually exclusive within our 1000-researcher experi
 Both events cannot happen at the same time in this context, so we assign \(0\) to the event that both occur simultaneously: \(\mathbb{P}(A_1 \cap A_2)=0\). The \(\cap\)-Symbol refers to all elementary events
 that are in both \href{https://en.wikipedia.org/wiki/Set_(mathematics)}{sets}. In our case we have the sets
 
-\(A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\) and
+\[A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\]
 
-\(A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}\).
+\[and\]
+
+\[A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.\]
 
 An example of \textbf{non-disjoint} events (within our 1000-researcher experiment) would be the event \(A_1=\) ``only researcher 45 gets a positive result'' and
 the event \(A_3=\) ``only researcher 45 or only reasearcher 67 gets a positive result''.
@@ -424,9 +426,11 @@ Which researchers got a positive result in both events? The answer is: Researche
 add up the probabilities (of events \(A_1\) and \(A_3\)) here, since we would count the probability of researcher 45 twice.
 The sets look like this:
 
-\(A_1 = \{ (\dots ,R_{45} = pos, \dots) \}\) and
+\[A_1 = \{ (\dots ,R_{45} = pos, \dots) \}\]
 
-\(A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}\).
+\[and\]
+
+\[A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}.\]
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-3-1.pdf}}
 
@@ -434,7 +438,8 @@ How many elementary events are in the set of all possible outcomes of our 1000-r
 Hence, we have \(2 \cdot 2 \cdot 2 \cdots = 2^{1000}\) elementary events in our set of all possible outcomes.
 This is a very large number (\(\sim 10^{300}\)) - more than there are particles in the universe (\(\sim 10^{80}\)).
 
-We call the set of all elementary events \(\Omega\) (the Greek letter Omega): \(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\).
+We call the set of all elementary events \(\Omega\) (the Greek letter Omega):
+\[\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}.\]
 
 Note, that \textbf{we collect elementary events to form events} like we just did for event \(A_3\).
 
@@ -442,10 +447,15 @@ Note, that the \textbf{\(2^{1000}\) elementary events in the 1000 researcher exp
 certain researchers found something and others did not. The combinations are all different from each other. Hence,
 all the elementary events cannot happen at the same time within that one experiment. All of them are disjoint.
 
-The probability of the event ``\,'' (nothing occurred) should be zero (\(\mathbb{P}(\emptyset)=0\)), were ``\,'' denotes the event that no researcher gets a positive or negative result ( = \(\emptyset\), the so-called empty set). This is impossible due to the design of the experiment.
-We would therefore define this probability as zero and (if we can count the number of different outcomes) this event can indeed \emph{never} happen.
+The probability of the event ``\,'' (nothing occurred) should be zero (\(\mathbb{P}(\emptyset)=0\)), were ``\,'' denotes
+the event that no researcher gets a positive or negative result ( = \(\emptyset\), the so-called empty set).
+This is impossible due to the design of the experiment.
+We would therefore define this probability as zero and (if we can count the number of different outcomes)
+this event can indeed \emph{never} happen.
 
-Obviously, the probability of an event should at a mininum be zero and at a maximum be one: \(0 \le \mathbb{P}(A) \le 1\).
+Obviously, the probability of an event should at a mininum be zero and at a maximum be one:
+
+\[0 \le \mathbb{P}(A) \le 1\].
 
 \subsection{Axioms of probability theory}\label{axioms_of_probability_theory}
 
@@ -516,8 +526,8 @@ This leads us to the concept of independence of events.
 Two events \(A\) and \(B\) are independent if the occurrence of one event does not affect the occurrence of the other event. In plain English,
 the probability of event \(A\) happening is the same whether event \(B\) happens or not. Mathematically, we can write this as:
 
-\(\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)\) or equivalently:
-\(\mathbb{P}(A | B) = \mathbb{P}(A)\).
+\[\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)\] or equivalently:
+\[\mathbb{P}(A | B) = \mathbb{P}(A).\]
 
 A simple \textbf{example in our context}:
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.
@@ -525,7 +535,7 @@ The probability of researcher 45 finding an effect (event A) is the same whether
 Here, we used the very important concept of \textbf{conditional probability}.
 The probability of event \(A\) \emph{given} that event \(B\) has occurred (not necessarily chronologically different!) is denoted as
 
-\(\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}\).
+\[\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.\]
 
 This \href{https://www.youtube.com/watch?v=ibINrxJLvlM&ab_channel=Dr.TreforBazett}{video} explains it well.
 
@@ -647,7 +657,7 @@ Now, let's visualize the binomial distribution for this case using base R syntax
      \AttributeTok{ylab =} \StringTok{"Probability"}\NormalTok{,}
      \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{),}
      \AttributeTok{main =} \StringTok{"Binomial distribution for treatment effect }
-\StringTok{     \# (yes/no) in 1000 researchers"}\NormalTok{)}
+\StringTok{     (yes/no) in 1000 researchers"}\NormalTok{)}
 \FunctionTok{abline}\NormalTok{(}\AttributeTok{v =}\NormalTok{ max\_prob\_number }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -720,9 +730,11 @@ We can calculate the probability of observing 137 or more positive results using
 57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
 
 In the calculation above, we used the \href{https://en.wikipedia.org/wiki/Complement_(set_theory)}{complement rule} to calculate the probability of
-observing 137 or more positive results: \(1 - \mathbb{P}(\text{observing 136 or less})\). In general, for an event \(A\):
+observing 137 or more positive results: \(1 - \mathbb{P}(\text{observing 136 or less})\).
 
-\(\mathbb{P}(A^C) = 1 - \mathbb{P}(A)\),
+In general, for an event \(A\):
+
+\[\mathbb{P}(A^C) = 1 - \mathbb{P}(A),\]
 
 where \(A^C\) comprises all elementary events that are not in \(A\). In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
 \(\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)\).
@@ -768,7 +780,9 @@ probabilities of the individual events.
 What if the events are not disjoint? For simplicity, let's consider only 2 researchers (doing 2 parallel experiments) and define event \(A_1\) as ``researcher 1 finds an effect'' and
 \(A_2\) as ``researcher 2 finds an effect''.
 What is the probability that at least one of the researchers finds an effect?
-Our event space \(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\).
+Our event space
+\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}.\)
+
 \(\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1\)
 
 \(A_1 \cup A_2 = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos)\}\)
@@ -804,7 +818,9 @@ Here is another helpful depiction of the situation:
 So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.
 
-We can also visualize the 4 disjoint elementary events (\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\)) in a \href{https://en.wikipedia.org/wiki/Venn_diagram}{Venn diagram}. The probabilites of these
+We can also visualize the 4 disjoint elementary events
+\[\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\]
+in a \href{https://en.wikipedia.org/wiki/Venn_diagram}{Venn diagram}. The probabilites of these
 4 events in the event space \(\Omega\) must add up to 1 since they are disjoint and one of them has to happen. There is no ``room'' left.
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-12-1.pdf}}
@@ -837,7 +853,8 @@ We can always ask ourselves: Where is this entity (proportion, effect, etc.) wit
 
 \subsection{Discrete vs.~continuous probability distributions}\label{discrete_vs_continuous_probability_distributions}
 
-As one of the most prominent examples of a discrete distribution, we have already seen the \href{https://en.wikipedia.org/wiki/Binomial_distribution}{binomial distribution} in our 1000-researcher-experiment.
+As one of the most prominent examples of a discrete distribution, we have already seen
+the \href{https://en.wikipedia.org/wiki/Binomial_distribution}{binomial distribution} in our 1000-researcher-experiment.
 A special case of it is the \href{https://en.wikipedia.org/wiki/Bernoulli_distribution}{Bernoulli distribution},
 where you only throw the coin once or let one researcher conduct the experiment.
 
@@ -900,7 +917,7 @@ For every event, we just add the probabilities of the elementary outcomes that a
 \(\mathbb{P}(X \in (3,8,9,14)) = \mathbb{P}(X = 3) + \mathbb{P}(X = 8) + \mathbb{P}(X = 9) + \mathbb{P}(X = 14)\).
 This principle is true for all discrete probability distributions. Rather simple and elegant:
 
-\(\sum_{i} \mathbb{P}(X = x_i) = 1\),
+\[\sum_{i} \mathbb{P}(X = x_i) = 1,\]
 
 where \(X\) ist the random variable (which takes values \(x_i\) when the random experiment is conducted) and \(x_i\) are the possible outcomes of \(X\).
 
@@ -973,7 +990,7 @@ probability 1 (see \hyperref[exercise10]{Exercise 10}).
 
 \textbf{Expectation \(\mathbb{E}(X)\) of a discrete random variable}: The expectation of a discrete random variable \(X\) is defined as:
 
-\(\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i)\),
+\[\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i),\]
 
 a weighted sum of possible values \(x_i\) with their respsective probabilities \(\mathbb{P}(X = x_i)\).
 
@@ -989,7 +1006,7 @@ Maybe this \href{https://www.youtube.com/watch?v=KLs_7b7SKi4}{video} helps too.
 The cool thing is that we can learn the true (but unknown) expectation of a distribution by the sample mean. The more samples we collect, the closer we will be.
 This is (roughly) the statement of the \href{https://en.wikipedia.org/wiki/Law_of_large_numbers}{law of large numbers}:
 
-\(\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow \infty.\)
+\[\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow \infty.\]
 
 See \href{https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R}{here} for an animated example of this law.
 
@@ -998,18 +1015,25 @@ This is true for discrete and continuous distributions.
 
 The \textbf{variance of a discrete random variable} is defined as:
 
-\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \sum_i (\mathbb{E}(X) - x_i)^2 \mathbb{P}(X = x_i)\),
+\[\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \sum_i (\mathbb{E}(X) - x_i)^2 \mathbb{P}(X = x_i),\]
 
 the expected squared deviation from the mean. It is a measure of how much the values of the random variable differ from the mean.
 
 \textbf{Remember}: The sample variance \(s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2\) is an estimator for the variance \(\mathbb{V}ar(X)\) of a distribution.
 This is true for discrete and continuous distributions.
 
-A more natural interpretation of variability is the \textbf{standard deviation}: \(\sigma = \sqrt{\mathbb{V}ar(X)}\), since it's on the same scale as X.
+A more natural interpretation of variability is the \textbf{standard deviation}:
+
+\[\sigma = \sqrt{\mathbb{V}ar(X)},\]
+
+since it's on the same scale as X.
 
 \subsubsection{Continuous probability distributions are used when we cannot count the outcomes.}\label{continuous_probability_distributions}
 
-The most famous continuous probability distribution is the \href{https://en.wikipedia.org/wiki/Normal_distribution}{normal distribution}.
+The most famous continuous probability distribution is the
+\href{https://en.wikipedia.org/wiki/Normal_distribution}{normal distribution}.
+This \href{https://www.youtube.com/watch?v=k5sbE1_MDwU&ab_channel=VeryNormal}{video}
+about probability distributions in general might be helpful.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1073,7 +1097,7 @@ The most famous continuous probability distribution is the \href{https://en.wiki
 
 Here, like in any other ``nice'' continuous distribution, the area under the curve is 1:
 
-\(\int_{-\infty}^{\infty} f(x) dx = 1\).
+\[\int_{-\infty}^{\infty} f(x) dx = 1.\]
 
 The probability of a single point is zero (\(\mathbb{P}(\{ x_i \}) = 0\)).
 In any continuous distribution, we use the area under the curve to calculate probabilities. The probability of \(X\) being between \(a\) and \(b\) is the area under the curve (blue shade) between \(a\) and \(b\):
@@ -1085,18 +1109,22 @@ See \hyperref[exercise3_descriptive_stats]{exercise 3} in the next chapter for a
 
 \textbf{Expectation \(\mathbb{E}(X)\) of a continuous random variable}: The expectation of a continuous random variable \(X\) is defined as:
 
-\(\mu = \mathbb{E}(X) = \int x \cdot f(x) dx\),
+\[\mu = \mathbb{E}(X) = \int x \cdot f(x) dx,\]
 
 where \(x\) are the possible values of \(X\) and \(f(x)\) is the probability density function of \(X\).
 
 \textbf{Variance of a continuous random variable}: The variance of a continuous random variable \(X\) is defined as:
 
-\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \int (\mathbb{E}(X) - x)^2 f(x) dx\).
+\[\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \int (\mathbb{E}(X) - x)^2 f(x) dx.\]
 
-A more natural interpretation of variability is the \textbf{standard deviation}: \(\sigma = \sqrt{\mathbb{V}ar(X)}\), since it's on the same scale as X.
+A more natural interpretation of variability is the \textbf{standard deviation}:
 
-Example: Normally distributed Ages of ZHAW students: \(\mu = 24\), \(\sigma = 3\). For the normal distribution, this means that approx.
-68\% of the students are between \((24-3=)21\) and \((24+3=)27\) years old.
+\[\sigma = \sqrt{\mathbb{V}ar(X)},\]
+
+since it's on the same scale as X.
+
+Example: Normally distributed Ages of ZHAW students: \(\mu = 24\), \(\sigma = 3\). For the normal distribution,
+this means that approx. 68\% of the students are between \((24-3=)21\) and \((24+3=)27\) years old.
 
 \subsection{Examples of prominent probability distributions used in health sciences}\label{prominent_probability_distributions_in_health_sciences}
 
@@ -1424,8 +1452,9 @@ where we would possible find a falling relationship.
 
 \section{The histogram}\label{the-histogram}
 
-One way to visualize the distribution of a continuous variable is the histogram.
-I recommend plotting the histogram with a boxplot below:
+One way to visualize the distribution of a continuous variable is the \href{https://en.wikipedia.org/wiki/Histogram}{histogram}.
+This \href{https://www.youtube.com/watch?v=gSEYtAjuZ-Y&ab_channel=KhanAcademy}{video} might be helpful to cover the basics of a histrogram.
+I recommend plotting the histogram with a \href{https://en.wikipedia.org/wiki/Box_plot}{boxplot} below:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1433,17 +1462,50 @@ I recommend plotting the histogram with a boxplot below:
 \FunctionTok{p\_load}\NormalTok{(tidyverse)}
 
 \CommentTok{\# Set working directory to source file location}
-\CommentTok{\#setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) \# only available in RStudio}
+\CommentTok{\# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))}
+\CommentTok{\# only available in RStudio}
 
-\CommentTok{\# Generiere eine sample aus einer Zufallszahl (wir wissen hier, wie diese}
-\CommentTok{\# verteilt ist):}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{4433}\NormalTok{) }\CommentTok{\# to get the same plot every time}
+
+\CommentTok{\# Generate normally distributed sample}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\AttributeTok{mean =} \FloatTok{23.4}\NormalTok{, }\AttributeTok{sd =} \FloatTok{5.6}\NormalTok{)}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{values =}\NormalTok{ x)}
 
 \NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color=}\StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)),}
+                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values),}
+               \AttributeTok{width =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{),}
+             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{),}
+             \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Histogram with density plot and boxplot below"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+\NormalTok{p2}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-17-1.pdf}}
+
+Some researchers would discard the values below 10 and above 40 as outliers, but we know here
+that the data points are perfectly legitimate.
+One important thing we should be aware of in connection with small sample sizes ist
+variability. Let's create not \(10000\) samples of a normally distributed variable, but only \(25\) samples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Generate normally distributed sample}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1245}\NormalTok{) }\CommentTok{\# to get the same plot every time}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{25}\NormalTok{, }\AttributeTok{mean =} \FloatTok{23.4}\NormalTok{, }\AttributeTok{sd =} \FloatTok{5.6}\NormalTok{)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{values =}\NormalTok{ x)}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }
+                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color=}\StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{, }
+               \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{), }
              \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{), }
              \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\SpecialCharTok{+}
@@ -1453,7 +1515,99 @@ I recommend plotting the histogram with a boxplot below:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-17-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-18-1.pdf}}
+We \emph{know} (in this case) that these values come from a normal distribution with a mean
+of \(23.4\) and a standard deviation of \(5.6\). Let's estimate these parameters from the sample
+and use the often but not recommended shapiro-wilk test for normality:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estimate mean and standard deviation}
+\FunctionTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.6017
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.622042
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.95059, p-value = 0.2585
+\end{verbatim}
+
+Firstly, the histogram looks rather differently when using a different seed. Secondly, we would probability
+not be able to tell if the data stems from a normal distribution. Thirdly, the sample mean and standard deviation
+are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
+the shapiro test would not reject the null hypothesis of normality in this case.
+
+Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1245}\NormalTok{) }\CommentTok{\# to get the same plot every time}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rt}\NormalTok{(}\DecValTok{25}\NormalTok{, }\AttributeTok{df =} \DecValTok{3}\NormalTok{) }\CommentTok{\# random numbers from t{-}distribution}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{values =}\NormalTok{ x)}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }
+                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color=}\StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{, }
+               \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{), }
+             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{), }
+             \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Histogram with density plot and boxplot below"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+\NormalTok{p2}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-20-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.95827, p-value = 0.3811
+\end{verbatim}
+
+Some researchers would argue, that the distribution is normal (since the p-value is rather large),
+but we know it is not. We will be cautious with such ugly rule of thumbs.
+
+\textbf{Example}:
+
+We will try to catch a histrogram in the \emph{wild} (=research paper): We find one
+\href{https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf}{here}.
+\href{https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg}{Figure 1} shows a histogram often
+the foot posture index (FPI-6) scores from the participants (3217 healthy children).
 
 \section{Exercises}\label{exercises-1}
 

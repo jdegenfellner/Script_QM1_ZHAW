@@ -155,6 +155,14 @@ shapiro.test(x)
 Some researchers would argue, that the distribution is normal (since the p-value is rather large), 
 but we know it is not. We will be cautious with such ugly rule of thumbs.
 
+**Example**:
+
+We will try to catch a histrogram in the *wild* (=research paper): We find one 
+[here](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf). 
+[Figure 1](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg) shows a histogram often
+the foot posture index (FPI-6) scores from the participants (3217 healthy children).
+
+
 ## Exercises
 
 ### Exercise 1 - Recreate table with fake data
