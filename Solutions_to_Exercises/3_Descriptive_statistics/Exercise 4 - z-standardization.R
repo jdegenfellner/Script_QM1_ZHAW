@@ -1,14 +1,3 @@
----
-title: "Solution to Exercise 4 - Z-scores"
-author: "Juergen Degenfellner"
-date: "2024-11-01"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-# Load necessary libraries
 library(ggplot2)
 
 # Function to calculate z-scores
@@ -38,7 +27,7 @@ z_score_plots <- lapply(parameters, function(param) {
   
   # Plot histogram of z-scores
   ggplot(data.frame(z_scores), aes(x = z_scores)) +
-    geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "skyblue") +
+    geom_histogram(aes(y = after_stat(density)), bins = 30, color = "black", fill = "skyblue") +
     stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "red", size = 1) +
     labs(title = paste("Z-scores with original N(", param$mu, ", ", param$sigma^2, ")", sep = ""),
          x = "Z-score", y = "Density") +
@@ -48,4 +37,3 @@ z_score_plots <- lapply(parameters, function(param) {
 # Display plots
 z_score_plots
 
-```
