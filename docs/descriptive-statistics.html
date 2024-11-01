@@ -219,13 +219,17 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example-in-the-wild"><i class="fa fa-check"></i><b>3.3.1</b> Example in the wild</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example-in-the-wild-1"><i class="fa fa-check"></i><b>3.4.1</b> Example in the wild</a></li>
+</ul></li>
 <li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.5</b> Exercises</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.5.1</b> Exercise 1 - Recreate table with fake data</a></li>
 <li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> Exercsie 2 - Outliers and estimates</a></li>
 <li class="chapter" data-level="3.5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.5.3</b> Exercise 3 - Recreating data in Table 2</a></li>
 <li class="chapter" data-level="3.5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.5.4</b> Exercise 4 - Z-scores</a></li>
+<li class="chapter" data-level="3.5.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise5_descriptive_stats"><i class="fa fa-check"></i><b>3.5.5</b> Exercise 5 - Correlation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.6</b> Solutions</a></li>
 </ul></li>
@@ -464,7 +468,9 @@ seem to deviate from the normal distribution.</p>
 <h2><span class="header-section-number">3.4</span> Correlation<a href="descriptive-statistics.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Correlation">correlation</a> between two variables is a measure
 of the strength and direction of the <strong>linear</strong> relationship between them. It does <strong>not</strong> (directly)
-measure of other kinds of relationships (for instance monotonic or polynomial). The correlation coefficient can take values between -1 and 1.</p>
+measure of other kinds of relationships (for instance monotonic or polynomial).
+See also <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s quartet</a>.
+The correlation coefficient can take values between -1 and 1.</p>
 <ul>
 <li><p>A value of 1 indicates a perfect positive linear relationship between the variables.</p></li>
 <li><p>A value of -1 indicates a perfect negative linear relationship between the variables.</p></li>
@@ -485,8 +491,26 @@ It is important to note that
 For instance,
 <a href="https://www.sciencedirect.com/science/article/pii/S2590291120300711">chocolate consumption is positively correlated with the number of Nobel laureates</a> in a country.
 This does - unfortunately - not mean that eating chocolate makes you smarter.</p>
-<p>One thing many of us thing when they see a high correlation (near 1) is that if we know the value of one variable,
-we can predict the value of the other variable. This is not necessarily true.</p>
+<p>One thing many of us think when they see a high correlation (near 1) is that if we know the value of one variable,
+we can predict the value of the other variable. This is not necessarily true.
+This <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Interpretation">section</a> explains why.
+Study the visualization <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Pearson_correlation_and_prediction_intervals.svg">here</a>.
+It depicts the reduction of the prediction interval for Y given X as the correlation
+increases (assuming that the variables are jointly normally distributed). <strong>How much smaller is the interval where my next observational
+will fall if I know the value of X?</strong> As you can see, this curve is relatively flat in the beginning, meaning, on an individual level,
+the correlation does not tell us much about the value of Y given X.
+Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5
+(which is considered high in many areas), the prediction interval for Y only 13% smaller.</p>
+<div id="example-in-the-wild-1" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Example in the wild<a href="descriptive-statistics.html#example-in-the-wild-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s again visit the previous <a href="https://bmjopen.bmj.com/content/9/4/e023341">paper</a>.
+In the results, correlations are presented in a dichotomous way with regards to p-values,
+which should be <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">avoided</a>.
+We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be “significant”,
+especially, if one decides to use an arbitrary threshold for the p-values like <span class="math inline">\(0.05\)</span>. There is not much information
+in this fact. I would argue that all p-values for such large sample sizes and larger correlations do not carry much information.
+See also Exercise 5.</p>
+</div>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -537,6 +561,24 @@ where we would expect a new person drawn from the same population.</li>
 <li>Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.</li>
 <li>Try different parameter values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> and plot the histogram of the z-scores.</li>
 <li>Optional: Try to prove this mathematically.</li>
+</ul>
+</div>
+<div id="exercise5_descriptive_stats" class="section level3 hasAnchor" number="3.5.5">
+<h3><span class="header-section-number">3.5.5</span> Exercise 5 - Correlation<a href="descriptive-statistics.html#exercise5_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The followoing R-code creates correlated samples with a (true) correlation <span class="math inline">\(\rho\)</span>:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb43-6"><a href="descriptive-statistics.html#cb43-6" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<pre><code>## [1] 0.541743</code></pre>
+<ul>
+<li>Try different values for <span class="math inline">\(\rho\)</span> and <span class="math inline">\(n\)</span> and plot the scatterplot of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
+<li>Execute the code above 1000 times and save the correlation coefficient in a vector.</li>
+<li>Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
+What do you observe?</li>
+<li>Plot the histogram of the simulated correlation coefficients.</li>
 </ul>
 </div>
 </div>

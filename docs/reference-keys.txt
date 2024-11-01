@@ -40,9 +40,11 @@ univarate-vs.-bivariate-statisics
 the-histogram
 example-in-the-wild
 correlation
+example-in-the-wild-1
 exercises-1
 exercise-1---recreate-table-with-fake-data
 exercsie-2---outliers-and-estimates
 exercise3_descriptive_stats
 exercise4_descriptive_stats
+exercise5_descriptive_stats
 solutions-1
