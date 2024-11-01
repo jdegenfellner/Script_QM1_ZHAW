@@ -261,7 +261,7 @@ which should be [avoided](https://www.tandfonline.com/doi/full/10.1080/00031305.
 We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be "significant",
 especially, if one decides to use an arbitrary threshold for the p-values like $0.05$. There is not much information
 in this fact. I would argue that all p-values for such large sample sizes and larger correlations do not carry much information.
-See also Exercise 5.
+See also [Exercise 5](#exercise5_descriptive_stats).
 
 ## Exercises
 
@@ -308,7 +308,7 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 - Optional: Try to prove this mathematically.
 
 ### Exercise 5 - Correlation {#exercise5_descriptive_stats}
-The followoing R-code creates correlated samples with a (true) correlation $\rho$:
+The following R-code creates correlated samples with a (true) correlation $\rho$:
 ```{r}
 set.seed(1234)
 n <- 1000
