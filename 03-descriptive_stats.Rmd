@@ -62,15 +62,12 @@ where we would possible find a falling relationship.
 
 ## The histogram
 One way to visualize the distribution of a continuous variable is the [histogram](https://en.wikipedia.org/wiki/Histogram). 
-This [video](https://www.youtube.com/watch?v=gSEYtAjuZ-Y&ab_channel=KhanAcademy) might be helpful to cover the basics of a histrogram.
-I recommend plotting the histogram with a [boxplot](https://en.wikipedia.org/wiki/Box_plot) below:
+This [video](https://www.youtube.com/watch?v=gSEYtAjuZ-Y&ab_channel=KhanAcademy) might be helpful to cover the basics.
+I recommend plotting the histogram with a [boxplot](https://en.wikipedia.org/wiki/Box_plot) below; this helps
+to visualize the raw data points as well.
 ```{r}
 library(pacman)
 p_load(tidyverse)
-
-# Set working directory to source file location
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-# only available in RStudio
 
 set.seed(4433) # to get the same plot every time
 
@@ -103,32 +100,35 @@ x <- rnorm(25, mean = 23.4, sd = 5.6)
 df <- data.frame(values = x)
 
 p2 <- ggplot(df, aes(x = values)) +
-  geom_histogram(aes(y = after_stat(density)), 
-                 bins = 30, alpha = 0.7, color="darkgrey") +
-  geom_density(aes(y = after_stat(density)), color = "blue", linewidth=1) +
-  geom_boxplot(aes(y = -0.01, x = values), width = 0.02, 
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, alpha = 0.7, color = "darkgrey") +
+  geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
+  geom_boxplot(aes(y = -0.01, x = values), width = 0.02,
                position = position_nudge(y = -0.00)) +
-  geom_point(aes(y = -0.01), 
-             position = position_jitter(width = 0.002, height = 0.01), 
+  geom_point(aes(y = -0.01),
+             position = position_jitter(width = 0.002, height = 0.01),
              size = 1, alpha = 0.05) +
   ggtitle("Histogram with density plot and boxplot below") +
   theme(plot.title = element_text(hjust = 0.5))
 p2
 ```
+
 We *know* (in this case) that these values come from a normal distribution with a mean 
-of $23.4$ and a standard deviation of $5.6$. Let's estimate these parameters from the sample
-and use the often but not recommended shapiro-wilk test for normality:
+of $23.4$ and a standard deviation of $5.6$. Let's *estimate* the parameters ($\mu$, $\sigma$) from the sample
+and use the often but not recommended Shapiro-wilk test for normality:
 ```{r}
 # Estimate mean and standard deviation
-mean(x)
-sd(x)
+mean(x) # or
+1 / length(x) * sum(x)
+sd(x) # or
+sqrt(1 / (length(x) - 1) * sum((x - mean(x))^2))
 shapiro.test(x)
 ```
 
-Firstly, the histogram looks rather differently when using a different seed. Secondly, we would probability
+Firstly, the histogram looks rather differently when using a different [seed](https://r-coder.com/set-seed-r/). Secondly, we would probability
 not be able to tell if the data stems from a normal distribution. Thirdly, the sample mean and standard deviation
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
-the shapiro test would not reject the null hypothesis of normality in this case.
+the Shapiro test would not reject the null hypothesis of normality in this case.
 
 Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:
 ```{r}
@@ -137,13 +137,13 @@ x <- rt(25, df = 3) # random numbers from t-distribution
 df <- data.frame(values = x)
 
 p2 <- ggplot(df, aes(x = values)) +
-  geom_histogram(aes(y = after_stat(density)), 
-                 bins = 30, alpha = 0.7, color="darkgrey") +
-  geom_density(aes(y = after_stat(density)), color = "blue", linewidth=1) +
-  geom_boxplot(aes(y = -0.01, x = values), width = 0.02, 
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, alpha = 0.7, color = "darkgrey") +
+  geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
+  geom_boxplot(aes(y = -0.01, x = values), width = 0.02,
                position = position_nudge(y = -0.00)) +
-  geom_point(aes(y = -0.01), 
-             position = position_jitter(width = 0.002, height = 0.01), 
+  geom_point(aes(y = -0.01),
+             position = position_jitter(width = 0.002, height = 0.01),
              size = 1, alpha = 0.05) +
   ggtitle("Histogram with density plot and boxplot below") +
   theme(plot.title = element_text(hjust = 0.5))
@@ -157,10 +157,11 @@ but we know it is not. We will be cautious with such ugly rule of thumbs.
 
 **Example**:
 
-We will try to catch a histrogram in the *wild* (=research paper): We find one 
+We will try to catch a histogram in the *wild* (= in a research paper): We find one 
 [here](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf). 
 [Figure 1](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg) shows a histogram often
-the foot posture index (FPI-6) scores from the participants (3217 healthy children).
+the foot posture index (FPI-6) scores from the participants (3217 healthy children aged 3 to 15).
+"The FPI score may range from −12 (highly supinated) to +12 (highly pronated)".
 
 
 ## Exercises
