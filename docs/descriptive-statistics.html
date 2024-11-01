@@ -221,6 +221,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.4.1</b> Exercise 1 - Recreate table with fake data</a></li>
 <li class="chapter" data-level="3.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.4.2</b> Exercsie 2 - Outliers and estimates</a></li>
 <li class="chapter" data-level="3.4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.4.3</b> Exercise 3 - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.4.4</b> Exercise 4 - Z-scores</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.5</b> Solutions</a></li>
 </ul></li>
@@ -403,7 +404,32 @@ but we know it is not. We will be cautious with such ugly rule of thumbs.</p>
 <p>We will try to catch a histogram in the <em>wild</em> (= in a research paper): We find one
 <a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf">here</a>.
 <a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg">Figure 1</a> shows a histogram often
-the foot posture index (FPI-6) scores from the participants (3217 healthy children).</p>
+the foot posture index (FPI-6) scores from the participants (3217 healthy children aged 3 to 15).
+“The FPI score may range from −12 (highly supinated) to +12 (highly pronated)”.
+There are a few things to note here:</p>
+<ul>
+<li>Acccording to the Methods-section:
+“Testing for normality using a Kolmogorov-Smirnov test,
+found non-normal distribution of all data…”.
+Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
+histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
+for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
+normally distributed.</li>
+<li>Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded
+between -12 and 12. But that should not be a problem with so many levels of an ordered categorical variable.
+It should be a sufficient approximation.</li>
+<li>“The FPI was analysed as continuous data, rather than as z-score data”.
+<a href="https://www.youtube.com/watch?v=5S-Zfa-vOXs&amp;ab_channel=KhanAcademy">z-scores are standardized scores</a>:
+<span class="math display">\[Z = \frac{X - \mu_X}{\sigma_X}\]</span>
+Doing this for the FPI scores would give (FPI right, see Table 1):
+<span class="math display">\[z_i = \frac{FPI_i - \overline{FPI}}{SD(FPI)} = \frac{FPI_i - 4.20}{3.00}\]</span>
+<span class="math inline">\(\overline{FPI}\)</span> ist the arithmetic mean of the FPI scores, <span class="math inline">\(SD(FPI)\)</span> the standard deviation of the FPI scores.
+<span class="math inline">\(\mu_X\)</span> is the expectation of X and <span class="math inline">\(\sigma_X\)</span> the standard deviation of X.
+So we measure not in FPI units anymore, but in <strong>standard deviations from the mean</strong> which makes
+it easier to compare different variables with each other. A nice property is: If X is normally
+distributed (<span class="math inline">\(X \sim N(\mu, \sigma\)</span>)), then the z-scores are standard normally distributed (<span class="math inline">\(Z \sim N(0,1\)</span>)).
+See <a href="descriptive-statistics.html#exercise4_descriptive_stats">Exercise 4</a>.</li>
+</ul>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -446,6 +472,14 @@ where we would expect a new person drawn from the same population.</li>
 <li>What is the probability, that we would see no man in a sample of 10 persons in the <em>CFT</em> group?</li>
 <li>Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%.
 (We could solve this with simulation.)</li>
+</ul>
+</div>
+<div id="exercise4_descriptive_stats" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Exercise 4 - Z-scores<a href="descriptive-statistics.html#exercise4_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.</li>
+<li>Try different paramter values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> and plot the histogram of the z-scores.</li>
+<li>Optional: Try to prove this mathematically.</li>
 </ul>
 </div>
 </div>

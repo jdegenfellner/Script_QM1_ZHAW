@@ -42,4 +42,5 @@ exercises-1
 exercise-1---recreate-table-with-fake-data
 exercsie-2---outliers-and-estimates
 exercise3_descriptive_stats
+exercise4_descriptive_stats
 solutions-1

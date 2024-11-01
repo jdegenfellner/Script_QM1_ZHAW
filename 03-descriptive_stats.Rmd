@@ -162,6 +162,31 @@ We will try to catch a histogram in the *wild* (= in a research paper): We find 
 [Figure 1](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg) shows a histogram often
 the foot posture index (FPI-6) scores from the participants (3217 healthy children aged 3 to 15).
 "The FPI score may range from −12 (highly supinated) to +12 (highly pronated)".
+There are a few things to note here:
+
+- Acccording to the Methods-section: 
+"Testing for normality using a Kolmogorov-Smirnov test, 
+found non-normal distribution of all data...".
+Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
+histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
+for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
+normally distributed.
+- Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded 
+between -12 and 12. But that should not be a problem with so many levels of an ordered categorical variable. 
+It should be a sufficient approximation. 
+- "The FPI was analysed as continuous data, rather than as z-score data". 
+[z-scores are standardized scores](https://www.youtube.com/watch?v=5S-Zfa-vOXs&ab_channel=KhanAcademy):
+$$Z = \frac{X - \mu_X}{\sigma_X}$$ 
+Doing this for the FPI scores would give (FPI right, see Table 1):
+$$z_i = \frac{FPI_i - \overline{FPI}}{SD(FPI)} = \frac{FPI_i - 4.20}{3.00}$$
+$\overline{FPI}$ ist the arithmetic mean of the FPI scores, $SD(FPI)$ the standard deviation of the FPI scores.
+$\mu_X$ is the expectation of X and $\sigma_X$ the standard deviation of X. 
+So we measure not in FPI units anymore, but in **standard deviations from the mean** which makes 
+it easier to compare different variables with each other. A nice property is: If X is normally 
+distributed ($X \sim N(\mu, \sigma$)), then the z-scores are standard normally distributed ($Z \sim N(0,1$)). 
+See [Exercise 4](#exercise4_descriptive_stats).
+
+
 
 
 ## Exercises
@@ -201,6 +226,12 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 - What is the probability, that we would see no man in a sample of 10 persons in the *CFT* group?
 - Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%. 
   (We could solve this with simulation.) 
+
+### Exercise 4 - Z-scores {#exercise4_descriptive_stats}
+
+- Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.
+- Try different paramter values for $\mu$ and $\sigma$ and plot the histogram of the z-scores.
+- Optional: Try to prove this mathematically.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics).
