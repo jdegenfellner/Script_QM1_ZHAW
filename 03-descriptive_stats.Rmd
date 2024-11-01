@@ -167,7 +167,7 @@ There are a few things to note here:
 - Acccording to the Methods-section: 
 "Testing for normality using a Kolmogorov-Smirnov test, 
 found non-normal distribution of all data...".
-Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
+Especially the BMI could be asymmetrically distributed, or also age. Unfortunately, we do not have
 histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
 for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
 normally distributed.
@@ -217,6 +217,27 @@ The [correlation](https://en.wikipedia.org/wiki/Correlation) between two variabl
 of the strength and direction of the **linear** relationship between them. It does **not** (directly)
 a measure of other kinds of relationships (for instance monotonic or polynomial). 
 See also [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
+
+Correlation is often denoted by the Greek letter 
+
+$$\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$$
+for the population parameter (the true but unknown) 
+
+where:
+
+- \( \text{Cov}(X, Y) \) is the covariance between variables \( X \) and \( Y \),
+
+- \( \sigma_X \) and \( \sigma_Y \) are the population standard deviations of \( X \) and \( Y \), respectively.
+
+
+and 
+
+$$r = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum (X_i - \bar{X})^2 \sum (Y_i - \bar{Y})^2}}$$ 
+
+for the sample estimate.
+
+**Remember: We use $r$ to estimate $\rho$ using the sample.**
+
 The correlation coefficient can take values between -1 and 1.
 
 - A value of 1 indicates a perfect positive linear relationship between the variables.
@@ -254,6 +275,49 @@ the correlation does not tell us much about the value of Y given X.
 Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5 
 (which is considered high in many areas), the prediction interval for Y is only 13% smaller.
 
+One often reads that the two variables used for calculation of a 
+[Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) should be normally distributed.
+This is not necessary, at least not for descriptive purposes. The correlation coefficient is a measure of the linear relationship
+and we can think of an example with skewed data where the correlation coefficient is still meaningful:
+```{r}
+# Load required libraries
+library(ggplot2)
+library(ggExtra)
+
+# Set seed for reproducibility
+set.seed(1234)
+
+# Parameters
+n <- 200  # Sample size
+beta <- 0.7  # Desired beta
+
+# Generate left-skewed variable x (negative exponential distribution)
+x <- -rexp(n, rate = 1)
+
+# Generate correlated left-skewed variable y
+error <- rnorm(n, mean = 0, sd = 2)
+y <- beta * x + error
+
+# Create a data frame
+data <- data.frame(x = x, y = y)
+
+# Create scatterplot with marginal histograms and trendline
+p <- ggplot(data, aes(x = x, y = y)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  labs(title = "Scatterplot with Left-Skewed x and y and Trendline",
+       x = "Left-Skewed x", y = "y") +
+  theme_minimal()
+
+# Add marginal histograms using ggExtra
+ggExtra::ggMarginal(p, type = "histogram", fill = "lightblue", color = "black")
+```
+
+*If* X and Y are bivariate normally distributed, then one can use the variable 
+$t = r \sqrt{\frac{n-2}{1-r^2}}$ as test statistic for the null hypothesis (next chapter) $H_0: \rho = 0$.
+Note: It is not sufficient for X and Y to be individually normally distributed in order to 
+be [jointly normally distributed](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Bivariate_case).
+
 ### Example in the wild
 Let's again visit the previous [paper](https://bmjopen.bmj.com/content/9/4/e023341).
 In the results, correlations are presented in a dichotomous way with regards to p-values, 
@@ -262,6 +326,91 @@ We will expand on this in the next chapter. For large sample sizes, even small (
 especially, if one decides to use an arbitrary threshold for the p-values like $0.05$. There is not much information
 in this fact. I would argue that all p-values for such large sample sizes and larger correlations do not carry much information.
 See also [Exercise 5](#exercise5_descriptive_stats).
+
+
+**That was all nice, what could go wrong?**
+
+(The sample) Correlation (coefficient) is based (see the formula above) on the artihmetic mean $\bar{X}$ 
+(capital X since we are talking about the 
+[random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&ab_channel=VeryNormal) which is realised when 
+the $X_i$ have materialized into the $x_i$) and sample standard deviation $\sigma$. 
+
+The sample mean is not robust against outliers. A single large value can distort the mean arbitrarily much.
+Hence, the correlation coefficient is not robust against outliers. Let's see this in action:
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(ggpubr)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Parameters
+n <- 100  # Sample size
+rho <- 0.75  # Desired correlation
+
+# Generate bivariate normal data with specified correlation
+x <- rnorm(n)
+y <- rho * x + sqrt(1 - rho^2) * rnorm(n)
+
+# Store original data
+data_original <- data.frame(x = x, y = y)
+
+# Function to create scatterplot with trend line and correlation
+create_plot <- function(data, title) {
+  ggplot(data, aes(x = x, y = y)) +
+    geom_point(alpha = 0.6, color = "blue") +
+    geom_smooth(method = "lm", se = FALSE, color = "red") +
+    labs(title = title, subtitle = paste("Correlation:",
+                                         round(cor(data$x, data$y), 2))) +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5))  # Center the title
+}
+
+# Original scatterplot
+p_original <- create_plot(data_original, "Original Data")
+
+# Add outlier in x
+data_outlier_x <- data_original
+data_outlier_x$x[n] <- max(x) + 5  # Extreme value in x
+p_outlier_x <- create_plot(data_outlier_x, "Outlier in X")
+
+# Add outlier in both x and y
+data_outlier_xy <- data_original
+data_outlier_xy$x[n] <- max(x) + 5  # Extreme value in x
+data_outlier_xy$y[n] <- max(y) + 5  # Extreme value in y
+p_outlier_xy <- create_plot(data_outlier_xy, "Outlier in Both X and Y")
+
+# Add outlier in y
+data_outlier_y <- data_original
+data_outlier_y$y[n] <- max(y) + 5  # Extreme value in y
+p_outlier_y <- create_plot(data_outlier_y, "Outlier in Y")
+
+# Arrange plots using ggarrange
+ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
+          labels = c("A", "B", "C", "D"),
+          ncol = 2, nrow = 2)
+
+```
+
+- A: $r=0.71$ for the original data. 
+
+- B: When we add an outlier in x, $r$ decreases to $0.44$ and the trendline is notably shifted. 
+
+  The reason for the smaller correlation is that the outlier is above the mean of the x values and below 
+  the mean of the y values and therefore adds negatively to the covariance.
+
+- C: When we add an outlier in both $x$ and $y$, $r$ stays relatively stable. 
+  The reason is that the outlier is above the mean of the x values and above the mean of the y values, 
+  so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
+  We could ask, what happend in this data point? Was another scale used for instance?
+
+- D: When we add an outlier in $y$, the $r$ decreases to 0.48. 
+  The reason for the smaller correlation is that the outlier is above the mean of the y values 
+  and below the mean of the x values and therefore adds negatively to the covariance.
+
+- We could also ask why the trend lines (created with simple linear regression) change the way they do. 
+  We will come to this later in our courses.
 
 ## Exercises
 

@@ -420,7 +420,7 @@ There are a few things to note here:</p>
 <li><p>Acccording to the Methods-section:
 “Testing for normality using a Kolmogorov-Smirnov test,
 found non-normal distribution of all data…”.
-Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
+Especially the BMI could be asymmetrically distributed, or also age. Unfortunately, we do not have
 histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
 for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
 normally distributed.</p></li>
@@ -469,8 +469,20 @@ seem to deviate from the normal distribution.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/Correlation">correlation</a> between two variables is a measure
 of the strength and direction of the <strong>linear</strong> relationship between them. It does <strong>not</strong> (directly)
 a measure of other kinds of relationships (for instance monotonic or polynomial).
-See also <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s quartet</a>.
-The correlation coefficient can take values between -1 and 1.</p>
+See also <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s quartet</a>.</p>
+<p>Correlation is often denoted by the Greek letter</p>
+<p><span class="math display">\[\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}\]</span>
+for the population parameter (the true but unknown)</p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(\text{Cov}(X, Y)\)</span> is the covariance between variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,</p></li>
+<li><p><span class="math inline">\(\sigma_X\)</span> and <span class="math inline">\(\sigma_Y\)</span> are the population standard deviations of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, respectively.</p></li>
+</ul>
+<p>and</p>
+<p><span class="math display">\[r = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum (X_i - \bar{X})^2 \sum (Y_i - \bar{Y})^2}}\]</span></p>
+<p>for the sample estimate.</p>
+<p><strong>Remember: We use <span class="math inline">\(r\)</span> to estimate <span class="math inline">\(\rho\)</span> using the sample.</strong></p>
+<p>The correlation coefficient can take values between -1 and 1.</p>
 <ul>
 <li><p>A value of 1 indicates a perfect positive linear relationship between the variables.</p></li>
 <li><p>A value of -1 indicates a perfect negative linear relationship between the variables.</p></li>
@@ -500,7 +512,50 @@ increases (assuming that the variables are jointly normally distributed). <stron
 will fall if I know the value of X?</strong> As you can see, this curve is relatively flat in the beginning, meaning, on an individual level,
 the correlation does not tell us much about the value of Y given X.
 Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5
-(which is considered high in many areas), the prediction interval for Y only 13% smaller.</p>
+(which is considered high in many areas), the prediction interval for Y is only 13% smaller.</p>
+<p>One often reads that the two variables used for calculation of a
+<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> should be normally distributed.
+This is not necessary, at least not for descriptive purposes. The correlation coefficient is a measure of the linear relationship
+and we can think of an example with skewed data where the correlation coefficient is still meaningful:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb43-6"><a href="descriptive-statistics.html#cb43-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb43-7"><a href="descriptive-statistics.html#cb43-7" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="descriptive-statistics.html#cb43-8" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb43-9"><a href="descriptive-statistics.html#cb43-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span>  <span class="co"># Sample size</span></span>
+<span id="cb43-10"><a href="descriptive-statistics.html#cb43-10" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.7</span>  <span class="co"># Desired beta</span></span>
+<span id="cb43-11"><a href="descriptive-statistics.html#cb43-11" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="descriptive-statistics.html#cb43-12" tabindex="-1"></a><span class="co"># Generate left-skewed variable x (negative exponential distribution)</span></span>
+<span id="cb43-13"><a href="descriptive-statistics.html#cb43-13" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb43-14"><a href="descriptive-statistics.html#cb43-14" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="descriptive-statistics.html#cb43-15" tabindex="-1"></a><span class="co"># Generate correlated left-skewed variable y</span></span>
+<span id="cb43-16"><a href="descriptive-statistics.html#cb43-16" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb43-17"><a href="descriptive-statistics.html#cb43-17" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta <span class="sc">*</span> x <span class="sc">+</span> error</span>
+<span id="cb43-18"><a href="descriptive-statistics.html#cb43-18" tabindex="-1"></a></span>
+<span id="cb43-19"><a href="descriptive-statistics.html#cb43-19" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
+<span id="cb43-20"><a href="descriptive-statistics.html#cb43-20" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb43-21"><a href="descriptive-statistics.html#cb43-21" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="descriptive-statistics.html#cb43-22" tabindex="-1"></a><span class="co"># Create scatterplot with marginal histograms and trendline</span></span>
+<span id="cb43-23"><a href="descriptive-statistics.html#cb43-23" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb43-24"><a href="descriptive-statistics.html#cb43-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-25"><a href="descriptive-statistics.html#cb43-25" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb43-26"><a href="descriptive-statistics.html#cb43-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot with Left-Skewed x and y and Trendline&quot;</span>,</span>
+<span id="cb43-27"><a href="descriptive-statistics.html#cb43-27" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Left-Skewed x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-28"><a href="descriptive-statistics.html#cb43-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb43-29"><a href="descriptive-statistics.html#cb43-29" tabindex="-1"></a></span>
+<span id="cb43-30"><a href="descriptive-statistics.html#cb43-30" tabindex="-1"></a><span class="co"># Add marginal histograms using ggExtra</span></span>
+<span id="cb43-31"><a href="descriptive-statistics.html#cb43-31" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">&quot;histogram&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><em>If</em> X and Y are bivariate normally distributed, then one can use the variable
+<span class="math inline">\(t = r \sqrt{\frac{n-2}{1-r^2}}\)</span> as test statistic for the null hypothesis (next chapter) <span class="math inline">\(H_0: \rho = 0\)</span>.
+Note: It is not sufficient for X and Y to be individually normally distributed in order to
+be <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Bivariate_case">jointly normally distributed</a>.</p>
 <div id="example-in-the-wild-1" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Example in the wild<a href="descriptive-statistics.html#example-in-the-wild-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s again visit the previous <a href="https://bmjopen.bmj.com/content/9/4/e023341">paper</a>.
@@ -510,6 +565,85 @@ We will expand on this in the next chapter. For large sample sizes, even small (
 especially, if one decides to use an arbitrary threshold for the p-values like <span class="math inline">\(0.05\)</span>. There is not much information
 in this fact. I would argue that all p-values for such large sample sizes and larger correlations do not carry much information.
 See also <a href="descriptive-statistics.html#exercise5_descriptive_stats">Exercise 5</a>.</p>
+<p><strong>That was all nice, what could go wrong?</strong></p>
+<p>(The sample) Correlation (coefficient) is based (see the formula above) on the artihmetic mean <span class="math inline">\(\bar{X}\)</span>
+(capital X since we are talking about the
+<a href="https://www.youtube.com/watch?v=Y9nsL69CwbU&amp;ab_channel=VeryNormal">random variable</a> which is realised when
+the <span class="math inline">\(X_i\)</span> have materialized into the <span class="math inline">\(x_i\)</span>) and sample standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p>The sample mean is not robust against outliers. A single large value can distort the mean arbitrarily much.
+Hence, the correlation coefficient is not robust against outliers. Let’s see this in action:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb45-2"><a href="descriptive-statistics.html#cb45-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb45-3"><a href="descriptive-statistics.html#cb45-3" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb45-4"><a href="descriptive-statistics.html#cb45-4" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="descriptive-statistics.html#cb45-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb45-6"><a href="descriptive-statistics.html#cb45-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb45-7"><a href="descriptive-statistics.html#cb45-7" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="descriptive-statistics.html#cb45-8" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb45-9"><a href="descriptive-statistics.html#cb45-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Sample size</span></span>
+<span id="cb45-10"><a href="descriptive-statistics.html#cb45-10" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.75</span>  <span class="co"># Desired correlation</span></span>
+<span id="cb45-11"><a href="descriptive-statistics.html#cb45-11" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="descriptive-statistics.html#cb45-12" tabindex="-1"></a><span class="co"># Generate bivariate normal data with specified correlation</span></span>
+<span id="cb45-13"><a href="descriptive-statistics.html#cb45-13" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb45-14"><a href="descriptive-statistics.html#cb45-14" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb45-15"><a href="descriptive-statistics.html#cb45-15" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="descriptive-statistics.html#cb45-16" tabindex="-1"></a><span class="co"># Store original data</span></span>
+<span id="cb45-17"><a href="descriptive-statistics.html#cb45-17" tabindex="-1"></a>data_original <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb45-18"><a href="descriptive-statistics.html#cb45-18" tabindex="-1"></a></span>
+<span id="cb45-19"><a href="descriptive-statistics.html#cb45-19" tabindex="-1"></a><span class="co"># Function to create scatterplot with trend line and correlation</span></span>
+<span id="cb45-20"><a href="descriptive-statistics.html#cb45-20" tabindex="-1"></a>create_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, title) {</span>
+<span id="cb45-21"><a href="descriptive-statistics.html#cb45-21" tabindex="-1"></a>  <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb45-22"><a href="descriptive-statistics.html#cb45-22" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-23"><a href="descriptive-statistics.html#cb45-23" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-24"><a href="descriptive-statistics.html#cb45-24" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Correlation:&quot;</span>,</span>
+<span id="cb45-25"><a href="descriptive-statistics.html#cb45-25" tabindex="-1"></a>                                         <span class="fu">round</span>(<span class="fu">cor</span>(data<span class="sc">$</span>x, data<span class="sc">$</span>y), <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb45-26"><a href="descriptive-statistics.html#cb45-26" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb45-27"><a href="descriptive-statistics.html#cb45-27" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))  <span class="co"># Center the title</span></span>
+<span id="cb45-28"><a href="descriptive-statistics.html#cb45-28" tabindex="-1"></a>}</span>
+<span id="cb45-29"><a href="descriptive-statistics.html#cb45-29" tabindex="-1"></a></span>
+<span id="cb45-30"><a href="descriptive-statistics.html#cb45-30" tabindex="-1"></a><span class="co"># Original scatterplot</span></span>
+<span id="cb45-31"><a href="descriptive-statistics.html#cb45-31" tabindex="-1"></a>p_original <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_original, <span class="st">&quot;Original Data&quot;</span>)</span>
+<span id="cb45-32"><a href="descriptive-statistics.html#cb45-32" tabindex="-1"></a></span>
+<span id="cb45-33"><a href="descriptive-statistics.html#cb45-33" tabindex="-1"></a><span class="co"># Add outlier in x</span></span>
+<span id="cb45-34"><a href="descriptive-statistics.html#cb45-34" tabindex="-1"></a>data_outlier_x <span class="ot">&lt;-</span> data_original</span>
+<span id="cb45-35"><a href="descriptive-statistics.html#cb45-35" tabindex="-1"></a>data_outlier_x<span class="sc">$</span>x[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(x) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in x</span></span>
+<span id="cb45-36"><a href="descriptive-statistics.html#cb45-36" tabindex="-1"></a>p_outlier_x <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_x, <span class="st">&quot;Outlier in X&quot;</span>)</span>
+<span id="cb45-37"><a href="descriptive-statistics.html#cb45-37" tabindex="-1"></a></span>
+<span id="cb45-38"><a href="descriptive-statistics.html#cb45-38" tabindex="-1"></a><span class="co"># Add outlier in both x and y</span></span>
+<span id="cb45-39"><a href="descriptive-statistics.html#cb45-39" tabindex="-1"></a>data_outlier_xy <span class="ot">&lt;-</span> data_original</span>
+<span id="cb45-40"><a href="descriptive-statistics.html#cb45-40" tabindex="-1"></a>data_outlier_xy<span class="sc">$</span>x[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(x) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in x</span></span>
+<span id="cb45-41"><a href="descriptive-statistics.html#cb45-41" tabindex="-1"></a>data_outlier_xy<span class="sc">$</span>y[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(y) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in y</span></span>
+<span id="cb45-42"><a href="descriptive-statistics.html#cb45-42" tabindex="-1"></a>p_outlier_xy <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_xy, <span class="st">&quot;Outlier in Both X and Y&quot;</span>)</span>
+<span id="cb45-43"><a href="descriptive-statistics.html#cb45-43" tabindex="-1"></a></span>
+<span id="cb45-44"><a href="descriptive-statistics.html#cb45-44" tabindex="-1"></a><span class="co"># Add outlier in y</span></span>
+<span id="cb45-45"><a href="descriptive-statistics.html#cb45-45" tabindex="-1"></a>data_outlier_y <span class="ot">&lt;-</span> data_original</span>
+<span id="cb45-46"><a href="descriptive-statistics.html#cb45-46" tabindex="-1"></a>data_outlier_y<span class="sc">$</span>y[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(y) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in y</span></span>
+<span id="cb45-47"><a href="descriptive-statistics.html#cb45-47" tabindex="-1"></a>p_outlier_y <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_y, <span class="st">&quot;Outlier in Y&quot;</span>)</span>
+<span id="cb45-48"><a href="descriptive-statistics.html#cb45-48" tabindex="-1"></a></span>
+<span id="cb45-49"><a href="descriptive-statistics.html#cb45-49" tabindex="-1"></a><span class="co"># Arrange plots using ggarrange</span></span>
+<span id="cb45-50"><a href="descriptive-statistics.html#cb45-50" tabindex="-1"></a><span class="fu">ggarrange</span>(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,</span>
+<span id="cb45-51"><a href="descriptive-statistics.html#cb45-51" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb45-52"><a href="descriptive-statistics.html#cb45-52" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<ul>
+<li><p>A: <span class="math inline">\(r=0.71\)</span> for the original data.</p></li>
+<li><p>B: When we add an outlier in x, <span class="math inline">\(r\)</span> decreases to <span class="math inline">\(0.44\)</span> and the trendline is notably shifted.</p>
+<p>The reason for the smaller correlation is that the outlier is above the mean of the x values and below
+the mean of the y values and therefore adds negatively to the covariance.</p></li>
+<li><p>C: When we add an outlier in both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, <span class="math inline">\(r\)</span> stays relatively stable.
+The reason is that the outlier is above the mean of the x values and above the mean of the y values,
+so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
+We could ask, what happend in this data point? Was another scale used for instance?</p></li>
+<li><p>D: When we add an outlier in <span class="math inline">\(y\)</span>, the <span class="math inline">\(r\)</span> decreases to 0.48.
+The reason for the smaller correlation is that the outlier is above the mean of the y values
+and below the mean of the x values and therefore adds negatively to the covariance.</p></li>
+<li><p>We could also ask why the trend lines (created with simple linear regression) change the way they do.
+We will come to this later in our courses.</p></li>
+</ul>
 </div>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="3.5">
@@ -566,12 +700,12 @@ where we would expect a new person drawn from the same population.</li>
 <div id="exercise5_descriptive_stats" class="section level3 hasAnchor" number="3.5.5">
 <h3><span class="header-section-number">3.5.5</span> Exercise 5 - Correlation<a href="descriptive-statistics.html#exercise5_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following R-code creates correlated samples with a (true) correlation <span class="math inline">\(\rho\)</span>:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb43-6"><a href="descriptive-statistics.html#cb43-6" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb47-2"><a href="descriptive-statistics.html#cb47-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb47-3"><a href="descriptive-statistics.html#cb47-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb47-4"><a href="descriptive-statistics.html#cb47-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb47-5"><a href="descriptive-statistics.html#cb47-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb47-6"><a href="descriptive-statistics.html#cb47-6" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.541743</code></pre>
 <ul>
 <li>Try different values for <span class="math inline">\(\rho\)</span> and <span class="math inline">\(n\)</span> and plot the scatterplot of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>

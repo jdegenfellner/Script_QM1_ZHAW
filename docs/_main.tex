@@ -1634,7 +1634,7 @@ There are a few things to note here:
   Acccording to the Methods-section:
   ``Testing for normality using a Kolmogorov-Smirnov test,
   found non-normal distribution of all data\ldots{}''.
-  Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
+  Especially the BMI could be asymmetrically distributed, or also age. Unfortunately, we do not have
   histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
   for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
   normally distributed.
@@ -1687,6 +1687,240 @@ Comparing these histograms (using different seed-values), we could assume that f
 FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
 seem to deviate from the normal distribution.
 
+\section{Correlation}\label{correlation}
+
+The \href{https://en.wikipedia.org/wiki/Correlation}{correlation} between two variables is a measure
+of the strength and direction of the \textbf{linear} relationship between them. It does \textbf{not} (directly)
+a measure of other kinds of relationships (for instance monotonic or polynomial).
+See also \href{https://en.wikipedia.org/wiki/Anscombe\%27s_quartet}{Anscombe's quartet}.
+
+Correlation is often denoted by the Greek letter
+
+\[\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}\]
+for the population parameter (the true but unknown)
+
+where:
+
+\begin{itemize}
+\item
+  \(\text{Cov}(X, Y)\) is the covariance between variables \(X\) and \(Y\),
+\item
+  \(\sigma_X\) and \(\sigma_Y\) are the population standard deviations of \(X\) and \(Y\), respectively.
+\end{itemize}
+
+and
+
+\[r = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum (X_i - \bar{X})^2 \sum (Y_i - \bar{Y})^2}}\]
+
+for the sample estimate.
+
+\textbf{Remember: We use \(r\) to estimate \(\rho\) using the sample.}
+
+The correlation coefficient can take values between -1 and 1.
+
+\begin{itemize}
+\item
+  A value of 1 indicates a perfect positive linear relationship between the variables.
+\item
+  A value of -1 indicates a perfect negative linear relationship between the variables.
+\end{itemize}
+
+See \href{https://en.wikipedia.org/wiki/Correlation\#/media/File:Correlation_examples2.svg}{here} and
+\href{https://en.wikipedia.org/wiki/Correlation\#/media/File:Pearson_Correlation_Coefficient_and_associated_scatterplots.png}{here}
+for a nice illustration. Study this in detail. A correlation of \(\pm 1\) just means that the data points lie on a straight line.
+It does not say anything about the steepness of the line.
+
+You can watch these videos to get a better understanding of the concept:
+
+\begin{itemize}
+\item
+  \href{https://www.youtube.com/watch?v=xZ_z8KWkhXE&ab_channel=StatQuestwithJoshStarmer}{StatQuest - correlation}
+\item
+  \href{https://www.youtube.com/watch?v=qtaqvPAeEJY&ab_channel=StatQuestwithJoshStarmer}{StatQuest - covariance}
+\item
+  \href{https://www.youtube.com/watch?v=rijqfllOq6g&ab_channel=3-MinuteDataScience}{Animated correlation}
+\end{itemize}
+
+Correlation is an often (over-)used measure in research.
+It is important to note that
+\href{https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation}{correlation does not imply causation}.
+For instance,
+\href{https://www.sciencedirect.com/science/article/pii/S2590291120300711}{chocolate consumption is positively correlated with the number of Nobel laureates} in a country.
+This does - unfortunately - not mean that eating chocolate makes you smarter.
+
+One thing many of us think when they see a high correlation (near 1) is that if we know the value of one variable,
+we can predict the value of the other variable. This is not necessarily true.
+This \href{https://en.wikipedia.org/wiki/Pearson_correlation_coefficient\#Interpretation}{section} explains why.
+Study the visualization \href{https://en.wikipedia.org/wiki/Pearson_correlation_coefficient\#/media/File:Pearson_correlation_and_prediction_intervals.svg}{here}.
+It depicts the reduction of the prediction interval for Y given X as the correlation
+increases (assuming that the variables are jointly normally distributed). \textbf{How much smaller is the interval where my next observation of Y
+will fall if I know the value of X?} As you can see, this curve is relatively flat in the beginning, meaning, on an individual level,
+the correlation does not tell us much about the value of Y given X.
+Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5
+(which is considered high in many areas), the prediction interval for Y is only 13\% smaller.
+
+One often reads that the two variables used for calculation of a
+\href{https://en.wikipedia.org/wiki/Pearson_correlation_coefficient}{Pearson correlation coefficient} should be normally distributed.
+This is not necessary, at least not for descriptive purposes. The correlation coefficient is a measure of the linear relationship
+and we can think of an example with skewed data where the correlation coefficient is still meaningful:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load required libraries}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(ggExtra)}
+
+\CommentTok{\# Set seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+
+\CommentTok{\# Parameters}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{200}  \CommentTok{\# Sample size}
+\NormalTok{beta }\OtherTok{\textless{}{-}} \FloatTok{0.7}  \CommentTok{\# Desired beta}
+
+\CommentTok{\# Generate left{-}skewed variable x (negative exponential distribution)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{rexp}\NormalTok{(n, }\AttributeTok{rate =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Generate correlated left{-}skewed variable y}
+\NormalTok{error }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ beta }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}\NormalTok{ error}
+
+\CommentTok{\# Create a data frame}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)}
+
+\CommentTok{\# Create scatterplot with marginal histograms and trendline}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Scatterplot with Left{-}Skewed x and y and Trendline"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Left{-}Skewed x"}\NormalTok{, }\AttributeTok{y =} \StringTok{"y"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+
+\CommentTok{\# Add marginal histograms using ggExtra}
+\NormalTok{ggExtra}\SpecialCharTok{::}\FunctionTok{ggMarginal}\NormalTok{(p, }\AttributeTok{type =} \StringTok{"histogram"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-22-1.pdf}}
+
+\emph{If} X and Y are bivariate normally distributed, then one can use the variable
+\(t = r \sqrt{\frac{n-2}{1-r^2}}\) as test statistic for the null hypothesis (next chapter) \(H_0: \rho = 0\).
+Note: It is not sufficient for X and Y to be individually normally distributed in order to
+be \href{https://en.wikipedia.org/wiki/Multivariate_normal_distribution\#Bivariate_case}{jointly normally distributed}.
+
+\subsection{Example in the wild}\label{example-in-the-wild-1}
+
+Let's again visit the previous \href{https://bmjopen.bmj.com/content/9/4/e023341}{paper}.
+In the results, correlations are presented in a dichotomous way with regards to p-values,
+which should be \href{https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913}{avoided}.
+We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be ``significant'',
+especially, if one decides to use an arbitrary threshold for the p-values like \(0.05\). There is not much information
+in this fact. I would argue that all p-values for such large sample sizes and larger correlations do not carry much information.
+See also \hyperref[exercise5_descriptive_stats]{Exercise 5}.
+
+\textbf{That was all nice, what could go wrong?}
+
+(The sample) Correlation (coefficient) is based (see the formula above) on the artihmetic mean \(\bar{X}\)
+(capital X since we are talking about the
+\href{https://www.youtube.com/watch?v=Y9nsL69CwbU&ab_channel=VeryNormal}{random variable} which is realised when
+the \(X_i\) have materialized into the \(x_i\)) and sample standard deviation \(\sigma\).
+
+The sample mean is not robust against outliers. A single large value can distort the mean arbitrarily much.
+Hence, the correlation coefficient is not robust against outliers. Let's see this in action:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load necessary libraries}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(ggpubr)}
+
+\CommentTok{\# Set seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Parameters}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{100}  \CommentTok{\# Sample size}
+\NormalTok{rho }\OtherTok{\textless{}{-}} \FloatTok{0.75}  \CommentTok{\# Desired correlation}
+
+\CommentTok{\# Generate bivariate normal data with specified correlation}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n)}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ rho }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rho}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{rnorm}\NormalTok{(n)}
+
+\CommentTok{\# Store original data}
+\NormalTok{data\_original }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)}
+
+\CommentTok{\# Function to create scatterplot with trend line and correlation}
+\NormalTok{create\_plot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, title) \{}
+  \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =}\NormalTok{ title, }\AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Correlation:"}\NormalTok{,}
+                                         \FunctionTok{round}\NormalTok{(}\FunctionTok{cor}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{x, data}\SpecialCharTok{$}\NormalTok{y), }\DecValTok{2}\NormalTok{))) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))  }\CommentTok{\# Center the title}
+\NormalTok{\}}
+
+\CommentTok{\# Original scatterplot}
+\NormalTok{p\_original }\OtherTok{\textless{}{-}} \FunctionTok{create\_plot}\NormalTok{(data\_original, }\StringTok{"Original Data"}\NormalTok{)}
+
+\CommentTok{\# Add outlier in x}
+\NormalTok{data\_outlier\_x }\OtherTok{\textless{}{-}}\NormalTok{ data\_original}
+\NormalTok{data\_outlier\_x}\SpecialCharTok{$}\NormalTok{x[n] }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(x) }\SpecialCharTok{+} \DecValTok{5}  \CommentTok{\# Extreme value in x}
+\NormalTok{p\_outlier\_x }\OtherTok{\textless{}{-}} \FunctionTok{create\_plot}\NormalTok{(data\_outlier\_x, }\StringTok{"Outlier in X"}\NormalTok{)}
+
+\CommentTok{\# Add outlier in both x and y}
+\NormalTok{data\_outlier\_xy }\OtherTok{\textless{}{-}}\NormalTok{ data\_original}
+\NormalTok{data\_outlier\_xy}\SpecialCharTok{$}\NormalTok{x[n] }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(x) }\SpecialCharTok{+} \DecValTok{5}  \CommentTok{\# Extreme value in x}
+\NormalTok{data\_outlier\_xy}\SpecialCharTok{$}\NormalTok{y[n] }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(y) }\SpecialCharTok{+} \DecValTok{5}  \CommentTok{\# Extreme value in y}
+\NormalTok{p\_outlier\_xy }\OtherTok{\textless{}{-}} \FunctionTok{create\_plot}\NormalTok{(data\_outlier\_xy, }\StringTok{"Outlier in Both X and Y"}\NormalTok{)}
+
+\CommentTok{\# Add outlier in y}
+\NormalTok{data\_outlier\_y }\OtherTok{\textless{}{-}}\NormalTok{ data\_original}
+\NormalTok{data\_outlier\_y}\SpecialCharTok{$}\NormalTok{y[n] }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(y) }\SpecialCharTok{+} \DecValTok{5}  \CommentTok{\# Extreme value in y}
+\NormalTok{p\_outlier\_y }\OtherTok{\textless{}{-}} \FunctionTok{create\_plot}\NormalTok{(data\_outlier\_y, }\StringTok{"Outlier in Y"}\NormalTok{)}
+
+\CommentTok{\# Arrange plots using ggarrange}
+\FunctionTok{ggarrange}\NormalTok{(p\_original, p\_outlier\_x, p\_outlier\_xy, p\_outlier\_y,}
+          \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{),}
+          \AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-23-1.pdf}}
+
+\begin{itemize}
+\item
+  A: \(r=0.71\) for the original data.
+\item
+  B: When we add an outlier in x, \(r\) decreases to \(0.44\) and the trendline is notably shifted.
+
+  The reason for the smaller correlation is that the outlier is above the mean of the x values and below
+  the mean of the y values and therefore adds negatively to the covariance.
+\item
+  C: When we add an outlier in both \(x\) and \(y\), \(r\) stays relatively stable.
+  The reason is that the outlier is above the mean of the x values and above the mean of the y values,
+  so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
+  We could ask, what happend in this data point? Was another scale used for instance?
+\item
+  D: When we add an outlier in \(y\), the \(r\) decreases to 0.48.
+  The reason for the smaller correlation is that the outlier is above the mean of the y values
+  and below the mean of the x values and therefore adds negatively to the covariance.
+\item
+  We could also ask why the trend lines (created with simple linear regression) change the way they do.
+  We will come to this later in our courses.
+\end{itemize}
+
 \section{Exercises}\label{exercises-1}
 
 \subsection{Exercise 1 - Recreate table with fake data}\label{exercise-1---recreate-table-with-fake-data}
@@ -1702,7 +1936,7 @@ seem to deviate from the normal distribution.
   Try to export the table to Excel and Word.
 \end{itemize}
 
-\subsection{Exercsie 2 - Outliers and estimates}\label{exercsie-2---outliers-and-estimates}
+\subsection{Exercise 2 - Outliers and estimates}\label{exercise-2---outliers-and-estimates}
 
 Let's assume we know that the \emph{Cognitive flexibility} is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): \(CognFlex \sim N(60,7.4)\).
 
@@ -1762,6 +1996,38 @@ Let's assume \emph{Sex} is binomially distributed with a probability of \(p = 0.
   Try different parameter values for \(\mu\) and \(\sigma\) and plot the histogram of the z-scores.
 \item
   Optional: Try to prove this mathematically.
+\end{itemize}
+
+\subsection{Exercise 5 - Correlation}\label{exercise5_descriptive_stats}
+
+The following R-code creates correlated samples with a (true) correlation \(\rho\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\NormalTok{rho }\OtherTok{\textless{}{-}} \FloatTok{0.5}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n)}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ rho }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rho}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{rnorm}\NormalTok{(n)}
+\FunctionTok{cor}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.541743
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Try different values for \(\rho\) and \(n\) and plot the scatterplot of \(x\) and \(y\).
+\item
+  Execute the code above 1000 times and save the correlation coefficient in a vector.
+\item
+  Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
+  What do you observe with respect to variability?
+\item
+  Plot the histogram of the simulated correlation coefficients.
 \end{itemize}
 
 \section{Solutions}\label{solutions-1}
