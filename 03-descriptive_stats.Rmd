@@ -155,7 +155,7 @@ shapiro.test(x)
 Some researchers would argue, that the distribution is normal (since the p-value is rather large), 
 but we know it is not. We will be cautious with such ugly rule of thumbs.
 
-**Example**:
+### Example in the wild
 
 We will try to catch a histogram in the *wild* (= in a research paper): We find one 
 [here](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf). 
@@ -184,10 +184,33 @@ $\mu_X$ is the expectation of X and $\sigma_X$ the standard deviation of X.
 So we measure not in FPI units anymore, but in **standard deviations from the mean** which makes 
 it easier to compare different variables with each other. A nice property is: If X is normally 
 distributed ($X \sim N(\mu, \sigma$)), then the z-scores are standard normally distributed ($Z \sim N(0,1$)). 
-See [Exercise 4](#exercise4_descriptive_stats).
+See [Exercise 4](#exercise4_descriptive_stats). Of course *both*, z-scores as well as FPI scores are 
+considered "continuous" (in this context).
 
+- With so many obsvervations ($n=3217$), how would a truly normal distribution with the parameters
+$FPI \sim N(4.20, 3.00)$ look like? We can simulate this with the following code:
+```{r}
+set.seed(8345) # to get the same plot every time
+x <- rnorm(3217, mean = 4.20, sd = 3.00)
+df <- data.frame(values = x)
 
+p2 <- ggplot(df, aes(x = values)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, alpha = 0.7, color = "darkgrey") +
+  geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
+  geom_boxplot(aes(y = -0.01, x = values), width = 0.02,
+               position = position_nudge(y = -0.00)) +
+  geom_point(aes(y = -0.01),
+             position = position_jitter(width = 0.002, height = 0.01),
+             size = 1, alpha = 0.05) +
+  ggtitle("Histogram with density plot and boxplot below") +
+  theme(plot.title = element_text(hjust = 0.5))
+p2
+```
 
+Comparing these histograms (using different seed-values), we could assume that for truly normally distributed
+FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
+seem to deviate from the normal distribution.
 
 ## Exercises
 
@@ -230,7 +253,7 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 ### Exercise 4 - Z-scores {#exercise4_descriptive_stats}
 
 - Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.
-- Try different paramter values for $\mu$ and $\sigma$ and plot the histogram of the z-scores.
+- Try different parameter values for $\mu$ and $\sigma$ and plot the histogram of the z-scores.
 - Optional: Try to prove this mathematically.
 
 ## Solutions

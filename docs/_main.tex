@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2024-10-31}
+\date{2024-11-01}
 
 \begin{document}
 \maketitle
@@ -1453,17 +1453,14 @@ where we would possible find a falling relationship.
 \section{The histogram}\label{the-histogram}
 
 One way to visualize the distribution of a continuous variable is the \href{https://en.wikipedia.org/wiki/Histogram}{histogram}.
-This \href{https://www.youtube.com/watch?v=gSEYtAjuZ-Y&ab_channel=KhanAcademy}{video} might be helpful to cover the basics of a histrogram.
-I recommend plotting the histogram with a \href{https://en.wikipedia.org/wiki/Box_plot}{boxplot} below:
+This \href{https://www.youtube.com/watch?v=gSEYtAjuZ-Y&ab_channel=KhanAcademy}{video} might be helpful to cover the basics.
+I recommend plotting the histogram with a \href{https://en.wikipedia.org/wiki/Box_plot}{boxplot} below; this helps
+to visualize the raw data points as well.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(pacman)}
 \FunctionTok{p\_load}\NormalTok{(tidyverse)}
-
-\CommentTok{\# Set working directory to source file location}
-\CommentTok{\# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))}
-\CommentTok{\# only available in RStudio}
 
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{4433}\NormalTok{) }\CommentTok{\# to get the same plot every time}
 
@@ -1501,13 +1498,13 @@ variability. Let's create not \(10000\) samples of a normally distributed variab
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{values =}\NormalTok{ x)}
 
 \NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }
-                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color=}\StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{, }
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)),}
+                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{,}
                \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{), }
-             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{), }
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{),}
+             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{),}
              \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Histogram with density plot and boxplot below"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
@@ -1516,14 +1513,15 @@ variability. Let's create not \(10000\) samples of a normally distributed variab
 \end{Shaded}
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-18-1.pdf}}
+
 We \emph{know} (in this case) that these values come from a normal distribution with a mean
-of \(23.4\) and a standard deviation of \(5.6\). Let's estimate these parameters from the sample
-and use the often but not recommended shapiro-wilk test for normality:
+of \(23.4\) and a standard deviation of \(5.6\). Let's \emph{estimate} the parameters (\(\mu\), \(\sigma\)) from the sample
+and use the often but not recommended Shapiro-wilk test for normality:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Estimate mean and standard deviation}
-\FunctionTok{mean}\NormalTok{(x)}
+\FunctionTok{mean}\NormalTok{(x) }\CommentTok{\# or}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1533,7 +1531,27 @@ and use the often but not recommended shapiro-wilk test for normality:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sd}\NormalTok{(x)}
+\DecValTok{1} \SpecialCharTok{/} \FunctionTok{length}\NormalTok{(x) }\SpecialCharTok{*} \FunctionTok{sum}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.6017
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(x) }\CommentTok{\# or}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.622042
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{/}\NormalTok{ (}\FunctionTok{length}\NormalTok{(x) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{sum}\NormalTok{((x }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(x))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1555,10 +1573,10 @@ and use the often but not recommended shapiro-wilk test for normality:
 ## W = 0.95059, p-value = 0.2585
 \end{verbatim}
 
-Firstly, the histogram looks rather differently when using a different seed. Secondly, we would probability
+Firstly, the histogram looks rather differently when using a different \href{https://r-coder.com/set-seed-r/}{seed}. Secondly, we would probability
 not be able to tell if the data stems from a normal distribution. Thirdly, the sample mean and standard deviation
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
-the shapiro test would not reject the null hypothesis of normality in this case.
+the Shapiro test would not reject the null hypothesis of normality in this case.
 
 Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:
 
@@ -1569,13 +1587,13 @@ Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, whic
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{values =}\NormalTok{ x)}
 
 \NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }
-                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color=}\StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{, }
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)),}
+                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{,}
                \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{), }
-             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{), }
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{),}
+             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{),}
              \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Histogram with density plot and boxplot below"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
@@ -1602,12 +1620,72 @@ Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, whic
 Some researchers would argue, that the distribution is normal (since the p-value is rather large),
 but we know it is not. We will be cautious with such ugly rule of thumbs.
 
-\textbf{Example}:
+\subsection{Example in the wild}\label{example-in-the-wild}
 
-We will try to catch a histrogram in the \emph{wild} (=research paper): We find one
+We will try to catch a histogram in the \emph{wild} (= in a research paper): We find one
 \href{https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf}{here}.
 \href{https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg}{Figure 1} shows a histogram often
-the foot posture index (FPI-6) scores from the participants (3217 healthy children).
+the foot posture index (FPI-6) scores from the participants (3217 healthy children aged 3 to 15).
+``The FPI score may range from −12 (highly supinated) to +12 (highly pronated)''.
+There are a few things to note here:
+
+\begin{itemize}
+\item
+  Acccording to the Methods-section:
+  ``Testing for normality using a Kolmogorov-Smirnov test,
+  found non-normal distribution of all data\ldots{}''.
+  Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
+  histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
+  for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
+  normally distributed.
+\item
+  Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded
+  between -12 and 12. But that should not be a problem with so many levels of an ordered categorical variable.
+  It should be a sufficient approximation.
+\item
+  ``The FPI was analysed as continuous data, rather than as z-score data''.
+  \href{https://www.youtube.com/watch?v=5S-Zfa-vOXs&ab_channel=KhanAcademy}{z-scores are standardized scores}:
+  \[Z = \frac{X - \mu_X}{\sigma_X}\]
+  Doing this for the FPI scores would give (FPI right, see Table 1):
+  \[z_i = \frac{FPI_i - \overline{FPI}}{SD(FPI)} = \frac{FPI_i - 4.20}{3.00}\]
+  \(\overline{FPI}\) ist the arithmetic mean of the FPI scores, \(SD(FPI)\) the standard deviation of the FPI scores.
+  \(\mu_X\) is the expectation of X and \(\sigma_X\) the standard deviation of X.
+  So we measure not in FPI units anymore, but in \textbf{standard deviations from the mean} which makes
+  it easier to compare different variables with each other. A nice property is: If X is normally
+  distributed (\(X \sim N(\mu, \sigma\))), then the z-scores are standard normally distributed (\(Z \sim N(0,1\))).
+  See \hyperref[exercise4_descriptive_stats]{Exercise 4}. Of course \emph{both}, z-scores as well as FPI scores are
+  considered ``continuous'' (in this context).
+\item
+  With so many obsvervations (\(n=3217\)), how would a truly normal distribution with the parameters
+  \(FPI \sim N(4.20, 3.00)\) look like? We can simulate this with the following code:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{8345}\NormalTok{) }\CommentTok{\# to get the same plot every time}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{3217}\NormalTok{, }\AttributeTok{mean =} \FloatTok{4.20}\NormalTok{, }\AttributeTok{sd =} \FloatTok{3.00}\NormalTok{)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{values =}\NormalTok{ x)}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)),}
+                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{,}
+               \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{),}
+             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.002}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.01}\NormalTok{),}
+             \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Histogram with density plot and boxplot below"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+\NormalTok{p2}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-21-1.pdf}}
+
+Comparing these histograms (using different seed-values), we could assume that for truly normally distributed
+FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
+seem to deviate from the normal distribution.
 
 \section{Exercises}\label{exercises-1}
 
@@ -1672,6 +1750,18 @@ Let's assume \emph{Sex} is binomially distributed with a probability of \(p = 0.
 \item
   Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90\%.
   (We could solve this with simulation.)
+\end{itemize}
+
+\subsection{Exercise 4 - Z-scores}\label{exercise4_descriptive_stats}
+
+\begin{itemize}
+\tightlist
+\item
+  Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.
+\item
+  Try different parameter values for \(\mu\) and \(\sigma\) and plot the histogram of the z-scores.
+\item
+  Optional: Try to prove this mathematically.
 \end{itemize}
 
 \section{Solutions}\label{solutions-1}

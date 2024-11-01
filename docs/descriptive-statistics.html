@@ -215,7 +215,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
 <li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#univarate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univarate vs. bivariate statisics</a></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a></li>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example-in-the-wild"><i class="fa fa-check"></i><b>3.3.1</b> Example in the wild</a></li>
+</ul></li>
 <li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.4</b> Exercises</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.4.1</b> Exercise 1 - Recreate table with fake data</a></li>
@@ -400,7 +403,8 @@ the Shapiro test would not reject the null hypothesis of normality in this case.
 ## W = 0.95827, p-value = 0.3811</code></pre>
 <p>Some researchers would argue, that the distribution is normal (since the p-value is rather large),
 but we know it is not. We will be cautious with such ugly rule of thumbs.</p>
-<p><strong>Example</strong>:</p>
+<div id="example-in-the-wild" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Example in the wild<a href="descriptive-statistics.html#example-in-the-wild" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will try to catch a histogram in the <em>wild</em> (= in a research paper): We find one
 <a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf">here</a>.
 <a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg">Figure 1</a> shows a histogram often
@@ -408,17 +412,17 @@ the foot posture index (FPI-6) scores from the participants (3217 healthy childr
 “The FPI score may range from −12 (highly supinated) to +12 (highly pronated)”.
 There are a few things to note here:</p>
 <ul>
-<li>Acccording to the Methods-section:
+<li><p>Acccording to the Methods-section:
 “Testing for normality using a Kolmogorov-Smirnov test,
 found non-normal distribution of all data…”.
 Especially the BMI could be asymmetrically distributed, or also age, unfortunately, we do not have
 histograms or boxplots for these variables. Nevertheless, the authors present the mean and standard deviation
 for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
-normally distributed.</li>
-<li>Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded
+normally distributed.</p></li>
+<li><p>Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded
 between -12 and 12. But that should not be a problem with so many levels of an ordered categorical variable.
-It should be a sufficient approximation.</li>
-<li>“The FPI was analysed as continuous data, rather than as z-score data”.
+It should be a sufficient approximation.</p></li>
+<li><p>“The FPI was analysed as continuous data, rather than as z-score data”.
 <a href="https://www.youtube.com/watch?v=5S-Zfa-vOXs&amp;ab_channel=KhanAcademy">z-scores are standardized scores</a>:
 <span class="math display">\[Z = \frac{X - \mu_X}{\sigma_X}\]</span>
 Doing this for the FPI scores would give (FPI right, see Table 1):
@@ -428,8 +432,32 @@ Doing this for the FPI scores would give (FPI right, see Table 1):
 So we measure not in FPI units anymore, but in <strong>standard deviations from the mean</strong> which makes
 it easier to compare different variables with each other. A nice property is: If X is normally
 distributed (<span class="math inline">\(X \sim N(\mu, \sigma\)</span>)), then the z-scores are standard normally distributed (<span class="math inline">\(Z \sim N(0,1\)</span>)).
-See <a href="descriptive-statistics.html#exercise4_descriptive_stats">Exercise 4</a>.</li>
+See <a href="descriptive-statistics.html#exercise4_descriptive_stats">Exercise 4</a>. Of course <em>both</em>, z-scores as well as FPI scores are
+considered “continuous” (in this context).</p></li>
+<li><p>With so many obsvervations (<span class="math inline">\(n=3217\)</span>), how would a truly normal distribution with the parameters
+<span class="math inline">\(FPI \sim N(4.20, 3.00)\)</span> look like? We can simulate this with the following code:</p></li>
 </ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8345</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb42-2"><a href="descriptive-statistics.html#cb42-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">3217</span>, <span class="at">mean =</span> <span class="fl">4.20</span>, <span class="at">sd =</span> <span class="fl">3.00</span>)</span>
+<span id="cb42-3"><a href="descriptive-statistics.html#cb42-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb42-4"><a href="descriptive-statistics.html#cb42-4" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="descriptive-statistics.html#cb42-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb42-6"><a href="descriptive-statistics.html#cb42-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb42-7"><a href="descriptive-statistics.html#cb42-7" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-8"><a href="descriptive-statistics.html#cb42-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="descriptive-statistics.html#cb42-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
+<span id="cb42-10"><a href="descriptive-statistics.html#cb42-10" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb42-11"><a href="descriptive-statistics.html#cb42-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
+<span id="cb42-12"><a href="descriptive-statistics.html#cb42-12" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
+<span id="cb42-13"><a href="descriptive-statistics.html#cb42-13" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb42-14"><a href="descriptive-statistics.html#cb42-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-15"><a href="descriptive-statistics.html#cb42-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb42-16"><a href="descriptive-statistics.html#cb42-16" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Comparing these histograms (using different seed-values), we could assume that for truly normally distributed
+FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
+seem to deviate from the normal distribution.</p>
+</div>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -478,7 +506,7 @@ where we would expect a new person drawn from the same population.</li>
 <h3><span class="header-section-number">3.4.4</span> Exercise 4 - Z-scores<a href="descriptive-statistics.html#exercise4_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.</li>
-<li>Try different paramter values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> and plot the histogram of the z-scores.</li>
+<li>Try different parameter values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> and plot the histogram of the z-scores.</li>
 <li>Optional: Try to prove this mathematically.</li>
 </ul>
 </div>
