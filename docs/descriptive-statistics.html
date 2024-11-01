@@ -226,7 +226,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.5</b> Exercises</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.5.1</b> Exercise 1 - Recreate table with fake data</a></li>
-<li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> Exercsie 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> Exercise 2 - Outliers and estimates</a></li>
 <li class="chapter" data-level="3.5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.5.3</b> Exercise 3 - Recreating data in Table 2</a></li>
 <li class="chapter" data-level="3.5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.5.4</b> Exercise 4 - Z-scores</a></li>
 <li class="chapter" data-level="3.5.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise5_descriptive_stats"><i class="fa fa-check"></i><b>3.5.5</b> Exercise 5 - Correlation</a></li>
@@ -468,7 +468,7 @@ seem to deviate from the normal distribution.</p>
 <h2><span class="header-section-number">3.4</span> Correlation<a href="descriptive-statistics.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Correlation">correlation</a> between two variables is a measure
 of the strength and direction of the <strong>linear</strong> relationship between them. It does <strong>not</strong> (directly)
-measure of other kinds of relationships (for instance monotonic or polynomial).
+a measure of other kinds of relationships (for instance monotonic or polynomial).
 See also <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s quartet</a>.
 The correlation coefficient can take values between -1 and 1.</p>
 <ul>
@@ -496,7 +496,7 @@ we can predict the value of the other variable. This is not necessarily true.
 This <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Interpretation">section</a> explains why.
 Study the visualization <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Pearson_correlation_and_prediction_intervals.svg">here</a>.
 It depicts the reduction of the prediction interval for Y given X as the correlation
-increases (assuming that the variables are jointly normally distributed). <strong>How much smaller is the interval where my next observational
+increases (assuming that the variables are jointly normally distributed). <strong>How much smaller is the interval where my next observation of Y
 will fall if I know the value of X?</strong> As you can see, this curve is relatively flat in the beginning, meaning, on an individual level,
 the correlation does not tell us much about the value of Y given X.
 Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5
@@ -523,8 +523,8 @@ This is rather helpful later on in your master thesis.</li>
 <li>Try to export the table to Excel and Word.</li>
 </ul>
 </div>
-<div id="exercsie-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.5.2">
-<h3><span class="header-section-number">3.5.2</span> Exercsie 2 - Outliers and estimates<a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Exercise 2 - Outliers and estimates<a href="descriptive-statistics.html#exercise-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s assume we know that the <em>Cognitive flexibility</em> is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): <span class="math inline">\(CognFlex \sim N(60,7.4)\)</span>.</p>
 <ul>
 <li>Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample.
@@ -565,7 +565,7 @@ where we would expect a new person drawn from the same population.</li>
 </div>
 <div id="exercise5_descriptive_stats" class="section level3 hasAnchor" number="3.5.5">
 <h3><span class="header-section-number">3.5.5</span> Exercise 5 - Correlation<a href="descriptive-statistics.html#exercise5_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The followoing R-code creates correlated samples with a (true) correlation <span class="math inline">\(\rho\)</span>:</p>
+<p>The following R-code creates correlated samples with a (true) correlation <span class="math inline">\(\rho\)</span>:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
@@ -577,7 +577,7 @@ where we would expect a new person drawn from the same population.</li>
 <li>Try different values for <span class="math inline">\(\rho\)</span> and <span class="math inline">\(n\)</span> and plot the scatterplot of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
 <li>Execute the code above 1000 times and save the correlation coefficient in a vector.</li>
 <li>Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
-What do you observe?</li>
+What do you observe with respect to variability?</li>
 <li>Plot the histogram of the simulated correlation coefficients.</li>
 </ul>
 </div>

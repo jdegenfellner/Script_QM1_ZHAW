@@ -226,7 +226,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.5</b> Exercises</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.5.1</b> Exercise 1 - Recreate table with fake data</a></li>
-<li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> Exercsie 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> Exercise 2 - Outliers and estimates</a></li>
 <li class="chapter" data-level="3.5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.5.3</b> Exercise 3 - Recreating data in Table 2</a></li>
 <li class="chapter" data-level="3.5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.5.4</b> Exercise 4 - Z-scores</a></li>
 <li class="chapter" data-level="3.5.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise5_descriptive_stats"><i class="fa fa-check"></i><b>3.5.5</b> Exercise 5 - Correlation</a></li>
@@ -627,8 +627,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-55e9a0144a3600d986a4" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-55e9a0144a3600d986a4">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-2fe2f99da1c9ac1fb4cd" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2fe2f99da1c9ac1fb4cd">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events

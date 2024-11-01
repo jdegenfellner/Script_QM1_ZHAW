@@ -215,7 +215,7 @@ seem to deviate from the normal distribution.
 ## Correlation
 The [correlation](https://en.wikipedia.org/wiki/Correlation) between two variables is a measure 
 of the strength and direction of the **linear** relationship between them. It does **not** (directly)
-measure of other kinds of relationships (for instance monotonic or polynomial). 
+a measure of other kinds of relationships (for instance monotonic or polynomial). 
 See also [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
 The correlation coefficient can take values between -1 and 1.
 
@@ -248,11 +248,11 @@ we can predict the value of the other variable. This is not necessarily true.
 This [section](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Interpretation) explains why.
 Study the visualization [here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Pearson_correlation_and_prediction_intervals.svg).
 It depicts the reduction of the prediction interval for Y given X as the correlation 
-increases (assuming that the variables are jointly normally distributed). **How much smaller is the interval where my next observational
+increases (assuming that the variables are jointly normally distributed). **How much smaller is the interval where my next observation of Y
 will fall if I know the value of X?** As you can see, this curve is relatively flat in the beginning, meaning, on an individual level,
 the correlation does not tell us much about the value of Y given X. 
 Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5 
-(which is considered high in many areas), the prediction interval for Y only 13% smaller.
+(which is considered high in many areas), the prediction interval for Y is only 13% smaller.
 
 ### Example in the wild
 Let's again visit the previous [paper](https://bmjopen.bmj.com/content/9/4/e023341).
@@ -271,7 +271,7 @@ See also [Exercise 5](#exercise5_descriptive_stats).
    This is rather helpful later on in your master thesis.
  - Try to export the table to Excel and Word.
 
-### Exercsie 2 - Outliers and estimates
+### Exercise 2 - Outliers and estimates
 Let's assume we know that the *Cognitive flexibility* is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): $CognFlex \sim N(60,7.4)$.
 
 - Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample. 
@@ -320,7 +320,7 @@ cor(x, y)
 - Try different values for $\rho$ and $n$ and plot the scatterplot of $x$ and $y$.
 - Execute the code above 1000 times and save the correlation coefficient in a vector. 
 - Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
-  What do you observe?
+  What do you observe with respect to variability?
 - Plot the histogram of the simulated correlation coefficients. 
 
 
