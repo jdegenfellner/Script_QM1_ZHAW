@@ -219,14 +219,15 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example-in-the-wild"><i class="fa fa-check"></i><b>3.3.1</b> Example in the wild</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.4</b> Exercises</a>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.5</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.4.1</b> Exercise 1 - Recreate table with fake data</a></li>
-<li class="chapter" data-level="3.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.4.2</b> Exercsie 2 - Outliers and estimates</a></li>
-<li class="chapter" data-level="3.4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.4.3</b> Exercise 3 - Recreating data in Table 2</a></li>
-<li class="chapter" data-level="3.4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.4.4</b> Exercise 4 - Z-scores</a></li>
+<li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.5.1</b> Exercise 1 - Recreate table with fake data</a></li>
+<li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> Exercsie 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.5.3</b> Exercise 3 - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.5.4</b> Exercise 4 - Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.5</b> Solutions</a></li>
+<li class="chapter" data-level="3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.6</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -420,7 +421,7 @@ histograms or boxplots for these variables. Nevertheless, the authors present th
 for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
 normally distributed.</p></li>
 <li><p>Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded
-between -12 and 12. But that should not be a problem with so many levels of an ordered categorical variable.
+between -12 and 12 (normal distribution can take values between <span class="math inline">\(-\infty\)</span> and <span class="math inline">\(\infty\)</span>). But that should not be a problem with so many levels of an ordered categorical variable.
 It should be a sufficient approximation.</p></li>
 <li><p>“The FPI was analysed as continuous data, rather than as z-score data”.
 <a href="https://www.youtube.com/watch?v=5S-Zfa-vOXs&amp;ab_channel=KhanAcademy">z-scores are standardized scores</a>:
@@ -459,10 +460,38 @@ FPI scores, the histogram might look smoother than the one in Figure 1 in the pa
 seem to deviate from the normal distribution.</p>
 </div>
 </div>
-<div id="exercises-1" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1---recreate-table-with-fake-data" class="section level3 hasAnchor" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Exercise 1 - Recreate table with fake data<a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="correlation" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Correlation<a href="descriptive-statistics.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Correlation">correlation</a> between two variables is a measure
+of the strength and direction of the <strong>linear</strong> relationship between them. It does <strong>not</strong> (directly)
+measure of other kinds of relationships (for instance monotonic or polynomial). The correlation coefficient can take values between -1 and 1.</p>
+<ul>
+<li><p>A value of 1 indicates a perfect positive linear relationship between the variables.</p></li>
+<li><p>A value of -1 indicates a perfect negative linear relationship between the variables.</p></li>
+</ul>
+<p>See <a href="https://en.wikipedia.org/wiki/Correlation#/media/File:Correlation_examples2.svg">here</a> and
+<a href="https://en.wikipedia.org/wiki/Correlation#/media/File:Pearson_Correlation_Coefficient_and_associated_scatterplots.png">here</a>
+for a nice illustration. Study this in detail. A correlation of <span class="math inline">\(\pm 1\)</span> just means that the data points lie on a straight line.
+It does not say anything about the steepness of the line.</p>
+<p>You can watch these videos to get a better understanding of the concept:</p>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=xZ_z8KWkhXE&amp;ab_channel=StatQuestwithJoshStarmer">StatQuest - correlation</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=qtaqvPAeEJY&amp;ab_channel=StatQuestwithJoshStarmer">StatQuest - covariance</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=rijqfllOq6g&amp;ab_channel=3-MinuteDataScience">Animated correlation</a></p></li>
+</ul>
+<p>Correlation is an often (over-)used measure in research.
+It is important to note that
+<a href="https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation">correlation does not imply causation</a>.
+For instance,
+<a href="https://www.sciencedirect.com/science/article/pii/S2590291120300711">chocolate consumption is positively correlated with the number of Nobel laureates</a> in a country.
+This does - unfortunately - not mean that eating chocolate makes you smarter.</p>
+<p>One thing many of us thing when they see a high correlation (near 1) is that if we know the value of one variable,
+we can predict the value of the other variable. This is not necessarily true.</p>
+</div>
+<div id="exercises-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Exercises<a href="descriptive-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1---recreate-table-with-fake-data" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Exercise 1 - Recreate table with fake data<a href="descriptive-statistics.html#exercise-1---recreate-table-with-fake-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create fake data for the study mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> in R.</li>
 <li>Recreate Table 2 of the paper mentioned <a href="descriptive-statistics.html#example_study1_physio">above</a> with fake data in R (using GPT, the R package <em>gtsummary</em> and other useful packages).
@@ -470,8 +499,8 @@ This is rather helpful later on in your master thesis.</li>
 <li>Try to export the table to Excel and Word.</li>
 </ul>
 </div>
-<div id="exercsie-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Exercsie 2 - Outliers and estimates<a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercsie-2---outliers-and-estimates" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Exercsie 2 - Outliers and estimates<a href="descriptive-statistics.html#exercsie-2---outliers-and-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s assume we know that the <em>Cognitive flexibility</em> is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): <span class="math inline">\(CognFlex \sim N(60,7.4)\)</span>.</p>
 <ul>
 <li>Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample.
@@ -482,8 +511,8 @@ Calculate the mean and standard deviation of the sample. How do the estimates ch
 how many outliers of what magnitude are necessary to disturb the estimate by 5 points?</li>
 </ul>
 </div>
-<div id="exercise3_descriptive_stats" class="section level3 hasAnchor" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> Exercise 3 - Recreating data in Table 2<a href="descriptive-statistics.html#exercise3_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise3_descriptive_stats" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Exercise 3 - Recreating data in Table 2<a href="descriptive-statistics.html#exercise3_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We assume that <em>age</em> in both groups is normally distributed with a mean of 48 (47) years
 and a standard deviation of 16 (15) years:</p>
 <p><span class="math inline">\(Age_{UsualCare} \sim Normal(\mu = 48, \sigma = 16)\)</span> and</p>
@@ -502,8 +531,8 @@ where we would expect a new person drawn from the same population.</li>
 (We could solve this with simulation.)</li>
 </ul>
 </div>
-<div id="exercise4_descriptive_stats" class="section level3 hasAnchor" number="3.4.4">
-<h3><span class="header-section-number">3.4.4</span> Exercise 4 - Z-scores<a href="descriptive-statistics.html#exercise4_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise4_descriptive_stats" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Exercise 4 - Z-scores<a href="descriptive-statistics.html#exercise4_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.</li>
 <li>Try different parameter values for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> and plot the histogram of the z-scores.</li>
@@ -511,8 +540,8 @@ where we would expect a new person drawn from the same population.</li>
 </ul>
 </div>
 </div>
-<div id="solutions-1" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Solutions<a href="descriptive-statistics.html#solutions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solutions-1" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Solutions<a href="descriptive-statistics.html#solutions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics">here</a>.</p>
 
 </div>

@@ -172,7 +172,7 @@ histograms or boxplots for these variables. Nevertheless, the authors present th
 for these variables which implies (when not reading the methods section) that the data is (at least sufficiently)
 normally distributed.
 - Strictly speaking, an FPI score cannot be normally distributed since it takes discrete values which are bounded 
-between -12 and 12. But that should not be a problem with so many levels of an ordered categorical variable. 
+between -12 and 12 (normal distribution can take values between $-\infty$ and $\infty$). But that should not be a problem with so many levels of an ordered categorical variable. 
 It should be a sufficient approximation. 
 - "The FPI was analysed as continuous data, rather than as z-score data". 
 [z-scores are standardized scores](https://www.youtube.com/watch?v=5S-Zfa-vOXs&ab_channel=KhanAcademy):
@@ -211,6 +211,38 @@ p2
 Comparing these histograms (using different seed-values), we could assume that for truly normally distributed
 FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
 seem to deviate from the normal distribution.
+
+## Correlation
+The [correlation](https://en.wikipedia.org/wiki/Correlation) between two variables is a measure 
+of the strength and direction of the **linear** relationship between them. It does **not** (directly)
+measure of other kinds of relationships (for instance monotonic or polynomial). The correlation coefficient can take values between -1 and 1.
+
+- A value of 1 indicates a perfect positive linear relationship between the variables.
+
+- A value of -1 indicates a perfect negative linear relationship between the variables.
+
+See [here](https://en.wikipedia.org/wiki/Correlation#/media/File:Correlation_examples2.svg) and 
+[here](https://en.wikipedia.org/wiki/Correlation#/media/File:Pearson_Correlation_Coefficient_and_associated_scatterplots.png)
+for a nice illustration. Study this in detail. A correlation of $\pm 1$ just means that the data points lie on a straight line.
+It does not say anything about the steepness of the line.
+
+You can watch these videos to get a better understanding of the concept:
+
+- [StatQuest - correlation](https://www.youtube.com/watch?v=xZ_z8KWkhXE&ab_channel=StatQuestwithJoshStarmer)
+
+- [StatQuest - covariance](https://www.youtube.com/watch?v=qtaqvPAeEJY&ab_channel=StatQuestwithJoshStarmer)
+
+- [Animated correlation](https://www.youtube.com/watch?v=rijqfllOq6g&ab_channel=3-MinuteDataScience)
+
+Correlation is an often (over-)used measure in research. 
+It is important to note that 
+[correlation does not imply causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation).
+For instance, 
+[chocolate consumption is positively correlated with the number of Nobel laureates](https://www.sciencedirect.com/science/article/pii/S2590291120300711) in a country.
+This does - unfortunately - not mean that eating chocolate makes you smarter.
+
+One thing many of us thing when they see a high correlation (near 1) is that if we know the value of one variable,
+we can predict the value of the other variable. This is not necessarily true.
 
 ## Exercises
 
