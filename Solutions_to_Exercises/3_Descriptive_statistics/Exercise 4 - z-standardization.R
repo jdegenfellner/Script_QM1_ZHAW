@@ -34,6 +34,4 @@ z_score_plots <- lapply(parameters, function(param) {
     theme_minimal()
 })
 
-# Display plots
-z_score_plots
-
+ggarrange(plotlist = z_score_plots, ncol = 3, nrow = 1)

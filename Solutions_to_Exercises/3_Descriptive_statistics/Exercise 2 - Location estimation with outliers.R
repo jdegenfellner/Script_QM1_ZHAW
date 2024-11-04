@@ -16,9 +16,9 @@ sample <- rnorm(sample_size, mean = mean_true, sd = sd_true)
 
 # Task 2: Replace 5 values in the sample with outliers (score of 100)
 set.seed(42)  # Ensure reproducibility for replacing values
-outlier_indices <- sample(seq_len(sample_size), 5)
+outlier_indices <- sample(seq_len(sample_size), 5) # choose 5 random indices
 sample_with_outliers <- sample
-sample_with_outliers[outlier_indices] <- 100
+sample_with_outliers[outlier_indices] <- 100 # replace with outliers
 
 # Calculate mean and standard deviation of the sample with replaced outliers
 (mean_with_outliers <- mean(sample_with_outliers)) # 60.86253; slightly higher
