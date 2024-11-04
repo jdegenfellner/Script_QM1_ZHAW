@@ -918,7 +918,7 @@ Let's now consider 3 researchers simulatenously conducting the experiment.
 
 - What does the event space $\Omega$ look like?
 - Which elementary events are in the set of all possible outcomes of our 3-researcher experiment and how many are there?
-- Draw the corresponding trinary (?) tree for this experiment.
+- Draw the corresponding binary tree for this experiment.
 - Which elementary events are in the following event: "Researcher 3 finds a positive effect"?
 - Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?
 
