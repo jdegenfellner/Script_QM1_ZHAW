@@ -98,6 +98,6 @@ for(i in 1:n_sim){
 
 hist(diffs, breaks = 30, col = "steelblue", border = "black", 
      xlab = "Difference in means", main = "Histogram of differences in means")
-quantile(diffs, c(0.025, 0.975))
+quantile(diffs, c(0.015, 0.985))
 
 # How would the distribution change if we took the same group means?
