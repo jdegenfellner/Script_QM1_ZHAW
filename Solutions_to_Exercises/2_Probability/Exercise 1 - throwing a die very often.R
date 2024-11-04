@@ -10,8 +10,9 @@ set.seed(123)  # Set seed for reproducibility
 throws <- sample(1:6, size = 1000, replace = TRUE)
 
 # Calculating frequencies of each number
-freq_table <- table(throws)
-freq_table
+table(throws)
+table(throws)/sum(table(throws)) # observed probabilities
+rep(1/6, 6) # true probabilities
 
 # Plotting the frequencies of each number after 1000 throws
 barplot(freq_table, main = "Frequency of Each Number (1-6) after 1000 Throws", 

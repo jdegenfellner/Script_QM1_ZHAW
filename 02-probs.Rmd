@@ -437,7 +437,14 @@ It is not always the maximum probability (the so-called [mode](https://en.wikipe
 Consider a binomial distribution \( \text{Bin}(10, 0.77) \):
 
 - The **mean** is \( \mathbb{E}(X) = 10 \times 0.77 = 7.7 \). This number is not an integer and we can therefore not calculate the density at this point.
-- The **[mode](https://en.wikipedia.org/wiki/Mode_(statistics))** is 8.
+- The **[mode](https://en.wikipedia.org/wiki/Mode_(statistics))** is 8:
+
+```{r}
+library(tidyverse)
+data.frame(x = 0:10,
+           p_x = dbinom(0:10, 10, 0.77)) %>%
+  filter(x %in% c(7,8,9))
+```
 
 **The fourth question** asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
 Well, this would be scientific fraud and a case of [survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.).
@@ -445,7 +452,7 @@ You only look at the studies that showed a treatment effect and ignore the ones 
 This is also relevant in [finance](https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.).
 You may want to read this excellent [article](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124) by John Ioannidis for a humbling big-picture of how relevant published results can be.
 
-**The fifth question** asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem). 
+**The fifth question** asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) and related to the previous question. 
 If you test many hypotheses, you will find some "significant" results by chance alone.
 One could also call the practice of testing many hypotheses to find "significant" ones [p-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
@@ -593,8 +600,9 @@ The theorem states that, under appropriate conditions, the distribution of a nor
 mean ($\bar{X} = \sum_{i=1}^{n} X_i$) converges to a standard normal distribution. 
 By this theorem, we can link **any** distribution to the normal distribution.
 
-Discrete or continuous, the **goal** is the same: We want to now **where** the realization of my **random variable** lands **with what probability** 
-when I do the experiment?
+Discrete or continuous, the **goal** is the same: We want to now **where** the realization 
+of my **[random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)** 
+lands **with what probability** when I do the experiment?
 How often will I get heads?
 
 - How often will the researcher find an effect?
@@ -602,12 +610,12 @@ How often will I get heads?
 - With what probability will I get a pain-score reduction of at least 1 point in this patient in front of me given his/her 
   characteristics and history?
 
-- When looking at ZHAW students, female, soccer lovers, what kind of hourly intense sports activity can I expect and does that differ to other groups?
-
-For us, the following definitions should suffice.
+- When looking at ZHAW students, female, soccer lovers; what kind of hourly intense sports activity 
+can I expect and does that differ from other groups?
 
 #### Discrete probability distrubtions are used when we can count the outcomes, which includes infinitely many. {#discrete_probability_distributions}
 Some examples of [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) are:
+
 - **[Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)**: A single trial with two outcomes (e.g., find an effect or do not find an effect).
 - **[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)**: The number of successes in a fixed number of trials (e.g., the number of false effects found among 1000 researchers).
 - **[Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution)**: The number of events in a fixed interval of time or space.
@@ -638,7 +646,7 @@ This principle is true for all discrete probability distributions. Rather simple
 
 $$\sum_{i} \mathbb{P}(X = x_i) = 1,$$
 
-where $X$ ist the random variable (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
+where $X$ ist the [random variable]((https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)) (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
 We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), we'll call it the MSc-ZHAW-distribution:
 
@@ -681,7 +689,7 @@ sum(sapply(x_values, P))
 
 Deviations from zero ($\pm 1$) are highly likely with this distribution. The probability of $X=0$ is also rather high with $\frac{1}{6}$.
 Larger deviations from zero are less likely and go exponentially towards zero (very fast). So we would expect almost never to see values outside
-of $\pm 10$. This does of course not mean that we will never see them. Do the experiment often enough and you will seen them with 
+of $\pm 10$. This does of course not mean that we will never see them. Do the experiment often enough and you will see them with 
 probability 1 (see [Exercise 10](#exercise10)).
 
 
@@ -698,7 +706,7 @@ a weighted sum of possible values $x_i$ with their respsective probabilities $\m
 
 The term "expectation" is probably somewhat misleading. It is not necessarily the value we "expect to see" when we do the experiment. For instance,
 the expected value of a Bernoulli distribution is: $\mu = \mathbb{E}(X) = 0 \cdot (1-p) + 1 \cdot p = p$, which could be $0.5$. The individual outcomes are $0$ and $1$, 
-and not $0.5$. But $0.5$ would be the mean of many experiments.
+and not $0.5$. But $0.5$ would be the mean of the outcomes of many experiments.
 
 The expectation can be interpreted as the [center of mass](https://mathcenter.oxford.emory.edu/site/math117/expectedValueAndCenterOfMass/) 
 of the distribution. It is the value that the distribution "balances" around.
@@ -720,15 +728,19 @@ The **variance of a discrete random variable** is defined as:
 $$\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \} = \sum_i (\mathbb{E}(X) - x_i)^2 \mathbb{P}(X = x_i),$$
 
 the expected squared deviation from the mean. It is a measure of how much the values of the random variable differ from the mean.
+$(\mathbb{E}(X) - x_i)^2$ quantifies the deviation from the mean. We weight this deviation with the probability of such 
+a deviation happening. So a large deviation results only in a large variance if it is likely to happen. 
 
-**Remember**: The sample variance $s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$ is an estimator for the variance $\mathbb{V}ar(X)$ of a distribution.
+
+**Remember**: The sample variance $s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$ is a so-called **estimator** 
+for the variance $\mathbb{V}ar(X)$ of a distribution.
 This is true for discrete and continuous distributions. 
 
 A more natural interpretation of variability is the **standard deviation**: 
 
 $$\sigma = \sqrt{\mathbb{V}ar(X)},$$
 
-since it's on the same scale as X.
+since it's on the same scale as X (e.g. $m^2$ or $kg$).
 
 #### Continuous probability distributions are used when we cannot count the outcomes. {#continuous_probability_distributions}
 The most famous continuous probability distribution is the 
@@ -810,8 +822,9 @@ $$\sigma = \sqrt{\mathbb{V}ar(X)},$$
 
 since it's on the same scale as X.
 
-Example: Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, 
+**Example:** Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, 
 this means that approx. 68% of the students are between $(24-3=)21$ and $(24+3=)27$ years old.
+So, with just the parameters we have instant information where the values are and where new values are likely to be.
 
 
 
@@ -822,11 +835,11 @@ The first 2 are absolutely essential.
  - The most important one is, as mentioned above, the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution). 
    It is often used to model the distribution of many variables in health sciences, e.g., blood pressure, weight, height, etc.
    Normality is also a common assumption in many statistical tests and models. This is the reason why you will find many statements like
-   "we have checked normality using the shapiro-wilk test" (Which I would not recommend) in scientific articles.
+   "we have checked normality using the Shapiro-Wilk test" (Which I would not recommend) in scientific articles.
    Normal distribution theory is very aesthetic and one is sometimes lead to believe that this is the normal state of nature, which is
    not the case. See also the [history](https://en.wikipedia.org/wiki/Normal_distribution#History) of the normal distribution. 
    A common use of the normal distribution is in [linear regression](https://en.wikipedia.org/wiki/Linear_regression), 
-   where the errors and the conditional distribution of the modeled variable in the model are assumed to be normally distributed. 
+   where the errors and the conditional distribution of the modeled variable are assumed to be normally distributed. 
    We will deal with this in QM2.
 
 - The [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) ($X \sim B(n, p)$) is used to model the number of successes in a fixed number of trials. 
@@ -851,9 +864,10 @@ The first 2 are absolutely essential.
 
 There are infinitely (!) many more [distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions).
 
-Our goal is to learn: How can we describe (the distribution of) what we see in our data? 
+**Our goal is to learn**: How can we describe (the distribution of) what we see in our data? 
 How can we make predictions? How can we make decisions based on our data?
 Probability theory and statistics are (for us) a very large tool box to answer these questions. 
+They are unfortunately not magic and cannot turn uncertainty into certainty.
 
 ## Exercises
 
