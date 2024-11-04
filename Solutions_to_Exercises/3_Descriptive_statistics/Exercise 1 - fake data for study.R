@@ -70,17 +70,17 @@ group_cft <- rep("CFT", n_CFT)
 # Combine into a single data frame for both groups
 fake_data <- data.frame(
   Group = c(group_usualcare, group_cft),
-  Age = c(age_usualcare, age_cft),
   Sex = c(ifelse(sex_usualcare == 1, "Female", "Male"), ifelse(sex_cft == 1, "Female", "Male")),
-  Education = c(ifelse(education_usualcare == 1, "University", "Non-University"), ifelse(education_cft == 1, "University", "Non-University")),
-  Confidence = c(confidence_usualcare, confidence_cft),
+  Age = c(age_usualcare, age_cft),
   DurationCare = c(duration_care_usualcare, duration_care_cft),
   LengthEpisode = c(length_episode_usualcare, length_episode_cft),
+  Education = c(ifelse(education_usualcare == 1, "University", "Non-University"), ifelse(education_cft == 1, "University", "Non-University")),
+  Confidence = c(confidence_usualcare, confidence_cft),
+  ActivityLimitation = c(activity_limitation_usualcare, activity_limitation_cft),
+  CognitiveFlexibility = c(cognitive_flexibility_usualcare, cognitive_flexibility_cft),
   PainIntensity = c(pain_intensity_usualcare, pain_intensity_cft),
   PainSelfEfficacy = c(pain_self_efficacy_usualcare, pain_self_efficacy_cft),
-  PainCatastrophizing = c(pain_catastrophizing_usualcare, pain_catastrophizing_cft),
-  CognitiveFlexibility = c(cognitive_flexibility_usualcare, cognitive_flexibility_cft),
-  ActivityLimitation = c(activity_limitation_usualcare, activity_limitation_cft)
+  PainCatastrophizing = c(pain_catastrophizing_usualcare, pain_catastrophizing_cft)
 )
 
 # *) Recreate Table 2 of the paper mentioned above with fake data in R (using -----------
@@ -96,6 +96,8 @@ summary_table <-
     by = Group, 
     statistic = list(
       all_continuous() ~ "{median} ({p25} to {p75})", 
+      DurationCare ~ "{median} ({p25} to {p75})",       # Ensure median (IQR) for Duration of care
+      LengthEpisode ~ "{median} ({p25} to {p75})",      # Ensure 
       all_categorical() ~ "{n} ({p}%)"
     ),
     label = list(
@@ -104,7 +106,7 @@ summary_table <-
       Education ~ "University education, n (%)",
       Confidence ~ "Confidence in treatment assigned, n (%)",
       DurationCare ~ "Duration of care seeking (y), median (IQR)",
-      LengthEpisode ~ "Length of current episode (y), mean (SD)",
+      LengthEpisode ~ "Length of current episode (y), median (IQR)",
       ActivityLimitation ~ "Activity limitation (0 to 24), mean (SD)",
       CognitiveFlexibility ~ "Cognitive flexibility (12 to 72), mean (SD)",
       PainIntensity ~ "Pain intensity (0 to 10), mean (SD)",
