@@ -302,12 +302,13 @@ result in a negatively skewed distribution of course.</p>
 <div id="univarate-vs.-bivariate-statisics" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Univarate vs. bivariate statisics<a href="descriptive-statistics.html#univarate-vs.-bivariate-statisics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One can distinguish between <a href="https://en.wikipedia.org/wiki/Univariate_analysis">univariate</a> and <a href="https://en.wikipedia.org/wiki/Bivariate_analysis">bivariate</a> statistics.
-In univariate statistics, we look at one variable at a time, for instance <em>Age</em> in the example above,
+In univariate statistics, we look at <strong>one variable at a time</strong>, for instance <em>Age</em> in the example above,
 where we could draw a <a href="https://en.wikipedia.org/wiki/Box_plot">boxplot</a> or a <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a>.
 Table 2 in the paper is a good example of univariate statistics. We are not so much interested in the relationship between variables.</p>
-<p>In bivariate statistics, we look at two variables <em>simultaneously</em>.
+<p>In bivariate statistics, we look at <strong>two variables simultaneously</strong>.
 An example could a <a href="https://en.wikipedia.org/wiki/Scatter_plot">scatter plot</a> of <em>Age</em> and <em>Cognitive flexibility</em>,
-where we would possible find a falling relationship.</p>
+where we would possible find a falling relationship (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4906299/figure/FI00674-1/">example in the wild</a>).
+We are interested in the relationship between the two variables. How do they change (covary) together?</p>
 <p><a href="https://en.wikipedia.org/wiki/Multivariate_statistics">Multivariate statistics</a> is the next step, where we look at more than two variables at the same time.</p>
 </div>
 <div id="the-histogram" class="section level2 hasAnchor" number="3.3">
@@ -340,7 +341,7 @@ to visualize the raw data points as well.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Some researchers would discard the values below 10 and above 40 as outliers, but we know here
 that the data points are perfectly legitimate.
-One important thing we should be aware of in connection with small sample sizes ist
+One important thing we should be aware of in connection with small sample sizes is
 variability. Let’s create not <span class="math inline">\(10000\)</span> samples of a normally distributed variable, but only <span class="math inline">\(25\)</span> samples:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="descriptive-statistics.html#cb33-1" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
 <span id="cb33-2"><a href="descriptive-statistics.html#cb33-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
@@ -412,7 +413,7 @@ but we know it is not. We will be cautious with such ugly rule of thumbs.</p>
 <h3><span class="header-section-number">3.3.1</span> Example in the wild<a href="descriptive-statistics.html#example-in-the-wild" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will try to catch a histogram in the <em>wild</em> (= in a research paper): We find one
 <a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf">here</a>.
-<a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg">Figure 1</a> shows a histogram often
+<a href="https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg">Figure 1</a> shows a histogram of the
 the foot posture index (FPI-6) scores from the participants (3217 healthy children aged 3 to 15).
 “The FPI score may range from −12 (highly supinated) to +12 (highly pronated)”.
 There are a few things to note here:</p>
@@ -468,7 +469,7 @@ seem to deviate from the normal distribution.</p>
 <h2><span class="header-section-number">3.4</span> Correlation<a href="descriptive-statistics.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Correlation">correlation</a> between two variables is a measure
 of the strength and direction of the <strong>linear</strong> relationship between them. It does <strong>not</strong> (directly)
-a measure of other kinds of relationships (for instance monotonic or polynomial).
+measure other kinds of relationships (for instance monotonic or polynomial).
 See also <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s quartet</a>.</p>
 <p>Correlation is often denoted by the Greek letter</p>
 <p><span class="math display">\[\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}\]</span>
@@ -569,7 +570,7 @@ See also <a href="descriptive-statistics.html#exercise5_descriptive_stats">Exerc
 <p>(The sample) Correlation (coefficient) is based (see the formula above) on the artihmetic mean <span class="math inline">\(\bar{X}\)</span>
 (capital X since we are talking about the
 <a href="https://www.youtube.com/watch?v=Y9nsL69CwbU&amp;ab_channel=VeryNormal">random variable</a> which is realised when
-the <span class="math inline">\(X_i\)</span> have materialized into the <span class="math inline">\(x_i\)</span>) and sample standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+the <span class="math inline">\(X_i\)</span> have materialized into the <span class="math inline">\(x_i\)</span>) and sample standard deviation <span class="math inline">\(s\)</span>.</p>
 <p>The sample mean is not robust against outliers. A single large value can distort the mean arbitrarily much.
 Hence, the correlation coefficient is not robust against outliers. Let’s see this in action:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
@@ -633,8 +634,10 @@ Hence, the correlation coefficient is not robust against outliers. Let’s see t
 <li><p>A: <span class="math inline">\(r=0.71\)</span> for the original data.</p></li>
 <li><p>B: When we add an outlier in x, <span class="math inline">\(r\)</span> decreases to <span class="math inline">\(0.44\)</span> and the trendline is notably shifted.</p>
 <p>The reason for the smaller correlation is that the outlier is above the mean of the x values and below
-the mean of the y values and therefore adds negatively to the covariance.</p></li>
+the mean of the y values and therefore adds negatively to the covariance which is the numberator
+in the formula for <span class="math inline">\(r\)</span>. The denominator is non-negative.</p></li>
 <li><p>C: When we add an outlier in both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, <span class="math inline">\(r\)</span> stays relatively stable.
+(At least in this case: We could also add, e.g., an outlier above the y mean and below the x mean.)
 The reason is that the outlier is above the mean of the x values and above the mean of the y values,
 so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
 We could ask, what happend in this data point? Was another scale used for instance?</p></li>

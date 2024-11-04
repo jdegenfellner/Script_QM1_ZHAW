@@ -418,7 +418,8 @@ library(ggplot2)
 plot <- ggplot() +
   geom_rect(aes(xmin = -5, xmax = 5, ymin = -5, ymax = 5),
             fill = "lightgray", color = "black", linewidth = 1) +
-  geom_point(aes(x = 0, y = 0), color = "black", size = 60, shape = 21, fill = "skyblue") +
+  geom_point(aes(x = 0, y = 0), color = "black",
+             size = 60, shape = 21, fill = "skyblue") +
   annotate("text", x = 0, y = 0, label = "A", size = 6) +
   annotate("text", x = -4.5, y = 4.5, label = "Ω", size = 6, hjust = 0) +
   annotate("text", x = -3, y = -3, label = "A^C", parse = TRUE, size = 6) +
@@ -443,7 +444,7 @@ Consider a binomial distribution \( \text{Bin}(10, 0.77) \):
 library(tidyverse)
 data.frame(x = 0:10,
            p_x = dbinom(0:10, 10, 0.77)) %>%
-  filter(x %in% c(7,8,9))
+  filter(x %in% c(7, 8, 9))
 ```
 
 **The fourth question** asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
