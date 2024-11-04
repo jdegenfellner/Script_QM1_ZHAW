@@ -207,7 +207,7 @@ this event can indeed *never* happen.
 
 Obviously, the probability of an event should at a mininum be zero and at a maximum be one: 
 
-$$0 \le \mathbb{P}(A) \le 1$$. 
+$$0 \le \mathbb{P}(A) \le 1.$$ 
 
 ### Axioms of probability theory {#axioms_of_probability_theory}
 
@@ -261,7 +261,7 @@ these probabilities would sum to 1 according to axiom 3. Combining different ele
 gives us "events" like the ones we used above ($A_1, A_2, A_3$).
 
 Note that there is a **difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment** of 
-1000 researchers we are looking at (simulatenously).
+1000 researchers we are looking at (simultaneously).
 Do not make the mistake to add the single probabilities of finding an effect (under $H_0$) of 0.04 to get the probability of finding an effect in the whole experiment: 
 This would result in: $1000 \cdot 0.04 = 40 > 1$, which is hardly a probability anymore. 
 
@@ -277,7 +277,7 @@ $$\mathbb{P}(A | B) = \mathbb{P}(A).$$
 A simple **example in our context**: 
 The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.
 
-Here, we used the very important concept of **conditional probability**. 
+Above, we used the very important concept of **conditional probability**. 
 The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as 
 
 $$\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.$$ 
@@ -289,8 +289,8 @@ library(eulerr)
 plot(euler(c(A = 1, B = 1, "A&B" = 1)))
 ```
 
-For the probability of event A, we a now only interested in the light-grey area with respect to the whole area of event B since event B 
-is our reference frame now (as opposed to the whole space $\Omega$ before).
+For the probability of event A, we are now *only* interested in the light-grey area with respect to the whole area of event B 
+since event B is our reference frame now (as opposed to the whole space $\Omega$ before).
 Note that even if the probability of event A changes when B has happend, B could still have no *causal* effect on A. They could have a common cause, for instance.
 
 **Example in our context**: 
@@ -308,7 +308,8 @@ There are four possible scenarios when considering two events:
 - Event A: Patient receives treatment A.
 - Event B: Patient receives treatment B (or is in the control group).
 
-These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. If a patient receives treatment A, they cannot receive treatment B (and vice versa), meaning the events cannot occur together in this setting. Thus,  $P(A \cap B) = 0$.
+These two events, A and B, are disjoint because a patient cannot receive both treatments at the same time. 
+If a patient receives treatment A, he/she cannot receive treatment B (and vice versa), meaning the events cannot occur together in this setting. Thus,  $P(A \cap B) = 0$.
 However, these events are not independent, because the probability of receiving one treatment depends on not receiving the other. 
 In this setup, if the patient received treatment A, the probability of receiving treatment B is zero: $\mathbb{P}(B|A) = 0$. 
 The probability of the patient receiving therapy B could be 50% (if randomized): $\mathbb{P}(B) = 0.5$. Hence, they are dependent.
@@ -411,6 +412,20 @@ observing 137 or more positive results: $1 - \mathbb{P}(\text{observing 136 or l
 In general, for an event $A$: 
 
 $$\mathbb{P}(A^C) = 1 - \mathbb{P}(A),$$ 
+
+```{r}
+library(ggplot2)
+plot <- ggplot() +
+  geom_rect(aes(xmin = -5, xmax = 5, ymin = -5, ymax = 5),
+            fill = "lightgray", color = "black", linewidth = 1) +
+  geom_point(aes(x = 0, y = 0), color = "black", size = 60, shape = 21, fill = "skyblue") +
+  annotate("text", x = 0, y = 0, label = "A", size = 6) +
+  annotate("text", x = -4.5, y = 4.5, label = "Ω", size = 6, hjust = 0) +
+  annotate("text", x = -3, y = -3, label = "A^C", parse = TRUE, size = 6) +
+  coord_fixed() +
+  theme_void()
+print(plot)
+```
 
 where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
 $\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)$.

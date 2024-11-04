@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-11-01" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -316,63 +316,63 @@ where we would possible find a falling relationship.</p>
 This <a href="https://www.youtube.com/watch?v=gSEYtAjuZ-Y&amp;ab_channel=KhanAcademy">video</a> might be helpful to cover the basics.
 I recommend plotting the histogram with a <a href="https://en.wikipedia.org/wiki/Box_plot">boxplot</a> below; this helps
 to visualize the raw data points as well.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
-<span id="cb27-2"><a href="descriptive-statistics.html#cb27-2" tabindex="-1"></a><span class="fu">p_load</span>(tidyverse)</span>
-<span id="cb27-3"><a href="descriptive-statistics.html#cb27-3" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="descriptive-statistics.html#cb27-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4433</span>) <span class="co"># to get the same plot every time</span></span>
-<span id="cb27-5"><a href="descriptive-statistics.html#cb27-5" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="descriptive-statistics.html#cb27-6" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
-<span id="cb27-7"><a href="descriptive-statistics.html#cb27-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="fl">23.4</span>, <span class="at">sd =</span> <span class="fl">5.6</span>)</span>
-<span id="cb27-8"><a href="descriptive-statistics.html#cb27-8" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
-<span id="cb27-9"><a href="descriptive-statistics.html#cb27-9" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="descriptive-statistics.html#cb27-10" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
-<span id="cb27-11"><a href="descriptive-statistics.html#cb27-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
-<span id="cb27-12"><a href="descriptive-statistics.html#cb27-12" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-13"><a href="descriptive-statistics.html#cb27-13" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb27-14"><a href="descriptive-statistics.html#cb27-14" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values),</span>
-<span id="cb27-15"><a href="descriptive-statistics.html#cb27-15" tabindex="-1"></a>               <span class="at">width =</span> <span class="fl">0.02</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
-<span id="cb27-16"><a href="descriptive-statistics.html#cb27-16" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
-<span id="cb27-17"><a href="descriptive-statistics.html#cb27-17" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
-<span id="cb27-18"><a href="descriptive-statistics.html#cb27-18" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb27-19"><a href="descriptive-statistics.html#cb27-19" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-20"><a href="descriptive-statistics.html#cb27-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb27-21"><a href="descriptive-statistics.html#cb27-21" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb28-2"><a href="descriptive-statistics.html#cb28-2" tabindex="-1"></a><span class="fu">p_load</span>(tidyverse)</span>
+<span id="cb28-3"><a href="descriptive-statistics.html#cb28-3" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="descriptive-statistics.html#cb28-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4433</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb28-5"><a href="descriptive-statistics.html#cb28-5" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="descriptive-statistics.html#cb28-6" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
+<span id="cb28-7"><a href="descriptive-statistics.html#cb28-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="fl">23.4</span>, <span class="at">sd =</span> <span class="fl">5.6</span>)</span>
+<span id="cb28-8"><a href="descriptive-statistics.html#cb28-8" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb28-9"><a href="descriptive-statistics.html#cb28-9" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="descriptive-statistics.html#cb28-10" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="descriptive-statistics.html#cb28-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb28-12"><a href="descriptive-statistics.html#cb28-12" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="descriptive-statistics.html#cb28-13" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb28-14"><a href="descriptive-statistics.html#cb28-14" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values),</span>
+<span id="cb28-15"><a href="descriptive-statistics.html#cb28-15" tabindex="-1"></a>               <span class="at">width =</span> <span class="fl">0.02</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb28-16"><a href="descriptive-statistics.html#cb28-16" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
+<span id="cb28-17"><a href="descriptive-statistics.html#cb28-17" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
+<span id="cb28-18"><a href="descriptive-statistics.html#cb28-18" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb28-19"><a href="descriptive-statistics.html#cb28-19" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-20"><a href="descriptive-statistics.html#cb28-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb28-21"><a href="descriptive-statistics.html#cb28-21" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Some researchers would discard the values below 10 and above 40 as outliers, but we know here
 that the data points are perfectly legitimate.
 One important thing we should be aware of in connection with small sample sizes ist
 variability. Let’s create not <span class="math inline">\(10000\)</span> samples of a normally distributed variable, but only <span class="math inline">\(25\)</span> samples:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
-<span id="cb28-2"><a href="descriptive-statistics.html#cb28-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
-<span id="cb28-3"><a href="descriptive-statistics.html#cb28-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="fl">23.4</span>, <span class="at">sd =</span> <span class="fl">5.6</span>)</span>
-<span id="cb28-4"><a href="descriptive-statistics.html#cb28-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
-<span id="cb28-5"><a href="descriptive-statistics.html#cb28-5" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="descriptive-statistics.html#cb28-6" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
-<span id="cb28-7"><a href="descriptive-statistics.html#cb28-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
-<span id="cb28-8"><a href="descriptive-statistics.html#cb28-8" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb28-9"><a href="descriptive-statistics.html#cb28-9" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="descriptive-statistics.html#cb28-10" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
-<span id="cb28-11"><a href="descriptive-statistics.html#cb28-11" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
-<span id="cb28-12"><a href="descriptive-statistics.html#cb28-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
-<span id="cb28-13"><a href="descriptive-statistics.html#cb28-13" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
-<span id="cb28-14"><a href="descriptive-statistics.html#cb28-14" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb28-15"><a href="descriptive-statistics.html#cb28-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
-<span id="cb28-16"><a href="descriptive-statistics.html#cb28-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb28-17"><a href="descriptive-statistics.html#cb28-17" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" tabindex="-1"></a><span class="co"># Generate normally distributed sample</span></span>
+<span id="cb29-2"><a href="descriptive-statistics.html#cb29-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb29-3"><a href="descriptive-statistics.html#cb29-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="fl">23.4</span>, <span class="at">sd =</span> <span class="fl">5.6</span>)</span>
+<span id="cb29-4"><a href="descriptive-statistics.html#cb29-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb29-5"><a href="descriptive-statistics.html#cb29-5" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="descriptive-statistics.html#cb29-6" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="descriptive-statistics.html#cb29-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb29-8"><a href="descriptive-statistics.html#cb29-8" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-9"><a href="descriptive-statistics.html#cb29-9" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="descriptive-statistics.html#cb29-10" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
+<span id="cb29-11"><a href="descriptive-statistics.html#cb29-11" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="descriptive-statistics.html#cb29-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
+<span id="cb29-13"><a href="descriptive-statistics.html#cb29-13" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
+<span id="cb29-14"><a href="descriptive-statistics.html#cb29-14" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb29-15"><a href="descriptive-statistics.html#cb29-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-16"><a href="descriptive-statistics.html#cb29-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb29-17"><a href="descriptive-statistics.html#cb29-17" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>We <em>know</em> (in this case) that these values come from a normal distribution with a mean
 of <span class="math inline">\(23.4\)</span> and a standard deviation of <span class="math inline">\(5.6\)</span>. Let’s <em>estimate</em> the parameters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>) from the sample
 and use the often but not recommended Shapiro-wilk test for normality:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" tabindex="-1"></a><span class="co"># Estimate mean and standard deviation</span></span>
-<span id="cb29-2"><a href="descriptive-statistics.html#cb29-2" tabindex="-1"></a><span class="fu">mean</span>(x) <span class="co"># or</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="descriptive-statistics.html#cb30-1" tabindex="-1"></a><span class="co"># Estimate mean and standard deviation</span></span>
+<span id="cb30-2"><a href="descriptive-statistics.html#cb30-2" tabindex="-1"></a><span class="fu">mean</span>(x) <span class="co"># or</span></span></code></pre></div>
 <pre><code>## [1] 20.6017</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics.html#cb31-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(x) <span class="sc">*</span> <span class="fu">sum</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="descriptive-statistics.html#cb32-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(x) <span class="sc">*</span> <span class="fu">sum</span>(x)</span></code></pre></div>
 <pre><code>## [1] 20.6017</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="descriptive-statistics.html#cb33-1" tabindex="-1"></a><span class="fu">sd</span>(x) <span class="co"># or</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="descriptive-statistics.html#cb34-1" tabindex="-1"></a><span class="fu">sd</span>(x) <span class="co"># or</span></span></code></pre></div>
 <pre><code>## [1] 4.622042</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="descriptive-statistics.html#cb35-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">/</span> (<span class="fu">length</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="descriptive-statistics.html#cb36-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">/</span> (<span class="fu">length</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] 4.622042</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="descriptive-statistics.html#cb37-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="descriptive-statistics.html#cb38-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -383,24 +383,24 @@ not be able to tell if the data stems from a normal distribution. Thirdly, the s
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
 the Shapiro test would not reject the null hypothesis of normality in this case.</p>
 <p>Let’s try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="descriptive-statistics.html#cb39-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
-<span id="cb39-2"><a href="descriptive-statistics.html#cb39-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">25</span>, <span class="at">df =</span> <span class="dv">3</span>) <span class="co"># random numbers from t-distribution</span></span>
-<span id="cb39-3"><a href="descriptive-statistics.html#cb39-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
-<span id="cb39-4"><a href="descriptive-statistics.html#cb39-4" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="descriptive-statistics.html#cb39-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
-<span id="cb39-6"><a href="descriptive-statistics.html#cb39-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
-<span id="cb39-7"><a href="descriptive-statistics.html#cb39-7" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb39-8"><a href="descriptive-statistics.html#cb39-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb39-9"><a href="descriptive-statistics.html#cb39-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
-<span id="cb39-10"><a href="descriptive-statistics.html#cb39-10" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
-<span id="cb39-11"><a href="descriptive-statistics.html#cb39-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
-<span id="cb39-12"><a href="descriptive-statistics.html#cb39-12" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
-<span id="cb39-13"><a href="descriptive-statistics.html#cb39-13" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb39-14"><a href="descriptive-statistics.html#cb39-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
-<span id="cb39-15"><a href="descriptive-statistics.html#cb39-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb39-16"><a href="descriptive-statistics.html#cb39-16" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="descriptive-statistics.html#cb40-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="descriptive-statistics.html#cb40-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1245</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb40-2"><a href="descriptive-statistics.html#cb40-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">25</span>, <span class="at">df =</span> <span class="dv">3</span>) <span class="co"># random numbers from t-distribution</span></span>
+<span id="cb40-3"><a href="descriptive-statistics.html#cb40-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb40-4"><a href="descriptive-statistics.html#cb40-4" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="descriptive-statistics.html#cb40-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="descriptive-statistics.html#cb40-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb40-7"><a href="descriptive-statistics.html#cb40-7" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="descriptive-statistics.html#cb40-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb40-9"><a href="descriptive-statistics.html#cb40-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
+<span id="cb40-10"><a href="descriptive-statistics.html#cb40-10" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb40-11"><a href="descriptive-statistics.html#cb40-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
+<span id="cb40-12"><a href="descriptive-statistics.html#cb40-12" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
+<span id="cb40-13"><a href="descriptive-statistics.html#cb40-13" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb40-14"><a href="descriptive-statistics.html#cb40-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb40-15"><a href="descriptive-statistics.html#cb40-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb40-16"><a href="descriptive-statistics.html#cb40-16" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="descriptive-statistics.html#cb41-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -442,23 +442,23 @@ considered “continuous” (in this context).</p></li>
 <li><p>With so many obsvervations (<span class="math inline">\(n=3217\)</span>), how would a truly normal distribution with the parameters
 <span class="math inline">\(FPI \sim N(4.20, 3.00)\)</span> look like? We can simulate this with the following code:</p></li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8345</span>) <span class="co"># to get the same plot every time</span></span>
-<span id="cb42-2"><a href="descriptive-statistics.html#cb42-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">3217</span>, <span class="at">mean =</span> <span class="fl">4.20</span>, <span class="at">sd =</span> <span class="fl">3.00</span>)</span>
-<span id="cb42-3"><a href="descriptive-statistics.html#cb42-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
-<span id="cb42-4"><a href="descriptive-statistics.html#cb42-4" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="descriptive-statistics.html#cb42-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
-<span id="cb42-6"><a href="descriptive-statistics.html#cb42-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
-<span id="cb42-7"><a href="descriptive-statistics.html#cb42-7" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb42-8"><a href="descriptive-statistics.html#cb42-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb42-9"><a href="descriptive-statistics.html#cb42-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
-<span id="cb42-10"><a href="descriptive-statistics.html#cb42-10" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
-<span id="cb42-11"><a href="descriptive-statistics.html#cb42-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
-<span id="cb42-12"><a href="descriptive-statistics.html#cb42-12" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
-<span id="cb42-13"><a href="descriptive-statistics.html#cb42-13" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb42-14"><a href="descriptive-statistics.html#cb42-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
-<span id="cb42-15"><a href="descriptive-statistics.html#cb42-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb42-16"><a href="descriptive-statistics.html#cb42-16" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8345</span>) <span class="co"># to get the same plot every time</span></span>
+<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">3217</span>, <span class="at">mean =</span> <span class="fl">4.20</span>, <span class="at">sd =</span> <span class="fl">3.00</span>)</span>
+<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">values =</span> x)</span>
+<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="descriptive-statistics.html#cb43-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb43-7"><a href="descriptive-statistics.html#cb43-7" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="descriptive-statistics.html#cb43-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb43-9"><a href="descriptive-statistics.html#cb43-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">x =</span> values), <span class="at">width =</span> <span class="fl">0.02</span>,</span>
+<span id="cb43-10"><a href="descriptive-statistics.html#cb43-10" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.00</span>)) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="descriptive-statistics.html#cb43-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.01</span>),</span>
+<span id="cb43-12"><a href="descriptive-statistics.html#cb43-12" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.002</span>, <span class="at">height =</span> <span class="fl">0.01</span>),</span>
+<span id="cb43-13"><a href="descriptive-statistics.html#cb43-13" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb43-14"><a href="descriptive-statistics.html#cb43-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram with density plot and boxplot below&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-15"><a href="descriptive-statistics.html#cb43-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb43-16"><a href="descriptive-statistics.html#cb43-16" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Comparing these histograms (using different seed-values), we could assume that for truly normally distributed
 FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
 seem to deviate from the normal distribution.</p>
@@ -517,41 +517,41 @@ Of course with correlation 1, we can predict the value of Y perfectly, but even 
 <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> should be normally distributed.
 This is not necessary, at least not for descriptive purposes. The correlation coefficient is a measure of the linear relationship
 and we can think of an example with skewed data where the correlation coefficient is still meaningful:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
-<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a></span>
-<span id="cb43-5"><a href="descriptive-statistics.html#cb43-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb43-6"><a href="descriptive-statistics.html#cb43-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb43-7"><a href="descriptive-statistics.html#cb43-7" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="descriptive-statistics.html#cb43-8" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb43-9"><a href="descriptive-statistics.html#cb43-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span>  <span class="co"># Sample size</span></span>
-<span id="cb43-10"><a href="descriptive-statistics.html#cb43-10" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.7</span>  <span class="co"># Desired beta</span></span>
-<span id="cb43-11"><a href="descriptive-statistics.html#cb43-11" tabindex="-1"></a></span>
-<span id="cb43-12"><a href="descriptive-statistics.html#cb43-12" tabindex="-1"></a><span class="co"># Generate left-skewed variable x (negative exponential distribution)</span></span>
-<span id="cb43-13"><a href="descriptive-statistics.html#cb43-13" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="dv">1</span>)</span>
-<span id="cb43-14"><a href="descriptive-statistics.html#cb43-14" tabindex="-1"></a></span>
-<span id="cb43-15"><a href="descriptive-statistics.html#cb43-15" tabindex="-1"></a><span class="co"># Generate correlated left-skewed variable y</span></span>
-<span id="cb43-16"><a href="descriptive-statistics.html#cb43-16" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb43-17"><a href="descriptive-statistics.html#cb43-17" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta <span class="sc">*</span> x <span class="sc">+</span> error</span>
-<span id="cb43-18"><a href="descriptive-statistics.html#cb43-18" tabindex="-1"></a></span>
-<span id="cb43-19"><a href="descriptive-statistics.html#cb43-19" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
-<span id="cb43-20"><a href="descriptive-statistics.html#cb43-20" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
-<span id="cb43-21"><a href="descriptive-statistics.html#cb43-21" tabindex="-1"></a></span>
-<span id="cb43-22"><a href="descriptive-statistics.html#cb43-22" tabindex="-1"></a><span class="co"># Create scatterplot with marginal histograms and trendline</span></span>
-<span id="cb43-23"><a href="descriptive-statistics.html#cb43-23" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb43-24"><a href="descriptive-statistics.html#cb43-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb43-25"><a href="descriptive-statistics.html#cb43-25" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb43-26"><a href="descriptive-statistics.html#cb43-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot with Left-Skewed x and y and Trendline&quot;</span>,</span>
-<span id="cb43-27"><a href="descriptive-statistics.html#cb43-27" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Left-Skewed x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb43-28"><a href="descriptive-statistics.html#cb43-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb43-29"><a href="descriptive-statistics.html#cb43-29" tabindex="-1"></a></span>
-<span id="cb43-30"><a href="descriptive-statistics.html#cb43-30" tabindex="-1"></a><span class="co"># Add marginal histograms using ggExtra</span></span>
-<span id="cb43-31"><a href="descriptive-statistics.html#cb43-31" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">&quot;histogram&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb44-2"><a href="descriptive-statistics.html#cb44-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-3"><a href="descriptive-statistics.html#cb44-3" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb44-4"><a href="descriptive-statistics.html#cb44-4" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="descriptive-statistics.html#cb44-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb44-6"><a href="descriptive-statistics.html#cb44-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb44-7"><a href="descriptive-statistics.html#cb44-7" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="descriptive-statistics.html#cb44-8" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb44-9"><a href="descriptive-statistics.html#cb44-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span>  <span class="co"># Sample size</span></span>
+<span id="cb44-10"><a href="descriptive-statistics.html#cb44-10" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.7</span>  <span class="co"># Desired beta</span></span>
+<span id="cb44-11"><a href="descriptive-statistics.html#cb44-11" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="descriptive-statistics.html#cb44-12" tabindex="-1"></a><span class="co"># Generate left-skewed variable x (negative exponential distribution)</span></span>
+<span id="cb44-13"><a href="descriptive-statistics.html#cb44-13" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb44-14"><a href="descriptive-statistics.html#cb44-14" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="descriptive-statistics.html#cb44-15" tabindex="-1"></a><span class="co"># Generate correlated left-skewed variable y</span></span>
+<span id="cb44-16"><a href="descriptive-statistics.html#cb44-16" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb44-17"><a href="descriptive-statistics.html#cb44-17" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta <span class="sc">*</span> x <span class="sc">+</span> error</span>
+<span id="cb44-18"><a href="descriptive-statistics.html#cb44-18" tabindex="-1"></a></span>
+<span id="cb44-19"><a href="descriptive-statistics.html#cb44-19" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
+<span id="cb44-20"><a href="descriptive-statistics.html#cb44-20" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb44-21"><a href="descriptive-statistics.html#cb44-21" tabindex="-1"></a></span>
+<span id="cb44-22"><a href="descriptive-statistics.html#cb44-22" tabindex="-1"></a><span class="co"># Create scatterplot with marginal histograms and trendline</span></span>
+<span id="cb44-23"><a href="descriptive-statistics.html#cb44-23" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb44-24"><a href="descriptive-statistics.html#cb44-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-25"><a href="descriptive-statistics.html#cb44-25" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb44-26"><a href="descriptive-statistics.html#cb44-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot with Left-Skewed x and y and Trendline&quot;</span>,</span>
+<span id="cb44-27"><a href="descriptive-statistics.html#cb44-27" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Left-Skewed x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-28"><a href="descriptive-statistics.html#cb44-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb44-29"><a href="descriptive-statistics.html#cb44-29" tabindex="-1"></a></span>
+<span id="cb44-30"><a href="descriptive-statistics.html#cb44-30" tabindex="-1"></a><span class="co"># Add marginal histograms using ggExtra</span></span>
+<span id="cb44-31"><a href="descriptive-statistics.html#cb44-31" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">&quot;histogram&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p><em>If</em> X and Y are bivariate normally distributed, then one can use the variable
 <span class="math inline">\(t = r \sqrt{\frac{n-2}{1-r^2}}\)</span> as test statistic for the null hypothesis (next chapter) <span class="math inline">\(H_0: \rho = 0\)</span>.
 Note: It is not sufficient for X and Y to be individually normally distributed in order to
@@ -572,63 +572,63 @@ See also <a href="descriptive-statistics.html#exercise5_descriptive_stats">Exerc
 the <span class="math inline">\(X_i\)</span> have materialized into the <span class="math inline">\(x_i\)</span>) and sample standard deviation <span class="math inline">\(\sigma\)</span>.</p>
 <p>The sample mean is not robust against outliers. A single large value can distort the mean arbitrarily much.
 Hence, the correlation coefficient is not robust against outliers. Let’s see this in action:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb45-2"><a href="descriptive-statistics.html#cb45-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb45-3"><a href="descriptive-statistics.html#cb45-3" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb45-4"><a href="descriptive-statistics.html#cb45-4" tabindex="-1"></a></span>
-<span id="cb45-5"><a href="descriptive-statistics.html#cb45-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb45-6"><a href="descriptive-statistics.html#cb45-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb45-7"><a href="descriptive-statistics.html#cb45-7" tabindex="-1"></a></span>
-<span id="cb45-8"><a href="descriptive-statistics.html#cb45-8" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb45-9"><a href="descriptive-statistics.html#cb45-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Sample size</span></span>
-<span id="cb45-10"><a href="descriptive-statistics.html#cb45-10" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.75</span>  <span class="co"># Desired correlation</span></span>
-<span id="cb45-11"><a href="descriptive-statistics.html#cb45-11" tabindex="-1"></a></span>
-<span id="cb45-12"><a href="descriptive-statistics.html#cb45-12" tabindex="-1"></a><span class="co"># Generate bivariate normal data with specified correlation</span></span>
-<span id="cb45-13"><a href="descriptive-statistics.html#cb45-13" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb45-14"><a href="descriptive-statistics.html#cb45-14" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb45-15"><a href="descriptive-statistics.html#cb45-15" tabindex="-1"></a></span>
-<span id="cb45-16"><a href="descriptive-statistics.html#cb45-16" tabindex="-1"></a><span class="co"># Store original data</span></span>
-<span id="cb45-17"><a href="descriptive-statistics.html#cb45-17" tabindex="-1"></a>data_original <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
-<span id="cb45-18"><a href="descriptive-statistics.html#cb45-18" tabindex="-1"></a></span>
-<span id="cb45-19"><a href="descriptive-statistics.html#cb45-19" tabindex="-1"></a><span class="co"># Function to create scatterplot with trend line and correlation</span></span>
-<span id="cb45-20"><a href="descriptive-statistics.html#cb45-20" tabindex="-1"></a>create_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, title) {</span>
-<span id="cb45-21"><a href="descriptive-statistics.html#cb45-21" tabindex="-1"></a>  <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb45-22"><a href="descriptive-statistics.html#cb45-22" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-23"><a href="descriptive-statistics.html#cb45-23" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-24"><a href="descriptive-statistics.html#cb45-24" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Correlation:&quot;</span>,</span>
-<span id="cb45-25"><a href="descriptive-statistics.html#cb45-25" tabindex="-1"></a>                                         <span class="fu">round</span>(<span class="fu">cor</span>(data<span class="sc">$</span>x, data<span class="sc">$</span>y), <span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb45-26"><a href="descriptive-statistics.html#cb45-26" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb45-27"><a href="descriptive-statistics.html#cb45-27" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))  <span class="co"># Center the title</span></span>
-<span id="cb45-28"><a href="descriptive-statistics.html#cb45-28" tabindex="-1"></a>}</span>
-<span id="cb45-29"><a href="descriptive-statistics.html#cb45-29" tabindex="-1"></a></span>
-<span id="cb45-30"><a href="descriptive-statistics.html#cb45-30" tabindex="-1"></a><span class="co"># Original scatterplot</span></span>
-<span id="cb45-31"><a href="descriptive-statistics.html#cb45-31" tabindex="-1"></a>p_original <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_original, <span class="st">&quot;Original Data&quot;</span>)</span>
-<span id="cb45-32"><a href="descriptive-statistics.html#cb45-32" tabindex="-1"></a></span>
-<span id="cb45-33"><a href="descriptive-statistics.html#cb45-33" tabindex="-1"></a><span class="co"># Add outlier in x</span></span>
-<span id="cb45-34"><a href="descriptive-statistics.html#cb45-34" tabindex="-1"></a>data_outlier_x <span class="ot">&lt;-</span> data_original</span>
-<span id="cb45-35"><a href="descriptive-statistics.html#cb45-35" tabindex="-1"></a>data_outlier_x<span class="sc">$</span>x[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(x) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in x</span></span>
-<span id="cb45-36"><a href="descriptive-statistics.html#cb45-36" tabindex="-1"></a>p_outlier_x <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_x, <span class="st">&quot;Outlier in X&quot;</span>)</span>
-<span id="cb45-37"><a href="descriptive-statistics.html#cb45-37" tabindex="-1"></a></span>
-<span id="cb45-38"><a href="descriptive-statistics.html#cb45-38" tabindex="-1"></a><span class="co"># Add outlier in both x and y</span></span>
-<span id="cb45-39"><a href="descriptive-statistics.html#cb45-39" tabindex="-1"></a>data_outlier_xy <span class="ot">&lt;-</span> data_original</span>
-<span id="cb45-40"><a href="descriptive-statistics.html#cb45-40" tabindex="-1"></a>data_outlier_xy<span class="sc">$</span>x[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(x) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in x</span></span>
-<span id="cb45-41"><a href="descriptive-statistics.html#cb45-41" tabindex="-1"></a>data_outlier_xy<span class="sc">$</span>y[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(y) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in y</span></span>
-<span id="cb45-42"><a href="descriptive-statistics.html#cb45-42" tabindex="-1"></a>p_outlier_xy <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_xy, <span class="st">&quot;Outlier in Both X and Y&quot;</span>)</span>
-<span id="cb45-43"><a href="descriptive-statistics.html#cb45-43" tabindex="-1"></a></span>
-<span id="cb45-44"><a href="descriptive-statistics.html#cb45-44" tabindex="-1"></a><span class="co"># Add outlier in y</span></span>
-<span id="cb45-45"><a href="descriptive-statistics.html#cb45-45" tabindex="-1"></a>data_outlier_y <span class="ot">&lt;-</span> data_original</span>
-<span id="cb45-46"><a href="descriptive-statistics.html#cb45-46" tabindex="-1"></a>data_outlier_y<span class="sc">$</span>y[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(y) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in y</span></span>
-<span id="cb45-47"><a href="descriptive-statistics.html#cb45-47" tabindex="-1"></a>p_outlier_y <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_y, <span class="st">&quot;Outlier in Y&quot;</span>)</span>
-<span id="cb45-48"><a href="descriptive-statistics.html#cb45-48" tabindex="-1"></a></span>
-<span id="cb45-49"><a href="descriptive-statistics.html#cb45-49" tabindex="-1"></a><span class="co"># Arrange plots using ggarrange</span></span>
-<span id="cb45-50"><a href="descriptive-statistics.html#cb45-50" tabindex="-1"></a><span class="fu">ggarrange</span>(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,</span>
-<span id="cb45-51"><a href="descriptive-statistics.html#cb45-51" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
-<span id="cb45-52"><a href="descriptive-statistics.html#cb45-52" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics.html#cb46-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb46-2"><a href="descriptive-statistics.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-3"><a href="descriptive-statistics.html#cb46-3" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb46-4"><a href="descriptive-statistics.html#cb46-4" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="descriptive-statistics.html#cb46-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb46-6"><a href="descriptive-statistics.html#cb46-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb46-7"><a href="descriptive-statistics.html#cb46-7" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="descriptive-statistics.html#cb46-8" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb46-9"><a href="descriptive-statistics.html#cb46-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Sample size</span></span>
+<span id="cb46-10"><a href="descriptive-statistics.html#cb46-10" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.75</span>  <span class="co"># Desired correlation</span></span>
+<span id="cb46-11"><a href="descriptive-statistics.html#cb46-11" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="descriptive-statistics.html#cb46-12" tabindex="-1"></a><span class="co"># Generate bivariate normal data with specified correlation</span></span>
+<span id="cb46-13"><a href="descriptive-statistics.html#cb46-13" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb46-14"><a href="descriptive-statistics.html#cb46-14" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb46-15"><a href="descriptive-statistics.html#cb46-15" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="descriptive-statistics.html#cb46-16" tabindex="-1"></a><span class="co"># Store original data</span></span>
+<span id="cb46-17"><a href="descriptive-statistics.html#cb46-17" tabindex="-1"></a>data_original <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb46-18"><a href="descriptive-statistics.html#cb46-18" tabindex="-1"></a></span>
+<span id="cb46-19"><a href="descriptive-statistics.html#cb46-19" tabindex="-1"></a><span class="co"># Function to create scatterplot with trend line and correlation</span></span>
+<span id="cb46-20"><a href="descriptive-statistics.html#cb46-20" tabindex="-1"></a>create_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, title) {</span>
+<span id="cb46-21"><a href="descriptive-statistics.html#cb46-21" tabindex="-1"></a>  <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb46-22"><a href="descriptive-statistics.html#cb46-22" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-23"><a href="descriptive-statistics.html#cb46-23" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-24"><a href="descriptive-statistics.html#cb46-24" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Correlation:&quot;</span>,</span>
+<span id="cb46-25"><a href="descriptive-statistics.html#cb46-25" tabindex="-1"></a>                                         <span class="fu">round</span>(<span class="fu">cor</span>(data<span class="sc">$</span>x, data<span class="sc">$</span>y), <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb46-26"><a href="descriptive-statistics.html#cb46-26" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb46-27"><a href="descriptive-statistics.html#cb46-27" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))  <span class="co"># Center the title</span></span>
+<span id="cb46-28"><a href="descriptive-statistics.html#cb46-28" tabindex="-1"></a>}</span>
+<span id="cb46-29"><a href="descriptive-statistics.html#cb46-29" tabindex="-1"></a></span>
+<span id="cb46-30"><a href="descriptive-statistics.html#cb46-30" tabindex="-1"></a><span class="co"># Original scatterplot</span></span>
+<span id="cb46-31"><a href="descriptive-statistics.html#cb46-31" tabindex="-1"></a>p_original <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_original, <span class="st">&quot;Original Data&quot;</span>)</span>
+<span id="cb46-32"><a href="descriptive-statistics.html#cb46-32" tabindex="-1"></a></span>
+<span id="cb46-33"><a href="descriptive-statistics.html#cb46-33" tabindex="-1"></a><span class="co"># Add outlier in x</span></span>
+<span id="cb46-34"><a href="descriptive-statistics.html#cb46-34" tabindex="-1"></a>data_outlier_x <span class="ot">&lt;-</span> data_original</span>
+<span id="cb46-35"><a href="descriptive-statistics.html#cb46-35" tabindex="-1"></a>data_outlier_x<span class="sc">$</span>x[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(x) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in x</span></span>
+<span id="cb46-36"><a href="descriptive-statistics.html#cb46-36" tabindex="-1"></a>p_outlier_x <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_x, <span class="st">&quot;Outlier in X&quot;</span>)</span>
+<span id="cb46-37"><a href="descriptive-statistics.html#cb46-37" tabindex="-1"></a></span>
+<span id="cb46-38"><a href="descriptive-statistics.html#cb46-38" tabindex="-1"></a><span class="co"># Add outlier in both x and y</span></span>
+<span id="cb46-39"><a href="descriptive-statistics.html#cb46-39" tabindex="-1"></a>data_outlier_xy <span class="ot">&lt;-</span> data_original</span>
+<span id="cb46-40"><a href="descriptive-statistics.html#cb46-40" tabindex="-1"></a>data_outlier_xy<span class="sc">$</span>x[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(x) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in x</span></span>
+<span id="cb46-41"><a href="descriptive-statistics.html#cb46-41" tabindex="-1"></a>data_outlier_xy<span class="sc">$</span>y[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(y) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in y</span></span>
+<span id="cb46-42"><a href="descriptive-statistics.html#cb46-42" tabindex="-1"></a>p_outlier_xy <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_xy, <span class="st">&quot;Outlier in Both X and Y&quot;</span>)</span>
+<span id="cb46-43"><a href="descriptive-statistics.html#cb46-43" tabindex="-1"></a></span>
+<span id="cb46-44"><a href="descriptive-statistics.html#cb46-44" tabindex="-1"></a><span class="co"># Add outlier in y</span></span>
+<span id="cb46-45"><a href="descriptive-statistics.html#cb46-45" tabindex="-1"></a>data_outlier_y <span class="ot">&lt;-</span> data_original</span>
+<span id="cb46-46"><a href="descriptive-statistics.html#cb46-46" tabindex="-1"></a>data_outlier_y<span class="sc">$</span>y[n] <span class="ot">&lt;-</span> <span class="fu">max</span>(y) <span class="sc">+</span> <span class="dv">5</span>  <span class="co"># Extreme value in y</span></span>
+<span id="cb46-47"><a href="descriptive-statistics.html#cb46-47" tabindex="-1"></a>p_outlier_y <span class="ot">&lt;-</span> <span class="fu">create_plot</span>(data_outlier_y, <span class="st">&quot;Outlier in Y&quot;</span>)</span>
+<span id="cb46-48"><a href="descriptive-statistics.html#cb46-48" tabindex="-1"></a></span>
+<span id="cb46-49"><a href="descriptive-statistics.html#cb46-49" tabindex="-1"></a><span class="co"># Arrange plots using ggarrange</span></span>
+<span id="cb46-50"><a href="descriptive-statistics.html#cb46-50" tabindex="-1"></a><span class="fu">ggarrange</span>(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,</span>
+<span id="cb46-51"><a href="descriptive-statistics.html#cb46-51" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb46-52"><a href="descriptive-statistics.html#cb46-52" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <ul>
 <li><p>A: <span class="math inline">\(r=0.71\)</span> for the original data.</p></li>
 <li><p>B: When we add an outlier in x, <span class="math inline">\(r\)</span> decreases to <span class="math inline">\(0.44\)</span> and the trendline is notably shifted.</p>
@@ -700,12 +700,12 @@ where we would expect a new person drawn from the same population.</li>
 <div id="exercise5_descriptive_stats" class="section level3 hasAnchor" number="3.5.5">
 <h3><span class="header-section-number">3.5.5</span> Exercise 5 - Correlation<a href="descriptive-statistics.html#exercise5_descriptive_stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following R-code creates correlated samples with a (true) correlation <span class="math inline">\(\rho\)</span>:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb47-2"><a href="descriptive-statistics.html#cb47-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb47-3"><a href="descriptive-statistics.html#cb47-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb47-4"><a href="descriptive-statistics.html#cb47-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb47-5"><a href="descriptive-statistics.html#cb47-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb47-6"><a href="descriptive-statistics.html#cb47-6" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb48-2"><a href="descriptive-statistics.html#cb48-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb48-3"><a href="descriptive-statistics.html#cb48-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb48-4"><a href="descriptive-statistics.html#cb48-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb48-5"><a href="descriptive-statistics.html#cb48-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> rho <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb48-6"><a href="descriptive-statistics.html#cb48-6" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.541743</code></pre>
 <ul>
 <li>Try different values for <span class="math inline">\(\rho\)</span> and <span class="math inline">\(n\)</span> and plot the scatterplot of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
