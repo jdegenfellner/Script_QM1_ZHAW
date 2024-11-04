@@ -35,12 +35,11 @@ theoretical_variance <- n_experiments * p_value * (1 - p_value) # https://en.wik
 theoretical_variance # 38.4
 # Standard deviation:
 sqrt(theoretical_variance) # ~ 2/3 of results should be within 40 +/- 6.19
-conflicts_prefer(base::`%in%`) # if you have the same function in two packages, you can use this to see which one is being used
 sum(results >= 40 - 6.19 & results <= 40 + 6.19) / n_sim # looks good
 
 # Estimate the variance from the simulation
 estimated_variance <- var(results)
-estimated_variance # 38.36
+estimated_variance # 38.36 (-> very close to thoeretical variance)
 # Difference between theoretical and estimated variance:
 theoretical_variance - estimated_variance # 0.035 or:
 (theoretical_variance - estimated_variance) / theoretical_variance # 0.0009 or 0.09%
