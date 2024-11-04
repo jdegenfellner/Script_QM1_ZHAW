@@ -56,23 +56,32 @@ ggplot(combined_data, aes(x = distance, color = time, linetype = group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_linetype_manual(values = c("solid", "dashed"))  # Solid lines for one group, dashed for the other
 
+# We can see that in the Acapella only group, there is not discernable difference
+# from baseline to 8/20 weeks, wheras
+# in the Acapella + Pulmonary Rehab group, there is a clear shift to the right
+# (higher distance)
 
 
 # Question 4:
+# Figure 2 and Table 2:
+# The "(m)" stands for meters.
 # The bars seem not to be the estimate +/- standard error (=s/sqrt(n)).
 # What they probably meant was an approximate 95% confidence interval
 # for the mean, which is:
 # x_bar +/- t_{n-1, 0.975} * s / sqrt(n)
 # https://en.wikipedia.org/wiki/Standard_error
 
+# Mean +/- SE
+344.2 + 115.5 / sqrt(12) # 377.542 -> upper end of bar? seems to be relatively exactly at 400
+344.2 - 115.5 / sqrt(12) # 310.858 -> lower end of bar? bar seems to be below 300 in Figure 2a
+
 # Example at 8 weeks:
-344.2 + qt(0.975, 11) * 115.5 / sqrt(12)
-344.2 - qt(0.975, 11) * 115.5 / sqrt(12)
+344.2 + qt(0.975, 11) * 115.5 / sqrt(12) # 417.5852
+344.2 - qt(0.975, 11) * 115.5 / sqrt(12) # 270.8148
 
-# or:
-344.2 + qnorm(0.975) * 115.5 / sqrt(12)
-344.2 - qnorm(0.975) * 115.5 / sqrt(12)
-
+# or (approximately):
+344.2 + qnorm(0.975) * 115.5 / sqrt(12) # 409.5491
+344.2 - qnorm(0.975) * 115.5 / sqrt(12) # 278.8509
 # These seem to fit the bars better.
 
 

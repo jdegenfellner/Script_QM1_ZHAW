@@ -978,7 +978,8 @@ and use the so-called [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t
 
 - What do you think about the baseline values for ISWT in the two groups?
 - What is the number in brackets next to the ISWT-values?
-- According to the article, the data is normally distributed. Draw 3 normal distributions in one graph with the respective parameters
+- According to the article, the data is normally distributed. 
+  Draw 3 probability density functions of normal distributions in one graph with the respective parameters
   for baseline, 8 weeks and 20 weeks for both groups. Make two graphs, one for each group.
 - According to the text, [Figure 2](https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg) shows the means 
   $\pm$ standard errors ($SE = \frac{s}{\sqrt{n}}$) of the ISWT at baseline, 8 weeks and 20 weeks for both groups. Look at Figure 2, a. 

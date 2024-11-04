@@ -657,8 +657,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-43e58f4cf37b6ce1e4fb" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-43e58f4cf37b6ce1e4fb">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-4266c288bb7b23ad88dc" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4266c288bb7b23ad88dc">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
@@ -1042,7 +1042,8 @@ and use the so-called <a href="https://en.wikipedia.org/wiki/Welch%27s_t-test">W
 <ul>
 <li>What do you think about the baseline values for ISWT in the two groups?</li>
 <li>What is the number in brackets next to the ISWT-values?</li>
-<li>According to the article, the data is normally distributed. Draw 3 normal distributions in one graph with the respective parameters
+<li>According to the article, the data is normally distributed.
+Draw 3 probability density functions of normal distributions in one graph with the respective parameters
 for baseline, 8 weeks and 20 weeks for both groups. Make two graphs, one for each group.</li>
 <li>According to the text, <a href="https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg">Figure 2</a> shows the means
 <span class="math inline">\(\pm\)</span> standard errors (<span class="math inline">\(SE = \frac{s}{\sqrt{n}}\)</span>) of the ISWT at baseline, 8 weeks and 20 weeks for both groups. Look at Figure 2, a.
