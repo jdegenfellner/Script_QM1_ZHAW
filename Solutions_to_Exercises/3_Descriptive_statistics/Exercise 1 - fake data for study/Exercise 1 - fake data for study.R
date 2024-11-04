@@ -86,6 +86,15 @@ fake_data <- data.frame(
 # *) Recreate Table 2 of the paper mentioned above with fake data in R (using -----------
 # GPT, the R package gtsummary and other useful packages). This is rather useful later on in your master thesis.
 
+# Load necessary libraries
+library(gtsummary)
+library(gt)
+library(dplyr)
+library(writexl)
+library(flextable)
+
+# *) Recreate Table 2 of the paper mentioned above with fake data in R
+
 # Ensure "Usual Care" is the first level in the Group variable
 fake_data$Group <- factor(fake_data$Group, levels = c("Usual Care", "CFT"))
 
@@ -97,7 +106,7 @@ summary_table <-
     statistic = list(
       all_continuous() ~ "{median} ({p25} to {p75})", 
       DurationCare ~ "{median} ({p25} to {p75})",       # Ensure median (IQR) for Duration of care
-      LengthEpisode ~ "{median} ({p25} to {p75})",      # Ensure 
+      LengthEpisode ~ "{median} ({p25} to {p75})",      # Ensure median (IQR) for Length of current episode
       all_categorical() ~ "{n} ({p}%)"
     ),
     label = list(
@@ -113,17 +122,14 @@ summary_table <-
       PainSelfEfficacy ~ "Pain self-efficacy (0 to 60), mean (SD)",
       PainCatastrophizing ~ "Pain catastrophizing (0 to 52), mean (SD)"
     )
-  ) %>%
-  as_gt() %>% # Convert to gt table
-  tab_header(
-    title = "Baseline characteristics including potential moderators"
   )
 
-# Print the summary table
-summary_table
+# Export summary table to Word
+summary_table %>%
+  as_flex_table() %>%
+  flextable::save_as_docx(path = "summary_table.docx")
 
-# *) Export to Excel
-
+# Optional: Export to Excel as well if needed
 summary_table_df <- 
   fake_data %>%
   tbl_summary(
@@ -148,5 +154,4 @@ summary_table_df <-
   ) %>%
   as_tibble() # Convert gtsummary object to a tibble (data frame)
 
-# Export the data frame to Excel
 write_xlsx(summary_table_df, "summary_table.xlsx")
