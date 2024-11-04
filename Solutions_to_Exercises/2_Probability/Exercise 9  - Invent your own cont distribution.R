@@ -9,7 +9,8 @@ original_pdf <- function(x) {
 }
 
 # Calculate the normalization constant by integrating the unnormalized PDF over [0, 1]
-normalization_constant <- adaptIntegrate(original_pdf, lowerLimit = 0, upperLimit = 1)$integral
+normalization_constant <- adaptIntegrate(original_pdf, 
+                                         lowerLimit = 0, upperLimit = 1)$integral
 
 # Define the normalized PDF
 pdf <- function(x) {
@@ -22,7 +23,8 @@ expected_value_function <- function(x) {
 }
 
 # Numerically calculate the expected value E(X)
-E_X <- adaptIntegrate(expected_value_function, lowerLimit = 0, upperLimit = 1)$integral
+E_X <- adaptIntegrate(expected_value_function, 
+                      lowerLimit = 0, upperLimit = 1)$integral
 
 # Variance function for Var(X) using the calculated E(X)
 variance_function <- function(x) {
@@ -35,6 +37,7 @@ Var_X <- adaptIntegrate(variance_function, lowerLimit = 0, upperLimit = 1)$integ
 # Output results
 cat("Expected Value (E(X)):", E_X, "\n")
 cat("Variance (Var(X)):", Var_X, "\n")
+cat("Standard Deviation (SD(X)):", sqrt(Var_X), "\n")
 
 # Visualize the piecewise linear PDF
 x_vals <- seq(0, 1, length.out = 1000)
@@ -58,7 +61,7 @@ ggplot(df, aes(x = x, y = density)) +
 
 
 
-# 2) more complicated solution----------
+# 2) A more complicated solution----------
 
 # Load necessary libraries
 if (!require(pacman)) install.packages("pacman")

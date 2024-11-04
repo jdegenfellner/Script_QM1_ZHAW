@@ -19,8 +19,6 @@ probabilities <- sapply(X_values, P)
 plot(X_values, probabilities, type = "h", lwd = 2, col = "blue",
      xlab = "X", ylab = "Probability",
      main = "MSc-ZHAW Probability Distribution of X from -10 to 10")
-
-# Add points for clarity
 points(X_values, probabilities, pch = 19, col = "red")
 
 # Check if the sum of probabilities for a larger range sums to 1 (approximately)
@@ -59,7 +57,7 @@ while (sample_value >= -6 && sample_value <= 6) {
 toc() # 6s
 
 # Output the results
-cat("Value found outside [-10, 10]:", sample_value, "\n")
+cat("Value found outside [-6, 6]:", sample_value, "\n")
 cat("Number of iterations to find the value:", counter, "\n")
 
 
@@ -86,7 +84,9 @@ sum(probabilities) # 1
 
 sample_values <- sample(X_values, size = 10000, prob = probabilities, replace = TRUE)
 table(sample_values)
-# -> mode would be -1 or 1 depending on your luck
+# -> sample mode would be -1 or 1 depending on your luck
+# The theoretical modes are -1 and 1, as they have the highest probability mass.
+# This is a so-called bimodal distribution.
 
 interquantile_range <- quantile(sample_values, probs = c(0.25, 0.75))
 interquantile_range # -1 to 1
@@ -94,6 +94,11 @@ interquantile_range # -1 to 1
 sum(sample_values >= -1 & sample_values <= 1)/length(sample_values) # 0.5
 # As we can see, the heavy concentration of values on -1 and 1 makes this interpretation difficult.
 # For a continuous distribution, this problem would likely not persist.
+# See definition of https://en.wikipedia.org/wiki/Quantile
+# Example: 25% quantile
+sum(sapply(-1000:-2, P)) # = 0.0833; P(X < 0.25)
+sum(sapply(-1000:-1, P)) # = 0.04166 P(X <= 0.25)
+# This fulfills the defintion of the 25% quantile!
 
 # The single probability masses at -1 and 1 are well estimated:
 sum(sample_values == -1)/length(sample_values) # 0.3278
