@@ -413,7 +413,9 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
   and below the mean of the x values and therefore adds negatively to the covariance.
 
 - We could also ask why the trend lines (created with simple linear regression) change the way they do. 
-  We will come to this later in our courses.
+  We will come to this later in our courses. 
+  Please look at this [really cool animation](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Correlation_Outliers_around_the_clock.R).
+  This is the simulation of the regression line when an outlier with distance 8 to the center is introduced and wanders around the clock.
 
 ## Exercises
 
