@@ -21,8 +21,10 @@ p_data_theta_marginal <- p_data_theta1 * p_theta1 + p_data_theta2 * p_theta2
 p_theta1_data <- p_data_theta1 * p_theta1 / p_data_theta_marginal
 p_theta2_data <- p_data_theta2 * p_theta2 / p_data_theta_marginal
 
-p_theta1_data # 0.1178669 # Probability that theta = 0.3 after seeing the new data
-p_theta2_data # 0.8821331 # Probability that theta = 0.4 after seeing the new data
+p_theta1_data # 0.1178669 # Probability that theta = 0.3 after seeing the new data (22 out of 50)
+p_theta2_data # 0.8821331 # Probability that theta = 0.4 after seeing the new data (22 out of 50)
+
+# -> theta 2 (=0.4) is comparatively more likely given our prior knowledge and the new data we have observed
 
 #Given a model selection problem in which one wishes to choose between 
 # two models on the basis of observed data D, the plausibility of the two 
