@@ -18,7 +18,7 @@ Here are examples of events in a single dice roll:
     \item Event $A$: The rolled number is even (i.e., 2, 4, or 6).
     \item Event $B$: The rolled number is greater than 3 (i.e., 4, 5, or 6).
 \end{itemize}
-These events are \textbf{independent} because the occurrence of $A$ does not change the probability of $B$ and vice versa. However, they are \textbf{not disjoint} because the numbers 4 and 6 are both even and greater than 3 (so $A \cap B \neq \emptyset$).\\
+These events are \textbf{not independent} because the occurrence of $A$ does change the probability of $B$ and vice versa. However, they are \textbf{not disjoint} because the numbers 4 and 6 are both even and greater than 3 (so $A \cap B = \{ 4,6 \} \neq \emptyset$).\\
 \\
 $\mathbb{P}(A|B) = \frac{2}{3} \ne \mathbb{P}(A) = \frac{1}{2}$\\
 \\
@@ -43,5 +43,5 @@ These events are \textbf{independent} because the occurrence of $E$ does not aff
 \[
 \mathbb{P}(E \cap F) = \frac{1}{6} = \mathbb{P}(E) \cdot \mathbb{P}(F)
 \]
-However, they are \textbf{not disjoint} because the number 6 is both even and a multiple of 3 (so $E \cap F \neq \emptyset$).
+However, they are \textbf{not disjoint} because the number 6 is both even and a multiple of 3 (so $E \cap F = \{ 6 \} \neq \emptyset$).
 \end{document}
