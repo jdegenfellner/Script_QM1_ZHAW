@@ -753,7 +753,7 @@ $$\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow 
 
 See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R) for an animated example of this law.
 
-**Remember**: The sample mean $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ is a (really good) estimator for the expectation $\mu = \mathbb{E}(X)$ of a distribution. 
+**Remember**: The sample mean $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ is a (really good) **estimator** for the expectation $\mu = \mathbb{E}(X)$ of a distribution. 
 This is true for discrete and continuous distributions. 
 
 The **variance of a discrete random variable** is defined as:
