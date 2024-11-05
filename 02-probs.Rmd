@@ -857,6 +857,7 @@ since it's on the same scale as X.
 
 **Example:** Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, 
 this means that approx. 68% of the students are between $(24-3=)21$ and $(24+3=)27$ years old.
+You might want to keep [this picture](https://en.wikipedia.org/wiki/Normal_distribution#/media/File:Standard_deviation_diagram_micro.svg) in mind.
 So, with just the parameters we have instant information where the values are and where new values are likely to be.
 
 
