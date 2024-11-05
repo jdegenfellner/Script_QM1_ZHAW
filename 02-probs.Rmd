@@ -858,7 +858,8 @@ since it's on the same scale as X.
 **Example:** Normally distributed Ages of ZHAW students: $\mu = 24$, $\sigma = 3$. For the normal distribution, 
 this means that approx. 68% of the students are between $(24-3=)21$ and $(24+3=)27$ years old.
 You might want to keep [this picture](https://en.wikipedia.org/wiki/Normal_distribution#/media/File:Standard_deviation_diagram_micro.svg) in mind.
-So, with just the parameters we have instant information where the values are and where new values are likely to be.
+So, with just the parameters we have instant information where the values are and where new values 
+drawn from the same distribution are likely to be.
 
 
 
@@ -870,7 +871,7 @@ The first 2 are absolutely essential.
    It is often used to model the distribution of many variables in health sciences, e.g., blood pressure, weight, height, etc.
    Normality is also a common assumption in many statistical tests and models. This is the reason why you will find many statements like
    "we have checked normality using the Shapiro-Wilk test" (Which I would not recommend) in scientific articles.
-   Normal distribution theory is very aesthetic and one is sometimes lead to believe that this is the normal state of nature, which is
+   Normal distribution theory is very aesthetic and one is sometimes lead to believe that this is the *normal* state of nature, which is
    not the case. See also the [history](https://en.wikipedia.org/wiki/Normal_distribution#History) of the normal distribution. 
    A common use of the normal distribution is in [linear regression](https://en.wikipedia.org/wiki/Linear_regression), 
    where the errors and the conditional distribution of the modeled variable are assumed to be normally distributed. 
@@ -886,15 +887,18 @@ The first 2 are absolutely essential.
 
 - [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution). Used to model the number of events in a fixed interval of time or space. 
   For example, the number of patients arriving at an emergency department in a fixed time interval.
+  Maybe you want to watch this [video](https://www.youtube.com/watch?v=jmqZG6roVqU&ab_channel=jbstatistics).
 
 - [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). 
    For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.
+  This [video](https://www.youtube.com/watch?v=2kg1O0j1J9c&ab_channel=zedstatistics) might be interesting.
 
 - [Student's t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) (small "t" please) generalizes 
   the standard normal distribution. Like the latter, it is symmetric around zero and bell-shaped, but 
   has [fatter tails](https://en.wikipedia.org/wiki/Fat-tailed_distribution) (compared to the normal distribution), i.e.,
   "extreme" values are more likely. It is a very well known distribution underlying the [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test).
   See [Exercise 12](#exercise12) for a practical example.
+  This [video](https://www.youtube.com/watch?v=Uv6nGIgZMVw&ab_channel=jbstatistics) might be interesting.
 
 There are infinitely (!) many more [distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions).
 
