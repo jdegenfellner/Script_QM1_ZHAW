@@ -407,7 +407,7 @@ data <- rbinom(10000, size = 1000, prob = 0.04)
 ggplot(data.frame(value = data), aes(x = as.factor(value))) +
   geom_bar(color = "blue", fill = "blue", width = 0.8) +
   geom_vline(xintercept = as.character(1000 * 0.04),
-          linetype = "dashed", color = "red") +  
+             linetype = "dashed", color = "red") +
   labs(title = "Bar Plot of 10000 1000-researcher Experiments",
        x = "Number of Effects Found", y = "Count") +
   theme_minimal() +
