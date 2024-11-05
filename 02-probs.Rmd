@@ -396,6 +396,27 @@ sum(dbinom(66:1000, size = 1000, prob = 0.04)) # prob of 66 or more
 sum(dbinom(15:65, size = 1000, prob = 0.04)) # prob of 15 to 65
 ```
 
+We can easily draw from a binomial distribution in R. 
+We now do the 1000-researcher experiment 10000 times and look at 
+the histogram of the number of positive results:
+
+```{r}
+library(ggplot2)
+# Simulate data
+data <- rbinom(10000, size = 1000, prob = 0.04)
+ggplot(data.frame(value = data), aes(x = value)) +
+  geom_histogram(binwidth = 1, color = "blue",
+                 fill = "blue", size = 0.1) +  # Narrow blue lines
+  geom_vline(xintercept = 1000 * 0.04) +
+  labs(title = "Histogram of 1000 1000-researcher experiments",
+       x = "Number of effects found", y = "Count") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+As you can see, the realized number of found effects matches well the theoretical probabilites
+given by the binomial distribution. Note, that not necessarily 40 is the most often found number of effects
+among 1000 researchers, but we are very close.
 
 **The second question** asked about observing 137 positively reporting researchers. 
 We can calculate the probability of observing 137 or more positive results using the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
