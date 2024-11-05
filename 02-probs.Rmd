@@ -247,6 +247,8 @@ Note that the sum of all elementary events (all possible outcomes) indeed adds u
 
 ```{r}
 sum(dbinom(0:1000, prob = 0.04, size = 1000))
+sum(dbinom(0:80, prob = 0.04, size = 1000))
+# = 1 since the other probabilities are very small
 ```
 
 As we will see later, **axiom 1** above does not mean, that the event can never occur. 
@@ -275,7 +277,11 @@ $$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$$ or equivalently:
 $$\mathbb{P}(A | B) = \mathbb{P}(A).$$
 
 A simple **example in our context**: 
-The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds an effect (event B) or not since they are not communicating with each other.
+The probability of researcher 45 finding an effect (event A) is the same whether researcher 67 finds 
+an effect (event B) or not since they are not communicating with each other.
+This is the reason why we just multiplied the probabilities of the individual researchers finding 
+an effect/not finding an effect to get the probability of the whole elementary event of the 
+1000-researcher experiment.
 
 Above, we used the very important concept of **conditional probability**. 
 The probability of event $A$ *given* that event $B$ has occurred (not necessarily chronologically different!) is denoted as 
