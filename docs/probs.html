@@ -582,7 +582,8 @@ the histogram of the number of positive results:</p>
 <p>As you can see, the realized number of found effects matches well the theoretical probabilites
 given by the binomial distribution. Note, that not necessarily 40 is the most often found number of effects
 among 1000 researchers, but we are very close.</p>
-<p><strong>The second question</strong> asked about observing 137 positively reporting researchers.
+<p><strong>The second question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
+asked about observing 137 positively reporting researchers.
 We can calculate the probability of observing 137 or more positive results using the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>
 (plug into the formula):
 <span class="math inline">\(\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^{1000-i}\)</span>:</p>
@@ -613,7 +614,8 @@ observing 137 or more positive results: <span class="math inline">\(1 - \mathbb{
 <p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>where <span class="math inline">\(A^C\)</span> comprises all elementary events that are not in <span class="math inline">\(A\)</span>. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
 <span class="math inline">\(\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)\)</span>.</p>
-<p><strong>The third question</strong> asked about the expected number of positive results if the therapy is working in 12% of the patients.
+<p><strong>The third question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
+asked about the expected number of positive results if the therapy is working in 12% of the patients.
 As you can probably guess by now: We would guess <span class="math inline">\(1000 \times 0.12 = 120\)</span> positive results.
 This is the so-called <strong><a href="https://en.wikipedia.org/wiki/Expected_value">expected value</a></strong> <span class="math inline">\(\mathbb{E}(X)\)</span> of the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>.
 It is not always the maximum probability (the so-called <a href="https://en.wikipedia.org/wiki/Mode_(statistics)">mode</a>) of the distribution though:
@@ -622,29 +624,22 @@ Consider a binomial distribution <span class="math inline">\(\text{Bin}(10, 0.77
 <li>The <strong>mean</strong> is <span class="math inline">\(\mathbb{E}(X) = 10 \times 0.77 = 7.7\)</span>. This number is not an integer and we can therefore not calculate the density at this point.</li>
 <li>The <strong><a href="https://en.wikipedia.org/wiki/Mode_(statistics)">mode</a></strong> is 8:</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="probs.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ lubridate 1.9.3     ✔ tibble    3.2.1
-## ✔ purrr     1.0.2     ✔ tidyr     1.3.1
-## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="probs.html#cb25-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb25-2"><a href="probs.html#cb25-2" tabindex="-1"></a>           <span class="at">p_x =</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.77</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="probs.html#cb25-3" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="probs.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-2"><a href="probs.html#cb23-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb23-3"><a href="probs.html#cb23-3" tabindex="-1"></a>           <span class="at">p_x =</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.77</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="probs.html#cb23-4" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</span></code></pre></div>
 <pre><code>##   x       p_x
 ## 1 7 0.2343149
 ## 2 8 0.2941670
 ## 3 9 0.2188489</code></pre>
-<p><strong>The fourth question</strong> asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
+<p><strong>The fourth question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
+asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
 Well, this would be scientific fraud and a case of <a href="https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.">survivorship bias</a>.
 You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
 This is also relevant in <a href="https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.">finance</a>.
 You may want to read this excellent <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124">article</a> by John Ioannidis for a humbling big-picture of how relevant published results can be.</p>
-<p><strong>The fifth question</strong> asked about the problem of <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple testing</a> and related to the previous question.
+<p><strong>The fifth question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
+asked about the problem of <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple testing</a> and related to the previous question.
 If you test many hypotheses, you will find some “significant” results by chance alone.
 One could also call the practice of testing many hypotheses to find “significant” ones <a href="https://en.wikipedia.org/wiki/Data_dredging">p-hacking</a>.
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
@@ -652,7 +647,8 @@ Example: If you test 100 hypotheses simultaneously at a significance level of 4%
 If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of p-values and
 their (over-)interpretation as “significant” (relevant) or “non-significant” (not relevant).
 This <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">article</a> is recommendable to get away from a too strict dichotomous interpretation of research results.</p>
-<p><strong>The sixth question</strong> asked about the variation of positive results between large research departments. This demands the very important concept of <a href="https://en.wikipedia.org/wiki/Variance">variance</a>:
+<p><strong>The sixth question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
+asked about the variation of positive results between large research departments. This demands the very important concept of <a href="https://en.wikipedia.org/wiki/Variance">variance</a>:
 The expected quadratic deviation from the mean: <span class="math inline">\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}\)</span>. In simple terms:
 How much does the number of positive results vary around the mean of 40 on average?
 See also <a href="probs.html#exercise5">Exercise 5</a>. Maybe this <a href="https://www.youtube.com/watch?v=SzZ6GpcfoQY">video</a> helps as well.</p>
@@ -683,8 +679,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-5fdc241ff239fc1d9d33" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-5fdc241ff239fc1d9d33">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-a3c21cdf34d66d8e6002" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-a3c21cdf34d66d8e6002">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
@@ -745,17 +741,17 @@ can I expect and does that differ from other groups?</p></li>
 </ul>
 <p>We always assign probabilites to the countable outcomes of these distributions, like in the example of the binomial distribution when
 we throw the dice 20 times and are interested in the number of 3s:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="probs.html#cb27-1" tabindex="-1"></a><span class="co"># Define parameters for the binomial distribution</span></span>
-<span id="cb27-2"><a href="probs.html#cb27-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb27-3"><a href="probs.html#cb27-3" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(x_values, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">prob =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>)</span>
-<span id="cb27-4"><a href="probs.html#cb27-4" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="probs.html#cb27-5" tabindex="-1"></a><span class="co"># Plot the binomial distribution with styling</span></span>
-<span id="cb27-6"><a href="probs.html#cb27-6" tabindex="-1"></a><span class="fu">plot</span>(x_values, probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb27-7"><a href="probs.html#cb27-7" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
-<span id="cb27-8"><a href="probs.html#cb27-8" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial Probability Distribution (n = 20, p = 1/6)&quot;</span>)</span>
-<span id="cb27-9"><a href="probs.html#cb27-9" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="probs.html#cb27-10" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
-<span id="cb27-11"><a href="probs.html#cb27-11" tabindex="-1"></a><span class="fu">points</span>(x_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="probs.html#cb25-1" tabindex="-1"></a><span class="co"># Define parameters for the binomial distribution</span></span>
+<span id="cb25-2"><a href="probs.html#cb25-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb25-3"><a href="probs.html#cb25-3" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(x_values, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">prob =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>)</span>
+<span id="cb25-4"><a href="probs.html#cb25-4" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="probs.html#cb25-5" tabindex="-1"></a><span class="co"># Plot the binomial distribution with styling</span></span>
+<span id="cb25-6"><a href="probs.html#cb25-6" tabindex="-1"></a><span class="fu">plot</span>(x_values, probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb25-7"><a href="probs.html#cb25-7" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
+<span id="cb25-8"><a href="probs.html#cb25-8" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial Probability Distribution (n = 20, p = 1/6)&quot;</span>)</span>
+<span id="cb25-9"><a href="probs.html#cb25-9" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="probs.html#cb25-10" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
+<span id="cb25-11"><a href="probs.html#cb25-11" tabindex="-1"></a><span class="fu">points</span>(x_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Each outcome has a probability <span class="math inline">\(&gt;0\)</span> assigned to it. The sum of all probabilities is 1: <span class="math inline">\(\sum_{i \in \text{Possible outcomes}} \mathbb{P}(X=i) = 1\)</span>.
 For every event, we just add the probabilities of the elementary outcomes that are in the event:</p>
@@ -770,39 +766,39 @@ The sum of all probabilities is: <span class="math inline">\(\sum_{x_i \in \math
 0.1 + 2 \cdot \frac{0.2}{1-0.2} = 0.6\)</span>. Hence, we need to divide every probability by 0.6 to get in sum 1.
 The final definition is then:</p>
 <p><span class="math inline">\(\mathbb{P}(X=0) = \frac{1}{6}\)</span> and for <span class="math inline">\(x_i \neq 0\)</span>: <span class="math inline">\(\mathbb{P}(X = x_i) = \frac{5}{3} 0.2^{|x_i|}\)</span>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="probs.html#cb28-1" tabindex="-1"></a><span class="co"># Define the probability function</span></span>
-<span id="cb28-2"><a href="probs.html#cb28-2" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="cf">function</span>(X) {</span>
-<span id="cb28-3"><a href="probs.html#cb28-3" tabindex="-1"></a>  <span class="cf">if</span> (X <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb28-4"><a href="probs.html#cb28-4" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>)</span>
-<span id="cb28-5"><a href="probs.html#cb28-5" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb28-6"><a href="probs.html#cb28-6" tabindex="-1"></a>    <span class="fu">return</span>((<span class="dv">5</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="fl">0.2</span><span class="sc">^</span><span class="fu">abs</span>(X)))</span>
-<span id="cb28-7"><a href="probs.html#cb28-7" tabindex="-1"></a>  }</span>
-<span id="cb28-8"><a href="probs.html#cb28-8" tabindex="-1"></a>}</span>
-<span id="cb28-9"><a href="probs.html#cb28-9" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="probs.html#cb28-10" tabindex="-1"></a><span class="co"># Create a sequence of X values from -10 to 10</span></span>
-<span id="cb28-11"><a href="probs.html#cb28-11" tabindex="-1"></a>X_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb28-12"><a href="probs.html#cb28-12" tabindex="-1"></a></span>
-<span id="cb28-13"><a href="probs.html#cb28-13" tabindex="-1"></a><span class="co"># Compute the probabilities for each X value</span></span>
-<span id="cb28-14"><a href="probs.html#cb28-14" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(X_values, P)</span>
-<span id="cb28-15"><a href="probs.html#cb28-15" tabindex="-1"></a></span>
-<span id="cb28-16"><a href="probs.html#cb28-16" tabindex="-1"></a><span class="co"># Plot the probabilities</span></span>
-<span id="cb28-17"><a href="probs.html#cb28-17" tabindex="-1"></a><span class="fu">plot</span>(X_values, probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb28-18"><a href="probs.html#cb28-18" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
-<span id="cb28-19"><a href="probs.html#cb28-19" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;MSc-ZHAW Probability Distribution of X from -10 to 10&quot;</span>)</span>
-<span id="cb28-20"><a href="probs.html#cb28-20" tabindex="-1"></a></span>
-<span id="cb28-21"><a href="probs.html#cb28-21" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
-<span id="cb28-22"><a href="probs.html#cb28-22" tabindex="-1"></a><span class="fu">points</span>(X_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="probs.html#cb26-1" tabindex="-1"></a><span class="co"># Define the probability function</span></span>
+<span id="cb26-2"><a href="probs.html#cb26-2" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="cf">function</span>(X) {</span>
+<span id="cb26-3"><a href="probs.html#cb26-3" tabindex="-1"></a>  <span class="cf">if</span> (X <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb26-4"><a href="probs.html#cb26-4" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>)</span>
+<span id="cb26-5"><a href="probs.html#cb26-5" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb26-6"><a href="probs.html#cb26-6" tabindex="-1"></a>    <span class="fu">return</span>((<span class="dv">5</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="fl">0.2</span><span class="sc">^</span><span class="fu">abs</span>(X)))</span>
+<span id="cb26-7"><a href="probs.html#cb26-7" tabindex="-1"></a>  }</span>
+<span id="cb26-8"><a href="probs.html#cb26-8" tabindex="-1"></a>}</span>
+<span id="cb26-9"><a href="probs.html#cb26-9" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="probs.html#cb26-10" tabindex="-1"></a><span class="co"># Create a sequence of X values from -10 to 10</span></span>
+<span id="cb26-11"><a href="probs.html#cb26-11" tabindex="-1"></a>X_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb26-12"><a href="probs.html#cb26-12" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="probs.html#cb26-13" tabindex="-1"></a><span class="co"># Compute the probabilities for each X value</span></span>
+<span id="cb26-14"><a href="probs.html#cb26-14" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(X_values, P)</span>
+<span id="cb26-15"><a href="probs.html#cb26-15" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="probs.html#cb26-16" tabindex="-1"></a><span class="co"># Plot the probabilities</span></span>
+<span id="cb26-17"><a href="probs.html#cb26-17" tabindex="-1"></a><span class="fu">plot</span>(X_values, probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb26-18"><a href="probs.html#cb26-18" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
+<span id="cb26-19"><a href="probs.html#cb26-19" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;MSc-ZHAW Probability Distribution of X from -10 to 10&quot;</span>)</span>
+<span id="cb26-20"><a href="probs.html#cb26-20" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="probs.html#cb26-21" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
+<span id="cb26-22"><a href="probs.html#cb26-22" tabindex="-1"></a><span class="fu">points</span>(X_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="probs.html#cb29-1" tabindex="-1"></a><span class="co"># Check if it sums to 1 (approximately):</span></span>
-<span id="cb29-2"><a href="probs.html#cb29-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span></span>
-<span id="cb29-3"><a href="probs.html#cb29-3" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="probs.html#cb27-1" tabindex="-1"></a><span class="co"># Check if it sums to 1 (approximately):</span></span>
+<span id="cb27-2"><a href="probs.html#cb27-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span></span>
+<span id="cb27-3"><a href="probs.html#cb27-3" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>Deviations from zero (<span class="math inline">\(\pm 1\)</span>) are highly likely with this distribution. The probability of <span class="math inline">\(X=0\)</span> is also rather high with <span class="math inline">\(\frac{1}{6}\)</span>.
 Larger deviations from zero are less likely and go exponentially towards zero (very fast). So we would expect almost never to see values outside
 of <span class="math inline">\(\pm 10\)</span>. This does of course not mean that we will never see them. Do the experiment often enough and you will see them with
 probability 1 (see <a href="probs.html#exercise10">Exercise 10</a>).</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="probs.html#cb31-1" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span>, <span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># exclude values from -10 to 10</span></span>
-<span id="cb31-2"><a href="probs.html#cb31-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="probs.html#cb29-1" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span>, <span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># exclude values from -10 to 10</span></span>
+<span id="cb29-2"><a href="probs.html#cb29-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
 <pre><code>## [1] 8.533333e-08</code></pre>
 <p><strong>Expectation <span class="math inline">\(\mathbb{E}(X)\)</span> of a discrete random variable</strong>: The expectation of a discrete random variable <span class="math inline">\(X\)</span> is defined as:</p>
 <p><span class="math display">\[\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i),\]</span></p>
@@ -837,51 +833,51 @@ This is true for discrete and continuous distributions.</p>
 <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>.
 This <a href="https://www.youtube.com/watch?v=k5sbE1_MDwU&amp;ab_channel=VeryNormal">video</a>
 about probability distributions in general might be helpful.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="probs.html#cb33-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
-<span id="cb33-2"><a href="probs.html#cb33-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="probs.html#cb31-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb31-2"><a href="probs.html#cb31-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: pacman</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="probs.html#cb35-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggplot2) <span class="co"># Installs and loads the package at the same time</span></span>
-<span id="cb35-2"><a href="probs.html#cb35-2" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="probs.html#cb35-3" tabindex="-1"></a><span class="co"># Define parameters for the normal distribution</span></span>
-<span id="cb35-4"><a href="probs.html#cb35-4" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">0</span>    <span class="co"># Mean</span></span>
-<span id="cb35-5"><a href="probs.html#cb35-5" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Standard deviation</span></span>
-<span id="cb35-6"><a href="probs.html#cb35-6" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="probs.html#cb35-7" tabindex="-1"></a><span class="co"># Define the limits for the area to be shaded</span></span>
-<span id="cb35-8"><a href="probs.html#cb35-8" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span>  <span class="co"># Lower bound</span></span>
-<span id="cb35-9"><a href="probs.html#cb35-9" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span>   <span class="co"># Upper bound</span></span>
-<span id="cb35-10"><a href="probs.html#cb35-10" tabindex="-1"></a></span>
-<span id="cb35-11"><a href="probs.html#cb35-11" tabindex="-1"></a><span class="co"># Create a sequence of x values to evaluate the PDF</span></span>
-<span id="cb35-12"><a href="probs.html#cb35-12" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(mu <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sigma, mu <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sigma, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
-<span id="cb35-13"><a href="probs.html#cb35-13" tabindex="-1"></a></span>
-<span id="cb35-14"><a href="probs.html#cb35-14" tabindex="-1"></a><span class="co"># Compute the corresponding density values using dnorm</span></span>
-<span id="cb35-15"><a href="probs.html#cb35-15" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x_vals, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
-<span id="cb35-16"><a href="probs.html#cb35-16" tabindex="-1"></a></span>
-<span id="cb35-17"><a href="probs.html#cb35-17" tabindex="-1"></a><span class="co"># Create a data frame for plotting</span></span>
-<span id="cb35-18"><a href="probs.html#cb35-18" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_vals, <span class="at">density =</span> y_vals)</span>
-<span id="cb35-19"><a href="probs.html#cb35-19" tabindex="-1"></a></span>
-<span id="cb35-20"><a href="probs.html#cb35-20" tabindex="-1"></a><span class="co"># Create a subset of the data for shading the area between a and b</span></span>
-<span id="cb35-21"><a href="probs.html#cb35-21" tabindex="-1"></a>df_shaded <span class="ot">&lt;-</span> df[df<span class="sc">$</span>x <span class="sc">&gt;=</span> a <span class="sc">&amp;</span> df<span class="sc">$</span>x <span class="sc">&lt;=</span> b, ]</span>
-<span id="cb35-22"><a href="probs.html#cb35-22" tabindex="-1"></a></span>
-<span id="cb35-23"><a href="probs.html#cb35-23" tabindex="-1"></a><span class="co"># Plot the normal density and shade the area between a and b</span></span>
-<span id="cb35-24"><a href="probs.html#cb35-24" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
-<span id="cb35-25"><a href="probs.html#cb35-25" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Use linewidth instead of size</span></span>
-<span id="cb35-26"><a href="probs.html#cb35-26" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> df_shaded, <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
-<span id="cb35-27"><a href="probs.html#cb35-27" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span>  <span class="co"># Shaded area</span></span>
-<span id="cb35-28"><a href="probs.html#cb35-28" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;Standard Normal Distribution: </span></span>
-<span id="cb35-29"><a href="probs.html#cb35-29" tabindex="-1"></a><span class="st">  N(&quot;</span>, mu, <span class="st">&quot;, &quot;</span>, sigma<span class="sc">^</span><span class="dv">2</span>, <span class="st">&quot;)&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb35-30"><a href="probs.html#cb35-30" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-31"><a href="probs.html#cb35-31" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-32"><a href="probs.html#cb35-32" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb35-33"><a href="probs.html#cb35-33" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mu, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-34"><a href="probs.html#cb35-34" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> mu <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb35-35"><a href="probs.html#cb35-35" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;E(X) =&quot;</span>, mu), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-36"><a href="probs.html#cb35-36" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> a, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-37"><a href="probs.html#cb35-37" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> b, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-38"><a href="probs.html#cb35-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> a <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">4</span>,</span>
-<span id="cb35-39"><a href="probs.html#cb35-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;a =&quot;</span>, a), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-40"><a href="probs.html#cb35-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> b <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">4</span>,</span>
-<span id="cb35-41"><a href="probs.html#cb35-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;b =&quot;</span>, b), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-42"><a href="probs.html#cb35-42" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="probs.html#cb33-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggplot2) <span class="co"># Installs and loads the package at the same time</span></span>
+<span id="cb33-2"><a href="probs.html#cb33-2" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="probs.html#cb33-3" tabindex="-1"></a><span class="co"># Define parameters for the normal distribution</span></span>
+<span id="cb33-4"><a href="probs.html#cb33-4" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">0</span>    <span class="co"># Mean</span></span>
+<span id="cb33-5"><a href="probs.html#cb33-5" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Standard deviation</span></span>
+<span id="cb33-6"><a href="probs.html#cb33-6" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="probs.html#cb33-7" tabindex="-1"></a><span class="co"># Define the limits for the area to be shaded</span></span>
+<span id="cb33-8"><a href="probs.html#cb33-8" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span>  <span class="co"># Lower bound</span></span>
+<span id="cb33-9"><a href="probs.html#cb33-9" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span>   <span class="co"># Upper bound</span></span>
+<span id="cb33-10"><a href="probs.html#cb33-10" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="probs.html#cb33-11" tabindex="-1"></a><span class="co"># Create a sequence of x values to evaluate the PDF</span></span>
+<span id="cb33-12"><a href="probs.html#cb33-12" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(mu <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> sigma, mu <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> sigma, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb33-13"><a href="probs.html#cb33-13" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="probs.html#cb33-14" tabindex="-1"></a><span class="co"># Compute the corresponding density values using dnorm</span></span>
+<span id="cb33-15"><a href="probs.html#cb33-15" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x_vals, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb33-16"><a href="probs.html#cb33-16" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="probs.html#cb33-17" tabindex="-1"></a><span class="co"># Create a data frame for plotting</span></span>
+<span id="cb33-18"><a href="probs.html#cb33-18" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_vals, <span class="at">density =</span> y_vals)</span>
+<span id="cb33-19"><a href="probs.html#cb33-19" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="probs.html#cb33-20" tabindex="-1"></a><span class="co"># Create a subset of the data for shading the area between a and b</span></span>
+<span id="cb33-21"><a href="probs.html#cb33-21" tabindex="-1"></a>df_shaded <span class="ot">&lt;-</span> df[df<span class="sc">$</span>x <span class="sc">&gt;=</span> a <span class="sc">&amp;</span> df<span class="sc">$</span>x <span class="sc">&lt;=</span> b, ]</span>
+<span id="cb33-22"><a href="probs.html#cb33-22" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="probs.html#cb33-23" tabindex="-1"></a><span class="co"># Plot the normal density and shade the area between a and b</span></span>
+<span id="cb33-24"><a href="probs.html#cb33-24" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb33-25"><a href="probs.html#cb33-25" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Use linewidth instead of size</span></span>
+<span id="cb33-26"><a href="probs.html#cb33-26" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> df_shaded, <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
+<span id="cb33-27"><a href="probs.html#cb33-27" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span>  <span class="co"># Shaded area</span></span>
+<span id="cb33-28"><a href="probs.html#cb33-28" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;Standard Normal Distribution: </span></span>
+<span id="cb33-29"><a href="probs.html#cb33-29" tabindex="-1"></a><span class="st">  N(&quot;</span>, mu, <span class="st">&quot;, &quot;</span>, sigma<span class="sc">^</span><span class="dv">2</span>, <span class="st">&quot;)&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb33-30"><a href="probs.html#cb33-30" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-31"><a href="probs.html#cb33-31" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-32"><a href="probs.html#cb33-32" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb33-33"><a href="probs.html#cb33-33" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mu, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-34"><a href="probs.html#cb33-34" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> mu <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb33-35"><a href="probs.html#cb33-35" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;E(X) =&quot;</span>, mu), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-36"><a href="probs.html#cb33-36" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> a, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-37"><a href="probs.html#cb33-37" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> b, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-38"><a href="probs.html#cb33-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> a <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">4</span>,</span>
+<span id="cb33-39"><a href="probs.html#cb33-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;a =&quot;</span>, a), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-40"><a href="probs.html#cb33-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> b <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">4</span>,</span>
+<span id="cb33-41"><a href="probs.html#cb33-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;b =&quot;</span>, b), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-42"><a href="probs.html#cb33-42" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Here, like in any other “nice” continuous distribution, the area under the curve is 1:</p>
 <p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1.\]</span></p>

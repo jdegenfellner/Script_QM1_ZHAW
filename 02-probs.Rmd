@@ -418,7 +418,8 @@ As you can see, the realized number of found effects matches well the theoretica
 given by the binomial distribution. Note, that not necessarily 40 is the most often found number of effects
 among 1000 researchers, but we are very close.
 
-**The second question** asked about observing 137 positively reporting researchers. 
+**The second question** [above](#Questions_about_the_1000-researcher_experiment) 
+asked about observing 137 positively reporting researchers. 
 We can calculate the probability of observing 137 or more positive results using the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
 (plug into the formula): 
 $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0.04^i (1-0.04)^{1000-i}$:
@@ -458,7 +459,8 @@ print(plot)
 where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
 $\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)$.
 
-**The third question** asked about the expected number of positive results if the therapy is working in 12% of the patients.
+**The third question** [above](#Questions_about_the_1000-researcher_experiment)
+asked about the expected number of positive results if the therapy is working in 12% of the patients.
 As you can probably guess by now: We would guess $1000 \times 0.12 = 120$ positive results.
 This is the so-called **[expected value](https://en.wikipedia.org/wiki/Expected_value)** $\mathbb{E}(X)$ of the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution). 
 It is not always the maximum probability (the so-called [mode](https://en.wikipedia.org/wiki/Mode_(statistics))) of the distribution though:
@@ -467,20 +469,22 @@ Consider a binomial distribution \( \text{Bin}(10, 0.77) \):
 - The **mean** is \( \mathbb{E}(X) = 10 \times 0.77 = 7.7 \). This number is not an integer and we can therefore not calculate the density at this point.
 - The **[mode](https://en.wikipedia.org/wiki/Mode_(statistics))** is 8:
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 data.frame(x = 0:10,
            p_x = dbinom(0:10, 10, 0.77)) %>%
   filter(x %in% c(7, 8, 9))
 ```
 
-**The fourth question** asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
+**The fourth question** [above](#Questions_about_the_1000-researcher_experiment)
+asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
 Well, this would be scientific fraud and a case of [survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.).
 You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
 This is also relevant in [finance](https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.).
 You may want to read this excellent [article](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124) by John Ioannidis for a humbling big-picture of how relevant published results can be.
 
-**The fifth question** asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) and related to the previous question. 
+**The fifth question** [above](#Questions_about_the_1000-researcher_experiment)
+asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) and related to the previous question. 
 If you test many hypotheses, you will find some "significant" results by chance alone.
 One could also call the practice of testing many hypotheses to find "significant" ones [p-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
@@ -489,7 +493,8 @@ If you report those 4 results as legitimate finding, you are p-hacking. When rea
 their (over-)interpretation as "significant" (relevant) or "non-significant" (not relevant). 
 This [article](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) is recommendable to get away from a too strict dichotomous interpretation of research results.
 
-**The sixth question** asked about the variation of positive results between large research departments. This demands the very important concept of [variance](https://en.wikipedia.org/wiki/Variance): 
+**The sixth question** [above](#Questions_about_the_1000-researcher_experiment)
+asked about the variation of positive results between large research departments. This demands the very important concept of [variance](https://en.wikipedia.org/wiki/Variance): 
 The expected quadratic deviation from the mean: $\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}$. In simple terms: 
 How much does the number of positive results vary around the mean of 40 on average?
 See also [Exercise 5](#exercise5). Maybe this [video](https://www.youtube.com/watch?v=SzZ6GpcfoQY) helps as well.
