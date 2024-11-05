@@ -408,7 +408,7 @@ ggplot(data.frame(value = data), aes(x = as.factor(value))) +
   geom_bar(color = "blue", fill = "blue", width = 0.8) +
   geom_vline(xintercept = as.character(1000 * 0.04),
           linetype = "dashed", color = "red") +  
-  labs(title = "Bar Plot of 1000 1000-researcher Experiments",
+  labs(title = "Bar Plot of 10000 1000-researcher Experiments",
        x = "Number of Effects Found", y = "Count") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
