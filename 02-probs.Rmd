@@ -114,7 +114,7 @@ Bayesian analysis allows you to update your estimates as new evidence becomes av
 We need to know some basic concepts of probability theory in order to dive in deeper. We will try to introduce them playfully and find formality as we go along.
 As stated above, in the frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?
 
-**Heureka?**
+**Eureka?**
 
 Let's imagine we are in a research department with 1000 researches all trying to answer the same question: 
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let's assume (unrealistically) that they are all working on this one question and they are not
