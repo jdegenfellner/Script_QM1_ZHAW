@@ -17,8 +17,11 @@ rep(1/6, 6) # true probabilities
 table(throws)/sum(table(throws)) - rep(1/6, 6)
 
 # Plotting the frequencies of each number after 1000 throws
-barplot(freq_table, main = "Frequency of Each Number (1-6) after 1000 Throws", 
-        xlab = "Number", ylab = "Frequency", col = "lightblue")
+barplot(table(throws)/sum(table(throws)), 
+        main = "Frequency of Each Number (1-6) after 1000 Throws", 
+        xlab = "Number", 
+        ylab = "Frequency", 
+        col = "lightblue")
 
 # Calculating the relative frequency of getting a 3 over time
 relative_freq_3 <- cumsum(throws == 3) / 1:1000
