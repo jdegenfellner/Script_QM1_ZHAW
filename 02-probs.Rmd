@@ -910,7 +910,12 @@ They are unfortunately not magic and cannot turn uncertainty into certainty.
 
 ## Exercises
 
-### Exercise 1 - Throwing a die very often {#exercise1}
+Difficulty levels of exercises: 
+**E**: easy, 
+**M**: intermediate, 
+**D**: difficult
+
+### [M] Exercise 1 - Throwing a die very often {#exercise1}
 - Use your favourite large language model (LLM) to create an R-Script to simulate throwing a fair die 1000 times.
 - Try to run the script. If it does not run, try to debug it using the LLM. 
 - Once, the script runs, let the LLM explain the code and outputs ("Please explain this script in detail...").
@@ -918,12 +923,12 @@ They are unfortunately not magic and cannot turn uncertainty into certainty.
 - Plot the relative frequency of 3s on the y-axis and the number of throws on the x-axis. This should give a converging pattern towards $y=\frac{1}{6}$.
 - Which law of probability theory is illustrated by this simulation?
 
-### Exercise 2 - Bayes-teaser {#exercise2}
+### [D] Exercise 2 - Bayes-teaser {#exercise2}
 Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).
 For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter 
 $\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
 
-### Exercise 3 - Find journals {#exercise3}
+### [E] Exercise 3 - Find journals {#exercise3}
 **Note: This is among the most important exercises of the course:**
 Use Google or your favourite search engine to find scientific journals in *your* field (physiotherapy, midwifery, nursing, etc.). 
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies). 
@@ -933,7 +938,7 @@ Look at the latest articles. We are interested in articles that used statistics 
 - Was prior/external knowledge - before the actual model was estimated - used in any of the analysis?
 - Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
 
-### Exercise 4 -  Independent and disjoint {#exercise4} 
+### [M] Exercise 4 -  Independent and disjoint {#exercise4} 
 
 Look at the definitions above and try to come up with examples for independent and disjoint events in your field of study.
 
@@ -942,7 +947,7 @@ Look at the definitions above and try to come up with examples for independent a
 - What would that imply? 
 - Draw a Venn diagram if possible!
 
-### Exercise 5 - Variance {#exercise5}
+### [M] Exercise 5 - Variance {#exercise5}
 
 - Simulate the number of positive results (found an effect even though there is none) in our 1000-researcher-experiment under the assumption that the therapy is not working at all ($p=0.04$).
 - Do this experiment in `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'` 10,000 times and visualize the results in a histogram.
@@ -951,7 +956,7 @@ Look at the definitions above and try to come up with examples for independent a
 - What is the theoretical variance for our experiment?
 - How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?
 
-### Exercise 6 - Three researchers {#exercise6}
+### [E] Exercise 6 - Three researchers {#exercise6}
 Above in [Addition of probabilites](#addition_of_probabilities) we went through in detail the case of 2 researchers finding an effect. 
 Let's now consider 3 researchers simulatenously conducting the experiment.
 
@@ -961,21 +966,21 @@ Let's now consider 3 researchers simulatenously conducting the experiment.
 - Which elementary events are in the following event: "Researcher 3 finds a positive effect"?
 - Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?
 
-### Exercise 7 - Conditional probability {#exercise7}
+### [E] Exercise 7 - Conditional probability {#exercise7}
 Let's consider again the 2 reasearcher situation from above ([Addition of probabilites](#addition_of_probabilities)).
 
 $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
 
 - What is the probability that researcher 1 finds an effect given that researcher 2 found an effect?
 
-### Exercise 8 - Invent a discrete probability distribution {#exercise8}
+### [E] Exercise 8 - Invent a discrete probability distribution {#exercise8}
 
 - Invent your own discrete probability distribution.
 - What is the expected value of your distribution?
 - What is the variance of your distribution?
 - Think of something in the real world that could be modeled by your distribution.
 
-### Exercise 9 - Continuous probability distributions {#exercise9}
+### [E] Exercise 9 - Continuous probability distributions {#exercise9}
 
 - Invent your own continuous probability distribution.
 - What is the expected value of your distribution?
@@ -984,14 +989,14 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$.
 
 Hint: You can use simple shapes for the densitiy function defined by lines. And you can use simulation to answer questions about expected value and variance.
 
-### Exercise 10 - MSc-ZHAW-distribution {#exercise10}
+### [M] Exercise 10 - MSc-ZHAW-distribution {#exercise10}
 
  - Create sufficiently many random numbers (sample) from the MSc-ZHAW-distribution (see [above](#discrete_probability_distributions)) 
    and see if you can produce values outside of $\pm 6$.
  - What is the mode of this distribution and how could we estimate it from the sample?
  - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
 
-### Exercise 11 - Independence and disjointness for dice events {#exercise11}
+### [M] Exercise 11 - Independence and disjointness for dice events {#exercise11}
 
 Find examples of dice events when throwing a die once that are:
 
@@ -999,7 +1004,7 @@ Find examples of dice events when throwing a die once that are:
 - Not independent but disjoint.
 - Independent but not disjoint.
 
-### Exercise 12 - Student's t-distribution {#exercise12}
+### [D] Exercise 12 - Student's t-distribution {#exercise12}
 Let's look at a [paper](https://www.sciencedirect.com/science/article/pii/S0954611112002958#aep-abstract-id3), 
 where the t-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary 
 rehabilitation in addition to regular chest physiotherapy in non cystic fibrosis bronchiectasis.

@@ -419,13 +419,18 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
 
 ## Exercises
 
-### Exercise 1 - Recreate table with fake data
+Difficulty levels of exercises: 
+**E**: easy, 
+**M**: intermediate, 
+**D**: difficult
+
+### [D] Exercise 1 - Recreate table with fake data
  - Create fake data for the study mentioned [above](#example_study1_physio) in R.
  - Recreate Table 2 of the paper mentioned [above](#example_study1_physio) with fake data in R (using GPT, the R package *gtsummary* and other useful packages). 
    This is rather helpful later on in your master thesis.
  - Try to export the table to Excel and Word.
 
-### Exercise 2 - Outliers and estimates
+### [E] Exercise 2 - Outliers and estimates
 Let's assume we know that the *Cognitive flexibility* is normally distributed with a mean of 60 and a standard deviation of 7.4 (Table 1): $CognFlex \sim N(60,7.4)$.
 
 - Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample. 
@@ -435,7 +440,7 @@ Let's assume we know that the *Cognitive flexibility* is normally distributed wi
 - When we try to estimate the location of our *Cognitive flexibility* distribution with the median, 
   how many outliers of what magnitude are necessary to disturb the estimate by 5 points? 
 
-### Exercise 3 - Recreating data in Table 2 {#exercise3_descriptive_stats}
+### [E] Exercise 3 - Recreating data in Table 2 {#exercise3_descriptive_stats}
 We assume that *age* in both groups is normally distributed with a mean of 48 (47) years 
 and a standard deviation of 16 (15) years: 
 
@@ -455,13 +460,13 @@ Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ fo
 - Sometimes you want balanced samples. How many patients would we need to recruit to get at least 45 women with a probability of at least 90%. 
   (We could solve this with simulation.) 
 
-### Exercise 4 - Z-scores {#exercise4_descriptive_stats}
+### [E] Exercise 4 - Z-scores {#exercise4_descriptive_stats}
 
 - Show with a simulation that the z-scores are standard normally distributed if the original variable is normally distributed.
 - Try different parameter values for $\mu$ and $\sigma$ and plot the histogram of the z-scores.
 - Optional: Try to prove this mathematically.
 
-### Exercise 5 - Correlation {#exercise5_descriptive_stats}
+### [M] Exercise 5 - Correlation {#exercise5_descriptive_stats}
 The following R-code creates correlated samples with a (true) correlation $\rho$:
 ```{r}
 set.seed(1234)
