@@ -630,7 +630,7 @@ It is the most important distribution in statistics for reasons that become incr
 One of them is the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) which we have already mentioned in the 
 introduction slides. Feel free to watch this [video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&t=28s&ab_channel=3Blue1Brown). 
 The theorem states that, under appropriate conditions, the distribution of a normalized version of the sample 
-mean ($\bar{X} = \sum_{i=1}^{n} X_i$) converges to a standard normal distribution. 
+mean ($\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$) converges to a standard normal distribution. 
 By this theorem, we can link **any** distribution to the normal distribution.
 
 Discrete or continuous, the **goal** is the same: We want to now **where** the realization 
