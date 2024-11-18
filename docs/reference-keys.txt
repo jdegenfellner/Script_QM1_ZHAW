@@ -47,4 +47,5 @@ e-exercise-2---outliers-and-estimates
 exercise3_descriptive_stats
 exercise4_descriptive_stats
 exercise5_descriptive_stats
+m-exercise-6---bike-parking-locations-in-switzerland
 solutions-1

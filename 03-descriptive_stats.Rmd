@@ -56,10 +56,10 @@ Table 2 in the paper is a good example of univariate statistics. We are not so m
 
 In bivariate statistics, we look at **two variables simultaneously**. 
 An example could be a [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot) of *Age* and *Cognitive flexibility*, 
-where we would possible find a falling relationship ([example in the wild](https://pmc.ncbi.nlm.nih.gov/articles/PMC4906299/figure/FI00674-1/)).
+where we would possible find a falling relationship ([example in the wild](https://pmc.ncbi.nlm.nih.gov/articles/PMC4906299/figure/FI00674-1/), this would actually be a line plot, not a scatter plot).
 We are interested in the relationship between the two variables. How do they change (covary) together?
 
-[Multivariate statistics](https://en.wikipedia.org/wiki/Multivariate_statistics) is the next step, where we look at more than two variables at the same time.
+[Multivariate statistics](https://en.wikipedia.org/wiki/Multivariate_statistics) is the next step, where we look at more than two variables *at the same time*.
 
 ## The histogram
 One way to visualize the distribution of a continuous variable is the [histogram](https://en.wikipedia.org/wiki/Histogram). 
@@ -154,7 +154,8 @@ shapiro.test(x)
 ```
 
 Some researchers would argue, that the distribution is normal (since the p-value is rather large), 
-but we know it is not. We will be cautious with such ugly rule of thumbs.
+but we know it is not. We will be cautious with such ugly rule of thumbs. 
+We will instead use [Q-Q plots](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) and histograms to decide if a variable is normally distributed.
 
 ### Example in the wild
 
@@ -183,8 +184,11 @@ $$z_i = \frac{FPI_i - \overline{FPI}}{SD(FPI)} = \frac{FPI_i - 4.20}{3.00}$$
 $\overline{FPI}$ ist the arithmetic mean of the FPI scores, $SD(FPI)$ the standard deviation of the FPI scores.
 $\mu_X$ is the expectation of X and $\sigma_X$ the standard deviation of X. 
 So we measure not in FPI units anymore, but in **standard deviations from the mean** which makes 
-it easier to compare different variables with each other. A nice property is: If X is normally 
-distributed ($X \sim N(\mu, \sigma$)), then the z-scores are standard normally distributed ($Z \sim N(0,1$)). 
+it easier to compare different variables with each other. If we would only center the data and 
+define $FPI_{center} = FPI_i - \overline{FPI}$, we would interpret the values in FPI units, but
+the mean would be 0. Hence an $FPI_{center}$-value of 2 would mean that the FPI score is 2 units above the mean.
+A **nice property of the normal distribution** is: If X is normally distributed ($X \sim N(\mu, \sigma$)), 
+then the z-scores are standard normally distributed ($Z \sim N(0,1$)). 
 See [Exercise 4](#exercise4_descriptive_stats). Of course *both*, z-scores as well as FPI scores are 
 considered "continuous" (in this context).
 
@@ -265,7 +269,7 @@ For instance,
 [chocolate consumption is positively correlated with the number of Nobel laureates](https://www.sciencedirect.com/science/article/pii/S2590291120300711) in a country.
 This does - unfortunately - not mean that eating chocolate makes you smarter.
 
-One thing many of us think when they see a high correlation (near 1) is that if we know the value of one variable,
+One thing many of us think when they see a high correlation is that if we know the value of one variable,
 we can predict the value of the other variable. This is not necessarily true. 
 This [section](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Interpretation) explains why.
 Study the visualization [here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Pearson_correlation_and_prediction_intervals.svg).
@@ -481,6 +485,77 @@ cor(x, y)
 - Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
   What do you observe with respect to variability?
 - Plot the histogram of the simulated correlation coefficients. 
+
+### [M] Exercise 6 - Bike parking locations in Switzerland
+- Download the data from the 
+  [bike parking locations](https://opentransportdata.swiss/en/dataset/bike-parking) json-file
+  and execute the following code to see an interactive map of the bike parking locations in 
+  Switzerland (adapt file path if necessary):
+
+```{r}
+library(pacman)
+p_load(jsonlite, tidyverse, leaflet)
+
+bike <- fromJSON("./DATA/bike_parking.json")
+
+# Extract the "features" data frame
+features <- bike$features
+
+# Extract and flatten geometry (coordinates)
+coordinates <- do.call(rbind, lapply(features$geometry$coordinates, as.numeric))
+colnames(coordinates) <- c("longitude", "latitude")
+
+bike_data <- cbind(coordinates, features$properties)
+head(bike_data)
+bike_cleaned <- bike_data %>%
+  dplyr::select(longitude, latitude, name, 
+  address_city, address_postalCode, capacity, properties_operator)
+head(bike_cleaned)
+
+# Create an interactive map
+# Check the structure of capacity
+str(bike_cleaned$capacity)
+
+# Convert capacity to numeric
+bike_cleaned$capacity <- as.numeric(bike_cleaned$capacity)
+
+# Check for warnings
+if (any(is.na(bike_cleaned$capacity))) {
+  warning("Some capacities could not be converted to numeric. 
+  Non-numeric values have been set to NA.")
+}
+
+# Retry the map creation
+leaflet(bike_cleaned) %>%
+  addTiles() %>%  # Add OpenStreetMap tiles
+  addCircleMarkers(
+    ~longitude, ~latitude,
+    popup = ~paste(
+      "<strong>Name:</strong>", name,
+      "<br><strong>City:</strong>", address_city,
+      "<br><strong>Capacity:</strong>", capacity,
+      "<br><strong>Operator:</strong>", properties_operator
+    ),
+    radius = ~log(capacity + 1) * 2,  # Radius scaled by capacity
+    color = ~ifelse(properties_operator == "SBB", "blue", "red"),
+    fillOpacity = 0.7
+  ) %>%
+  addLegend("bottomright", colors = c("blue", "red"),
+            labels = c("SBB", "Other Operators"),
+            title = "Operators")
+```
+
+Let's look at the data frame *bike_cleaned* in R.
+
+- In what city is the bike parking with the highest capacity located?
+
+- Which cities are represented in the dataset?
+
+- How many bike parkings are operated by the SBB (Swiss Federal Railways)? Create a bar plot to visualize this.
+
+- What is the average capacity of bike parkings in the dataset? Draw a histogram and a boxplot below.
+
+- What are the dimensions of the data set *bike_cleaned*?
 
 
 ## Solutions
