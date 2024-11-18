@@ -5,6 +5,7 @@ We do not need to reiterate everything here. You can go through these sources to
 
 - [R for non-programmers](https://bookdown.org/daniel_dauber_io/r4np_book/descriptive-statistics.html)
 - [Science direct](https://www.sciencedirect.com/topics/social-sciences/descriptive-statistics)
+- [Descriptive statistics](https://journals.lww.com/ijam/fulltext/2018/04010/descriptive_statistics.7.aspx)
 
 The goal is to describe data in a meaningful and honest way. 
 We **summarize** data to make them **more easily digestable** for us humans to answer questions like 

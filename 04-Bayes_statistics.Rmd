@@ -1,0 +1,63 @@
+# Bayes statistics
+
+as stated in the first chapter, Bayesian statistics is based on the idea that 
+[probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
+Here, we use *prior* (i.e., before/outside of our experiment) knowledge 
+about a parameter and update this knowledge with new data using the famous Bayes' theorem:
+
+$$
+p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
+$$
+
+where:
+
+- \( p(\theta | \text{data}) \) is the **posterior probability**: the updated probability of the parameter \( \theta \) given the observed data.
+
+- \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data given a certain value of the parameter \( \theta \).
+
+- \( p(\theta) \) is the **prior probability**: the initial belief about the parameter \( \theta \) before seeing the data.
+
+- \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
+
+In our context $\theta$ is an effect size, or a group difference, or a correlation, a regression coefficient, or a proportion.
+
+## Derivation of Bayes' theorem
+
+We have already come across Bayes' theorem in the context of conditional probability where we have calulated 
+the probability of a person having a disease given that they have tested positive for it: 
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos)}{\mathbb{P}(Tpos)}.
+$$
+
+The numerator is by definition of the conditional probability just: $\mathbb{P}(Tpos \cap Dpos)$. Let's put this in:
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos \cap Dpos)}{\mathbb{P}(Tpos)}.
+$$
+
+which is also true by the definition of conditional probability. One can rewrite the denominator as:
+
+$$
+\mathbb{P}(Tpos) = \mathbb{P}(Tpos|Dpos)\mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg)\mathbb{P}(Dneg) = TP + FP,
+$$
+since one can have a positive test result if one has the disease (true positive) or if one does not have the disease (false positive). 
+To see this, just draw a binary tree starting with disease status (pos/neg) and test result (pos/neg) as branches, as we did before. 
+
+Summarized, we have:
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot 
+\mathbb{P}(Dpos)}{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg) \cdot \mathbb{P}(Dneg)}.
+$$
+
+We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
+
+We would just extend the denominator accordingly 
+(e.g., for a 3-state test with labels $T_1, T_2, T_3$, where $T_3$ indicates a high concentration of some component):
+
+$$
+\mathbb{P}(Dpos|T_3) = \frac{\mathbb{P}(T_3|Dpos) \cdot 
+\mathbb{P}(Dpos)}{\mathbb{P}(T_3|Dpos) \cdot \mathbb{P}(Dpos) + \mathbb{P}(T_3|Dneg) \cdot \mathbb{P}(Dneg)},
+$$
+which would be the probability that the person has the disease given that the test result is $T_3$.
