@@ -245,6 +245,7 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="bayes-statistics.html"><a href="bayes-statistics.html"><i class="fa fa-check"></i><b>4</b> Bayes statistics</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#derivation-of-bayes-theorem"><i class="fa fa-check"></i><b>4.1</b> Derivation of Bayes’ theorem</a></li>
+<li class="chapter" data-level="4.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayes-theorem-in-the-context-of-parameter-estimation"><i class="fa fa-check"></i><b>4.2</b> Bayes’ theorem in the context of parameter estimation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -269,7 +270,9 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="bayes-statistics" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Bayes statistics<a href="bayes-statistics.html#bayes-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>as stated in the first chapter, Bayesian statistics is based on the idea that
+<p>To gain a richer understanding, I can recommend (optionally) reading the introductory chapters in
+John Kruschke’s book <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Doing Bayesian Data Analysis</a>.</p>
+<p>As stated in the first chapter, Bayesian statistics is based on the idea that
 <a href="https://en.wikipedia.org/wiki/Bayesian_probability">probability</a> is a measure of our uncertainty about an event or a parameter.
 Here, we use <em>prior</em> (i.e., before/outside of our experiment) knowledge
 about a parameter and update this knowledge with new data using the famous Bayes’ theorem:</p>
@@ -306,6 +309,12 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot
 \mathbb{P}(Dpos)}{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg) \cdot \mathbb{P}(Dneg)}.
 \]</span></p>
+<p>We have proven Bayes theorem for the case of a binary test.</p>
+<p>Note that simple fact that if <span class="math inline">\(\mathbb{P}(Dpos)\)</span> (which is the prevalence of the disease)
+is small, the probability of having the disease given a positive test result is also small.
+In fact, it is arbitrarily small the smaller the prevalence is.
+For <span class="math inline">\(\mathbb{P}(Dpos)=0\)</span>, we have <span class="math inline">\(\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0\)</span>.
+(Assuming that there can still be false positive test results.)</p>
 <p>We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.</p>
 <p>We would just extend the denominator accordingly
 (e.g., for a 3-state test with labels <span class="math inline">\(T_1, T_2, T_3\)</span>, where <span class="math inline">\(T_3\)</span> indicates a high concentration of some component):</p>
@@ -314,6 +323,22 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 \mathbb{P}(Dpos)}{\mathbb{P}(T_3|Dpos) \cdot \mathbb{P}(Dpos) + \mathbb{P}(T_3|Dneg) \cdot \mathbb{P}(Dneg)},
 \]</span>
 which would be the probability that the person has the disease given that the test result is <span class="math inline">\(T_3\)</span>.</p>
+<p>In this context, we are interested in the probability of a state of disease.
+We estimate this probability based on the test result (<span class="math inline">\(Tpos\)</span> or <span class="math inline">\(Tneg\)</span>) and <em>prior</em> knowledge about the disease (<span class="math inline">\(\mathbb{P}(Tpos)\)</span>).
+The prior knowledge does not necessarily have to be known <em>before</em> the test, the point is to combine knowledge in a coherent way. We will
+later see that the order of this combination is not important.</p>
+</div>
+<div id="bayes-theorem-in-the-context-of-parameter-estimation" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Bayes’ theorem in the context of parameter estimation<a href="bayes-statistics.html#bayes-theorem-in-the-context-of-parameter-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we use the coin flip example, you can always think of probability of a therapy working for instance.
+It is a placeholder for a parameter of interest.</p>
+<p>A probability distribution outlines all possible outcomes of a random process along with their associated probabilities.
+For instance, in the case of a coin toss, the distribution is straightforward: there are two outcomes,
+heads and tails, with corresponding probabilities <span class="math inline">\(\theta\)</span> and <span class="math inline">\(1-\theta\)</span>.
+For more complex scenarios, such as measuring the height of a randomly chosen individual,
+the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm,
+is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
+in general.</p>
 
 </div>
 </div>

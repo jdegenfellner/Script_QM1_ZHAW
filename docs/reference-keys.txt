@@ -52,3 +52,4 @@ e-exercise-7---median-mean-and-mode
 solutions-1
 bayes-statistics
 derivation-of-bayes-theorem
+bayes-theorem-in-the-context-of-parameter-estimation
