@@ -48,4 +48,5 @@ exercise3_descriptive_stats
 exercise4_descriptive_stats
 exercise5_descriptive_stats
 m-exercise-6---bike-parking-locations-in-switzerland
+e-exercise-7---median-mean-and-mode
 solutions-1

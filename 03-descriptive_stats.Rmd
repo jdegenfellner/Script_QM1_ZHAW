@@ -508,8 +508,8 @@ colnames(coordinates) <- c("longitude", "latitude")
 bike_data <- cbind(coordinates, features$properties)
 head(bike_data)
 bike_cleaned <- bike_data %>%
-  dplyr::select(longitude, latitude, name, 
-  address_city, address_postalCode, capacity, properties_operator)
+  dplyr::select(longitude, latitude, name,
+                address_city, address_postalCode, capacity, properties_operator)
 head(bike_cleaned)
 
 # Create an interactive map
@@ -557,6 +557,15 @@ Let's look at the data frame *bike_cleaned* in R.
 
 - What are the dimensions of the data set *bike_cleaned*?
 
+### [E] Exercise 7 - Median, Mean, and Mode
+- Find a skewed continuous probability distribution and plot the theoretical density.
+
+- Draw a sample from this distribution and calculate the mean, median, and mode. 
+  Plot a histogram with vertical lines for the mean, median, and mode.
+  How do these values compare to each other and why do they 
+  look like this considering the definition of each?
+
+- Find a skewed variable in a research paper.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics).
