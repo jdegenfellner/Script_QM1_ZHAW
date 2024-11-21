@@ -143,7 +143,10 @@ approximately three times as likely as \(\theta = 0.05\).
 
 Note that in this example the a priori probabilities were equal:
 
-```{r}
+<details open>
+<summary>R codes are in the git repository</summary>
+
+```{r bar_plot_code, echo=FALSE}
 # Load ggplot2 package
 library(ggplot2)
 
@@ -153,8 +156,7 @@ data <- data.frame(
                  levels = c("theta[1] == 0.05", "theta[2] == 0.10")),
   probability = c(0.5, 0.5)
 )
-
-# Create the bar plot
+# Create and render the bar plot
 ggplot(data, aes(x = theta, y = probability, fill = theta)) +
   geom_bar(stat = "identity", width = 0.5) +
   scale_x_discrete(labels = c(expression(theta[1] == 0.05),
@@ -169,10 +171,15 @@ ggplot(data, aes(x = theta, y = probability, fill = theta)) +
     axis.title.y = element_text(size = 14, face = "bold")
   )
 ```
+</details>
 
-**After* collecting data, we have updated our prior beliefs about the defect rate:
 
-```{r}
+**After** collecting data, we have updated our prior beliefs about the defect rate:
+
+<details open>
+<summary>R codes are in the git repository</summary>
+
+```{r, echo=FALSE}
 # Load ggplot2 package
 library(ggplot2)
 
@@ -198,19 +205,504 @@ ggplot(data, aes(x = theta, y = probability, fill = theta)) +
     axis.title.y = element_text(size = 14, face = "bold")
   )
 ```
+</details>
 
 Let's assume, we know the manufacturer to be rather untrustworthy. Many inspections in the past
 revealed higher defect rates than claimed. For simplicity, we still want to decide between the two 
 defect rates. $0.05$ and $0.10$.
 
 How does the calculation change if we assign a much higher probability to the defect rate of $0.10$?
-See 
+See [Exercise 1](#exercise_defective_product_rate) for this.
 
 
+### Example 2 - extending the defective products example
+
+What if we do not want to limit ourselves to the two defect rates of 5% and 10%?
+We now get creative and assign the following prior probability **distribution** to the defective rate $\theta$:
+
+<details open>
+<summary>R codes are in the git repository</summary>
+```{r, echo=FALSE}
+# Load ggplot2 package
+library(ggplot2)
+
+# Generate beta distribution data
+x <- seq(0, 1, length.out = 1000)  # Values between 0 and 1
+alpha <- 5  # Shape parameter alpha
+beta <- 17  # Shape parameter beta
+density <- dbeta(x, shape1 = alpha, shape2 = beta)  # Beta density
+
+# Mode of distribution
+#(alpha - 1) / (alpha + beta - 2) # 0.2
+
+# Create a data frame for plotting
+data <- data.frame(x = x, density = density)
+
+# Plot the beta density using ggplot2
+ggplot(data, aes(x = x, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  labs(
+    title = "Beta Distribution Density (Peaks at ~0.2)",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  ) +
+  geom_vline(xintercept = 0.2, linetype = "dashed", color = "red")
+```
+</details>
+
+If we had to guess, we would say that the defect rate is most likely 20%.
+And we are rather sure about this guess. The mode (highest prior probability) of the 
+beta distribution is at 0.2. We are also pretty sure that the defect rate is not 0% or above, say, 50%.
+This distribution is an expression of our **prior beliefs** about the defect rate.
+
+Now, we **observe 11 defective items in a sample of 20**.
+We expect as posterior distribution not a bar plot with two probabilities for the parameter values 
+$\theta = 0.05$ and $\theta = 0.10$, but a **distribution** of probabilities for all possible defect rates (in the range of 0-1).
+Btw. we could play the same game using a coin of the effectiveness or a therapy as example.
+
+The only thing we need to do is to plug in the information into Bayes' theorem to get the posterior distribution.
+The calculations would be complex by hand, so we just use R. We want to understand the concept, so calculating by hand
+can be put off until later (it at all necessary for us.)
+
+\[
+\textit{p}(\theta \mid X = 3) = \frac{\textit{p}(X = 3 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(3)}
+\]
+
+- $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.
+
+- $\mathbb{P}(X = 3 \mid \theta)$ is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate $\theta$.
+
+- $m(3)$ is the marginal distribution of the data for $X = 3$ considering **all** possible defect rates between 0 and 1.
 
 
-### Example 2 - coin flip
+Let's look at the resulting posterior distribution:
 
+<details open>
+<summary>R codes are in the git repository</summary>
+
+```{r, echo=FALSE}
+# Load required packages
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the posterior density function
+posterior <- function(theta, x, n, alpha, beta, marginal) {
+  unnormalized_posterior(theta, x, n, alpha, beta) / marginal
+}
+
+# Generate data for plotting the prior and posterior
+theta_values <- seq(0, 1, length.out = 1000)
+prior_values <- prior(theta_values, alpha_prior, beta_prior)
+posterior_values <- posterior(theta_values, x_obs, n,
+                              alpha_prior, beta_prior, marginal)
+
+# Create a data frame for plotting
+plot_data <- data.frame(
+  theta = theta_values,
+  Prior = prior_values,
+  Posterior = posterior_values
+)
+
+# Find the peak (mode) of the posterior distribution
+posterior_peak <- theta_values[which.max(posterior_values)]
+
+# Plot the prior and posterior distributions
+ggplot(plot_data, aes(x = theta)) +
+  geom_line(aes(y = Prior, color = "Prior"),
+            linewidth = 1.2, linetype = "dashed") +
+  geom_line(aes(y = Posterior, color = "Posterior"), linewidth = 1.2) +
+  scale_color_manual(
+    values = c("Prior" = "green", "Posterior" = "blue"),
+    name = "Distributions"
+  ) +
+  labs(
+    title = "Prior and Posterior Distributions of Theta",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    legend.position = "top"
+  ) + 
+  geom_vline(xintercept = 0.2, linetype = "dotted", color = "darkgreen") +
+  geom_vline(xintercept = x_obs / n, linetype = "dotted", color = "red") +
+  # Annotate the observed defect rate
+  annotate(
+    "text",
+    x = x_obs/n + 0.03,  # Position slightly to the right of the red line
+    y = max(posterior_values) * 0.8,  # Adjust height dynamically
+    label = paste0("Observed defect rate = ", round(x_obs / n, 2)),
+    color = "red",
+    size = 4,
+    hjust = 0
+  ) +
+  # Annotate the peak of the posterior
+  geom_vline(xintercept = posterior_peak,
+             linetype = "dotted", color = "darkblue") +
+  annotate(
+    "text",
+    x = posterior_peak + 0.03,  # Position slightly to the right of the peak
+    y = max(posterior_values) * 0.9,  # Adjust height dynamically
+    label = paste0("Posterior peak = ", round(posterior_peak, 2)),
+    color = "darkblue",
+    size = 4,
+    hjust = 0
+  )
+```
+</details>
+
+As we can see, the posterior distribution has a new peak at $0.38$. If we had to guess
+now, we would probably say that the defect rate is around 38%.
+We have updated our beliefs about the defect rate based on the new data.
+In the graph, there is also the observed defect rate of 55%. This observed rate (new data)
+draws our prior beliefs towards the observed rate. 
+
+- **The more data we observe**, we would observe, the more the posterior distribution would be 
+drawn towards the observed rate, because we would be surer due to the large sample size.
+
+- **The stronger our prior beliefs** in a certain value (or range) of $\theta$, the less we are 
+convinced by new data.
+
+One really nice aspect of Bayesian statistics is that we get a full probability distribution for 
+the parameter of interest, given the prior beliefs and the observed data. 
+We then can elegantly make all kinds of statements when looking at the posterior, like the following:
+
+ - The probability that $\theta$ is between $0.30$ and $0.5$ is (area under the posterior) approximately $0.8$:
+<details open>
+<summary>R codes are in the git repository</summary>
+```{r, echo=FALSE}
+# Load required libraries
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the normalized posterior density function
+posterior_density <- function(theta) {
+  unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior) / marginal
+}
+
+# Numerically integrate the posterior density between 0.3 and 0.5
+prob_theta_numerical <- integrate(
+  f = posterior_density,
+  lower = 0.3,
+  upper = 0.5
+)$value
+
+# Output the result
+#cat("Numerical probability that theta is between 0.3 and 0.5:",
+#    prob_theta_numerical, "\n")
+
+# Generate data for the posterior curve
+theta_values <- seq(0, 1, length.out = 1000)
+posterior_values <- sapply(theta_values, posterior_density)
+
+# Create a data frame for plotting
+posterior_data <- data.frame(theta = theta_values, density = posterior_values)
+
+# Plot the posterior distribution with shaded area and annotation
+ggplot(posterior_data, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_area(
+    data = posterior_data[posterior_data$theta >= 0.3 &
+                            posterior_data$theta <= 0.5, ],
+    aes(x = theta, y = density),
+    fill = "orange",
+    alpha = 0.6
+  ) +
+  labs(
+    title = "Posterior Distribution of Theta",
+    subtitle = "Shaded area shows P(0.3 ≤ Theta ≤ 0.5)",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  annotate(
+    "text",
+    x = 0.4,  # Position of the annotation text along the x-axis
+    y = max(posterior_data$density) * 0.5,  # Position along the y-axis
+    label = paste0("P(0.3 ≤ Theta ≤ 0.5) = ", round(prob_theta_numerical, 4)),
+    color = "black",
+    size = 4,
+    hjust = 0
+  ) +
+  theme_minimal(base_size = 14)
+```
+</details>
+
+- The probability that $\theta$ is below $0.25$ is (area under the posterior):
+<details open>
+<summary>R codes are in the git repository</summary>
+```{r, echo=FALSE}
+# Load required libraries
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the normalized posterior density function
+posterior_density <- function(theta) {
+  unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior) / marginal
+}
+
+# Numerically integrate the posterior density between 0.0 and 0.25
+prob_theta_numerical <- integrate(
+  f = posterior_density,
+  lower = 0.0,
+  upper = 0.25
+)$value
+
+# Output the result
+#cat("Numerical probability that theta is between 0.0 and 0.25:",
+#    prob_theta_numerical, "\n")
+
+# Generate data for the posterior curve
+theta_values <- seq(0, 1, length.out = 1000)
+posterior_values <- sapply(theta_values, posterior_density)
+
+# Create a data frame for plotting
+posterior_data <- data.frame(theta = theta_values, density = posterior_values)
+
+# Plot the posterior distribution with shaded area and annotation
+ggplot(posterior_data, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_area(
+    data = posterior_data[posterior_data$theta <= 0.25, ],
+    aes(x = theta, y = density),
+    fill = "orange",
+    alpha = 0.6
+  ) +
+  labs(
+    title = "Posterior Distribution of Theta",
+    subtitle = "Shaded area shows P(0.0 ≤ Theta ≤ 0.25)",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  annotate(
+    "text",
+    x = 0.15,  # Position of the annotation text along the x-axis
+    y = max(posterior_data$density) * 0.4,  # Position along the y-axis
+    label = paste0("P(0.0 ≤ Theta ≤ 0.25) = ", round(prob_theta_numerical, 4)),
+    color = "black",
+    size = 4,
+    hjust = 0
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", 
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
+```
+</details>
+
+The previous two examples showcase how to **estimate a proportion** using prior knowledge 
+and new data.
+The fact, that we get a full distribution of the parameter of interest, 
+is a key feature of Bayesian statistics and (as far as I know) not available
+in frequentist statistics and Null Hypothesis Significance Testing (NHST), which we
+will discuss in the next chapter.
+
+## Highest Density Intervals (HDI)
+
+Apart from taking the peak of the posterior distribution, 
+another way to **summarize a posterior distribution** is by using 
+the **highest density interval (HDI)**. 
+The HDI identifies the most credible range of values in a distribution while 
+covering a specified portion of the distribution, such as 93%. 
+The key feature of the HDI is that every point 
+inside the interval has a higher probability density than any point outside 
+the interval, making it an effective summary of the most plausible values.
+
+Here is an example for a 93% HDI for the posterior distribution of $\theta$: 
+
+<details open>
+<summary>R codes are in the git repository</summary>
+```{r, echo=FALSE}
+# Load required libraries
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the normalized posterior density function
+posterior_density <- function(theta) {
+  unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior) / marginal
+}
+
+# Generate data for the posterior density
+theta_values <- seq(0, 1, length.out = 1000)
+posterior_values <- sapply(theta_values, posterior_density)
+
+# Create a data frame for the posterior
+posterior_data <- data.frame(theta = theta_values, density = posterior_values)
+
+# Compute the 93% HDI
+compute_hdi <- function(theta, density, cred_mass = 0.93) {
+  sorted_indices <- order(-density)  # Sort by descending density
+  cumulative_mass <- cumsum(density[sorted_indices]) / sum(density)  # Cumulative mass
+  included <- sorted_indices[cumulative_mass <= cred_mass]  # Indices within HDI
+  hdi_range <- range(theta[included])  # Range of HDI
+  return(hdi_range)
+}
+
+hdi <- compute_hdi(posterior_data$theta,
+                   posterior_data$density, cred_mass = 0.93)
+
+# Plot the posterior distribution with the HDI
+ggplot(posterior_data, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_area(
+    data = posterior_data[posterior_data$theta >= hdi[1] &
+                            posterior_data$theta <= hdi[2], ],
+    aes(x = theta, y = density),
+    fill = "orange",
+    alpha = 0.6
+  ) +
+  labs(
+    title = "Posterior Distribution with 93% HDI",
+    subtitle = paste0("93% HDI: [", round(hdi[1], 4),
+                      ", ", round(hdi[2], 4), "]"),
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  geom_vline(xintercept = hdi[1], linetype = "dashed", color = "darkred") +
+  geom_vline(xintercept = hdi[2], linetype = "dashed", color = "darkred")
+```
+</details>
+
+**Interpretation**: The 93% HDI for the posterior distribution of $\theta$ is $[0.25, 0.55]$.
+With a probability of 93%, the defect rate is between 25% and 55%, given our prior 
+beliefs and the observed data.
+
+Note that the HDI does not necessarily have to be symmetric around the peak 
+of the distribution. There could be two peaks in the distribution, as you can see
+[here](https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png) for instance.
+In that case, the HDI would consist of two intervals. One could readily image
+a real life case for such a distribution. Think of a group of people where the
+measurement of interest is the 100 m sprint time. There could be two groups of people: 
+The hobby runners and the professional athletes. The distribution of the sprint times would
+probably bimodal showing two peaks for the two groups.
+
+There are other ways, one can construct credible intervals.
+We could also use the quantiles of the posterior distribution to construct a credible interval.
+If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
+and the HDI is the same as the quantile-based credible interval.
 
 # Exercises
 
@@ -219,8 +711,13 @@ Difficulty levels of exercises:
 **M**: intermediate, 
 **D**: difficult
 
-## [E] Exercise 1 - defective product rate
+## [E] Exercise 1 - defective product rate {#exercise_defective_product_rate}
 Let's revisit [Example 1](#example_defective_products) and change the prior probabilites to
 $\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
 
 Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.
+
+
+
+## Solutions
+Solutions for this chapter can be found [here]().
