@@ -613,19 +613,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.502 130.754 132.339   93   34.1514 228.34                  
-## mu2         5.991   5.639   4.060   93  -85.2593  94.89                  
-## muDiff    124.511 124.865 122.614   93  -13.6310 254.49       0      95.4
-## sigma1    139.644 128.560 110.511   93   66.1964 225.42                  
-## sigma2    129.653 119.202 103.762   93   62.9694 210.43                  
-## sigmaDiff   9.991   8.699   6.527   93 -115.5962 139.42       0      56.6
-## nu         34.045  25.456   9.609   93    1.2013  82.44                  
-## log10nu     1.376   1.406   1.487   93    0.6575   2.04                  
-## effSz       0.967   0.961   0.939   93   -0.0859   2.01       0      95.4
+## mu1       130.697 130.863 133.612   93   34.3065 228.77                  
+## mu2         5.822   5.740   3.352   93  -86.9352  95.70                  
+## muDiff    124.875 124.879 119.491   93   -7.6130 260.94       0      95.5
+## sigma1    140.058 128.692 110.392   93   65.9145 228.01                  
+## sigma2    130.138 119.766 104.378   93   62.0062 209.79                  
+## sigmaDiff   9.920   8.365   2.710   93 -116.3440 141.19       0      56.2
+## nu         34.686  26.009   9.908   93    1.0761  84.28                  
+## log10nu     1.382   1.415   1.508   93    0.6492   2.05                  
+## effSz       0.965   0.954   0.892   93   -0.0671   2.03       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.51
+## muDiff        -20       20    4.61
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -636,12 +636,19 @@ script is run, since it’s simulation based.</p></li>
 of the posterior distribution that is greater than 0. We can say, with a probability of
 ~95%, the difference between the means is greater than 0.</p>
 <p>Would we conclude that the two groups differ in their means?
-According to Kruschke (p.336): “A parameter value is declared to be not credible,
+According to Kruschke (p.336):</p>
+<p><strong>“A parameter value is declared to be not credible,
 or rejected, if its entire ROPE lies outside the highest density interval
-(HDI) of the posterior distribution of that parameter.”
-This is not the case here. We would not conclude, that the means between the groups differ.
+(HDI) of the posterior distribution of that parameter.”</strong></p>
+<p>This is not the case here. We would not conclude, that the means between the groups differ.
 One could argue, that this rule seems rather strict considering, that ~95% of the
 posterior distribution of the differences is greater than 0.</p>
+<p>As opposed to the frequentist t-test, we can also affirm the null hypothesis,
+that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.</p>
+<p><strong>“A parameter value is declared to be accepted for practical purposes if that value’s
+ROPE completely contains the 95% HDI of the posterior of that parameter.”</strong></p>
+<p>This is also not the case here. We would not conclude that the means are
+practically equivalent.</p>
 </div>
 </div>
 <div id="exercises-2" class="section level2 hasAnchor" number="4.6">

@@ -831,12 +831,26 @@ of the posterior distribution that is greater than 0. We can say, with a probabi
 ~95%, the difference between the means is greater than 0. 
 
 Would we conclude that the two groups differ in their means?
-According to Kruschke (p.336): "A parameter value is declared to be not credible, 
+According to Kruschke (p.336): 
+
+**"A parameter value is declared to be not credible, 
 or rejected, if its entire ROPE lies outside the highest density interval 
-(HDI) of the posterior distribution of that parameter."
+(HDI) of the posterior distribution of that parameter."**
+
 This is not the case here. We would not conclude, that the means between the groups differ.
 One could argue, that this rule seems rather strict considering, that ~95% of the 
 posterior distribution of the differences is greater than 0.
+
+As opposed to the frequentist t-test, we can also affirm the null hypothesis, 
+that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.
+
+**"A parameter value is declared to be accepted for practical purposes if that value’s 
+ROPE completely contains the 95% HDI of the posterior of that parameter."**
+
+This is also not the case here. We would not conclude that the means are 
+practically equivalent.
+
+
 
 ## Exercises
 
