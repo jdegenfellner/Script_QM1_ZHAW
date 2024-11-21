@@ -252,9 +252,13 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-2---extending-the-defective-products-example"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
-<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
-<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.6</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.7</b> Solutions</a></li>
+<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.7</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.8</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -433,8 +437,9 @@ can be put off until later (it at all necessary for us.)</p>
 \]</span></p>
 <ul>
 <li><p><span class="math inline">\(\text{Beta}(\theta \mid \alpha, \beta)\)</span> is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.</p></li>
-<li><p><span class="math inline">\(\mathbb{P}(X = 3 \mid \theta)\)</span> is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><span class="math inline">\(\textit{p}(X = 3 \mid \theta)\)</span> is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate <span class="math inline">\(\theta\)</span>.</p></li>
 <li><p><span class="math inline">\(m(3)\)</span> is the marginal distribution of the data for <span class="math inline">\(X = 3\)</span> considering <strong>all</strong> possible defect rates between 0 and 1.</p></li>
+<li><p><span class="math inline">\(\textit{p}(\theta \mid X = 3)\)</span> is the posterior density of the defect rate <em>given</em> the observed data.</p></li>
 </ul>
 <p>Let’s look at the resulting posterior distribution:</p>
 <details open>
@@ -449,12 +454,12 @@ We have updated our beliefs about the defect rate based on the new data.
 In the graph, there is also the observed defect rate of 55%. This observed rate (new data)
 draws our prior beliefs towards the observed rate.</p>
 <ul>
-<li><p><strong>The more data we observe</strong>, we would observe, the more the posterior distribution would be
+<li><p><strong>The more data we observe</strong>, the more the posterior distribution would be
 drawn towards the observed rate, because we would be surer due to the large sample size.</p></li>
 <li><p><strong>The stronger our prior beliefs</strong> in a certain value (or range) of <span class="math inline">\(\theta\)</span>, the less we are
 convinced by new data.</p></li>
 </ul>
-<p>One really nice aspect of Bayesian statistics is that we get a full probability distribution for
+<p>One really nice aspect of the Bayesian view is that we get a <strong>full probability distribution</strong> for
 the parameter of interest, given the prior beliefs and the observed data.
 We then can elegantly make all kinds of statements when looking at the posterior, like the following:</p>
 <ul>
@@ -521,25 +526,139 @@ We will discuss this in the next chapter.</p>
 <p>Briefly, a <strong>credible interval</strong> is a range of values
 for a parameter of interest that has a specified probability of containing the
 unobserved parameter.</p>
-<p>A <strong>confidence interval</strong> an interval which is expected to typically - when
-constructed <strong>repeatedly</strong> everytime a new sample is drawn - contain the <strong>true,
-but unknown</strong> parameter of interest.</p>
+<p>A <strong>confidence interval</strong> is an interval which is expected to contain the <strong>true,
+but unknown</strong> parameter of interest in a certain percent of times (e.g., 92%), when
+constructed <strong>repeatedly</strong> everytime a new sample is drawn.</p>
 </div>
-<div id="exercises-2" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Exercises<a href="bayes-statistics.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bayesian_t_test" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Bayesian t-test<a href="bayes-statistics.html#bayesian_t_test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Above, we looked at some aspects of estimating a parameter (proportion) using Bayes’ theorem.
+We can answer all sorts of other questions using this paradigm. In classical statistics,
+one often wants to know if two groups differ with respect to their true means.
+This answer is typically given by the famous <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a> (small “t” please).
+I encourage you to read the short <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#History">history</a> of the t-test.</p>
+<p>For didactic reasons, we will look at the Baysian version of the t-test first.
+We want to try to view statistics as more than just a
+<a href="https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html">cookbook of recipes</a>.
+Unfortunately, very often it is taught that way and the impression is given that statistics is
+just a set of tools to apply in a certain order. In my humble opinion, this is not the case. Statistics
+and model building is a creative process and - if you want to go so far - an art form.
+<strong>Statistics is difficult and beautiful - in that order</strong>.</p>
+<p>Unfortunately, it is not completely trivial to apply the Bayesian t-test, as opposte to the frequentist t-test,
+which constitutes one line of code in R.</p>
+<p>We’ll use the not anymore maintained R package <a href="https://cran.r-project.org/web/packages/BEST/index.html">BEST</a>
+for a nice illustration. Later, we will use more up-to-date packages like <a href="https://cran.r-project.org/web/packages/brms/index.html">brms</a>.</p>
+<div id="example---bayesian-t-test" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Example - Bayesian t-test<a href="bayes-statistics.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bayes-statistics.html#cb63-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="bayes-statistics.html#cb65-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="bayes-statistics.html#cb67-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="bayes-statistics.html#cb69-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="bayes-statistics.html#cb71-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1,y2)</span>
+<span id="cb71-2"><a href="bayes-statistics.html#cb71-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
+<pre><code>##    vars n  mean     sd median trimmed    mad  min max range  skew kurtosis
+## y1    1 8 130.0 116.00    120   130.0 140.85  -50 300   350 -0.13    -1.39
+## y2    2 8   7.5 107.94      0     7.5 118.61 -120 190   310  0.29    -1.38
+##       se
+## y1 41.01
+## y2 38.16</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="bayes-statistics.html#cb73-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
+<span id="cb73-2"><a href="bayes-statistics.html#cb73-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb73-3"><a href="bayes-statistics.html#cb73-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
+<span id="cb73-4"><a href="bayes-statistics.html#cb73-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
+<span id="cb73-5"><a href="bayes-statistics.html#cb73-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="bayes-statistics.html#cb74-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
+<p>We work with a rather small sample size, 8 in each group.
+<strong>We want to know if the two groups differ in their means</strong>.
+For this, we will apply the R function <code>BESTmcmc</code> from the package <code>BEST</code>.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="bayes-statistics.html#cb75-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33443</span>)</span>
+<span id="cb75-2"><a href="bayes-statistics.html#cb75-2" tabindex="-1"></a><span class="fu">p_load</span>(HDInterval, BEST, tictoc, psych, tidyverse)</span>
+<span id="cb75-3"><a href="bayes-statistics.html#cb75-3" tabindex="-1"></a><span class="co"># H_0: mue1 - mue2 = delta_0 </span></span>
+<span id="cb75-4"><a href="bayes-statistics.html#cb75-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># ROPE (region of practical equivalence)</span></span>
+<span id="cb75-5"><a href="bayes-statistics.html#cb75-5" tabindex="-1"></a>d_0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb75-6"><a href="bayes-statistics.html#cb75-6" tabindex="-1"></a>BESTout <span class="ot">&lt;-</span> <span class="fu">BESTmcmc</span>(y1, y2, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Waiting for parallel processing to complete...done.</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="bayes-statistics.html#cb77-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
+<span id="cb77-2"><a href="bayes-statistics.html#cb77-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><code>BESTmcmc</code> is a function that uses a Markov Chain Monte Carlo (MCMC)
+algorithm to estimate the posterior distribution of the difference between the means of two groups.
+We do not care about these details for now, but try to interpret what we see.</p>
+<p>The plot shows the posterior distribution of the difference between the means of the two groups.</p>
+<ul>
+<li><p>With the parameter <code>which = "mean"</code>, we are interested in the posterior distribution of
+difference of the means. We see a full probability distribution again.</p></li>
+<li><p>The parameter <code>compVal = d_0</code> is the value we want to compare the posterior distribution to. Here We
+chose delta_0 = 0, which means that we want to know if the difference between the means is
+different from zero.</p></li>
+<li><p>The parameter <code>ROPE = d_0 + c(-1, 1) * a</code> (<span class="math inline">\(= -20\)</span> to <span class="math inline">\(20\)</span>) defines the region of practical equivalence (ROPE).
+In our case, we chose a = 20. This means that we consider differences between the means of the two groups
+of <span class="math inline">\(\pm 20\)</span> as practically equivalent. In practice, you would choose a value that is meaningful for your
+particular research question. For instance, in a planned experiment, we are interested in changes
+on the Roland Morris Disability Questionnaire (RMDQ) of 2 points.
+We would then choose a value of 2 for the ROPE, since only are change beyound this value would be
+clinically relevant for the patient.</p></li>
+<li><p>The parameter <code>credMass = 0.93</code> is the probability mass to include in credible intervals, in this case 93%.</p></li>
+<li><p>The 93% HDI for the difference between the means is shown in the graph, hence given
+the prior information and the observed data, we can be 93% sure that the
+difference between the means is in this interval. The HDI changes everytime the code of this
+script is run, since it’s simulation based.</p></li>
+</ul>
+<p>We can do more:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
+<span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.502 130.754 132.339   93   34.1514 228.34                  
+## mu2         5.991   5.639   4.060   93  -85.2593  94.89                  
+## muDiff    124.511 124.865 122.614   93  -13.6310 254.49       0      95.4
+## sigma1    139.644 128.560 110.511   93   66.1964 225.42                  
+## sigma2    129.653 119.202 103.762   93   62.9694 210.43                  
+## sigmaDiff   9.991   8.699   6.527   93 -115.5962 139.42       0      56.6
+## nu         34.045  25.456   9.609   93    1.2013  82.44                  
+## log10nu     1.376   1.406   1.487   93    0.6575   2.04                  
+## effSz       0.967   0.961   0.939   93   -0.0859   2.01       0      95.4
+##           ROPElow ROPEhigh %InROPE
+## mu1                               
+## mu2                               
+## muDiff        -20       20    4.51
+## sigma1                            
+## sigma2                            
+## sigmaDiff                         
+## nu                                
+## log10nu                           
+## effSz</code></pre>
+<p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
+of the posterior distribution that is greater than 0. We can say, with a probability of
+~95%, the difference between the means is greater than 0.</p>
+<p>Would we conclude that the two groups differ in their means?
+According to Kruschke (p.336): “A parameter value is declared to be not credible,
+or rejected, if its entire ROPE lies outside the highest density interval
+(HDI) of the posterior distribution of that parameter.”
+This is not the case here. We would not conclude, that the means between the groups differ.
+One could argue, that this rule seems rather strict considering, that ~95% of the
+posterior distribution of the differences is greater than 0.</p>
+</div>
+</div>
+<div id="exercises-2" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Exercises<a href="bayes-statistics.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Difficulty levels of exercises:
 <strong>E</strong>: easy,
 <strong>M</strong>: intermediate,
 <strong>D</strong>: difficult</p>
 </div>
-<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> [E] Exercise 1 - defective product rate<a href="bayes-statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> [E] Exercise 1 - defective product rate<a href="bayes-statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s revisit <a href="bayes-statistics.html#example_defective_products">Example 1</a> and change the prior probabilites to
 <span class="math inline">\(\pi(0.05) = 0.1\)</span> and <span class="math inline">\(\pi(0.10) = 0.9\)</span>.</p>
 <p>Calculate and plot the posterior probabilities for <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>.</p>
 </div>
-<div id="solutions-2" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solutions-2" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics">here</a>.</p>
 
 </div>

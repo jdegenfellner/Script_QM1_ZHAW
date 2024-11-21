@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Quantitative Methods 1, ZHAW</title>
+  <title>Chapter 5 Example - Bayesian t-test | Quantitative Methods 1, ZHAW</title>
   <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Quantitative Methods 1, ZHAW" />
+  <meta property="og:title" content="Chapter 5 Example - Bayesian t-test | Quantitative Methods 1, ZHAW" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="github-repo" content="jdegenfellner/Script_QM1_ZHAW" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Quantitative Methods 1, ZHAW" />
+  <meta name="twitter:title" content="Chapter 5 Example - Bayesian t-test | Quantitative Methods 1, ZHAW" />
   
   <meta name="twitter:description" content="Script Quantitative Methods 1, ZHAW," />
   
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="bayes-statistics.html"/>
-
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,13 +252,13 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-2---extending-the-defective-products-example"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
-<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
+<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
-<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.7</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.8</b> Solutions</a></li>
+<li class="chapter" data-level="5" data-path="example---bayesian-t-test.html"><a href="example---bayesian-t-test.html"><i class="fa fa-check"></i><b>5</b> Example - Bayesian t-test</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="example---bayesian-t-test.html"><a href="example---bayesian-t-test.html#exercises-2"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+<li class="chapter" data-level="5.2" data-path="example---bayesian-t-test.html"><a href="example---bayesian-t-test.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>5.2</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="5.3" data-path="example---bayesian-t-test.html"><a href="example---bayesian-t-test.html#solutions-2"><i class="fa fa-check"></i><b>5.3</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -281,13 +281,48 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div class="csl-entry">
-Westfall, Peter. 2020. <em>Understanding Regression Analysis: An Conditional Distribution Approach</em>. Wiley.
+<div id="example---bayesian-t-test" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Example - Bayesian t-test<a href="example---bayesian-t-test.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="example---bayesian-t-test.html#cb63-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="fl">1.2</span>,<span class="fl">1.2</span>,<span class="fl">1.9</span>,<span class="fl">2.4</span>,<span class="dv">3</span>)<span class="sc">*</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="example---bayesian-t-test.html#cb65-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span>.<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>,<span class="fl">1.1</span>,<span class="fl">1.9</span>)<span class="sc">*</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="example---bayesian-t-test.html#cb67-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="example---bayesian-t-test.html#cb69-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="example---bayesian-t-test.html#cb71-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1,y2)</span>
+<span id="cb71-2"><a href="example---bayesian-t-test.html#cb71-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
+<pre><code>##    vars n  mean     sd median trimmed    mad  min max range  skew kurtosis
+## y1    1 8 130.0 116.00    120   130.0 140.85  -50 300   350 -0.13    -1.39
+## y2    2 8   7.5 107.94      0     7.5 118.61 -120 190   310  0.29    -1.38
+##       se
+## y1 41.01
+## y2 38.16</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="example---bayesian-t-test.html#cb73-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
+<span id="cb73-2"><a href="example---bayesian-t-test.html#cb73-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb73-3"><a href="example---bayesian-t-test.html#cb73-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
+<span id="cb73-4"><a href="example---bayesian-t-test.html#cb73-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
+<span id="cb73-5"><a href="example---bayesian-t-test.html#cb73-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="example---bayesian-t-test.html#cb74-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
+<div id="exercises-2" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Exercises<a href="example---bayesian-t-test.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Difficulty levels of exercises:
+<strong>E</strong>: easy,
+<strong>M</strong>: intermediate,
+<strong>D</strong>: difficult</p>
 </div>
+<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> [E] Exercise 1 - defective product rate<a href="example---bayesian-t-test.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s revisit <a href="bayes-statistics.html#example_defective_products">Example 1</a> and change the prior probabilites to
+<span class="math inline">\(\pi(0.05) = 0.1\)</span> and <span class="math inline">\(\pi(0.10) = 0.9\)</span>.</p>
+<p>Calculate and plot the posterior probabilities for <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>.</p>
+</div>
+<div id="solutions-2" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Solutions<a href="example---bayesian-t-test.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics">here</a>.</p>
+
 </div>
 </div>
             </section>
@@ -295,8 +330,8 @@ Westfall, Peter. 2020. <em>Understanding Regression Analysis: An Conditional Dis
           </div>
         </div>
       </div>
-<a href="bayes-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="bayes-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -327,7 +362,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/07-references.Rmd",
+"link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/04-Bayes_statistics.Rmd",
 "text": "Edit"
 },
 "history": {

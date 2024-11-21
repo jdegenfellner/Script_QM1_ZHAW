@@ -252,9 +252,13 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-2---extending-the-defective-products-example"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
-<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
-<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.6</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.7</b> Solutions</a></li>
+<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.7</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.8</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -702,8 +706,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-18c6e6500e7d10f76c4a" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-18c6e6500e7d10f76c4a">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-5e55680c46677d38dabf" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5e55680c46677d38dabf">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events

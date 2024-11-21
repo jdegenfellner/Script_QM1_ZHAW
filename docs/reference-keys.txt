@@ -57,6 +57,8 @@ examples
 example_defective_products
 example-2---extending-the-defective-products-example
 highest-density-intervals-hdi
+bayesian_t_test
+example---bayesian-t-test
 exercises-2
 exercise_defective_product_rate
 solutions-2

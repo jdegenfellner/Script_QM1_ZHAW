@@ -249,7 +249,12 @@ ggplot(data, aes(x = x, y = density)) +
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14)
   ) +
-  geom_vline(xintercept = 0.2, linetype = "dashed", color = "red")
+  geom_vline(xintercept = 0.2, linetype = "dashed", color = "red") + 
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
 ```
 
 </details>
@@ -274,10 +279,11 @@ can be put off until later (it at all necessary for us.)
 
 - $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.
 
-- $\mathbb{P}(X = 3 \mid \theta)$ is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate $\theta$.
+- $\textit{p}(X = 3 \mid \theta)$ is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate $\theta$.
 
 - $m(3)$ is the marginal distribution of the data for $X = 3$ considering **all** possible defect rates between 0 and 1.
 
+- $\textit{p}(\theta \mid X = 3)$ is the posterior density of the defect rate *given* the observed data.
 
 Let's look at the resulting posterior distribution:
 
@@ -381,6 +387,11 @@ ggplot(plot_data, aes(x = theta)) +
     color = "darkblue",
     size = 4,
     hjust = 0
+  ) + 
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
   )
 ```
 </details>
@@ -391,13 +402,13 @@ We have updated our beliefs about the defect rate based on the new data.
 In the graph, there is also the observed defect rate of 55%. This observed rate (new data)
 draws our prior beliefs towards the observed rate. 
 
-- **The more data we observe**, we would observe, the more the posterior distribution would be 
+- **The more data we observe**, the more the posterior distribution would be 
 drawn towards the observed rate, because we would be surer due to the large sample size.
 
 - **The stronger our prior beliefs** in a certain value (or range) of $\theta$, the less we are 
 convinced by new data.
 
-One really nice aspect of Bayesian statistics is that we get a full probability distribution for 
+One really nice aspect of the Bayesian view is that we get a **full probability distribution** for 
 the parameter of interest, given the prior beliefs and the observed data. 
 We then can elegantly make all kinds of statements when looking at the posterior, like the following:
 
@@ -484,7 +495,12 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     size = 4,
     hjust = 0
   ) +
-  theme_minimal(base_size = 14)
+  theme_minimal(base_size = 14) + 
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
 ```
 </details>
 
@@ -714,9 +730,113 @@ Briefly, a **credible interval** is a range of values
 for a parameter of interest that has a specified probability of containing the 
 unobserved parameter.
 
-A **confidence interval** an interval which is expected to typically - when 
-constructed **repeatedly** everytime a new sample is drawn - contain the **true, 
-but unknown** parameter of interest.
+A **confidence interval** is an interval which is expected to contain the **true, 
+but unknown** parameter of interest in a certain percent of times (e.g., 92%), when 
+constructed **repeatedly** everytime a new sample is drawn. 
+
+
+## Bayesian t-test {#bayesian_t_test}
+
+Above, we looked at some aspects of estimating a parameter (proportion) using Bayes' theorem.
+We can answer all sorts of other questions using this paradigm. In classical statistics,
+one often wants to know if two groups differ with respect to their true means. 
+This answer is typically given by the famous [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test) (small "t" please).
+I encourage you to read the short [history](https://en.wikipedia.org/wiki/Student%27s_t-test#History) of the t-test.
+
+For didactic reasons, we will look at the Baysian version of the t-test first.
+We want to try to view statistics as more than just a 
+[cookbook of recipes](https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html). 
+Unfortunately, very often it is taught that way and the impression is given that statistics is 
+just a set of tools to apply in a certain order. In my humble opinion, this is not the case. Statistics
+and model building is a creative process and - if you want to go so far - an art form.
+**Statistics is difficult and beautiful - in that order**.
+
+Unfortunately, it is not completely trivial to apply the Bayesian t-test, as opposte to the frequentist t-test,
+which constitutes one line of code in R.
+
+We'll use the not anymore maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
+for a nice illustration. Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html).
+
+### Example - Bayesian t-test
+
+```{r, echo=TRUE}
+(y1 <- c(-.5, 0, 1.2, 1.2, 1.2, 1.9, 2.4, 3) * 100)
+(y2 <- c(-1.2, -1.2, -.5, 0, 0, .5, 1.1, 1.9) * 100)
+
+length(y1)
+length(y2)
+
+data <- data.frame(y1,y2)
+psych::describe(data)
+
+# Boxplot:
+data.frame(y = c(y1, y2), group = c(rep(1, 8), rep(2, 8))) %>%
+  ggplot(aes(x = factor(group), y = y)) +  # Use factor for discrete x-axis
+  geom_boxplot() +                        # Add boxplot layer
+  geom_jitter(width = 0.1)                # Add jitter for individual
+# -> Visually, there seems to be a difference between the two groups.
+```
+
+We work with a rather small sample size, 8 in each group. 
+**We want to know if the two groups differ in their means**.
+For this, we will apply the R function `BESTmcmc` from the package `BEST`.
+
+```{r, echo=TRUE}
+set.seed(33443)
+p_load(HDInterval, BEST, tictoc, psych, tidyverse)
+# H_0: mue1 - mue2 = delta_0 
+a <- 20 # ROPE (region of practical equivalence)
+d_0 <- 0
+BESTout <- BESTmcmc(y1, y2, verbose = TRUE)
+plot(BESTout, which = "mean", compVal = d_0,
+     ROPE = d_0 + c(-1, 1) * a, showCurve = FALSE, credMass = 0.93)
+```
+
+`BESTmcmc` is a function that uses a Markov Chain Monte Carlo (MCMC) 
+algorithm to estimate the posterior distribution of the difference between the means of two groups.
+We do not care about these details for now, but try to interpret what we see.
+
+The plot shows the posterior distribution of the difference between the means of the two groups.
+
+- With the parameter `which = "mean"`, we are interested in the posterior distribution of 
+difference of the means. We see a full probability distribution again.
+
+- The parameter `compVal = d_0` is the value we want to compare the posterior distribution to. Here We
+chose delta_0 = 0, which means that we want to know if the difference between the means is 
+different from zero.
+
+- The parameter `ROPE = d_0 + c(-1, 1) * a` ($= -20$ to $20$) defines the region of practical equivalence (ROPE).
+In our case, we chose a = 20. This means that we consider differences between the means of the two groups
+of $\pm 20$ as practically equivalent. In practice, you would choose a value that is meaningful for your
+particular research question. For instance, in a planned experiment, we are interested in changes
+on the Roland Morris Disability Questionnaire (RMDQ) of 2 points. 
+We would then choose a value of 2 for the ROPE, since only are change beyound this value would be
+clinically relevant for the patient. 
+
+- The parameter `credMass = 0.93` is the probability mass to include in credible intervals, in this case 93%.
+
+- The 93% HDI for the difference between the means is shown in the graph, hence given 
+the prior information and the observed data, we can be 93% sure that the 
+difference between the means is in this interval. The HDI changes everytime the code of this 
+script is run, since it's simulation based.
+
+We can do more:
+```{r, echo=TRUE}
+summary(BESTout, ROPEm = d_0 + c(-1, 1) * a, compValm = 0,
+        digits = 5, credMass = 0.93) # summary.BEST()
+```
+
+If you look at the row "muDiff" and the column "%>compVal". This is the percentage 
+of the posterior distribution that is greater than 0. We can say, with a probability of 
+~95%, the difference between the means is greater than 0. 
+
+Would we conclude that the two groups differ in their means?
+According to Kruschke (p.336): "A parameter value is declared to be not credible, 
+or rejected, if its entire ROPE lies outside the highest density interval 
+(HDI) of the posterior distribution of that parameter."
+This is not the case here. We would not conclude, that the means between the groups differ.
+One could argue, that this rule seems rather strict considering, that ~95% of the 
+posterior distribution of the differences is greater than 0.
 
 ## Exercises
 
