@@ -76,8 +76,8 @@ $$
 which would be the probability that the person has the disease given that the test result is $T_3$.
 
 In this context, we are interested in the probability of a state of disease. 
-We estimate this probability based on the test result ($Tpos$ or $Tneg$) and *prior* knowledge about the disease ($\mathbb{P}(Tpos)$).
-The prior knowledge does not necessarily have to be known *before* the test, the point is to combine knowledge in a coherent way. We will
+We estimate this probability based on the test result ($Tpos$ or $Tneg$) and *prior* knowledge about the disease ($\mathbb{P}(Dpos)$).
+The prior knowledge does not necessarily have to be known *before* the test, **the point is to combine knowledge in a coherent way**. We will
 later see that the order of this combination is not important.
 
 ## Bayes' theorem in the context of parameter estimation
@@ -91,3 +91,136 @@ For more complex scenarios, such as measuring the height of a randomly chosen in
 the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm, 
 is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
 in general.
+
+## Examples
+
+We have jumped into the deep end right away with exercise 2 in the previous chapter. Let's now look at some more examples to get a feeling for 
+how the Bayes theorem works.
+
+### Example 1 - defective products {#example_defective_products}
+
+(Example from Script “Statistik und Wahrscheinlichkeitstheorie using R”, 
+S.331 ff, Werner Gurker)
+
+A manufacturer claims that the defect rate of their products is only 5%, while the customer believes it to be 10%. 
+**Before** the result of a sample inspection is known, we assign both rates an equal 50-50 chance:
+
+\[
+\pi(0.05) = \pi(0.10) = 0.5
+\]
+
+Assume that in a sample of size 20, there are 3 defective items. 
+Using the binomial distribution \(B(20, \theta)\), the data information is given as follows:
+
+\[
+p(3|\theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
+\]
+
+\[
+p(3|\theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
+\]
+
+The marginal distribution of \(X\) (the number of defective items in the sample) for \(x = 3\) is as follows:
+
+\[
+m(3) = p(3|0.05)\pi(0.05) + p(3|0.10)\pi(0.10) = 0.1249
+\]
+
+Here, we consider all parameters in the parameter space of interest. We are only interested in $\theta = 0.05$
+vs. $\theta = 0.10$ in this case.
+
+\[
+\pi(0.05 \mid X = 3) = \frac{p(3 \mid 0.05) \pi(0.05)}{m(3)} = 0.2387
+\]
+
+\[
+\pi(0.10 \mid X = 3) = \frac{p(3 \mid 0.10) \pi(0.10)}{m(3)} = \mathbf{0.7613}
+\]
+
+A priori, we had no preference for either of the two defect rates. After observing a relatively high 
+defect rate of \(3/20 = 15\%\) in the sample, the posterior probability for \(\theta = 0.10\) is 
+approximately three times as likely as \(\theta = 0.05\).
+
+Note that in this example the a priori probabilities were equal:
+
+```{r}
+# Load ggplot2 package
+library(ggplot2)
+
+# Create the data
+data <- data.frame(
+  theta = factor(c("theta[1] == 0.05", "theta[2] == 0.10"),
+                 levels = c("theta[1] == 0.05", "theta[2] == 0.10")),
+  probability = c(0.5, 0.5)
+)
+
+# Create the bar plot
+ggplot(data, aes(x = theta, y = probability, fill = theta)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_x_discrete(labels = c(expression(theta[1] == 0.05),
+                              expression(theta[2] == 0.10))) +
+  scale_y_continuous(name = "Probability", limits = c(0, 1)) +
+  labs(x = NULL, y = "Probability") +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 12, color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold")
+  )
+```
+
+**After* collecting data, we have updated our prior beliefs about the defect rate:
+
+```{r}
+# Load ggplot2 package
+library(ggplot2)
+
+# Create the data
+data <- data.frame(
+  theta = factor(c("theta[1] == 0.05", "theta[2] == 0.10"),
+                 levels = c("theta[1] == 0.05", "theta[2] == 0.10")),
+  probability = c(0.2387, 0.7613)
+)
+
+# Create the bar plot
+ggplot(data, aes(x = theta, y = probability, fill = theta)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_x_discrete(labels = c(expression(theta[1] == 0.05),
+                              expression(theta[2] == 0.10))) +
+  scale_y_continuous(name = "Probability", limits = c(0, 1)) +
+  labs(x = NULL, y = "Probability") +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 12, color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold")
+  )
+```
+
+Let's assume, we know the manufacturer to be rather untrustworthy. Many inspections in the past
+revealed higher defect rates than claimed. For simplicity, we still want to decide between the two 
+defect rates. $0.05$ and $0.10$.
+
+How does the calculation change if we assign a much higher probability to the defect rate of $0.10$?
+See 
+
+
+
+
+### Example 2 - coin flip
+
+
+# Exercises
+
+Difficulty levels of exercises: 
+**E**: easy, 
+**M**: intermediate, 
+**D**: difficult
+
+## [E] Exercise 1 - defective product rate
+Let's revisit [Example 1](#example_defective_products) and change the prior probabilites to
+$\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
+
+Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.

@@ -246,6 +246,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#derivation-of-bayes-theorem"><i class="fa fa-check"></i><b>4.1</b> Derivation of Bayes’ theorem</a></li>
 <li class="chapter" data-level="4.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayes-theorem-in-the-context-of-parameter-estimation"><i class="fa fa-check"></i><b>4.2</b> Bayes’ theorem in the context of parameter estimation</a></li>
+<li class="chapter" data-level="4.3" data-path="bayes-statistics.html"><a href="bayes-statistics.html#examples"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-1---defective-products"><i class="fa fa-check"></i><b>4.3.1</b> Example 1 - defective products</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-2---coin-flip"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - coin flip</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -315,8 +320,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 <p>Note that simple fact that if <span class="math inline">\(\mathbb{P}(Dpos)\)</span> (which is the prevalence of the disease)
 is small, the probability of having the disease given a positive test result is also small.
 In fact, it is arbitrarily small the smaller the prevalence is.
-For <span class="math inline">\(\mathbb{P}(Dpos)=0\)</span>, we have <span class="math inline">\(\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0\)</span>.
-(Assuming that there can still be false positive test results.)</p>
+For <span class="math inline">\(\mathbb{P}(Dpos)=0\)</span>, we have <span class="math inline">\(\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0\)</span>,
+assuming that there can still be false positive test results: <span class="math inline">\(\mathbb{P}(Tpos|Dneg) &gt; 0\)</span>.</p>
 <p>We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.</p>
 <p>We would just extend the denominator accordingly
 (e.g., for a 3-state test with labels <span class="math inline">\(T_1, T_2, T_3\)</span>, where <span class="math inline">\(T_3\)</span> indicates a high concentration of some component):</p>
@@ -326,8 +331,8 @@ For <span class="math inline">\(\mathbb{P}(Dpos)=0\)</span>, we have <span class
 \]</span>
 which would be the probability that the person has the disease given that the test result is <span class="math inline">\(T_3\)</span>.</p>
 <p>In this context, we are interested in the probability of a state of disease.
-We estimate this probability based on the test result (<span class="math inline">\(Tpos\)</span> or <span class="math inline">\(Tneg\)</span>) and <em>prior</em> knowledge about the disease (<span class="math inline">\(\mathbb{P}(Tpos)\)</span>).
-The prior knowledge does not necessarily have to be known <em>before</em> the test, the point is to combine knowledge in a coherent way. We will
+We estimate this probability based on the test result (<span class="math inline">\(Tpos\)</span> or <span class="math inline">\(Tneg\)</span>) and <em>prior</em> knowledge about the disease (<span class="math inline">\(\mathbb{P}(Dpos)\)</span>).
+The prior knowledge does not necessarily have to be known <em>before</em> the test, <strong>the point is to combine knowledge in a coherent way</strong>. We will
 later see that the order of this combination is not important.</p>
 </div>
 <div id="bayes-theorem-in-the-context-of-parameter-estimation" class="section level2 hasAnchor" number="4.2">
@@ -341,7 +346,74 @@ For more complex scenarios, such as measuring the height of a randomly chosen in
 the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm,
 is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
 in general.</p>
+</div>
+<div id="examples" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Examples<a href="bayes-statistics.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have jumped into the deep end right away with exercise 2 in the previous chapter. Let’s now look at some more examples to get a feeling for
+how the Bayes theorem works.</p>
+<div id="example-1---defective-products" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Example 1 - defective products<a href="bayes-statistics.html#example-1---defective-products" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>(Example from Script “Statistik und Wahrscheinlichkeitstheorie using R”,
+S.331 ff, Werner Gurker)</p>
+<p>A manufacturer claims that the defect rate of their products is only 5%, while the customer believes it to be 10%.
+<strong>Before</strong> the result of a sample inspection is known, we assign both rates an equal 50-50 chance:</p>
+<p><span class="math display">\[
+\pi(0.05) = \pi(0.10) = 0.5
+\]</span></p>
+<p>Assume that in a sample of size 20, there are 3 defective items.
+Using the binomial distribution <span class="math inline">\(B(20, \theta)\)</span>, the data information is given as follows:</p>
+<p><span class="math display">\[
+p(3|\theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
+\]</span></p>
+<p><span class="math display">\[
+p(3|\theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
+\]</span></p>
+<p>The marginal distribution of <span class="math inline">\(X\)</span> (the number of defective items in the sample) for <span class="math inline">\(x = 3\)</span> is as follows:</p>
+<p><span class="math display">\[
+m(3) = p(3|0.05)\pi(0.05) + p(3|0.10)\pi(0.10) = 0.1249
+\]</span></p>
+<p>Here, we consider all parameters in the parameter space of interest. We are only interested in <span class="math inline">\(\theta = 0.05\)</span>
+vs. <span class="math inline">\(\theta = 0.10\)</span> in this case.</p>
+<p><span class="math display">\[
+\pi(0.05 \mid X = 3) = \frac{p(3 \mid 0.05) \pi(0.05)}{m(3)} = 0.2387
+\]</span></p>
+<p><span class="math display">\[
+\pi(0.10 \mid X = 3) = \frac{p(3 \mid 0.10) \pi(0.10)}{m(3)} = \mathbf{0.7613}
+\]</span></p>
+<p>A priori, we had no preference for either of the two defect rates. After observing a relatively high
+defect rate of <span class="math inline">\(3/20 = 15\%\)</span> in the sample, the posterior probability for <span class="math inline">\(\theta = 0.10\)</span> is
+approximately three times as likely as <span class="math inline">\(\theta = 0.05\)</span>.</p>
+<p>Note that in this example the a priori probabilities were equal:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bayes-statistics.html#cb63-1" tabindex="-1"></a><span class="co"># Load ggplot2 package</span></span>
+<span id="cb63-2"><a href="bayes-statistics.html#cb63-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb63-3"><a href="bayes-statistics.html#cb63-3" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="bayes-statistics.html#cb63-4" tabindex="-1"></a><span class="co"># Create the data</span></span>
+<span id="cb63-5"><a href="bayes-statistics.html#cb63-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb63-6"><a href="bayes-statistics.html#cb63-6" tabindex="-1"></a>  <span class="at">theta =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;theta[1] == 0.05&quot;</span>, <span class="st">&quot;theta[2] == 0.10&quot;</span>),</span>
+<span id="cb63-7"><a href="bayes-statistics.html#cb63-7" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;theta[1] == 0.05&quot;</span>, <span class="st">&quot;theta[2] == 0.10&quot;</span>)),</span>
+<span id="cb63-8"><a href="bayes-statistics.html#cb63-8" tabindex="-1"></a>  <span class="at">probability =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)</span>
+<span id="cb63-9"><a href="bayes-statistics.html#cb63-9" tabindex="-1"></a>)</span>
+<span id="cb63-10"><a href="bayes-statistics.html#cb63-10" tabindex="-1"></a></span>
+<span id="cb63-11"><a href="bayes-statistics.html#cb63-11" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<span id="cb63-12"><a href="bayes-statistics.html#cb63-12" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> probability, <span class="at">fill =</span> theta)) <span class="sc">+</span></span>
+<span id="cb63-13"><a href="bayes-statistics.html#cb63-13" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb63-14"><a href="bayes-statistics.html#cb63-14" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">expression</span>(theta[<span class="dv">1</span>] <span class="sc">==</span> <span class="fl">0.05</span>),</span>
+<span id="cb63-15"><a href="bayes-statistics.html#cb63-15" tabindex="-1"></a>                              <span class="fu">expression</span>(theta[<span class="dv">2</span>] <span class="sc">==</span> <span class="fl">0.10</span>))) <span class="sc">+</span></span>
+<span id="cb63-16"><a href="bayes-statistics.html#cb63-16" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Probability&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb63-17"><a href="bayes-statistics.html#cb63-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb63-18"><a href="bayes-statistics.html#cb63-18" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb63-19"><a href="bayes-statistics.html#cb63-19" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb63-20"><a href="bayes-statistics.html#cb63-20" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb63-21"><a href="bayes-statistics.html#cb63-21" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb63-22"><a href="bayes-statistics.html#cb63-22" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb63-23"><a href="bayes-statistics.html#cb63-23" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb63-24"><a href="bayes-statistics.html#cb63-24" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="example-2---coin-flip" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Example 2 - coin flip<a href="bayes-statistics.html#example-2---coin-flip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
+</div>
 </div>
 </div>
             </section>
