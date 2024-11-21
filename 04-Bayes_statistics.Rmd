@@ -357,13 +357,13 @@ ggplot(plot_data, aes(x = theta)) +
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
     legend.position = "top"
-  ) + 
+  ) +
   geom_vline(xintercept = 0.2, linetype = "dotted", color = "darkgreen") +
   geom_vline(xintercept = x_obs / n, linetype = "dotted", color = "red") +
   # Annotate the observed defect rate
   annotate(
     "text",
-    x = x_obs/n + 0.03,  # Position slightly to the right of the red line
+    x = x_obs / n + 0.03,  # Position slightly to the right of the red line
     y = max(posterior_values) * 0.8,  # Adjust height dynamically
     label = paste0("Observed defect rate = ", round(x_obs / n, 2)),
     color = "red",
@@ -489,6 +489,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
 </details>
 
 - The probability that $\theta$ is below $0.25$ is (area under the posterior):
+
 <details open>
 <summary>R codes are in the git repository</summary>
 ```{r, echo=FALSE}
@@ -572,7 +573,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
   ) +
   theme_minimal(base_size = 14) +
   theme(
-    plot.title = element_text(face = "bold", 
+    plot.title = element_text(face = "bold",
                               hjust = 0.5, size = 16),  # Center the title
     plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
   )
