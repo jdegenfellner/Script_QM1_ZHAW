@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-11-18" />
+<meta name="date" content="2024-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -286,11 +286,12 @@ p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text
 <li><p><span class="math inline">\(p(\theta)\)</span> is the <strong>prior probability</strong>: the initial belief about the parameter <span class="math inline">\(\theta\)</span> before seeing the data.</p></li>
 <li><p><span class="math inline">\(p(\text{data})\)</span> is the <strong>marginal likelihood</strong> or <strong>evidence</strong>: the probability of observing the data under all possible parameter values.</p></li>
 </ul>
-<p>In our context <span class="math inline">\(\theta\)</span> is an effect size, or a group difference, or a correlation, a regression coefficient, or a proportion.</p>
+<p>In our context, <span class="math inline">\(\theta\)</span> is an effect size, a group difference (<span class="math inline">\(\mu_1 - \mu_2\)</span>), a correlation (<span class="math inline">\(\rho\)</span>),
+a regression coefficient (<span class="math inline">\(\beta\)</span>), or a proportion (p)…</p>
 <div id="derivation-of-bayes-theorem" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Derivation of Bayes’ theorem<a href="bayes-statistics.html#derivation-of-bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have already come across Bayes’ theorem in the context of conditional probability where we have calulated
-the probability of a person having a disease given that they have tested positive for it:</p>
+the probability of a person having a disease <em>given</em> that they have tested positive for it:</p>
 <p><span class="math display">\[
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos)}{\mathbb{P}(Tpos)}.
 \]</span></p>
@@ -303,6 +304,7 @@ the probability of a person having a disease given that they have tested positiv
 \mathbb{P}(Tpos) = \mathbb{P}(Tpos|Dpos)\mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg)\mathbb{P}(Dneg) = TP + FP,
 \]</span>
 since one can have a positive test result if one has the disease (true positive) or if one does not have the disease (false positive).
+This is the so-called <a href="https://en.wikipedia.org/wiki/Law_of_total_probability">law of total probability</a>.
 To see this, just draw a binary tree starting with disease status (pos/neg) and test result (pos/neg) as branches, as we did before.</p>
 <p>Summarized, we have:</p>
 <p><span class="math display">\[

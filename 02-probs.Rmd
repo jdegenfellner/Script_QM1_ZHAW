@@ -702,18 +702,18 @@ P <- function(X) {
 }
 
 # Create a sequence of X values from -10 to 10
-X_values <- -10:10
+x_values <- -10:10
 
 # Compute the probabilities for each X value
-probabilities <- sapply(X_values, P)
+probabilities <- sapply(x_values, P)
 
 # Plot the probabilities
-plot(X_values, probabilities, type = "h", lwd = 2, col = "blue",
+plot(x_values, probabilities, type = "h", lwd = 2, col = "blue",
      xlab = "X", ylab = "Probability",
      main = "MSc-ZHAW Probability Distribution of X from -10 to 10")
 
 # Add points for clarity
-points(X_values, probabilities, pch = 19, col = "red")
+points(x_values, probabilities, pch = 19, col = "red")
 
 # Check if it sums to 1 (approximately):
 x_values <- -1000:1000

@@ -22,12 +22,13 @@ where:
 
 - \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
 
-In our context $\theta$ is an effect size, or a group difference, or a correlation, a regression coefficient, or a proportion.
+In our context, $\theta$ is an effect size, a group difference ($\mu_1 - \mu_2$), a correlation ($\rho$), 
+a regression coefficient ($\beta$), or a proportion (p)...
 
 ## Derivation of Bayes' theorem
 
 We have already come across Bayes' theorem in the context of conditional probability where we have calulated 
-the probability of a person having a disease given that they have tested positive for it: 
+the probability of a person having a disease *given* that they have tested positive for it: 
 
 $$
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos)}{\mathbb{P}(Tpos)}.
@@ -45,6 +46,7 @@ $$
 \mathbb{P}(Tpos) = \mathbb{P}(Tpos|Dpos)\mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg)\mathbb{P}(Dneg) = TP + FP,
 $$
 since one can have a positive test result if one has the disease (true positive) or if one does not have the disease (false positive). 
+This is the so-called [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability).
 To see this, just draw a binary tree starting with disease status (pos/neg) and test result (pos/neg) as branches, as we did before. 
 
 Summarized, we have:
@@ -59,8 +61,8 @@ We have proven Bayes theorem for the case of a binary test.
 Note that simple fact that if $\mathbb{P}(Dpos)$ (which is the prevalence of the disease)
 is small, the probability of having the disease given a positive test result is also small.
 In fact, it is arbitrarily small the smaller the prevalence is.
-For $\mathbb{P}(Dpos)=0$, we have $\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0$.
-(Assuming that there can still be false positive test results.)
+For $\mathbb{P}(Dpos)=0$, we have $\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0$, 
+assuming that there can still be false positive test results: $\mathbb{P}(Tpos|Dneg) > 0$.
 
 We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
 
