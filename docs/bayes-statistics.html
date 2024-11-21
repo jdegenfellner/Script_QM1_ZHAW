@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="exercises-2.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -153,11 +153,9 @@
 <li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-2---extending-the-defective-products-example"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>5</b> Exercises</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="exercises-2.html"><a href="exercises-2.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>5.1</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="5.2" data-path="exercises-2.html"><a href="exercises-2.html#solutions-2"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.6</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.7</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -308,7 +306,7 @@ R codes are in the git repository
 revealed higher defect rates than claimed. For simplicity, we still want to decide between the two
 defect rates. <span class="math inline">\(0.05\)</span> and <span class="math inline">\(0.10\)</span>.</p>
 <p>How does the calculation change if we assign a much higher probability to the defect rate of <span class="math inline">\(0.10\)</span>?
-See <a href="exercises-2.html#exercise_defective_product_rate">Exercise 1</a> for this.</p>
+See <a href="bayes-statistics.html#exercise_defective_product_rate">Exercise 1</a> for this.</p>
 </div>
 <div id="example-2---extending-the-defective-products-example" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Example 2 - extending the defective products example<a href="bayes-statistics.html#example-2---extending-the-defective-products-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -318,7 +316,7 @@ We now get creative and assign the following prior probability <strong>distribut
 <summary>
 R codes are in the git repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </details>
 <p>If we had to guess, we would say that the defect rate is most likely 20%.
 And we are rather sure about this guess. The mode (highest prior probability) of the
@@ -405,7 +403,8 @@ R codes are in the git repository
 With a probability of 93%, the defect rate is between 25% and 55%, given our prior
 beliefs and the observed data.</p>
 <p>Note that the HDI does not necessarily have to be symmetric around the peak
-of the distribution. There could be two peaks in the distribution, as you can see
+of the distribution.</p>
+<p>There could be, for instance, two peaks in the distribution, as you can see
 <a href="https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png">here</a> for instance.
 In that case, the HDI would consist of two intervals. One could readily image
 a real life case for such a distribution. Think of a group of people where the
@@ -416,6 +415,34 @@ probably bimodal showing two peaks for the two groups.</p>
 We could also use the quantiles of the posterior distribution to construct a credible interval.
 If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
 and the HDI is the same as the quantile-based credible interval.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Credible_interval">credible interval</a>
+is <strong>not</strong> the same as a
+<a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> in frequentist statistics.
+We will discuss this in the next chapter.</p>
+<p>Briefly, a <strong>credible interval</strong> is a range of values
+for a parameter of interest that has a specified probability of containing the
+unobserved parameter.</p>
+<p>A <strong>confidence interval</strong> an interval which is expected to typically - when
+constructed <strong>repeatedly</strong> everytime a new sample is drawn - contain the <strong>true,
+but unknown</strong> parameter of interest.</p>
+</div>
+<div id="exercises-2" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Exercises<a href="bayes-statistics.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Difficulty levels of exercises:
+<strong>E</strong>: easy,
+<strong>M</strong>: intermediate,
+<strong>D</strong>: difficult</p>
+</div>
+<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> [E] Exercise 1 - defective product rate<a href="bayes-statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s revisit <a href="bayes-statistics.html#example_defective_products">Example 1</a> and change the prior probabilites to
+<span class="math inline">\(\pi(0.05) = 0.1\)</span> and <span class="math inline">\(\pi(0.10) = 0.9\)</span>.</p>
+<p>Calculate and plot the posterior probabilities for <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>.</p>
+</div>
+<div id="solutions-2" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics">here</a>.</p>
+
 </div>
 </div>
             </section>
@@ -424,7 +451,7 @@ and the HDI is the same as the quantile-based credible interval.</p>
         </div>
       </div>
 <a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exercises-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

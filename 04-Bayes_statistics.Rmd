@@ -232,9 +232,6 @@ alpha <- 5  # Shape parameter alpha
 beta <- 17  # Shape parameter beta
 density <- dbeta(x, shape1 = alpha, shape2 = beta)  # Beta density
 
-# Mode of distribution
-#(alpha - 1) / (alpha + beta - 2) # 0.2
-
 # Create a data frame for plotting
 data <- data.frame(x = x, density = density)
 
@@ -254,6 +251,7 @@ ggplot(data, aes(x = x, y = density)) +
   ) +
   geom_vline(xintercept = 0.2, linetype = "dashed", color = "red")
 ```
+
 </details>
 
 If we had to guess, we would say that the defect rate is most likely 20%.
@@ -691,7 +689,9 @@ With a probability of 93%, the defect rate is between 25% and 55%, given our pri
 beliefs and the observed data.
 
 Note that the HDI does not necessarily have to be symmetric around the peak 
-of the distribution. There could be two peaks in the distribution, as you can see
+of the distribution. 
+
+There could be, for instance, two peaks in the distribution, as you can see
 [here](https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png) for instance.
 In that case, the HDI would consist of two intervals. One could readily image
 a real life case for such a distribution. Think of a group of people where the
@@ -704,7 +704,20 @@ We could also use the quantiles of the posterior distribution to construct a cre
 If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
 and the HDI is the same as the quantile-based credible interval.
 
-# Exercises
+A [credible interval](https://en.wikipedia.org/wiki/Credible_interval) 
+is **not** the same as a 
+[confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) in frequentist statistics.
+We will discuss this in the next chapter. 
+
+Briefly, a **credible interval** is a range of values
+for a parameter of interest that has a specified probability of containing the 
+unobserved parameter.
+
+A **confidence interval** an interval which is expected to typically - when 
+constructed **repeatedly** everytime a new sample is drawn - contain the **true, 
+but unknown** parameter of interest.
+
+## Exercises
 
 Difficulty levels of exercises: 
 **E**: easy, 
@@ -720,4 +733,4 @@ Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta =
 
 
 ## Solutions
-Solutions for this chapter can be found [here]().
+Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics).
