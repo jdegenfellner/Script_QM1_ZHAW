@@ -55,7 +55,7 @@ derivation-of-bayes-theorem
 bayes-theorem-in-the-context-of-parameter-estimation
 examples
 example_defective_products
-example-2---extending-the-defective-products-example
+example_defective_products_extended
 highest-density-intervals-hdi
 bayesian_t_test
 example---bayesian-t-test

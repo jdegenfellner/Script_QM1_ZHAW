@@ -101,7 +101,7 @@ where:
 Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain (Improvement Yes/No). 
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
 This is your **prior knowledge**: \( \theta = 0.30 \), where \( \theta \) is the probability that the therapy is effective.
-Your colleagues are not convinced that the therapy is effective and argue that the probability is 40%.
+Your colleagues are not convinced and argue that the probability is 40%.
 Now, you run a small trial with 50 patients and observe that 22 of them showed a clinically relevant improvement in mobility (self-reported from the patient). 
 This new data (the result of the trial) *updates* your belief about the effectiveness of the therapy.
 Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior knowledge \( \theta = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 

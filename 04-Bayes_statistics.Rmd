@@ -215,7 +215,7 @@ How does the calculation change if we assign a much higher probability to the de
 See [Exercise 1](#exercise_defective_product_rate) for this.
 
 
-### Example 2 - extending the defective products example
+### Example 2 - extending the defective products example {#example_defective_products_extended}
 
 What if we do not want to limit ourselves to the two defect rates of 5% and 10%?
 We now get creative and assign the following prior probability **distribution** to the defective rate $\theta$:
@@ -857,17 +857,28 @@ chosen ROPE, not necessarily that the null value has high credibility."
 ([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)
 
 
-We are in the situation, that we cannot make a clear decision. 
+We are above in the situation, that we cannot make a clear decision. 
 The ROPE does not contain the 93% HDI, and the 93% HDI is not 
 completely outside the ROPE.
-“When the HDI and ROPE overlap, with the ROPE not completely 
+
+**“When the HDI and ROPE overlap, with the ROPE not completely 
 containing the HDI, then neither of the above decision rules is satisfied, 
 and we withhold a decision. This means merely that the current data are insufficient to 
-yield a clear decision one way or the other, according to the stated decision criteria."
+yield a clear decision one way or the other, according to the stated decision criteria."**
 ([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)"
 
 
+What have we learned so far: 
 
+- Estimating a proportion using Bayes' theorem [Example about the proportion of defective products](#example_defective_products)
+
+- Using a whole continuous distribution as prior knowledge [Example about the proportion of defective products extended](#example_defective_products_extended)
+
+- Analysis if two groups differ in their means or have the same mean [Example about the Bayesian t-test](#bayesian_t_test)
+
+Latest in QM2, we will do Bayesian regression analysis using packages like `brms` from 
+[Paul Bürkner](https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/) or 
+`rethinking` from [Richard McElreath](https://www.eva.mpg.de/ecology/staff/richard-mcelreath/).
 
 ## Advantages/disadvantages of Bayesian statistics
 

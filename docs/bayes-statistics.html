@@ -249,7 +249,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="bayes-statistics.html"><a href="bayes-statistics.html#examples"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example_defective_products"><i class="fa fa-check"></i><b>4.3.1</b> Example 1 - defective products</a></li>
-<li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example-2---extending-the-defective-products-example"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example_defective_products_extended"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
 <li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a>
@@ -421,8 +421,8 @@ defect rates. <span class="math inline">\(0.05\)</span> and <span class="math in
 <p>How does the calculation change if we assign a much higher probability to the defect rate of <span class="math inline">\(0.10\)</span>?
 See <a href="bayes-statistics.html#exercise_defective_product_rate">Exercise 1</a> for this.</p>
 </div>
-<div id="example-2---extending-the-defective-products-example" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Example 2 - extending the defective products example<a href="bayes-statistics.html#example-2---extending-the-defective-products-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example_defective_products_extended" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Example 2 - extending the defective products example<a href="bayes-statistics.html#example_defective_products_extended" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>What if we do not want to limit ourselves to the two defect rates of 5% and 10%?
 We now get creative and assign the following prior probability <strong>distribution</strong> to the defective rate <span class="math inline">\(\theta\)</span>:</p>
 <details open>
@@ -623,20 +623,20 @@ script is run, since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%    HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.629 130.737 130.910   93   35.115 227.13                  
-## mu2         6.401   5.964   3.763   93  -84.583  96.38                  
-## muDiff    124.228 124.727 124.713   93   -6.128 258.67       0      95.6
-## sigma1    139.003 127.981 110.170   93   66.349 224.44                  
-## sigma2    130.139 119.573 105.295   93   61.573 210.36                  
-## sigmaDiff   8.864   7.993   3.783   93 -115.493 139.10       0      55.9
-## nu         34.189  25.634   9.849   93    1.246  83.80                  
-## log10nu     1.377   1.409   1.519   93    0.660   2.06                  
-## effSz       0.965   0.955   0.918   93   -0.068   2.02       0      95.6
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.321 130.616 132.706   93   30.6962 224.85                  
+## mu2         6.296   5.968   8.437   93  -82.4917  98.84                  
+## muDiff    124.025 124.595 129.302   93  -10.7178 255.99       0      95.6
+## sigma1    139.619 128.565 112.504   93   67.3028 226.76                  
+## sigma2    129.904 119.488 103.708   93   60.4167 209.28                  
+## sigmaDiff   9.715   8.834   9.286   93 -117.4611 136.50       0      56.6
+## nu         34.457  25.718  10.141   93    1.2820  83.79                  
+## log10nu     1.379   1.410   1.483   93    0.6480   2.05                  
+## effSz       0.962   0.952   0.952   93   -0.0913   2.00       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.51
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -663,14 +663,23 @@ ROPE completely contains the 95% HDI of the posterior of that parameter.”</str
 credible values are practically equivalent to the null value according to the
 chosen ROPE, not necessarily that the null value has high credibility.”
 (<a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Kruschke</a>, p.337)</p>
-<p>We are in the situation, that we cannot make a clear decision.
+<p>We are above in the situation, that we cannot make a clear decision.
 The ROPE does not contain the 93% HDI, and the 93% HDI is not
-completely outside the ROPE.
-“When the HDI and ROPE overlap, with the ROPE not completely
+completely outside the ROPE.</p>
+<p><strong>“When the HDI and ROPE overlap, with the ROPE not completely
 containing the HDI, then neither of the above decision rules is satisfied,
 and we withhold a decision. This means merely that the current data are insufficient to
-yield a clear decision one way or the other, according to the stated decision criteria.”
+yield a clear decision one way or the other, according to the stated decision criteria.”</strong>
 (<a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Kruschke</a>, p.337)”</p>
+<p>What have we learned so far:</p>
+<ul>
+<li><p>Estimating a proportion using Bayes’ theorem <a href="bayes-statistics.html#example_defective_products">Example about the proportion of defective products</a></p></li>
+<li><p>Using a whole continuous distribution as prior knowledge <a href="bayes-statistics.html#example_defective_products_extended">Example about the proportion of defective products extended</a></p></li>
+<li><p>Analysis if two groups differ in their means or have the same mean <a href="bayes-statistics.html#bayesian_t_test">Example about the Bayesian t-test</a></p></li>
+</ul>
+<p>Latest in QM2, we will do Bayesian regression analysis using packages like <code>brms</code> from
+<a href="https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/">Paul Bürkner</a> or
+<code>rethinking</code> from <a href="https://www.eva.mpg.de/ecology/staff/richard-mcelreath/">Richard McElreath</a>.</p>
 </div>
 </div>
 <div id="advantagesdisadvantages-of-bayesian-statistics" class="section level2 hasAnchor" number="4.6">
