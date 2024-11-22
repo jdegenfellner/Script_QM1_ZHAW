@@ -833,7 +833,7 @@ of the posterior distribution that is greater than 0. We can say, with a probabi
 ~95%, the difference between the means is greater than 0. 
 
 Would we conclude that the two groups differ in their means?
-According to Kruschke (p.336): 
+According to [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) (p.336): 
 
 **"A parameter value is declared to be not credible, 
 or rejected, if its entire ROPE lies outside the highest density interval 
@@ -854,7 +854,53 @@ This is also not the case here. The 93% HDI lies outside the ROPE to a large par
 Note, "The decision rule for accepting the null value says merely that the most 
 credible values are practically equivalent to the null value according to the 
 chosen ROPE, not necessarily that the null value has high credibility."
-(Kruschke, p.337)
+([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)
+
+
+We are in the situation, that we cannot make a clear decision. 
+The ROPE does not contain the 93% HDI, and the 93% HDI is not 
+completely outside the ROPE.
+“When the HDI and ROPE overlap, with the ROPE not completely 
+containing the HDI, then neither of the above decision rules is satisfied, 
+and we withhold a decision. This means merely that the current data are insufficient to 
+yield a clear decision one way or the other, according to the stated decision criteria."
+([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)"
+
+
+
+
+## Advantages/disadvantages of Bayesian statistics
+
+### (Some) Advantages
+- **Full probability distributions**: We get a full probability distribution for the parameter of interest.
+
+- **Flexibility**: We can incorporate prior knowledge into our analysis.
+
+- **Interpretability**: We can make statements about the probability of certain parameter values.
+
+- **No p-values**: We do not need to rely on p-values and NHST (Null Hypothesis Significance Testing). 
+John Kruschke points out many problems with 
+NHST in his [book](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) and
+ [article](https://psycnet.apa.org/record/2012-18082-001). It seems that for many practinioners, p-values are
+ hard to understand and interpret correctly. There are many 
+ [misconceptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620). 
+ And one should definitely 
+ [move away a dichotomous thinking of "significant" and "non-significant"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) results.
+
+### (Some) Disadvantages
+- **Computational complexity**: Calculating the posterior distribution can be computationally intensive. 
+Even with modern computers and the latest packages, it can take a long time to get results. Classical statistical models
+are often estimated within fractions of a second.
+
+- **Barriers to entry**: Statistics courses and textbooks often focus on frequentist statistics, as well as many
+sofware packages lean more towards frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
+When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.
+
+- **Subjectivity**: The choice of the prior distribution can be subjective. 
+There is also the question which prior to choose.
+
+
+
 
 
 ## Exercises
