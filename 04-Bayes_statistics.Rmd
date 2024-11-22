@@ -880,6 +880,18 @@ Latest in QM2, we will do Bayesian regression analysis using packages like `brms
 [Paul Bürkner](https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/) or 
 `rethinking` from [Richard McElreath](https://www.eva.mpg.de/ecology/staff/richard-mcelreath/).
 
+## Bayesian updating
+
+The following..........
+
+```{r testing, fig.cap="example caption", echo=FALSE}
+library(gifski)
+library(magick)
+img <- magick::image_read("./images/bayesian_updating_fixed.gif")
+print(img)
+```
+
+This [video](https://www.youtube.com/watch?v=rUoJvogN7qQ&t=4s&ab_channel=CoreyChivers) illustrates the concept of Bayesian updating.
 
 ## Advantages/disadvantages of Bayesian statistics
 
@@ -979,7 +991,9 @@ Or
 
 Prior $\rightarrow$ experiment 2 $\rightarrow$ posterior 2 $\rightarrow$ experiment 1 $\rightarrow$ posterior21.
 
-Show that posterior12 and posterior21 should be the same.
+- Show that posterior12 and posterior21 should be the same and draw both posterior distributions into one plot.
+
+- [Optional] Show this result analytically.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics).

@@ -1,3 +1,4 @@
+fig:testing
 introduction
 books-i-can-highly-recommend
 section
@@ -59,6 +60,7 @@ example_defective_products_extended
 highest-density-intervals-hdi
 bayesian_t_test
 example---bayesian-t-test
+bayesian-updating
 advantagesdisadvantages-of-bayesian-statistics
 some-advantages
 some-disadvantages
