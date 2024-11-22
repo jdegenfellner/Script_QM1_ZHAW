@@ -9,7 +9,7 @@ rmd_files:
   - 03-descriptive_stats.Rmd
   - 04-Bayes_statistics.Rmd
   #- 04-citations.Rmd
-  #- 05-blocks.Rmd
+  - 05-NHST.Rmd
   #- 06-share.Rmd
   - 07-references.Rmd
 output_dir: "docs"

@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-11-21" />
+<meta name="date" content="2024-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="null-hypothesis-significance-testing.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -259,6 +259,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
 <li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.7</b> [E] Exercise 1 - defective product rate</a></li>
 <li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html#proportions-test"><i class="fa fa-check"></i><b>5.1</b> Proportions test</a></li>
+<li class="chapter" data-level="5.2" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html#t-test"><i class="fa fa-check"></i><b>5.2</b> t-Test</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -511,10 +516,11 @@ of the distribution.</p>
 <p>There could be, for instance, two peaks in the distribution, as you can see
 <a href="https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png">here</a> for instance.
 In that case, the HDI would consist of two intervals. One could readily image
-a real life case for such a distribution. Think of a group of people where the
+a real life case for such a distribution:</p>
+<p>Think of a group of people where the
 measurement of interest is the 100 m sprint time. There could be two groups of people:
 The hobby runners and the professional athletes. The distribution of the sprint times would
-probably bimodal showing two peaks for the two groups.</p>
+probably be bimodal showing two peaks for the two groups.</p>
 <p>There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.
 If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
@@ -613,19 +619,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.697 130.863 133.612   93   34.3065 228.77                  
-## mu2         5.822   5.740   3.352   93  -86.9352  95.70                  
-## muDiff    124.875 124.879 119.491   93   -7.6130 260.94       0      95.5
-## sigma1    140.058 128.692 110.392   93   65.9145 228.01                  
-## sigma2    130.138 119.766 104.378   93   62.0062 209.79                  
-## sigmaDiff   9.920   8.365   2.710   93 -116.3440 141.19       0      56.2
-## nu         34.686  26.009   9.908   93    1.0761  84.28                  
-## log10nu     1.382   1.415   1.508   93    0.6492   2.05                  
-## effSz       0.965   0.954   0.892   93   -0.0671   2.03       0      95.5
+## mu1       130.571 130.737 133.749   93   36.0715 228.82                  
+## mu2         6.286   5.774   6.309   93  -83.9773  98.63                  
+## muDiff    124.286 124.463 120.600   93   -8.7532 257.98       0      95.5
+## sigma1    139.047 128.452 112.784   93   64.9583 222.72                  
+## sigma2    130.195 119.713 105.151   93   62.3429 211.31                  
+## sigmaDiff   8.852   8.349  11.397   93 -117.4172 134.83       0      56.1
+## nu         34.597  25.906  10.239   93    1.1065  83.81                  
+## log10nu     1.382   1.413   1.480   93    0.6498   2.05                  
+## effSz       0.963   0.953   0.926   93   -0.0656   2.02       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.61
+## muDiff        -20       20    4.63
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -643,12 +649,15 @@ or rejected, if its entire ROPE lies outside the highest density interval
 <p>This is not the case here. We would not conclude, that the means between the groups differ.
 One could argue, that this rule seems rather strict considering, that ~95% of the
 posterior distribution of the differences is greater than 0.</p>
-<p>As opposed to the frequentist t-test, we can also affirm the null hypothesis,
+<p>As opposed to the frequentist t-test, we can also <strong>affirm the null hypothesis</strong>,
 that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.</p>
 <p><strong>“A parameter value is declared to be accepted for practical purposes if that value’s
 ROPE completely contains the 95% HDI of the posterior of that parameter.”</strong></p>
-<p>This is also not the case here. We would not conclude that the means are
-practically equivalent.</p>
+<p>This is also not the case here. The 93% HDI lies outside the ROPE to a large part.</p>
+<p>Note, “The decision rule for accepting the null value says merely that the most
+credible values are practically equivalent to the null value according to the
+chosen ROPE, not necessarily that the null value has high credibility.”
+(Kruschke, p.337)</p>
 </div>
 </div>
 <div id="exercises-2" class="section level2 hasAnchor" number="4.6">
@@ -676,7 +685,7 @@ practically equivalent.</p>
         </div>
       </div>
 <a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="null-hypothesis-significance-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,7 @@
+# Null Hypothesis Significance Testing
+
+Intro....
+
+## Proportions test
+
+## t-Test

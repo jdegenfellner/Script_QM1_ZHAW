@@ -62,3 +62,6 @@ example---bayesian-t-test
 exercises-2
 exercise_defective_product_rate
 solutions-2
+null-hypothesis-significance-testing
+proportions-test
+t-test

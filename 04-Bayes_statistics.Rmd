@@ -711,10 +711,12 @@ of the distribution.
 There could be, for instance, two peaks in the distribution, as you can see
 [here](https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png) for instance.
 In that case, the HDI would consist of two intervals. One could readily image
-a real life case for such a distribution. Think of a group of people where the
+a real life case for such a distribution: 
+
+Think of a group of people where the
 measurement of interest is the 100 m sprint time. There could be two groups of people: 
 The hobby runners and the professional athletes. The distribution of the sprint times would
-probably bimodal showing two peaks for the two groups.
+probably be bimodal showing two peaks for the two groups.
 
 There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.
@@ -841,15 +843,18 @@ This is not the case here. We would not conclude, that the means between the gro
 One could argue, that this rule seems rather strict considering, that ~95% of the 
 posterior distribution of the differences is greater than 0.
 
-As opposed to the frequentist t-test, we can also affirm the null hypothesis, 
+As opposed to the frequentist t-test, we can also **affirm the null hypothesis**, 
 that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.
 
 **"A parameter value is declared to be accepted for practical purposes if that value’s 
 ROPE completely contains the 95% HDI of the posterior of that parameter."**
 
-This is also not the case here. We would not conclude that the means are 
-practically equivalent.
+This is also not the case here. The 93% HDI lies outside the ROPE to a large part.
 
+Note, "The decision rule for accepting the null value says merely that the most 
+credible values are practically equivalent to the null value according to the 
+chosen ROPE, not necessarily that the null value has high credibility."
+(Kruschke, p.337)
 
 
 ## Exercises
