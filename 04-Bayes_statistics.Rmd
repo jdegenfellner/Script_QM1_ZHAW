@@ -880,6 +880,7 @@ Latest in QM2, we will do Bayesian regression analysis using packages like `brms
 [Paul Bürkner](https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/) or 
 `rethinking` from [Richard McElreath](https://www.eva.mpg.de/ecology/staff/richard-mcelreath/).
 
+
 ## Advantages/disadvantages of Bayesian statistics
 
 ### (Some) Advantages
@@ -927,7 +928,58 @@ $\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
 
 Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.
 
+## [H] Exercise 2 - Bayesian updating
+We want to check empirically that the **order of data collection does not influence the posterior distribution**.
+We want to find out the probability $\theta$ of a therapy to work.
+Since we have absolutely no idea, how effective the therapy is, let our prior distribution be a [uniform 
+distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) between 0 and 1 
+(this has to be argued for more rigorously in practice). Hence, 
+every value between 0 and 1 is equally likely:
 
+$\pi(\theta) = 1$ for $\theta \in [0,1]$.
+
+```{r, echo=TRUE}
+# Load required libraries
+library(ggplot2)
+
+# Generate data for a uniform distribution
+theta <- seq(0, 1, length.out = 100)  # Range of theta
+density <- dunif(theta, min = 0, max = 1)  # Uniform density
+
+# Create a data frame for ggplot
+df <- data.frame(theta = theta, density = density)
+
+# Plot the density function
+ggplot(df, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +  # Density line
+  geom_area(fill = "lightblue", alpha = 0.5) +  # Shaded area under the curve
+  labs(
+    title = "Prior: Uniform Distribution",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    axis.title = element_text(face = "bold")
+  )
+```
+
+Notize, that the area under the curve is 1, since it is a probability density function. 
+For example, $\mathbb{P}(\theta \in (0.25,0.75)) = 0.5$
+
+- Experiment 1 one shows that the therapy works in 17 out of 50 cases.
+- Experiment 2 shows that the therapy works in 23 out of 50 cases.
+
+So we go from:
+
+Prior $\rightarrow$ experiment 1 $\rightarrow$ posterior 1 $\rightarrow$ experiment 2 $\rightarrow$ posterior12.
+
+Or
+
+Prior $\rightarrow$ experiment 2 $\rightarrow$ posterior 2 $\rightarrow$ experiment 1 $\rightarrow$ posterior21.
+
+Show that posterior12 and posterior21 should be the same.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics).

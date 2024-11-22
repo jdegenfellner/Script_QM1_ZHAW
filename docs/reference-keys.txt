@@ -64,6 +64,7 @@ some-advantages
 some-disadvantages
 exercises-2
 exercise_defective_product_rate
+h-exercise-2---bayesian-updating
 solutions-2
 null-hypothesis-significance-testing
 proportions-test

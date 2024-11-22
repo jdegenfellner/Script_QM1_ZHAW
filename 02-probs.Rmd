@@ -106,7 +106,7 @@ Now, you run a small trial with 50 patients and observe that 22 of them showed a
 This new data (the result of the trial) *updates* your belief about the effectiveness of the therapy.
 Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior knowledge \( \theta = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
-We could assign the probability of $\theta = 0.3$ or $\theta = 0.4$ equally: $p(\theta = 0.3) = p(\theta = 0.4) = 0.5$. 
+We could assign the probability of $\theta = 0.3$ or $\theta = 0.4$ equally: $p(\theta = 0.3) = p(\theta = 0.4) = 0.5.$ 
 
 Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.
 

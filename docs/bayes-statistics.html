@@ -263,7 +263,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 <li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.8</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.9" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.9</b> Solutions</a></li>
+<li class="chapter" data-level="4.9" data-path="bayes-statistics.html"><a href="bayes-statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.9</b> [H] Exercise 2 - Bayesian updating</a></li>
+<li class="chapter" data-level="4.10" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.10</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing</a>
 <ul>
@@ -624,19 +625,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.321 130.616 132.706   93   30.6962 224.85                  
-## mu2         6.296   5.968   8.437   93  -82.4917  98.84                  
-## muDiff    124.025 124.595 129.302   93  -10.7178 255.99       0      95.6
-## sigma1    139.619 128.565 112.504   93   67.3028 226.76                  
-## sigma2    129.904 119.488 103.708   93   60.4167 209.28                  
-## sigmaDiff   9.715   8.834   9.286   93 -117.4611 136.50       0      56.6
-## nu         34.457  25.718  10.141   93    1.2820  83.79                  
-## log10nu     1.379   1.410   1.483   93    0.6480   2.05                  
-## effSz       0.962   0.952   0.952   93   -0.0913   2.00       0      95.6
+## mu1       130.793 130.952 129.500   93   31.2697 225.08                  
+## mu2         6.355   6.086   6.427   93  -83.6198  94.73                  
+## muDiff    124.438 124.822 131.475   93   -7.9548 257.01       0      95.6
+## sigma1    139.789 128.755 112.825   93   66.4427 226.13                  
+## sigma2    129.583 119.223 104.946   93   62.7645 209.78                  
+## sigmaDiff  10.206   8.996   5.498   93 -113.9893 140.09       0      56.8
+## nu         34.089  25.554  10.253   93    1.1031  82.80                  
+## log10nu     1.375   1.407   1.478   93    0.6517   2.05                  
+## effSz       0.965   0.955   0.965   93   -0.0922   1.99       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.46
+## muDiff        -20       20    4.55
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -727,8 +728,54 @@ There is also the question which prior to choose.</p></li>
 <span class="math inline">\(\pi(0.05) = 0.1\)</span> and <span class="math inline">\(\pi(0.10) = 0.9\)</span>.</p>
 <p>Calculate and plot the posterior probabilities for <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>.</p>
 </div>
-<div id="solutions-2" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="h-exercise-2---bayesian-updating" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> [H] Exercise 2 - Bayesian updating<a href="bayes-statistics.html#h-exercise-2---bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to check empirically that the <strong>order of data collection does not influence the posterior distribution</strong>.
+We want to find out the probability <span class="math inline">\(\theta\)</span> of a therapy to work.
+Since we have absolutely no idea, how effective the therapy is, let our prior distribution be a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform
+distribution</a> between 0 and 1
+(this has to be argued for more rigorously in practice). Hence,
+every value between 0 and 1 is equally likely:</p>
+<p><span class="math inline">\(\pi(\theta) = 1\)</span> for <span class="math inline">\(\theta \in [0,1]\)</span>.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="bayes-statistics.html#cb80-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb80-2"><a href="bayes-statistics.html#cb80-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb80-3"><a href="bayes-statistics.html#cb80-3" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="bayes-statistics.html#cb80-4" tabindex="-1"></a><span class="co"># Generate data for a uniform distribution</span></span>
+<span id="cb80-5"><a href="bayes-statistics.html#cb80-5" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)  <span class="co"># Range of theta</span></span>
+<span id="cb80-6"><a href="bayes-statistics.html#cb80-6" tabindex="-1"></a>density <span class="ot">&lt;-</span> <span class="fu">dunif</span>(theta, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)  <span class="co"># Uniform density</span></span>
+<span id="cb80-7"><a href="bayes-statistics.html#cb80-7" tabindex="-1"></a></span>
+<span id="cb80-8"><a href="bayes-statistics.html#cb80-8" tabindex="-1"></a><span class="co"># Create a data frame for ggplot</span></span>
+<span id="cb80-9"><a href="bayes-statistics.html#cb80-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">theta =</span> theta, <span class="at">density =</span> density)</span>
+<span id="cb80-10"><a href="bayes-statistics.html#cb80-10" tabindex="-1"></a></span>
+<span id="cb80-11"><a href="bayes-statistics.html#cb80-11" tabindex="-1"></a><span class="co"># Plot the density function</span></span>
+<span id="cb80-12"><a href="bayes-statistics.html#cb80-12" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb80-13"><a href="bayes-statistics.html#cb80-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Density line</span></span>
+<span id="cb80-14"><a href="bayes-statistics.html#cb80-14" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Shaded area under the curve</span></span>
+<span id="cb80-15"><a href="bayes-statistics.html#cb80-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb80-16"><a href="bayes-statistics.html#cb80-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Prior: Uniform Distribution&quot;</span>,</span>
+<span id="cb80-17"><a href="bayes-statistics.html#cb80-17" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta),</span>
+<span id="cb80-18"><a href="bayes-statistics.html#cb80-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb80-19"><a href="bayes-statistics.html#cb80-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb80-20"><a href="bayes-statistics.html#cb80-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb80-21"><a href="bayes-statistics.html#cb80-21" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb80-22"><a href="bayes-statistics.html#cb80-22" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb80-23"><a href="bayes-statistics.html#cb80-23" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb80-24"><a href="bayes-statistics.html#cb80-24" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>Notize, that the area under the curve is 1, since it is a probability density function.
+For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)</span></p>
+<ul>
+<li>Experiment 1 one shows that the therapy works in 17 out of 50 cases.</li>
+<li>Experiment 2 shows that the therapy works in 23 out of 50 cases.</li>
+</ul>
+<p>So we go from:</p>
+<p>Prior <span class="math inline">\(\rightarrow\)</span> experiment 1 <span class="math inline">\(\rightarrow\)</span> posterior 1 <span class="math inline">\(\rightarrow\)</span> experiment 2 <span class="math inline">\(\rightarrow\)</span> posterior12.</p>
+<p>Or</p>
+<p>Prior <span class="math inline">\(\rightarrow\)</span> experiment 2 <span class="math inline">\(\rightarrow\)</span> posterior 2 <span class="math inline">\(\rightarrow\)</span> experiment 1 <span class="math inline">\(\rightarrow\)</span> posterior21.</p>
+<p>Show that posterior12 and posterior21 should be the same.</p>
+</div>
+<div id="solutions-2" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics">here</a>.</p>
 
 </div>
