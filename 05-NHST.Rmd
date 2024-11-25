@@ -68,7 +68,7 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 	
 - **Sample size influence**: Large samples can make small, clinically irrelevant 
   differences statistically significant. Example: Given an arbitrarily small difference between means of two groups. There is 
-  always a sample size that makes the difference "significant". See [Exercise 2](#exercise2).
+  always a sample size that makes the difference "significant". See [Exercise 2](#exercise2_nhst).
 
 - **[Publication bias](https://en.wikipedia.org/wiki/Publication_bias)**: Many journals tended to publish studies with "significant" results. "Not significant" results
   were often not published. This can lead to a distorted view of the literature.
@@ -88,15 +88,19 @@ This [Review of NHST](https://f1000research.com/articles/4-621/v3) or
 
 This [video](https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal) could also help to understand the basic concepts.
 
-**Example in the literature**
 
-P-values are omnipresent in the scientific literature. Here is an example from a recent paper .....
+
+## Example in the literature
+
+$p$-values are omnipresent in the scientific literature. There a rather few papers in our field that do not contain them. 
+Here is an example from a recent paper:
+
 
 ## Binomial test
 
 In the first chapter, we invented the 1000-researcher experiment. There were already encountered hypothesis tests in disguise.
 If we would assume that the probability of a false positive is 0.04, 
-we would expect 40 false positives. We asked, what is the probability of observing
+we would "expect" 40 false positives. We asked, what is the probability of observing
 137 or more. This is an example of a hypothesis test:
 
 - $H_0: \theta \le 0.04$
@@ -111,6 +115,8 @@ Any reasonable person would say, that this result did not happen by chance alone
 therefore concluded, the true, but unknown false positive rate $\theta$ is larger than 0.04.
 
 Formally, this is called a **(one-sided) [binomial test](https://en.wikipedia.org/wiki/Binomial_test)**.
+
+Note, that **$H_1$ is the logical complement of $H_0$**.
 
 ```{r}
 # binomial test
@@ -146,7 +152,7 @@ With some experience, one would probably not test for lower when seeing the obse
 the so constructed interval (which will be different everytime) contains the true but unknown parameter.
 
 Note, that the "Exact binomial test" was used. There where no approximations made. I would recommend always
-using exact tests if available, since we are in the 21th century and computers are fast.
+using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21th century and computers are fast.
 
 Again, the $\alpha$ level of $0.05$ has nothing special (apart from convention) to it. 
 We can also use a $\alpha = 0.14$ level. In this case, we construct confidence intervals 
@@ -162,6 +168,16 @@ With **smaller coverage probability** (86 instead of 95), we get a **narrower in
 Trivially, a 100% confidence interval would be $0$ to $1$ and a 0% confidence interval would be $0.04$ to $0.04$ or any other 
 specific value assuming that the true parameter can take any value from $0$ to $1$.
 
+See also [Exercise 3](#exercise3_nhst).
+
+**Comparison with Bayesian version** of estimating $\theta$:
+
+- We cannot include a prior distribution for the paramater $\theta$.
+- We cannot calculate the posterior distribution of $\theta$. 
+Hence, we cannot make statements like "the probability that $\theta$ is larger than 0.04 is 0.9".
+- Prior knowledge could probably be included in the form of the null hypothesis stating, for instance, that $\theta \le 0.2$. 
+This could be based on previous studies or expert knowledge.
+
 ## Proportions test
 ......
 
@@ -172,25 +188,51 @@ specific value assuming that the true parameter can take any value from $0$ to $
 .......
 
 ### Two sample t-test
-.......
+.......Example from before...
 
-## Correlation test
+### Correlation test
 .......
 
 ## Type 1 and Type 2 errors
 .......
 
+## Simulations based approaches
+
+Through the power of modern computers, we can simulate all kinds of hypothesis tests. 
+We just assume that the null hypothesis is true and draw samples from the very distribution.
+In the old times, computational ressources were scarce and one had to rely on 
+[tables](https://digital.library.adelaide.edu.au/server/api/core/bitstreams/21f22d02-4a39-4650-8f09-71434ad02897/content)
+that were precalculated. 
+
+[This](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R)
+shows you how the correlation coefficient behaves under the null hypothesis (that there is no correlation; $\rho = 0$).
+This is a very useful tool to understand the behavior of a test statistic under the null hypothesis.
+Of course, the probability that a correlation coefficient is exactly 0 is 0 since it's a continuous variable,
+but in practice we are interested in "indistinguishable from 0" which is a small value. 
+In the Bayesian framework from Kruschke, we defined a region of practical equivalence (ROPE) for this purpose.
+
+We can always ask ourselves: What does my test statistic do *if* the null hypothesis is true?
+Then try to simulate it. This helps to understand what constitutes a qualitatively different result 
+(from the null hypothesis) considering variability in the data.
+
 ## Exercises
 .........
 
-### Exercise 1
+### Exercise 1 - frequentist confidence interval {#exercise1_nhst}
 
 - Create 1000 random samples from a binomial distribution with $n = 100$ and $p = 0.38$.
 - Calculate the 96% confidence interval for each sample.
 - How often was the true parameter ($p = 0.38$) contained in the constructed interval?
 
-### Exercise 2 {#exercise2}
+### Exercise 2 - everything becomes "significant" {#exercise2_nhst}
 Setting: two sample t-test. Assume there is a small difference between the means of two groups.
 - Show via simulation that with increasing sample size, the p-value becomes smaller and 
 smaller and will be "significant" at some point irresective of how small the true mean 
 difference is and how small the $\alpha-$ level is.
+
+### Exercise 3 - binomial test {#exercise3_nhst}
+
+- Create a sample from a binomial distribution with $n = 54$ and $p = 0.68$.
+- Perform a two-sided binomial test with $H_0: p = 0.5$.
+- Calculate the 90% confidence interval for the sample proportion.
+- Calculate the p-vlaue for the two-sided test by "hand" (using dbinom/pbinom in R).
