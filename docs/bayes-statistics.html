@@ -257,15 +257,16 @@ div.csl-indent {
 <li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian-updating"><i class="fa fa-check"></i><b>4.6</b> Bayesian updating</a></li>
-<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics"><i class="fa fa-check"></i><b>4.7</b> Advantages/disadvantages of Bayesian statistics</a>
+<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#more-complex-cases-more-complex-parameter-spaces"><i class="fa fa-check"></i><b>4.7</b> More complex cases, more complex parameter spaces</a></li>
+<li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics"><i class="fa fa-check"></i><b>4.8</b> Advantages/disadvantages of Bayesian statistics</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-advantages"><i class="fa fa-check"></i><b>4.7.1</b> (Some) Advantages</a></li>
-<li class="chapter" data-level="4.7.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-disadvantages"><i class="fa fa-check"></i><b>4.7.2</b> (Some) Disadvantages</a></li>
+<li class="chapter" data-level="4.8.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-advantages"><i class="fa fa-check"></i><b>4.8.1</b> (Some) Advantages</a></li>
+<li class="chapter" data-level="4.8.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-disadvantages"><i class="fa fa-check"></i><b>4.8.2</b> (Some) Disadvantages</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.8</b> Exercises</a></li>
-<li class="chapter" data-level="4.9" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.9</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.10" data-path="bayes-statistics.html"><a href="bayes-statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.10</b> [H] Exercise 2 - Bayesian updating</a></li>
-<li class="chapter" data-level="4.11" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.11</b> Solutions</a></li>
+<li class="chapter" data-level="4.9" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
+<li class="chapter" data-level="4.10" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.10</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.11" data-path="bayes-statistics.html"><a href="bayes-statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.11</b> [H] Exercise 2 - Bayesian updating</a></li>
+<li class="chapter" data-level="4.12" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.12</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing</a>
 <ul>
@@ -542,14 +543,15 @@ for a parameter of interest that has a specified probability of containing the
 unobserved parameter.</p>
 <p>A <strong>confidence interval</strong> is an interval which is expected to contain the <strong>true,
 but unknown</strong> parameter of interest in a certain percent of times (e.g., 92%), when
-constructed <strong>repeatedly</strong> everytime a new sample is drawn.</p>
+<a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">constructed <strong>repeatedly</strong> everytime a new sample is drawn</a>.</p>
 </div>
 <div id="bayesian_t_test" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Bayesian t-test<a href="bayes-statistics.html#bayesian_t_test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Above, we looked at some aspects of estimating a parameter (proportion) using Bayes’ theorem.
 We can answer all sorts of other questions using this paradigm. In classical statistics,
 one often wants to know if two groups differ with respect to their true means.
-This answer is typically given by the famous <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a> (small “t” please).
+This answer is typically given by the famous <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a>
+(<a href="https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf">small “t”</a> please).
 I encourage you to read the short <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#History">history</a> of the t-test.</p>
 <p>For didactic reasons, we will look at the Baysian version of the t-test first.
 We want to try to view statistics as more than just a
@@ -588,7 +590,7 @@ for a nice illustration. Later, we will use more up-to-date packages like <a hre
 <p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="bayes-statistics.html#cb74-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
 <p>We work with a rather small sample size, 8 in each group.
-<strong>We want to know if the two groups differ in their means</strong>.
+<strong>We want to know if the two groups differ in their (unobserved) means</strong>.
 For this, we will apply the R function <code>BESTmcmc</code> from the package <code>BEST</code>.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="bayes-statistics.html#cb75-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33443</span>)</span>
 <span id="cb75-2"><a href="bayes-statistics.html#cb75-2" tabindex="-1"></a><span class="fu">p_load</span>(HDInterval, BEST, tictoc, psych, tidyverse)</span>
@@ -605,8 +607,8 @@ algorithm to estimate the posterior distribution of the difference between the m
 We do not care about these details for now, but try to interpret what we see.</p>
 <p>The plot shows the posterior distribution of the difference between the means of the two groups.</p>
 <ul>
-<li><p>With the parameter <code>which = "mean"</code>, we are interested in the posterior distribution of
-difference of the means. We see a full probability distribution again.</p></li>
+<li><p>With the parameter <code>which = "mean"</code>, we are interested in the <strong>posterior distribution of
+difference of the means</strong> (<span class="math inline">\(\mu_1 - \mu_2\)</span>). We see a full probability distribution again.</p></li>
 <li><p>The parameter <code>compVal = d_0</code> is the value we want to compare the posterior distribution to. Here We
 chose delta_0 = 0, which means that we want to know if the difference between the means is
 different from zero.</p></li>
@@ -615,7 +617,7 @@ In our case, we chose a = 20. This means that we consider differences between th
 of <span class="math inline">\(\pm 20\)</span> as practically equivalent. In practice, you would choose a value that is meaningful for your
 particular research question. For instance, in a planned experiment, we are interested in changes
 on the Roland Morris Disability Questionnaire (RMDQ) of 2 points.
-We would then choose a value of 2 for the ROPE, since only are change beyound this value would be
+We would then choose a value of 2 for the ROPE, since only a change beyond this value would be
 clinically relevant for the patient.</p></li>
 <li><p>The parameter <code>credMass = 0.93</code> is the probability mass to include in credible intervals, in this case 93%.</p></li>
 <li><p>The 93% HDI for the difference between the means is shown in the graph, hence given
@@ -627,19 +629,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.762 130.773 133.400   93   32.9445 227.66                  
-## mu2         6.129   6.058   5.078   93  -83.0757  96.19                  
-## muDiff    124.633 124.788 127.465   93  -12.5884 253.08       0      95.6
-## sigma1    140.027 128.716 113.467   93   67.3324 226.69                  
-## sigma2    130.104 119.309 103.333   93   60.5707 209.28                  
-## sigmaDiff   9.923   8.659   7.436   93 -118.6824 135.88       0      56.6
-## nu         34.278  25.714  10.313   93    1.2524  83.46                  
-## log10nu     1.378   1.410   1.465   93    0.6675   2.06                  
-## effSz       0.964   0.954   0.936   93   -0.0922   1.99       0      95.6
+## mu1       131.402 131.382 133.641   93   30.8827 226.10                  
+## mu2         6.122   5.794   6.071   93  -83.1742  97.11                  
+## muDiff    125.279 125.303 120.626   93  -10.4012 256.17       0      95.6
+## sigma1    139.820 128.355 111.722   93   65.7532 225.77                  
+## sigma2    129.980 119.809 106.079   93   60.2385 208.54                  
+## sigmaDiff   9.840   8.704   6.925   93 -116.6694 137.73       0      56.5
+## nu         34.432  25.852   9.622   93    1.0900  83.56                  
+## log10nu     1.380   1.412   1.485   93    0.6529   2.05                  
+## effSz       0.969   0.959   0.926   93   -0.0748   2.01       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.54
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -660,7 +662,7 @@ posterior distribution of the differences is greater than 0.</p>
 <p>As opposed to the frequentist t-test, we can also <strong>affirm the null hypothesis</strong>,
 that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.</p>
 <p><strong>“A parameter value is declared to be accepted for practical purposes if that value’s
-ROPE completely contains the 95% HDI of the posterior of that parameter.”</strong></p>
+ROPE completely contains the X% HDI of the posterior of that parameter.”</strong></p>
 <p>This is also not the case here. The 93% HDI lies outside the ROPE to a large part.</p>
 <p>Note, “The decision rule for accepting the null value says merely that the most
 credible values are practically equivalent to the null value according to the
@@ -687,7 +689,11 @@ yield a clear decision one way or the other, according to the stated decision cr
 </div>
 <div id="bayesian-updating" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Bayesian updating<a href="bayes-statistics.html#bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The following……….</p>
+<p>The following is an animated example of Bayesian updating.
+The true probability for heads in a coin toss is <span class="math inline">\(\theta = 0.77\)</span>.
+We throw a coin 100 times and we start with a uniform prior distribution, i.e.,
+every value between 0 and 1 is equally likely at the beginning.</p>
+<p>Code can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R">here</a></p>
 <pre><code>## Linking to ImageMagick 6.9.12.93
 ## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
 ## Disabled features: fftw, ghostscript, x11</code></pre>
@@ -713,10 +719,14 @@ Figure 4.1: example caption
 </div>
 <p>This <a href="https://www.youtube.com/watch?v=rUoJvogN7qQ&amp;t=4s&amp;ab_channel=CoreyChivers">video</a> illustrates the concept of Bayesian updating.</p>
 </div>
-<div id="advantagesdisadvantages-of-bayesian-statistics" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Advantages/disadvantages of Bayesian statistics<a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="some-advantages" class="section level3 hasAnchor" number="4.7.1">
-<h3><span class="header-section-number">4.7.1</span> (Some) Advantages<a href="bayes-statistics.html#some-advantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="more-complex-cases-more-complex-parameter-spaces" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> More complex cases, more complex parameter spaces<a href="bayes-statistics.html#more-complex-cases-more-complex-parameter-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>……….</p>
+</div>
+<div id="advantagesdisadvantages-of-bayesian-statistics" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Advantages/disadvantages of Bayesian statistics<a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="some-advantages" class="section level3 hasAnchor" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> (Some) Advantages<a href="bayes-statistics.html#some-advantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><strong>Full probability distributions</strong>: We get a full probability distribution for the parameter of interest.</p></li>
 <li><p><strong>Flexibility</strong>: We can incorporate prior knowledge into our analysis.</p></li>
@@ -731,8 +741,8 @@ And one should definitely
 <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">move away a dichotomous thinking of “significant” and “non-significant”</a> results.</p></li>
 </ul>
 </div>
-<div id="some-disadvantages" class="section level3 hasAnchor" number="4.7.2">
-<h3><span class="header-section-number">4.7.2</span> (Some) Disadvantages<a href="bayes-statistics.html#some-disadvantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="some-disadvantages" class="section level3 hasAnchor" number="4.8.2">
+<h3><span class="header-section-number">4.8.2</span> (Some) Disadvantages<a href="bayes-statistics.html#some-disadvantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><strong>Computational complexity</strong>: Calculating the posterior distribution can be computationally intensive.
 Even with modern computers and the latest packages, it can take a long time to get results. Classical statistical models
@@ -745,21 +755,21 @@ There is also the question which prior to choose.</p></li>
 </ul>
 </div>
 </div>
-<div id="exercises-2" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> Exercises<a href="bayes-statistics.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercises-2" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Exercises<a href="bayes-statistics.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Difficulty levels of exercises:
 <strong>E</strong>: easy,
 <strong>M</strong>: intermediate,
 <strong>D</strong>: difficult</p>
 </div>
-<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> [E] Exercise 1 - defective product rate<a href="bayes-statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> [E] Exercise 1 - defective product rate<a href="bayes-statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s revisit <a href="bayes-statistics.html#example_defective_products">Example 1</a> and change the prior probabilites to
 <span class="math inline">\(\pi(0.05) = 0.1\)</span> and <span class="math inline">\(\pi(0.10) = 0.9\)</span>.</p>
 <p>Calculate and plot the posterior probabilities for <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>.</p>
 </div>
-<div id="h-exercise-2---bayesian-updating" class="section level2 hasAnchor" number="4.10">
-<h2><span class="header-section-number">4.10</span> [H] Exercise 2 - Bayesian updating<a href="bayes-statistics.html#h-exercise-2---bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="h-exercise-2---bayesian-updating" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> [H] Exercise 2 - Bayesian updating<a href="bayes-statistics.html#h-exercise-2---bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We want to check empirically that the <strong>order of data collection does not influence the posterior distribution</strong>.
 We want to find out the probability <span class="math inline">\(\theta\)</span> of a therapy to work.
 Since we have absolutely no idea, how effective the therapy is, let our prior distribution be a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform
@@ -807,8 +817,8 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <li><p>[Optional] Show this result analytically.</p></li>
 </ul>
 </div>
-<div id="solutions-2" class="section level2 hasAnchor" number="4.11">
-<h2><span class="header-section-number">4.11</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solutions-2" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Solutions<a href="bayes-statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics">here</a>.</p>
 
 </div>

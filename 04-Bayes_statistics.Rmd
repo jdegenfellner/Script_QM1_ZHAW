@@ -735,7 +735,7 @@ unobserved parameter.
 
 A **confidence interval** is an interval which is expected to contain the **true, 
 but unknown** parameter of interest in a certain percent of times (e.g., 92%), when 
-constructed **repeatedly** everytime a new sample is drawn. 
+[constructed **repeatedly** everytime a new sample is drawn](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg). 
 
 
 ## Bayesian t-test {#bayesian_t_test}
@@ -743,7 +743,8 @@ constructed **repeatedly** everytime a new sample is drawn.
 Above, we looked at some aspects of estimating a parameter (proportion) using Bayes' theorem.
 We can answer all sorts of other questions using this paradigm. In classical statistics,
 one often wants to know if two groups differ with respect to their true means. 
-This answer is typically given by the famous [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test) (small "t" please).
+This answer is typically given by the famous [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test) 
+([small "t"](https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf) please).
 I encourage you to read the short [history](https://en.wikipedia.org/wiki/Student%27s_t-test#History) of the t-test.
 
 For didactic reasons, we will look at the Baysian version of the t-test first.
@@ -781,7 +782,7 @@ data.frame(y = c(y1, y2), group = c(rep(1, 8), rep(2, 8))) %>%
 ```
 
 We work with a rather small sample size, 8 in each group. 
-**We want to know if the two groups differ in their means**.
+**We want to know if the two groups differ in their (unobserved) means**.
 For this, we will apply the R function `BESTmcmc` from the package `BEST`.
 
 ```{r, echo=TRUE}
@@ -801,8 +802,8 @@ We do not care about these details for now, but try to interpret what we see.
 
 The plot shows the posterior distribution of the difference between the means of the two groups.
 
-- With the parameter `which = "mean"`, we are interested in the posterior distribution of 
-difference of the means. We see a full probability distribution again.
+- With the parameter `which = "mean"`, we are interested in the **posterior distribution of 
+difference of the means** ($\mu_1 - \mu_2$). We see a full probability distribution again.
 
 - The parameter `compVal = d_0` is the value we want to compare the posterior distribution to. Here We
 chose delta_0 = 0, which means that we want to know if the difference between the means is 
@@ -813,7 +814,7 @@ In our case, we chose a = 20. This means that we consider differences between th
 of $\pm 20$ as practically equivalent. In practice, you would choose a value that is meaningful for your
 particular research question. For instance, in a planned experiment, we are interested in changes
 on the Roland Morris Disability Questionnaire (RMDQ) of 2 points. 
-We would then choose a value of 2 for the ROPE, since only are change beyound this value would be
+We would then choose a value of 2 for the ROPE, since only a change beyond this value would be
 clinically relevant for the patient. 
 
 - The parameter `credMass = 0.93` is the probability mass to include in credible intervals, in this case 93%.
@@ -848,7 +849,7 @@ As opposed to the frequentist t-test, we can also **affirm the null hypothesis**
 that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.
 
 **"A parameter value is declared to be accepted for practical purposes if that value’s 
-ROPE completely contains the 95% HDI of the posterior of that parameter."**
+ROPE completely contains the X% HDI of the posterior of that parameter."**
 
 This is also not the case here. The 93% HDI lies outside the ROPE to a large part.
 
@@ -883,7 +884,13 @@ Latest in QM2, we will do Bayesian regression analysis using packages like `brms
 
 ## Bayesian updating
 
-The following..........
+The following is an animated example of Bayesian updating. 
+The true probability for heads in a coin toss is $\theta = 0.77$.
+We throw a coin 100 times and we start with a uniform prior distribution, i.e., 
+every value between 0 and 1 is equally likely at the beginning.
+
+
+Code can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
 
 ```{r testing, fig.cap="example caption", echo=FALSE}
 library(gifski)
@@ -893,6 +900,11 @@ print(img)
 ```
 
 This [video](https://www.youtube.com/watch?v=rUoJvogN7qQ&t=4s&ab_channel=CoreyChivers) illustrates the concept of Bayesian updating.
+
+
+## More complex cases, more complex parameter spaces
+..........
+
 
 ## Advantages/disadvantages of Bayesian statistics
 

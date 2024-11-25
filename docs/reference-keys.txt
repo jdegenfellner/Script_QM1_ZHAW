@@ -61,6 +61,7 @@ highest-density-intervals-hdi
 bayesian_t_test
 example---bayesian-t-test
 bayesian-updating
+more-complex-cases-more-complex-parameter-spaces
 advantagesdisadvantages-of-bayesian-statistics
 some-advantages
 some-disadvantages

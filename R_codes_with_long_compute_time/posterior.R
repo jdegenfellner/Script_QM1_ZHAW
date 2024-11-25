@@ -1,14 +1,15 @@
-# Load required libraries
-library(ggplot2)
-library(gganimate)
-library(gifski)
-library(magick)
+
+library(pacman)
+p_load(tidyverse, gganimate, gifski, magick)
+
+# Set working directory to source file location
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # Parameters
 set.seed(123)  # For reproducibility
 true_theta <- 0.77  # True probability of heads
 total_samples <- 100  # Total number of samples
-prior <- function(theta) ifelse(theta >= 0 & theta <= 1, 1, 0)  # Uniform prior
+theta_values <- seq(0, 1, length.out = 1000)  # Range of theta
 
 # Simulate coin flips
 samples <- rbinom(total_samples, size = 1, prob = true_theta)
@@ -19,33 +20,33 @@ normalize <- function(posterior, theta_values) {
 }
 
 # Compute the posterior using numeric integration
-compute_posterior <- function(theta_values, prior_func, successes, trials) {
+compute_posterior <- function(theta_values, prior_values, success, trials) {
   # Calculate the unnormalized posterior
-  unnormalized_posterior <- sapply(theta_values, function(theta) {
-    prior_func(theta) * theta^successes * (1 - theta)^(trials - successes)
-  })
+  unnormalized_posterior <- prior_values * theta_values^success * (1 - theta_values)^(trials - success)
   # Normalize the posterior
   normalization_constant <- normalize(unnormalized_posterior, theta_values)
   unnormalized_posterior / normalization_constant
 }
 
-# Define the range of theta
-theta_values <- seq(0, 1, length.out = 1000)
+# Initialize the prior as uniform
+prior_values <- rep(1, length(theta_values))
 
 # Prepare data for animation
 posterior_data <- data.frame()
 
 for (n in 1:total_samples) {
-  successes <- sum(samples[1:n])  # Count successes up to step n
-  posterior <- compute_posterior(theta_values, prior, successes, n)
+  # Update prior with the result of the current flip
+  successes <- samples[n]  # Success for the current trial (0 or 1)
+  prior_values <- compute_posterior(theta_values, prior_values, successes, 1)
   
+  # Store the updated posterior
   posterior_data <- rbind(
     posterior_data,
     data.frame(
       theta = theta_values,
-      posterior = posterior,
+      posterior = prior_values,
       step = n,
-      successes = successes,
+      successes = sum(samples[1:n]),
       trials = n
     )
   )
@@ -62,7 +63,7 @@ plot <- ggplot(posterior_data, aes(x = theta, y = posterior, group = step)) +
   geom_line(color = "blue", size = 1.2) +
   geom_area(fill = "lightblue", alpha = 0.5) +
   labs(
-    title = "Bayesian Updating Process (Numeric Integration)",
+    title = "Bayesian Updating Process (Sequential Updates)",
     subtitle = "{closest_state}",  # Use closest_state for smooth updating
     x = expression(theta),
     y = "Density"
@@ -77,14 +78,15 @@ plot <- ggplot(posterior_data, aes(x = theta, y = posterior, group = step)) +
     transition_length = 2,
     state_length = 1
   ) +
-  ease_aes('linear')  # Smooth transitions
+  ease_aes('linear') +   # Smooth transitions
+  geom_vline(xintercept = true_theta, linetype = "dashed", color = "red")
 
 # Save the animation as a GIF
-gif_path <- "bayesian_updating_fixed.gif"
+gif_path <- "bayesian_updating_sequential.gif"
 anim_save(gif_path, animate(plot, nframes = total_samples, fps = 5, renderer = gifski_renderer()))
 
 # Display the GIF in R
 img <- magick::image_read(gif_path)
 print(img)
 
-cat("GIF saved as 'bayesian_updating_fixed.gif'\n")
+cat("GIF saved as 'bayesian_updating_sequential.gif'\n")
