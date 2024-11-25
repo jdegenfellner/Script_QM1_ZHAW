@@ -61,7 +61,7 @@ highest-density-intervals-hdi
 bayesian_t_test
 example---bayesian-t-test
 bayesian-updating
-more-complex-cases-more-complex-parameter-spaces
+more-complex-parameter-spaces
 advantagesdisadvantages-of-bayesian-statistics
 some-advantages
 some-disadvantages
@@ -69,6 +69,7 @@ exercises-2
 exercise_defective_product_rate
 h-exercise-2---bayesian-updating
 solutions-2
-null-hypothesis-significance-testing
+null-hypothesis-significance-testing-nhst
+example-in-the-literature
 proportions-test
 t-test

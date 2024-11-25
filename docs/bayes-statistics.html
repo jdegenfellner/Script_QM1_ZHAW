@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="null-hypothesis-significance-testing.html"/>
+<link rel="next" href="null-hypothesis-significance-testing-nhst.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -257,7 +257,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian-updating"><i class="fa fa-check"></i><b>4.6</b> Bayesian updating</a></li>
-<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#more-complex-cases-more-complex-parameter-spaces"><i class="fa fa-check"></i><b>4.7</b> More complex cases, more complex parameter spaces</a></li>
+<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#more-complex-parameter-spaces"><i class="fa fa-check"></i><b>4.7</b> More complex parameter spaces</a></li>
 <li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics"><i class="fa fa-check"></i><b>4.8</b> Advantages/disadvantages of Bayesian statistics</a>
 <ul>
 <li class="chapter" data-level="4.8.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-advantages"><i class="fa fa-check"></i><b>4.8.1</b> (Some) Advantages</a></li>
@@ -268,10 +268,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.11" data-path="bayes-statistics.html"><a href="bayes-statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.11</b> [H] Exercise 2 - Bayesian updating</a></li>
 <li class="chapter" data-level="4.12" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.12</b> Solutions</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing</a>
+<li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing (NHST)</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html#proportions-test"><i class="fa fa-check"></i><b>5.1</b> Proportions test</a></li>
-<li class="chapter" data-level="5.2" data-path="null-hypothesis-significance-testing.html"><a href="null-hypothesis-significance-testing.html#t-test"><i class="fa fa-check"></i><b>5.2</b> t-Test</a></li>
+<li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#example-in-the-literature"><i class="fa fa-check"></i><b>5.1</b> Example in the literature</a></li>
+<li class="chapter" data-level="5.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions-test"><i class="fa fa-check"></i><b>5.2</b> Proportions test</a></li>
+<li class="chapter" data-level="5.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#t-test"><i class="fa fa-check"></i><b>5.3</b> t-Test</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -629,19 +630,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       131.088 131.267 133.980   93   34.0967 229.51                  
-## mu2         6.570   6.172   2.593   93  -84.1793  96.52                  
-## muDiff    124.519 125.069 123.358   93  -10.0327 258.11       0      95.5
-## sigma1    139.584 128.529 115.522   93   67.9196 227.44                  
-## sigma2    130.023 119.502 104.388   93   62.1653 210.24                  
-## sigmaDiff   9.561   8.951  10.553   93 -119.3055 135.34       0      56.6
-## nu         34.710  25.941  10.439   93    1.1622  84.69                  
-## log10nu     1.383   1.414   1.475   93    0.6571   2.06                  
-## effSz       0.965   0.959   0.955   93   -0.0769   2.03       0      95.5
+## mu1       130.279 130.405 132.550   93   34.0339 226.46                  
+## mu2         5.956   5.788   4.427   93  -84.8782  94.73                  
+## muDiff    124.323 124.527 126.722   93  -11.4882 253.78       0      95.7
+## sigma1    138.854 128.230 114.500   93   66.5455 222.30                  
+## sigma2    129.885 119.477 108.510   93   61.4406 210.48                  
+## sigmaDiff   8.969   8.260   5.700   93 -114.9144 136.02       0      56.1
+## nu         34.085  25.617   9.576   93    1.0592  83.52                  
+## log10nu     1.375   1.409   1.484   93    0.6681   2.07                  
+## effSz       0.965   0.958   0.997   93   -0.0797   2.00       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.47
+## muDiff        -20       20    4.55
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -720,11 +721,24 @@ One can see that we are converging to the “truth” (which is normally not kno
 Figure 4.1: example caption
 </p>
 </div>
-<p>This <a href="https://www.youtube.com/watch?v=rUoJvogN7qQ&amp;t=4s&amp;ab_channel=CoreyChivers">video</a> illustrates the concept of Bayesian updating.</p>
+<p>This <a href="https://www.youtube.com/watch?v=rUoJvogN7qQ&amp;t=4s&amp;ab_channel=CoreyChivers">video</a> illustrates the concept of Bayesian updating as well
+using two different starting points. The opinions seem to converge.</p>
 </div>
-<div id="more-complex-cases-more-complex-parameter-spaces" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> More complex cases, more complex parameter spaces<a href="bayes-statistics.html#more-complex-cases-more-complex-parameter-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>……….</p>
+<div id="more-complex-parameter-spaces" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> More complex parameter spaces<a href="bayes-statistics.html#more-complex-parameter-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Above we dealt with the rather simple case of one parameter (<span class="math inline">\(\theta\)</span>), the proportion of defective products or the fairness of a coin.
+Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
+exactly. We are mainly interested in simulation-based results, since we are practitioners.</p>
+<p>In the Baysian t-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+estimated (see Figure 2 <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">here</a>).
+Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
+In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently.
+This can be computationally intensive.
+The <a href="https://revolution-computing.typepad.com/.a/6a010534b1db25970b019aff4a7bbc970d-pi">animation</a>
+in <a href="https://www.r-bloggers.com/2013/09/an-animated-peek-into-the-workings-of-bayesian-statistics/">this article</a>
+shows the walk through of the parameter space nicely for the case of a normal distribution with two parameters (<span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>).</p>
+<p>For statistical models with many parameters and observations, the computation can take a long time. Very often though, computational time
+is not an issue and we can make use of the flexibility and intuitive interpretation of Bayesian statistics.</p>
 </div>
 <div id="advantagesdisadvantages-of-bayesian-statistics" class="section level2 hasAnchor" number="4.8">
 <h2><span class="header-section-number">4.8</span> Advantages/disadvantages of Bayesian statistics<a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -832,7 +846,7 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
         </div>
       </div>
 <a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="null-hypothesis-significance-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="null-hypothesis-significance-testing-nhst.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -901,12 +901,27 @@ img <- magick::image_read("./images/bayesian_updating_sequential.gif")
 print(img)
 ```
 
-This [video](https://www.youtube.com/watch?v=rUoJvogN7qQ&t=4s&ab_channel=CoreyChivers) illustrates the concept of Bayesian updating.
+This [video](https://www.youtube.com/watch?v=rUoJvogN7qQ&t=4s&ab_channel=CoreyChivers) illustrates the concept of Bayesian updating as well 
+using two different starting points. The opinions seem to converge.
 
 
-## More complex cases, more complex parameter spaces
-..........
+## More complex parameter spaces
 
+Above we dealt with the rather simple case of one parameter ($\theta$), the proportion of defective products or the fairness of a coin.
+Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
+exactly. We are mainly interested in simulation-based results, since we are practitioners. 
+
+In the Baysian t-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+estimated (see Figure 2 [here](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf)). 
+Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
+In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently. 
+This can be computationally intensive.
+The [animation](https://revolution-computing.typepad.com/.a/6a010534b1db25970b019aff4a7bbc970d-pi)
+in [this article](https://www.r-bloggers.com/2013/09/an-animated-peek-into-the-workings-of-bayesian-statistics/) 
+shows the walk through of the parameter space nicely for the case of a normal distribution with two parameters ($\mu$ and $\sigma$).
+
+For statistical models with many parameters and observations, the computation can take a long time. Very often though, computational time
+is not an issue and we can make use of the flexibility and intuitive interpretation of Bayesian statistics.
 
 ## Advantages/disadvantages of Bayesian statistics
 

@@ -1,7 +1,90 @@
-# Null Hypothesis Significance Testing
+# Null Hypothesis Significance Testing (NHST)
 
-Intro....
+Null Hypothesis Significance Testing (NHST) is a statistical method widely used in research, 
+including health sciences, to evaluate whether observed data provide sufficient evidence to refute a specific hypothesis. 
+It operates within a framework of probability and decision-making to address the following question:
+
+Are the observed results likely to occur by chance alone if the null hypothesis is true?
+If one decides that the observed results are unlikely to occur by chance alone, 
+the null hypothesis is rejected in favor of an alternative hypothesis.
+
+NHST is not designed to "prove" hypotheses but rather to provide evidence against the null hypothesis.
+Underlying NHST is the idea of [falsifiability](https://en.wikipedia.org/wiki/Falsifiability). 
+Sometimes one counter example is enough to reject a hypothesis like "all swans are white". 
+Seeing one [black swan](https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg), 
+proves the hypothesis wrong.
+
+**Key concepts**:
+
+- **Null Hypothesis $H_0$**: This represents the assumption of some specific effect or no effect at all. 
+For example, in a clinical trial comparing two treatments, might state that both treatments have the same effect. 
+The alternative ist that one treatment is superior to the other.
+
+- **Alternative Hypothesis ($H_1$)**: This is the opposing claim to $H_0$, the logical complement. 
+Example: 
+$H_0: \theta \le 0.4$
+$H_1: \theta > 0.4$
+$H_0$ states that the treatment effect is less than or equal to 0.4, while $H_1$ states that the population proportion is greater than 0.4. 
+	
+- **p-value**: "The p-value quantifies the probability of obtaining results as extreme as (or more extreme than) the observed data, assuming that $H_0$ is true". 
+  A smaller p-value indicates stronger evidence against $H_0$. There are many [misconeptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620).
+
+- **Significance Level ($\alpha$)**: Researchers set a threshold to determine whether to reject $H_1$. 
+If the p-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
+Note, that **there is absolutely now special reason to use $\alpha = 0.05$ as a default value**.
+To quote [Ronald Fisher](https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6):
+"..., and it is convenient to take twice the standard error as the limit of 
+significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
+
+
+**How NHST works**:
+
+- Formulate Hypotheses: Define $H_0$ (e.g., “The new therapy has no effect”) 
+  and $H_1$ (e.g., “The new therapy improves outcomes”).
+
+- Collect data: Perform an experiment or study to gather relevant data.
+
+- Calculate the test statistic: Compute a value based on the sample data that 
+  reflects the difference or effect under investigation.
+- Compute the p-Value: Determine the probability of observing the 
+  test statistic (or more extreme values) if $H_0$ is true.
+- Make a Decision: Compare the p-value to the significance level:
+	•	If $p < \alpha$: Reject $H_0$; evidence suggests $H_1$ is true.
+	•	If $p >= \alpha$: Fail to reject $H_0$; insufficient evidence to support $H_1$.
+
+(Some) Limitations of NHST: 
+
+- Focus on p-Value: Solely relying on p-values can lead to overinterpretation of
+  results without considering practical significance.
+	
+  -	Dichotomous thinking: The decision to “reject” or “fail to reject” $H_0$ 
+  oversimplifies the complexity of real-world data. This binary thinking
+  incentivizes researchers to [focus on statistical significance](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1447512) 
+  rather than real relevance. It happened to me not only once that a colleague 
+  looked at me with a sad facial expression announcing that the p-value was "not significant".
+  This should be not an issue at all. The focus should be on doing useful analyses in the most
+  rigorous way possible.
+	
+  - Sample size influence: Large samples can make small, clinically irrelevant 
+  differences statistically significant. 
+
+See [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf) for more limitations of NHST.
+
+In practice, NHST should be accompanied by confidence intervals, 
+effect size calculations, and a focus on clinical relevance to provide 
+a more comprehensive understanding of the results.
+
+[Review of NHST](https://f1000research.com/articles/4-621/v3)
+
+
+**Example in the literature**
+
+P-values are omnipresent in the scientific literature. Here is an example from a recent paper .....
 
 ## Proportions test
 
-## t-Test
+## (classical) t-test
+
+### One sample t-test
+
+### Two sample t-test
