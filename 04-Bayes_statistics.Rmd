@@ -267,11 +267,11 @@ This distribution is an expression of our **prior beliefs** about the defect rat
 Now, we **observe 11 defective items in a sample of 20**.
 We expect as posterior distribution not a bar plot with two probabilities for the parameter values 
 $\theta = 0.05$ and $\theta = 0.10$, but a **distribution** of probabilities for all possible defect rates (in the range of 0-1).
-Btw. we could play the same game using a coin of the effectiveness or a therapy as example.
+Btw. we could play the same game using a coin or the effectiveness or a therapy as example.
 
 The only thing we need to do is to plug in the information into Bayes' theorem to get the posterior distribution.
 The calculations would be complex by hand, so we just use R. We want to understand the concept, so calculating by hand
-can be put off until later (it at all necessary for us.)
+can be put off until later (if at all necessary for us.)
 
 \[
 \textit{p}(\theta \mid X = 3) = \frac{\textit{p}(X = 3 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(3)}
@@ -412,7 +412,8 @@ One really nice aspect of the Bayesian view is that we get a **full probability 
 the parameter of interest, given the prior beliefs and the observed data. 
 We then can elegantly make all kinds of statements when looking at the posterior, like the following:
 
- - The probability that $\theta$ is between $0.30$ and $0.5$ is (area under the posterior) approximately $0.8$:
+ - The probability that $\theta$ is between $0.30$ and $0.50$ is (area under the posterior) 
+ approximately $0.80$:
 <details open>
 <summary>R codes are in the git repository</summary>
 ```{r, echo=FALSE}

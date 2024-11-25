@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-11-23" />
+<meta name="date" content="2024-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -440,10 +440,10 @@ This distribution is an expression of our <strong>prior beliefs</strong> about t
 <p>Now, we <strong>observe 11 defective items in a sample of 20</strong>.
 We expect as posterior distribution not a bar plot with two probabilities for the parameter values
 <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>, but a <strong>distribution</strong> of probabilities for all possible defect rates (in the range of 0-1).
-Btw. we could play the same game using a coin of the effectiveness or a therapy as example.</p>
+Btw. we could play the same game using a coin or the effectiveness or a therapy as example.</p>
 <p>The only thing we need to do is to plug in the information into Bayes’ theorem to get the posterior distribution.
 The calculations would be complex by hand, so we just use R. We want to understand the concept, so calculating by hand
-can be put off until later (it at all necessary for us.)</p>
+can be put off until later (if at all necessary for us.)</p>
 <p><span class="math display">\[
 \textit{p}(\theta \mid X = 3) = \frac{\textit{p}(X = 3 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(3)}
 \]</span></p>
@@ -475,7 +475,8 @@ convinced by new data.</p></li>
 the parameter of interest, given the prior beliefs and the observed data.
 We then can elegantly make all kinds of statements when looking at the posterior, like the following:</p>
 <ul>
-<li>The probability that <span class="math inline">\(\theta\)</span> is between <span class="math inline">\(0.30\)</span> and <span class="math inline">\(0.5\)</span> is (area under the posterior) approximately <span class="math inline">\(0.8\)</span>:
+<li>The probability that <span class="math inline">\(\theta\)</span> is between <span class="math inline">\(0.30\)</span> and <span class="math inline">\(0.50\)</span> is (area under the posterior)
+approximately <span class="math inline">\(0.80\)</span>:
 <details open>
 <summary>
 R codes are in the git repository
@@ -626,19 +627,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       131.012 131.370 135.425   93   34.8805 228.40                  
-## mu2         6.335   5.948   2.829   93  -85.1022  97.26                  
-## muDiff    124.677 124.808 120.622   93   -9.4744 259.36       0      95.5
-## sigma1    139.340 128.260 110.507   93   66.3913 225.44                  
-## sigma2    130.307 119.790 104.993   93   61.1875 210.58                  
-## sigmaDiff   9.033   8.162   7.624   93 -117.4768 137.58       0      56.2
-## nu         34.239  25.685   9.301   93    1.3058  83.62                  
-## log10nu     1.378   1.410   1.489   93    0.6580   2.05                  
-## effSz       0.964   0.955   0.909   93   -0.0787   2.01       0      95.5
+## mu1       130.762 130.773 133.400   93   32.9445 227.66                  
+## mu2         6.129   6.058   5.078   93  -83.0757  96.19                  
+## muDiff    124.633 124.788 127.465   93  -12.5884 253.08       0      95.6
+## sigma1    140.027 128.716 113.467   93   67.3324 226.69                  
+## sigma2    130.104 119.309 103.333   93   60.5707 209.28                  
+## sigmaDiff   9.923   8.659   7.436   93 -118.6824 135.88       0      56.6
+## nu         34.278  25.714  10.313   93    1.2524  83.46                  
+## log10nu     1.378   1.410   1.465   93    0.6675   2.06                  
+## effSz       0.964   0.954   0.936   93   -0.0922   1.99       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.64
+## muDiff        -20       20    4.54
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
