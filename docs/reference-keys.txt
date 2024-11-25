@@ -70,6 +70,12 @@ exercise_defective_product_rate
 h-exercise-2---bayesian-updating
 solutions-2
 null-hypothesis-significance-testing-nhst
-example-in-the-literature
+binomial-test
 proportions-test
-t-test
+classical-t-test
+one-sample-t-test
+two-sample-t-test
+correlation-test
+type-1-and-type-2-errors
+exercises-3
+exercise-1

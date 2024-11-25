@@ -270,9 +270,20 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing (NHST)</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#example-in-the-literature"><i class="fa fa-check"></i><b>5.1</b> Example in the literature</a></li>
+<li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#binomial-test"><i class="fa fa-check"></i><b>5.1</b> Binomial test</a></li>
 <li class="chapter" data-level="5.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions-test"><i class="fa fa-check"></i><b>5.2</b> Proportions test</a></li>
-<li class="chapter" data-level="5.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#t-test"><i class="fa fa-check"></i><b>5.3</b> t-Test</a></li>
+<li class="chapter" data-level="5.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#classical-t-test"><i class="fa fa-check"></i><b>5.3</b> (classical) t-test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.3.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="5.3.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.3.2</b> Two sample t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.4</b> Correlation test</a></li>
+<li class="chapter" data-level="5.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors"><i class="fa fa-check"></i><b>5.5</b> Type 1 and Type 2 errors</a></li>
+<li class="chapter" data-level="5.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercises-3"><i class="fa fa-check"></i><b>5.6</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise-1"><i class="fa fa-check"></i><b>5.6.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="5.6.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>5.6.2</b> Exercise 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -630,19 +641,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.279 130.405 132.550   93   34.0339 226.46                  
-## mu2         5.956   5.788   4.427   93  -84.8782  94.73                  
-## muDiff    124.323 124.527 126.722   93  -11.4882 253.78       0      95.7
-## sigma1    138.854 128.230 114.500   93   66.5455 222.30                  
-## sigma2    129.885 119.477 108.510   93   61.4406 210.48                  
-## sigmaDiff   8.969   8.260   5.700   93 -114.9144 136.02       0      56.1
-## nu         34.085  25.617   9.576   93    1.0592  83.52                  
-## log10nu     1.375   1.409   1.484   93    0.6681   2.07                  
-## effSz       0.965   0.958   0.997   93   -0.0797   2.00       0      95.7
+## mu1       130.723 130.899 129.794   93   31.7504 225.87                  
+## mu2         6.457   6.048   5.977   93  -85.5470  95.62                  
+## muDiff    124.265 124.833 125.433   93   -7.5616 258.56       0      95.5
+## sigma1    139.963 128.684 112.757   93   67.2199 227.83                  
+## sigma2    129.291 119.138 102.431   93   61.5158 207.87                  
+## sigmaDiff  10.672   9.284   5.603   93 -114.2922 138.17       0      57.0
+## nu         34.478  25.909   9.611   93    1.0180  84.21                  
+## log10nu     1.380   1.413   1.486   93    0.6644   2.06                  
+## effSz       0.965   0.958   0.963   93   -0.0848   2.01       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.55
+## muDiff        -20       20    4.51
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         

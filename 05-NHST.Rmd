@@ -1,14 +1,14 @@
 # Null Hypothesis Significance Testing (NHST)
 
 Null Hypothesis Significance Testing (NHST) is a statistical method widely used in research, 
-including health sciences, to evaluate whether observed data provide sufficient evidence to refute a specific hypothesis. 
+including health sciences, to evaluate whether observed data provide sufficient evidence **to refute** a specific hypothesis. 
 It operates within a framework of probability and decision-making to address the following question:
 
 Are the observed results likely to occur by chance alone if the null hypothesis is true?
 If one decides that the observed results are unlikely to occur by chance alone, 
 the null hypothesis is rejected in favor of an alternative hypothesis.
 
-NHST is not designed to "prove" hypotheses but rather to provide evidence against the null hypothesis.
+NHST is **not designed to "prove" hypotheses** but rather to provide evidence against the null hypothesis.
 Underlying NHST is the idea of [falsifiability](https://en.wikipedia.org/wiki/Falsifiability). 
 Sometimes one counter example is enough to reject a hypothesis like "all swans are white". 
 Seeing one [black swan](https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg), 
@@ -22,15 +22,16 @@ The alternative ist that one treatment is superior to the other.
 
 - **Alternative Hypothesis ($H_1$)**: This is the opposing claim to $H_0$, the logical complement. 
 Example: 
-$H_0: \theta \le 0.4$
-$H_1: \theta > 0.4$
-$H_0$ states that the treatment effect is less than or equal to 0.4, while $H_1$ states that the population proportion is greater than 0.4. 
+   - $H_0: \theta \le 0.4$
+   - $H_1: \theta > 0.4$
+   - $H_0$ states that the treatment effect is less than or equal to 0.4, while $H_1$ states that the population proportion is greater than 0.4. 
 	
-- **p-value**: "The p-value quantifies the probability of obtaining results as extreme as (or more extreme than) the observed data, assuming that $H_0$ is true". 
-  A smaller p-value indicates stronger evidence against $H_0$. There are many [misconeptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620).
+- **$p$-value**: The p-value quantifies the probability of obtaining results as extreme as (or more extreme than) 
+the observed data, assuming that $H_0$ is true. 
+A smaller $p$-value indicates stronger evidence against $H_0$. There are many [misconeptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620).
 
-- **Significance Level ($\alpha$)**: Researchers set a threshold to determine whether to reject $H_1$. 
-If the p-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
+- **Significance level ($\alpha$)**: Researchers set a threshold to determine whether to reject $H_1$. 
+If the $p$-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
 Note, that **there is absolutely now special reason to use $\alpha = 0.05$ as a default value**.
 To quote [Ronald Fisher](https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6):
 "..., and it is convenient to take twice the standard error as the limit of 
@@ -49,15 +50,15 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 - Compute the p-Value: Determine the probability of observing the 
   test statistic (or more extreme values) if $H_0$ is true.
 - Make a Decision: Compare the p-value to the significance level:
-	•	If $p < \alpha$: Reject $H_0$; evidence suggests $H_1$ is true.
-	•	If $p >= \alpha$: Fail to reject $H_0$; insufficient evidence to support $H_1$.
+  - If $p < \alpha$: Reject $H_0$; evidence suggests $H_1$ is true.
+  - If $p \ge \alpha$: Fail to reject $H_0$; insufficient evidence to support $H_1$.
 
-(Some) Limitations of NHST: 
+**(Some) Limitations of NHST**: 
 
-- Focus on p-Value: Solely relying on p-values can lead to overinterpretation of
+- **Focus on p-values with hard cut-offs**: Solely relying on p-values can lead to overinterpretation of
   results without considering practical significance.
 	
-  -	Dichotomous thinking: The decision to “reject” or “fail to reject” $H_0$ 
+-	**Dichotomous thinking**: The decision to “reject” or “fail to reject” $H_0$ 
   oversimplifies the complexity of real-world data. This binary thinking
   incentivizes researchers to [focus on statistical significance](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1447512) 
   rather than real relevance. It happened to me not only once that a colleague 
@@ -65,8 +66,16 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
   This should be not an issue at all. The focus should be on doing useful analyses in the most
   rigorous way possible.
 	
-  - Sample size influence: Large samples can make small, clinically irrelevant 
-  differences statistically significant. 
+- **Sample size influence**: Large samples can make small, clinically irrelevant 
+  differences statistically significant. Example: Given an arbitrarily small difference between means of two groups. There is 
+  always a sample size that makes the difference "significant". See [Exercise 2](#exercise2).
+
+- **[Publication bias](https://en.wikipedia.org/wiki/Publication_bias)**: Many journals tended to publish studies with "significant" results. "Not significant" results
+  were often not published. This can lead to a distorted view of the literature.
+
+- **[p-hacking](https://de.wikipedia.org/wiki/P-Hacking)**: In the pursuit for "significant" results 
+(which results in publications, which results in tenure), it is natural to do everything to get them. 
+  This can include data dredging, selective reporting, and other questionable practices.
 
 See [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf) for more limitations of NHST.
 
@@ -74,17 +83,114 @@ In practice, NHST should be accompanied by confidence intervals,
 effect size calculations, and a focus on clinical relevance to provide 
 a more comprehensive understanding of the results.
 
-[Review of NHST](https://f1000research.com/articles/4-621/v3)
+This [Review of NHST](https://f1000research.com/articles/4-621/v3) or 
+[this overview](https://en.wikipedia.org/wiki/Statistical_hypothesis_test) might be a good entry point.
 
+This [video](https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal) could also help to understand the basic concepts.
 
 **Example in the literature**
 
 P-values are omnipresent in the scientific literature. Here is an example from a recent paper .....
 
+## Binomial test
+
+In the first chapter, we invented the 1000-researcher experiment. There were already encountered hypothesis tests in disguise.
+If we would assume that the probability of a false positive is 0.04, 
+we would expect 40 false positives. We asked, what is the probability of observing
+137 or more. This is an example of a hypothesis test:
+
+- $H_0: \theta \le 0.04$
+- $H_1: \theta > 0.04$
+
+Under $H_0$, what is the probabilty to see the oberved number of 
+false positives (in our case, this is the test statistic) or more?
+
+The answer was $p = 5.551115 \cdot 10^{-16}$.
+
+Any reasonable person would say, that this result did not happen by chance alone and 
+therefore concluded, the true, but unknown false positive rate $\theta$ is larger than 0.04.
+
+Formally, this is called a **(one-sided) [binomial test](https://en.wikipedia.org/wiki/Binomial_test)**.
+
+```{r}
+# binomial test
+binom.test(137, 1000, p = 0.04, alternative = "greater")
+```
+
+The output in R tells us the following:
+
+- data: 137 and 1000 successes oberved
+- alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
+- $p$-value$ < 2.2e-16$. This is value is smaller than the precision in R (`.Machine').
+- 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
+The upper limit of $1$ occurs since we have a once-sided test.
+- Sample estimates: Estimating the true (but unknown) proportion from the sample would just be: 
+$\frac{137}{1000} = 0.137$
+
+**Two-sided test**:
+
+- $H_0: \theta = 0.04$
+- $H_1: \theta \ne 0.04$
+
+One could argue that this is bad style, since we should probably know the direction of the effect.
+
+```{r}
+binom.test(137, 1000, p = 0.04, alternative = "two.sided")
+```
+
+- alternative = "two.sided", this indicates that we are interested in both directions (higher or lower than $0.04$).
+With some experience, one would probably not test for lower when seeing the observed number of 137.
+- 95 percent confidence interval: $0.1162817$ to $0.1598810$.
+
+**Interpretation of this interval**: When drawing repeated samples, in 95% percent of the samples,
+the so constructed interval (which will be different everytime) contains the true but unknown parameter.
+
+Note, that the "Exact binomial test" was used. There where no approximations made. I would recommend always
+using exact tests if available, since we are in the 21th century and computers are fast.
+
+Again, the $\alpha$ level of $0.05$ has nothing special (apart from convention) to it. 
+We can also use a $\alpha = 0.14$ level. In this case, we construct confidence intervals 
+with a 86% confidence level.
+
+```{r}
+binom.test(137, 1000, p = 0.04, alternative = "two.sided", conf.level = 0.86)
+```
+
+- confidence interval: $0.1211304$ to $0.1542134$. 
+
+With **smaller coverage probability** (86 instead of 95), we get a **narrower interval**.
+Trivially, a 100% confidence interval would be $0$ to $1$ and a 0% confidence interval would be $0.04$ to $0.04$ or any other 
+specific value assuming that the true parameter can take any value from $0$ to $1$.
+
 ## Proportions test
+......
 
 ## (classical) t-test
+...........
 
 ### One sample t-test
+.......
 
 ### Two sample t-test
+.......
+
+## Correlation test
+.......
+
+## Type 1 and Type 2 errors
+.......
+
+## Exercises
+.........
+
+### Exercise 1
+
+- Create 1000 random samples from a binomial distribution with $n = 100$ and $p = 0.38$.
+- Calculate the 96% confidence interval for each sample.
+- How often was the true parameter ($p = 0.38$) contained in the constructed interval?
+
+### Exercise 2 {#exercise2}
+Setting: two sample t-test. Assume there is a small difference between the means of two groups.
+- Show via simulation that with increasing sample size, the p-value becomes smaller and 
+smaller and will be "significant" at some point irresective of how small the true mean 
+difference is and how small the $\alpha-$ level is.

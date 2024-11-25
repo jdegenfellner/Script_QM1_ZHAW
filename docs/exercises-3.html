@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Null Hypothesis Significance Testing (NHST) | Quantitative Methods 1, ZHAW</title>
+  <title>Chapter 7 Exercises | Quantitative Methods 1, ZHAW</title>
   <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Null Hypothesis Significance Testing (NHST) | Quantitative Methods 1, ZHAW" />
+  <meta property="og:title" content="Chapter 7 Exercises | Quantitative Methods 1, ZHAW" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="github-repo" content="jdegenfellner/Script_QM1_ZHAW" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Null Hypothesis Significance Testing (NHST) | Quantitative Methods 1, ZHAW" />
+  <meta name="twitter:title" content="Chapter 7 Exercises | Quantitative Methods 1, ZHAW" />
   
   <meta name="twitter:description" content="Script Quantitative Methods 1, ZHAW," />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bayes-statistics.html"/>
+<link rel="prev" href="type-1-and-type-2-errors.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -278,13 +278,9 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.3.2</b> Two sample t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.4</b> Correlation test</a></li>
-<li class="chapter" data-level="5.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors"><i class="fa fa-check"></i><b>5.5</b> Type 1 and Type 2 errors</a></li>
-<li class="chapter" data-level="5.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercises-3"><i class="fa fa-check"></i><b>5.6</b> Exercises</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise-1"><i class="fa fa-check"></i><b>5.6.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="5.6.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>5.6.2</b> Exercise 2</a></li>
 </ul></li>
-</ul></li>
+<li class="chapter" data-level="6" data-path="type-1-and-type-2-errors.html"><a href="type-1-and-type-2-errors.html"><i class="fa fa-check"></i><b>6</b> Type 1 and Type 2 errors</a></li>
+<li class="chapter" data-level="7" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>7</b> Exercises</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -306,224 +302,23 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="null-hypothesis-significance-testing-nhst" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Null Hypothesis Significance Testing (NHST)<a href="null-hypothesis-significance-testing-nhst.html#null-hypothesis-significance-testing-nhst" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Null Hypothesis Significance Testing (NHST) is a statistical method widely used in research,
-including health sciences, to evaluate whether observed data provide sufficient evidence <strong>to refute</strong> a specific hypothesis.
-It operates within a framework of probability and decision-making to address the following question:</p>
-<p>Are the observed results likely to occur by chance alone if the null hypothesis is true?
-If one decides that the observed results are unlikely to occur by chance alone,
-the null hypothesis is rejected in favor of an alternative hypothesis.</p>
-<p>NHST is <strong>not designed to “prove” hypotheses</strong> but rather to provide evidence against the null hypothesis.
-Underlying NHST is the idea of <a href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>.
-Sometimes one counter example is enough to reject a hypothesis like “all swans are white”.
-Seeing one <a href="https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg">black swan</a>,
-proves the hypothesis wrong.</p>
-<p><strong>Key concepts</strong>:</p>
-<ul>
-<li><p><strong>Null Hypothesis <span class="math inline">\(H_0\)</span></strong>: This represents the assumption of some specific effect or no effect at all.
-For example, in a clinical trial comparing two treatments, might state that both treatments have the same effect.
-The alternative ist that one treatment is superior to the other.</p></li>
-<li><p><strong>Alternative Hypothesis (<span class="math inline">\(H_1\)</span>)</strong>: This is the opposing claim to <span class="math inline">\(H_0\)</span>, the logical complement.
-Example:</p>
-<ul>
-<li><span class="math inline">\(H_0: \theta \le 0.4\)</span></li>
-<li><span class="math inline">\(H_1: \theta &gt; 0.4\)</span></li>
-<li><span class="math inline">\(H_0\)</span> states that the treatment effect is less than or equal to 0.4, while <span class="math inline">\(H_1\)</span> states that the population proportion is greater than 0.4.</li>
-</ul></li>
-<li><p><strong><span class="math inline">\(p\)</span>-value</strong>: The p-value quantifies the probability of obtaining results as extreme as (or more extreme than)
-the observed data, assuming that <span class="math inline">\(H_0\)</span> is true.
-A smaller <span class="math inline">\(p\)</span>-value indicates stronger evidence against <span class="math inline">\(H_0\)</span>. There are many <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconeptions about p-values</a>.</p></li>
-<li><p><strong>Significance level (<span class="math inline">\(\alpha\)</span>)</strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_1\)</span>.
-If the <span class="math inline">\(p\)</span>-value is smaller than <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(H_0\)</span> is rejected in favor of <span class="math inline">\(H_1\)</span>.
-Note, that <strong>there is absolutely now special reason to use <span class="math inline">\(\alpha = 0.05\)</span> as a default value</strong>.
-To quote <a href="https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6">Ronald Fisher</a>:
-“…, and it is convenient to take twice the standard error as the limit of
-significance; this is roughly equivalent to the corresponding limit P=0.05, …”</p></li>
-</ul>
-<p><strong>How NHST works</strong>:</p>
-<ul>
-<li><p>Formulate Hypotheses: Define <span class="math inline">\(H_0\)</span> (e.g., “The new therapy has no effect”)
-and <span class="math inline">\(H_1\)</span> (e.g., “The new therapy improves outcomes”).</p></li>
-<li><p>Collect data: Perform an experiment or study to gather relevant data.</p></li>
-<li><p>Calculate the test statistic: Compute a value based on the sample data that
-reflects the difference or effect under investigation.</p></li>
-<li><p>Compute the p-Value: Determine the probability of observing the
-test statistic (or more extreme values) if <span class="math inline">\(H_0\)</span> is true.</p></li>
-<li><p>Make a Decision: Compare the p-value to the significance level:</p>
-<ul>
-<li>If <span class="math inline">\(p &lt; \alpha\)</span>: Reject <span class="math inline">\(H_0\)</span>; evidence suggests <span class="math inline">\(H_1\)</span> is true.</li>
-<li>If <span class="math inline">\(p \ge \alpha\)</span>: Fail to reject <span class="math inline">\(H_0\)</span>; insufficient evidence to support <span class="math inline">\(H_1\)</span>.</li>
-</ul></li>
-</ul>
-<p><strong>(Some) Limitations of NHST</strong>:</p>
-<ul>
-<li><p><strong>Focus on p-values with hard cut-offs</strong>: Solely relying on p-values can lead to overinterpretation of
-results without considering practical significance.</p></li>
-<li><p><strong>Dichotomous thinking</strong>: The decision to “reject” or “fail to reject” <span class="math inline">\(H_0\)</span>
-oversimplifies the complexity of real-world data. This binary thinking
-incentivizes researchers to <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1447512">focus on statistical significance</a>
-rather than real relevance. It happened to me not only once that a colleague
-looked at me with a sad facial expression announcing that the p-value was “not significant”.
-This should be not an issue at all. The focus should be on doing useful analyses in the most
-rigorous way possible.</p></li>
-<li><p><strong>Sample size influence</strong>: Large samples can make small, clinically irrelevant
-differences statistically significant. Example: Given an arbitrarily small difference between means of two groups. There is
-always a sample size that makes the difference “significant”. See <a href="probs.html#exercise2">Exercise 2</a>.</p></li>
-<li><p><strong><a href="https://en.wikipedia.org/wiki/Publication_bias">Publication bias</a></strong>: Many journals tended to publish studies with “significant” results. “Not significant” results
-were often not published. This can lead to a distorted view of the literature.</p></li>
-<li><p><strong><a href="https://de.wikipedia.org/wiki/P-Hacking">p-hacking</a></strong>: In the pursuit for “significant” results
-(which results in publications, which results in tenure), it is natural to do everything to get them.
-This can include data dredging, selective reporting, and other questionable practices.</p></li>
-</ul>
-<p>See <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">Kruschke</a> for more limitations of NHST.</p>
-<p>In practice, NHST should be accompanied by confidence intervals,
-effect size calculations, and a focus on clinical relevance to provide
-a more comprehensive understanding of the results.</p>
-<p>This <a href="https://f1000research.com/articles/4-621/v3">Review of NHST</a> or
-<a href="https://en.wikipedia.org/wiki/Statistical_hypothesis_test">this overview</a> might be a good entry point.</p>
-<p>This <a href="https://www.youtube.com/watch?v=FZ2_hzMyJpY&amp;ab_channel=VeryNormal">video</a> could also help to understand the basic concepts.</p>
-<p><strong>Example in the literature</strong></p>
-<p>P-values are omnipresent in the scientific literature. Here is an example from a recent paper …..</p>
-<div id="binomial-test" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Binomial test<a href="null-hypothesis-significance-testing-nhst.html#binomial-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the first chapter, we invented the 1000-researcher experiment. There were already encountered hypothesis tests in disguise.
-If we would assume that the probability of a false positive is 0.04,
-we would expect 40 false positives. We asked, what is the probability of observing
-137 or more. This is an example of a hypothesis test:</p>
-<ul>
-<li><span class="math inline">\(H_0: \theta \le 0.04\)</span></li>
-<li><span class="math inline">\(H_1: \theta &gt; 0.04\)</span></li>
-</ul>
-<p>Under <span class="math inline">\(H_0\)</span>, what is the probabilty to see the oberved number of
-false positives (in our case, this is the test statistic) or more?</p>
-<p>The answer was <span class="math inline">\(p = 5.551115 \cdot 10^{-16}\)</span>.</p>
-<p>Any reasonable person would say, that this result did not happen by chance alone and
-therefore concluded, the true, but unknown false positive rate <span class="math inline">\(\theta\)</span> is larger than 0.04.</p>
-<p>Formally, this is called a <strong>(one-sided) <a href="https://en.wikipedia.org/wiki/Binomial_test">binomial test</a></strong>.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="null-hypothesis-significance-testing-nhst.html#cb83-1" tabindex="-1"></a><span class="co"># binomial test</span></span>
-<span id="cb83-2"><a href="null-hypothesis-significance-testing-nhst.html#cb83-2" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">137</span>, <span class="dv">1000</span>, <span class="at">p =</span> <span class="fl">0.04</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  137 and 1000
-## number of successes = 137, number of trials = 1000, p-value &lt; 2.2e-16
-## alternative hypothesis: true probability of success is greater than 0.04
-## 95 percent confidence interval:
-##  0.1194241 1.0000000
-## sample estimates:
-## probability of success 
-##                  0.137</code></pre>
-<p>The output in R tells us the following:</p>
-<ul>
-<li>data: 137 and 1000 successes oberved</li>
-<li>alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.</li>
-<li><span class="math inline">\(p\)</span>-value$ &lt; 2.2e-16$. This is value is smaller than the precision in R (`.Machine’).</li>
-<li>95 percent confidence interval: <span class="math inline">\(0.1194241\)</span> to <span class="math inline">\(1.0000000\)</span>.
-The upper limit of <span class="math inline">\(1\)</span> occurs since we have a once-sided test.</li>
-<li>Sample estimates: Estimating the true (but unknown) proportion from the sample would just be:
-<span class="math inline">\(\frac{137}{1000} = 0.137\)</span></li>
-</ul>
-<p><strong>Two-sided test</strong>:</p>
-<ul>
-<li><span class="math inline">\(H_0: \theta = 0.04\)</span></li>
-<li><span class="math inline">\(H_1: \theta \ne 0.04\)</span></li>
-</ul>
-<p>One could argue that this is bad style, since we should probably know the direction of the effect.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="null-hypothesis-significance-testing-nhst.html#cb85-1" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">137</span>, <span class="dv">1000</span>, <span class="at">p =</span> <span class="fl">0.04</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  137 and 1000
-## number of successes = 137, number of trials = 1000, p-value &lt; 2.2e-16
-## alternative hypothesis: true probability of success is not equal to 0.04
-## 95 percent confidence interval:
-##  0.1162817 0.1598810
-## sample estimates:
-## probability of success 
-##                  0.137</code></pre>
-<ul>
-<li>alternative = “two.sided”, this indicates that we are interested in both directions (higher or lower than <span class="math inline">\(0.04\)</span>).
-With some experience, one would probably not test for lower when seeing the observed number of 137.</li>
-<li>95 percent confidence interval: <span class="math inline">\(0.1162817\)</span> to <span class="math inline">\(0.1598810\)</span>.</li>
-</ul>
-<p><strong>Interpretation of this interval</strong>: When drawing repeated samples, in 95% percent of the samples,
-the so constructed interval (which will be different everytime) contains the true but unknown parameter.</p>
-<p>Note, that the “Exact binomial test” was used. There where no approximations made. I would recommend always
-using exact tests if available, since we are in the 21th century and computers are fast.</p>
-<p>Again, the <span class="math inline">\(\alpha\)</span> level of <span class="math inline">\(0.05\)</span> has nothing special (apart from convention) to it.
-We can also use a <span class="math inline">\(\alpha = 0.14\)</span> level. In this case, we construct confidence intervals
-with a 86% confidence level.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="null-hypothesis-significance-testing-nhst.html#cb87-1" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">137</span>, <span class="dv">1000</span>, <span class="at">p =</span> <span class="fl">0.04</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.86</span>)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  137 and 1000
-## number of successes = 137, number of trials = 1000, p-value &lt; 2.2e-16
-## alternative hypothesis: true probability of success is not equal to 0.04
-## 86 percent confidence interval:
-##  0.1211304 0.1542134
-## sample estimates:
-## probability of success 
-##                  0.137</code></pre>
-<ul>
-<li>confidence interval: <span class="math inline">\(0.1211304\)</span> to <span class="math inline">\(0.1542134\)</span>.</li>
-</ul>
-<p>With <strong>smaller coverage probability</strong> (86 instead of 95), we get a <strong>narrower interval</strong>.
-Trivially, a 100% confidence interval would be <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span> and a 0% confidence interval would be <span class="math inline">\(0.04\)</span> to <span class="math inline">\(0.04\)</span> or any other
-specific value assuming that the true parameter can take any value from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>.</p>
-</div>
-<div id="proportions-test" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Proportions test<a href="null-hypothesis-significance-testing-nhst.html#proportions-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>……</p>
-</div>
-<div id="classical-t-test" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> (classical) t-test<a href="null-hypothesis-significance-testing-nhst.html#classical-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>………..</p>
-<div id="one-sample-t-test" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> One sample t-test<a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>…….</p>
-</div>
-<div id="two-sample-t-test" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Two sample t-test<a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>…….</p>
-</div>
-</div>
-<div id="correlation-test" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Correlation test<a href="null-hypothesis-significance-testing-nhst.html#correlation-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>…….</p>
-</div>
-<div id="type-1-and-type-2-errors" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Type 1 and Type 2 errors<a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>…….</p>
-</div>
-<div id="exercises-3" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Exercises<a href="null-hypothesis-significance-testing-nhst.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>………</p>
-<div id="exercise-1" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Exercise 1<a href="null-hypothesis-significance-testing-nhst.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises-3" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Exercises<a href="exercises-3.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>………
+## Exercise 1</p>
 <ul>
 <li>Create 1000 random samples from a binomial distribution with <span class="math inline">\(n = 100\)</span> and <span class="math inline">\(p = 0.38\)</span>.</li>
 <li>Calculate the 96% confidence interval for each sample.</li>
 <li>How often was the true parameter (<span class="math inline">\(p = 0.38\)</span>) contained in the constructed interval?</li>
 </ul>
-</div>
-<div id="exercise2" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Exercise 2<a href="probs.html#exercise2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Setting: two sample t-test. Assume there is a small difference between the means of two groups.
-- Show via simulation that with increasing sample size, the p-value becomes smaller and
-smaller and will be “significant” at some point irresective of how small the true mean
-difference is and how small the <span class="math inline">\(\alpha-\)</span> level is.</p>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="bayes-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="type-1-and-type-2-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
