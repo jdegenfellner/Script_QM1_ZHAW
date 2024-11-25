@@ -629,19 +629,19 @@ script is run, since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       131.402 131.382 133.641   93   30.8827 226.10                  
-## mu2         6.122   5.794   6.071   93  -83.1742  97.11                  
-## muDiff    125.279 125.303 120.626   93  -10.4012 256.17       0      95.6
-## sigma1    139.820 128.355 111.722   93   65.7532 225.77                  
-## sigma2    129.980 119.809 106.079   93   60.2385 208.54                  
-## sigmaDiff   9.840   8.704   6.925   93 -116.6694 137.73       0      56.5
-## nu         34.432  25.852   9.622   93    1.0900  83.56                  
-## log10nu     1.380   1.412   1.485   93    0.6529   2.05                  
-## effSz       0.969   0.959   0.926   93   -0.0748   2.01       0      95.6
+## mu1       131.088 131.267 133.980   93   34.0967 229.51                  
+## mu2         6.570   6.172   2.593   93  -84.1793  96.52                  
+## muDiff    124.519 125.069 123.358   93  -10.0327 258.11       0      95.5
+## sigma1    139.584 128.529 115.522   93   67.9196 227.44                  
+## sigma2    130.023 119.502 104.388   93   62.1653 210.24                  
+## sigmaDiff   9.561   8.951  10.553   93 -119.3055 135.34       0      56.6
+## nu         34.710  25.941  10.439   93    1.1622  84.69                  
+## log10nu     1.383   1.414   1.475   93    0.6571   2.06                  
+## effSz       0.965   0.959   0.955   93   -0.0769   2.03       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.46
+## muDiff        -20       20    4.47
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -692,8 +692,11 @@ yield a clear decision one way or the other, according to the stated decision cr
 <p>The following is an animated example of Bayesian updating.
 The true probability for heads in a coin toss is <span class="math inline">\(\theta = 0.77\)</span>.
 We throw a coin 100 times and we start with a uniform prior distribution, i.e.,
-every value between 0 and 1 is equally likely at the beginning.</p>
-<p>Code can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R">here</a></p>
+every value between 0 and 1 is equally likely at the beginning.
+Everytime a coin is tossed, the prior distribution is updated with the new data.
+The posterior distribution is the prior for the next coin toss.
+One can see that we are converging to the “truth” (which is normally not known).</p>
+<p>Code can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R">here.</a></p>
 <pre><code>## Linking to ImageMagick 6.9.12.93
 ## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
 ## Disabled features: fftw, ghostscript, x11</code></pre>

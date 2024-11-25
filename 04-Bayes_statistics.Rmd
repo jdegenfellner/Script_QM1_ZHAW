@@ -888,14 +888,16 @@ The following is an animated example of Bayesian updating.
 The true probability for heads in a coin toss is $\theta = 0.77$.
 We throw a coin 100 times and we start with a uniform prior distribution, i.e., 
 every value between 0 and 1 is equally likely at the beginning.
+Everytime a coin is tossed, the prior distribution is updated with the new data. 
+The posterior distribution is the prior for the next coin toss.
+One can see that we are converging to the "truth" (which is normally not known).
 
-
-Code can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
+Code can be found [here.](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
 
 ```{r testing, fig.cap="example caption", echo=FALSE}
 library(gifski)
 library(magick)
-img <- magick::image_read("./images/bayesian_updating_fixed.gif")
+img <- magick::image_read("./images/bayesian_updating_sequential.gif")
 print(img)
 ```
 
