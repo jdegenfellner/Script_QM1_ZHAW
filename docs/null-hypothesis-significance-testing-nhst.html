@@ -252,7 +252,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example_defective_products_extended"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
-<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a>
+<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian <span class="math inline">\(t\)</span>-test</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
 </ul></li>
@@ -277,10 +277,10 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-case"><i class="fa fa-check"></i><b>5.3.1</b> One sample case</a></li>
 <li class="chapter" data-level="5.3.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples"><i class="fa fa-check"></i><b>5.3.2</b> More than one sample</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#classical-t-test"><i class="fa fa-check"></i><b>5.4</b> (Classical) t-test</a>
+<li class="chapter" data-level="5.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#classical-t-test"><i class="fa fa-check"></i><b>5.4</b> (Classical) <span class="math inline">\(t\)</span>-test</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.4.1</b> One sample t-test</a></li>
-<li class="chapter" data-level="5.4.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.4.2</b> Two sample t-test</a></li>
+<li class="chapter" data-level="5.4.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.4.1</b> One sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="5.4.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.4.2</b> Two sample <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a></li>
 <li class="chapter" data-level="5.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors"><i class="fa fa-check"></i><b>5.6</b> Type 1 and Type 2 errors</a></li>
@@ -579,15 +579,59 @@ Degrees of freedom is the number of values in the final calculation of a statist
 </div>
 </div>
 <div id="classical-t-test" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> (Classical) t-test<a href="null-hypothesis-significance-testing-nhst.html#classical-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>………..</p>
+<h2><span class="header-section-number">5.4</span> (Classical) <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#classical-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Student%27s_t-test"><span class="math inline">\(t\)</span>-test</a> is one of the most
+famous classical statistical tests out there.
+Consider these links: <a href="https://www.youtube.com/watch?v=pXuFeRCMTAo&amp;ab_channel=VeryNormal">1</a>
+<a href="https://www.youtube.com/watch?v=pLNuDye_tq4&amp;ab_channel=VeryNormal">2</a>
+as starting point.</p>
+<p>With the <span class="math inline">\(t\)</span>-test, we want to answer the question
+- if the true, but unobserved mean of a population is different from a specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test">one sample <span class="math inline">\(t\)</span>-test</a>) or
+- if the true, but unobserved means of two populations are different from each other (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests">two sample <span class="math inline">\(t\)</span>-test</a>).</p>
+<p>Conveniently, R has a built-in function for these tests.</p>
 <div id="one-sample-t-test" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> One sample t-test<a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.4.1</span> One sample <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>…….</p>
 </div>
 <div id="two-sample-t-test" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Two sample t-test<a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>…….Example from before…</p>
+<h3><span class="header-section-number">5.4.2</span> Two sample <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s jump right in and use our example from the previous chapter:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="null-hypothesis-significance-testing-nhst.html#cb95-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="null-hypothesis-significance-testing-nhst.html#cb97-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="null-hypothesis-significance-testing-nhst.html#cb99-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="null-hypothesis-significance-testing-nhst.html#cb101-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="null-hypothesis-significance-testing-nhst.html#cb103-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
+<span id="cb103-2"><a href="null-hypothesis-significance-testing-nhst.html#cb103-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
+<pre><code>##    vars n  mean     sd median trimmed    mad  min max range  skew kurtosis
+## y1    1 8 130.0 116.00    120   130.0 140.85  -50 300   350 -0.13    -1.39
+## y2    2 8   7.5 107.94      0     7.5 118.61 -120 190   310  0.29    -1.38
+##       se
+## y1 41.01
+## y2 38.16</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="null-hypothesis-significance-testing-nhst.html#cb105-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
+<span id="cb105-2"><a href="null-hypothesis-significance-testing-nhst.html#cb105-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb105-3"><a href="null-hypothesis-significance-testing-nhst.html#cb105-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
+<span id="cb105-4"><a href="null-hypothesis-significance-testing-nhst.html#cb105-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
+<span id="cb105-5"><a href="null-hypothesis-significance-testing-nhst.html#cb105-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="null-hypothesis-significance-testing-nhst.html#cb106-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span>
+<span id="cb106-2"><a href="null-hypothesis-significance-testing-nhst.html#cb106-2" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="null-hypothesis-significance-testing-nhst.html#cb106-3" tabindex="-1"></a><span class="fu">t.test</span>(y1, y2, <span class="at">conf.level =</span> <span class="fl">0.93</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  y1 and y2
+## t = 2.1867, df = 13.928, p-value = 0.04634
+## alternative hypothesis: true difference in means is not equal to 0
+## 93 percent confidence interval:
+##   12.55847 232.44153
+## sample estimates:
+## mean of x mean of y 
+##     130.0       7.5</code></pre>
 <p>Comparison with Bayesian version:
 ……..</p>
 </div>

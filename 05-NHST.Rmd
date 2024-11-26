@@ -238,14 +238,45 @@ with 3 [degrees of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(st
 See also [exercise 5](#exercise5_nhst). 
 Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.
 
-## (Classical) t-test
-...........
+## (Classical) $t$-test
+The [$t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test) is one of the most 
+famous classical statistical tests out there. 
+Consider these links: [1](https://www.youtube.com/watch?v=pXuFeRCMTAo&ab_channel=VeryNormal)
+[2](https://www.youtube.com/watch?v=pLNuDye_tq4&ab_channel=VeryNormal)
+as starting point. 
 
-### One sample t-test
+With the $t$-test, we want to answer the question 
+- if the true, but unobserved mean of a population is different from a specific value ([one sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test)) or
+- if the true, but unobserved means of two populations are different from each other ([two sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests)).
+
+Conveniently, R has a built-in function for these tests.
+
+
+### One sample $t$-test
 .......
 
-### Two sample t-test
-.......Example from before...
+### Two sample $t$-test
+Let's jump right in and use our example from the previous chapter:
+
+```{r, echo=TRUE}
+(y1 <- c(-.5, 0, 1.2, 1.2, 1.2, 1.9, 2.4, 3) * 100)
+(y2 <- c(-1.2, -1.2, -.5, 0, 0, .5, 1.1, 1.9) * 100)
+
+length(y1)
+length(y2)
+
+data <- data.frame(y1, y2)
+psych::describe(data)
+
+# Boxplot:
+data.frame(y = c(y1, y2), group = c(rep(1, 8), rep(2, 8))) %>%
+  ggplot(aes(x = factor(group), y = y)) +  # Use factor for discrete x-axis
+  geom_boxplot() +                        # Add boxplot layer
+  geom_jitter(width = 0.1)                # Add jitter for individual
+# -> Visually, there seems to be a difference between the two groups.
+
+t.test(y1, y2, conf.level = 0.93)
+```
 
 Comparison with Bayesian version:
 ........

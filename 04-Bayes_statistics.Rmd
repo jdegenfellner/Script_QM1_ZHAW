@@ -738,7 +738,7 @@ but unknown** parameter of interest in a certain percent of times (e.g., 92%), w
 [constructed **repeatedly** everytime a new sample is drawn](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg). 
 
 
-## Bayesian t-test {#bayesian_t_test}
+## Bayesian $t$-test {#bayesian_t_test}
 
 Above, we looked at some aspects of estimating a parameter (proportion) using Bayes' theorem.
 We can answer all sorts of other questions using this paradigm. In classical statistics,
