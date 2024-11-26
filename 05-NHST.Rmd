@@ -24,10 +24,11 @@ The alternative ist that one treatment is superior to the other.
 Example: 
    - $H_0: \theta \le 0.4$
    - $H_1: \theta > 0.4$
-   - $H_0$ states that the treatment effect is less than or equal to 0.4, while $H_1$ states that the population proportion is greater than 0.4. 
+   - $H_0$ states that the treatment effect is less than or equal to 0.4, 
+     while $H_1$ states that the treatment effect is greater than 0.4. 
 	
 
-- **$p$-value**: The p-value quantifies the probability of obtaining results as extreme as (or more extreme than) 
+- **$p$-value**: The $p$-value quantifies the probability of obtaining results as extreme as (or more extreme than) 
 the observed data, assuming that $H_0$ is true. 
 A smaller $p$-value indicates stronger evidence against $H_0$. There are many [misconeptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620).
 
@@ -48,15 +49,15 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 
 - Calculate the test statistic: Compute a value based on the sample data that 
   reflects the difference or effect under investigation.
-- Compute the $p$-Value: Determine the probability of observing the 
+- Compute the $p$-value: Determine the probability of observing the 
   test statistic (or more extreme values) if $H_0$ is true.
-- Make a Decision: Compare the p-value to the significance level:
+- Make a Decision: Compare the $p$-value to the significance level:
   - If $p < \alpha$: Reject $H_0$; evidence suggests $H_1$ is true.
   - If $p \ge \alpha$: Fail to reject $H_0$; insufficient evidence to support $H_1$.
 
 **(Some) Limitations of NHST**: 
 
-- **Focus on $p$-values with hard cut-offs**: Solely relying on p-values can lead to overinterpretation of
+- **Focus on $p$-values with hard cut-offs**: Solely relying on $p$-values can lead to overinterpretation of
   results without considering practical significance.
 	
 -	**Dichotomous thinking**: The decision to “reject” or “fail to reject” $H_0$ 
@@ -68,7 +69,7 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
   rigorous way possible.
 	
 - **Sample size influence**: Large samples can make small, clinically irrelevant 
-  differences statistically significant. Example: Given an arbitrarily small difference between means of two groups. There is 
+  differences "statistically significant". Example: Given an arbitrarily small difference between means of two groups. There is 
   always a sample size that makes the difference "significant". See [Exercise 2](#exercise2_nhst).
 
 - **[Publication bias](https://en.wikipedia.org/wiki/Publication_bias)**: Many journals tended to publish studies with "significant" results. "Not significant" results
@@ -92,13 +93,13 @@ This [video](https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal) 
 
 ## Example in the literature
 
-$p$-values are omnipresent in the scientific literature. There a rather few papers in our field that do not contain them. 
+$p$-values are omnipresent in the scientific literature. There rather few papers in our field that do not contain them. 
 We **do not use $p$-values in in descriptive tables** 
 (see [here](https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/) and 
 [here](https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1)).
 
-Here is an [example from the literature](https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100).
-Table 2 lists studies and one column is the $p$-value. Note, that it is not good practice to present $p$-values 
+[Here](https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100) is an example from the literature.
+Table 2 lists studies and one column contains $p$-values. Note, that it is not good practice to present $p$-values 
 (if one should use them at all) as dichotomy: $p < 0.05$. This statement does 
 not allow to judge the strength of the evidence against the null hypothesis. Both, $p = 0.00000001$ and $p = 0.049$ would satisfy
 the inequality.
@@ -114,7 +115,7 @@ we would "expect" 40 false positives. We asked, what is the probability of obser
 - $H_0: \theta \le 0.04$
 - $H_1: \theta > 0.04$
 
-Under $H_0$, what is the probabilty to see the oberved number of 
+Under $H_0$, what is the probabilty to see the oberved number (137) of 
 false positives (in our case, this is the test statistic) or more?
 
 The answer was $p = 5.551115 \cdot 10^{-16}$.
@@ -137,7 +138,7 @@ The output in R tells us the following:
 - alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
 - $p$-value$ < 2.2e-16$. This is value is smaller than the precision in R (`.Machine').
 - 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
-The upper limit of $1$ occurs since we have a once-sided test.
+The upper limit of $1$ occurs since we have a one-sided test.
 - Sample estimates: Estimating the true (but unknown) proportion from the sample would just be: 
 $\frac{137}{1000} = 0.137$
 
@@ -157,7 +158,8 @@ With some experience, one would probably not test for lower when seeing the obse
 - 95 percent confidence interval: $0.1162817$ to $0.1598810$.
 
 **Interpretation of this interval**: When drawing repeated samples, in 95% percent of the samples,
-the so constructed interval (which will be different everytime) contains the true but unknown parameter.
+the so constructed interval (which will be different everytime) contains the true but unknown 
+parameter ([Illustration](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg)). 
 
 Note, that the "Exact binomial test" was used. There where no approximations made. I would recommend always
 using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21th century and computers are fast.
@@ -203,7 +205,7 @@ prop.test(heads, 100,
 correct = FALSE, conf.level = 0.94, p = 0.5) # no continuity correction
 ```
 
-- correct = TRUE indicates the a correction ([Yates](https://en.wikipedia.org/wiki/Yates%27s_correction_for_continuity)) 
+- correct = TRUE indicates that a correction ([Yates](https://en.wikipedia.org/wiki/Yates%27s_correction_for_continuity)) 
 is used to make the test more accurate and consider the fact that the test statistic is in fact discrete.
 
 - 94% confidence interval: $0.3739955$ to $0.5681618$.
@@ -215,8 +217,6 @@ the test statistic follows a [$\chi^2$ distribution](https://en.wikipedia.org/wi
 See also [Exercise 4](#exercise4_nhst).
 
 ### More than one sample {#proportions_test_more_samples}
-
-Example:
 
 ```{r}
 # Data from Fleiss (1981), p. 139.
@@ -374,9 +374,9 @@ to measure the strength of the **linear** relationship between two variables.
 
 Often, the null hypothesis for the correlation coefficient is that there is no correlation between 
 the two variables ($\rho=0$). One could argue that this is a rather baseless assumption. In reality,
-the true correlation coefficient is probably not exactly 0 and one could argue more precicely a range
+the true correlation coefficient is probably not exactly 0 and one could argue more precisely a range
 of plausible values for $\rho$ for the specific case at hand. Often, one can see an ocean of $p$-values
-in the literature, where the correlation coefficient is tested against 0. This is often superfluous.
+in the literature, where the correlation coefficient is tested against 0. This is superfluous.
 For example, if the sample size is $n=234$ and the sample correlation coefficient is $r = 0.76$, it 
 is very unlikely that the true correlation coefficient is 0. One does not need a hypothesis test to 
 know this (see [exercise 6](#exercise6_nhst)).

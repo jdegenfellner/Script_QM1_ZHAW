@@ -659,20 +659,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median   mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.790 131.072 133.53   93   32.8827 228.54                  
-## mu2         6.453   5.917   4.51   93  -83.2517  96.82                  
-## muDiff    124.338 124.708 121.24   93  -12.3176 253.67       0      95.5
-## sigma1    139.505 128.399 111.77   93   67.9888 227.55                  
-## sigma2    130.163 119.621 102.44   93   60.9150 208.90                  
-## sigmaDiff   9.342   8.787   9.19   93 -112.7059 141.66       0      56.3
-## nu         34.109  25.483  10.00   93    1.2368  83.14                  
-## log10nu     1.375   1.406   1.53   93    0.6623   2.06                  
-## effSz       0.965   0.957   1.01   93   -0.0954   1.99       0      95.5
+<pre><code>##              mean  median    mode HDI%    HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.648 130.939 133.566   93   30.984 226.44                  
+## mu2         6.178   5.951   7.193   93  -84.861  96.80                  
+## muDiff    124.470 124.597 125.734   93  -10.790 258.34       0      95.4
+## sigma1    140.010 128.278 109.388   93   65.934 226.51                  
+## sigma2    129.884 119.442 103.211   93   62.009 210.58                  
+## sigmaDiff  10.125   8.540   6.390   93 -116.727 140.65       0      56.3
+## nu         34.349  25.750   9.378   93    1.068  83.19                  
+## log10nu     1.378   1.411   1.472   93    0.656   2.06                  
+## effSz       0.963   0.955   0.969   93   -0.102   2.00       0      95.4
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.46
+## muDiff        -20       20    4.56
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         

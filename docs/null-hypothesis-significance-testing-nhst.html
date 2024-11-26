@@ -339,9 +339,10 @@ Example:</p>
 <ul>
 <li><span class="math inline">\(H_0: \theta \le 0.4\)</span></li>
 <li><span class="math inline">\(H_1: \theta &gt; 0.4\)</span></li>
-<li><span class="math inline">\(H_0\)</span> states that the treatment effect is less than or equal to 0.4, while <span class="math inline">\(H_1\)</span> states that the population proportion is greater than 0.4.</li>
+<li><span class="math inline">\(H_0\)</span> states that the treatment effect is less than or equal to 0.4,
+while <span class="math inline">\(H_1\)</span> states that the treatment effect is greater than 0.4.</li>
 </ul></li>
-<li><p><strong><span class="math inline">\(p\)</span>-value</strong>: The p-value quantifies the probability of obtaining results as extreme as (or more extreme than)
+<li><p><strong><span class="math inline">\(p\)</span>-value</strong>: The <span class="math inline">\(p\)</span>-value quantifies the probability of obtaining results as extreme as (or more extreme than)
 the observed data, assuming that <span class="math inline">\(H_0\)</span> is true.
 A smaller <span class="math inline">\(p\)</span>-value indicates stronger evidence against <span class="math inline">\(H_0\)</span>. There are many <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconeptions about p-values</a>.</p></li>
 <li><p><strong>Significance level <span class="math inline">\(\alpha\)</span></strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_1\)</span>.
@@ -358,9 +359,9 @@ and <span class="math inline">\(H_1\)</span> (e.g., “The new therapy improves 
 <li><p>Collect data: Perform an experiment or study to gather relevant data.</p></li>
 <li><p>Calculate the test statistic: Compute a value based on the sample data that
 reflects the difference or effect under investigation.</p></li>
-<li><p>Compute the <span class="math inline">\(p\)</span>-Value: Determine the probability of observing the
+<li><p>Compute the <span class="math inline">\(p\)</span>-value: Determine the probability of observing the
 test statistic (or more extreme values) if <span class="math inline">\(H_0\)</span> is true.</p></li>
-<li><p>Make a Decision: Compare the p-value to the significance level:</p>
+<li><p>Make a Decision: Compare the <span class="math inline">\(p\)</span>-value to the significance level:</p>
 <ul>
 <li>If <span class="math inline">\(p &lt; \alpha\)</span>: Reject <span class="math inline">\(H_0\)</span>; evidence suggests <span class="math inline">\(H_1\)</span> is true.</li>
 <li>If <span class="math inline">\(p \ge \alpha\)</span>: Fail to reject <span class="math inline">\(H_0\)</span>; insufficient evidence to support <span class="math inline">\(H_1\)</span>.</li>
@@ -368,7 +369,7 @@ test statistic (or more extreme values) if <span class="math inline">\(H_0\)</sp
 </ul>
 <p><strong>(Some) Limitations of NHST</strong>:</p>
 <ul>
-<li><p><strong>Focus on <span class="math inline">\(p\)</span>-values with hard cut-offs</strong>: Solely relying on p-values can lead to overinterpretation of
+<li><p><strong>Focus on <span class="math inline">\(p\)</span>-values with hard cut-offs</strong>: Solely relying on <span class="math inline">\(p\)</span>-values can lead to overinterpretation of
 results without considering practical significance.</p></li>
 <li><p><strong>Dichotomous thinking</strong>: The decision to “reject” or “fail to reject” <span class="math inline">\(H_0\)</span>
 oversimplifies the complexity of real-world data. This binary thinking
@@ -378,7 +379,7 @@ looked at me with a sad facial expression announcing that the <span class="math 
 This should be not an issue at all. The focus should be on doing useful analyses in the most
 rigorous way possible.</p></li>
 <li><p><strong>Sample size influence</strong>: Large samples can make small, clinically irrelevant
-differences statistically significant. Example: Given an arbitrarily small difference between means of two groups. There is
+differences “statistically significant”. Example: Given an arbitrarily small difference between means of two groups. There is
 always a sample size that makes the difference “significant”. See <a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst">Exercise 2</a>.</p></li>
 <li><p><strong><a href="https://en.wikipedia.org/wiki/Publication_bias">Publication bias</a></strong>: Many journals tended to publish studies with “significant” results. “Not significant” results
 were often not published. This can lead to a distorted view of the literature.</p></li>
@@ -395,12 +396,12 @@ a more comprehensive understanding of the results.</p>
 <p>This <a href="https://www.youtube.com/watch?v=FZ2_hzMyJpY&amp;ab_channel=VeryNormal">video</a> could also help to understand the basic concepts.</p>
 <div id="example-in-the-literature" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Example in the literature<a href="null-hypothesis-significance-testing-nhst.html#example-in-the-literature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(p\)</span>-values are omnipresent in the scientific literature. There a rather few papers in our field that do not contain them.
+<p><span class="math inline">\(p\)</span>-values are omnipresent in the scientific literature. There rather few papers in our field that do not contain them.
 We <strong>do not use <span class="math inline">\(p\)</span>-values in in descriptive tables</strong>
 (see <a href="https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/">here</a> and
 <a href="https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1">here</a>).</p>
-<p>Here is an <a href="https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100">example from the literature</a>.
-Table 2 lists studies and one column is the <span class="math inline">\(p\)</span>-value. Note, that it is not good practice to present <span class="math inline">\(p\)</span>-values
+<p><a href="https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100">Here</a> is an example from the literature.
+Table 2 lists studies and one column contains <span class="math inline">\(p\)</span>-values. Note, that it is not good practice to present <span class="math inline">\(p\)</span>-values
 (if one should use them at all) as dichotomy: <span class="math inline">\(p &lt; 0.05\)</span>. This statement does
 not allow to judge the strength of the evidence against the null hypothesis. Both, <span class="math inline">\(p = 0.00000001\)</span> and <span class="math inline">\(p = 0.049\)</span> would satisfy
 the inequality.</p>
@@ -415,7 +416,7 @@ we would “expect” 40 false positives. We asked, what is the probability of o
 <li><span class="math inline">\(H_0: \theta \le 0.04\)</span></li>
 <li><span class="math inline">\(H_1: \theta &gt; 0.04\)</span></li>
 </ul>
-<p>Under <span class="math inline">\(H_0\)</span>, what is the probabilty to see the oberved number of
+<p>Under <span class="math inline">\(H_0\)</span>, what is the probabilty to see the oberved number (137) of
 false positives (in our case, this is the test statistic) or more?</p>
 <p>The answer was <span class="math inline">\(p = 5.551115 \cdot 10^{-16}\)</span>.</p>
 <p>A reasonable person would say, that this result did not happen by chance alone and
@@ -441,7 +442,7 @@ therefore conclude, the true, but unknown false positive rate <span class="math 
 <li>alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.</li>
 <li><span class="math inline">\(p\)</span>-value$ &lt; 2.2e-16$. This is value is smaller than the precision in R (`.Machine’).</li>
 <li>95 percent confidence interval: <span class="math inline">\(0.1194241\)</span> to <span class="math inline">\(1.0000000\)</span>.
-The upper limit of <span class="math inline">\(1\)</span> occurs since we have a once-sided test.</li>
+The upper limit of <span class="math inline">\(1\)</span> occurs since we have a one-sided test.</li>
 <li>Sample estimates: Estimating the true (but unknown) proportion from the sample would just be:
 <span class="math inline">\(\frac{137}{1000} = 0.137\)</span></li>
 </ul>
@@ -469,7 +470,8 @@ With some experience, one would probably not test for lower when seeing the obse
 <li>95 percent confidence interval: <span class="math inline">\(0.1162817\)</span> to <span class="math inline">\(0.1598810\)</span>.</li>
 </ul>
 <p><strong>Interpretation of this interval</strong>: When drawing repeated samples, in 95% percent of the samples,
-the so constructed interval (which will be different everytime) contains the true but unknown parameter.</p>
+the so constructed interval (which will be different everytime) contains the true but unknown
+parameter (<a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">Illustration</a>).</p>
 <p>Note, that the “Exact binomial test” was used. There where no approximations made. I would recommend always
 using <a href="https://en.wikipedia.org/wiki/Exact_test">exact tests</a> if available, since we are in the 21th century and computers are fast.</p>
 <p>Again, <strong>the <span class="math inline">\(\alpha\)</span> level of <span class="math inline">\(0.05\)</span> has nothing special (apart from convention) to it</strong>.
@@ -539,7 +541,7 @@ we can use the <a href="https://www.rdocumentation.org/packages/stats/versions/3
 ##    p 
 ## 0.47</code></pre>
 <ul>
-<li><p>correct = TRUE indicates the a correction (<a href="https://en.wikipedia.org/wiki/Yates%27s_correction_for_continuity">Yates</a>)
+<li><p>correct = TRUE indicates that a correction (<a href="https://en.wikipedia.org/wiki/Yates%27s_correction_for_continuity">Yates</a>)
 is used to make the test more accurate and consider the fact that the test statistic is in fact discrete.</p></li>
 <li><p>94% confidence interval: <span class="math inline">\(0.3739955\)</span> to <span class="math inline">\(0.5681618\)</span>.</p></li>
 <li><p><span class="math inline">\(\chi^2 = 0.25\)</span>. This is the value of the test statistic used in the test.
@@ -550,7 +552,6 @@ the test statistic follows a <a href="https://en.wikipedia.org/wiki/Chi-squared_
 </div>
 <div id="proportions_test_more_samples" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> More than one sample<a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Example:</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="null-hypothesis-significance-testing-nhst.html#cb93-1" tabindex="-1"></a><span class="co"># Data from Fleiss (1981), p. 139.</span></span>
 <span id="cb93-2"><a href="null-hypothesis-significance-testing-nhst.html#cb93-2" tabindex="-1"></a><span class="co"># H0: The null hypothesis is that the four populations from which</span></span>
 <span id="cb93-3"><a href="null-hypothesis-significance-testing-nhst.html#cb93-3" tabindex="-1"></a><span class="co">#     the patients were drawn have the same true proportion of smokers.</span></span>
@@ -723,7 +724,7 @@ of the <span class="math inline">\(t\)</span>-test function in R.</p>
 to measure the strength of the <strong>linear</strong> relationship between two variables.</p>
 <p>Often, the null hypothesis for the correlation coefficient is that there is no correlation between
 the two variables (<span class="math inline">\(\rho=0\)</span>). One could argue that this is a rather baseless assumption. In reality,
-the true correlation coefficient is probably not exactly 0 and one could argue more precicely a range
+the true correlation coefficient is probably not exactly 0 and one could argue more precisely a range
 of plausible values for <span class="math inline">\(\rho\)</span> for the specific case at hand. Often, one can see an ocean of <span class="math inline">\(p\)</span>-values
 in the literature, where the correlation coefficient is tested against 0. This is often superfluous.
 For example, if the sample size is <span class="math inline">\(n=234\)</span> and the sample correlation coefficient is <span class="math inline">\(r = 0.76\)</span>, it
