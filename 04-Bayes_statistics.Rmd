@@ -6,7 +6,10 @@ John Kruschke's book [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/l
 As stated in the first chapter, Bayesian statistics is based on the idea that 
 [probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
 Here, we use *prior* (i.e., before/outside of our experiment) knowledge 
-about a parameter and update this knowledge with new data using the famous Bayes' theorem:
+about a parameter and **update** this knowledge with new data using the 
+famous 
+
+**[Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem)**:
 
 $$
 p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
@@ -14,11 +17,12 @@ $$
 
 where:
 
-- \( p(\theta | \text{data}) \) is the **posterior probability**: the updated probability of the parameter \( \theta \) given the observed data.
+- \( p(\theta | \text{data}) \) is the **posterior probability (respectively the posterior distribution of the parameter)**: 
+the updated probability of the parameter \( \theta \) given the observed data.
 
 - \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data given a certain value of the parameter \( \theta \).
 
-- \( p(\theta) \) is the **prior probability**: the initial belief about the parameter \( \theta \) before seeing the data.
+- \( p(\theta) \) is the **prior probability (respectively the prior distribution of the parameter)**: the initial belief about the parameter \( \theta \) before seeing the data.
 
 - \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
 
@@ -28,7 +32,7 @@ a regression coefficient ($\beta$), or a proportion (p)...
 ## Derivation of Bayes' theorem
 
 We have already come across Bayes' theorem in the context of conditional probability where we have calulated 
-the probability of a person having a disease *given* that they have tested positive for it: 
+the probability of a person having a disease *given* having tested positive for it: 
 
 $$
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos)}{\mathbb{P}(Tpos)}.
@@ -40,7 +44,9 @@ $$
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos \cap Dpos)}{\mathbb{P}(Tpos)}.
 $$
 
-which is also true by the definition of conditional probability. One can rewrite the denominator as:
+which is also true by the definition of conditional probability. 
+
+One can rewrite the denominator as:
 
 $$
 \mathbb{P}(Tpos) = \mathbb{P}(Tpos|Dpos)\mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg)\mathbb{P}(Dneg) = TP + FP,
@@ -58,7 +64,7 @@ $$
 
 We have proven Bayes theorem for the case of a binary test.
 
-Note that simple fact that if $\mathbb{P}(Dpos)$ (which is the prevalence of the disease)
+Note the simple fact that if $\mathbb{P}(Dpos)$ (which is the prevalence of the disease)
 is small, the probability of having the disease given a positive test result is also small.
 In fact, it is arbitrarily small the smaller the prevalence is.
 For $\mathbb{P}(Dpos)=0$, we have $\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0$, 
@@ -261,13 +267,13 @@ ggplot(data, aes(x = x, y = density)) +
 
 If we had to guess, we would say that the defect rate is most likely 20%.
 And we are rather sure about this guess. The mode (highest prior probability) of the 
-beta distribution is at 0.2. We are also pretty sure that the defect rate is not 0% or above, say, 50%.
+[beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) is at 0.2. We are also pretty sure that the defect rate is not 0% or above, say, 50%.
 This distribution is an expression of our **prior beliefs** about the defect rate.
 
 Now, we **observe 11 defective items in a sample of 20**.
 We expect as posterior distribution not a bar plot with two probabilities for the parameter values 
 $\theta = 0.05$ and $\theta = 0.10$, but a **distribution** of probabilities for all possible defect rates (in the range of 0-1).
-Btw. we could play the same game using a coin or the effectiveness or a therapy as example.
+Btw. we could play the same game using a coin or the effectiveness of a therapy as example.
 
 The only thing we need to do is to plug in the information into Bayes' theorem to get the posterior distribution.
 The calculations would be complex by hand, so we just use R. We want to understand the concept, so calculating by hand
@@ -279,7 +285,8 @@ can be put off until later (if at all necessary for us.)
 
 - $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.
 
-- $\textit{p}(X = 3 \mid \theta)$ is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate $\theta$.
+- $\textit{p}(X = 3 \mid \theta)$ is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate $\theta$. 
+  This would be the density function of a binomial distribution.
 
 - $m(3)$ is the marginal distribution of the data for $X = 3$ considering **all** possible defect rates between 0 and 1.
 
