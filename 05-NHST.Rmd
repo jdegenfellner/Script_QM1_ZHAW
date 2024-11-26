@@ -278,8 +278,90 @@ data.frame(y = c(y1, y2), group = c(rep(1, 8), rep(2, 8))) %>%
 t.test(y1, y2, conf.level = 0.93)
 ```
 
-Comparison with Bayesian version:
-........
+- The test statistic is a $t$-distribution with $13.928$ degrees of freedom.
+- The value of the test statistic is $2.1867$.
+- $H_0: \mu_1 = \mu_2$. The group means are equal.
+- $H_1: \mu_1 \ne \mu_2$. The group means are different.
+- $p$-value $= 0.04634$. In the classical framework, 
+  this would be considered "significant" at the $\alpha = 0.05$ level 
+  and one would reject the null hypothesis and accept the alternative hypothesis.
+- 93% confidence interval for the difference in means is rather wide: 
+  $12.55847$ to $232.44153$.
+
+  Let's try to visualize this. 
+  
+  **Under the assumption** that there is **no difference in means**,
+  the [test statistic](https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_sample_sizes,_unequal_variances_(sX1_%3E_2sX2_or_sX2_%3E_2sX1)) 
+  
+  $$ t = \frac{\bar{X}_1 - \bar{X}_1}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} $$
+  
+  would be distributed according to a $t$-distribution with 13.928 degrees of freedom.
+
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Define degrees of freedom
+df <- 13.928
+
+# Define the range for x and the critical t-values
+x <- seq(-4, 4, length.out = 500)
+critical_t <- 2.1867
+
+# Create a data frame with x and corresponding density values
+t_dist <- data.frame(
+  x = x,
+  density = dt(x, df)
+)
+
+# Plot the t-distribution with shaded tail areas
+ggplot(t_dist, aes(x = x, y = density)) +
+  # Add the main t-distribution curve
+  geom_line(linewidth = 1, color = "blue") +
+  # Add shaded areas below the curve outside the critical t-values
+  geom_ribbon(
+    data = subset(t_dist, x < -critical_t),
+    aes(ymin = 0, ymax = density),
+    fill = "red",
+    alpha = 0.3
+  ) +
+  geom_ribbon(
+    data = subset(t_dist, x > critical_t),
+    aes(ymin = 0, ymax = density),
+    fill = "red",
+    alpha = 0.3
+  ) +
+  # Add vertical lines for the critical t-values
+  geom_vline(xintercept = c(-critical_t, critical_t), 
+          linetype = "dashed", color = "black") +
+  # Annotate the critical t-values
+  annotate("text", x = -critical_t, y = 0.05,
+           label = paste0("-t = ", critical_t), angle = 90, vjust = -0.5) +
+  annotate("text", x = critical_t, y = 0.05,
+           label = paste0("t = ", critical_t), angle = 90, vjust = -0.5) +
+  # Add labels and style
+  labs(
+    title = "t-Distribution with Shaded Critical Areas (Two-Sided Test)",
+    subtitle = paste("Degrees of Freedom:", df),
+    x = "t",
+    y = "Density"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
+
+# p-value manually:
+pt(-2.1867, df) * 2
+```
+
+The plot shows the $t$-distribution. Marked in red are the areas where the test statistic 
+takes the value we observed or "more extreme" values. With "more extreme" we mean values that are
+further away from 0 in both directions since we conducted a two-sided test. The area under the curve
+is the $p$-value. As you can see, the $p$-value is the sum of the two red areas and matches the output 
+of the $t$-test function in R.
+
 
 ## Correlation test
 .......
