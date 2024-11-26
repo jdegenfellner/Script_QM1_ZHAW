@@ -154,7 +154,7 @@ the so constructed interval (which will be different everytime) contains the tru
 Note, that the "Exact binomial test" was used. There where no approximations made. I would recommend always
 using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21th century and computers are fast.
 
-Again, the $\alpha$ level of $0.05$ has nothing special (apart from convention) to it. 
+Again, **the $\alpha$ level of $0.05$ has nothing special (apart from convention) to it**. 
 We can also use a $\alpha = 0.14$ level. In this case, we construct confidence intervals 
 with a 86% confidence level.
 
@@ -178,10 +178,35 @@ Hence, we cannot make statements like "the probability that $\theta$ is larger t
 - Prior knowledge could probably be included in the form of the null hypothesis stating, for instance, that $\theta \le 0.2$. 
 This could be based on previous studies or expert knowledge.
 
-## Proportions test
-......
 
-## (classical) t-test
+## Proportions test
+
+If we are interested in comparing two proportions, 
+we can use the [proportions test](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test).
+
+One sample case:
+```{r}
+set.seed(443)
+heads <- rbinom(1, size = 100,
+prob = 0.5) # create a sample with known probability
+prop.test(heads, 100,
+conf.level = 0.94, p = 0.5) # continuity correction TRUE by default
+prop.test(heads, 100,
+correct = FALSE, conf.level = 0.94, p = 0.5) # no continuity correction
+```
+
+- correct = TRUE indicates the a correction ([Yates](https://en.wikipedia.org/wiki/Yates%27s_correction_for_continuity)) 
+is used to make the test more accurate and consider the fact that the test statistic is in fact discrete.
+
+- 94% confidence interval: $0.3739955$ to $0.5681618$.
+
+- $\chi^2 = 0.25$. This is the value of the test statistic used in the test. 
+Under the null hypothesis (in this case $H_0 = 0.5$), 
+the test statistic follows a [$\chi^2$ distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution).
+
+See also [Exercise 4](#exercise4_nhst).
+
+## (Classical) t-test
 ...........
 
 ### One sample t-test
@@ -190,7 +215,10 @@ This could be based on previous studies or expert knowledge.
 ### Two sample t-test
 .......Example from before...
 
-### Correlation test
+Comparison with Bayesian version:
+........
+
+## Correlation test
 .......
 
 ## Type 1 and Type 2 errors
@@ -211,23 +239,23 @@ Of course, the probability that a correlation coefficient is exactly 0 is 0 sinc
 but in practice we are interested in "indistinguishable from 0" which is a small value. 
 In the Bayesian framework from Kruschke, we defined a region of practical equivalence (ROPE) for this purpose.
 
-We can always ask ourselves: What does my test statistic do *if* the null hypothesis is true?
+We ask ourselves: What does my test statistic do *if* the null hypothesis is true?
 Then try to simulate it. This helps to understand what constitutes a qualitatively different result 
 (from the null hypothesis) considering variability in the data.
 
 ## Exercises
-.........
 
 ### Exercise 1 - frequentist confidence interval {#exercise1_nhst}
 
 - Create 1000 random samples from a binomial distribution with $n = 100$ and $p = 0.38$.
-- Calculate the 96% confidence interval for each sample.
+- Calculate the 96% confidence interval for each sample using R.
 - How often was the true parameter ($p = 0.38$) contained in the constructed interval?
 
 ### Exercise 2 - everything becomes "significant" {#exercise2_nhst}
+
 Setting: two sample t-test. Assume there is a small difference between the means of two groups.
-- Show via simulation that with increasing sample size, the p-value becomes smaller and 
-smaller and will be "significant" at some point irresective of how small the true mean 
+- Show via simulation that with increasing sample size, the $p$-value becomes smaller and 
+smaller and will be "significant" at some point irresespective of how small the true mean 
 difference is and how small the $\alpha-$ level is.
 
 ### Exercise 3 - binomial test {#exercise3_nhst}
@@ -235,4 +263,14 @@ difference is and how small the $\alpha-$ level is.
 - Create a sample from a binomial distribution with $n = 54$ and $p = 0.68$.
 - Perform a two-sided binomial test with $H_0: p = 0.5$.
 - Calculate the 90% confidence interval for the sample proportion.
-- Calculate the p-vlaue for the two-sided test by "hand" (using dbinom/pbinom in R).
+- Calculate the p-value for the two-sided test by "hand" (using dbinom/pbinom in R).
+
+### Exercise 4 - proportions test {#exercise4_nhst}
+
+- Create a sample from a binomial distribution with $n = 100$ and $p = 0.5$.
+- Perform a proportions test with $H_0: p = 0.5$ and interpret the results.
+- Perform the proportions test with the whole range of possible proportions
+  $H_0: p = 0.01 \cdots p = 0.99$ in steps of $0.01$. 
+  And plot the p-values on the y-axis and 
+  the assumed proportion on the x-axis. 
+  This is called a [p-value function](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1556735#:~:text=The%20p%2Dvalue%20function%20provides,for%20the%20parameter%20of%20interest.).
