@@ -73,6 +73,8 @@ null-hypothesis-significance-testing-nhst
 example-in-the-literature
 binomial-test
 proportions-test
+one-sample-case
+proportions_test_more_samples
 classical-t-test
 one-sample-t-test
 two-sample-t-test
@@ -84,3 +86,4 @@ exercise1_nhst
 exercise2_nhst
 exercise3_nhst
 exercise4_nhst
+exercise5_nhst

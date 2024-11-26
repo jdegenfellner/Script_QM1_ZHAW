@@ -272,7 +272,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#example-in-the-literature"><i class="fa fa-check"></i><b>5.1</b> Example in the literature</a></li>
 <li class="chapter" data-level="5.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#binomial-test"><i class="fa fa-check"></i><b>5.2</b> Binomial test</a></li>
-<li class="chapter" data-level="5.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions-test"><i class="fa fa-check"></i><b>5.3</b> Proportions test</a></li>
+<li class="chapter" data-level="5.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions-test"><i class="fa fa-check"></i><b>5.3</b> Proportions test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-case"><i class="fa fa-check"></i><b>5.3.1</b> One sample case</a></li>
+<li class="chapter" data-level="5.3.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples"><i class="fa fa-check"></i><b>5.3.2</b> More than one sample</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#classical-t-test"><i class="fa fa-check"></i><b>5.4</b> (Classical) t-test</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.4.1</b> One sample t-test</a></li>
@@ -287,6 +291,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.8.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst"><i class="fa fa-check"></i><b>5.8.2</b> Exercise 2 - everything becomes “significant”</a></li>
 <li class="chapter" data-level="5.8.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise3_nhst"><i class="fa fa-check"></i><b>5.8.3</b> Exercise 3 - binomial test</a></li>
 <li class="chapter" data-level="5.8.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst"><i class="fa fa-check"></i><b>5.8.4</b> Exercise 4 - proportions test</a></li>
+<li class="chapter" data-level="5.8.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst"><i class="fa fa-check"></i><b>5.8.5</b> Exercise 5 - proportions test 2</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -328,7 +333,7 @@ proves the hypothesis wrong.</p>
 <li><p><strong>Null Hypothesis <span class="math inline">\(H_0\)</span></strong>: This represents the assumption of some specific effect or no effect at all.
 For example, in a clinical trial comparing two treatments, might state that both treatments have the same effect.
 The alternative ist that one treatment is superior to the other.</p></li>
-<li><p><strong>Alternative Hypothesis (<span class="math inline">\(H_1\)</span>)</strong>: This is the opposing claim to <span class="math inline">\(H_0\)</span>, the logical complement.
+<li><p><strong>Alternative Hypothesis <span class="math inline">\(H_1\)</span></strong>: This is the opposing claim to <span class="math inline">\(H_0\)</span>, the logical complement.
 Example:</p>
 <ul>
 <li><span class="math inline">\(H_0: \theta \le 0.4\)</span></li>
@@ -338,7 +343,7 @@ Example:</p>
 <li><p><strong><span class="math inline">\(p\)</span>-value</strong>: The p-value quantifies the probability of obtaining results as extreme as (or more extreme than)
 the observed data, assuming that <span class="math inline">\(H_0\)</span> is true.
 A smaller <span class="math inline">\(p\)</span>-value indicates stronger evidence against <span class="math inline">\(H_0\)</span>. There are many <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconeptions about p-values</a>.</p></li>
-<li><p><strong>Significance level (<span class="math inline">\(\alpha\)</span>)</strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_1\)</span>.
+<li><p><strong>Significance level <span class="math inline">\(\alpha\)</span></strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_1\)</span>.
 If the <span class="math inline">\(p\)</span>-value is smaller than <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(H_0\)</span> is rejected in favor of <span class="math inline">\(H_1\)</span>.
 Note, that <strong>there is absolutely now special reason to use <span class="math inline">\(\alpha = 0.05\)</span> as a default value</strong>.
 To quote <a href="https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6">Ronald Fisher</a>:
@@ -352,7 +357,7 @@ and <span class="math inline">\(H_1\)</span> (e.g., “The new therapy improves 
 <li><p>Collect data: Perform an experiment or study to gather relevant data.</p></li>
 <li><p>Calculate the test statistic: Compute a value based on the sample data that
 reflects the difference or effect under investigation.</p></li>
-<li><p>Compute the p-Value: Determine the probability of observing the
+<li><p>Compute the <span class="math inline">\(p\)</span>-Value: Determine the probability of observing the
 test statistic (or more extreme values) if <span class="math inline">\(H_0\)</span> is true.</p></li>
 <li><p>Make a Decision: Compare the p-value to the significance level:</p>
 <ul>
@@ -362,13 +367,13 @@ test statistic (or more extreme values) if <span class="math inline">\(H_0\)</sp
 </ul>
 <p><strong>(Some) Limitations of NHST</strong>:</p>
 <ul>
-<li><p><strong>Focus on p-values with hard cut-offs</strong>: Solely relying on p-values can lead to overinterpretation of
+<li><p><strong>Focus on <span class="math inline">\(p\)</span>-values with hard cut-offs</strong>: Solely relying on p-values can lead to overinterpretation of
 results without considering practical significance.</p></li>
 <li><p><strong>Dichotomous thinking</strong>: The decision to “reject” or “fail to reject” <span class="math inline">\(H_0\)</span>
 oversimplifies the complexity of real-world data. This binary thinking
 incentivizes researchers to <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1447512">focus on statistical significance</a>
 rather than real relevance. It happened to me not only once that a colleague
-looked at me with a sad facial expression announcing that the p-value was “not significant”.
+looked at me with a sad facial expression announcing that the <span class="math inline">\(p\)</span>-value was “not significant”.
 This should be not an issue at all. The focus should be on doing useful analyses in the most
 rigorous way possible.</p></li>
 <li><p><strong>Sample size influence</strong>: Large samples can make small, clinically irrelevant
@@ -376,7 +381,7 @@ differences statistically significant. Example: Given an arbitrarily small diffe
 always a sample size that makes the difference “significant”. See <a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst">Exercise 2</a>.</p></li>
 <li><p><strong><a href="https://en.wikipedia.org/wiki/Publication_bias">Publication bias</a></strong>: Many journals tended to publish studies with “significant” results. “Not significant” results
 were often not published. This can lead to a distorted view of the literature.</p></li>
-<li><p><strong><a href="https://de.wikipedia.org/wiki/P-Hacking">p-hacking</a></strong>: In the pursuit for “significant” results
+<li><p><strong><a href="https://de.wikipedia.org/wiki/P-Hacking"><span class="math inline">\(p\)</span>-hacking</a></strong>: In the pursuit for “significant” results
 (which results in publications, which results in tenure), it is natural to do everything to get them.
 This can include data dredging, selective reporting, and other questionable practices.</p></li>
 </ul>
@@ -390,11 +395,18 @@ a more comprehensive understanding of the results.</p>
 <div id="example-in-the-literature" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Example in the literature<a href="null-hypothesis-significance-testing-nhst.html#example-in-the-literature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><span class="math inline">\(p\)</span>-values are omnipresent in the scientific literature. There a rather few papers in our field that do not contain them.
-Here is an example from a recent paper:</p>
+We <strong>do not use <span class="math inline">\(p\)</span>-values in in descriptive tables</strong>
+(see <a href="https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/">here</a> and
+<a href="https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1">here</a>).</p>
+<p>Here is an <a href="https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100">example from the literature</a>.
+Table 2 lists studies and one column is the <span class="math inline">\(p\)</span>-value. Note, that it is not good practice to present <span class="math inline">\(p\)</span>-values
+(if one should use them at all) as dichotomy: <span class="math inline">\(p &lt; 0.05\)</span>. This statement does
+not allow to judge the strength of the evidence against the null hypothesis. Both, <span class="math inline">\(p = 0.00000001\)</span> and <span class="math inline">\(p = 0.049\)</span> would satisfy
+the inequality.</p>
 </div>
 <div id="binomial-test" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Binomial test<a href="null-hypothesis-significance-testing-nhst.html#binomial-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the first chapter, we invented the 1000-researcher experiment. There were already encountered hypothesis tests in disguise.
+<p>In the first chapter, we invented the 1000-researcher experiment. There, we have already encountered hypothesis tests in disguise.
 If we would assume that the probability of a false positive is 0.04,
 we would “expect” 40 false positives. We asked, what is the probability of observing
 137 or more. This is an example of a hypothesis test:</p>
@@ -405,8 +417,8 @@ we would “expect” 40 false positives. We asked, what is the probability of o
 <p>Under <span class="math inline">\(H_0\)</span>, what is the probabilty to see the oberved number of
 false positives (in our case, this is the test statistic) or more?</p>
 <p>The answer was <span class="math inline">\(p = 5.551115 \cdot 10^{-16}\)</span>.</p>
-<p>Any reasonable person would say, that this result did not happen by chance alone and
-therefore concluded, the true, but unknown false positive rate <span class="math inline">\(\theta\)</span> is larger than 0.04.</p>
+<p>A reasonable person would say, that this result did not happen by chance alone and
+therefore conclude, the true, but unknown false positive rate <span class="math inline">\(\theta\)</span> is larger than 0.04.</p>
 <p>Formally, this is called a <strong>(one-sided) <a href="https://en.wikipedia.org/wiki/Binomial_test">binomial test</a></strong>.</p>
 <p>Note, that <strong><span class="math inline">\(H_1\)</span> is the logical complement of <span class="math inline">\(H_0\)</span></strong>.</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="null-hypothesis-significance-testing-nhst.html#cb83-1" tabindex="-1"></a><span class="co"># binomial test</span></span>
@@ -494,7 +506,8 @@ This could be based on previous studies or expert knowledge.</li>
 <h2><span class="header-section-number">5.3</span> Proportions test<a href="null-hypothesis-significance-testing-nhst.html#proportions-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If we are interested in comparing two proportions,
 we can use the <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test">proportions test</a>.</p>
-<p>One sample case:</p>
+<div id="one-sample-case" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> One sample case<a href="null-hypothesis-significance-testing-nhst.html#one-sample-case" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="null-hypothesis-significance-testing-nhst.html#cb89-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">443</span>)</span>
 <span id="cb89-2"><a href="null-hypothesis-significance-testing-nhst.html#cb89-2" tabindex="-1"></a>heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">100</span>,</span>
 <span id="cb89-3"><a href="null-hypothesis-significance-testing-nhst.html#cb89-3" tabindex="-1"></a><span class="at">prob =</span> <span class="fl">0.5</span>) <span class="co"># create a sample with known probability</span></span>
@@ -533,6 +546,37 @@ Under the null hypothesis (in this case <span class="math inline">\(H_0 = 0.5\)<
 the test statistic follows a <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution"><span class="math inline">\(\chi^2\)</span> distribution</a>.</p></li>
 </ul>
 <p>See also <a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst">Exercise 4</a>.</p>
+</div>
+<div id="proportions_test_more_samples" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> More than one sample<a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Example:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="null-hypothesis-significance-testing-nhst.html#cb93-1" tabindex="-1"></a><span class="co"># Data from Fleiss (1981), p. 139.</span></span>
+<span id="cb93-2"><a href="null-hypothesis-significance-testing-nhst.html#cb93-2" tabindex="-1"></a><span class="co"># H0: The null hypothesis is that the four populations from which</span></span>
+<span id="cb93-3"><a href="null-hypothesis-significance-testing-nhst.html#cb93-3" tabindex="-1"></a><span class="co">#     the patients were drawn have the same true proportion of smokers.</span></span>
+<span id="cb93-4"><a href="null-hypothesis-significance-testing-nhst.html#cb93-4" tabindex="-1"></a><span class="co"># H1: The alternative is that this proportion is different in at</span></span>
+<span id="cb93-5"><a href="null-hypothesis-significance-testing-nhst.html#cb93-5" tabindex="-1"></a><span class="co">#     least one of the populations.</span></span>
+<span id="cb93-6"><a href="null-hypothesis-significance-testing-nhst.html#cb93-6" tabindex="-1"></a></span>
+<span id="cb93-7"><a href="null-hypothesis-significance-testing-nhst.html#cb93-7" tabindex="-1"></a>smokers  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">83</span>, <span class="dv">90</span>, <span class="dv">129</span>, <span class="dv">70</span>)</span>
+<span id="cb93-8"><a href="null-hypothesis-significance-testing-nhst.html#cb93-8" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">86</span>, <span class="dv">93</span>, <span class="dv">136</span>, <span class="dv">82</span>)</span>
+<span id="cb93-9"><a href="null-hypothesis-significance-testing-nhst.html#cb93-9" tabindex="-1"></a><span class="fu">prop.test</span>(smokers, patients)</span></code></pre></div>
+<pre><code>## 
+##  4-sample test for equality of proportions without continuity correction
+## 
+## data:  smokers out of patients
+## X-squared = 12.6, df = 3, p-value = 0.005585
+## alternative hypothesis: two.sided
+## sample estimates:
+##    prop 1    prop 2    prop 3    prop 4 
+## 0.9651163 0.9677419 0.9485294 0.8536585</code></pre>
+<ul>
+<li><p><span class="math inline">\(p\)</span>-value <span class="math inline">\(= 0.005585\)</span>. One would argue that this test statistic is unlikely to have come about by chance
+alone and reject the null hypothesis, that all proportions are equal.</p></li>
+<li><p>X-squared = 12.6, df = 3. The test statistic is distributed according to a <span class="math inline">\(\chi^2\)</span> distribution
+with 3 <a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">degrees of freedom</a>.
+See also <a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst">exercise 5</a>.
+Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.</p></li>
+</ul>
+</div>
 </div>
 <div id="classical-t-test" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> (Classical) t-test<a href="null-hypothesis-significance-testing-nhst.html#classical-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -609,6 +653,14 @@ difference is and how small the <span class="math inline">\(\alpha-\)</span> lev
 And plot the p-values on the y-axis and
 the assumed proportion on the x-axis.
 This is called a <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1556735#:~:text=The%20p%2Dvalue%20function%20provides,for%20the%20parameter%20of%20interest.">p-value function</a>.</li>
+</ul>
+</div>
+<div id="exercise5_nhst" class="section level3 hasAnchor" number="5.8.5">
+<h3><span class="header-section-number">5.8.5</span> Exercise 5 - proportions test 2<a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Use the data from the smokers proportions test <a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples">example above</a>.</li>
+<li>Draw a <span class="math inline">\(\chi^2\)</span> distribution with 3 degrees of freedom and calculate the
+probability of observing a value of 12.6 or larger.</li>
 </ul>
 
 </div>

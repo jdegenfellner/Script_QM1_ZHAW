@@ -20,17 +20,18 @@ proves the hypothesis wrong.
 For example, in a clinical trial comparing two treatments, might state that both treatments have the same effect. 
 The alternative ist that one treatment is superior to the other.
 
-- **Alternative Hypothesis ($H_1$)**: This is the opposing claim to $H_0$, the logical complement. 
+- **Alternative Hypothesis $H_1$**: This is the opposing claim to $H_0$, the logical complement. 
 Example: 
    - $H_0: \theta \le 0.4$
    - $H_1: \theta > 0.4$
    - $H_0$ states that the treatment effect is less than or equal to 0.4, while $H_1$ states that the population proportion is greater than 0.4. 
 	
+
 - **$p$-value**: The p-value quantifies the probability of obtaining results as extreme as (or more extreme than) 
 the observed data, assuming that $H_0$ is true. 
 A smaller $p$-value indicates stronger evidence against $H_0$. There are many [misconeptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620).
 
-- **Significance level ($\alpha$)**: Researchers set a threshold to determine whether to reject $H_1$. 
+- **Significance level $\alpha$**: Researchers set a threshold to determine whether to reject $H_1$. 
 If the $p$-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
 Note, that **there is absolutely now special reason to use $\alpha = 0.05$ as a default value**.
 To quote [Ronald Fisher](https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6):
@@ -47,7 +48,7 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 
 - Calculate the test statistic: Compute a value based on the sample data that 
   reflects the difference or effect under investigation.
-- Compute the p-Value: Determine the probability of observing the 
+- Compute the $p$-Value: Determine the probability of observing the 
   test statistic (or more extreme values) if $H_0$ is true.
 - Make a Decision: Compare the p-value to the significance level:
   - If $p < \alpha$: Reject $H_0$; evidence suggests $H_1$ is true.
@@ -55,14 +56,14 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 
 **(Some) Limitations of NHST**: 
 
-- **Focus on p-values with hard cut-offs**: Solely relying on p-values can lead to overinterpretation of
+- **Focus on $p$-values with hard cut-offs**: Solely relying on p-values can lead to overinterpretation of
   results without considering practical significance.
 	
 -	**Dichotomous thinking**: The decision to “reject” or “fail to reject” $H_0$ 
   oversimplifies the complexity of real-world data. This binary thinking
   incentivizes researchers to [focus on statistical significance](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1447512) 
   rather than real relevance. It happened to me not only once that a colleague 
-  looked at me with a sad facial expression announcing that the p-value was "not significant".
+  looked at me with a sad facial expression announcing that the $p$-value was "not significant".
   This should be not an issue at all. The focus should be on doing useful analyses in the most
   rigorous way possible.
 	
@@ -73,7 +74,7 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 - **[Publication bias](https://en.wikipedia.org/wiki/Publication_bias)**: Many journals tended to publish studies with "significant" results. "Not significant" results
   were often not published. This can lead to a distorted view of the literature.
 
-- **[p-hacking](https://de.wikipedia.org/wiki/P-Hacking)**: In the pursuit for "significant" results 
+- **[$p$-hacking](https://de.wikipedia.org/wiki/P-Hacking)**: In the pursuit for "significant" results 
 (which results in publications, which results in tenure), it is natural to do everything to get them. 
   This can include data dredging, selective reporting, and other questionable practices.
 
@@ -89,16 +90,23 @@ This [Review of NHST](https://f1000research.com/articles/4-621/v3) or
 This [video](https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal) could also help to understand the basic concepts.
 
 
-
 ## Example in the literature
 
 $p$-values are omnipresent in the scientific literature. There a rather few papers in our field that do not contain them. 
-Here is an example from a recent paper:
+We **do not use $p$-values in in descriptive tables** 
+(see [here](https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/) and 
+[here](https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1)).
+
+Here is an [example from the literature](https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100).
+Table 2 lists studies and one column is the $p$-value. Note, that it is not good practice to present $p$-values 
+(if one should use them at all) as dichotomy: $p < 0.05$. This statement does 
+not allow to judge the strength of the evidence against the null hypothesis. Both, $p = 0.00000001$ and $p = 0.049$ would satisfy
+the inequality.
 
 
 ## Binomial test
 
-In the first chapter, we invented the 1000-researcher experiment. There were already encountered hypothesis tests in disguise.
+In the first chapter, we invented the 1000-researcher experiment. There, we have already encountered hypothesis tests in disguise.
 If we would assume that the probability of a false positive is 0.04, 
 we would "expect" 40 false positives. We asked, what is the probability of observing
 137 or more. This is an example of a hypothesis test:
@@ -111,8 +119,8 @@ false positives (in our case, this is the test statistic) or more?
 
 The answer was $p = 5.551115 \cdot 10^{-16}$.
 
-Any reasonable person would say, that this result did not happen by chance alone and 
-therefore concluded, the true, but unknown false positive rate $\theta$ is larger than 0.04.
+A reasonable person would say, that this result did not happen by chance alone and 
+therefore conclude, the true, but unknown false positive rate $\theta$ is larger than 0.04.
 
 Formally, this is called a **(one-sided) [binomial test](https://en.wikipedia.org/wiki/Binomial_test)**.
 
@@ -184,7 +192,7 @@ This could be based on previous studies or expert knowledge.
 If we are interested in comparing two proportions, 
 we can use the [proportions test](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test).
 
-One sample case:
+### One sample case
 ```{r}
 set.seed(443)
 heads <- rbinom(1, size = 100,
@@ -205,6 +213,30 @@ Under the null hypothesis (in this case $H_0 = 0.5$),
 the test statistic follows a [$\chi^2$ distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution).
 
 See also [Exercise 4](#exercise4_nhst).
+
+### More than one sample {#proportions_test_more_samples}
+
+Example:
+
+```{r}
+# Data from Fleiss (1981), p. 139.
+# H0: The null hypothesis is that the four populations from which
+#     the patients were drawn have the same true proportion of smokers.
+# H1: The alternative is that this proportion is different in at
+#     least one of the populations.
+
+smokers  <- c(83, 90, 129, 70)
+patients <- c(86, 93, 136, 82)
+prop.test(smokers, patients)
+```
+
+- $p$-value $= 0.005585$. One would argue that this test statistic is unlikely to have come about by chance 
+alone and reject the null hypothesis, that all proportions are equal.
+
+- X-squared = 12.6, df = 3. The test statistic is distributed according to a $\chi^2$ distribution 
+with 3 [degrees of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)).
+See also [exercise 5](#exercise5_nhst). 
+Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.
 
 ## (Classical) t-test
 ...........
@@ -274,3 +306,8 @@ difference is and how small the $\alpha-$ level is.
   And plot the p-values on the y-axis and 
   the assumed proportion on the x-axis. 
   This is called a [p-value function](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1556735#:~:text=The%20p%2Dvalue%20function%20provides,for%20the%20parameter%20of%20interest.).
+
+### Exercise 5 - proportions test 2 {#exercise5_nhst}
+- Use the data from the smokers proportions test [example above](#proportions_test_more_samples).
+- Draw a $\chi^2$ distribution with 3 degrees of freedom and calculate the 
+  probability of observing a value of 12.6 or larger.
