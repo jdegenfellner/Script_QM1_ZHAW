@@ -28,8 +28,8 @@ cat("Total probability sum over a large range:", total_probability_sum, "\n")
 
 # Questions:------------
 
-# 1) Create sufficiently many random numbers (sample) from the MSc-ZHAW-distribution 
-# (see above) and see if you can produce values outside of± 10.
+# 1) Create sufficiently many random numbers (sample) from the MSc-ZHAW-distribution ---------
+# (see above) and see if you can produce values outside of ± 6.
 sample_from_distribution <- function() {
   # Create a large set of possible X values
   X_values <- -1000:1000
@@ -54,16 +54,16 @@ while (sample_value >= -6 && sample_value <= 6) {
   sample_value <- sample_from_distribution()
   counter <- counter + 1
 }
-toc() # 6s
+toc() # 6s/38s/...
 
 # Output the results
-cat("Value found outside [-6, 6]:", sample_value, "\n")
-cat("Number of iterations to find the value:", counter, "\n")
+cat("Value found outside [-6, 6]:", sample_value, "\n") # -7
+cat("Number of iterations to find the value:", counter, "\n") # Number of iterations to find the value: 46065 
 
 
 
 
-# 2) What is the mode of this distribution and how could we estimate it from the sample?
+# 2) What is the mode of this distribution and how could we estimate it from the sample?--------
 # Define the probability function based on the given distribution
 P <- function(X) {
   if (X == 0) {
@@ -80,7 +80,7 @@ X_values <- -1000:1000
 probabilities <- sapply(X_values, P)
 # Normalize the probabilities so they sum to 1
 probabilities <- probabilities / sum(probabilities)
-sum(probabilities) # 1
+sum(probabilities) # 1 check
 
 sample_values <- sample(X_values, size = 10000, prob = probabilities, replace = TRUE)
 table(sample_values)
@@ -94,11 +94,14 @@ interquantile_range # -1 to 1
 sum(sample_values >= -1 & sample_values <= 1)/length(sample_values) # 0.5
 # As we can see, the heavy concentration of values on -1 and 1 makes this interpretation difficult.
 # For a continuous distribution, this problem would likely not persist.
+
 # See definition of https://en.wikipedia.org/wiki/Quantile
-# Example: 25% quantile
-sum(sapply(-1000:-2, P)) # = 0.0833; P(X < 0.25)
-sum(sapply(-1000:-1, P)) # = 0.04166 P(X <= 0.25)
-# This fulfills the defintion of the 25% quantile!
+# Example: 25% quantile per hand
+sum(sapply(-1000:-2, P)) # = 0.0833; P(X < -1)
+sum(sapply(-1000:-1, P)) # = 0.4166; P(X <= -1)
+sum(sapply(-1000:0, P)) # 0.5833333; P(X <= 0)
+# -1 fulfills the definition of the 25% quantile since 
+# P(X < -1) <= 0.25 AND P(X <= -1) >= 0.25
 
 # The single probability masses at -1 and 1 are well estimated:
 sum(sample_values == -1)/length(sample_values) # 0.3278
