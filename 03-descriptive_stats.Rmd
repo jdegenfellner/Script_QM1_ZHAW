@@ -18,7 +18,7 @@ We **summarize** data to make them **more easily digestable** for us humans to a
   [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) (root of the variance), 
   [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range#:~:text=The%20IQR%20of%20a%20set,a%20median%20calculated%20as%20follows.&text=The%20second%20quartile%20Q2%20is%20the%20same%20as%20the%20ordinary%20median.) 
   or just the [range](https://en.wikipedia.org/wiki/Range_(statistics)); or even [Gini's mean difference](https://www.dss.uniroma1.it/RePec/mtn/articoli/2003-2-8.pdf).
-- Are there any **outliers** (rare data points that are far away from the rest [@westfall2020, p. 405].) and why?
+- Are there any **outliers** (rare data points that are far away from the rest [@westfall2020, p. 405] and why?
   This is a bit more complicated.
 
 ## Example: Descriptive statistics in health sciences {#example_study1_physio}
@@ -43,7 +43,7 @@ We can either imagine an infinitely large population or a finite one (e.g. popul
 
 Often, variables in a study are (approximately) normally distributed. 
 We can then efficiently summarize the variable with its mean and standard deviation (location and scale parameter) as is done 
-in the paper for *Age* in years for instance. We do not want to present p-values in such an overview table since we merely *describe* data instead of
+in the paper for *Age* in years for instance. We do not want to present $p$-values in such an overview table since we merely *describe* data instead of
 making inferences about the population or the DGP.
 It is by no means given that *age* has to be normally distributed in our sample. We could easily have a sample with many young people and few elderly ones.
 This would result in a (positively) [*skewed*](https://en.wikipedia.org/wiki/Skewness) distribution. Having many elderly people and few young ones would 
@@ -127,8 +127,9 @@ sqrt(1 / (length(x) - 1) * sum((x - mean(x))^2))
 shapiro.test(x)
 ```
 
-Firstly, the histogram looks rather differently when using a different [seed](https://r-coder.com/set-seed-r/). Secondly, we would probability
-not be able to tell if the data stems from a normal distribution. Thirdly, the sample mean and standard deviation
+**Firstly**, the histogram looks rather differently when using a different [seed](https://r-coder.com/set-seed-r/). 
+**Secondly**, we would probability
+not be able to tell if the data stems from a normal distribution. **Thirdly**, the sample mean and standard deviation
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
 the Shapiro test would not reject the null hypothesis of normality in this case.
 
@@ -235,12 +236,21 @@ where:
 
 - \( \sigma_X \) and \( \sigma_Y \) are the population standard deviations of \( X \) and \( Y \), respectively.
 
-
 and 
 
 $$r = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum (X_i - \bar{X})^2 \sum (Y_i - \bar{Y})^2}}$$ 
 
 for the sample estimate.
+
+We can interpret the expression $\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$
+
+Without loss of generality let's assume that $\text{Cov}(X, Y) > 0$:
+
+- $\rho$ is near zero, if the covariance is near zero compared to $\sigma_X \sigma_Y$.
+
+- For fixed $\sigma_X \sigma_Y$, the correlation is larger, the larger the covariance $\text{Cov}(X, Y)$ is.
+
+- For fixed covariance $\text{Cov}(X, Y)$, the correlation is larger, the smaller $\sigma_X$ or $\sigma_Y$ (or their product) are.
 
 **Remember: We use $r$ to estimate $\rho$ using the sample.**
 
@@ -329,8 +339,8 @@ Let's again visit the previous [paper](https://bmjopen.bmj.com/content/9/4/e0233
 In the results, correlations are presented in a dichotomous way with regards to p-values, 
 which should be [avoided](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913). 
 We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be "significant",
-especially, if one decides to use an arbitrary threshold for the p-values like $0.05$. There is not much information
-in this fact. I would argue that all p-values for such large sample sizes and larger correlations do not carry much information.
+especially, if one decides to use an arbitrary threshold for the $p$-values like $0.05$. There is not much information
+in this fact. I would argue that all $p$-values for such large sample sizes and larger correlations do not carry much information.
 See also [Exercise 5](#exercise5_descriptive_stats).
 
 
@@ -341,8 +351,8 @@ See also [Exercise 5](#exercise5_descriptive_stats).
 [random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&ab_channel=VeryNormal) which is realised when 
 the $X_i$ have materialized into the $x_i$) and sample standard deviation $s$. 
 
-The sample mean is not robust against outliers. A single large value can distort the mean arbitrarily much.
-Hence, the correlation coefficient is not robust against outliers. Let's see this in action:
+The **sample mean is not robust against outliers**. A single large value can distort the mean arbitrarily much.
+Hence, **the correlation coefficient is not robust against outliers**. Let's see this in action:
 ```{r}
 # Load necessary libraries
 library(ggplot2)
@@ -357,7 +367,8 @@ rho <- 0.75  # Desired correlation
 
 # Generate bivariate normal data with specified correlation
 x <- rnorm(n)
-y <- rho * x + sqrt(1 - rho^2) * rnorm(n)
+y <- rho * x + sqrt(1 - rho^2) * rnorm(n) 
+# see e.g. https://www.probabilitycourse.com/chapter5/5_3_2_bivariate_normal_dist.php
 
 # Store original data
 data_original <- data.frame(x = x, y = y)
