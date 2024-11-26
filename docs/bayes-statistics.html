@@ -254,7 +254,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
 <li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian <span class="math inline">\(t\)</span>-test</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
+<li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian-updating"><i class="fa fa-check"></i><b>4.6</b> Bayesian updating</a></li>
 <li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#more-complex-parameter-spaces"><i class="fa fa-check"></i><b>4.7</b> More complex parameter spaces</a></li>
@@ -529,7 +529,7 @@ will discuss in the next chapter.</p>
 </div>
 <div id="highest-density-intervals-hdi" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Highest Density Intervals (HDI)<a href="bayes-statistics.html#highest-density-intervals-hdi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Apart from taking the peak of the posterior distribution,
+<p>Apart from taking the mode or mean of the posterior distribution,
 another way to <strong>summarize a posterior distribution</strong> is by using
 the <strong>highest density interval (HDI)</strong>.
 The HDI identifies the most credible range of values in a distribution while
@@ -577,22 +577,25 @@ but unknown</strong> parameter of interest in a certain percent of times (e.g., 
 <p>Above, we looked at some aspects of estimating a parameter (proportion) using Bayes’ theorem.
 We can answer all sorts of other questions using this paradigm. In classical statistics,
 one often wants to know if two groups differ with respect to their true means.
-This answer is typically given by the famous <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a>
-(<a href="https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf">small “t”</a> please).
-I encourage you to read the short <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#History">history</a> of the t-test.</p>
-<p>For didactic reasons, we will look at the Baysian version of the t-test first.
+This answer is typically given by the famous <a href="https://en.wikipedia.org/wiki/Student%27s_t-test"><span class="math inline">\(t\)</span>-test</a>
+(<a href="https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf">small “<span class="math inline">\(t\)</span>”</a> please).
+I encourage you to read the short <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#History">history</a> of the <span class="math inline">\(t\)</span>-test.</p>
+<p>For didactic reasons, we will look at the Baysian version of the <span class="math inline">\(t\)</span>-test first.
 We want to try to view statistics as more than just a
 <a href="https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html">cookbook of recipes</a>.
 Unfortunately, very often it is taught that way and the impression is given that statistics is
 just a set of tools to apply in a certain order. In my humble opinion, this is not the case. Statistics
 and model building is a creative process and - if you want to go so far - an art form.
 <strong>Statistics is difficult and beautiful - in that order</strong>.</p>
-<p>Unfortunately, it is not completely trivial to apply the Bayesian t-test, as opposte to the frequentist t-test,
+<p>Unfortunately, it is not completely trivial to apply the Bayesian <span class="math inline">\(t\)</span>-test, as opposte to the frequentist <span class="math inline">\(t\)</span>-test,
 which constitutes one line of code in R.</p>
 <p>We’ll use the not anymore maintained R package <a href="https://cran.r-project.org/web/packages/BEST/index.html">BEST</a>
-for a nice illustration. Later, we will use more up-to-date packages like <a href="https://cran.r-project.org/web/packages/brms/index.html">brms</a>.</p>
+for a nice illustration. Later, we will use more up-to-date packages like <a href="https://cran.r-project.org/web/packages/brms/index.html">brms</a>
+or <a href="https://github.com/rmcelreath/rethinking">rethinking</a> for modeling.</p>
 <div id="example---bayesian-t-test" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Example - Bayesian t-test<a href="bayes-statistics.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.5.1</span> Example - Bayesian <span class="math inline">\(t\)</span>-test<a href="bayes-statistics.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For an explanation of the statistical model behind the Bayesian <span class="math inline">\(t\)</span>-test,
+visit <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">Kruschke</a>, Figure 2.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bayes-statistics.html#cb63-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="bayes-statistics.html#cb65-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
@@ -629,8 +632,9 @@ For this, we will apply the R function <code>BESTmcmc</code> from the package <c
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="bayes-statistics.html#cb77-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
 <span id="cb77-2"><a href="bayes-statistics.html#cb77-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<p><code>BESTmcmc</code> is a function that uses a Markov Chain Monte Carlo (MCMC)
-algorithm to estimate the posterior distribution of the difference between the means of two groups.
+<p><code>BESTmcmc</code> is a function that uses a <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>
+algorithm to estimate the <strong>posterior distribution of the difference between the means of two groups</strong>
+(the above is not just a histogram of differences).
 We do not care about these details for now, but try to interpret what we see.</p>
 <p>The plot shows the posterior distribution of the difference between the means of the two groups.</p>
 <ul>
@@ -641,8 +645,8 @@ chose delta_0 = 0, which means that we want to know if the difference between th
 different from zero.</p></li>
 <li><p>The parameter <code>ROPE = d_0 + c(-1, 1) * a</code> (<span class="math inline">\(= -20\)</span> to <span class="math inline">\(20\)</span>) defines the region of practical equivalence (ROPE).
 In our case, we chose a = 20. This means that we consider differences between the means of the two groups
-of <span class="math inline">\(\pm 20\)</span> as practically equivalent. In practice, you would choose a value that is meaningful for your
-particular research question. For instance, in a planned experiment, we are interested in changes
+of <span class="math inline">\(\pm 20\)</span> as practically equivalent. In practice, <strong>you would choose a value that is meaningful for your
+particular research question</strong>. For instance, in a planned experiment, we are interested in changes
 on the Roland Morris Disability Questionnaire (RMDQ) of 2 points.
 We would then choose a value of 2 for the ROPE, since only a change beyond this value would be
 clinically relevant for the patient.</p></li>
@@ -650,25 +654,25 @@ clinically relevant for the patient.</p></li>
 <li><p>The 93% HDI for the difference between the means is shown in the graph, hence given
 the prior information and the observed data, we can be 93% sure that the
 difference between the means is in this interval. The HDI changes everytime the code of this
-script is run, since it’s simulation based.</p></li>
+script is run since it’s simulation based.</p></li>
 </ul>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.633 130.694 129.272   93   37.5386 231.04                  
-## mu2         6.514   5.986   3.374   93  -83.6128  95.96                  
-## muDiff    124.120 124.283 121.194   93   -8.9365 255.96       0      95.6
-## sigma1    139.294 128.251 111.684   93   67.9828 226.30                  
-## sigma2    129.983 119.234 105.487   93   61.9526 210.76                  
-## sigmaDiff   9.311   8.466   5.801   93 -117.4143 136.11       0      56.4
-## nu         33.970  25.497  10.294   93    1.1116  82.91                  
-## log10nu     1.374   1.406   1.506   93    0.6592   2.06                  
-## effSz       0.964   0.954   0.935   93   -0.0625   2.02       0      95.6
+<pre><code>##              mean  median   mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.790 131.072 133.53   93   32.8827 228.54                  
+## mu2         6.453   5.917   4.51   93  -83.2517  96.82                  
+## muDiff    124.338 124.708 121.24   93  -12.3176 253.67       0      95.5
+## sigma1    139.505 128.399 111.77   93   67.9888 227.55                  
+## sigma2    130.163 119.621 102.44   93   60.9150 208.90                  
+## sigmaDiff   9.342   8.787   9.19   93 -112.7059 141.66       0      56.3
+## nu         34.109  25.483  10.00   93    1.2368  83.14                  
+## log10nu     1.375   1.406   1.53   93    0.6623   2.06                  
+## effSz       0.965   0.957   1.01   93   -0.0954   1.99       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.56
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -677,7 +681,8 @@ script is run, since it’s simulation based.</p></li>
 ## effSz</code></pre>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
-~95%, the difference between the means is greater than 0.</p>
+~95%, the difference between the means is greater than 0. This is nice but not the whole story.
+The true difference can by greater than 0, but still rather small and clinically irrelevant.</p>
 <p>Would we conclude that the two groups differ in their means?
 According to <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Kruschke</a> (p.336):</p>
 <p><strong>“A parameter value is declared to be not credible,
@@ -686,8 +691,8 @@ or rejected, if its entire ROPE lies outside the highest density interval
 <p>This is not the case here. We would not conclude, that the means between the groups differ.
 One could argue, that this rule seems rather strict considering, that ~95% of the
 posterior distribution of the differences is greater than 0.</p>
-<p>As opposed to the frequentist t-test, we can also <strong>affirm the null hypothesis</strong>,
-that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.</p>
+<p>As opposed to the frequentist <span class="math inline">\(t\)</span>-test, we can also <strong>affirm the null hypothesis</strong>,
+that the means in the two groups are equal. This is a nice feature of the Bayesian <span class="math inline">\(t\)</span>-test.</p>
 <p><strong>“A parameter value is declared to be accepted for practical purposes if that value’s
 ROPE completely contains the X% HDI of the posterior of that parameter.”</strong></p>
 <p>This is also not the case here. The 93% HDI lies outside the ROPE to a large part.</p>
@@ -696,7 +701,7 @@ credible values are practically equivalent to the null value according to the
 chosen ROPE, not necessarily that the null value has high credibility.”
 (<a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Kruschke</a>, p.337)</p>
 <p>We are above in the situation, that we cannot make a clear decision.
-The ROPE does not contain the 93% HDI, and the 93% HDI is not
+The ROPE does not fully contain the 93% HDI, and the 93% HDI is not
 completely outside the ROPE.</p>
 <p><strong>“When the HDI and ROPE overlap, with the ROPE not completely
 containing the HDI, then neither of the above decision rules is satisfied,
@@ -721,7 +726,7 @@ The true probability for heads in a coin toss is <span class="math inline">\(\th
 We throw a coin 100 times and we start with a uniform prior distribution, i.e.,
 every value between 0 and 1 is equally likely at the beginning.
 Everytime a coin is tossed, the prior distribution is updated with the new data.
-The posterior distribution is the prior for the next coin toss.
+The posterior distribution is the prior for the next coin toss et cetera.
 One can see that we are converging to the “truth” (which is normally not known).</p>
 <p>Code can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R">here.</a></p>
 <pre><code>## Linking to ImageMagick 6.9.12.93
@@ -754,8 +759,8 @@ using two different starting points. The opinions seem to converge.</p>
 <h2><span class="header-section-number">4.7</span> More complex parameter spaces<a href="bayes-statistics.html#more-complex-parameter-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Above we dealt with the rather simple case of one parameter (<span class="math inline">\(\theta\)</span>), the proportion of defective products or the fairness of a coin.
 Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
-exactly. We are mainly interested in simulation-based results, since we are practitioners.</p>
-<p>In the Baysian t-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+exactly. <strong>We are mainly interested in simulation-based results, since we are practitioners</strong>.</p>
+<p>In the Baysian <span class="math inline">\(t\)</span>-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
 estimated (see Figure 2 <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">here</a>).
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently.
@@ -774,14 +779,14 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 <li><p><strong>Full probability distributions</strong>: We get a full probability distribution for the parameter of interest.</p></li>
 <li><p><strong>Flexibility</strong>: We can incorporate prior knowledge into our analysis.</p></li>
 <li><p><strong>Interpretability</strong>: We can make statements about the probability of certain parameter values.</p></li>
-<li><p><strong>No p-values</strong>: We do not need to rely on p-values and NHST (Null Hypothesis Significance Testing).
+<li><p><strong>No <span class="math inline">\(p\)</span>-values</strong>: We do not need to rely on <span class="math inline">\(p\)</span>-values and NHST (Null Hypothesis Significance Testing).
 John Kruschke points out many problems with
 NHST in his <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">book</a> and
-<a href="https://psycnet.apa.org/record/2012-18082-001">article</a>. It seems that for many practinioners, p-values are
+<a href="https://psycnet.apa.org/record/2012-18082-001">article</a>. It seems that for many practinioners, <span class="math inline">\(p\)</span>-values are
 hard to understand and interpret correctly. There are many
-<a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconceptions about p-values</a>.
+<a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconceptions about <span class="math inline">\(p\)</span>-values</a>.
 And one should definitely
-<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">move away a dichotomous thinking of “significant” and “non-significant”</a> results.</p></li>
+<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">move away from dichotomous thinking of “significant” and “non-significant”</a> results.</p></li>
 </ul>
 </div>
 <div id="some-disadvantages" class="section level3 hasAnchor" number="4.8.2">
@@ -793,8 +798,7 @@ are often estimated within fractions of a second.</p></li>
 <li><p><strong>Barriers to entry</strong>: Statistics courses and textbooks often focus on frequentist statistics, as well as many
 sofware packages lean more towards frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
 When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.</p></li>
-<li><p><strong>Subjectivity</strong>: The choice of the prior distribution can be subjective.
-There is also the question which prior to choose.</p></li>
+<li><p><strong>Subjectivity</strong>: The choice of the prior distribution can be subjective.</p></li>
 </ul>
 </div>
 </div>

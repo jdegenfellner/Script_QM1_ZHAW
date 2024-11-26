@@ -613,7 +613,7 @@ will discuss in the next chapter.
 
 ## Highest Density Intervals (HDI)
 
-Apart from taking the peak of the posterior distribution, 
+Apart from taking the mode or mean of the posterior distribution, 
 another way to **summarize a posterior distribution** is by using 
 the **highest density interval (HDI)**. 
 The HDI identifies the most credible range of values in a distribution while 
@@ -750,11 +750,11 @@ but unknown** parameter of interest in a certain percent of times (e.g., 92%), w
 Above, we looked at some aspects of estimating a parameter (proportion) using Bayes' theorem.
 We can answer all sorts of other questions using this paradigm. In classical statistics,
 one often wants to know if two groups differ with respect to their true means. 
-This answer is typically given by the famous [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test) 
-([small "t"](https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf) please).
-I encourage you to read the short [history](https://en.wikipedia.org/wiki/Student%27s_t-test#History) of the t-test.
+This answer is typically given by the famous [$t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test) 
+([small "$t$"](https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf) please).
+I encourage you to read the short [history](https://en.wikipedia.org/wiki/Student%27s_t-test#History) of the $t$-test.
 
-For didactic reasons, we will look at the Baysian version of the t-test first.
+For didactic reasons, we will look at the Baysian version of the $t$-test first.
 We want to try to view statistics as more than just a 
 [cookbook of recipes](https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html). 
 Unfortunately, very often it is taught that way and the impression is given that statistics is 
@@ -762,13 +762,17 @@ just a set of tools to apply in a certain order. In my humble opinion, this is n
 and model building is a creative process and - if you want to go so far - an art form.
 **Statistics is difficult and beautiful - in that order**.
 
-Unfortunately, it is not completely trivial to apply the Bayesian t-test, as opposte to the frequentist t-test,
+Unfortunately, it is not completely trivial to apply the Bayesian $t$-test, as opposte to the frequentist $t$-test,
 which constitutes one line of code in R.
 
 We'll use the not anymore maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
-for a nice illustration. Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html).
+for a nice illustration. Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html)
+or [rethinking](https://github.com/rmcelreath/rethinking) for modeling.
 
-### Example - Bayesian t-test
+### Example - Bayesian $t$-test
+
+For an explanation of the statistical model behind the Bayesian $t$-test, 
+visit [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf), Figure 2.
 
 ```{r, echo=TRUE}
 (y1 <- c(-.5, 0, 1.2, 1.2, 1.2, 1.9, 2.4, 3) * 100)
@@ -803,8 +807,9 @@ plot(BESTout, which = "mean", compVal = d_0,
      ROPE = d_0 + c(-1, 1) * a, showCurve = FALSE, credMass = 0.93)
 ```
 
-`BESTmcmc` is a function that uses a Markov Chain Monte Carlo (MCMC) 
-algorithm to estimate the posterior distribution of the difference between the means of two groups.
+`BESTmcmc` is a function that uses a [Markov Chain Monte Carlo (MCMC)](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) 
+algorithm to estimate the **posterior distribution of the difference between the means of two groups** 
+(the above is not just a histogram of differences).
 We do not care about these details for now, but try to interpret what we see.
 
 The plot shows the posterior distribution of the difference between the means of the two groups.
@@ -818,8 +823,8 @@ different from zero.
 
 - The parameter `ROPE = d_0 + c(-1, 1) * a` ($= -20$ to $20$) defines the region of practical equivalence (ROPE).
 In our case, we chose a = 20. This means that we consider differences between the means of the two groups
-of $\pm 20$ as practically equivalent. In practice, you would choose a value that is meaningful for your
-particular research question. For instance, in a planned experiment, we are interested in changes
+of $\pm 20$ as practically equivalent. In practice, **you would choose a value that is meaningful for your
+particular research question**. For instance, in a planned experiment, we are interested in changes
 on the Roland Morris Disability Questionnaire (RMDQ) of 2 points. 
 We would then choose a value of 2 for the ROPE, since only a change beyond this value would be
 clinically relevant for the patient. 
@@ -829,7 +834,7 @@ clinically relevant for the patient.
 - The 93% HDI for the difference between the means is shown in the graph, hence given 
 the prior information and the observed data, we can be 93% sure that the 
 difference between the means is in this interval. The HDI changes everytime the code of this 
-script is run, since it's simulation based.
+script is run since it's simulation based.
 
 We can do more:
 ```{r, echo=TRUE}
@@ -839,7 +844,8 @@ summary(BESTout, ROPEm = d_0 + c(-1, 1) * a, compValm = 0,
 
 If you look at the row "muDiff" and the column "%>compVal". This is the percentage 
 of the posterior distribution that is greater than 0. We can say, with a probability of 
-~95%, the difference between the means is greater than 0. 
+~95%, the difference between the means is greater than 0. This is nice but not the whole story.
+The true difference can by greater than 0, but still rather small and clinically irrelevant.
 
 Would we conclude that the two groups differ in their means?
 According to [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) (p.336): 
@@ -852,8 +858,8 @@ This is not the case here. We would not conclude, that the means between the gro
 One could argue, that this rule seems rather strict considering, that ~95% of the 
 posterior distribution of the differences is greater than 0.
 
-As opposed to the frequentist t-test, we can also **affirm the null hypothesis**, 
-that the means in the two groups are equal. This is a nice feature of the Bayesian t-test.
+As opposed to the frequentist $t$-test, we can also **affirm the null hypothesis**, 
+that the means in the two groups are equal. This is a nice feature of the Bayesian $t$-test.
 
 **"A parameter value is declared to be accepted for practical purposes if that value’s 
 ROPE completely contains the X% HDI of the posterior of that parameter."**
@@ -867,7 +873,7 @@ chosen ROPE, not necessarily that the null value has high credibility."
 
 
 We are above in the situation, that we cannot make a clear decision. 
-The ROPE does not contain the 93% HDI, and the 93% HDI is not 
+The ROPE does not fully contain the 93% HDI, and the 93% HDI is not 
 completely outside the ROPE.
 
 **“When the HDI and ROPE overlap, with the ROPE not completely 
@@ -896,7 +902,7 @@ The true probability for heads in a coin toss is $\theta = 0.77$.
 We throw a coin 100 times and we start with a uniform prior distribution, i.e., 
 every value between 0 and 1 is equally likely at the beginning.
 Everytime a coin is tossed, the prior distribution is updated with the new data. 
-The posterior distribution is the prior for the next coin toss.
+The posterior distribution is the prior for the next coin toss et cetera.
 One can see that we are converging to the "truth" (which is normally not known).
 
 Code can be found [here.](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
@@ -916,9 +922,9 @@ using two different starting points. The opinions seem to converge.
 
 Above we dealt with the rather simple case of one parameter ($\theta$), the proportion of defective products or the fairness of a coin.
 Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
-exactly. We are mainly interested in simulation-based results, since we are practitioners. 
+exactly. **We are mainly interested in simulation-based results, since we are practitioners**. 
 
-In the Baysian t-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+In the Baysian $t$-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
 estimated (see Figure 2 [here](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf)). 
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently. 
@@ -939,14 +945,14 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 
 - **Interpretability**: We can make statements about the probability of certain parameter values.
 
-- **No p-values**: We do not need to rely on p-values and NHST (Null Hypothesis Significance Testing). 
+- **No $p$-values**: We do not need to rely on $p$-values and NHST (Null Hypothesis Significance Testing). 
 John Kruschke points out many problems with 
 NHST in his [book](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) and
- [article](https://psycnet.apa.org/record/2012-18082-001). It seems that for many practinioners, p-values are
+ [article](https://psycnet.apa.org/record/2012-18082-001). It seems that for many practinioners, $p$-values are
  hard to understand and interpret correctly. There are many 
- [misconceptions about p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620). 
+ [misconceptions about $p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620). 
  And one should definitely 
- [move away a dichotomous thinking of "significant" and "non-significant"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) results.
+ [move away from dichotomous thinking of "significant" and "non-significant"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) results.
 
 ### (Some) Disadvantages
 - **Computational complexity**: Calculating the posterior distribution can be computationally intensive. 
@@ -957,8 +963,7 @@ are often estimated within fractions of a second.
 sofware packages lean more towards frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
 When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.
 
-- **Subjectivity**: The choice of the prior distribution can be subjective. 
-There is also the question which prior to choose.
+- **Subjectivity**: The choice of the prior distribution can be subjective.
 
 
 
