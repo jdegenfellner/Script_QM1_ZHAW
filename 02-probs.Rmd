@@ -486,7 +486,7 @@ You may want to read this excellent [article](https://journals.plos.org/plosmedi
 **The fifth question** [above](#Questions_about_the_1000-researcher_experiment)
 asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) and related to the previous question. 
 If you test many hypotheses, you will find some "significant" results by chance alone.
-One could also call the practice of testing many hypotheses to find "significant" ones [p-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
+One could also call the practice of testing many hypotheses to find "significant" ones [$p$-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
 If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of p-values and 
@@ -617,7 +617,7 @@ What is the probability that the treatment effect is between x and y points on s
 In all such cases, probability theory is the established tool to answer questions that are afflicted with uncertainty. Would there be no variation in results/effects, 
 we would probably argue differently. In our world, probability theory is the tool to **quantify uncertainty**.
 
-We can always ask ourselves: Where is this entity (proportion, effect, etc.) with which frequency/probability?
+We can always ask ourselves: **Where is this entity (proportion, effect, etc.) with which frequency/probability**?
 
 ### Discrete vs. continuous probability distributions {#discrete_vs_continuous_probability_distributions}
 As one of the most prominent examples of a discrete distribution, we have already seen 
@@ -627,16 +627,23 @@ where you only throw the coin once or let one researcher conduct the experiment.
 
 As an example of a continuous distribution we have mentioned the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) above. 
 It is the most important distribution in statistics for reasons that become increasingly clear as we go along. 
+
 One of them is the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) which we have already mentioned in the 
 introduction slides. Feel free to watch this [video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&t=28s&ab_channel=3Blue1Brown). 
-The theorem states that, under appropriate conditions, the distribution of a normalized version of the sample 
-mean ($\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$) converges to a standard normal distribution. 
+
+The theorem states that, under appropriate conditions, the distribution of a normalized version of the **sample 
+mean** 
+
+$$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$$ 
+
+**converges to a standard normal distribution**. 
 By this theorem, we can link **any** distribution to the normal distribution.
 
 Discrete or continuous, the **goal** is the same: We want to now **where** the realization 
 of my **[random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)** 
-lands **with what probability** when I do the experiment?
-How often will I get heads?
+lands **with what probability** when I do the experiment.
+
+- How often will I get heads?
 
 - How often will the researcher find an effect?
 
@@ -681,7 +688,8 @@ $$\sum_{i} \mathbb{P}(X = x_i) = 1,$$
 
 where $X$ ist the [random variable]((https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)) (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
-We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), we'll call it the MSc-ZHAW-distribution:
+We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), 
+we'll call it the **MSc-ZHAW-distribution**:
 
 Let $X \in \mathbb{Z}$. Every whole number gets the following probability:
 $\mathbb{P}(X=0) = 0.1$ and for $x_i \neq 0$: $\mathbb{P}(X = x_i) = 0.2^{|x_i|}$. 

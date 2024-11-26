@@ -104,5 +104,5 @@ sum(sapply(-1000:0, P)) # 0.5833333; P(X <= 0)
 # P(X < -1) <= 0.25 AND P(X <= -1) >= 0.25
 
 # The single probability masses at -1 and 1 are well estimated:
-sum(sample_values == -1)/length(sample_values) # 0.3278
+sum(sample_values == -1)/length(sample_values) # 0.3278 # estimated probability mass at -1
 P(1) # true probability
