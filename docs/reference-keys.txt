@@ -87,3 +87,4 @@ exercise2_nhst
 exercise3_nhst
 exercise4_nhst
 exercise5_nhst
+exercise6_nhst

@@ -246,7 +246,10 @@ Consider these links: [1](https://www.youtube.com/watch?v=pXuFeRCMTAo&ab_channel
 as starting point. 
 
 With the $t$-test, we want to answer the question 
-- if the true, but unobserved mean of a population is different from a specific value ([one sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test)) or
+
+- if the true, but unobserved mean of a population is different from a 
+specific value ([one sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test)) or
+
 - if the true, but unobserved means of two populations are different from each other ([two sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests)).
 
 Conveniently, R has a built-in function for these tests.
@@ -256,7 +259,7 @@ Conveniently, R has a built-in function for these tests.
 .......
 
 ### Two sample $t$-test
-Let's jump right in and use our example from the previous chapter:
+Let's jump right in and use our example from the previous chapter where we performed the Bayesian $t$-test:
 
 ```{r, echo=TRUE}
 (y1 <- c(-.5, 0, 1.2, 1.2, 1.2, 1.9, 2.4, 3) * 100)
@@ -285,6 +288,7 @@ t.test(y1, y2, conf.level = 0.93)
 - $p$-value $= 0.04634$. In the classical framework, 
   this would be considered "significant" at the $\alpha = 0.05$ level 
   and one would reject the null hypothesis and accept the alternative hypothesis.
+  **In the Baysian framework, we abstained from making a decision**.
 - 93% confidence interval for the difference in means is rather wide: 
   $12.55847$ to $232.44153$.
 
@@ -364,7 +368,25 @@ of the $t$-test function in R.
 
 
 ## Correlation test
-.......
+
+In the chapter about descriptive statistics, we calculated the (Pearson) correlation coefficient 
+to measure the strength of the **linear** relationship between two variables.
+
+Often, the null hypothesis for the correlation coefficient is that there is no correlation between 
+the two variables ($\rho=0$). One could argue that this is a rather baseless assumption. In reality,
+the true correlation coefficient is probably not exactly 0 and one could argue more precicely a range
+of plausible values for $\rho$ for the specific case at hand. Often, one can see an ocean of $p$-values
+in the literature, where the correlation coefficient is tested against 0. This is often superfluous.
+For example, if the sample size is $n=234$ and the sample correlation coefficient is $r = 0.76$, it 
+is very unlikely that the true correlation coefficient is 0. One does not need a hypothesis test to 
+know this (see [exercise 6](#exercise6_nhst)).
+
+We can do a correlation test in R with the `cor.test` function. 
+[This article](https://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r) is also helpful.
+Maybe, let's take the part about the Shapiro-Wilk test not too seriously.
+
+The test statistic(s) for the test(s) can be found [here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Inference).
+If we really want to take the result of such a test seriously, we need to check the assumptions of the test.
 
 ## Type 1 and Type 2 errors
 .......
@@ -424,3 +446,10 @@ difference is and how small the $\alpha-$ level is.
 - Use the data from the smokers proportions test [example above](#proportions_test_more_samples).
 - Draw a $\chi^2$ distribution with 3 degrees of freedom and calculate the 
   probability of observing a value of 12.6 or larger.
+
+### Exercise 6 - correlation coefficent {#exercise6_nhst}
+- Create a sample of $234$ pairs of uncorrelated observations $(x_i,y_i)$. 
+  $X_i$ and $Y_i$ are drawn from a normal distribution with mean 0 and standard deviation 1.
+- Calculate the sample correlation coefficient $r$.
+- Repeat this 1000 times.
+- How often was the sample correlation coefficient larger than 0.76?

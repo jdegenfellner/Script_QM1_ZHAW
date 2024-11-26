@@ -292,6 +292,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.8.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise3_nhst"><i class="fa fa-check"></i><b>5.8.3</b> Exercise 3 - binomial test</a></li>
 <li class="chapter" data-level="5.8.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst"><i class="fa fa-check"></i><b>5.8.4</b> Exercise 4 - proportions test</a></li>
 <li class="chapter" data-level="5.8.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst"><i class="fa fa-check"></i><b>5.8.5</b> Exercise 5 - proportions test 2</a></li>
+<li class="chapter" data-level="5.8.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst"><i class="fa fa-check"></i><b>5.8.6</b> Exercise 6 - correlation coefficent</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -585,9 +586,12 @@ famous classical statistical tests out there.
 Consider these links: <a href="https://www.youtube.com/watch?v=pXuFeRCMTAo&amp;ab_channel=VeryNormal">1</a>
 <a href="https://www.youtube.com/watch?v=pLNuDye_tq4&amp;ab_channel=VeryNormal">2</a>
 as starting point.</p>
-<p>With the <span class="math inline">\(t\)</span>-test, we want to answer the question
-- if the true, but unobserved mean of a population is different from a specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test">one sample <span class="math inline">\(t\)</span>-test</a>) or
-- if the true, but unobserved means of two populations are different from each other (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests">two sample <span class="math inline">\(t\)</span>-test</a>).</p>
+<p>With the <span class="math inline">\(t\)</span>-test, we want to answer the question</p>
+<ul>
+<li><p>if the true, but unobserved mean of a population is different from a
+specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test">one sample <span class="math inline">\(t\)</span>-test</a>) or</p></li>
+<li><p>if the true, but unobserved means of two populations are different from each other (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests">two sample <span class="math inline">\(t\)</span>-test</a>).</p></li>
+</ul>
 <p>Conveniently, R has a built-in function for these tests.</p>
 <div id="one-sample-t-test" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> One sample <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -595,7 +599,7 @@ as starting point.</p>
 </div>
 <div id="two-sample-t-test" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Two sample <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s jump right in and use our example from the previous chapter:</p>
+<p>Let’s jump right in and use our example from the previous chapter where we performed the Bayesian <span class="math inline">\(t\)</span>-test:</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="null-hypothesis-significance-testing-nhst.html#cb95-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="null-hypothesis-significance-testing-nhst.html#cb97-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
@@ -639,7 +643,8 @@ as starting point.</p>
 <li><p><span class="math inline">\(H_1: \mu_1 \ne \mu_2\)</span>. The group means are different.</p></li>
 <li><p><span class="math inline">\(p\)</span>-value <span class="math inline">\(= 0.04634\)</span>. In the classical framework,
 this would be considered “significant” at the <span class="math inline">\(\alpha = 0.05\)</span> level
-and one would reject the null hypothesis and accept the alternative hypothesis.</p></li>
+and one would reject the null hypothesis and accept the alternative hypothesis.
+<strong>In the Baysian framework, we abstained from making a decision</strong>.</p></li>
 <li><p>93% confidence interval for the difference in means is rather wide:
 <span class="math inline">\(12.55847\)</span> to <span class="math inline">\(232.44153\)</span>.</p>
 <p>Let’s try to visualize this.</p>
@@ -714,7 +719,21 @@ of the <span class="math inline">\(t\)</span>-test function in R.</p>
 </div>
 <div id="correlation-test" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Correlation test<a href="null-hypothesis-significance-testing-nhst.html#correlation-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>…….</p>
+<p>In the chapter about descriptive statistics, we calculated the (Pearson) correlation coefficient
+to measure the strength of the <strong>linear</strong> relationship between two variables.</p>
+<p>Often, the null hypothesis for the correlation coefficient is that there is no correlation between
+the two variables (<span class="math inline">\(\rho=0\)</span>). One could argue that this is a rather baseless assumption. In reality,
+the true correlation coefficient is probably not exactly 0 and one could argue more precicely a range
+of plausible values for <span class="math inline">\(\rho\)</span> for the specific case at hand. Often, one can see an ocean of <span class="math inline">\(p\)</span>-values
+in the literature, where the correlation coefficient is tested against 0. This is often superfluous.
+For example, if the sample size is <span class="math inline">\(n=234\)</span> and the sample correlation coefficient is <span class="math inline">\(r = 0.76\)</span>, it
+is very unlikely that the true correlation coefficient is 0. One does not need a hypothesis test to
+know this (see <a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst">exercise 6</a>).</p>
+<p>We can do a correlation test in R with the <code>cor.test</code> function.
+<a href="https://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r">This article</a> is also helpful.
+Maybe, let’s take the part about the Shapiro-Wilk test not too seriously.</p>
+<p>The test statistic(s) for the test(s) can be found <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Inference">here</a>.
+If we really want to take the result of such a test seriously, we need to check the assumptions of the test.</p>
 </div>
 <div id="type-1-and-type-2-errors" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Type 1 and Type 2 errors<a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -781,6 +800,16 @@ This is called a <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.
 <li>Use the data from the smokers proportions test <a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples">example above</a>.</li>
 <li>Draw a <span class="math inline">\(\chi^2\)</span> distribution with 3 degrees of freedom and calculate the
 probability of observing a value of 12.6 or larger.</li>
+</ul>
+</div>
+<div id="exercise6_nhst" class="section level3 hasAnchor" number="5.8.6">
+<h3><span class="header-section-number">5.8.6</span> Exercise 6 - correlation coefficent<a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Create a sample of <span class="math inline">\(234\)</span> pairs of uncorrelated observations <span class="math inline">\((x_i,y_i)\)</span>.
+<span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span> are drawn from a normal distribution with mean 0 and standard deviation 1.</li>
+<li>Calculate the sample correlation coefficient <span class="math inline">\(r\)</span>.</li>
+<li>Repeat this 1000 times.</li>
+<li>How often was the sample correlation coefficient larger than 0.76?</li>
 </ul>
 
 </div>
