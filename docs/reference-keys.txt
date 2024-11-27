@@ -35,6 +35,8 @@ exercise10
 exercise11
 exercise12
 solutions
+sample-exam-questions-for-this-chapter
+e-question-1---independence-and-disjointness
 descriptive-statistics
 example_study1_physio
 univarate-vs.-bivariate-statisics

@@ -155,7 +155,7 @@ p2
 shapiro.test(x)
 ```
 
-Some researchers would argue, that the distribution is normal (since the p-value is rather large), 
+Some researchers would argue, that the distribution is normal (since the $p$-value is rather large), 
 but we know it is not. We will be cautious with such ugly rule of thumbs. 
 We will instead use [Q-Q plots](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) and histograms to decide if a variable is normally distributed.
 
@@ -336,7 +336,7 @@ be [jointly normally distributed](https://en.wikipedia.org/wiki/Multivariate_nor
 
 ### Example in the wild
 Let's again visit the previous [paper](https://bmjopen.bmj.com/content/9/4/e023341).
-In the results, correlations are presented in a dichotomous way with regards to p-values, 
+In the results, correlations are presented in a dichotomous way with regards to $p$-values, 
 which should be [avoided](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913). 
 We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be "significant",
 especially, if one decides to use an arbitrary threshold for the $p$-values like $0.05$. There is not much information

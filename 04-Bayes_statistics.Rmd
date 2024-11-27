@@ -280,7 +280,7 @@ The calculations would be complex by hand, so we just use R. We want to understa
 can be put off until later (if at all necessary for us.)
 
 \[
-\textit{p}(\theta \mid X = 3) = \frac{\textit{p}(X = 3 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(3)}
+\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(11)}
 \]
 
 - $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.

@@ -1043,3 +1043,18 @@ and use the so-called [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/2_Probability).
+
+## Sample exam questions for this chapter
+
+### [E] Question 1 - Independence and disjointness
+
+Wir werfen einen fairen Würfel einmal und betrachten die Augenzahl. Welche der folgenden Aussage(n) ist/sind korrekt?
+
+- Die Wahrscheinlichkeit, eine gerade Zahl zu werfen, ist **unabhängig** von der Wahrscheinlichkeit, eine Zahl größer als 3 zu werfen.
+
+- Die Ereignisse "gerade Zahl" und "ungerade Zahl" sind **disjunkt**.
+
+- Die Ereignisse "Zahl größer als 3" und "Zahl kleiner als 4" sind **unabhängig**.
+
+- Die Wahrscheinlichkeit, eine Zahl größer als 3 zu werfen, ist **unabhängig** (independent) **und**
+  **disjunkt** (disjoint) von der Wahrscheinlichkeit, eine Zahl kleiner als 4 zu werfen.

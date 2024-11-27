@@ -54,7 +54,7 @@ while (sample_value >= -6 && sample_value <= 6) {
   sample_value <- sample_from_distribution()
   counter <- counter + 1
 }
-toc() # 6s/38s/...
+toc() # 6s/38s/35.79 sec
 
 # Output the results
 cat("Value found outside [-6, 6]:", sample_value, "\n") # -7
@@ -63,7 +63,8 @@ cat("Number of iterations to find the value:", counter, "\n") # Number of iterat
 
 
 
-# 2) What is the mode of this distribution and how could we estimate it from the sample?--------
+# 2) What is the mode of this distribution and how could we estimate it -----
+# from the sample?
 # Define the probability function based on the given distribution
 P <- function(X) {
   if (X == 0) {
@@ -83,11 +84,13 @@ probabilities <- probabilities / sum(probabilities)
 sum(probabilities) # 1 check
 
 sample_values <- sample(X_values, size = 10000, prob = probabilities, replace = TRUE)
-table(sample_values)
+table(sample_values) # Häufigkeitstabelle
 # -> sample mode would be -1 or 1 depending on your luck
 # The theoretical modes are -1 and 1, as they have the highest probability mass.
 # This is a so-called bimodal distribution.
 
+
+# for later.....
 interquantile_range <- quantile(sample_values, probs = c(0.25, 0.75))
 interquantile_range # -1 to 1
 # i.e., approximately 50% of values should be in the range [-1, 1]

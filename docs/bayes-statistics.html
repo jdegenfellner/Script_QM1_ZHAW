@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-11-26" />
+<meta name="date" content="2024-11-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,6 +217,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.12" data-path="probs.html"><a href="probs.html#exercise12"><i class="fa fa-check"></i><b>2.3.12</b> [D] Exercise 12 - Student’s t-distribution</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
+<li class="chapter" data-level="2.5" data-path="probs.html"><a href="probs.html#sample-exam-questions-for-this-chapter"><i class="fa fa-check"></i><b>2.5</b> Sample exam questions for this chapter</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="probs.html"><a href="probs.html#e-question-1---independence-and-disjointness"><i class="fa fa-check"></i><b>2.5.1</b> [E] Question 1 - Independence and disjointness</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a>
 <ul>
@@ -472,7 +476,7 @@ Btw. we could play the same game using a coin or the effectiveness of a therapy 
 The calculations would be complex by hand, so we just use R. We want to understand the concept, so calculating by hand
 can be put off until later (if at all necessary for us.)</p>
 <p><span class="math display">\[
-\textit{p}(\theta \mid X = 3) = \frac{\textit{p}(X = 3 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(3)}
+\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(11)}
 \]</span></p>
 <ul>
 <li><p><span class="math inline">\(\text{Beta}(\theta \mid \alpha, \beta)\)</span> is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.</p></li>
@@ -660,19 +664,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes-statistics.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb78-2"><a href="bayes-statistics.html#cb78-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%    HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.648 130.939 133.566   93   30.984 226.44                  
-## mu2         6.178   5.951   7.193   93  -84.861  96.80                  
-## muDiff    124.470 124.597 125.734   93  -10.790 258.34       0      95.4
-## sigma1    140.010 128.278 109.388   93   65.934 226.51                  
-## sigma2    129.884 119.442 103.211   93   62.009 210.58                  
-## sigmaDiff  10.125   8.540   6.390   93 -116.727 140.65       0      56.3
-## nu         34.349  25.750   9.378   93    1.068  83.19                  
-## log10nu     1.378   1.411   1.472   93    0.656   2.06                  
-## effSz       0.963   0.955   0.969   93   -0.102   2.00       0      95.4
+## mu1       131.016 130.853 128.149   93   32.447 227.72                  
+## mu2         6.124   6.056   7.822   93  -84.556  96.50                  
+## muDiff    124.892 124.915 127.921   93  -10.665 256.35       0      95.6
+## sigma1    139.747 128.501 111.332   93   65.990 225.84                  
+## sigma2    130.296 119.572 102.946   93   61.735 210.07                  
+## sigmaDiff   9.451   8.346   7.605   93 -120.619 133.98       0      56.2
+## nu         34.482  25.824  10.318   93    1.141  84.16                  
+## log10nu     1.380   1.412   1.503   93    0.653   2.05                  
+## effSz       0.965   0.954   0.959   93   -0.074   2.01       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.56
+## muDiff        -20       20     4.5
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
