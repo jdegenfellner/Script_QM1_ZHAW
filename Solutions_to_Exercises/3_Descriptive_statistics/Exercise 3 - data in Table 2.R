@@ -5,6 +5,14 @@ sd_age_usualcare <- 16
 prob_age_60_or_older_usualcare <- 1 - pnorm(60, mean = mean_age_usualcare, sd = sd_age_usualcare)
 prob_age_60_or_older_usualcare
 
+1 - pnorm(60, mean = 48, sd = 16)
+
+# same for second group...
+mean_age_usualcare_ <- 47
+sd_age_usualcare_ <- 15
+prob_age_60_or_older_usualcare_ <- 1 - pnorm(60, mean = mean_age_usualcare_, sd = sd_age_usualcare_)
+prob_age_60_or_older_usualcare_
+
 mean_age_cft <- 47
 sd_age_cft <- 15
 prob_age_18_or_younger_cft <- pnorm(18, mean = mean_age_cft, sd = sd_age_cft)

@@ -424,14 +424,35 @@ See also [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variabi
 to see the variability of the correlation coefficient under the null hypothesis.
 
 ## Type 1 and Type 2 errors
-.......
+```{r error_table_fixed, echo=FALSE}
+library(knitr)
+
+# Define the data
+data <- data.frame(
+  "Decision about null hypothesis (H0)" = c("Not reject", "Reject"),
+  "Null hypothesis (H0) is true" = c(
+    "Correct inference (true negative)\n(probability = 1 - α)",
+    "Type I error (false positive)\n(probability = α)"
+  ),
+  "Null hypothesis (H0) is false" = c(
+    "Type II error (false negative)\n(probability = β)",
+    "Correct inference (true positive)\n(probability = 1 - β)"
+  )
+)
+
+# Render the table
+kable(data, format = "html", align = "c", row.names = FALSE,
+      col.names = c("Decision about null hypothesis (H0)",
+                    "Null hypothesis (H0) is true",
+                    "Null hypothesis (H0) is false"))
+```
 
 ## The frequentist confidence interval
 
-$$In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to 
-typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).$$
+**In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to 
+typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).**
 
-It is very important to understand that for every sample, the confidence interval is different and in the long wrong,
+It is very important to understand that for every sample, the confidence interval is different and in the long run,
 these intervals will contain the true parameter in a certain percentage of cases.
 
 This is a [nice visualization](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg) 

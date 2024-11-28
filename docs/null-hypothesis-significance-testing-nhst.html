@@ -819,13 +819,55 @@ to see the variability of the correlation coefficient under the null hypothesis.
 </div>
 <div id="type-1-and-type-2-errors" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Type 1 and Type 2 errors<a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>…….</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center;">
+Decision about null hypothesis (H0)
+</th>
+<th style="text-align:center;">
+Null hypothesis (H0) is true
+</th>
+<th style="text-align:center;">
+Null hypothesis (H0) is false
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Not reject
+</td>
+<td style="text-align:center;">
+Correct inference (true negative)
+(probability = 1 - α)
+</td>
+<td style="text-align:center;">
+Type II error (false negative)
+(probability = β)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Reject
+</td>
+<td style="text-align:center;">
+Type I error (false positive)
+(probability = α)
+</td>
+<td style="text-align:center;">
+Correct inference (true positive)
+(probability = 1 - β)
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="the-frequentist-confidence-interval" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> The frequentist confidence interval<a href="null-hypothesis-significance-testing-nhst.html#the-frequentist-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display">\[In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to
-typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).\]</span></p>
-<p>It is very important to understand that for every sample, the confidence interval is different and in the long wrong,
+<p><strong>In frequentist statistics, a <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval (CI)</a> is an interval which is expected to
+typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).</strong></p>
+<p>It is very important to understand that for every sample, the confidence interval is different and in the long run,
 these intervals will contain the true parameter in a certain percentage of cases.</p>
 <p>This is a <a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">nice visualization</a>
 of the concept.
