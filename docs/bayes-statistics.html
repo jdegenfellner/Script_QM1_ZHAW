@@ -442,14 +442,14 @@ approximately three times as likely as <span class="math inline">\(\theta = 0.05
 <p>Note that in this example the a priori probabilities were equal:</p>
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <img src="_main_files/figure-html/bar_plot_code-1.png" width="672" />
 </details>
 <p><strong>After</strong> collecting data, we have updated our prior beliefs about the defect rate:</p>
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 </details>
@@ -465,7 +465,7 @@ See <a href="bayes-statistics.html#exercise_defective_product_rate">Exercise 1</
 We now get creative and assign the following prior probability <strong>distribution</strong> to the defective rate <span class="math inline">\(\theta\)</span>:</p>
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </details>
@@ -496,7 +496,7 @@ rate <em>given</em> the observed data.</p></li>
 <p>Let’s look at the resulting posterior distribution:</p>
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 </details>
@@ -519,7 +519,7 @@ We then can elegantly make all kinds of statements when looking at the posterior
 approximately <span class="math inline">\(0.80\)</span>:
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 </details></li>
@@ -527,7 +527,7 @@ R codes are in the git repository
 </ul>
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 </details>
@@ -552,7 +552,7 @@ the interval, making it an effective summary of the most plausible values.</p>
 <p>Here is an example for a 93% HDI for the posterior distribution of <span class="math inline">\(\theta\)</span>:</p>
 <details open>
 <summary>
-R codes are in the git repository
+R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
 <img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 </details>
@@ -672,19 +672,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bayes-statistics.html#cb82-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb82-2"><a href="bayes-statistics.html#cb82-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.997 130.917 127.591   93   34.3641 226.18                  
-## mu2         5.940   5.663   8.396   93  -84.1448  95.77                  
-## muDiff    125.057 125.341 125.654   93   -8.8682 255.40       0      95.7
-## sigma1    139.184 128.177 111.545   93   65.4749 223.92                  
-## sigma2    129.594 119.294 105.593   93   61.9417 209.16                  
-## sigmaDiff   9.589   8.830   5.184   93 -115.8909 137.38       0      56.6
-## nu         34.153  25.771  10.538   93    1.1080  83.25                  
-## log10nu     1.377   1.411   1.459   93    0.6622   2.06                  
-## effSz       0.971   0.963   0.977   93   -0.0852   1.99       0      95.7
+## mu1       130.832 130.819 131.164   93   32.4407 229.70                  
+## mu2         5.745   5.566   1.728   93  -84.1336  95.32                  
+## muDiff    125.087 125.336 125.617   93   -9.3474 257.92       0      95.6
+## sigma1    140.274 128.584 111.180   93   66.4575 227.81                  
+## sigma2    129.671 119.311 104.578   93   61.7039 209.89                  
+## sigmaDiff  10.604   8.918   9.584   93 -119.0937 137.41       0      56.6
+## nu         34.547  25.643  10.186   93    1.2173  84.65                  
+## log10nu     1.378   1.409   1.484   93    0.6501   2.06                  
+## effSz       0.968   0.959   0.915   93   -0.0587   2.03       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.45
+## muDiff        -20       20    4.48
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         

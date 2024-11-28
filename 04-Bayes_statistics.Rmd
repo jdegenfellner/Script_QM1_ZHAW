@@ -150,7 +150,7 @@ approximately three times as likely as \(\theta = 0.05\).
 Note that in this example the a priori probabilities were equal:
 
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 
 ```{r bar_plot_code, echo=FALSE}
 # Load ggplot2 package
@@ -183,7 +183,7 @@ ggplot(data, aes(x = theta, y = probability, fill = theta)) +
 **After** collecting data, we have updated our prior beliefs about the defect rate:
 
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 
 ```{r, echo=FALSE}
 # Load ggplot2 package
@@ -227,7 +227,7 @@ What if we do not want to limit ourselves to the two defect rates of 5% and 10%?
 We now get creative and assign the following prior probability **distribution** to the defective rate $\theta$:
 
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 ```{r, echo=FALSE}
 # Load ggplot2 package
 library(ggplot2)
@@ -298,7 +298,7 @@ rate *given* the observed data.
 Let's look at the resulting posterior distribution:
 
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 
 ```{r, echo=FALSE}
 # Load required packages
@@ -425,7 +425,7 @@ We then can elegantly make all kinds of statements when looking at the posterior
  - The probability that $\theta$ is between $0.30$ and $0.50$ is (area under the posterior) 
  approximately $0.80$:
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 ```{r, echo=FALSE}
 # Load required libraries
 library(ggplot2)
@@ -518,7 +518,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
 - The probability that $\theta$ is below $0.25$ is (area under the posterior):
 
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 ```{r, echo=FALSE}
 # Load required libraries
 library(ggplot2)
@@ -628,7 +628,7 @@ the interval, making it an effective summary of the most plausible values.
 Here is an example for a 93% HDI for the posterior distribution of $\theta$: 
 
 <details open>
-<summary>R codes are in the git repository</summary>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
 ```{r, echo=FALSE}
 # Load required libraries
 library(ggplot2)
