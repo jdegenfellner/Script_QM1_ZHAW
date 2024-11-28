@@ -285,12 +285,15 @@ can be put off until later (if at all necessary for us.)
 
 - $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.
 
-- $\textit{p}(X = 3 \mid \theta)$ is the likelihood of observing 3 defective items in a sample of 20 given a certain defect rate $\theta$. 
+- $\textit{p}(X = 11 \mid \theta)$ is the likelihood of observing 11 defective items 
+  in a sample of 20 given a certain defect rate $\theta$. 
   This would be the density function of a binomial distribution.
 
-- $m(3)$ is the marginal distribution of the data for $X = 3$ considering **all** possible defect rates between 0 and 1.
+- $m(11)$ is the marginal distribution of the data for $X = 11$ 
+considering **all** possible defect rates between 0 and 1.
 
-- $\textit{p}(\theta \mid X = 3)$ is the posterior density of the defect rate *given* the observed data.
+- $\textit{p}(\theta \mid X = 11)$ is the posterior density of the defect 
+rate *given* the observed data.
 
 Let's look at the resulting posterior distribution:
 
