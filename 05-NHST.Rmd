@@ -256,7 +256,37 @@ Conveniently, R has a built-in function for these tests.
 
 
 ### One sample $t$-test
-.......
+Let's perform a one sample [$t$-test in R](https://www.sthda.com/english/wiki/one-sample-t-test-in-r) 
+(and let's ignore the Shapiro-Wilk test in the link):
+
+```{r}
+set.seed(1234)
+my_data <- data.frame(
+  name = paste0(rep("M_", 10), 1:10),
+  weight = round(rnorm(10, 20, 2), 1)
+)
+head(my_data, 10)
+summary(my_data$weight)
+
+library(ggpubr)
+ggboxplot(my_data$weight, 
+          ylab = "Weight (g)", xlab = FALSE,
+          ggtheme = theme_minimal())
+
+ggqqplot(my_data$weight, ylab = "Men's weight",
+         ggtheme = theme_minimal())
+
+t.test(my_data$weight, mu = 25,
+       alternative = "two.sided", conf.level = 0.94)
+
+t.test(my_data$weight, mu = 25,
+       alternative = "less", conf.level = 0.94)
+
+t.test(my_data$weight, mu = 25,
+       alternative = "greater", conf.level = 0.94)
+```
+
+Details output........
 
 ### Two sample $t$-test
 Let's jump right in and use our example from the previous chapter where we performed the Bayesian $t$-test:
@@ -388,8 +418,28 @@ Maybe, let's take the part about the Shapiro-Wilk test not too seriously.
 The test statistic(s) for the test(s) can be found [here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Inference).
 If we really want to take the result of such a test seriously, we need to check the assumptions of the test.
 
+...........
+
+See also [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
+to see the variability of the correlation coefficient under the null hypothesis.
+
 ## Type 1 and Type 2 errors
 .......
+
+## The frequentist confidence interval
+
+$$In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to 
+typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).$$
+
+It is very important to understand that for every sample, the confidence interval is different and in the long wrong,
+these intervals will contain the true parameter in a certain percentage of cases.
+
+This is a [nice visualization](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg) 
+of the concept.
+See also [exercise 7](#exercise7_nhst).
+
+
+
 
 ## Simulations based approaches
 
@@ -420,7 +470,7 @@ Then try to simulate it. This helps to understand what constitutes a qualitative
 
 ### Exercise 2 - everything becomes "significant" {#exercise2_nhst}
 
-Setting: two sample t-test. Assume there is a small difference between the means of two groups.
+Setting: two sample $t$-test. Assume there is a small difference between the means of two groups.
 - Show via simulation that with increasing sample size, the $p$-value becomes smaller and 
 smaller and will be "significant" at some point irresespective of how small the true mean 
 difference is and how small the $\alpha-$ level is.
@@ -453,3 +503,9 @@ difference is and how small the $\alpha-$ level is.
 - Calculate the sample correlation coefficient $r$.
 - Repeat this 1000 times.
 - How often was the sample correlation coefficient larger than 0.76?
+
+### Exercise 7 - coverage frequency of CI {#exercise7_nhst} 
+- Create a sample (vary the sample size, start small) from a normal distribution with mean 0 and standard deviation 1.
+- Calculate the 93% confidence interval for the mean.
+- Repeat this 1000 times.
+- How often was the true mean (0) contained in the constructed interval?

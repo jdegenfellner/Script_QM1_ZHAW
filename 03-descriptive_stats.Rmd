@@ -266,7 +266,7 @@ The **third plot** shows a Q-Q plot of a sample from a
 [ Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) 
 with 2 degrees of freedom, which has fater tails than the normal distribution.
 
-
+Hint: There are many R packages to display Q-Q plots, for instance [ggpubr](https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html).
 
 
 

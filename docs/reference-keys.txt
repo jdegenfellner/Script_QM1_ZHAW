@@ -85,6 +85,7 @@ one-sample-t-test
 two-sample-t-test
 correlation-test
 type-1-and-type-2-errors
+the-frequentist-confidence-interval
 simulations-based-approaches
 exercises-3
 exercise1_nhst
@@ -93,3 +94,4 @@ exercise3_nhst
 exercise4_nhst
 exercise5_nhst
 exercise6_nhst
+exercise7_nhst

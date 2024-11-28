@@ -291,15 +291,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a></li>
 <li class="chapter" data-level="5.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors"><i class="fa fa-check"></i><b>5.6</b> Type 1 and Type 2 errors</a></li>
-<li class="chapter" data-level="5.7" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#simulations-based-approaches"><i class="fa fa-check"></i><b>5.7</b> Simulations based approaches</a></li>
-<li class="chapter" data-level="5.8" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercises-3"><i class="fa fa-check"></i><b>5.8</b> Exercises</a>
+<li class="chapter" data-level="5.7" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#the-frequentist-confidence-interval"><i class="fa fa-check"></i><b>5.7</b> The frequentist confidence interval</a></li>
+<li class="chapter" data-level="5.8" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#simulations-based-approaches"><i class="fa fa-check"></i><b>5.8</b> Simulations based approaches</a></li>
+<li class="chapter" data-level="5.9" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercises-3"><i class="fa fa-check"></i><b>5.9</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="5.8.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise1_nhst"><i class="fa fa-check"></i><b>5.8.1</b> Exercise 1 - frequentist confidence interval</a></li>
-<li class="chapter" data-level="5.8.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst"><i class="fa fa-check"></i><b>5.8.2</b> Exercise 2 - everything becomes “significant”</a></li>
-<li class="chapter" data-level="5.8.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise3_nhst"><i class="fa fa-check"></i><b>5.8.3</b> Exercise 3 - binomial test</a></li>
-<li class="chapter" data-level="5.8.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst"><i class="fa fa-check"></i><b>5.8.4</b> Exercise 4 - proportions test</a></li>
-<li class="chapter" data-level="5.8.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst"><i class="fa fa-check"></i><b>5.8.5</b> Exercise 5 - proportions test 2</a></li>
-<li class="chapter" data-level="5.8.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst"><i class="fa fa-check"></i><b>5.8.6</b> Exercise 6 - correlation coefficent</a></li>
+<li class="chapter" data-level="5.9.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise1_nhst"><i class="fa fa-check"></i><b>5.9.1</b> Exercise 1 - frequentist confidence interval</a></li>
+<li class="chapter" data-level="5.9.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst"><i class="fa fa-check"></i><b>5.9.2</b> Exercise 2 - everything becomes “significant”</a></li>
+<li class="chapter" data-level="5.9.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise3_nhst"><i class="fa fa-check"></i><b>5.9.3</b> Exercise 3 - binomial test</a></li>
+<li class="chapter" data-level="5.9.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst"><i class="fa fa-check"></i><b>5.9.4</b> Exercise 4 - proportions test</a></li>
+<li class="chapter" data-level="5.9.5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst"><i class="fa fa-check"></i><b>5.9.5</b> Exercise 5 - proportions test 2</a></li>
+<li class="chapter" data-level="5.9.6" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst"><i class="fa fa-check"></i><b>5.9.6</b> Exercise 6 - correlation coefficent</a></li>
+<li class="chapter" data-level="5.9.7" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#exercise7_nhst"><i class="fa fa-check"></i><b>5.9.7</b> Exercise 7 - coverage frequency of CI</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -603,36 +605,105 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 <p>Conveniently, R has a built-in function for these tests.</p>
 <div id="one-sample-t-test" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> One sample <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>…….</p>
+<p>Let’s perform a one sample <a href="https://www.sthda.com/english/wiki/one-sample-t-test-in-r"><span class="math inline">\(t\)</span>-test in R</a>
+(and let’s ignore the Shapiro-Wilk test in the link):</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="null-hypothesis-significance-testing-nhst.html#cb99-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb99-2"><a href="null-hypothesis-significance-testing-nhst.html#cb99-2" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb99-3"><a href="null-hypothesis-significance-testing-nhst.html#cb99-3" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="st">&quot;M_&quot;</span>, <span class="dv">10</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb99-4"><a href="null-hypothesis-significance-testing-nhst.html#cb99-4" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">1</span>)</span>
+<span id="cb99-5"><a href="null-hypothesis-significance-testing-nhst.html#cb99-5" tabindex="-1"></a>)</span>
+<span id="cb99-6"><a href="null-hypothesis-significance-testing-nhst.html#cb99-6" tabindex="-1"></a><span class="fu">head</span>(my_data, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    name weight
+## 1   M_1   17.6
+## 2   M_2   20.6
+## 3   M_3   22.2
+## 4   M_4   15.3
+## 5   M_5   20.9
+## 6   M_6   21.0
+## 7   M_7   18.9
+## 8   M_8   18.9
+## 9   M_9   18.9
+## 10 M_10   18.2</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="null-hypothesis-significance-testing-nhst.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(my_data<span class="sc">$</span>weight)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   15.30   18.38   18.90   19.25   20.82   22.20</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="null-hypothesis-significance-testing-nhst.html#cb103-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb103-2"><a href="null-hypothesis-significance-testing-nhst.html#cb103-2" tabindex="-1"></a><span class="fu">ggboxplot</span>(my_data<span class="sc">$</span>weight, </span>
+<span id="cb103-3"><a href="null-hypothesis-significance-testing-nhst.html#cb103-3" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb103-4"><a href="null-hypothesis-significance-testing-nhst.html#cb103-4" tabindex="-1"></a>          <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="null-hypothesis-significance-testing-nhst.html#cb104-1" tabindex="-1"></a><span class="fu">ggqqplot</span>(my_data<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;Men&#39;s weight&quot;</span>,</span>
+<span id="cb104-2"><a href="null-hypothesis-significance-testing-nhst.html#cb104-2" tabindex="-1"></a>         <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-2.png" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="null-hypothesis-significance-testing-nhst.html#cb105-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
+<span id="cb105-2"><a href="null-hypothesis-significance-testing-nhst.html#cb105-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  my_data$weight
+## t = -9.0783, df = 9, p-value = 7.953e-06
+## alternative hypothesis: true mean is not equal to 25
+## 94 percent confidence interval:
+##  17.888 20.612
+## sample estimates:
+## mean of x 
+##     19.25</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="null-hypothesis-significance-testing-nhst.html#cb107-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
+<span id="cb107-2"><a href="null-hypothesis-significance-testing-nhst.html#cb107-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  my_data$weight
+## t = -9.0783, df = 9, p-value = 3.977e-06
+## alternative hypothesis: true mean is less than 25
+## 94 percent confidence interval:
+##      -Inf 20.33788
+## sample estimates:
+## mean of x 
+##     19.25</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="null-hypothesis-significance-testing-nhst.html#cb109-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
+<span id="cb109-2"><a href="null-hypothesis-significance-testing-nhst.html#cb109-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  my_data$weight
+## t = -9.0783, df = 9, p-value = 1
+## alternative hypothesis: true mean is greater than 25
+## 94 percent confidence interval:
+##  18.16212      Inf
+## sample estimates:
+## mean of x 
+##     19.25</code></pre>
+<p>Details output……..</p>
 </div>
 <div id="two-sample-t-test" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Two sample <span class="math inline">\(t\)</span>-test<a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s jump right in and use our example from the previous chapter where we performed the Bayesian <span class="math inline">\(t\)</span>-test:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="null-hypothesis-significance-testing-nhst.html#cb99-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="null-hypothesis-significance-testing-nhst.html#cb111-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="null-hypothesis-significance-testing-nhst.html#cb101-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="null-hypothesis-significance-testing-nhst.html#cb113-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="null-hypothesis-significance-testing-nhst.html#cb103-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="null-hypothesis-significance-testing-nhst.html#cb115-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="null-hypothesis-significance-testing-nhst.html#cb105-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="null-hypothesis-significance-testing-nhst.html#cb117-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="null-hypothesis-significance-testing-nhst.html#cb107-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
-<span id="cb107-2"><a href="null-hypothesis-significance-testing-nhst.html#cb107-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="null-hypothesis-significance-testing-nhst.html#cb119-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
+<span id="cb119-2"><a href="null-hypothesis-significance-testing-nhst.html#cb119-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
 <pre><code>##    vars n  mean     sd median trimmed    mad  min max range  skew kurtosis
 ## y1    1 8 130.0 116.00    120   130.0 140.85  -50 300   350 -0.13    -1.39
 ## y2    2 8   7.5 107.94      0     7.5 118.61 -120 190   310  0.29    -1.38
 ##       se
 ## y1 41.01
 ## y2 38.16</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="null-hypothesis-significance-testing-nhst.html#cb109-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
-<span id="cb109-2"><a href="null-hypothesis-significance-testing-nhst.html#cb109-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb109-3"><a href="null-hypothesis-significance-testing-nhst.html#cb109-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
-<span id="cb109-4"><a href="null-hypothesis-significance-testing-nhst.html#cb109-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
-<span id="cb109-5"><a href="null-hypothesis-significance-testing-nhst.html#cb109-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="null-hypothesis-significance-testing-nhst.html#cb110-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span>
-<span id="cb110-2"><a href="null-hypothesis-significance-testing-nhst.html#cb110-2" tabindex="-1"></a></span>
-<span id="cb110-3"><a href="null-hypothesis-significance-testing-nhst.html#cb110-3" tabindex="-1"></a><span class="fu">t.test</span>(y1, y2, <span class="at">conf.level =</span> <span class="fl">0.93</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="null-hypothesis-significance-testing-nhst.html#cb121-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
+<span id="cb121-2"><a href="null-hypothesis-significance-testing-nhst.html#cb121-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb121-3"><a href="null-hypothesis-significance-testing-nhst.html#cb121-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
+<span id="cb121-4"><a href="null-hypothesis-significance-testing-nhst.html#cb121-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
+<span id="cb121-5"><a href="null-hypothesis-significance-testing-nhst.html#cb121-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="null-hypothesis-significance-testing-nhst.html#cb122-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span>
+<span id="cb122-2"><a href="null-hypothesis-significance-testing-nhst.html#cb122-2" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="null-hypothesis-significance-testing-nhst.html#cb122-3" tabindex="-1"></a><span class="fu">t.test</span>(y1, y2, <span class="at">conf.level =</span> <span class="fl">0.93</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -661,62 +732,62 @@ the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_s
 <p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_1}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \]</span></p>
 <p>would be distributed according to a <span class="math inline">\(t\)</span>-distribution with 13.928 degrees of freedom.</p></li>
 </ul>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="null-hypothesis-significance-testing-nhst.html#cb112-1" tabindex="-1"></a><span class="co"># Load ggplot2</span></span>
-<span id="cb112-2"><a href="null-hypothesis-significance-testing-nhst.html#cb112-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb112-3"><a href="null-hypothesis-significance-testing-nhst.html#cb112-3" tabindex="-1"></a></span>
-<span id="cb112-4"><a href="null-hypothesis-significance-testing-nhst.html#cb112-4" tabindex="-1"></a><span class="co"># Define degrees of freedom</span></span>
-<span id="cb112-5"><a href="null-hypothesis-significance-testing-nhst.html#cb112-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fl">13.928</span></span>
-<span id="cb112-6"><a href="null-hypothesis-significance-testing-nhst.html#cb112-6" tabindex="-1"></a></span>
-<span id="cb112-7"><a href="null-hypothesis-significance-testing-nhst.html#cb112-7" tabindex="-1"></a><span class="co"># Define the range for x and the critical t-values</span></span>
-<span id="cb112-8"><a href="null-hypothesis-significance-testing-nhst.html#cb112-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
-<span id="cb112-9"><a href="null-hypothesis-significance-testing-nhst.html#cb112-9" tabindex="-1"></a>critical_t <span class="ot">&lt;-</span> <span class="fl">2.1867</span></span>
-<span id="cb112-10"><a href="null-hypothesis-significance-testing-nhst.html#cb112-10" tabindex="-1"></a></span>
-<span id="cb112-11"><a href="null-hypothesis-significance-testing-nhst.html#cb112-11" tabindex="-1"></a><span class="co"># Create a data frame with x and corresponding density values</span></span>
-<span id="cb112-12"><a href="null-hypothesis-significance-testing-nhst.html#cb112-12" tabindex="-1"></a>t_dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb112-13"><a href="null-hypothesis-significance-testing-nhst.html#cb112-13" tabindex="-1"></a>  <span class="at">x =</span> x,</span>
-<span id="cb112-14"><a href="null-hypothesis-significance-testing-nhst.html#cb112-14" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dt</span>(x, df)</span>
-<span id="cb112-15"><a href="null-hypothesis-significance-testing-nhst.html#cb112-15" tabindex="-1"></a>)</span>
-<span id="cb112-16"><a href="null-hypothesis-significance-testing-nhst.html#cb112-16" tabindex="-1"></a></span>
-<span id="cb112-17"><a href="null-hypothesis-significance-testing-nhst.html#cb112-17" tabindex="-1"></a><span class="co"># Plot the t-distribution with shaded tail areas</span></span>
-<span id="cb112-18"><a href="null-hypothesis-significance-testing-nhst.html#cb112-18" tabindex="-1"></a><span class="fu">ggplot</span>(t_dist, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
-<span id="cb112-19"><a href="null-hypothesis-significance-testing-nhst.html#cb112-19" tabindex="-1"></a>  <span class="co"># Add the main t-distribution curve</span></span>
-<span id="cb112-20"><a href="null-hypothesis-significance-testing-nhst.html#cb112-20" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb112-21"><a href="null-hypothesis-significance-testing-nhst.html#cb112-21" tabindex="-1"></a>  <span class="co"># Add shaded areas below the curve outside the critical t-values</span></span>
-<span id="cb112-22"><a href="null-hypothesis-significance-testing-nhst.html#cb112-22" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb112-23"><a href="null-hypothesis-significance-testing-nhst.html#cb112-23" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&lt;</span> <span class="sc">-</span>critical_t),</span>
-<span id="cb112-24"><a href="null-hypothesis-significance-testing-nhst.html#cb112-24" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
-<span id="cb112-25"><a href="null-hypothesis-significance-testing-nhst.html#cb112-25" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb112-26"><a href="null-hypothesis-significance-testing-nhst.html#cb112-26" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb112-27"><a href="null-hypothesis-significance-testing-nhst.html#cb112-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb112-28"><a href="null-hypothesis-significance-testing-nhst.html#cb112-28" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb112-29"><a href="null-hypothesis-significance-testing-nhst.html#cb112-29" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&gt;</span> critical_t),</span>
-<span id="cb112-30"><a href="null-hypothesis-significance-testing-nhst.html#cb112-30" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
-<span id="cb112-31"><a href="null-hypothesis-significance-testing-nhst.html#cb112-31" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb112-32"><a href="null-hypothesis-significance-testing-nhst.html#cb112-32" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb112-33"><a href="null-hypothesis-significance-testing-nhst.html#cb112-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb112-34"><a href="null-hypothesis-significance-testing-nhst.html#cb112-34" tabindex="-1"></a>  <span class="co"># Add vertical lines for the critical t-values</span></span>
-<span id="cb112-35"><a href="null-hypothesis-significance-testing-nhst.html#cb112-35" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>critical_t, critical_t), </span>
-<span id="cb112-36"><a href="null-hypothesis-significance-testing-nhst.html#cb112-36" tabindex="-1"></a>          <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb112-37"><a href="null-hypothesis-significance-testing-nhst.html#cb112-37" tabindex="-1"></a>  <span class="co"># Annotate the critical t-values</span></span>
-<span id="cb112-38"><a href="null-hypothesis-significance-testing-nhst.html#cb112-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span>critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
-<span id="cb112-39"><a href="null-hypothesis-significance-testing-nhst.html#cb112-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;-t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb112-40"><a href="null-hypothesis-significance-testing-nhst.html#cb112-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
-<span id="cb112-41"><a href="null-hypothesis-significance-testing-nhst.html#cb112-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb112-42"><a href="null-hypothesis-significance-testing-nhst.html#cb112-42" tabindex="-1"></a>  <span class="co"># Add labels and style</span></span>
-<span id="cb112-43"><a href="null-hypothesis-significance-testing-nhst.html#cb112-43" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb112-44"><a href="null-hypothesis-significance-testing-nhst.html#cb112-44" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;t-Distribution with Shaded Critical Areas (Two-Sided Test)&quot;</span>,</span>
-<span id="cb112-45"><a href="null-hypothesis-significance-testing-nhst.html#cb112-45" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Degrees of Freedom:&quot;</span>, df),</span>
-<span id="cb112-46"><a href="null-hypothesis-significance-testing-nhst.html#cb112-46" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;t&quot;</span>,</span>
-<span id="cb112-47"><a href="null-hypothesis-significance-testing-nhst.html#cb112-47" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
-<span id="cb112-48"><a href="null-hypothesis-significance-testing-nhst.html#cb112-48" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb112-49"><a href="null-hypothesis-significance-testing-nhst.html#cb112-49" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb112-50"><a href="null-hypothesis-significance-testing-nhst.html#cb112-50" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb112-51"><a href="null-hypothesis-significance-testing-nhst.html#cb112-51" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># Center the title</span></span>
-<span id="cb112-52"><a href="null-hypothesis-significance-testing-nhst.html#cb112-52" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)  <span class="co"># Center the subtitle</span></span>
-<span id="cb112-53"><a href="null-hypothesis-significance-testing-nhst.html#cb112-53" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="null-hypothesis-significance-testing-nhst.html#cb113-1" tabindex="-1"></a><span class="co"># p-value manually:</span></span>
-<span id="cb113-2"><a href="null-hypothesis-significance-testing-nhst.html#cb113-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="null-hypothesis-significance-testing-nhst.html#cb124-1" tabindex="-1"></a><span class="co"># Load ggplot2</span></span>
+<span id="cb124-2"><a href="null-hypothesis-significance-testing-nhst.html#cb124-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb124-3"><a href="null-hypothesis-significance-testing-nhst.html#cb124-3" tabindex="-1"></a></span>
+<span id="cb124-4"><a href="null-hypothesis-significance-testing-nhst.html#cb124-4" tabindex="-1"></a><span class="co"># Define degrees of freedom</span></span>
+<span id="cb124-5"><a href="null-hypothesis-significance-testing-nhst.html#cb124-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fl">13.928</span></span>
+<span id="cb124-6"><a href="null-hypothesis-significance-testing-nhst.html#cb124-6" tabindex="-1"></a></span>
+<span id="cb124-7"><a href="null-hypothesis-significance-testing-nhst.html#cb124-7" tabindex="-1"></a><span class="co"># Define the range for x and the critical t-values</span></span>
+<span id="cb124-8"><a href="null-hypothesis-significance-testing-nhst.html#cb124-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb124-9"><a href="null-hypothesis-significance-testing-nhst.html#cb124-9" tabindex="-1"></a>critical_t <span class="ot">&lt;-</span> <span class="fl">2.1867</span></span>
+<span id="cb124-10"><a href="null-hypothesis-significance-testing-nhst.html#cb124-10" tabindex="-1"></a></span>
+<span id="cb124-11"><a href="null-hypothesis-significance-testing-nhst.html#cb124-11" tabindex="-1"></a><span class="co"># Create a data frame with x and corresponding density values</span></span>
+<span id="cb124-12"><a href="null-hypothesis-significance-testing-nhst.html#cb124-12" tabindex="-1"></a>t_dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb124-13"><a href="null-hypothesis-significance-testing-nhst.html#cb124-13" tabindex="-1"></a>  <span class="at">x =</span> x,</span>
+<span id="cb124-14"><a href="null-hypothesis-significance-testing-nhst.html#cb124-14" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dt</span>(x, df)</span>
+<span id="cb124-15"><a href="null-hypothesis-significance-testing-nhst.html#cb124-15" tabindex="-1"></a>)</span>
+<span id="cb124-16"><a href="null-hypothesis-significance-testing-nhst.html#cb124-16" tabindex="-1"></a></span>
+<span id="cb124-17"><a href="null-hypothesis-significance-testing-nhst.html#cb124-17" tabindex="-1"></a><span class="co"># Plot the t-distribution with shaded tail areas</span></span>
+<span id="cb124-18"><a href="null-hypothesis-significance-testing-nhst.html#cb124-18" tabindex="-1"></a><span class="fu">ggplot</span>(t_dist, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb124-19"><a href="null-hypothesis-significance-testing-nhst.html#cb124-19" tabindex="-1"></a>  <span class="co"># Add the main t-distribution curve</span></span>
+<span id="cb124-20"><a href="null-hypothesis-significance-testing-nhst.html#cb124-20" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-21"><a href="null-hypothesis-significance-testing-nhst.html#cb124-21" tabindex="-1"></a>  <span class="co"># Add shaded areas below the curve outside the critical t-values</span></span>
+<span id="cb124-22"><a href="null-hypothesis-significance-testing-nhst.html#cb124-22" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
+<span id="cb124-23"><a href="null-hypothesis-significance-testing-nhst.html#cb124-23" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&lt;</span> <span class="sc">-</span>critical_t),</span>
+<span id="cb124-24"><a href="null-hypothesis-significance-testing-nhst.html#cb124-24" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
+<span id="cb124-25"><a href="null-hypothesis-significance-testing-nhst.html#cb124-25" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb124-26"><a href="null-hypothesis-significance-testing-nhst.html#cb124-26" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb124-27"><a href="null-hypothesis-significance-testing-nhst.html#cb124-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb124-28"><a href="null-hypothesis-significance-testing-nhst.html#cb124-28" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
+<span id="cb124-29"><a href="null-hypothesis-significance-testing-nhst.html#cb124-29" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&gt;</span> critical_t),</span>
+<span id="cb124-30"><a href="null-hypothesis-significance-testing-nhst.html#cb124-30" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
+<span id="cb124-31"><a href="null-hypothesis-significance-testing-nhst.html#cb124-31" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb124-32"><a href="null-hypothesis-significance-testing-nhst.html#cb124-32" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb124-33"><a href="null-hypothesis-significance-testing-nhst.html#cb124-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb124-34"><a href="null-hypothesis-significance-testing-nhst.html#cb124-34" tabindex="-1"></a>  <span class="co"># Add vertical lines for the critical t-values</span></span>
+<span id="cb124-35"><a href="null-hypothesis-significance-testing-nhst.html#cb124-35" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>critical_t, critical_t), </span>
+<span id="cb124-36"><a href="null-hypothesis-significance-testing-nhst.html#cb124-36" tabindex="-1"></a>          <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-37"><a href="null-hypothesis-significance-testing-nhst.html#cb124-37" tabindex="-1"></a>  <span class="co"># Annotate the critical t-values</span></span>
+<span id="cb124-38"><a href="null-hypothesis-significance-testing-nhst.html#cb124-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span>critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
+<span id="cb124-39"><a href="null-hypothesis-significance-testing-nhst.html#cb124-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;-t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb124-40"><a href="null-hypothesis-significance-testing-nhst.html#cb124-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
+<span id="cb124-41"><a href="null-hypothesis-significance-testing-nhst.html#cb124-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb124-42"><a href="null-hypothesis-significance-testing-nhst.html#cb124-42" tabindex="-1"></a>  <span class="co"># Add labels and style</span></span>
+<span id="cb124-43"><a href="null-hypothesis-significance-testing-nhst.html#cb124-43" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb124-44"><a href="null-hypothesis-significance-testing-nhst.html#cb124-44" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;t-Distribution with Shaded Critical Areas (Two-Sided Test)&quot;</span>,</span>
+<span id="cb124-45"><a href="null-hypothesis-significance-testing-nhst.html#cb124-45" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Degrees of Freedom:&quot;</span>, df),</span>
+<span id="cb124-46"><a href="null-hypothesis-significance-testing-nhst.html#cb124-46" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb124-47"><a href="null-hypothesis-significance-testing-nhst.html#cb124-47" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb124-48"><a href="null-hypothesis-significance-testing-nhst.html#cb124-48" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb124-49"><a href="null-hypothesis-significance-testing-nhst.html#cb124-49" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb124-50"><a href="null-hypothesis-significance-testing-nhst.html#cb124-50" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb124-51"><a href="null-hypothesis-significance-testing-nhst.html#cb124-51" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># Center the title</span></span>
+<span id="cb124-52"><a href="null-hypothesis-significance-testing-nhst.html#cb124-52" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)  <span class="co"># Center the subtitle</span></span>
+<span id="cb124-53"><a href="null-hypothesis-significance-testing-nhst.html#cb124-53" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="null-hypothesis-significance-testing-nhst.html#cb125-1" tabindex="-1"></a><span class="co"># p-value manually:</span></span>
+<span id="cb125-2"><a href="null-hypothesis-significance-testing-nhst.html#cb125-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.04633225</code></pre>
 <p>The plot shows the <span class="math inline">\(t\)</span>-distribution. Marked in red are the areas where the test statistic
 takes the value we observed or “more extreme” values. With “more extreme” we mean values that are
@@ -742,13 +813,26 @@ know this (see <a href="null-hypothesis-significance-testing-nhst.html#exercise6
 Maybe, let’s take the part about the Shapiro-Wilk test not too seriously.</p>
 <p>The test statistic(s) for the test(s) can be found <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Inference">here</a>.
 If we really want to take the result of such a test seriously, we need to check the assumptions of the test.</p>
+<p>………..</p>
+<p>See also <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">here</a>
+to see the variability of the correlation coefficient under the null hypothesis.</p>
 </div>
 <div id="type-1-and-type-2-errors" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Type 1 and Type 2 errors<a href="null-hypothesis-significance-testing-nhst.html#type-1-and-type-2-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>…….</p>
 </div>
-<div id="simulations-based-approaches" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Simulations based approaches<a href="null-hypothesis-significance-testing-nhst.html#simulations-based-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-frequentist-confidence-interval" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> The frequentist confidence interval<a href="null-hypothesis-significance-testing-nhst.html#the-frequentist-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to
+typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).\]</span></p>
+<p>It is very important to understand that for every sample, the confidence interval is different and in the long wrong,
+these intervals will contain the true parameter in a certain percentage of cases.</p>
+<p>This is a <a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">nice visualization</a>
+of the concept.
+See also <a href="null-hypothesis-significance-testing-nhst.html#exercise7_nhst">exercise 7</a>.</p>
+</div>
+<div id="simulations-based-approaches" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Simulations based approaches<a href="null-hypothesis-significance-testing-nhst.html#simulations-based-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Through the power of modern computers, we can simulate all kinds of hypothesis tests.
 We just assume that the null hypothesis is true and draw samples from the very distribution.
 In the old times, computational ressources were scarce and one had to rely on
@@ -764,25 +848,25 @@ In the Bayesian framework from Kruschke, we defined a region of practical equiva
 Then try to simulate it. This helps to understand what constitutes a qualitatively different result
 (from the null hypothesis) considering variability in the data.</p>
 </div>
-<div id="exercises-3" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Exercises<a href="null-hypothesis-significance-testing-nhst.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise1_nhst" class="section level3 hasAnchor" number="5.8.1">
-<h3><span class="header-section-number">5.8.1</span> Exercise 1 - frequentist confidence interval<a href="null-hypothesis-significance-testing-nhst.html#exercise1_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises-3" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Exercises<a href="null-hypothesis-significance-testing-nhst.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise1_nhst" class="section level3 hasAnchor" number="5.9.1">
+<h3><span class="header-section-number">5.9.1</span> Exercise 1 - frequentist confidence interval<a href="null-hypothesis-significance-testing-nhst.html#exercise1_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create 1000 random samples from a binomial distribution with <span class="math inline">\(n = 100\)</span> and <span class="math inline">\(p = 0.38\)</span>.</li>
 <li>Calculate the 96% confidence interval for each sample using R.</li>
 <li>How often was the true parameter (<span class="math inline">\(p = 0.38\)</span>) contained in the constructed interval?</li>
 </ul>
 </div>
-<div id="exercise2_nhst" class="section level3 hasAnchor" number="5.8.2">
-<h3><span class="header-section-number">5.8.2</span> Exercise 2 - everything becomes “significant”<a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Setting: two sample t-test. Assume there is a small difference between the means of two groups.
+<div id="exercise2_nhst" class="section level3 hasAnchor" number="5.9.2">
+<h3><span class="header-section-number">5.9.2</span> Exercise 2 - everything becomes “significant”<a href="null-hypothesis-significance-testing-nhst.html#exercise2_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Setting: two sample <span class="math inline">\(t\)</span>-test. Assume there is a small difference between the means of two groups.
 - Show via simulation that with increasing sample size, the <span class="math inline">\(p\)</span>-value becomes smaller and
 smaller and will be “significant” at some point irresespective of how small the true mean
 difference is and how small the <span class="math inline">\(\alpha-\)</span> level is.</p>
 </div>
-<div id="exercise3_nhst" class="section level3 hasAnchor" number="5.8.3">
-<h3><span class="header-section-number">5.8.3</span> Exercise 3 - binomial test<a href="null-hypothesis-significance-testing-nhst.html#exercise3_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise3_nhst" class="section level3 hasAnchor" number="5.9.3">
+<h3><span class="header-section-number">5.9.3</span> Exercise 3 - binomial test<a href="null-hypothesis-significance-testing-nhst.html#exercise3_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create a sample from a binomial distribution with <span class="math inline">\(n = 54\)</span> and <span class="math inline">\(p = 0.68\)</span>.</li>
 <li>Perform a two-sided binomial test with <span class="math inline">\(H_0: p = 0.5\)</span>.</li>
@@ -790,8 +874,8 @@ difference is and how small the <span class="math inline">\(\alpha-\)</span> lev
 <li>Calculate the p-value for the two-sided test by “hand” (using dbinom/pbinom in R).</li>
 </ul>
 </div>
-<div id="exercise4_nhst" class="section level3 hasAnchor" number="5.8.4">
-<h3><span class="header-section-number">5.8.4</span> Exercise 4 - proportions test<a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise4_nhst" class="section level3 hasAnchor" number="5.9.4">
+<h3><span class="header-section-number">5.9.4</span> Exercise 4 - proportions test<a href="null-hypothesis-significance-testing-nhst.html#exercise4_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create a sample from a binomial distribution with <span class="math inline">\(n = 100\)</span> and <span class="math inline">\(p = 0.5\)</span>.</li>
 <li>Perform a proportions test with <span class="math inline">\(H_0: p = 0.5\)</span> and interpret the results.</li>
@@ -802,22 +886,31 @@ the assumed proportion on the x-axis.
 This is called a <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1556735#:~:text=The%20p%2Dvalue%20function%20provides,for%20the%20parameter%20of%20interest.">p-value function</a>.</li>
 </ul>
 </div>
-<div id="exercise5_nhst" class="section level3 hasAnchor" number="5.8.5">
-<h3><span class="header-section-number">5.8.5</span> Exercise 5 - proportions test 2<a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise5_nhst" class="section level3 hasAnchor" number="5.9.5">
+<h3><span class="header-section-number">5.9.5</span> Exercise 5 - proportions test 2<a href="null-hypothesis-significance-testing-nhst.html#exercise5_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Use the data from the smokers proportions test <a href="null-hypothesis-significance-testing-nhst.html#proportions_test_more_samples">example above</a>.</li>
 <li>Draw a <span class="math inline">\(\chi^2\)</span> distribution with 3 degrees of freedom and calculate the
 probability of observing a value of 12.6 or larger.</li>
 </ul>
 </div>
-<div id="exercise6_nhst" class="section level3 hasAnchor" number="5.8.6">
-<h3><span class="header-section-number">5.8.6</span> Exercise 6 - correlation coefficent<a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise6_nhst" class="section level3 hasAnchor" number="5.9.6">
+<h3><span class="header-section-number">5.9.6</span> Exercise 6 - correlation coefficent<a href="null-hypothesis-significance-testing-nhst.html#exercise6_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create a sample of <span class="math inline">\(234\)</span> pairs of uncorrelated observations <span class="math inline">\((x_i,y_i)\)</span>.
 <span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span> are drawn from a normal distribution with mean 0 and standard deviation 1.</li>
 <li>Calculate the sample correlation coefficient <span class="math inline">\(r\)</span>.</li>
 <li>Repeat this 1000 times.</li>
 <li>How often was the sample correlation coefficient larger than 0.76?</li>
+</ul>
+</div>
+<div id="exercise7_nhst" class="section level3 hasAnchor" number="5.9.7">
+<h3><span class="header-section-number">5.9.7</span> Exercise 7 - coverage frequency of CI<a href="null-hypothesis-significance-testing-nhst.html#exercise7_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Create a sample (vary the sample size, start small) from a normal distribution with mean 0 and standard deviation 1.</li>
+<li>Calculate the 93% confidence interval for the mean.</li>
+<li>Repeat this 1000 times.</li>
+<li>How often was the true mean (0) contained in the constructed interval?</li>
 </ul>
 
 </div>
