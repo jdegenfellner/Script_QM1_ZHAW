@@ -219,6 +219,57 @@ Comparing these histograms (using different seed-values), we could assume that f
 FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
 seem to deviate from the normal distribution.
 
+## Q-Q Plots
+Another way to check for normality (or if the sample is distributed in another way) 
+is the [Q-Q plot](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot).
+A Q-Q plot is a scatterplot created by plotting two sets of quantiles against one another. On the
+x-axis we plot the quantiles of the theoretical (for instance) normal distribution and on the y-axis 
+the quantiles of the observed data. If the data is normally distributed, the points should lie on a straight line
+or at least sufficiently close to a confidence band.
+See [exercise 9](#exercise9_descriptive_stats).
+
+Let's look at multiple examples of normal Q-Q plots which demonstrate the concept:
+
+```{r}
+library(pacman)
+p_load(car)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# 1. Sample from a normal distribution
+normal_sample <- rnorm(100, mean = 45, sd = 6)
+qqPlot(normal_sample, main = "Q-Q Plot: Normal Distribution", id = FALSE)
+
+# 2. Sample from an exponential distribution
+exp_sample <- rexp(100, rate = 1)
+qqPlot(exp_sample, distribution = "norm",
+       main = "Q-Q Plot: Exponential vs Normal", id = FALSE)
+
+# 3. Sample from a t-distribution with low degrees of freedom
+t_sample <- rt(100, df = 2)
+qqPlot(t_sample, distribution = "norm",
+       main = "Q-Q Plot: t-Distribution vs Normal", id = FALSE)
+```
+
+The **first plot** shows a Q-Q plot of a sample from a normal distribution with $\mu = 45 and $\sigma = 6$. 
+The points lie on a straight line and are within a confidence band, 
+indicating that the data is normally distributed.
+
+The **second plot** shows a Q-Q plot of a sample from an 
+[exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution),
+which is [obviously not normal](https://en.wikipedia.org/wiki/Exponential_distribution#/media/File:Exponential_distribution_pdf_-_public_domain.svg) 
+for a rate ($\lambda$) of 1. There are more obersvations to be expected in the lower 
+range of x compared to normal for instance. 
+
+The **third plot** shows a Q-Q plot of a sample from a
+[ Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) 
+with 2 degrees of freedom, which has fater tails than the normal distribution.
+
+
+
+
+
 ## Correlation
 The [correlation](https://en.wikipedia.org/wiki/Correlation) between two variables is a measure 
 of the strength and direction of the **linear** relationship between them. It does **not** (directly)
@@ -578,6 +629,25 @@ Let's look at the data frame *bike_cleaned* in R.
   look like this considering the definition of each?
 
 - Find a skewed variable in a research paper.
+
+### [E] Exercise 8 - Correlation by hand
+
+- Calculate the correlation coefficient by hand for the following 
+  data points and compare with the R-function *cor()*:
+
+```{r}
+library(pacman)
+p_load(tidyverse)
+
+set.seed(123) # Für reproduzierbare Ergebnisse
+x <- c(1, 2, 3, 4, 5)
+y <- c(1.5, 2.5, 3.5, 4.5, 5.5) + rnorm(5, 0, 2) # Rauschen hinzufügen
+```
+
+
+### [E] Exercise 9 - Q-Q plot {#exercise9_descriptive_stats}
+- Create a Q-Q plot for a sample from a normal distribution and compare it with the theoretical quantiles.
+- Repeat this multiple times again and again to get a feeling how truly normally distributed data looks like.
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics).

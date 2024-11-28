@@ -42,6 +42,7 @@ example_study1_physio
 univarate-vs.-bivariate-statisics
 the-histogram
 example-in-the-wild
+q-q-plots
 correlation
 example-in-the-wild-1
 exercises-1
@@ -52,6 +53,8 @@ exercise4_descriptive_stats
 exercise5_descriptive_stats
 m-exercise-6---bike-parking-locations-in-switzerland
 e-exercise-7---median-mean-and-mode
+e-exercise-8---correlation-by-hand
+exercise9_descriptive_stats
 solutions-1
 bayes-statistics
 derivation-of-bayes-theorem

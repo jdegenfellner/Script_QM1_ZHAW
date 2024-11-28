@@ -27,7 +27,8 @@ It is permanently evolving and the [github repository](https://github.com/jdegen
 The **vision** is to write this script in **collaboration with students**. If you find any errors, have suggestions, or want to contribute, feel free to contact me. 
 Which (online) content (video, book, blog...) helped you understand the topic at hand better? We should link those resources in the script!
 
-The **goal** of this script is to provide a starting point for further reading and learning. It should function as an initial start to get you going. We are all learners.
+The **goal** of this script is to provide a starting point for further reading and learning. 
+It should function as an initial start to get you going. We are all learners.
 
 Feel free to use any content for your own purposes.
 
@@ -67,8 +68,15 @@ For more theoretically advanced approaches, I can recommend:
 
 ## `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'`
 
-In this course, we use [R](https://www.r-project.org/) as our main tool for data analysis. R is a free software environment for statistical computing and graphics. 
+In this course, we use [R](https://www.r-project.org/) as our main tool for data analysis. 
+R is a free software environment for statistical computing and graphics. 
 It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS. 
+
+We are following a **two-tier** approach to R. The **first tier** jumps right into solving 
+exercises and problems with R using GPT. This anticipates the capacities of the software 
+without knowing the details yet. The **second tier** is a more detailed approach to R, 
+where we learn the basics of the language and how to use it effectively. This part will be done
+in extensive recorded eLearning sessions over the course.
 
 You may want to give Hadley Wickham's book a try:
 

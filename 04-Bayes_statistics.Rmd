@@ -709,7 +709,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
 ```
 </details>
 
-**Interpretation**: The 93% HDI for the posterior distribution of $\theta$ is $[0.25, 0.55]$.
+**Interpretation**: The 93% HDI for the posterior distribution of $\theta$ is $[0.25, 0.51]$.
 With a probability of 93%, the defect rate is between 25% and 55%, given our prior 
 beliefs and the observed data.
 
