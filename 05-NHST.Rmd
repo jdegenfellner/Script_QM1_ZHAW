@@ -136,7 +136,7 @@ The output in R tells us the following:
 
 - data: 137 and 1000 successes oberved
 - alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
-- $p$-value$ < 2.2e-16$. This is value is smaller than the precision in R (`.Machine').
+- $p$-value < $2.2e-16$. This is value is smaller than the precision in R (`.Machine').
 - 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
 The upper limit of $1$ occurs since we have a one-sided test.
 - Sample estimates: Estimating the true (but unknown) proportion from the sample would just be: 
@@ -161,13 +161,12 @@ With some experience, one would probably not test for lower when seeing the obse
 the so constructed interval (which will be different everytime) contains the true but unknown 
 parameter ([Illustration](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg)). 
 
-Note, that the "Exact binomial test" was used. There where no approximations made. I would recommend always
+Note, that the "Exact binomial test" was used. There were no approximations made. I would recommend always
 using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21th century and computers are fast.
 
 Again, **the $\alpha$ level of $0.05$ has nothing special (apart from convention) to it**. 
 We can also use a $\alpha = 0.14$ level. In this case, we construct confidence intervals 
-with a 86% confidence level.
-
+with a 86% confidence level. We'll discuss the $\alpha$ level [below](#error_types). 
 ```{r}
 binom.test(137, 1000, p = 0.04, alternative = "two.sided", conf.level = 0.86)
 ```
@@ -423,7 +422,7 @@ If we really want to take the result of such a test seriously, we need to check 
 See also [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
 to see the variability of the correlation coefficient under the null hypothesis.
 
-## Type 1 and Type 2 errors
+## Type 1 and Type 2 errors {#error_types}
 ```{r error_table_fixed, echo=FALSE}
 library(knitr)
 
