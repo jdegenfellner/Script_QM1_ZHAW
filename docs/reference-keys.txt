@@ -4,6 +4,7 @@ books-i-can-highly-recommend
 section
 additional-tools
 workflow-suggestion
+orientation-for-the-course-and-script
 probs
 frequentist-vs.-bayesian-statistics
 frequentist-statistics
@@ -84,7 +85,7 @@ classical-t-test
 one-sample-t-test
 two-sample-t-test
 correlation-test
-type-1-and-type-2-errors
+error_types
 the-frequentist-confidence-interval
 simulations-based-approaches
 exercises-3

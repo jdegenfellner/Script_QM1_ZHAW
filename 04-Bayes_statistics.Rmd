@@ -900,6 +900,8 @@ Latest in QM2, we will do Bayesian regression analysis using packages like `brms
 
 ## Bayesian updating
 
+See also *5.2.1. Data-order invariance* in [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf).
+
 The following is an animated example of Bayesian updating. 
 The true probability for heads in a coin toss is $\theta = 0.77$.
 We throw a coin 100 times and we start with a uniform prior distribution, i.e., 

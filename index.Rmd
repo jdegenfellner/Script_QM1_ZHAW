@@ -120,3 +120,28 @@ knitr::write_bib(c(
   .packages(), "bookdown", "knitr", "rmarkdown"
 ), "packages.bib")
 ```
+
+## Orientation for the course and script
+```{r mindmap, echo=FALSE}
+library(DiagrammeR)
+
+grViz("
+digraph Mindmap {
+  graph [layout = dot, rankdir = TB]
+  node [shape = box, style = filled, fillcolor = lightblue]
+  
+  Main -> Subtopic1
+  Main -> Subtopic2
+  Main -> Subtopic3
+
+  Subtopic1 -> Sub1Detail1
+  Subtopic1 -> Sub1Detail2
+  
+  Subtopic2 -> Sub2Detail1
+  Subtopic2 -> Sub2Detail2
+  
+  Subtopic3 -> Sub3Detail1
+  Subtopic3 -> Sub3Detail2
+}
+")
+```

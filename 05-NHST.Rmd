@@ -476,7 +476,7 @@ Of course, the probability that a correlation coefficient is exactly 0 is 0 sinc
 but in practice we are interested in "indistinguishable from 0" which is a small value. 
 In the Bayesian framework from Kruschke, we defined a region of practical equivalence (ROPE) for this purpose.
 
-We ask ourselves: What does my test statistic do *if* the null hypothesis is true?
+**We ask ourselves**: What does my test statistic do *if* the null hypothesis is true?
 Then try to simulate it. This helps to understand what constitutes a qualitatively different result 
 (from the null hypothesis) considering variability in the data.
 
