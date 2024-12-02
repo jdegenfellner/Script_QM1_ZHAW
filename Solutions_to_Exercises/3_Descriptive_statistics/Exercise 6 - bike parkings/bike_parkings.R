@@ -21,8 +21,11 @@ colnames(coordinates) <- c("longitude", "latitude")
 bike_data <- cbind(coordinates, features$properties)
 head(bike_data)
 bike_cleaned <- bike_data %>%
-  dplyr::select(longitude, latitude, name, address_city, address_postalCode, capacity, properties_operator)
+  dplyr::select(longitude, latitude, name, address_city, 
+                address_postalCode, capacity, properties_operator)
 head(bike_cleaned)
+
+str(bike_cleaned)
 
 # Create an interactive map
 # Check the structure of capacity
@@ -90,9 +93,19 @@ ggplot(sbb_capacity_city, aes(x = reorder(address_city, -total_capacity), y = to
        y = "Total Capacity") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+# Thin out a little bit
+sbb_capacity_city %>%
+  ggplot(aes(x = reorder(address_city, -total_capacity), y = total_capacity)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  theme_minimal() +
+  labs(title = "Total Bike Parking Capacity by City (SBB)",
+       x = "City",
+       y = "Total Capacity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_discrete(breaks = function(x) x[seq(1, length(x), by = 10)]) # thin out a little bit
+
 # 4) What is the average capacity of bike parkings in the dataset?
-average_capacity <- mean(bike_cleaned$capacity, na.rm = TRUE)
-print(average_capacity)
+mean(bike_cleaned$capacity, na.rm = TRUE)
 
 # Draw a histogram
 ggplot(bike_cleaned, aes(x = capacity)) +
@@ -100,7 +113,18 @@ ggplot(bike_cleaned, aes(x = capacity)) +
   theme_minimal() +
   labs(title = "Histogram of Bike Parking Capacity",
        x = "Capacity",
-       y = "Frequency")
+       y = "Frequency") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+# Maybe let's zoom in on the smaller ones:
+bike_cleaned %>% filter(capacity < 100) %>%
+  ggplot(aes(x = capacity)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  theme_minimal() +
+  labs(title = "Histogram of Bike Parking Capacity (Capacity < 100)",
+       x = "Capacity",
+       y = "Frequency") + 
+  theme(plot.title = element_text(hjust = 0.5))
 
 # Draw a boxplot
 ggplot(bike_cleaned, aes(y = capacity)) +
@@ -108,7 +132,18 @@ ggplot(bike_cleaned, aes(y = capacity)) +
   theme_minimal() +
   labs(title = "Boxplot of Bike Parking Capacity",
        y = "Capacity") + 
-  coord_flip()
+  coord_flip() + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+# Maybe look at the smaller ones:
+bike_cleaned %>% filter(capacity < 100) %>%
+  ggplot(aes(y = capacity)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  labs(title = "Boxplot of Bike Parking Capacity (Capacity < 100)",
+       y = "Capacity") + 
+  coord_flip() + 
+  theme(plot.title = element_text(hjust = 0.5))
 
 # 5) What are the dimensions of the dataset bike_cleaned?
 dim(bike_cleaned)

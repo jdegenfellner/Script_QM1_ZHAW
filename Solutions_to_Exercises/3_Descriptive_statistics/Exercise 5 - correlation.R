@@ -23,6 +23,8 @@ for (r in test_rho_values) {
   }
 }
 
+all_data
+
 # Plot using facet_grid with rho in rows and n in columns
 ggplot(all_data, aes(x = x, y = y)) +
   geom_point(alpha = 0.4, color = "blue") +
@@ -39,7 +41,7 @@ par(mfrow = c(1, 1))
 
 # Set parameters for the exercise
 set.seed(1234)
-n <- 20     # Sample size
+n <- 200     # Sample size
 rho <- 0.7      # True correlation
 num_simulations <- 1000   # Number of simulations for histogram
 
@@ -61,16 +63,16 @@ hist(correlations, breaks = 30, col = "skyblue", border = "white",
 # Display mean and standard deviation of correlations
 cat("Mean of simulated correlations:", mean(correlations), "\n")
 
-quantile(correlations, c(0.025, 0.975)) 
+quantile(correlations, c(0.02, 0.98)) 
 # n = 20 (MSc-thesis)
-# 2.5%     97.5% 
-# 0.3999409 0.8821489
+# 2%           98% 
+# 0.3657449 0.8872824 
 IQR(correlations) # 0.1524189
 
 # n = 200 (larger project)
-#  2.5%     97.5% 
-# 0.6193200 0.7638175 
-IQR(correlations) # 0.04671208
+#   2%             98% 
+# 0.6154081 0.7633769 
+IQR(correlations) # 0.04794111
 
 # On average, the correlations are indeed close to the true rho.
 # Variability is higher for smaller sample sizes, as expected, i.e.,
