@@ -116,7 +116,7 @@ As stated above, in the frequentist sense, we are interested in the long-run fre
 
 **[Eureka](https://en.wikipedia.org/wiki/Eureka_(word))?**
 
-Let's imagine we are in a research department with 1000 researches all trying to answer the same question: 
+Let's imagine we are in a research department with 1000 researchers all trying to answer the same question: 
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let's assume (unrealistically) that they are all working on this one question and they are not
 talking about their experiments or their research methodology to each other (assumption of independence). The statistician in the department has calculated 
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
@@ -124,7 +124,7 @@ that even under the assumption of the therapy is not working *at all* - **which 
 
 What would be considered a discovery under these cicumstances?
 
-We now conduct an experiment. All 1000 ressearches are conducting a study with 50 patients to answer the same question. This is our random experiment (instead of throwing dice). 
+We now conduct an experiment. All 1000 researchers are conducting a study with 50 patients to answer the same question. This is our random experiment (instead of throwing dice). 
 Instead of throwing a fair die, we do a round of "research" with 1000 researchers. You as observer
 give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can 
 (unrealistically) assume that their results will be not influenced by each other.
