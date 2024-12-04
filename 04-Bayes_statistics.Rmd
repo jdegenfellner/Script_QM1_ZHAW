@@ -1,4 +1,4 @@
-# Bayes statistics
+# Bayes statistics {#bayes_statistics}
 
 To gain a richer understanding, I can recommend (optionally) reading the introductory chapters in 
 John Kruschke's book [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf).
@@ -255,7 +255,7 @@ ggplot(data, aes(x = x, y = density)) +
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14)
   ) +
-  geom_vline(xintercept = 0.2, linetype = "dashed", color = "red") + 
+  geom_vline(xintercept = 0.2, linetype = "dashed", color = "red") +
   theme(
     plot.title = element_text(face = "bold",
                               hjust = 0.5, size = 16),  # Center the title
@@ -397,7 +397,7 @@ ggplot(plot_data, aes(x = theta)) +
     color = "darkblue",
     size = 4,
     hjust = 0
-  ) + 
+  ) +
   theme(
     plot.title = element_text(face = "bold",
                               hjust = 0.5, size = 16),  # Center the title
@@ -506,7 +506,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     size = 4,
     hjust = 0
   ) +
-  theme_minimal(base_size = 14) + 
+  theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold",
                               hjust = 0.5, size = 16),  # Center the title
@@ -784,7 +784,7 @@ visit [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf), 
 length(y1)
 length(y2)
 
-data <- data.frame(y1,y2)
+data <- data.frame(y1, y2)
 psych::describe(data)
 
 # Boxplot:
@@ -802,7 +802,7 @@ For this, we will apply the R function `BESTmcmc` from the package `BEST`.
 ```{r, echo=TRUE}
 set.seed(33443)
 p_load(HDInterval, BEST, tictoc, psych, tidyverse)
-# H_0: mue1 - mue2 = delta_0 
+# H_0: mue1 - mue2 = delta_0
 a <- 20 # ROPE (region of practical equivalence)
 d_0 <- 0
 BESTout <- BESTmcmc(y1, y2, verbose = TRUE)

@@ -1,4 +1,4 @@
-# Descriptive statistics
+# Descriptive statistics {#descriptive_stats}
 
 There are a myriad sources (books, websites, videos) explaining the concepts of [descriptive statistics](https://en.wikipedia.org/wiki/Descriptive_statistics). 
 We do not need to reiterate everything here. You can go through these sources to get started:
@@ -418,7 +418,7 @@ rho <- 0.75  # Desired correlation
 
 # Generate bivariate normal data with specified correlation
 x <- rnorm(n)
-y <- rho * x + sqrt(1 - rho^2) * rnorm(n) 
+y <- rho * x + sqrt(1 - rho^2) * rnorm(n)
 # see e.g. https://www.probabilitycourse.com/chapter5/5_3_2_bivariate_normal_dist.php
 
 # Store original data

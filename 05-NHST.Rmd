@@ -1,4 +1,4 @@
-# Null Hypothesis Significance Testing (NHST)
+# Null Hypothesis Significance Testing (NHST) {#nhst}
 
 Null Hypothesis Significance Testing (NHST) is a statistical method widely used in research, 
 including health sciences, to evaluate whether observed data provide sufficient evidence **to refute** a specific hypothesis. 
@@ -197,11 +197,12 @@ we can use the [proportions test](https://www.rdocumentation.org/packages/stats/
 ```{r}
 set.seed(443)
 heads <- rbinom(1, size = 100,
-prob = 0.5) # create a sample with known probability
+                prob = 0.5) # create a sample with known probability
 prop.test(heads, 100,
-conf.level = 0.94, p = 0.5) # continuity correction TRUE by default
+          conf.level = 0.94, p = 0.5) # continuity correction TRUE by default
 prop.test(heads, 100,
-correct = FALSE, conf.level = 0.94, p = 0.5) # no continuity correction
+          correct = FALSE,
+          conf.level = 0.94, p = 0.5) # no continuity correction
 ```
 
 - correct = TRUE indicates that a correction ([Yates](https://en.wikipedia.org/wiki/Yates%27s_correction_for_continuity)) 
@@ -268,7 +269,7 @@ head(my_data, 10)
 summary(my_data$weight)
 
 library(ggpubr)
-ggboxplot(my_data$weight, 
+ggboxplot(my_data$weight,
           ylab = "Weight (g)", xlab = FALSE,
           ggtheme = theme_minimal())
 
@@ -365,8 +366,8 @@ ggplot(t_dist, aes(x = x, y = density)) +
     alpha = 0.3
   ) +
   # Add vertical lines for the critical t-values
-  geom_vline(xintercept = c(-critical_t, critical_t), 
-          linetype = "dashed", color = "black") +
+  geom_vline(xintercept = c(-critical_t, critical_t),
+             linetype = "dashed", color = "black") +
   # Annotate the critical t-values
   annotate("text", x = -critical_t, y = 0.05,
            label = paste0("-t = ", critical_t), angle = 90, vjust = -0.5) +

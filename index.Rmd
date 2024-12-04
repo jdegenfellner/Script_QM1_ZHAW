@@ -122,26 +122,22 @@ knitr::write_bib(c(
 ```
 
 ## Orientation for the course and script
-```{r mindmap, echo=FALSE}
-library(DiagrammeR)
+Throughout the script it is important to keep a mental mind map of the topics we are covering and why.
+Typically, we start with a question like "Is this therapy more effective than usual care", 
+then we collect data, summarize it, and then we try to answer the question. Often, we already have 
+the data (a so-called convenience sample) and we try to answer 
+a question with it (exploratively).
 
-grViz("
-digraph Mindmap {
-  graph [layout = dot, rankdir = TB]
-  node [shape = box, style = filled, fillcolor = lightblue]
-  
-  Main -> Subtopic1
-  Main -> Subtopic2
-  Main -> Subtopic3
+By answering the question, we make an inference about the population respectively the process generating 
+the data. So we want to conclude something about the population from the sample in front of us.
 
-  Subtopic1 -> Sub1Detail1
-  Subtopic1 -> Sub1Detail2
-  
-  Subtopic2 -> Sub2Detail1
-  Subtopic2 -> Sub2Detail2
-  
-  Subtopic3 -> Sub3Detail1
-  Subtopic3 -> Sub3Detail2
-}
-")
-```
+When we only **describe the data to better understand** it, we are in the realm of 
+**[descriptive statistics](#descriptive_stats)**. 
+
+When we try to make an inference about the population, we are in the 
+realm of **inferential statistics**. Simply put, we want to find out if the, for example, the treatment effect
+we are seeing in the sample is also present in the population or if what we are seeing was just by chance. 
+We also add measures of uncertainty (for instance confidence intervals) to our estimates.
+
+We can do this inference in two ways: **Frequentist approach** using null hypothesis significance 
+testing ([NHST](#nhst)), or by using the **Bayesian approach** ([Bayesian inference](#bayes_statistics)).

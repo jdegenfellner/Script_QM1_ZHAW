@@ -39,7 +39,7 @@ There are two main schools of thought in statistics: Frequentist and Bayesian. O
 
 It is *not* our place to say which one is better. Both have their strengths and weaknesses and are used in different contexts.
 
-I would consider the rapant misuse of [p-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub) and the 
+I would consider the rapant misuse of [$p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub) and the 
 cookbook-like application of frequentist statistics as a weakness of this approach (in its widely used form at least). 
 Of course, this is not the method's fault but the fault of the user.
 
@@ -489,7 +489,7 @@ If you test many hypotheses, you will find some "significant" results by chance 
 One could also call the practice of testing many hypotheses to find "significant" ones [$p$-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
 This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
-If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of p-values and 
+If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of $p$-values and 
 their (over-)interpretation as "significant" (relevant) or "non-significant" (not relevant). 
 This [article](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) is recommendable to get away from a too strict dichotomous interpretation of research results.
 
@@ -1012,21 +1012,21 @@ Find examples of dice events when throwing a die once that are:
 - Not independent but disjoint.
 - Independent but not disjoint.
 
-### [D] Exercise 12 - Student's t-distribution {#exercise12}
+### [D] Exercise 12 - Student's $t$-distribution {#exercise12}
 Let's look at a [paper](https://www.sciencedirect.com/science/article/pii/S0954611112002958#aep-abstract-id3), 
 where the t-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary 
 rehabilitation in addition to regular chest physiotherapy in non cystic fibrosis bronchiectasis.
 Table 1 describes the patient characteristics in both groups.
 Table 2 shows the primary endpoint (incremental shuttle walk test - ISWT) at baseline and follow-up time points.
 [Figure 2](https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg) shows the outcomes 
-at baseline, 8 weeks and 20 weeks for both groups.)
+at baseline, 8 weeks and 20 weeks for both groups.
 They want to find out if the ISWT is different between the two groups.
-(Note, that an arbitrary threshold for the p-value of 0.05 is used to decide if the groups 
+(Note, that an arbitrary threshold for the $p$-value of 0.05 is used to decide if the groups 
 are "significantly" different. One should [avoid](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) these formulations.
 There is no reason not to use a different threshold (like 4.3%).)
-**The standardized difference of the group means is t-distributed**. This case is a bit more complex than the simple ones, 
+**The standardized difference of the group means is $t$-distributed**. This case is a bit more complex than the simple ones, 
 since we have different sample sizes (15 vs. 12) and different variances in the groups. The statistics software will take care of this
-and use the so-called [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).
+and use the so-called [Welch's $t$-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).
 
 - What do you think about the baseline values for ISWT in the two groups?
 - What is the number in brackets next to the ISWT-values?
@@ -1044,11 +1044,11 @@ and use the so-called [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/2_Probability).
 
-## Sample exam questions for this chapter
+## Sample exam questions for this chapter (in German since exam is in German)
 
-### [E] Question 1 - Independence and disjointness
+### Question 1 - Independence and disjointness
 
-Wir werfen einen fairen Würfel einmal und betrachten die Augenzahl. Welche der folgenden Aussage(n) ist/sind korrekt?
+Wir werfen einen fairen Würfel einmal und betrachten die Augenzahl. Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
 
 - Die Wahrscheinlichkeit, eine gerade Zahl zu werfen, ist **unabhängig** von der Wahrscheinlichkeit, eine Zahl größer als 3 zu werfen.
 
@@ -1058,3 +1058,44 @@ Wir werfen einen fairen Würfel einmal und betrachten die Augenzahl. Welche der 
 
 - Die Wahrscheinlichkeit, eine Zahl größer als 3 zu werfen, ist **unabhängig** (independent) **und**
   **disjunkt** (disjoint) von der Wahrscheinlichkeit, eine Zahl kleiner als 4 zu werfen.
+
+### Frage 2 - Bedingte Wahrscheinlichkeit
+
+Ein medizinischer Test wird verwendet, um eine bestimmte Krankheit zu erkennen. Der Test hat folgende Eigenschaften:  
+- **Sensitivität**: 95%  
+- **Spezifität**: 90%  
+- Die Prävalenz der Krankheit in der Bevölkerung beträgt **2%**.  
+
+Welche der folgenden Aussage(n) ist/sind korrekt  (0-4 korrekte Antwortoptionen)?
+
+- Die Wahrscheinlichkeit, dass der Test positiv ist, wenn die Person die Krankheit hat, beträgt 95%.
+- Die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die Krankheit nicht hat, beträgt 90%.
+- Die Wahrscheinlichkeit, dass der Test positiv ist, wenn die Person die Krankheit nicht hat, beträgt 10%.
+- Die Wahrscheinlichkeit, dass die Person die Krankheit hat, wenn der Test positiv ist, beträgt $0.1623932$.
+
+### Frage 3 - Erwartungswert und Varianz
+
+Die diskrete Wahrscheinlichkeitsverteilung einer Zufallsvariablen $X$ ist gegeben durch:
+\[
+\begin{array}{|c|c|}
+\hline
+x & P(X = x) \\
+\hline
+1 & 0.2 \\
+2 & 0.3 \\
+3 & 0.4 \\
+4 & 0.1 \\
+\hline
+\end{array}
+\]
+
+Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
+
+- Der Erwartungswert von $X$ beträgt 2.6.
+- Die Varianz von $X$ beträgt 1.3.
+- In einer Wette, welche Ausprägung von $X$ beim nächsten Ziehen kommt, 
+würde man hier auf den Erwartungswert $\mathbb{E}(X)$ tippen.
+- Die Wahrscheinlichkeit für das Ereignis, dass $X$ eine gerade Zahl ist, ist 50%.
+
+### Frage 4 - Dichtefunktion
+Dreiecksverteilung...
