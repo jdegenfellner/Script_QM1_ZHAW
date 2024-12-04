@@ -5,6 +5,7 @@ section
 additional-tools
 workflow-suggestion
 orientation-for-the-course-and-script
+warning-of-incompleteness
 probs
 frequentist-vs.-bayesian-statistics
 frequentist-statistics

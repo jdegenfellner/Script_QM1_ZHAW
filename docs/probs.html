@@ -182,6 +182,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#additional-tools"><i class="fa fa-check"></i><b>1.3</b> Additional Tools</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#workflow-suggestion"><i class="fa fa-check"></i><b>1.4</b> Workflow suggestion</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#orientation-for-the-course-and-script"><i class="fa fa-check"></i><b>1.5</b> Orientation for the course and script</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#warning-of-incompleteness"><i class="fa fa-check"></i><b>1.6</b> Warning of incompleteness</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="probs.html"><a href="probs.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
 <ul>
@@ -755,8 +756,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-66e13eb450dbb4abf72b" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-66e13eb450dbb4abf72b">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-650587cc4921bcbe2c88" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-650587cc4921bcbe2c88">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
@@ -1007,7 +1008,7 @@ Maybe you want to watch this <a href="https://www.youtube.com/watch?v=jmqZG6roVq
 <li><p><a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential distribution</a>.
 For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.
 This <a href="https://www.youtube.com/watch?v=2kg1O0j1J9c&amp;ab_channel=zedstatistics">video</a> might be interesting.</p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution">Student’s t-distribution</a> (small “t” please) generalizes
+<li><p><a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution">Student’s <span class="math inline">\(t\)</span>-distribution</a> (small “t” please) generalizes
 the standard normal distribution. Like the latter, it is symmetric around zero and bell-shaped, but
 has <a href="https://en.wikipedia.org/wiki/Fat-tailed_distribution">fatter tails</a> (compared to the normal distribution), i.e.,
 “extreme” values are more likely. It is a very well known distribution underlying the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a>.
@@ -1137,7 +1138,7 @@ and see if you can produce values outside of <span class="math inline">\(\pm 6\)
 <div id="exercise12" class="section level3 hasAnchor" number="2.3.12">
 <h3><span class="header-section-number">2.3.12</span> [D] Exercise 12 - Student’s <span class="math inline">\(t\)</span>-distribution<a href="probs.html#exercise12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s look at a <a href="https://www.sciencedirect.com/science/article/pii/S0954611112002958#aep-abstract-id3">paper</a>,
-where the t-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary
+where the <span class="math inline">\(t\)</span>-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary
 rehabilitation in addition to regular chest physiotherapy in non cystic fibrosis bronchiectasis.
 Table 1 describes the patient characteristics in both groups.
 Table 2 shows the primary endpoint (incremental shuttle walk test - ISWT) at baseline and follow-up time points.

@@ -141,3 +141,15 @@ We also add measures of uncertainty (for instance confidence intervals) to our e
 
 We can do this inference in two ways: **Frequentist approach** using null hypothesis significance 
 testing ([NHST](#nhst)), or by using the **Bayesian approach** ([Bayesian inference](#bayes_statistics)).
+
+## Warning of incompleteness
+
+This script is not static but a continuously evolving document. 
+It represents a snapshot of our understanding at the time of writing.
+Many of the topics touched upon or mentioned briefly here are vast research fields 
+in their own right, and it is beyond the scope of this script to cover them comprehensively.
+
+Our goal, however, is to create a resource that aligns closely with the needs 
+of health sciences and reflects our needs in applied research. 
+While it may not be exhaustive, we aim for it to be both practical and relevant, 
+serving as a tailored guide for our specific context.

@@ -902,7 +902,7 @@ The first 2 are absolutely essential.
    For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.
   This [video](https://www.youtube.com/watch?v=2kg1O0j1J9c&ab_channel=zedstatistics) might be interesting.
 
-- [Student's t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) (small "t" please) generalizes 
+- [Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) (small "t" please) generalizes 
   the standard normal distribution. Like the latter, it is symmetric around zero and bell-shaped, but 
   has [fatter tails](https://en.wikipedia.org/wiki/Fat-tailed_distribution) (compared to the normal distribution), i.e.,
   "extreme" values are more likely. It is a very well known distribution underlying the [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test).
@@ -1014,7 +1014,7 @@ Find examples of dice events when throwing a die once that are:
 
 ### [D] Exercise 12 - Student's $t$-distribution {#exercise12}
 Let's look at a [paper](https://www.sciencedirect.com/science/article/pii/S0954611112002958#aep-abstract-id3), 
-where the t-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary 
+where the $t$-distribution is used (in the background). The aim of the study was to assess the efficacy of pulmonary 
 rehabilitation in addition to regular chest physiotherapy in non cystic fibrosis bronchiectasis.
 Table 1 describes the patient characteristics in both groups.
 Table 2 shows the primary endpoint (incremental shuttle walk test - ISWT) at baseline and follow-up time points.
