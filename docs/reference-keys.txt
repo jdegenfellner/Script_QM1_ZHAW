@@ -60,6 +60,7 @@ e-exercise-7---median-mean-and-mode
 e-exercise-8---correlation-by-hand
 exercise9_descriptive_stats
 solutions-1
+sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-1
 bayes_statistics
 derivation-of-bayes-theorem
 bayes-theorem-in-the-context-of-parameter-estimation

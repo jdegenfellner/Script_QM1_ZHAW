@@ -651,3 +651,6 @@ y <- c(1.5, 2.5, 3.5, 4.5, 5.5) + rnorm(5, 0, 2) # Rauschen hinzufügen
 
 ## Solutions
 Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/3_Descriptive_statistics).
+
+## Sample exam questions for this chapter (in German since exam is in German)
+...........

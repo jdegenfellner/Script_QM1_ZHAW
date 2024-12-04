@@ -252,6 +252,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.9" data-path="descriptive_stats.html"><a href="descriptive_stats.html#exercise9_descriptive_stats"><i class="fa fa-check"></i><b>3.6.9</b> [E] Exercise 9 - Q-Q plot</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="descriptive_stats.html"><a href="descriptive_stats.html#solutions-1"><i class="fa fa-check"></i><b>3.7</b> Solutions</a></li>
+<li class="chapter" data-level="3.8" data-path="descriptive_stats.html"><a href="descriptive_stats.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-1"><i class="fa fa-check"></i><b>3.8</b> Sample exam questions for this chapter (in German since exam is in German)</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="bayes_statistics.html"><a href="bayes_statistics.html"><i class="fa fa-check"></i><b>4</b> Bayes statistics</a>
 <ul>
@@ -455,7 +456,7 @@ R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blo
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 </details>
 <p>Let’s assume, we know the manufacturer to be rather untrustworthy. Many inspections in the past
 revealed higher defect rates than claimed. For simplicity, we still want to decide between the two
@@ -471,7 +472,7 @@ We now get creative and assign the following prior probability <strong>distribut
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </details>
 <p>If we had to guess, we would say that the defect rate is most likely 20%.
 And we are rather sure about this guess. The mode (highest prior probability) of the
@@ -502,7 +503,7 @@ rate <em>given</em> the observed data.</p></li>
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 </details>
 <p>As we can see, the posterior distribution has a new peak at <span class="math inline">\(0.38\)</span>. If we had to guess
 now, we would probably say that the defect rate is around 38%.
@@ -525,7 +526,7 @@ approximately <span class="math inline">\(0.80\)</span>:
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 </details></li>
 <li>The probability that <span class="math inline">\(\theta\)</span> is below <span class="math inline">\(0.25\)</span> is (area under the posterior):</li>
 </ul>
@@ -533,7 +534,7 @@ R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blo
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 </details>
 <p>The previous two examples showcase how to <strong>estimate a proportion</strong> using prior knowledge
 and new data.
@@ -558,7 +559,7 @@ the interval, making it an effective summary of the most plausible values.</p>
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 </details>
 <p><strong>Interpretation</strong>: The 93% HDI for the posterior distribution of <span class="math inline">\(\theta\)</span> is <span class="math inline">\([0.25, 0.51]\)</span>.
 With a probability of 93%, the defect rate is between 25% and 55%, given our prior
@@ -633,7 +634,7 @@ visit <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">Kru
 <span id="cb77-3"><a href="bayes_statistics.html#cb77-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
 <span id="cb77-4"><a href="bayes_statistics.html#cb77-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
 <span id="cb77-5"><a href="bayes_statistics.html#cb77-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="bayes_statistics.html#cb78-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
 <p>We work with a rather small sample size, 8 in each group.
 <strong>We want to know if the two groups differ in their (unobserved) means</strong>.
@@ -647,7 +648,7 @@ For this, we will apply the R function <code>BESTmcmc</code> from the package <c
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="bayes_statistics.html#cb81-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
 <span id="cb81-2"><a href="bayes_statistics.html#cb81-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p><code>BESTmcmc</code> is a function that uses a <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>
 algorithm to estimate the <strong>posterior distribution of the difference between the means of two groups</strong>
 (the above is not just a histogram of differences).
@@ -676,19 +677,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bayes_statistics.html#cb82-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb82-2"><a href="bayes_statistics.html#cb82-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.882 130.845 131.724   93   33.8401 227.05                  
-## mu2         6.133   6.020   7.031   93  -83.6445  94.07                  
-## muDiff    124.749 124.909 125.550   93  -10.1548 254.32       0      95.8
-## sigma1    139.523 128.480 114.280   93   66.1669 225.62                  
-## sigma2    129.271 118.937 105.155   93   62.6422 210.28                  
-## sigmaDiff  10.253   8.972   4.256   93 -117.8115 135.48       0      56.7
-## nu         34.088  25.503   9.712   93    1.1372  83.25                  
-## log10nu     1.375   1.407   1.499   93    0.6515   2.05                  
-## effSz       0.967   0.957   0.932   93   -0.0738   2.00       0      95.8
+## mu1       131.225 131.123 132.922   93   34.1476 229.55                  
+## mu2         5.936   5.670   5.155   93  -83.9976  96.91                  
+## muDiff    125.289 125.251 127.683   93  -11.3740 256.75       0      95.7
+## sigma1    140.049 128.685 111.897   93   66.3118 227.37                  
+## sigma2    130.300 119.537 104.394   93   61.7414 211.08                  
+## sigmaDiff   9.749   8.809  10.942   93 -116.9293 140.86       0      56.5
+## nu         34.611  25.866   9.470   93    1.2386  84.19                  
+## log10nu     1.380   1.413   1.473   93    0.6528   2.06                  
+## effSz       0.968   0.959   0.956   93   -0.0655   2.02       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.49
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -865,7 +866,7 @@ every value between 0 and 1 is equally likely:</p>
 <span id="cb86-22"><a href="bayes_statistics.html#cb86-22" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
 <span id="cb86-23"><a href="bayes_statistics.html#cb86-23" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb86-24"><a href="bayes_statistics.html#cb86-24" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Notize, that the area under the curve is 1, since it is a probability density function.
 For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)</span></p>
 <ul>

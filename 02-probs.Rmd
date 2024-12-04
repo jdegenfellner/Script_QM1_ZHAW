@@ -1046,6 +1046,8 @@ Solutions for this chapter can be found [here](https://github.com/jdegenfellner/
 
 ## Sample exam questions for this chapter (in German since exam is in German)
 
+For this section, no solutions are provided.
+
 ### Question 1 - Independence and disjointness
 
 Wir werfen einen fairen Würfel einmal und betrachten die Augenzahl. Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
@@ -1098,4 +1100,33 @@ würde man hier auf den Erwartungswert $\mathbb{E}(X)$ tippen.
 - Die Wahrscheinlichkeit für das Ereignis, dass $X$ eine gerade Zahl ist, ist 50%.
 
 ### Frage 4 - Dichtefunktion
-Dreiecksverteilung...
+Es sei folgende Dichtefunktion der stetigen Zufallsvariablen $X$ gegeben:
+```{r, echo=FALSE}
+library(ggplot2)
+
+# Data for the rotated triangular shape with base = 1
+data <- data.frame(
+  x = c(0, 1, 0.5, 0),
+  y = c(0, 0, 2, 0)
+)
+
+# Plot the triangle
+ggplot(data, aes(x = x, y = y)) +
+  geom_polygon(fill = NA, color = "blue") + # Outline of the triangle
+  geom_hline(yintercept = 0, linetype = "dashed", color = "blue") + # Dashed line for x-axis
+  labs(x = "x", y = "p(x)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 14),
+    axis.text.y = element_blank(),       # Remove y-axis numbers
+    axis.ticks.y = element_blank(),      # Remove y-axis ticks
+    panel.grid = element_blank()         # Remove grid lines
+  )
+```
+
+Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
+
+- Die Fläche unter der Dichtefunktion beträgt 1, falls die Spitze des Dreiecks bei Höhe $y=2$ liegt.
+- Modus, Median und Erwartungswert sind identisch.
+- $\mathbb{P}(X \in (0,0.25)) = \frac{1}{8}$.
+- $\mathbb{P}(X = 0.5) = 0$.

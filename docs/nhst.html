@@ -252,6 +252,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.9" data-path="descriptive_stats.html"><a href="descriptive_stats.html#exercise9_descriptive_stats"><i class="fa fa-check"></i><b>3.6.9</b> [E] Exercise 9 - Q-Q plot</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="descriptive_stats.html"><a href="descriptive_stats.html#solutions-1"><i class="fa fa-check"></i><b>3.7</b> Solutions</a></li>
+<li class="chapter" data-level="3.8" data-path="descriptive_stats.html"><a href="descriptive_stats.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-1"><i class="fa fa-check"></i><b>3.8</b> Sample exam questions for this chapter (in German since exam is in German)</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="bayes_statistics.html"><a href="bayes_statistics.html"><i class="fa fa-check"></i><b>4</b> Bayes statistics</a>
 <ul>
@@ -636,10 +637,10 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 <span id="cb103-2"><a href="nhst.html#cb103-2" tabindex="-1"></a><span class="fu">ggboxplot</span>(my_data<span class="sc">$</span>weight,</span>
 <span id="cb103-3"><a href="nhst.html#cb103-3" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb103-4"><a href="nhst.html#cb103-4" tabindex="-1"></a>          <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="nhst.html#cb104-1" tabindex="-1"></a><span class="fu">ggqqplot</span>(my_data<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;Men&#39;s weight&quot;</span>,</span>
 <span id="cb104-2"><a href="nhst.html#cb104-2" tabindex="-1"></a>         <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-2.png" width="672" /></p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="nhst.html#cb105-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
 <span id="cb105-2"><a href="nhst.html#cb105-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
 <pre><code>## 
@@ -705,7 +706,7 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 <span id="cb121-3"><a href="nhst.html#cb121-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
 <span id="cb121-4"><a href="nhst.html#cb121-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
 <span id="cb121-5"><a href="nhst.html#cb121-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="nhst.html#cb122-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span>
 <span id="cb122-2"><a href="nhst.html#cb122-2" tabindex="-1"></a></span>
 <span id="cb122-3"><a href="nhst.html#cb122-3" tabindex="-1"></a><span class="fu">t.test</span>(y1, y2, <span class="at">conf.level =</span> <span class="fl">0.93</span>)</span></code></pre></div>
@@ -790,7 +791,7 @@ the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_s
 <span id="cb124-51"><a href="nhst.html#cb124-51" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># Center the title</span></span>
 <span id="cb124-52"><a href="nhst.html#cb124-52" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)  <span class="co"># Center the subtitle</span></span>
 <span id="cb124-53"><a href="nhst.html#cb124-53" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="nhst.html#cb125-1" tabindex="-1"></a><span class="co"># p-value manually:</span></span>
 <span id="cb125-2"><a href="nhst.html#cb125-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.04633225</code></pre>
