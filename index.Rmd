@@ -135,9 +135,9 @@ When we only **describe the data to better understand** it, we are in the realm 
 **[descriptive statistics](#descriptive_stats)**. 
 
 When we try to make an inference about the population, we are in the 
-realm of **inferential statistics**. Simply put, we want to find out if the, for example, the treatment effect
+realm of **inferential statistics**. Simply put, we want to find out if, for example, the treatment effect
 we are seeing in the sample is also present in the population or if what we are seeing was just by chance. 
-We also add measures of uncertainty (for instance confidence intervals) to our estimates.
+We also add measures of uncertainty (for instance credible or confidence intervals) to our estimates.
 
 We can do this inference in two ways: **Frequentist approach** using null hypothesis significance 
 testing ([NHST](#nhst)), or by using the **Bayesian approach** ([Bayesian inference](#bayes_statistics)).

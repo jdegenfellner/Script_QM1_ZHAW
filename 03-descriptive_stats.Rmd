@@ -252,14 +252,14 @@ qqPlot(t_sample, distribution = "norm",
        main = "Q-Q Plot: t-Distribution vs Normal", id = FALSE)
 ```
 
-The **first plot** shows a Q-Q plot of a sample from a normal distribution with $\mu = 45 and $\sigma = 6$. 
+The **first plot** shows a Q-Q plot of a sample from a normal distribution with $\mu = 45$ and $\sigma = 6$. 
 The points lie on a straight line and are within a confidence band, 
 indicating that the data is normally distributed.
 
 The **second plot** shows a Q-Q plot of a sample from an 
 [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution),
 which is [obviously not normal](https://en.wikipedia.org/wiki/Exponential_distribution#/media/File:Exponential_distribution_pdf_-_public_domain.svg) 
-for a rate ($\lambda$) of 1. There are more obersvations to be expected in the lower 
+for a rate ($\lambda$) of 1. There are more observations to be expected in the lower 
 range of x compared to normal for instance. 
 
 The **third plot** shows a Q-Q plot of a sample from a
