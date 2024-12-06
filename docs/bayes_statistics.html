@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-05" />
+<meta name="date" content="2024-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -677,25 +677,25 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bayes_statistics.html#cb82-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb82-2"><a href="bayes_statistics.html#cb82-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##             mean  median   mode HDI%     HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1       130.50 130.567 129.18   93   34.2224 227.56                          
-## mu2         6.48   5.895   4.21   93  -82.5719  97.26                          
-## muDiff    124.01 124.292 124.09   93   -8.3279 256.26       0      95.6     -20
-## sigma1    139.78 128.670 112.73   93   66.3763 226.76                          
-## sigma2    129.87 119.705 104.37   93   62.1299 209.61                          
-## sigmaDiff   9.91   8.751   6.54   93 -116.0804 137.06       0      56.4        
-## nu         34.20  25.510   9.99   93    1.0198  83.53                          
-## log10nu     1.38   1.407   1.51   93    0.6600   2.06                          
-## effSz       0.96   0.951   0.93   93   -0.0977   1.98       0      95.6        
-##           ROPEhigh %InROPE
-## mu1                       
-## mu2                       
-## muDiff          20    4.59
-## sigma1                    
-## sigma2                    
-## sigmaDiff                 
-## nu                        
-## log10nu                   
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.636 130.828 132.668   93   34.0233 228.49                  
+## mu2         6.539   6.282   5.684   93  -82.4431  98.85                  
+## muDiff    124.097 124.370 125.642   93   -7.0336 260.89       0      95.5
+## sigma1    139.830 128.407 113.835   93   67.0511 226.73                  
+## sigma2    130.235 119.691 107.437   93   61.1407 210.04                  
+## sigmaDiff   9.595   8.752   8.961   93 -117.8765 139.55       0      56.5
+## nu         33.833  25.391  10.143   93    1.2091  81.97                  
+## log10nu     1.374   1.405   1.486   93    0.6547   2.05                  
+## effSz       0.961   0.952   0.935   93   -0.0955   2.00       0      95.5
+##           ROPElow ROPEhigh %InROPE
+## mu1                               
+## mu2                               
+## muDiff        -20       20    4.56
+## sigma1                            
+## sigma2                            
+## sigmaDiff                         
+## nu                                
+## log10nu                           
 ## effSz</code></pre>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of

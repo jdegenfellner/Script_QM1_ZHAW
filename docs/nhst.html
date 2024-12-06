@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-05" />
+<meta name="date" content="2024-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -336,18 +336,21 @@ div.csl-indent {
 <p>Null Hypothesis Significance Testing (NHST) is a statistical method widely used in research,
 including health sciences, to evaluate whether observed data provide sufficient evidence <strong>to refute</strong> a specific hypothesis.
 It operates within a framework of probability and decision-making to address the following question:</p>
-<p>Are the observed results likely to occur by chance alone if the null hypothesis is true?
-If one decides that the observed results are unlikely to occur by chance alone,
+<p><strong>Are the observed results likely to occur by chance alone if the null hypothesis is true?</strong></p>
+<p>If one decides that the observed results are unlikely to occur by chance alone,
 the null hypothesis is rejected in favor of an alternative hypothesis.</p>
 <p>NHST is <strong>not designed to “prove” hypotheses</strong> but rather to provide evidence against the null hypothesis.
-Underlying NHST is the idea of <a href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>.
+If one reads in a paper that there was “no association”, this typically means the
+<span class="math inline">\(p\)</span>-value was larger than the arbitrary threshold of <span class="math inline">\(0.05\)</span>. This does <em>not</em> imply that
+there is no association (Misconception 2 <a href="https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf">here</a>).</p>
+<p>Underlying NHST is the idea of <a href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>.
 Sometimes one counter example is enough to reject a hypothesis like “all swans are white”.
 Seeing one <a href="https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg">black swan</a>,
 proves the hypothesis wrong.</p>
 <p><strong>Key concepts</strong>:</p>
 <ul>
 <li><p><strong>Null Hypothesis <span class="math inline">\(H_0\)</span></strong>: This represents the assumption of some specific effect or no effect at all.
-For example, in a clinical trial comparing two treatments, might state that both treatments have the same effect.
+For example, in a clinical trial comparing two treatments, one might state that both treatments have the same effect.
 The alternative ist that one treatment is superior to the other.</p></li>
 <li><p><strong>Alternative Hypothesis <span class="math inline">\(H_1\)</span></strong>: This is the opposing claim to <span class="math inline">\(H_0\)</span>, the logical complement.
 Example:</p>
@@ -359,8 +362,9 @@ while <span class="math inline">\(H_1\)</span> states that the treatment effect 
 </ul></li>
 <li><p><strong><span class="math inline">\(p\)</span>-value</strong>: The <span class="math inline">\(p\)</span>-value quantifies the probability of obtaining results as extreme as (or more extreme than)
 the observed data, assuming that <span class="math inline">\(H_0\)</span> is true.
-A smaller <span class="math inline">\(p\)</span>-value indicates stronger evidence against <span class="math inline">\(H_0\)</span>. There are many <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconeptions about p-values</a>.</p></li>
-<li><p><strong>Significance level <span class="math inline">\(\alpha\)</span></strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_1\)</span>.
+A smaller <span class="math inline">\(p\)</span>-value indicates stronger evidence against <span class="math inline">\(H_0\)</span>.
+There are many <a href="https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf">misconeptions about <span class="math inline">\(p\)</span>-values</a>.</p></li>
+<li><p><strong>Significance level <span class="math inline">\(\alpha\)</span></strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_0\)</span>.
 If the <span class="math inline">\(p\)</span>-value is smaller than <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(H_0\)</span> is rejected in favor of <span class="math inline">\(H_1\)</span>.
 Note, that <strong>there is absolutely now special reason to use <span class="math inline">\(\alpha = 0.05\)</span> as a default value</strong>.
 To quote <a href="https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6">Ronald Fisher</a>:
@@ -371,6 +375,7 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, …�
 <ul>
 <li><p>Formulate Hypotheses: Define <span class="math inline">\(H_0\)</span> (e.g., “The new therapy has no effect”)
 and <span class="math inline">\(H_1\)</span> (e.g., “The new therapy improves outcomes”).</p></li>
+<li><p>Determine the necessary sample size to find the effect.</p></li>
 <li><p>Collect data: Perform an experiment or study to gather relevant data.</p></li>
 <li><p>Calculate the test statistic: Compute a value based on the sample data that
 reflects the difference or effect under investigation.</p></li>
@@ -392,15 +397,18 @@ incentivizes researchers to <a href="https://www.tandfonline.com/doi/full/10.108
 rather than real relevance. It happened to me not only once that a colleague
 looked at me with a sad facial expression announcing that the <span class="math inline">\(p\)</span>-value was “not significant”.
 This should be not an issue at all. The focus should be on doing useful analyses in the most
-rigorous way possible.</p></li>
+rigorous way possible. Note that the <a href="https://www.tandfonline.com/doi/abs/10.1198/000313006x152649?casa_token=mn4mIBOnoaIAAAAA:RmZ3RZ6prFHNPWte07aNMKidAsQGmqsjPdCQCpXraH8MCmFuftZmXTsLNzeSLFmXdgJm0Xd8dklEKZdPUw">difference between “significant” and “not significant” is
+itself not significant</a>.</p></li>
 <li><p><strong>Sample size influence</strong>: Large samples can make small, clinically irrelevant
 differences “statistically significant”. Example: Given an arbitrarily small difference between means of two groups. There is
 always a sample size that makes the difference “significant”. See <a href="nhst.html#exercise2_nhst">Exercise 2</a>.</p></li>
 <li><p><strong><a href="https://en.wikipedia.org/wiki/Publication_bias">Publication bias</a></strong>: Many journals tended to publish studies with “significant” results. “Not significant” results
-were often not published. This can lead to a distorted view of the literature.</p></li>
+were often not published. This leads to a distorted view of the literature. All rigorously
+conducted studies should be published, irrespective of the results.</p></li>
 <li><p><strong><a href="https://de.wikipedia.org/wiki/P-Hacking"><span class="math inline">\(p\)</span>-hacking</a></strong>: In the pursuit for “significant” results
 (which results in publications, which results in tenure), it is natural to do everything to get them.
-This can include data dredging, selective reporting, and other questionable practices.</p></li>
+This can include data dredging, selective reporting, and other questionable practices.
+In my humble opinion, very often, researchers are not to blame but incentives.</p></li>
 </ul>
 <p>See <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">Kruschke</a> for more limitations of NHST.</p>
 <p>In practice, NHST should be accompanied by confidence intervals,
