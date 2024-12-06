@@ -239,7 +239,7 @@ the test statistic follows a [$\chi^2$ distribution](https://en.wikipedia.org/wi
 
 See also [Exercise 4](#exercise4_nhst).
 
-Let's verify the test statistic for the test without continuity correction by "hand":
+**Let's verify the test statistic for the test without continuity correction by "hand":**
 
 ```{r}
 # Observed and expected values
@@ -423,7 +423,7 @@ and the reason for testing for normality of the data.
 
 Another assumption is that $\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}$
 
-Let's try to verify this assumption empirically:
+**Let's try to verify this assumption empirically:**
 
 ```{r}
 # Load necessary libraries
@@ -635,14 +635,15 @@ The correlation might therefore be a useful measure to describe the relationship
   This is what is most interesting to us and should be interpreted in the context of the data.
 - sample estimates is the correlation coefficient (Cor.coeff $= -0.87$).
 
-Let's verify the test statistic by "hand":
+**Let's verify the test statistic for the two-sided test by "hand":**
+
 For pairs from an uncorrelated bivariate normal distribution, the sampling distribution 
 of the studentized Pearson's correlation coefficient follows a $t$-distribution with degrees of freedom $n − 2$. 
 Specifically, if the underlying variables have a bivariate normal distribution, the variable
 
 $$t = \frac{r \sqrt{n-2}}{\sqrt{1-r^2}}$$
 
-has a student's t-distribution in the null case (zero correlation).
+has a student's $t$-distribution in the null case (zero correlation).
 
 ```{r}
 (r <- cor(mtcars$mpg, mtcars$wt))
@@ -653,9 +654,34 @@ has a student's t-distribution in the null case (zero correlation).
 
 This matches the output of the `cor.test` function in R.
 
-See also [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
-to see the variability of the correlation coefficient under the null hypothesis. This file is intended
-to show the behavior of the test statistic under the null hypothesis for small sample sizes (like a master thesis).
+Study this [file](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
+to understand the variability of the sample correlation coefficient under the null hypothesis ($\rho=0$). 
+
+We could also use the so-called **simple non-parametric [bootstrap](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))** to estimate the confidence interval for the correlation coefficient.
+This is done as follows:
+- Create a new sample by drawing with replacement from the original sample.
+- Repeat this process many times (e.g., 1000 times).
+- Calculate the correlation coefficient for each new sample.
+- Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.
+
+There is a simple elegance to this method. It is a very general method and can be applied to many different problems.
+
+Let's apply it to finding a confidence interval for the correlation coefficient between `mpg` and `wt` in the `mtcars` dataset.
+
+```{r}
+# Bootstrap confidence interval for the correlation coefficient
+set.seed(123)
+cors <- replicate(1000, {
+  idx <- sample(1:n, n, replace = TRUE)
+  cor(mtcars$mpg[idx], mtcars$wt[idx])
+})
+hist(cors)
+quantile(cors, c(0.02, 0.98)) # 96% confidence interval
+```
+
+So we use the variability contained in the data to estimate the variability of 
+the correlation coefficient. As we can see in the histrogram, correlations close to 0 are
+very unlikely. The 96% bootstrap confidence interval is $[-0.93, -0.74]$.
 
 ### Comparision with Bayesian approach
 

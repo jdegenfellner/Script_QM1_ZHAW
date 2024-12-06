@@ -587,7 +587,7 @@ Under the null hypothesis (in this case <span class="math inline">\(H_0 = 0.5\)<
 the test statistic follows a <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution"><span class="math inline">\(\chi^2\)</span> distribution</a>.</p></li>
 </ul>
 <p>See also <a href="nhst.html#exercise4_nhst">Exercise 4</a>.</p>
-<p>Let’s verify the test statistic for the test without continuity correction by “hand”:</p>
+<p><strong>Let’s verify the test statistic for the test without continuity correction by “hand”:</strong></p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="nhst.html#cb97-1" tabindex="-1"></a><span class="co"># Observed and expected values</span></span>
 <span id="cb97-2"><a href="nhst.html#cb97-2" tabindex="-1"></a>heads <span class="ot">&lt;-</span> <span class="dv">47</span>  <span class="co"># Observed count of heads</span></span>
 <span id="cb97-3"><a href="nhst.html#cb97-3" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Total flips</span></span>
@@ -787,7 +787,7 @@ large enough sample size <span class="math inline">\(n\)</span>.</p>
 This is always true
 and the reason for testing for normality of the data.</p>
 <p>Another assumption is that <span class="math inline">\(\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}\)</span></p>
-<p>Let’s try to verify this assumption empirically:</p>
+<p><strong>Let’s try to verify this assumption empirically:</strong></p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="nhst.html#cb120-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
 <span id="cb120-2"><a href="nhst.html#cb120-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb120-3"><a href="nhst.html#cb120-3" tabindex="-1"></a></span>
@@ -1007,12 +1007,12 @@ The correlation might therefore be a useful measure to describe the relationship
 This is what is most interesting to us and should be interpreted in the context of the data.</li>
 <li>sample estimates is the correlation coefficient (Cor.coeff <span class="math inline">\(= -0.87\)</span>).</li>
 </ul>
-<p>Let’s verify the test statistic by “hand”:
-For pairs from an uncorrelated bivariate normal distribution, the sampling distribution
+<p><strong>Let’s verify the test statistic for the two-sided test by “hand”:</strong></p>
+<p>For pairs from an uncorrelated bivariate normal distribution, the sampling distribution
 of the studentized Pearson’s correlation coefficient follows a <span class="math inline">\(t\)</span>-distribution with degrees of freedom <span class="math inline">\(n − 2\)</span>.
 Specifically, if the underlying variables have a bivariate normal distribution, the variable</p>
 <p><span class="math display">\[t = \frac{r \sqrt{n-2}}{\sqrt{1-r^2}}\]</span></p>
-<p>has a student’s t-distribution in the null case (zero correlation).</p>
+<p>has a student’s <span class="math inline">\(t\)</span>-distribution in the null case (zero correlation).</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="nhst.html#cb140-1" tabindex="-1"></a>(r <span class="ot">&lt;-</span> <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt))</span></code></pre></div>
 <pre><code>## [1] -0.8676594</code></pre>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="nhst.html#cb142-1" tabindex="-1"></a>(n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(mtcars))</span></code></pre></div>
@@ -1022,9 +1022,30 @@ Specifically, if the underlying variables have a bivariate normal distribution, 
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="nhst.html#cb146-1" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] 1.293959e-10</code></pre>
 <p>This matches the output of the <code>cor.test</code> function in R.</p>
-<p>See also <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">here</a>
-to see the variability of the correlation coefficient under the null hypothesis. This file is intended
-to show the behavior of the test statistic under the null hypothesis for small sample sizes (like a master thesis).</p>
+<p>Study this <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">file</a>
+to understand the variability of the sample correlation coefficient under the null hypothesis (<span class="math inline">\(\rho=0\)</span>).</p>
+<p>We could also use the so-called <strong>simple non-parametric <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap</a></strong> to estimate the confidence interval for the correlation coefficient.
+This is done as follows:
+- Create a new sample by drawing with replacement from the original sample.
+- Repeat this process many times (e.g., 1000 times).
+- Calculate the correlation coefficient for each new sample.
+- Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.</p>
+<p>There is a simple elegance to this method. It is a very general method and can be applied to many different problems.</p>
+<p>Let’s apply it to finding a confidence interval for the correlation coefficient between <code>mpg</code> and <code>wt</code> in the <code>mtcars</code> dataset.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="nhst.html#cb148-1" tabindex="-1"></a><span class="co"># Bootstrap confidence interval for the correlation coefficient</span></span>
+<span id="cb148-2"><a href="nhst.html#cb148-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb148-3"><a href="nhst.html#cb148-3" tabindex="-1"></a>cors <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
+<span id="cb148-4"><a href="nhst.html#cb148-4" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb148-5"><a href="nhst.html#cb148-5" tabindex="-1"></a>  <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg[idx], mtcars<span class="sc">$</span>wt[idx])</span>
+<span id="cb148-6"><a href="nhst.html#cb148-6" tabindex="-1"></a>})</span>
+<span id="cb148-7"><a href="nhst.html#cb148-7" tabindex="-1"></a><span class="fu">hist</span>(cors)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="nhst.html#cb149-1" tabindex="-1"></a><span class="fu">quantile</span>(cors, <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>)) <span class="co"># 96% confidence interval</span></span></code></pre></div>
+<pre><code>##         2%        98% 
+## -0.9260149 -0.7821605</code></pre>
+<p>So we use the variability contained in the data to estimate the variability of
+the correlation coefficient. As we can see in the histrogram, correlations close to 0 are
+very unlikely. The 96% bootstrap confidence interval is <span class="math inline">\([-0.93, -0.74]\)</span>.</p>
 <div id="comparision-with-bayesian-approach" class="section level3 hasAnchor" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Comparision with Bayesian approach<a href="nhst.html#comparision-with-bayesian-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>………….</p>
