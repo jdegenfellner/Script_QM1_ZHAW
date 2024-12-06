@@ -621,15 +621,35 @@ the resulting test statistic is (approximately) distributed according to a stand
 </div>
 <div id="proportions_test_more_samples" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> More than one sample<a href="nhst.html#proportions_test_more_samples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="nhst.html#cb101-1" tabindex="-1"></a><span class="co"># Data from Fleiss (1981), p. 139.</span></span>
-<span id="cb101-2"><a href="nhst.html#cb101-2" tabindex="-1"></a><span class="co"># H0: The null hypothesis is that the four populations from which</span></span>
-<span id="cb101-3"><a href="nhst.html#cb101-3" tabindex="-1"></a><span class="co">#     the patients were drawn have the same true proportion of smokers.</span></span>
-<span id="cb101-4"><a href="nhst.html#cb101-4" tabindex="-1"></a><span class="co"># H1: The alternative is that this proportion is different in at</span></span>
-<span id="cb101-5"><a href="nhst.html#cb101-5" tabindex="-1"></a><span class="co">#     least one of the populations.</span></span>
-<span id="cb101-6"><a href="nhst.html#cb101-6" tabindex="-1"></a></span>
-<span id="cb101-7"><a href="nhst.html#cb101-7" tabindex="-1"></a>smokers  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">83</span>, <span class="dv">90</span>, <span class="dv">129</span>, <span class="dv">70</span>)</span>
-<span id="cb101-8"><a href="nhst.html#cb101-8" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">86</span>, <span class="dv">93</span>, <span class="dv">136</span>, <span class="dv">82</span>)</span>
-<span id="cb101-9"><a href="nhst.html#cb101-9" tabindex="-1"></a><span class="fu">prop.test</span>(smokers, patients)</span></code></pre></div>
+<p><span class="math inline">\(H_0: p_1 = p_2 = p_3 = p_4\)</span></p>
+<p><span class="math inline">\(H_1: \text{At least one of the proportions is different}\)</span></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="nhst.html#cb101-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb101-2"><a href="nhst.html#cb101-2" tabindex="-1"></a><span class="co"># Data from Fleiss (1981), p. 139.</span></span>
+<span id="cb101-3"><a href="nhst.html#cb101-3" tabindex="-1"></a><span class="co"># H0: The null hypothesis is that the four populations from which</span></span>
+<span id="cb101-4"><a href="nhst.html#cb101-4" tabindex="-1"></a><span class="co">#     the patients were drawn have the same true proportion of smokers.</span></span>
+<span id="cb101-5"><a href="nhst.html#cb101-5" tabindex="-1"></a><span class="co"># H1: The alternative is that this proportion is different in at</span></span>
+<span id="cb101-6"><a href="nhst.html#cb101-6" tabindex="-1"></a><span class="co">#     least one of the populations.</span></span>
+<span id="cb101-7"><a href="nhst.html#cb101-7" tabindex="-1"></a></span>
+<span id="cb101-8"><a href="nhst.html#cb101-8" tabindex="-1"></a>smokers  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">83</span>, <span class="dv">90</span>, <span class="dv">129</span>, <span class="dv">70</span>)</span>
+<span id="cb101-9"><a href="nhst.html#cb101-9" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">86</span>, <span class="dv">93</span>, <span class="dv">136</span>, <span class="dv">82</span>)</span>
+<span id="cb101-10"><a href="nhst.html#cb101-10" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="st">&quot;Group 2&quot;</span>, <span class="st">&quot;Group 3&quot;</span>, <span class="st">&quot;Group 4&quot;</span>)</span>
+<span id="cb101-11"><a href="nhst.html#cb101-11" tabindex="-1"></a></span>
+<span id="cb101-12"><a href="nhst.html#cb101-12" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb101-13"><a href="nhst.html#cb101-13" tabindex="-1"></a>  <span class="at">Category =</span> categories,</span>
+<span id="cb101-14"><a href="nhst.html#cb101-14" tabindex="-1"></a>  <span class="at">Proportion =</span> smokers <span class="sc">/</span> patients</span>
+<span id="cb101-15"><a href="nhst.html#cb101-15" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb101-16"><a href="nhst.html#cb101-16" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Category, <span class="at">y =</span> Proportion)) <span class="sc">+</span></span>
+<span id="cb101-17"><a href="nhst.html#cb101-17" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb101-18"><a href="nhst.html#cb101-18" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb101-19"><a href="nhst.html#cb101-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Proportion of Smokers in Each Group&quot;</span>,</span>
+<span id="cb101-20"><a href="nhst.html#cb101-20" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb101-21"><a href="nhst.html#cb101-21" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Proportion&quot;</span></span>
+<span id="cb101-22"><a href="nhst.html#cb101-22" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb101-23"><a href="nhst.html#cb101-23" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb101-24"><a href="nhst.html#cb101-24" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb101-25"><a href="nhst.html#cb101-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="nhst.html#cb102-1" tabindex="-1"></a><span class="fu">prop.test</span>(smokers, patients)</span></code></pre></div>
 <pre><code>## 
 ##  4-sample test for equality of proportions without continuity correction
 ## 
@@ -647,6 +667,9 @@ with 3 <a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">d
 See also <a href="nhst.html#exercise5_nhst">exercise 5</a>.
 Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.</p></li>
 </ul>
+<p>We could again verify the test statistic by hand if we wanted, the <span class="math inline">\(p\)</span>-value is calculated quickly:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="nhst.html#cb104-1" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="fl">12.6</span>, <span class="at">df =</span> <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 0.005586546</code></pre>
 </div>
 </div>
 <div id="classical-t-test" class="section level2 hasAnchor" number="5.4">
@@ -665,14 +688,16 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 <p>Conveniently, R has a built-in function for these tests.</p>
 <div id="one-sample-t-test" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> One sample <span class="math inline">\(t\)</span>-test<a href="nhst.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math inline">\(H_0: \mu = \mu_0 = 25\)</span></p>
+<p><span class="math inline">\(H_1: \mu \ne \mu_0 = 25\)</span></p>
 <p>Let’s perform a one sample <a href="https://www.sthda.com/english/wiki/one-sample-t-test-in-r"><span class="math inline">\(t\)</span>-test in R</a>
 (and let’s ignore the Shapiro-Wilk test in the link):</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="nhst.html#cb103-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb103-2"><a href="nhst.html#cb103-2" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb103-3"><a href="nhst.html#cb103-3" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="st">&quot;M_&quot;</span>, <span class="dv">10</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
-<span id="cb103-4"><a href="nhst.html#cb103-4" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">1</span>)</span>
-<span id="cb103-5"><a href="nhst.html#cb103-5" tabindex="-1"></a>)</span>
-<span id="cb103-6"><a href="nhst.html#cb103-6" tabindex="-1"></a><span class="fu">head</span>(my_data, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="nhst.html#cb106-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb106-2"><a href="nhst.html#cb106-2" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb106-3"><a href="nhst.html#cb106-3" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="st">&quot;M_&quot;</span>, <span class="dv">10</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb106-4"><a href="nhst.html#cb106-4" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>), <span class="dv">1</span>)</span>
+<span id="cb106-5"><a href="nhst.html#cb106-5" tabindex="-1"></a>)</span>
+<span id="cb106-6"><a href="nhst.html#cb106-6" tabindex="-1"></a><span class="fu">head</span>(my_data, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    name weight
 ## 1   M_1   17.6
 ## 2   M_2   20.6
@@ -684,19 +709,19 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 ## 8   M_8   18.9
 ## 9   M_9   18.9
 ## 10 M_10   18.2</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="nhst.html#cb105-1" tabindex="-1"></a><span class="fu">summary</span>(my_data<span class="sc">$</span>weight)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="nhst.html#cb108-1" tabindex="-1"></a><span class="fu">summary</span>(my_data<span class="sc">$</span>weight)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   15.30   18.38   18.90   19.25   20.82   22.20</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="nhst.html#cb107-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb107-2"><a href="nhst.html#cb107-2" tabindex="-1"></a><span class="fu">ggboxplot</span>(my_data<span class="sc">$</span>weight,</span>
-<span id="cb107-3"><a href="nhst.html#cb107-3" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb107-4"><a href="nhst.html#cb107-4" tabindex="-1"></a>          <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="nhst.html#cb108-1" tabindex="-1"></a><span class="fu">ggqqplot</span>(my_data<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;Men&#39;s weight&quot;</span>,</span>
-<span id="cb108-2"><a href="nhst.html#cb108-2" tabindex="-1"></a>         <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-48-2.png" width="672" /></p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="nhst.html#cb109-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
-<span id="cb109-2"><a href="nhst.html#cb109-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="nhst.html#cb110-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb110-2"><a href="nhst.html#cb110-2" tabindex="-1"></a><span class="fu">ggboxplot</span>(my_data<span class="sc">$</span>weight,</span>
+<span id="cb110-3"><a href="nhst.html#cb110-3" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb110-4"><a href="nhst.html#cb110-4" tabindex="-1"></a>          <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="nhst.html#cb111-1" tabindex="-1"></a><span class="fu">ggqqplot</span>(my_data<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;Men&#39;s weight&quot;</span>,</span>
+<span id="cb111-2"><a href="nhst.html#cb111-2" tabindex="-1"></a>         <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="nhst.html#cb112-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
+<span id="cb112-2"><a href="nhst.html#cb112-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -708,8 +733,8 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 ## sample estimates:
 ## mean of x 
 ##     19.25</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="nhst.html#cb111-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
-<span id="cb111-2"><a href="nhst.html#cb111-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="nhst.html#cb114-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
+<span id="cb114-2"><a href="nhst.html#cb114-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -721,8 +746,8 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 ## sample estimates:
 ## mean of x 
 ##     19.25</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="nhst.html#cb113-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
-<span id="cb113-2"><a href="nhst.html#cb113-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="nhst.html#cb116-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
+<span id="cb116-2"><a href="nhst.html#cb116-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.94</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -734,36 +759,109 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 ## sample estimates:
 ## mean of x 
 ##     19.25</code></pre>
-<p>Details output……..</p>
+<p>Let’ verify the test statistic by “hand” for the two-sided test:</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}\]</span></p>
+<p><span class="math inline">\(\bar{x} = 19.25\)</span></p>
+<p><span class="math inline">\(s = 2.002915\)</span></p>
+<p><span class="math inline">\(n = 10\)</span></p>
+<p><span class="math inline">\(t = \frac{19.25 - 25}{2.002915/\sqrt{10}} = -9.078319\)</span></p>
+<p>Under the null hypothesis and
+<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Assumptions">assumptions</a> met,
+the test statistic is distributed according
+to a <span class="math inline">\(t\)</span>-distribution with 9 degrees of freedom.
+Hence, the <span class="math inline">\(p\)</span>-value is:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="nhst.html#cb118-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">9.078319</span>, <span class="at">df =</span> <span class="dv">9</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="co"># two-sided</span></span></code></pre></div>
+<pre><code>## [1] 7.953381e-06</code></pre>
+<p>This matches the output of the <code>t.test</code> function in R.</p>
+<p><strong><a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Assumptions">Assumptions of the <span class="math inline">\(t\)</span>-test</a></strong>:</p>
+<p>You will often see that researchers check if the <em>data</em> is normally distributed.
+This is not strictly necessary. Merely <span class="math inline">\(\bar{X}\)</span> must be normally distributed, which is
+often guaranteed by the
+<a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a> for a
+large enough sample size <span class="math inline">\(n\)</span>.</p>
+<p><strong>IF the data is normally distributed, then <span class="math inline">\(\bar{X}\)</span> is exactly normally distributed</strong>.
+This is always true
+and the reason for testing for normality of the data.</p>
+<p>Another assumption is that <span class="math inline">\(\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}\)</span></p>
+<p>Let’s try to verify this assumption empirically:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="nhst.html#cb120-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb120-2"><a href="nhst.html#cb120-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb120-3"><a href="nhst.html#cb120-3" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="nhst.html#cb120-4" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb120-5"><a href="nhst.html#cb120-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>            <span class="co"># Sample size</span></span>
+<span id="cb120-6"><a href="nhst.html#cb120-6" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">25</span>         <span class="co"># Mean under null hypothesis</span></span>
+<span id="cb120-7"><a href="nhst.html#cb120-7" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span>         <span class="co"># Standard deviation</span></span>
+<span id="cb120-8"><a href="nhst.html#cb120-8" tabindex="-1"></a>num_simulations <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># Number of simulations</span></span>
+<span id="cb120-9"><a href="nhst.html#cb120-9" tabindex="-1"></a></span>
+<span id="cb120-10"><a href="nhst.html#cb120-10" tabindex="-1"></a><span class="co"># Simulations</span></span>
+<span id="cb120-11"><a href="nhst.html#cb120-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb120-12"><a href="nhst.html#cb120-12" tabindex="-1"></a>chi_squared_values <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_simulations)</span>
+<span id="cb120-13"><a href="nhst.html#cb120-13" tabindex="-1"></a></span>
+<span id="cb120-14"><a href="nhst.html#cb120-14" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
+<span id="cb120-15"><a href="nhst.html#cb120-15" tabindex="-1"></a>  <span class="co"># Generate random sample</span></span>
+<span id="cb120-16"><a href="nhst.html#cb120-16" tabindex="-1"></a>  sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_0, <span class="at">sd =</span> sigma)</span>
+<span id="cb120-17"><a href="nhst.html#cb120-17" tabindex="-1"></a>  <span class="co"># Calculate sample variance</span></span>
+<span id="cb120-18"><a href="nhst.html#cb120-18" tabindex="-1"></a>  sample_variance <span class="ot">&lt;-</span> <span class="fu">var</span>(sample)</span>
+<span id="cb120-19"><a href="nhst.html#cb120-19" tabindex="-1"></a>  <span class="co"># Calculate chi-squared value</span></span>
+<span id="cb120-20"><a href="nhst.html#cb120-20" tabindex="-1"></a>  chi_squared_values[i] <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sample_variance <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb120-21"><a href="nhst.html#cb120-21" tabindex="-1"></a>}</span>
+<span id="cb120-22"><a href="nhst.html#cb120-22" tabindex="-1"></a></span>
+<span id="cb120-23"><a href="nhst.html#cb120-23" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">chi_squared =</span> chi_squared_values) <span class="sc">%&gt;%</span></span>
+<span id="cb120-24"><a href="nhst.html#cb120-24" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> chi_squared)) <span class="sc">+</span></span>
+<span id="cb120-25"><a href="nhst.html#cb120-25" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb120-26"><a href="nhst.html#cb120-26" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-27"><a href="nhst.html#cb120-27" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb120-28"><a href="nhst.html#cb120-28" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb120-29"><a href="nhst.html#cb120-29" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb120-30"><a href="nhst.html#cb120-30" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">expression</span>(<span class="st">&quot;Empirical Verification of &quot;</span> <span class="sc">~</span> chi<span class="sc">^</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot; Distribution&quot;</span>),</span>
+<span id="cb120-31"><a href="nhst.html#cb120-31" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb120-32"><a href="nhst.html#cb120-32" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb120-33"><a href="nhst.html#cb120-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb120-34"><a href="nhst.html#cb120-34" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb120-35"><a href="nhst.html#cb120-35" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb120-36"><a href="nhst.html#cb120-36" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb120-37"><a href="nhst.html#cb120-37" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>This assumption seems to be met.</p>
+<p>The last assumption listed is that <span class="math inline">\(\bar{X} - \mu\)</span> and <span class="math inline">\(s\)</span> are independent.
+At least for large <span class="math inline">\(n\)</span>, this should hold. Because of the CLT <span class="math inline">\(\bar{X}\)</span> is
+asymptotically normal
+with expectation <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n}\)</span>.
+<span class="math inline">\(Z\)</span> measures how far <span class="math inline">\(\bar{X}\)</span> is from <span class="math inline">\(\mu\)</span>. Independence would mean here
+that irrespective of how far away a sample is from the true mean
+(respectively the mean under <span class="math inline">\(H_0\)</span>), the sample variance
+has the same distribution.</p>
+<p>One could verify this theoretically or by applying an
+<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_independence_test">independence test</a>.</p>
 </div>
 <div id="two-sample-t-test" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Two sample <span class="math inline">\(t\)</span>-test<a href="nhst.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s jump right in and use our example from the previous chapter where we performed the Bayesian <span class="math inline">\(t\)</span>-test:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="nhst.html#cb115-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="nhst.html#cb121-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="nhst.html#cb117-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="nhst.html#cb123-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="nhst.html#cb119-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="nhst.html#cb125-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="nhst.html#cb121-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="nhst.html#cb127-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="nhst.html#cb123-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
-<span id="cb123-2"><a href="nhst.html#cb123-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="nhst.html#cb129-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
+<span id="cb129-2"><a href="nhst.html#cb129-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
 <pre><code>##    vars n  mean     sd median trimmed    mad  min max range  skew kurtosis
 ## y1    1 8 130.0 116.00    120   130.0 140.85  -50 300   350 -0.13    -1.39
 ## y2    2 8   7.5 107.94      0     7.5 118.61 -120 190   310  0.29    -1.38
 ##       se
 ## y1 41.01
 ## y2 38.16</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="nhst.html#cb125-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
-<span id="cb125-2"><a href="nhst.html#cb125-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb125-3"><a href="nhst.html#cb125-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
-<span id="cb125-4"><a href="nhst.html#cb125-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
-<span id="cb125-5"><a href="nhst.html#cb125-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="nhst.html#cb126-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span>
-<span id="cb126-2"><a href="nhst.html#cb126-2" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="nhst.html#cb126-3" tabindex="-1"></a><span class="fu">t.test</span>(y1, y2, <span class="at">conf.level =</span> <span class="fl">0.93</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="nhst.html#cb131-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
+<span id="cb131-2"><a href="nhst.html#cb131-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb131-3"><a href="nhst.html#cb131-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
+<span id="cb131-4"><a href="nhst.html#cb131-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
+<span id="cb131-5"><a href="nhst.html#cb131-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="nhst.html#cb132-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span>
+<span id="cb132-2"><a href="nhst.html#cb132-2" tabindex="-1"></a></span>
+<span id="cb132-3"><a href="nhst.html#cb132-3" tabindex="-1"></a><span class="fu">t.test</span>(y1, y2, <span class="at">conf.level =</span> <span class="fl">0.93</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -792,62 +890,62 @@ the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_s
 <p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_1}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \]</span></p>
 <p>would be distributed according to a <span class="math inline">\(t\)</span>-distribution with 13.928 degrees of freedom.</p></li>
 </ul>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="nhst.html#cb128-1" tabindex="-1"></a><span class="co"># Load ggplot2</span></span>
-<span id="cb128-2"><a href="nhst.html#cb128-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb128-3"><a href="nhst.html#cb128-3" tabindex="-1"></a></span>
-<span id="cb128-4"><a href="nhst.html#cb128-4" tabindex="-1"></a><span class="co"># Define degrees of freedom</span></span>
-<span id="cb128-5"><a href="nhst.html#cb128-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fl">13.928</span></span>
-<span id="cb128-6"><a href="nhst.html#cb128-6" tabindex="-1"></a></span>
-<span id="cb128-7"><a href="nhst.html#cb128-7" tabindex="-1"></a><span class="co"># Define the range for x and the critical t-values</span></span>
-<span id="cb128-8"><a href="nhst.html#cb128-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
-<span id="cb128-9"><a href="nhst.html#cb128-9" tabindex="-1"></a>critical_t <span class="ot">&lt;-</span> <span class="fl">2.1867</span></span>
-<span id="cb128-10"><a href="nhst.html#cb128-10" tabindex="-1"></a></span>
-<span id="cb128-11"><a href="nhst.html#cb128-11" tabindex="-1"></a><span class="co"># Create a data frame with x and corresponding density values</span></span>
-<span id="cb128-12"><a href="nhst.html#cb128-12" tabindex="-1"></a>t_dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb128-13"><a href="nhst.html#cb128-13" tabindex="-1"></a>  <span class="at">x =</span> x,</span>
-<span id="cb128-14"><a href="nhst.html#cb128-14" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dt</span>(x, df)</span>
-<span id="cb128-15"><a href="nhst.html#cb128-15" tabindex="-1"></a>)</span>
-<span id="cb128-16"><a href="nhst.html#cb128-16" tabindex="-1"></a></span>
-<span id="cb128-17"><a href="nhst.html#cb128-17" tabindex="-1"></a><span class="co"># Plot the t-distribution with shaded tail areas</span></span>
-<span id="cb128-18"><a href="nhst.html#cb128-18" tabindex="-1"></a><span class="fu">ggplot</span>(t_dist, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
-<span id="cb128-19"><a href="nhst.html#cb128-19" tabindex="-1"></a>  <span class="co"># Add the main t-distribution curve</span></span>
-<span id="cb128-20"><a href="nhst.html#cb128-20" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb128-21"><a href="nhst.html#cb128-21" tabindex="-1"></a>  <span class="co"># Add shaded areas below the curve outside the critical t-values</span></span>
-<span id="cb128-22"><a href="nhst.html#cb128-22" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb128-23"><a href="nhst.html#cb128-23" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&lt;</span> <span class="sc">-</span>critical_t),</span>
-<span id="cb128-24"><a href="nhst.html#cb128-24" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
-<span id="cb128-25"><a href="nhst.html#cb128-25" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb128-26"><a href="nhst.html#cb128-26" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb128-27"><a href="nhst.html#cb128-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb128-28"><a href="nhst.html#cb128-28" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb128-29"><a href="nhst.html#cb128-29" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&gt;</span> critical_t),</span>
-<span id="cb128-30"><a href="nhst.html#cb128-30" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
-<span id="cb128-31"><a href="nhst.html#cb128-31" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb128-32"><a href="nhst.html#cb128-32" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb128-33"><a href="nhst.html#cb128-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb128-34"><a href="nhst.html#cb128-34" tabindex="-1"></a>  <span class="co"># Add vertical lines for the critical t-values</span></span>
-<span id="cb128-35"><a href="nhst.html#cb128-35" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>critical_t, critical_t),</span>
-<span id="cb128-36"><a href="nhst.html#cb128-36" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb128-37"><a href="nhst.html#cb128-37" tabindex="-1"></a>  <span class="co"># Annotate the critical t-values</span></span>
-<span id="cb128-38"><a href="nhst.html#cb128-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span>critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
-<span id="cb128-39"><a href="nhst.html#cb128-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;-t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb128-40"><a href="nhst.html#cb128-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
-<span id="cb128-41"><a href="nhst.html#cb128-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb128-42"><a href="nhst.html#cb128-42" tabindex="-1"></a>  <span class="co"># Add labels and style</span></span>
-<span id="cb128-43"><a href="nhst.html#cb128-43" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb128-44"><a href="nhst.html#cb128-44" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;t-Distribution with Shaded Critical Areas (Two-Sided Test)&quot;</span>,</span>
-<span id="cb128-45"><a href="nhst.html#cb128-45" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Degrees of Freedom:&quot;</span>, df),</span>
-<span id="cb128-46"><a href="nhst.html#cb128-46" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;t&quot;</span>,</span>
-<span id="cb128-47"><a href="nhst.html#cb128-47" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
-<span id="cb128-48"><a href="nhst.html#cb128-48" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb128-49"><a href="nhst.html#cb128-49" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb128-50"><a href="nhst.html#cb128-50" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb128-51"><a href="nhst.html#cb128-51" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># Center the title</span></span>
-<span id="cb128-52"><a href="nhst.html#cb128-52" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)  <span class="co"># Center the subtitle</span></span>
-<span id="cb128-53"><a href="nhst.html#cb128-53" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="nhst.html#cb129-1" tabindex="-1"></a><span class="co"># p-value manually:</span></span>
-<span id="cb129-2"><a href="nhst.html#cb129-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="nhst.html#cb134-1" tabindex="-1"></a><span class="co"># Load ggplot2</span></span>
+<span id="cb134-2"><a href="nhst.html#cb134-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb134-3"><a href="nhst.html#cb134-3" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="nhst.html#cb134-4" tabindex="-1"></a><span class="co"># Define degrees of freedom</span></span>
+<span id="cb134-5"><a href="nhst.html#cb134-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fl">13.928</span></span>
+<span id="cb134-6"><a href="nhst.html#cb134-6" tabindex="-1"></a></span>
+<span id="cb134-7"><a href="nhst.html#cb134-7" tabindex="-1"></a><span class="co"># Define the range for x and the critical t-values</span></span>
+<span id="cb134-8"><a href="nhst.html#cb134-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb134-9"><a href="nhst.html#cb134-9" tabindex="-1"></a>critical_t <span class="ot">&lt;-</span> <span class="fl">2.1867</span></span>
+<span id="cb134-10"><a href="nhst.html#cb134-10" tabindex="-1"></a></span>
+<span id="cb134-11"><a href="nhst.html#cb134-11" tabindex="-1"></a><span class="co"># Create a data frame with x and corresponding density values</span></span>
+<span id="cb134-12"><a href="nhst.html#cb134-12" tabindex="-1"></a>t_dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb134-13"><a href="nhst.html#cb134-13" tabindex="-1"></a>  <span class="at">x =</span> x,</span>
+<span id="cb134-14"><a href="nhst.html#cb134-14" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dt</span>(x, df)</span>
+<span id="cb134-15"><a href="nhst.html#cb134-15" tabindex="-1"></a>)</span>
+<span id="cb134-16"><a href="nhst.html#cb134-16" tabindex="-1"></a></span>
+<span id="cb134-17"><a href="nhst.html#cb134-17" tabindex="-1"></a><span class="co"># Plot the t-distribution with shaded tail areas</span></span>
+<span id="cb134-18"><a href="nhst.html#cb134-18" tabindex="-1"></a><span class="fu">ggplot</span>(t_dist, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb134-19"><a href="nhst.html#cb134-19" tabindex="-1"></a>  <span class="co"># Add the main t-distribution curve</span></span>
+<span id="cb134-20"><a href="nhst.html#cb134-20" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb134-21"><a href="nhst.html#cb134-21" tabindex="-1"></a>  <span class="co"># Add shaded areas below the curve outside the critical t-values</span></span>
+<span id="cb134-22"><a href="nhst.html#cb134-22" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
+<span id="cb134-23"><a href="nhst.html#cb134-23" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&lt;</span> <span class="sc">-</span>critical_t),</span>
+<span id="cb134-24"><a href="nhst.html#cb134-24" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
+<span id="cb134-25"><a href="nhst.html#cb134-25" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb134-26"><a href="nhst.html#cb134-26" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb134-27"><a href="nhst.html#cb134-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb134-28"><a href="nhst.html#cb134-28" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
+<span id="cb134-29"><a href="nhst.html#cb134-29" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&gt;</span> critical_t),</span>
+<span id="cb134-30"><a href="nhst.html#cb134-30" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
+<span id="cb134-31"><a href="nhst.html#cb134-31" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb134-32"><a href="nhst.html#cb134-32" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb134-33"><a href="nhst.html#cb134-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb134-34"><a href="nhst.html#cb134-34" tabindex="-1"></a>  <span class="co"># Add vertical lines for the critical t-values</span></span>
+<span id="cb134-35"><a href="nhst.html#cb134-35" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>critical_t, critical_t),</span>
+<span id="cb134-36"><a href="nhst.html#cb134-36" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb134-37"><a href="nhst.html#cb134-37" tabindex="-1"></a>  <span class="co"># Annotate the critical t-values</span></span>
+<span id="cb134-38"><a href="nhst.html#cb134-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span>critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
+<span id="cb134-39"><a href="nhst.html#cb134-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;-t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb134-40"><a href="nhst.html#cb134-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
+<span id="cb134-41"><a href="nhst.html#cb134-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb134-42"><a href="nhst.html#cb134-42" tabindex="-1"></a>  <span class="co"># Add labels and style</span></span>
+<span id="cb134-43"><a href="nhst.html#cb134-43" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb134-44"><a href="nhst.html#cb134-44" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;t-Distribution with Shaded Critical Areas (Two-Sided Test)&quot;</span>,</span>
+<span id="cb134-45"><a href="nhst.html#cb134-45" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Degrees of Freedom:&quot;</span>, df),</span>
+<span id="cb134-46"><a href="nhst.html#cb134-46" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb134-47"><a href="nhst.html#cb134-47" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb134-48"><a href="nhst.html#cb134-48" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb134-49"><a href="nhst.html#cb134-49" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb134-50"><a href="nhst.html#cb134-50" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb134-51"><a href="nhst.html#cb134-51" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># Center the title</span></span>
+<span id="cb134-52"><a href="nhst.html#cb134-52" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)  <span class="co"># Center the subtitle</span></span>
+<span id="cb134-53"><a href="nhst.html#cb134-53" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="nhst.html#cb135-1" tabindex="-1"></a><span class="co"># p-value manually:</span></span>
+<span id="cb135-2"><a href="nhst.html#cb135-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.04633225</code></pre>
 <p>The plot shows the <span class="math inline">\(t\)</span>-distribution. Marked in red are the areas where the test statistic
 takes the value we observed or “more extreme” values. With “more extreme” we mean values that are
