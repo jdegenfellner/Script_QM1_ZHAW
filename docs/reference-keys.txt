@@ -50,6 +50,7 @@ example-in-the-wild
 q-q-plots
 correlation
 example-in-the-wild-1
+spearman-correlation
 exercises-1
 d-exercise-1---recreate-table-with-fake-data
 e-exercise-2---outliers-and-estimates
@@ -90,6 +91,7 @@ classical-t-test
 one-sample-t-test
 two-sample-t-test
 correlation-test
+comparision-with-bayesian-approach
 error_types
 the-frequentist-confidence-interval
 simulations-based-approaches

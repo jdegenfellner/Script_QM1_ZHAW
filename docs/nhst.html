@@ -239,6 +239,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.5" data-path="descriptive_stats.html"><a href="descriptive_stats.html#correlation"><i class="fa fa-check"></i><b>3.5</b> Correlation</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="descriptive_stats.html"><a href="descriptive_stats.html#example-in-the-wild-1"><i class="fa fa-check"></i><b>3.5.1</b> Example in the wild</a></li>
+<li class="chapter" data-level="3.5.2" data-path="descriptive_stats.html"><a href="descriptive_stats.html#spearman-correlation"><i class="fa fa-check"></i><b>3.5.2</b> Spearman correlation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="descriptive_stats.html"><a href="descriptive_stats.html#exercises-1"><i class="fa fa-check"></i><b>3.6</b> Exercises</a>
 <ul>
@@ -295,7 +296,10 @@ div.csl-indent {
 <li class="chapter" data-level="5.4.1" data-path="nhst.html"><a href="nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.4.1</b> One sample <span class="math inline">\(t\)</span>-test</a></li>
 <li class="chapter" data-level="5.4.2" data-path="nhst.html"><a href="nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.4.2</b> Two sample <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="nhst.html"><a href="nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a></li>
+<li class="chapter" data-level="5.5" data-path="nhst.html"><a href="nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="nhst.html"><a href="nhst.html#comparision-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.1</b> Comparision with Bayesian approach</a></li>
+</ul></li>
 <li class="chapter" data-level="5.6" data-path="nhst.html"><a href="nhst.html#error_types"><i class="fa fa-check"></i><b>5.6</b> Type 1 and Type 2 errors</a></li>
 <li class="chapter" data-level="5.7" data-path="nhst.html"><a href="nhst.html#the-frequentist-confidence-interval"><i class="fa fa-check"></i><b>5.7</b> The frequentist confidence interval</a></li>
 <li class="chapter" data-level="5.8" data-path="nhst.html"><a href="nhst.html#simulations-based-approaches"><i class="fa fa-check"></i><b>5.8</b> Simulations based approaches</a></li>
@@ -971,9 +975,60 @@ know this (see <a href="nhst.html#exercise6_nhst">exercise 6</a>).</p>
 Maybe, let’s take the part about the Shapiro-Wilk test not too seriously.</p>
 <p>The test statistic(s) for the test(s) can be found <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Inference">here</a>.
 If we really want to take the result of such a test seriously, we need to check the assumptions of the test.</p>
-<p>………..</p>
+<p>The correlation plot from the <a href="https://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r">article</a> looks like this:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="nhst.html#cb137-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb137-2"><a href="nhst.html#cb137-2" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb137-3"><a href="nhst.html#cb137-3" tabindex="-1"></a>  <span class="fu">ggscatter</span>(<span class="at">x =</span> <span class="st">&quot;mpg&quot;</span>, <span class="at">y =</span> <span class="st">&quot;wt&quot;</span>,</span>
+<span id="cb137-4"><a href="nhst.html#cb137-4" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb137-5"><a href="nhst.html#cb137-5" tabindex="-1"></a>            <span class="at">cor.coef =</span> <span class="cn">TRUE</span>, <span class="at">cor.method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb137-6"><a href="nhst.html#cb137-6" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;Miles/(US) gallon&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Weight (1000 lbs)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="nhst.html#cb138-1" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  mtcars$mpg and mtcars$wt
+## t = -9.559, df = 30, p-value = 1.294e-10
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.9338264 -0.7440872
+## sample estimates:
+##        cor 
+## -0.8676594</code></pre>
+<p><span class="math inline">\(r=0.87\)</span> is the sample correlation coefficient.
+Interestingly, <code>cor.test</code> in R can only test <span class="math inline">\(H_0: \rho = 0\)</span>.</p>
+<p>In the scatter plot, we can clearly see linear relationship between the two variables.
+The correlation might therefore be a useful measure to describe the relationship between the two variables.</p>
+<ul>
+<li>t is the <span class="math inline">\(t\)</span>-test statistic value (t = -9.559),</li>
+<li>df is the degrees of freedom (df= 30),</li>
+<li><span class="math inline">\(p\)</span>-value of the <span class="math inline">\(t\)</span>-test (<span class="math inline">\(p\)</span>-value = <span class="math inline">\(1.29410^{-10}\)</span>).</li>
+<li>conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = <span class="math inline">\([-0.9338, -0.7441]\)</span>)
+This is what is most interesting to us and should be interpreted in the context of the data.</li>
+<li>sample estimates is the correlation coefficient (Cor.coeff <span class="math inline">\(= -0.87\)</span>).</li>
+</ul>
+<p>Let’s verify the test statistic by “hand”:
+For pairs from an uncorrelated bivariate normal distribution, the sampling distribution
+of the studentized Pearson’s correlation coefficient follows a <span class="math inline">\(t\)</span>-distribution with degrees of freedom <span class="math inline">\(n − 2\)</span>.
+Specifically, if the underlying variables have a bivariate normal distribution, the variable</p>
+<p><span class="math display">\[t = \frac{r \sqrt{n-2}}{\sqrt{1-r^2}}\]</span></p>
+<p>has a student’s t-distribution in the null case (zero correlation).</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="nhst.html#cb140-1" tabindex="-1"></a>(r <span class="ot">&lt;-</span> <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt))</span></code></pre></div>
+<pre><code>## [1] -0.8676594</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="nhst.html#cb142-1" tabindex="-1"></a>(n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(mtcars))</span></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="nhst.html#cb144-1" tabindex="-1"></a>(t <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] -9.559044</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="nhst.html#cb146-1" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 1.293959e-10</code></pre>
+<p>This matches the output of the <code>cor.test</code> function in R.</p>
 <p>See also <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">here</a>
-to see the variability of the correlation coefficient under the null hypothesis.</p>
+to see the variability of the correlation coefficient under the null hypothesis. This file is intended
+to show the behavior of the test statistic under the null hypothesis for small sample sizes (like a master thesis).</p>
+<div id="comparision-with-bayesian-approach" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Comparision with Bayesian approach<a href="nhst.html#comparision-with-bayesian-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>………….</p>
+</div>
 </div>
 <div id="error_types" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Type 1 and Type 2 errors<a href="nhst.html#error_types" class="anchor-section" aria-label="Anchor link to header"></a></h2>

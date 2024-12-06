@@ -610,10 +610,59 @@ Maybe, let's take the part about the Shapiro-Wilk test not too seriously.
 The test statistic(s) for the test(s) can be found [here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Inference).
 If we really want to take the result of such a test seriously, we need to check the assumptions of the test.
 
-...........
+The correlation plot from the [article](https://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r) looks like this:
+```{r}
+library(ggpubr)
+mtcars %>%
+  ggscatter(x = "mpg", y = "wt",
+            add = "reg.line", conf.int = TRUE,
+            cor.coef = TRUE, cor.method = "pearson",
+            xlab = "Miles/(US) gallon", ylab = "Weight (1000 lbs)")
+
+cor.test(mtcars$mpg, mtcars$wt)
+```
+
+$r=0.87$ is the sample correlation coefficient. 
+Interestingly, `cor.test` in R can only test $H_0: \rho = 0$.
+
+In the scatter plot, we can clearly see linear relationship between the two variables.
+The correlation might therefore be a useful measure to describe the relationship between the two variables.
+
+- t is the $t$-test statistic value (t = -9.559),
+- df is the degrees of freedom (df= 30),
+- $p$-value of the $t$-test ($p$-value = $1.29410^{-10}$).
+- conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = $[-0.9338, -0.7441]$)
+  This is what is most interesting to us and should be interpreted in the context of the data.
+- sample estimates is the correlation coefficient (Cor.coeff $= -0.87$).
+
+Let's verify the test statistic by "hand":
+For pairs from an uncorrelated bivariate normal distribution, the sampling distribution 
+of the studentized Pearson's correlation coefficient follows a $t$-distribution with degrees of freedom $n − 2$. 
+Specifically, if the underlying variables have a bivariate normal distribution, the variable
+
+$$t = \frac{r \sqrt{n-2}}{\sqrt{1-r^2}}$$
+
+has a student's t-distribution in the null case (zero correlation).
+
+```{r}
+(r <- cor(mtcars$mpg, mtcars$wt))
+(n <- nrow(mtcars))
+(t <- r * sqrt(n - 2) / sqrt(1 - r^2))
+(p <- 2 * pt(-abs(t), df = n - 2))
+```
+
+This matches the output of the `cor.test` function in R.
 
 See also [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
-to see the variability of the correlation coefficient under the null hypothesis.
+to see the variability of the correlation coefficient under the null hypothesis. This file is intended
+to show the behavior of the test statistic under the null hypothesis for small sample sizes (like a master thesis).
+
+### Comparision with Bayesian approach
+
+.............
+
+
+
 
 ## Type 1 and Type 2 errors {#error_types}
 ```{r error_table_fixed, echo=FALSE}

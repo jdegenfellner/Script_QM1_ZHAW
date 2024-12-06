@@ -295,13 +295,18 @@ for the sample estimate.
 
 We can interpret the expression $\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$
 
-Without loss of generality let's assume that $\text{Cov}(X, Y) > 0$:
+Without loss of generality let's assume that $\text{Cov}(X, Y) > 0$. Assuming, one could change these quantities as one wishes:
 
 - $\rho$ is near zero, if the covariance is near zero compared to $\sigma_X \sigma_Y$.
 
 - For fixed $\sigma_X \sigma_Y$, the correlation is larger, the larger the covariance $\text{Cov}(X, Y)$ is.
 
 - For fixed covariance $\text{Cov}(X, Y)$, the correlation is larger, the smaller $\sigma_X$ or $\sigma_Y$ (or their product) are.
+
+An interesting and rarely mentioned version of formula for the correlation coefficient is:
+$$ r_{xy} = \frac{1}{n-1} \sum_{i=1}^{n} \left( \frac{x_i - \bar{x}}{s_x} \right) \left( \frac{y_i - \bar{y}}{s_y} \right) $$
+Here, we see that the correlation coefficient is the average of the products of the z-scores of the two variables.
+This preserves the covariance interpretation of adding a positive or negative product to the sum if the obeservation is above or below the respective mean.
 
 **Remember: We use $r$ to estimate $\rho$ using the sample.**
 
@@ -483,6 +488,9 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
   We will come to this later in our courses. 
   Please look at this [really cool animation](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Correlation_Outliers_around_the_clock.R).
   This is the simulation of the regression line when an outlier with distance 8 to the center is introduced and wanders around the clock.
+
+### Spearman correlation
+..........
 
 ## Exercises
 
