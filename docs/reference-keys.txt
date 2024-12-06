@@ -101,3 +101,4 @@ exercise4_nhst
 exercise5_nhst
 exercise6_nhst
 exercise7_nhst
+exercise8_nhst

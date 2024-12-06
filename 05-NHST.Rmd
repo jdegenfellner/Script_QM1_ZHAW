@@ -89,7 +89,11 @@ significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
 - **[$p$-hacking](https://de.wikipedia.org/wiki/P-Hacking)**: In the pursuit for "significant" results 
   (which results in publications, which results in tenure), it is natural to do everything to get them. 
   This can include data dredging, selective reporting, and other questionable practices. 
-  In my humble opinion, very often, researchers are not to blame but incentives.
+  In my humble opinion, very often, researchers are not to blame but incentives. It is important to understand
+  that probabilities are defined *before* and event has happened. The probability for the esteemed reader to win the
+  Swiss lottery is rather small and I would take a large bet against it. But every week, someone wins (approximately).
+  After the fact, one should not be surprised *that* someone one, 
+  since it follows from the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers).
 
 See [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf) for more limitations of NHST.
 
@@ -102,20 +106,21 @@ This [Review of NHST](https://f1000research.com/articles/4-621/v3) or
 
 This [video](https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal) could also help to understand the basic concepts.
 
-
 ## Example in the literature
 
 $p$-values are omnipresent in the scientific literature. There rather few papers in our field that do not contain them. 
-We **do not use $p$-values in in descriptive tables** 
+We **do not use $p$-values in descriptive tables** 
 (see [here](https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/) and 
 [here](https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1)).
 
 [Here](https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100) is an example from the literature.
 Table 2 lists studies and one column contains $p$-values. Note, that it is not good practice to present $p$-values 
-(if one should use them at all) as dichotomy: $p < 0.05$. This statement does 
+(if one should use them at all) as dichotomy: $p < 0.05$ 
+(Misconception 8 [here](https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf)). This statement does 
 not allow to judge the strength of the evidence against the null hypothesis. Both, $p = 0.00000001$ and $p = 0.049$ would satisfy
 the inequality.
 
+When reading papers, watch out for oceans of $p$-values and their selective dichotomous interpretation. This is a clear warning sign.
 
 ## Binomial test
 
@@ -150,7 +155,7 @@ The output in R tells us the following:
 - alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
 - $p$-value < $2.2e-16$. This is value is smaller than the precision in R (`.Machine').
 - 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
-The upper limit of $1$ occurs since we have a one-sided test.
+The upper limit of $1$ occurs since we have a one-sided test. 95% is just convention and has no special meaning.
 - Sample estimates: Estimating the true (but unknown) proportion from the sample would just be: 
 $\frac{137}{1000} = 0.137$
 
@@ -159,7 +164,8 @@ $\frac{137}{1000} = 0.137$
 - $H_0: \theta = 0.04$
 - $H_1: \theta \ne 0.04$
 
-One could argue that this is bad style, since we should probably know the direction of the effect.
+One could argue that this is bad style, since we should probably know the direction of the effect 
+(see 4.2. [here](https://errorstatistics.com/wp-content/uploads/2015/07/cox-1977-with-discussion-and-reply-nc.pdf)).
 
 ```{r}
 binom.test(137, 1000, p = 0.04, alternative = "two.sided")
@@ -169,7 +175,7 @@ binom.test(137, 1000, p = 0.04, alternative = "two.sided")
 With some experience, one would probably not test for lower when seeing the observed number of 137.
 - 95 percent confidence interval: $0.1162817$ to $0.1598810$.
 
-**Interpretation of this interval**: When drawing repeated samples, in 95% percent of the samples,
+**Interpretation of this frequentist confidence interval (CI)**: When drawing repeated samples, in 95% percent of the samples,
 the so constructed interval (which will be different everytime) contains the true but unknown 
 parameter ([Illustration](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg)). 
 
@@ -193,7 +199,7 @@ See also [Exercise 3](#exercise3_nhst).
 
 **Comparison with Bayesian version** of estimating $\theta$:
 
-- We cannot include a prior distribution for the paramater $\theta$.
+- We cannot include a prior distribution for the paramater $\theta$. 
 - We cannot calculate the posterior distribution of $\theta$. 
 Hence, we cannot make statements like "the probability that $\theta$ is larger than 0.04 is 0.9".
 - Prior knowledge could probably be included in the form of the null hypothesis stating, for instance, that $\theta \le 0.2$. 
@@ -206,6 +212,11 @@ If we are interested in comparing two proportions,
 we can use the [proportions test](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prop.test).
 
 ### One sample case
+
+$H_0: p = 0.5$
+
+$H_1: p \ne 0.5$
+
 ```{r}
 set.seed(443)
 heads <- rbinom(1, size = 100,
@@ -227,6 +238,51 @@ Under the null hypothesis (in this case $H_0 = 0.5$),
 the test statistic follows a [$\chi^2$ distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution).
 
 See also [Exercise 4](#exercise4_nhst).
+
+Let's verify the test statistic for the test without continuity correction by "hand":
+
+```{r}
+# Observed and expected values
+heads <- 47  # Observed count of heads
+total <- 100  # Total flips
+p_null <- 0.5  # Null hypothesis proportion
+
+# Observed proportion
+p_observed <- heads / total
+
+# Z-test statistic
+Z <- (p_observed - p_null) / sqrt((p_null * (1 - p_null)) / total)
+
+# Chi-squared test statistic
+X_squared <- Z^2
+
+# Print the results
+Z
+X_squared
+```
+
+The $\chi^2$ distribution can be [defined](https://en.wikipedia.org/wiki/Chi-squared_distribution#Definitions) 
+as the sum of squared standard normals $Z$. See [Exercise 8](#exercise8_nhst).
+
+**Where does the test statistic come from?**
+
+According to the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem), 
+$\bar{X}$ (= the proportion of successes in the sample) is approximately normally distributed  
+$$\bar{X} = \hat{p} \sim N(p, \frac{\sigma^2}{n}) = N(p, \frac{p(1-p)}{n}).$$
+This means, the statistic $\hat{p}$ should show the pattern of a Gaußian distribution when repeated many times.
+$n$ is in the denominator, so the variance of the approximate normal distribution decreases with increasing sample size and we 
+can be more certain about the true proportion with increasing sample size.
+
+Note that we want to find the true but unknown proportion $p$ of a 
+[Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution) which has expected value $p$ and variance $p(1-p)$.
+
+Given this distributional statement, it follows that if we subtract the mean assumed under $H_0$ ($p_0 = 0.5$) and divide by the standard deviation,
+the resulting test statistic is (approximately) distributed according to a standard normal distribution:
+
+$$Z = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \sim N(0, 1).$$
+
+This value squared gives us the value of the test statistic above: $0.36$.
+
 
 ### More than one sample {#proportions_test_more_samples}
 
@@ -523,7 +579,7 @@ difference is and how small the $\alpha-$ level is.
   $H_0: p = 0.01 \cdots p = 0.99$ in steps of $0.01$. 
   And plot the p-values on the y-axis and 
   the assumed proportion on the x-axis. 
-  This is called a [p-value function](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1556735#:~:text=The%20p%2Dvalue%20function%20provides,for%20the%20parameter%20of%20interest.).
+  This is called a [$p$-value function](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1556735#:~:text=The%20p%2Dvalue%20function%20provides,for%20the%20parameter%20of%20interest.).
 
 ### Exercise 5 - proportions test 2 {#exercise5_nhst}
 - Use the data from the smokers proportions test [example above](#proportions_test_more_samples).
@@ -542,3 +598,11 @@ difference is and how small the $\alpha-$ level is.
 - Calculate the 93% confidence interval for the mean.
 - Repeat this 1000 times.
 - How often was the true mean (0) contained in the constructed interval?
+
+### Exercise 8 - $\Chi^2$-distribution {#exercise8_nhst}
+The $\chi^2$-distribution is defined as the sum of squared standard normals. 
+- Very this by simulation in R.
+- Draw 1000 samples of size 3 from a standard normal distribution.
+- Calculate the sum of squared values for each sample.
+- Do this repeatedly and plot the histogram of the resulting values with the $\chi^2$-density in the diagram.
+- Use Q-Q plots to compare the two distributions. The distribution should be a $\chi^2$-distribution with 3 degrees of freedom.
