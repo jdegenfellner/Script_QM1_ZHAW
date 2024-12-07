@@ -298,7 +298,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="nhst.html"><a href="nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="nhst.html"><a href="nhst.html#comparision-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.1</b> Comparision with Bayesian approach</a></li>
+<li class="chapter" data-level="5.5.1" data-path="nhst.html"><a href="nhst.html#classical-correlation-test"><i class="fa fa-check"></i><b>5.5.1</b> Classical correlation test</a></li>
+<li class="chapter" data-level="5.5.2" data-path="nhst.html"><a href="nhst.html#bootstrap-confidence-interval-for-the-correlation-coefficient"><i class="fa fa-check"></i><b>5.5.2</b> Bootstrap confidence interval for the correlation coefficient</a></li>
+<li class="chapter" data-level="5.5.3" data-path="nhst.html"><a href="nhst.html#comparision-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.3</b> Comparision with Bayesian approach</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="nhst.html"><a href="nhst.html#error_types"><i class="fa fa-check"></i><b>5.6</b> Type 1 and Type 2 errors</a></li>
 <li class="chapter" data-level="5.7" data-path="nhst.html"><a href="nhst.html#the-frequentist-confidence-interval"><i class="fa fa-check"></i><b>5.7</b> The frequentist confidence interval</a></li>
@@ -683,15 +685,15 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bayes_statistics.html#cb82-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb82-2"><a href="bayes_statistics.html#cb82-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.866 131.109 133.176   93   31.0055 225.00                  
-## mu2         6.528   6.403   5.848   93  -82.2776  99.19                  
-## muDiff    124.339 124.762 129.468   93  -10.1100 257.31       0      95.5
-## sigma1    139.331 128.365 110.943   93   65.6216 224.38                  
-## sigma2    130.203 119.712 106.587   93   62.3481 211.46                  
-## sigmaDiff   9.128   8.504   6.399   93 -119.6981 133.27       0      56.4
-## nu         34.170  25.683   9.371   93    1.1229  83.64                  
-## log10nu     1.376   1.410   1.464   93    0.6559   2.05                  
-## effSz       0.964   0.955   0.975   93   -0.0755   2.02       0      95.5
+## mu1       131.086 131.324 134.658   93   33.1829 227.34                  
+## mu2         6.188   5.892   6.260   93  -84.4072  96.26                  
+## muDiff    124.898 125.083 135.219   93  -10.8787 256.74       0      95.6
+## sigma1    139.924 128.603 108.993   93   66.5757 228.00                  
+## sigma2    130.205 119.783 105.593   93   62.3525 209.63                  
+## sigmaDiff   9.719   8.808   9.846   93 -116.7019 137.60       0      56.4
+## nu         34.502  25.797  10.204   93    1.1233  84.29                  
+## log10nu     1.380   1.412   1.563   93    0.6664   2.06                  
+## effSz       0.966   0.957   0.991   93   -0.0888   2.01       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               

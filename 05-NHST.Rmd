@@ -603,6 +603,8 @@ For example, if the sample size is $n=234$ and the sample correlation coefficien
 is very unlikely that the true correlation coefficient is 0. One does not need a hypothesis test to 
 know this (see [exercise 6](#exercise6_nhst)).
 
+### Classical correlation test
+
 We can do a correlation test in R with the `cor.test` function. 
 [This article](https://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r) is also helpful.
 Maybe, let's take the part about the Shapiro-Wilk test not too seriously.
@@ -657,6 +659,8 @@ This matches the output of the `cor.test` function in R.
 Study this [file](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
 to understand the variability of the sample correlation coefficient under the null hypothesis ($\rho=0$). 
 Please be aware of this variability when interpreting the results of your master thesis.
+
+### Bootstrap confidence interval for the correlation coefficient
 
 We could also use the so-called **simple non-parametric [bootstrap](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))** to estimate the confidence interval for the correlation coefficient.
 These are the steps:
