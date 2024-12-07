@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-06" />
+<meta name="date" content="2024-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1023,14 +1023,17 @@ Specifically, if the underlying variables have a bivariate normal distribution, 
 <pre><code>## [1] 1.293959e-10</code></pre>
 <p>This matches the output of the <code>cor.test</code> function in R.</p>
 <p>Study this <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">file</a>
-to understand the variability of the sample correlation coefficient under the null hypothesis (<span class="math inline">\(\rho=0\)</span>).</p>
+to understand the variability of the sample correlation coefficient under the null hypothesis (<span class="math inline">\(\rho=0\)</span>).
+Please be aware of this variability when interpreting the results of your master thesis.</p>
 <p>We could also use the so-called <strong>simple non-parametric <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap</a></strong> to estimate the confidence interval for the correlation coefficient.
-This is done as follows:
-- Create a new sample by drawing with replacement from the original sample.
-- Repeat this process many times (e.g., 1000 times).
-- Calculate the correlation coefficient for each new sample.
-- Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.</p>
-<p>There is a simple elegance to this method. It is a very general method and can be applied to many different problems.</p>
+These are the steps:</p>
+<ul>
+<li>Create a new sample by drawing with replacement from the original sample.</li>
+<li>Repeat this process many times (e.g., 1000 times).</li>
+<li>Calculate the correlation coefficient for each new sample.</li>
+<li>Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.</li>
+</ul>
+<p>There is a simple elegance to this method. It is very general and can be applied to many different problems.</p>
 <p>Let’s apply it to finding a confidence interval for the correlation coefficient between <code>mpg</code> and <code>wt</code> in the <code>mtcars</code> dataset.</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="nhst.html#cb148-1" tabindex="-1"></a><span class="co"># Bootstrap confidence interval for the correlation coefficient</span></span>
 <span id="cb148-2"><a href="nhst.html#cb148-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -1043,12 +1046,111 @@ This is done as follows:
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="nhst.html#cb149-1" tabindex="-1"></a><span class="fu">quantile</span>(cors, <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>)) <span class="co"># 96% confidence interval</span></span></code></pre></div>
 <pre><code>##         2%        98% 
 ## -0.9260149 -0.7821605</code></pre>
-<p>So we use the variability contained in the data to estimate the variability of
-the correlation coefficient. As we can see in the histrogram, correlations close to 0 are
-very unlikely. The 96% bootstrap confidence interval is <span class="math inline">\([-0.93, -0.74]\)</span>.</p>
+<p>We used the variability <strong>contained in the data</strong> to estimate the variability of
+the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
+very unlikely. The 96% bootstrap confidence interval is <span class="math inline">\([-0.926, -0.782]\)</span>.</p>
 <div id="comparision-with-bayesian-approach" class="section level3 hasAnchor" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Comparision with Bayesian approach<a href="nhst.html#comparision-with-bayesian-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>………….</p>
+<p>For the Bayesian approach, we can use the <code>correlationBF</code> function from
+the <code>BayesFactor</code> package. In analogy to the classical test, we can “test” the null hypothesis
+by assuming a prior distribution for the correlation coefficient symmetric around the
+value 0 (slee prior plot below).</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="nhst.html#cb151-1" tabindex="-1"></a><span class="fu">library</span>(BayesFactor)</span></code></pre></div>
+<pre><code>## Loading required package: coda</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre><code>## ************
+## Welcome to BayesFactor 0.9.12-4.7. If you have questions, please contact Richard Morey (richarddmorey@gmail.com).
+## 
+## Type BFManual() to open the manual.
+## ************</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BayesFactor&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     posterior</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="nhst.html#cb159-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb159-2"><a href="nhst.html#cb159-2" tabindex="-1"></a></span>
+<span id="cb159-3"><a href="nhst.html#cb159-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb159-4"><a href="nhst.html#cb159-4" tabindex="-1"></a></span>
+<span id="cb159-5"><a href="nhst.html#cb159-5" tabindex="-1"></a><span class="co"># Define a function for the shifted, scaled Beta prior</span></span>
+<span id="cb159-6"><a href="nhst.html#cb159-6" tabindex="-1"></a>shifted_beta_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(rho, rscale) {</span>
+<span id="cb159-7"><a href="nhst.html#cb159-7" tabindex="-1"></a>  <span class="co"># Transform Beta to [-1, 1]</span></span>
+<span id="cb159-8"><a href="nhst.html#cb159-8" tabindex="-1"></a>  <span class="cf">if</span> (rho <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;&amp;</span> rho <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb159-9"><a href="nhst.html#cb159-9" tabindex="-1"></a>    <span class="co"># (rho + 1) / 2 transforms [-1, 1] to [0, 1]</span></span>
+<span id="cb159-10"><a href="nhst.html#cb159-10" tabindex="-1"></a>    beta_density <span class="ot">&lt;-</span> <span class="fu">dbeta</span>((rho <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>, <span class="dv">1</span> <span class="sc">/</span> rscale, <span class="dv">1</span> <span class="sc">/</span> rscale) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb159-11"><a href="nhst.html#cb159-11" tabindex="-1"></a>    <span class="fu">return</span>(beta_density)</span>
+<span id="cb159-12"><a href="nhst.html#cb159-12" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb159-13"><a href="nhst.html#cb159-13" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb159-14"><a href="nhst.html#cb159-14" tabindex="-1"></a>  }</span>
+<span id="cb159-15"><a href="nhst.html#cb159-15" tabindex="-1"></a>}</span>
+<span id="cb159-16"><a href="nhst.html#cb159-16" tabindex="-1"></a></span>
+<span id="cb159-17"><a href="nhst.html#cb159-17" tabindex="-1"></a><span class="co"># Define rho values and rscale</span></span>
+<span id="cb159-18"><a href="nhst.html#cb159-18" tabindex="-1"></a>rho_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb159-19"><a href="nhst.html#cb159-19" tabindex="-1"></a>rscale <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>  <span class="co"># Medium scale</span></span>
+<span id="cb159-20"><a href="nhst.html#cb159-20" tabindex="-1"></a></span>
+<span id="cb159-21"><a href="nhst.html#cb159-21" tabindex="-1"></a><span class="co"># Compute prior values</span></span>
+<span id="cb159-22"><a href="nhst.html#cb159-22" tabindex="-1"></a>prior_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(rho_values, shifted_beta_prior, <span class="at">rscale =</span> rscale)</span>
+<span id="cb159-23"><a href="nhst.html#cb159-23" tabindex="-1"></a></span>
+<span id="cb159-24"><a href="nhst.html#cb159-24" tabindex="-1"></a><span class="co"># Plot the prior</span></span>
+<span id="cb159-25"><a href="nhst.html#cb159-25" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">rho =</span> rho_values, <span class="at">density =</span> prior_values) <span class="sc">%&gt;%</span></span>
+<span id="cb159-26"><a href="nhst.html#cb159-26" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb159-27"><a href="nhst.html#cb159-27" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb159-28"><a href="nhst.html#cb159-28" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb159-29"><a href="nhst.html#cb159-29" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Shifted Scaled Beta Prior Distribution for Correlation&quot;</span>,</span>
+<span id="cb159-30"><a href="nhst.html#cb159-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
+<span id="cb159-31"><a href="nhst.html#cb159-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb159-32"><a href="nhst.html#cb159-32" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb159-33"><a href="nhst.html#cb159-33" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb159-34"><a href="nhst.html#cb159-34" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb159-35"><a href="nhst.html#cb159-35" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb159-36"><a href="nhst.html#cb159-36" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb159-37"><a href="nhst.html#cb159-37" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="nhst.html#cb160-1" tabindex="-1"></a><span class="co"># Compute the posterior samples using correlationBF()</span></span>
+<span id="cb160-2"><a href="nhst.html#cb160-2" tabindex="-1"></a>posterior_samples <span class="ot">&lt;-</span> <span class="fu">correlationBF</span>(</span>
+<span id="cb160-3"><a href="nhst.html#cb160-3" tabindex="-1"></a>  <span class="co"># Bayes factors or posterior samples for correlations.</span></span>
+<span id="cb160-4"><a href="nhst.html#cb160-4" tabindex="-1"></a>  <span class="at">y =</span> mtcars<span class="sc">$</span>mpg,</span>
+<span id="cb160-5"><a href="nhst.html#cb160-5" tabindex="-1"></a>  <span class="at">x =</span> mtcars<span class="sc">$</span>wt,</span>
+<span id="cb160-6"><a href="nhst.html#cb160-6" tabindex="-1"></a>  <span class="co"># Use &quot;medium&quot; scale (1/3); prior scale. Preset values can be given as strings</span></span>
+<span id="cb160-7"><a href="nhst.html#cb160-7" tabindex="-1"></a>  <span class="at">rscale =</span> <span class="st">&quot;medium&quot;</span>,</span>
+<span id="cb160-8"><a href="nhst.html#cb160-8" tabindex="-1"></a>  <span class="at">posterior =</span> <span class="cn">TRUE</span>,     <span class="co"># Get posterior samples</span></span>
+<span id="cb160-9"><a href="nhst.html#cb160-9" tabindex="-1"></a>  <span class="at">iterations =</span> <span class="dv">10000</span>    <span class="co"># Number of MCMC iterations</span></span>
+<span id="cb160-10"><a href="nhst.html#cb160-10" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Independent-candidate M-H acceptance rate: 49%</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="nhst.html#cb162-1" tabindex="-1"></a><span class="co"># Independent-candidate M-H = Independent-candiate Metropolis-Hastings algorithm</span></span>
+<span id="cb162-2"><a href="nhst.html#cb162-2" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="nhst.html#cb162-3" tabindex="-1"></a>posterior_samples <span class="sc">%&gt;%</span></span>
+<span id="cb162-4"><a href="nhst.html#cb162-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho)) <span class="sc">+</span></span>
+<span id="cb162-5"><a href="nhst.html#cb162-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb162-6"><a href="nhst.html#cb162-6" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-7"><a href="nhst.html#cb162-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb162-8"><a href="nhst.html#cb162-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb162-9"><a href="nhst.html#cb162-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior Distribution of Correlation (rho)&quot;</span>,</span>
+<span id="cb162-10"><a href="nhst.html#cb162-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
+<span id="cb162-11"><a href="nhst.html#cb162-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb162-12"><a href="nhst.html#cb162-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb162-13"><a href="nhst.html#cb162-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb162-14"><a href="nhst.html#cb162-14" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb162-15"><a href="nhst.html#cb162-15" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb162-16"><a href="nhst.html#cb162-16" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb162-17"><a href="nhst.html#cb162-17" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-2.png" width="672" /></p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="nhst.html#cb163-1" tabindex="-1"></a><span class="co"># Compute 96% credible interval</span></span>
+<span id="cb163-2"><a href="nhst.html#cb163-2" tabindex="-1"></a>credible_interval <span class="ot">&lt;-</span> <span class="fu">quantile</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>], <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>))</span>
+<span id="cb163-3"><a href="nhst.html#cb163-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;96% Credible Interval for rho:&quot;</span>,</span>
+<span id="cb163-4"><a href="nhst.html#cb163-4" tabindex="-1"></a>    credible_interval[<span class="dv">1</span>], <span class="st">&quot;to&quot;</span>, credible_interval[<span class="dv">2</span>], <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 96% Credible Interval for rho: -0.9083272 to -0.6384908</code></pre>
+<p>The following intervals where obtained in the three different ways:</p>
+<ul>
+<li>Classical frequentist: <span class="math inline">\([-0.9338, -0.7441]\)</span></li>
+<li>Bootstrap: <span class="math inline">\([-0.926, -0.782]\)</span></li>
+<li>Bayesian: <span class="math inline">\([-0.906, -0.610]\)</span></li>
+</ul>
 </div>
 </div>
 <div id="error_types" class="section level2 hasAnchor" number="5.6">
@@ -1096,6 +1198,7 @@ Correct inference (true positive)
 </tr>
 </tbody>
 </table>
+<p>How to choose <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>?</p>
 </div>
 <div id="the-frequentist-confidence-interval" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> The frequentist confidence interval<a href="nhst.html#the-frequentist-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1106,6 +1209,8 @@ these intervals will contain the true parameter in a certain percentage of cases
 <p>This is a <a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">nice visualization</a>
 of the concept.
 See also <a href="nhst.html#exercise7_nhst">exercise 7</a>.</p>
+<p>1:1 relationship between <span class="math inline">\(p\)</span>-values and confidence intervals:
+…………</p>
 </div>
 <div id="simulations-based-approaches" class="section level2 hasAnchor" number="5.8">
 <h2><span class="header-section-number">5.8</span> Simulations based approaches<a href="nhst.html#simulations-based-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>

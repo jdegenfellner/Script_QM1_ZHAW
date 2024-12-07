@@ -656,6 +656,7 @@ This matches the output of the `cor.test` function in R.
 
 Study this [file](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R) 
 to understand the variability of the sample correlation coefficient under the null hypothesis ($\rho=0$). 
+Please be aware of this variability when interpreting the results of your master thesis.
 
 We could also use the so-called **simple non-parametric [bootstrap](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))** to estimate the confidence interval for the correlation coefficient.
 These are the steps:
@@ -665,7 +666,7 @@ These are the steps:
 - Calculate the correlation coefficient for each new sample.
 - Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.
 
-There is a simple elegance to this method. It is a very general method and can be applied to many different problems.
+There is a simple elegance to this method. It is very general and can be applied to many different problems.
 
 Let's apply it to finding a confidence interval for the correlation coefficient between `mpg` and `wt` in the `mtcars` dataset.
 
@@ -680,13 +681,96 @@ hist(cors)
 quantile(cors, c(0.02, 0.98)) # 96% confidence interval
 ```
 
-So we use the variability contained in the data to estimate the variability of 
-the correlation coefficient. As we can see in the histrogram, correlations close to 0 are
-very unlikely. The 96% bootstrap confidence interval is $[-0.93, -0.74]$.
+We used the variability **contained in the data** to estimate the variability of 
+the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
+very unlikely. The 96% bootstrap confidence interval is $[-0.926, -0.782]$.
 
 ### Comparision with Bayesian approach
 
-.............
+For the Bayesian approach, we can use the `correlationBF` function from 
+the `BayesFactor` package. In analogy to the classical test, we can "test" the null hypothesis
+by assuming a prior distribution for the correlation coefficient symmetric around the 
+value 0 (slee prior plot below).
+
+```{r}
+library(BayesFactor)
+library(tidyverse)
+
+set.seed(444)
+
+# Define a function for the shifted, scaled Beta prior
+shifted_beta_prior <- function(rho, rscale) {
+  # Transform Beta to [-1, 1]
+  if (rho >= -1 && rho <= 1) {
+    # (rho + 1) / 2 transforms [-1, 1] to [0, 1]
+    beta_density <- dbeta((rho + 1) / 2, 1 / rscale, 1 / rscale) / 2
+    return(beta_density)
+  } else {
+    return(0)
+  }
+}
+
+# Define rho values and rscale
+rho_values <- seq(-1, 1, by = 0.01)
+rscale <- 1 / 3  # Medium scale
+
+# Compute prior values
+prior_values <- sapply(rho_values, shifted_beta_prior, rscale = rscale)
+
+# Plot the prior
+data.frame(rho = rho_values, density = prior_values) %>%
+ggplot(aes(x = rho, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  labs(
+    title = "Shifted Scaled Beta Prior Distribution for Correlation",
+    x = "Correlation (rho)",
+    y = "Density"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    text = element_text(size = 14)
+  )
+
+# Compute the posterior samples using correlationBF()
+posterior_samples <- correlationBF(
+  # Bayes factors or posterior samples for correlations.
+  y = mtcars$mpg,
+  x = mtcars$wt,
+  # Use "medium" scale (1/3); prior scale. Preset values can be given as strings
+  rscale = "medium",
+  posterior = TRUE,     # Get posterior samples
+  iterations = 10000    # Number of MCMC iterations
+)
+# Independent-candidate M-H = Independent-candiate Metropolis-Hastings algorithm
+
+posterior_samples %>%
+ggplot(aes(x = rho)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, fill = "lightblue", color = "black") +
+  geom_density(color = "blue", linewidth = 1.2) +
+  labs(
+    title = "Posterior Distribution of Correlation (rho)",
+    x = "Correlation (rho)",
+    y = "Density"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    text = element_text(size = 14)
+  )
+
+# Compute 96% credible interval
+credible_interval <- quantile(posterior_samples[, "rho"], probs = c(0.02, 0.98))
+cat("96% Credible Interval for rho:",
+    credible_interval[1], "to", credible_interval[2], "\n")
+```
+
+The following intervals where obtained in the three different ways:
+
+- Classical frequentist: $[-0.9338, -0.7441]$
+- Bootstrap: $[-0.926, -0.782]$
+- Bayesian: $[-0.906, -0.610]$
 
 
 
@@ -715,6 +799,8 @@ kable(data, format = "html", align = "c", row.names = FALSE,
                     "Null hypothesis (H0) is false"))
 ```
 
+How to choose $\alpha$ and $\beta$?
+
 ## The frequentist confidence interval
 
 **In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to 
@@ -727,7 +813,8 @@ This is a [nice visualization](https://en.wikipedia.org/wiki/Confidence_interval
 of the concept.
 See also [exercise 7](#exercise7_nhst).
 
-
+1:1 relationship between $p$-values and confidence intervals:
+............
 
 
 ## Simulations based approaches
