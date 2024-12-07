@@ -983,15 +983,15 @@ If we really want to take the result of such a test seriously, we need to check 
 <span id="cb137-5"><a href="nhst.html#cb137-5" tabindex="-1"></a>            <span class="at">cor.coef =</span> <span class="cn">TRUE</span>, <span class="at">cor.method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
 <span id="cb137-6"><a href="nhst.html#cb137-6" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;Miles/(US) gallon&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Weight (1000 lbs)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="nhst.html#cb138-1" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="nhst.html#cb138-1" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt, <span class="at">conf.level =</span> <span class="fl">0.96</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  mtcars$mpg and mtcars$wt
 ## t = -9.559, df = 30, p-value = 1.294e-10
 ## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.9338264 -0.7440872
+## 96 percent confidence interval:
+##  -0.9360192 -0.7362129
 ## sample estimates:
 ##        cor 
 ## -0.8676594</code></pre>
@@ -1003,7 +1003,7 @@ The correlation might therefore be a useful measure to describe the relationship
 <li>t is the <span class="math inline">\(t\)</span>-test statistic value (t = -9.559),</li>
 <li>df is the degrees of freedom (df= 30),</li>
 <li><span class="math inline">\(p\)</span>-value of the <span class="math inline">\(t\)</span>-test (<span class="math inline">\(p\)</span>-value = <span class="math inline">\(1.29410^{-10}\)</span>).</li>
-<li>conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = <span class="math inline">\([-0.9338, -0.7441]\)</span>)
+<li>conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = <span class="math inline">\([-0.9360192, -0.7362129]\)</span>)
 This is what is most interesting to us and should be interpreted in the context of the data.</li>
 <li>sample estimates is the correlation coefficient (Cor.coeff <span class="math inline">\(= -0.87\)</span>).</li>
 </ul>
@@ -1043,9 +1043,9 @@ These are the steps:</p>
 <span id="cb148-6"><a href="nhst.html#cb148-6" tabindex="-1"></a>})</span>
 <span id="cb148-7"><a href="nhst.html#cb148-7" tabindex="-1"></a><span class="fu">hist</span>(cors)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="nhst.html#cb149-1" tabindex="-1"></a><span class="fu">quantile</span>(cors, <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>)) <span class="co"># 96% confidence interval</span></span></code></pre></div>
-<pre><code>##         2%        98% 
-## -0.9260149 -0.7821605</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="nhst.html#cb149-1" tabindex="-1"></a><span class="fu">quantile</span>(cors, <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.5</span>, <span class="fl">0.98</span>)) <span class="co"># 96% confidence interval</span></span></code></pre></div>
+<pre><code>##         2%        50%        98% 
+## -0.9260149 -0.8745279 -0.7821605</code></pre>
 <p>We used the variability <strong>contained in the data</strong> to estimate the variability of
 the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
 very unlikely. The 96% bootstrap confidence interval is <span class="math inline">\([-0.926, -0.782]\)</span>.</p>
@@ -1145,11 +1145,25 @@ value 0 (slee prior plot below).</p>
 <span id="cb163-3"><a href="nhst.html#cb163-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;96% Credible Interval for rho:&quot;</span>,</span>
 <span id="cb163-4"><a href="nhst.html#cb163-4" tabindex="-1"></a>    credible_interval[<span class="dv">1</span>], <span class="st">&quot;to&quot;</span>, credible_interval[<span class="dv">2</span>], <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 96% Credible Interval for rho: -0.9083272 to -0.6384908</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="nhst.html#cb165-1" tabindex="-1"></a><span class="fu">median</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>])</span></code></pre></div>
+<pre><code>## [1] -0.8159496</code></pre>
 <p>The following intervals where obtained in the three different ways:</p>
 <ul>
-<li>Classical frequentist: <span class="math inline">\([-0.9338, -0.7441]\)</span></li>
-<li>Bootstrap: <span class="math inline">\([-0.926, -0.782]\)</span></li>
-<li>Bayesian: <span class="math inline">\([-0.906, -0.610]\)</span></li>
+<li>Classical frequentist:
+<ul>
+<li>96% confidence interval: <span class="math inline">\([-0.9360192, -0.7362129]\)</span></li>
+<li>Estimate: <span class="math inline">\(-0.8676594\)</span></li>
+</ul></li>
+<li>Bootstrap:
+<ul>
+<li>96% boostrap confidence interval: <span class="math inline">\([-0.926, -0.782]\)</span></li>
+<li>Median of the bootstrap samples: <span class="math inline">\(-0.8745279\)</span></li>
+</ul></li>
+<li>Bayesian:
+<ul>
+<li>96% credible interval: <span class="math inline">\([-0.9083272, -0.6384908]\)</span></li>
+<li>Median of the posterior samples: <span class="math inline">\(-0.8159496\)</span></li>
+</ul></li>
 </ul>
 </div>
 </div>

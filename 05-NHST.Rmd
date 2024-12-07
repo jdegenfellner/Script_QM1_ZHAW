@@ -619,7 +619,7 @@ mtcars %>%
             cor.coef = TRUE, cor.method = "pearson",
             xlab = "Miles/(US) gallon", ylab = "Weight (1000 lbs)")
 
-cor.test(mtcars$mpg, mtcars$wt)
+cor.test(mtcars$mpg, mtcars$wt, conf.level = 0.96)
 ```
 
 $r=0.87$ is the sample correlation coefficient. 
@@ -631,7 +631,7 @@ The correlation might therefore be a useful measure to describe the relationship
 - t is the $t$-test statistic value (t = -9.559),
 - df is the degrees of freedom (df= 30),
 - $p$-value of the $t$-test ($p$-value = $1.29410^{-10}$).
-- conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = $[-0.9338, -0.7441]$)
+- conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = $[-0.9360192, -0.7362129]$)
   This is what is most interesting to us and should be interpreted in the context of the data.
 - sample estimates is the correlation coefficient (Cor.coeff $= -0.87$).
 
@@ -678,7 +678,7 @@ cors <- replicate(1000, {
   cor(mtcars$mpg[idx], mtcars$wt[idx])
 })
 hist(cors)
-quantile(cors, c(0.02, 0.98)) # 96% confidence interval
+quantile(cors, c(0.02, 0.5, 0.98)) # 96% confidence interval
 ```
 
 We used the variability **contained in the data** to estimate the variability of 
@@ -764,13 +764,22 @@ ggplot(aes(x = rho)) +
 credible_interval <- quantile(posterior_samples[, "rho"], probs = c(0.02, 0.98))
 cat("96% Credible Interval for rho:",
     credible_interval[1], "to", credible_interval[2], "\n")
+median(posterior_samples[, "rho"])
 ```
 
 The following intervals where obtained in the three different ways:
 
-- Classical frequentist: $[-0.9338, -0.7441]$
-- Bootstrap: $[-0.926, -0.782]$
-- Bayesian: $[-0.906, -0.610]$
+- Classical frequentist: 
+  - 96% confidence interval: $[-0.9360192, -0.7362129]$
+  - Estimate: $-0.8676594$
+- Bootstrap: 
+  - 96% boostrap confidence interval: $[-0.926, -0.782]$
+  - Median of the bootstrap samples: $-0.8745279$
+- Bayesian: 
+  - 96% credible interval: $[-0.9083272, -0.6384908]$
+  - Median of the posterior samples: $-0.8159496$
+
+
 
 
 
