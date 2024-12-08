@@ -622,7 +622,7 @@ can be more certain about the true proportion with increasing sample size.</p>
 <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a> which has expected value <span class="math inline">\(p\)</span> and variance <span class="math inline">\(p(1-p)\)</span>.</p>
 <p>Given this distributional statement, it follows that if we subtract the mean assumed under <span class="math inline">\(H_0\)</span> (<span class="math inline">\(p_0 = 0.5\)</span>) and divide by the standard deviation,
 the resulting test statistic is (approximately) distributed according to a standard normal distribution:</p>
-<p><span class="math display">\[Z = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \sim N(0, 1).\]</span></p>
+<p><span class="math display">\[Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \sim N(0, 1).\]</span></p>
 <p>This value squared gives us the value of the test statistic above: <span class="math inline">\(0.36\)</span>.</p>
 </div>
 <div id="proportions_test_more_samples" class="section level3 hasAnchor" number="5.3.2">
@@ -1035,7 +1035,7 @@ Please be aware of this variability when interpreting the results of your master
 <p>We could also use the so-called <strong>simple non-parametric <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap</a></strong> to estimate the confidence interval for the correlation coefficient.
 These are the steps:</p>
 <ul>
-<li>Create a new sample by drawing with replacement from the original sample.</li>
+<li>Create a new sample by <a href="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iH5w0MBdiOlxDOCX6nmqqw.png">drawing with replacement</a> from the original sample.</li>
 <li>Repeat this process many times (e.g., 1000 times).</li>
 <li>Calculate the correlation coefficient for each new sample.</li>
 <li>Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.</li>
@@ -1173,6 +1173,8 @@ value 0 (slee prior plot below).</p>
 <li>Median of the posterior samples: <span class="math inline">\(-0.8159496\)</span></li>
 </ul></li>
 </ul>
+<p><a href="https://seeing-theory.brown.edu/frequentist-inference/index.html">This</a>
+website should be fun to explore.</p>
 </div>
 </div>
 <div id="error_types" class="section level2 hasAnchor" number="5.6">

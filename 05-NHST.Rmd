@@ -279,7 +279,7 @@ Note that we want to find the true but unknown proportion $p$ of a
 Given this distributional statement, it follows that if we subtract the mean assumed under $H_0$ ($p_0 = 0.5$) and divide by the standard deviation,
 the resulting test statistic is (approximately) distributed according to a standard normal distribution:
 
-$$Z = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \sim N(0, 1).$$
+$$Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \sim N(0, 1).$$
 
 This value squared gives us the value of the test statistic above: $0.36$.
 
@@ -665,7 +665,7 @@ Please be aware of this variability when interpreting the results of your master
 We could also use the so-called **simple non-parametric [bootstrap](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))** to estimate the confidence interval for the correlation coefficient.
 These are the steps:
 
-- Create a new sample by drawing with replacement from the original sample.
+- Create a new sample by [drawing with replacement](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iH5w0MBdiOlxDOCX6nmqqw.png) from the original sample.
 - Repeat this process many times (e.g., 1000 times).
 - Calculate the correlation coefficient for each new sample.
 - Calculate adequate sample quantiles of the correlation coefficients to get a confidence interval.
@@ -783,7 +783,8 @@ The following intervals where obtained in the three different ways:
   - 96% credible interval: $[-0.9083272, -0.6384908]$
   - Median of the posterior samples: $-0.8159496$
 
-
+[This](https://seeing-theory.brown.edu/frequentist-inference/index.html) 
+website should be fun to explore.
 
 
 
