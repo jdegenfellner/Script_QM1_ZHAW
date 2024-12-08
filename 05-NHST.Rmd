@@ -899,7 +899,7 @@ difference is and how small the $\alpha-$ level is.
 - Repeat this 1000 times.
 - How often was the true mean (0) contained in the constructed interval?
 
-### Exercise 8 - $\Chi^2$-distribution {#exercise8_nhst}
+### Exercise 8 - $\chi^2$-distribution {#exercise8_nhst}
 The $\chi^2$-distribution is defined as the sum of squared standard normals. 
 - Very this by simulation in R.
 - Draw 1000 samples of size 3 from a standard normal distribution.

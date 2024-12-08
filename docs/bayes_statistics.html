@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-07" />
+<meta name="date" content="2024-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,7 +314,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.9.5" data-path="nhst.html"><a href="nhst.html#exercise5_nhst"><i class="fa fa-check"></i><b>5.9.5</b> Exercise 5 - proportions test 2</a></li>
 <li class="chapter" data-level="5.9.6" data-path="nhst.html"><a href="nhst.html#exercise6_nhst"><i class="fa fa-check"></i><b>5.9.6</b> Exercise 6 - correlation coefficent</a></li>
 <li class="chapter" data-level="5.9.7" data-path="nhst.html"><a href="nhst.html#exercise7_nhst"><i class="fa fa-check"></i><b>5.9.7</b> Exercise 7 - coverage frequency of CI</a></li>
-<li class="chapter" data-level="5.9.8" data-path="nhst.html"><a href="nhst.html#exercise8_nhst"><i class="fa fa-check"></i><b>5.9.8</b> Exercise 8 - <span class="math inline">\(\Chi^2\)</span>-distribution</a></li>
+<li class="chapter" data-level="5.9.8" data-path="nhst.html"><a href="nhst.html#exercise8_nhst"><i class="fa fa-check"></i><b>5.9.8</b> Exercise 8 - <span class="math inline">\(\chi^2\)</span>-distribution</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -684,20 +684,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bayes_statistics.html#cb82-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb82-2"><a href="bayes_statistics.html#cb82-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       131.086 131.324 134.658   93   33.1829 227.34                  
-## mu2         6.188   5.892   6.260   93  -84.4072  96.26                  
-## muDiff    124.898 125.083 135.219   93  -10.8787 256.74       0      95.6
-## sigma1    139.924 128.603 108.993   93   66.5757 228.00                  
-## sigma2    130.205 119.783 105.593   93   62.3525 209.63                  
-## sigmaDiff   9.719   8.808   9.846   93 -116.7019 137.60       0      56.4
-## nu         34.502  25.797  10.204   93    1.1233  84.29                  
-## log10nu     1.380   1.412   1.563   93    0.6664   2.06                  
-## effSz       0.966   0.957   0.991   93   -0.0888   2.01       0      95.6
+<pre><code>##              mean median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.076 130.24 129.118   93   32.2684 227.65                  
+## mu2         6.111   5.63   4.498   93  -85.2730  96.83                  
+## muDiff    123.966 124.27 123.608   93   -9.6667 259.03       0      95.4
+## sigma1    140.053 128.56 114.577   93   65.8766 226.48                  
+## sigma2    130.283 119.72 104.860   93   60.8612 209.81                  
+## sigmaDiff   9.770   8.41   4.916   93 -116.8022 139.97       0      56.3
+## nu         34.333  25.59   9.816   93    1.1596  84.19                  
+## log10nu     1.378   1.41   1.514   93    0.6629   2.06                  
+## effSz       0.958   0.95   0.961   93   -0.0799   2.01       0      95.4
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.46
+## muDiff        -20       20    4.66
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
