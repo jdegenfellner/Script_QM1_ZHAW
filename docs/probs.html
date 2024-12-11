@@ -314,7 +314,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="nhst.html"><a href="nhst.html#classical-correlation-test"><i class="fa fa-check"></i><b>5.5.1</b> Classical correlation test</a></li>
 <li class="chapter" data-level="5.5.2" data-path="nhst.html"><a href="nhst.html#bootstrap-confidence-interval-for-the-correlation-coefficient"><i class="fa fa-check"></i><b>5.5.2</b> Bootstrap confidence interval for the correlation coefficient</a></li>
-<li class="chapter" data-level="5.5.3" data-path="nhst.html"><a href="nhst.html#comparision-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.3</b> Comparision with Bayesian approach</a></li>
+<li class="chapter" data-level="5.5.3" data-path="nhst.html"><a href="nhst.html#comparison-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.3</b> Comparison with Bayesian approach</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="nhst.html"><a href="nhst.html#error_types"><i class="fa fa-check"></i><b>5.6</b> Type 1 and Type 2 errors</a></li>
 <li class="chapter" data-level="5.7" data-path="nhst.html"><a href="nhst.html#the-frequentist-confidence-interval"><i class="fa fa-check"></i><b>5.7</b> The frequentist confidence interval</a></li>
@@ -784,8 +784,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-76b8ee3efb497f53f020" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-76b8ee3efb497f53f020">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-d9dd230e29262ada0eb7" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d9dd230e29262ada0eb7">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events

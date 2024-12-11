@@ -716,6 +716,7 @@ further away from 0 in both directions since we conducted a two-sided test. The 
 is the $p$-value. As you can see, the $p$-value is the sum of the two red areas and matches the output 
 of the $t$-test function in R.
 
+Interesting: [This R-file](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Influence_of_outlieres_on_t-Test.R) demonstrates what one single outlier can do to a $t$-test.
 
 ### Paired $t$-test
 In the last case, we assume, that the two samples are *not* independent anymore. We could, for instance,
@@ -833,9 +834,9 @@ The correlation might therefore be a useful measure to describe the relationship
 - t is the $t$-test statistic value (t = -9.559),
 - df is the degrees of freedom (df= 30),
 - $p$-value of the $t$-test ($p$-value = $1.29410^{-10}$).
-- conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = $[-0.9360192, -0.7362129]$)
+- conf.int is the confidence interval of the correlation coefficient at 96% (conf.int = $[-0.9360192, -0.7362129]$)
   This is what is most interesting to us and should be interpreted in the context of the data.
-- sample estimates is the correlation coefficient (Cor.coeff $= -0.87$).
+- sample estimates is the correlation coefficient ($r = -0.87$).
 
 **Let's verify the test statistic for the two-sided test by "hand":**
 
@@ -889,7 +890,9 @@ We used the variability **contained in the data** to estimate the variability of
 the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
 very unlikely. The 96% bootstrap confidence interval is $[-0.926, -0.782]$.
 
-### Comparision with Bayesian approach
+You can also study the nice animation of the bootstrap [here](https://seeing-theory.brown.edu/frequentist-inference/index.html).
+
+### Comparison with Bayesian approach
 
 For the Bayesian approach, we can use the `correlationBF` function from 
 the `BayesFactor` package. In analogy to the classical test, we can "test" the null hypothesis
@@ -971,7 +974,7 @@ cat("96% Credible Interval for rho:",
 median(posterior_samples[, "rho"])
 ```
 
-The following intervals where obtained in the three different ways:
+The following intervals were obtained in three different ways:
 
 - Classical frequentist: 
   - 96% confidence interval: $[-0.9360192, -0.7362129]$
@@ -1020,6 +1023,9 @@ In the dichotomous world of hypothesis testing, we can make [two types of errors
 
 The expression $1 - \beta$ is called the **power** of the test. 
 It is the probability of correctly rejecting the null hypothesis when it is false.
+
+[This](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/H_0_and_the_truth.R) R-file 
+could be interesting to study with respect to $H_0$ and the probability of finding the truth.
 
 **How to choose $\alpha$ and $\beta$?**
 

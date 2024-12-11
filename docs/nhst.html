@@ -314,7 +314,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="nhst.html"><a href="nhst.html#classical-correlation-test"><i class="fa fa-check"></i><b>5.5.1</b> Classical correlation test</a></li>
 <li class="chapter" data-level="5.5.2" data-path="nhst.html"><a href="nhst.html#bootstrap-confidence-interval-for-the-correlation-coefficient"><i class="fa fa-check"></i><b>5.5.2</b> Bootstrap confidence interval for the correlation coefficient</a></li>
-<li class="chapter" data-level="5.5.3" data-path="nhst.html"><a href="nhst.html#comparision-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.3</b> Comparision with Bayesian approach</a></li>
+<li class="chapter" data-level="5.5.3" data-path="nhst.html"><a href="nhst.html#comparison-with-bayesian-approach"><i class="fa fa-check"></i><b>5.5.3</b> Comparison with Bayesian approach</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="nhst.html"><a href="nhst.html#error_types"><i class="fa fa-check"></i><b>5.6</b> Type 1 and Type 2 errors</a></li>
 <li class="chapter" data-level="5.7" data-path="nhst.html"><a href="nhst.html#the-frequentist-confidence-interval"><i class="fa fa-check"></i><b>5.7</b> The frequentist confidence interval</a></li>
@@ -1115,6 +1115,7 @@ takes the value we observed or “more extreme” values. With “more extreme�
 further away from 0 in both directions since we conducted a two-sided test. The area under the curve
 is the <span class="math inline">\(p\)</span>-value. As you can see, the <span class="math inline">\(p\)</span>-value is the sum of the two red areas and matches the output
 of the <span class="math inline">\(t\)</span>-test function in R.</p>
+<p>Interesting: <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Influence_of_outlieres_on_t-Test.R">This R-file</a> demonstrates what one single outlier can do to a <span class="math inline">\(t\)</span>-test.</p>
 </div>
 <div id="paired-t-test" class="section level3 hasAnchor" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Paired <span class="math inline">\(t\)</span>-test<a href="nhst.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1251,9 +1252,9 @@ The correlation might therefore be a useful measure to describe the relationship
 <li>t is the <span class="math inline">\(t\)</span>-test statistic value (t = -9.559),</li>
 <li>df is the degrees of freedom (df= 30),</li>
 <li><span class="math inline">\(p\)</span>-value of the <span class="math inline">\(t\)</span>-test (<span class="math inline">\(p\)</span>-value = <span class="math inline">\(1.29410^{-10}\)</span>).</li>
-<li>conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = <span class="math inline">\([-0.9360192, -0.7362129]\)</span>)
+<li>conf.int is the confidence interval of the correlation coefficient at 96% (conf.int = <span class="math inline">\([-0.9360192, -0.7362129]\)</span>)
 This is what is most interesting to us and should be interpreted in the context of the data.</li>
-<li>sample estimates is the correlation coefficient (Cor.coeff <span class="math inline">\(= -0.87\)</span>).</li>
+<li>sample estimates is the correlation coefficient (<span class="math inline">\(r = -0.87\)</span>).</li>
 </ul>
 <p><strong>Let’s verify the test statistic for the two-sided test by “hand”:</strong></p>
 <p>For pairs <strong>from an uncorrelated bivariate normal distribution</strong>, the sampling distribution
@@ -1300,9 +1301,10 @@ These are the steps:</p>
 <p>We used the variability <strong>contained in the data</strong> to estimate the variability of
 the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
 very unlikely. The 96% bootstrap confidence interval is <span class="math inline">\([-0.926, -0.782]\)</span>.</p>
+<p>You can also study the nice animation of the bootstrap <a href="https://seeing-theory.brown.edu/frequentist-inference/index.html">here</a>.</p>
 </div>
-<div id="comparision-with-bayesian-approach" class="section level3 hasAnchor" number="5.5.3">
-<h3><span class="header-section-number">5.5.3</span> Comparision with Bayesian approach<a href="nhst.html#comparision-with-bayesian-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="comparison-with-bayesian-approach" class="section level3 hasAnchor" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Comparison with Bayesian approach<a href="nhst.html#comparison-with-bayesian-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For the Bayesian approach, we can use the <code>correlationBF</code> function from
 the <code>BayesFactor</code> package. In analogy to the classical test, we can “test” the null hypothesis
 by assuming a prior distribution for the correlation coefficient symmetric around the
@@ -1399,7 +1401,7 @@ value 0 (slee prior plot below).</p>
 <pre><code>## 96% Credible Interval for rho: -0.9083272 to -0.6384908</code></pre>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="nhst.html#cb226-1" tabindex="-1"></a><span class="fu">median</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] -0.8159496</code></pre>
-<p>The following intervals where obtained in the three different ways:</p>
+<p>The following intervals were obtained in three different ways:</p>
 <ul>
 <li>Classical frequentist:
 <ul>
@@ -1473,6 +1475,8 @@ Correct inference (true positive)
 </ul>
 <p>The expression <span class="math inline">\(1 - \beta\)</span> is called the <strong>power</strong> of the test.
 It is the probability of correctly rejecting the null hypothesis when it is false.</p>
+<p><a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/H_0_and_the_truth.R">This</a> R-file
+could be interesting to study with respect to <span class="math inline">\(H_0\)</span> and the probability of finding the truth.</p>
 <p><strong>How to choose <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>?</strong></p>
 <p>So far, I have not seen this question answered in a practical way in papers.
 One typically reads
