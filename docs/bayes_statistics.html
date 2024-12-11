@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-10" />
+<meta name="date" content="2024-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,6 +308,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="nhst.html"><a href="nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.4.1</b> One sample <span class="math inline">\(t\)</span>-test</a></li>
 <li class="chapter" data-level="5.4.2" data-path="nhst.html"><a href="nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.4.2</b> Two sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="5.4.3" data-path="nhst.html"><a href="nhst.html#paired-t-test"><i class="fa fa-check"></i><b>5.4.3</b> Paired <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="nhst.html"><a href="nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a>
 <ul>
@@ -705,19 +706,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="bayes_statistics.html#cb99-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb99-2"><a href="bayes_statistics.html#cb99-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.963 130.985 132.116   93   31.7162 228.16                  
-## mu2         6.112   5.882   5.389   93  -83.7129  96.22                  
-## muDiff    124.851 124.956 125.611   93   -8.7143 258.27       0      95.6
-## sigma1    140.038 128.659 110.203   93   65.8047 226.84                  
-## sigma2    130.063 119.418 105.616   93   61.9356 211.25                  
-## sigmaDiff   9.975   8.704   7.778   93 -122.5148 134.97       0      56.5
-## nu         34.612  25.798  10.124   93    1.1794  84.54                  
-## log10nu     1.381   1.412   1.478   93    0.6553   2.06                  
-## effSz       0.966   0.954   0.881   93   -0.0937   2.00       0      95.6
+## mu1       130.987 130.987 130.442   93   32.5212 226.22                  
+## mu2         6.151   5.848   3.813   93  -85.2509  96.35                  
+## muDiff    124.836 125.002 122.263   93   -8.4456 259.51       0      95.6
+## sigma1    139.436 128.405 110.364   93   66.3227 226.02                  
+## sigma2    130.446 119.646 104.429   93   62.1193 212.37                  
+## sigmaDiff   8.989   8.354   8.190   93 -115.3869 140.91       0      56.2
+## nu         34.203  25.379   9.864   93    1.1606  84.10                  
+## log10nu     1.374   1.404   1.492   93    0.6473   2.05                  
+## effSz       0.967   0.958   0.924   93   -0.0775   2.02       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.51
+## muDiff        -20       20    4.29
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -924,21 +925,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.919 sec elapsed</code></pre>
+<pre><code>## 1.879 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.713  0.710  0.709   93 -0.549  1.958                          
-## mu2        2.307  2.305  2.328   93  0.875  3.725                          
-## muDiff    -1.594 -1.598 -1.650   93 -3.512  0.281       0      6.15    -1.8
-## sigma1     2.038  1.920  1.749   93  1.095  3.107                          
-## sigma2     2.312  2.175  1.977   93  1.253  3.479                          
-## sigmaDiff -0.274 -0.253 -0.273   93 -1.966  1.408       0     37.12        
-## nu        36.362 27.673 11.353   93  1.452 87.325                          
-## log10nu    1.413  1.442  1.494   93  0.732  2.077                          
-## effSz     -0.752 -0.748 -0.730   93 -1.651  0.129       0      6.15        
+## mu1        0.711  0.707  0.703   93 -0.523  2.004                          
+## mu2        2.302  2.301  2.320   93  0.882  3.722                          
+## muDiff    -1.590 -1.593 -1.621   93 -3.518  0.289       0      6.16    -1.8
+## sigma1     2.042  1.921  1.740   93  1.101  3.116                          
+## sigma2     2.308  2.170  1.966   93  1.263  3.497                          
+## sigmaDiff -0.266 -0.244 -0.199   93 -1.986  1.399       0     37.18        
+## nu        36.066 27.525 12.138   93  1.596 86.287                          
+## log10nu    1.411  1.440  1.491   93  0.730  2.075                          
+## effSz     -0.751 -0.746 -0.718   93 -1.629  0.150       0      6.16        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    57.8
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

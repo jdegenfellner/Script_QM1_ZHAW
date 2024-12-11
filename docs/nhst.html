@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-10" />
+<meta name="date" content="2024-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,6 +308,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="nhst.html"><a href="nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.4.1</b> One sample <span class="math inline">\(t\)</span>-test</a></li>
 <li class="chapter" data-level="5.4.2" data-path="nhst.html"><a href="nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.4.2</b> Two sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="5.4.3" data-path="nhst.html"><a href="nhst.html#paired-t-test"><i class="fa fa-check"></i><b>5.4.3</b> Paired <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="nhst.html"><a href="nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.5</b> Correlation test</a>
 <ul>
@@ -817,7 +818,7 @@ in each cell under <span class="math inline">\(H_0\)</span>.</p>
 </div>
 <div id="fishers-exact-test" class="section level3 hasAnchor" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Fisher’s exact test<a href="nhst.html#fishers-exact-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As mentioned above, we should always use exact tests if available.
+<p>As mentioned above, <strong>we should always use exact tests if available</strong>.
 For the test for independence, we could also use
 <a href="https://en.wikipedia.org/wiki/Fisher%27s_exact_test">Fisher’s exact test</a>.
 The underlying distribution for the test statistic is a hypergeometric distribution.</p>
@@ -836,12 +837,17 @@ The underlying distribution for the test statistic is a hypergeometric distribut
 famous classical statistical tests out there.
 Consider these links: <a href="https://www.youtube.com/watch?v=pXuFeRCMTAo&amp;ab_channel=VeryNormal">1</a>
 <a href="https://www.youtube.com/watch?v=pLNuDye_tq4&amp;ab_channel=VeryNormal">2</a>
-as starting point.</p>
+as starting point.
+<a href="https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/7-t-tests">This article</a> could also be interesting.</p>
 <p>With the <span class="math inline">\(t\)</span>-test, we want to answer the question</p>
 <ul>
 <li><p>if the true, but unobserved mean of a population is different from a
 specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test">one sample <span class="math inline">\(t\)</span>-test</a>) or</p></li>
-<li><p>if the true, but unobserved means of two populations are different from each other (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests">two sample <span class="math inline">\(t\)</span>-test</a>).</p></li>
+<li><p>if the true, but unobserved means of two populations are different from each other (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests">two sample <span class="math inline">\(t\)</span>-test</a>).</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Independent_two-sample_t-test">independent samples</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Dependent_t-test_for_paired_samples">paired samples</a></li>
+</ul></li>
 </ul>
 <p>Conveniently, R has a built-in function for these tests.</p>
 <div id="one-sample-t-test" class="section level3 hasAnchor" number="5.4.1">
@@ -918,7 +924,7 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 ## mean of x 
 ##     19.25</code></pre>
 <p>Let’ verify the test statistic by “hand” for the two-sided test:</p>
-<p><span class="math display">\[t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}\]</span></p>
+<p><span class="math display">\[t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}}\]</span></p>
 <p><span class="math inline">\(\bar{x} = 19.25\)</span></p>
 <p><span class="math inline">\(s = 2.002915\)</span></p>
 <p><span class="math inline">\(n = 10\)</span></p>
@@ -1044,7 +1050,7 @@ and one would reject the null hypothesis and accept the alternative hypothesis.
 <p>Let’s try to visualize this.</p>
 <p><strong>Under the assumption</strong> that there is <strong>no difference in means</strong>,
 the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_sample_sizes,_unequal_variances_(sX1_%3E_2sX2_or_sX2_%3E_2sX1)">test statistic</a></p>
-<p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_1}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \]</span></p>
+<p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \]</span></p>
 <p>would be distributed according to a <span class="math inline">\(t\)</span>-distribution with 13.928 degrees of freedom.</p></li>
 </ul>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="nhst.html#cb184-1" tabindex="-1"></a><span class="co"># Load ggplot2</span></span>
@@ -1110,6 +1116,92 @@ further away from 0 in both directions since we conducted a two-sided test. The 
 is the <span class="math inline">\(p\)</span>-value. As you can see, the <span class="math inline">\(p\)</span>-value is the sum of the two red areas and matches the output
 of the <span class="math inline">\(t\)</span>-test function in R.</p>
 </div>
+<div id="paired-t-test" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Paired <span class="math inline">\(t\)</span>-test<a href="nhst.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the last case, we assume, that the two samples are <em>not</em> independent anymore. We could, for instance,
+think of two weight measurements (kg) of the same person before and after a diet. Obviously,
+these two measurements are not independent. Higher pre-diet weights could be associated
+with higher post-diet weights.</p>
+<p>Analog to before, we now ask if the differences are “significantly” different from <span class="math inline">\(\mu_0\)</span>.</p>
+<p>In the bodyweight example, let’s define a 5 kg weight loss as clinically relevant
+(in reality this is more like 5%), but we keep it simple.</p>
+<p><span class="math inline">\(H_0: \mu_D \le \mu_0 = 5~kg\)</span>. Participants lost 5 kg or less on average,
+i.e. the true difference between pre- and post weight is on average smaller than 5kg.</p>
+<p><span class="math inline">\(H_1: \mu_D &gt; \mu_0 = 5~kg\)</span>. Participants lost more than 5 kg on average.</p>
+<p>Aussumptions for the paired <span class="math inline">\(t\)</span>-test:
+- Interval or ratio scale
+- The differences are independent of each other
+-</p>
+<p>Let’s create some data and perform the test:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="nhst.html#cb187-1" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb187-2"><a href="nhst.html#cb187-2" tabindex="-1"></a><span class="fu">p_load</span>(MASS, tidyverse)</span>
+<span id="cb187-3"><a href="nhst.html#cb187-3" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="nhst.html#cb187-4" tabindex="-1"></a><span class="co"># Create correlated pre post weight-data</span></span>
+<span id="cb187-5"><a href="nhst.html#cb187-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">62</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb187-6"><a href="nhst.html#cb187-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">15</span>  <span class="co"># Number of pairs</span></span>
+<span id="cb187-7"><a href="nhst.html#cb187-7" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">73</span>)  <span class="co"># Mean vector for Pre and Post weights</span></span>
+<span id="cb187-8"><a href="nhst.html#cb187-8" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.7</span>  <span class="co"># Correlation</span></span>
+<span id="cb187-9"><a href="nhst.html#cb187-9" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Standard deviation for both variables</span></span>
+<span id="cb187-10"><a href="nhst.html#cb187-10" tabindex="-1"></a></span>
+<span id="cb187-11"><a href="nhst.html#cb187-11" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(sigma<span class="sc">^</span><span class="dv">2</span>, rho <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span>, rho <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span>, sigma<span class="sc">^</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb187-12"><a href="nhst.html#cb187-12" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> mu, <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb187-13"><a href="nhst.html#cb187-13" tabindex="-1"></a></span>
+<span id="cb187-14"><a href="nhst.html#cb187-14" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb187-15"><a href="nhst.html#cb187-15" tabindex="-1"></a>  <span class="at">Pre_Weight =</span> <span class="fu">round</span>(weights[, <span class="dv">1</span>], <span class="dv">2</span>),</span>
+<span id="cb187-16"><a href="nhst.html#cb187-16" tabindex="-1"></a>  <span class="at">Post_Weight =</span> <span class="fu">round</span>(weights[, <span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb187-17"><a href="nhst.html#cb187-17" tabindex="-1"></a>)</span>
+<span id="cb187-18"><a href="nhst.html#cb187-18" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    Pre_Weight Post_Weight
+## 1       87.56       80.21
+## 2       78.36       79.88
+## 3       63.56       61.55
+## 4       76.20       78.17
+## 5      101.25       93.44
+## 6       85.96       68.18
+## 7       84.48       85.37
+## 8       65.72       65.12
+## 9       75.90       78.89
+## 10      73.39       61.41
+## 11      71.29       64.28
+## 12      97.38       75.29
+## 13      80.32       78.59
+## 14      64.67       59.79
+## 15      78.41       56.64</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="nhst.html#cb189-1" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>Pre_Weight, df<span class="sc">$</span>Post_Weight)</span></code></pre></div>
+<pre><code>## [1] 0.7023552</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="nhst.html#cb191-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pre_post_diff =</span> Post_Weight <span class="sc">-</span> Pre_Weight) <span class="sc">%&gt;%</span></span>
+<span id="cb191-2"><a href="nhst.html#cb191-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Pre_Weight, <span class="at">y =</span> Post_Weight)) <span class="sc">+</span></span>
+<span id="cb191-3"><a href="nhst.html#cb191-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb191-4"><a href="nhst.html#cb191-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Pre-Post Weights with the same person&quot;</span>,</span>
+<span id="cb191-5"><a href="nhst.html#cb191-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Pre-Weight [kg]&quot;</span>,</span>
+<span id="cb191-6"><a href="nhst.html#cb191-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Post-Weight [kg]&quot;</span>) <span class="sc">+</span></span>
+<span id="cb191-7"><a href="nhst.html#cb191-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="nhst.html#cb192-1" tabindex="-1"></a><span class="fu">t.test</span>(df<span class="sc">$</span>Pre_Weight, df<span class="sc">$</span>Post_Weight, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  df$Pre_Weight and df$Post_Weight
+## t = 2.987, df = 14, p-value = 0.0098
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##   1.835423 11.183244
+## sample estimates:
+## mean difference 
+##        6.509333</code></pre>
+<p><strong>Let’s verify the test statistic and <span class="math inline">\(p\)</span>-value by “hand”:</strong></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="nhst.html#cb194-1" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Post_Weight <span class="sc">-</span> df<span class="sc">$</span>Pre_Weight)</span>
+<span id="cb194-2"><a href="nhst.html#cb194-2" tabindex="-1"></a>sd_diff <span class="ot">&lt;-</span> <span class="fu">sd</span>(df<span class="sc">$</span>Post_Weight <span class="sc">-</span> df<span class="sc">$</span>Pre_Weight)</span>
+<span id="cb194-3"><a href="nhst.html#cb194-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb194-4"><a href="nhst.html#cb194-4" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> mean_diff <span class="sc">/</span> (sd_diff <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb194-5"><a href="nhst.html#cb194-5" tabindex="-1"></a>t_stat</span></code></pre></div>
+<pre><code>## [1] -2.987034</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="nhst.html#cb196-1" tabindex="-1"></a><span class="fu">pt</span>(t_stat, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 0.009800118</code></pre>
+<p>Conclusion: It is unlikely that we would see a mean difference of 6.5 kg or more by chance alone
+assuming that the true mean difference is 5 kg or less. We reject the null hypothesis and accept the
+alternative hypothesis that the mean weight loss was more than 5 kg.</p>
+</div>
 </div>
 <div id="correlation-test" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Correlation test<a href="nhst.html#correlation-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1132,14 +1224,14 @@ Maybe, let’s take the part about the Shapiro-Wilk test not too seriously.</p>
 If we really want to take the result of such a test seriously, we need to check the assumptions of the test.
 <a href="https://core.ac.uk/download/pdf/234680353.pdf">This</a> might be an interesting read.</p>
 <p>The correlation plot from the <a href="https://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r">article</a> looks like this:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="nhst.html#cb187-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb187-2"><a href="nhst.html#cb187-2" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb187-3"><a href="nhst.html#cb187-3" tabindex="-1"></a>  <span class="fu">ggscatter</span>(<span class="at">x =</span> <span class="st">&quot;mpg&quot;</span>, <span class="at">y =</span> <span class="st">&quot;wt&quot;</span>,</span>
-<span id="cb187-4"><a href="nhst.html#cb187-4" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb187-5"><a href="nhst.html#cb187-5" tabindex="-1"></a>            <span class="at">cor.coef =</span> <span class="cn">TRUE</span>, <span class="at">cor.method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
-<span id="cb187-6"><a href="nhst.html#cb187-6" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;Miles/(US) gallon&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Weight (1000 lbs)&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="nhst.html#cb188-1" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt, <span class="at">conf.level =</span> <span class="fl">0.96</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="nhst.html#cb198-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb198-2"><a href="nhst.html#cb198-2" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb198-3"><a href="nhst.html#cb198-3" tabindex="-1"></a>  <span class="fu">ggscatter</span>(<span class="at">x =</span> <span class="st">&quot;mpg&quot;</span>, <span class="at">y =</span> <span class="st">&quot;wt&quot;</span>,</span>
+<span id="cb198-4"><a href="nhst.html#cb198-4" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb198-5"><a href="nhst.html#cb198-5" tabindex="-1"></a>            <span class="at">cor.coef =</span> <span class="cn">TRUE</span>, <span class="at">cor.method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb198-6"><a href="nhst.html#cb198-6" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;Miles/(US) gallon&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Weight (1000 lbs)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="nhst.html#cb199-1" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt, <span class="at">conf.level =</span> <span class="fl">0.96</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -1169,13 +1261,13 @@ of the studentized Pearson’s correlation coefficient follows a <span class="ma
 Specifically, if the underlying variables have a bivariate normal distribution, the variable</p>
 <p><span class="math display">\[t = \frac{r \sqrt{n-2}}{\sqrt{1-r^2}}\]</span></p>
 <p>has a student’s <span class="math inline">\(t\)</span>-distribution in the null case (zero correlation).</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="nhst.html#cb190-1" tabindex="-1"></a>(r <span class="ot">&lt;-</span> <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt))</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="nhst.html#cb201-1" tabindex="-1"></a>(r <span class="ot">&lt;-</span> <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt))</span></code></pre></div>
 <pre><code>## [1] -0.8676594</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="nhst.html#cb192-1" tabindex="-1"></a>(n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(mtcars))</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="nhst.html#cb203-1" tabindex="-1"></a>(n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(mtcars))</span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="nhst.html#cb194-1" tabindex="-1"></a>(t <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="nhst.html#cb205-1" tabindex="-1"></a>(t <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] -9.559044</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="nhst.html#cb196-1" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="nhst.html#cb207-1" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] 1.293959e-10</code></pre>
 <p>This matches the output of the <code>cor.test</code> function in R.</p>
 <p>Study this <a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">file</a>
@@ -1194,15 +1286,15 @@ These are the steps:</p>
 </ul>
 <p>There is a simple elegance to this method. It is very general and can be applied to many different problems.</p>
 <p>Let’s apply it to finding a confidence interval for the correlation coefficient between <code>mpg</code> and <code>wt</code> in the <code>mtcars</code> dataset.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="nhst.html#cb198-1" tabindex="-1"></a><span class="co"># Bootstrap confidence interval for the correlation coefficient</span></span>
-<span id="cb198-2"><a href="nhst.html#cb198-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb198-3"><a href="nhst.html#cb198-3" tabindex="-1"></a>cors <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
-<span id="cb198-4"><a href="nhst.html#cb198-4" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb198-5"><a href="nhst.html#cb198-5" tabindex="-1"></a>  <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg[idx], mtcars<span class="sc">$</span>wt[idx])</span>
-<span id="cb198-6"><a href="nhst.html#cb198-6" tabindex="-1"></a>})</span>
-<span id="cb198-7"><a href="nhst.html#cb198-7" tabindex="-1"></a><span class="fu">hist</span>(cors)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="nhst.html#cb199-1" tabindex="-1"></a><span class="fu">quantile</span>(cors, <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.5</span>, <span class="fl">0.98</span>)) <span class="co"># 96% confidence interval</span></span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="nhst.html#cb209-1" tabindex="-1"></a><span class="co"># Bootstrap confidence interval for the correlation coefficient</span></span>
+<span id="cb209-2"><a href="nhst.html#cb209-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb209-3"><a href="nhst.html#cb209-3" tabindex="-1"></a>cors <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
+<span id="cb209-4"><a href="nhst.html#cb209-4" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb209-5"><a href="nhst.html#cb209-5" tabindex="-1"></a>  <span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg[idx], mtcars<span class="sc">$</span>wt[idx])</span>
+<span id="cb209-6"><a href="nhst.html#cb209-6" tabindex="-1"></a>})</span>
+<span id="cb209-7"><a href="nhst.html#cb209-7" tabindex="-1"></a><span class="fu">hist</span>(cors)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="nhst.html#cb210-1" tabindex="-1"></a><span class="fu">quantile</span>(cors, <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.5</span>, <span class="fl">0.98</span>)) <span class="co"># 96% confidence interval</span></span></code></pre></div>
 <pre><code>##         2%        50%        98% 
 ## -0.9260149 -0.8745279 -0.7821605</code></pre>
 <p>We used the variability <strong>contained in the data</strong> to estimate the variability of
@@ -1215,7 +1307,7 @@ very unlikely. The 96% bootstrap confidence interval is <span class="math inline
 the <code>BayesFactor</code> package. In analogy to the classical test, we can “test” the null hypothesis
 by assuming a prior distribution for the correlation coefficient symmetric around the
 value 0 (slee prior plot below).</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="nhst.html#cb201-1" tabindex="-1"></a><span class="fu">library</span>(BayesFactor)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="nhst.html#cb212-1" tabindex="-1"></a><span class="fu">library</span>(BayesFactor)</span></code></pre></div>
 <pre><code>## Loading required package: coda</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
 <pre><code>## 
@@ -1233,79 +1325,79 @@ value 0 (slee prior plot below).</p>
 <pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
 ## 
 ##     posterior</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="nhst.html#cb209-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb209-2"><a href="nhst.html#cb209-2" tabindex="-1"></a></span>
-<span id="cb209-3"><a href="nhst.html#cb209-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
-<span id="cb209-4"><a href="nhst.html#cb209-4" tabindex="-1"></a></span>
-<span id="cb209-5"><a href="nhst.html#cb209-5" tabindex="-1"></a><span class="co"># Define a function for the shifted, scaled Beta prior</span></span>
-<span id="cb209-6"><a href="nhst.html#cb209-6" tabindex="-1"></a>shifted_beta_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(rho, rscale) {</span>
-<span id="cb209-7"><a href="nhst.html#cb209-7" tabindex="-1"></a>  <span class="co"># Transform Beta to [-1, 1]</span></span>
-<span id="cb209-8"><a href="nhst.html#cb209-8" tabindex="-1"></a>  <span class="cf">if</span> (rho <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;&amp;</span> rho <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
-<span id="cb209-9"><a href="nhst.html#cb209-9" tabindex="-1"></a>    <span class="co"># (rho + 1) / 2 transforms [-1, 1] to [0, 1]</span></span>
-<span id="cb209-10"><a href="nhst.html#cb209-10" tabindex="-1"></a>    beta_density <span class="ot">&lt;-</span> <span class="fu">dbeta</span>((rho <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>, <span class="dv">1</span> <span class="sc">/</span> rscale, <span class="dv">1</span> <span class="sc">/</span> rscale) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb209-11"><a href="nhst.html#cb209-11" tabindex="-1"></a>    <span class="fu">return</span>(beta_density)</span>
-<span id="cb209-12"><a href="nhst.html#cb209-12" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb209-13"><a href="nhst.html#cb209-13" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
-<span id="cb209-14"><a href="nhst.html#cb209-14" tabindex="-1"></a>  }</span>
-<span id="cb209-15"><a href="nhst.html#cb209-15" tabindex="-1"></a>}</span>
-<span id="cb209-16"><a href="nhst.html#cb209-16" tabindex="-1"></a></span>
-<span id="cb209-17"><a href="nhst.html#cb209-17" tabindex="-1"></a><span class="co"># Define rho values and rscale</span></span>
-<span id="cb209-18"><a href="nhst.html#cb209-18" tabindex="-1"></a>rho_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb209-19"><a href="nhst.html#cb209-19" tabindex="-1"></a>rscale <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>  <span class="co"># Medium scale</span></span>
-<span id="cb209-20"><a href="nhst.html#cb209-20" tabindex="-1"></a></span>
-<span id="cb209-21"><a href="nhst.html#cb209-21" tabindex="-1"></a><span class="co"># Compute prior values</span></span>
-<span id="cb209-22"><a href="nhst.html#cb209-22" tabindex="-1"></a>prior_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(rho_values, shifted_beta_prior, <span class="at">rscale =</span> rscale)</span>
-<span id="cb209-23"><a href="nhst.html#cb209-23" tabindex="-1"></a></span>
-<span id="cb209-24"><a href="nhst.html#cb209-24" tabindex="-1"></a><span class="co"># Plot the prior</span></span>
-<span id="cb209-25"><a href="nhst.html#cb209-25" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">rho =</span> rho_values, <span class="at">density =</span> prior_values) <span class="sc">%&gt;%</span></span>
-<span id="cb209-26"><a href="nhst.html#cb209-26" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho, <span class="at">y =</span> density)) <span class="sc">+</span></span>
-<span id="cb209-27"><a href="nhst.html#cb209-27" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb209-28"><a href="nhst.html#cb209-28" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb209-29"><a href="nhst.html#cb209-29" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Shifted Scaled Beta Prior Distribution for Correlation&quot;</span>,</span>
-<span id="cb209-30"><a href="nhst.html#cb209-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
-<span id="cb209-31"><a href="nhst.html#cb209-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
-<span id="cb209-32"><a href="nhst.html#cb209-32" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb209-33"><a href="nhst.html#cb209-33" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb209-34"><a href="nhst.html#cb209-34" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb209-35"><a href="nhst.html#cb209-35" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb209-36"><a href="nhst.html#cb209-36" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
-<span id="cb209-37"><a href="nhst.html#cb209-37" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="nhst.html#cb210-1" tabindex="-1"></a><span class="co"># Compute the posterior samples using correlationBF()</span></span>
-<span id="cb210-2"><a href="nhst.html#cb210-2" tabindex="-1"></a>posterior_samples <span class="ot">&lt;-</span> <span class="fu">correlationBF</span>(</span>
-<span id="cb210-3"><a href="nhst.html#cb210-3" tabindex="-1"></a>  <span class="co"># Bayes factors or posterior samples for correlations.</span></span>
-<span id="cb210-4"><a href="nhst.html#cb210-4" tabindex="-1"></a>  <span class="at">y =</span> mtcars<span class="sc">$</span>mpg,</span>
-<span id="cb210-5"><a href="nhst.html#cb210-5" tabindex="-1"></a>  <span class="at">x =</span> mtcars<span class="sc">$</span>wt,</span>
-<span id="cb210-6"><a href="nhst.html#cb210-6" tabindex="-1"></a>  <span class="co"># Use &quot;medium&quot; scale (1/3); prior scale. Preset values can be given as strings</span></span>
-<span id="cb210-7"><a href="nhst.html#cb210-7" tabindex="-1"></a>  <span class="at">rscale =</span> <span class="st">&quot;medium&quot;</span>,</span>
-<span id="cb210-8"><a href="nhst.html#cb210-8" tabindex="-1"></a>  <span class="at">posterior =</span> <span class="cn">TRUE</span>,     <span class="co"># Get posterior samples</span></span>
-<span id="cb210-9"><a href="nhst.html#cb210-9" tabindex="-1"></a>  <span class="at">iterations =</span> <span class="dv">10000</span>    <span class="co"># Number of MCMC iterations</span></span>
-<span id="cb210-10"><a href="nhst.html#cb210-10" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="nhst.html#cb220-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb220-2"><a href="nhst.html#cb220-2" tabindex="-1"></a></span>
+<span id="cb220-3"><a href="nhst.html#cb220-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb220-4"><a href="nhst.html#cb220-4" tabindex="-1"></a></span>
+<span id="cb220-5"><a href="nhst.html#cb220-5" tabindex="-1"></a><span class="co"># Define a function for the shifted, scaled Beta prior</span></span>
+<span id="cb220-6"><a href="nhst.html#cb220-6" tabindex="-1"></a>shifted_beta_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(rho, rscale) {</span>
+<span id="cb220-7"><a href="nhst.html#cb220-7" tabindex="-1"></a>  <span class="co"># Transform Beta to [-1, 1]</span></span>
+<span id="cb220-8"><a href="nhst.html#cb220-8" tabindex="-1"></a>  <span class="cf">if</span> (rho <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;&amp;</span> rho <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb220-9"><a href="nhst.html#cb220-9" tabindex="-1"></a>    <span class="co"># (rho + 1) / 2 transforms [-1, 1] to [0, 1]</span></span>
+<span id="cb220-10"><a href="nhst.html#cb220-10" tabindex="-1"></a>    beta_density <span class="ot">&lt;-</span> <span class="fu">dbeta</span>((rho <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>, <span class="dv">1</span> <span class="sc">/</span> rscale, <span class="dv">1</span> <span class="sc">/</span> rscale) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb220-11"><a href="nhst.html#cb220-11" tabindex="-1"></a>    <span class="fu">return</span>(beta_density)</span>
+<span id="cb220-12"><a href="nhst.html#cb220-12" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb220-13"><a href="nhst.html#cb220-13" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb220-14"><a href="nhst.html#cb220-14" tabindex="-1"></a>  }</span>
+<span id="cb220-15"><a href="nhst.html#cb220-15" tabindex="-1"></a>}</span>
+<span id="cb220-16"><a href="nhst.html#cb220-16" tabindex="-1"></a></span>
+<span id="cb220-17"><a href="nhst.html#cb220-17" tabindex="-1"></a><span class="co"># Define rho values and rscale</span></span>
+<span id="cb220-18"><a href="nhst.html#cb220-18" tabindex="-1"></a>rho_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb220-19"><a href="nhst.html#cb220-19" tabindex="-1"></a>rscale <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>  <span class="co"># Medium scale</span></span>
+<span id="cb220-20"><a href="nhst.html#cb220-20" tabindex="-1"></a></span>
+<span id="cb220-21"><a href="nhst.html#cb220-21" tabindex="-1"></a><span class="co"># Compute prior values</span></span>
+<span id="cb220-22"><a href="nhst.html#cb220-22" tabindex="-1"></a>prior_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(rho_values, shifted_beta_prior, <span class="at">rscale =</span> rscale)</span>
+<span id="cb220-23"><a href="nhst.html#cb220-23" tabindex="-1"></a></span>
+<span id="cb220-24"><a href="nhst.html#cb220-24" tabindex="-1"></a><span class="co"># Plot the prior</span></span>
+<span id="cb220-25"><a href="nhst.html#cb220-25" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">rho =</span> rho_values, <span class="at">density =</span> prior_values) <span class="sc">%&gt;%</span></span>
+<span id="cb220-26"><a href="nhst.html#cb220-26" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb220-27"><a href="nhst.html#cb220-27" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb220-28"><a href="nhst.html#cb220-28" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb220-29"><a href="nhst.html#cb220-29" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Shifted Scaled Beta Prior Distribution for Correlation&quot;</span>,</span>
+<span id="cb220-30"><a href="nhst.html#cb220-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
+<span id="cb220-31"><a href="nhst.html#cb220-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb220-32"><a href="nhst.html#cb220-32" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb220-33"><a href="nhst.html#cb220-33" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb220-34"><a href="nhst.html#cb220-34" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb220-35"><a href="nhst.html#cb220-35" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb220-36"><a href="nhst.html#cb220-36" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb220-37"><a href="nhst.html#cb220-37" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="nhst.html#cb221-1" tabindex="-1"></a><span class="co"># Compute the posterior samples using correlationBF()</span></span>
+<span id="cb221-2"><a href="nhst.html#cb221-2" tabindex="-1"></a>posterior_samples <span class="ot">&lt;-</span> <span class="fu">correlationBF</span>(</span>
+<span id="cb221-3"><a href="nhst.html#cb221-3" tabindex="-1"></a>  <span class="co"># Bayes factors or posterior samples for correlations.</span></span>
+<span id="cb221-4"><a href="nhst.html#cb221-4" tabindex="-1"></a>  <span class="at">y =</span> mtcars<span class="sc">$</span>mpg,</span>
+<span id="cb221-5"><a href="nhst.html#cb221-5" tabindex="-1"></a>  <span class="at">x =</span> mtcars<span class="sc">$</span>wt,</span>
+<span id="cb221-6"><a href="nhst.html#cb221-6" tabindex="-1"></a>  <span class="co"># Use &quot;medium&quot; scale (1/3); prior scale. Preset values can be given as strings</span></span>
+<span id="cb221-7"><a href="nhst.html#cb221-7" tabindex="-1"></a>  <span class="at">rscale =</span> <span class="st">&quot;medium&quot;</span>,</span>
+<span id="cb221-8"><a href="nhst.html#cb221-8" tabindex="-1"></a>  <span class="at">posterior =</span> <span class="cn">TRUE</span>,     <span class="co"># Get posterior samples</span></span>
+<span id="cb221-9"><a href="nhst.html#cb221-9" tabindex="-1"></a>  <span class="at">iterations =</span> <span class="dv">10000</span>    <span class="co"># Number of MCMC iterations</span></span>
+<span id="cb221-10"><a href="nhst.html#cb221-10" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Independent-candidate M-H acceptance rate: 49%</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="nhst.html#cb212-1" tabindex="-1"></a><span class="co"># Independent-candidate M-H = Independent-candiate Metropolis-Hastings algorithm</span></span>
-<span id="cb212-2"><a href="nhst.html#cb212-2" tabindex="-1"></a></span>
-<span id="cb212-3"><a href="nhst.html#cb212-3" tabindex="-1"></a>posterior_samples <span class="sc">%&gt;%</span></span>
-<span id="cb212-4"><a href="nhst.html#cb212-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho)) <span class="sc">+</span></span>
-<span id="cb212-5"><a href="nhst.html#cb212-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
-<span id="cb212-6"><a href="nhst.html#cb212-6" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb212-7"><a href="nhst.html#cb212-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb212-8"><a href="nhst.html#cb212-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb212-9"><a href="nhst.html#cb212-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior Distribution of Correlation (rho)&quot;</span>,</span>
-<span id="cb212-10"><a href="nhst.html#cb212-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
-<span id="cb212-11"><a href="nhst.html#cb212-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
-<span id="cb212-12"><a href="nhst.html#cb212-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb212-13"><a href="nhst.html#cb212-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb212-14"><a href="nhst.html#cb212-14" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb212-15"><a href="nhst.html#cb212-15" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb212-16"><a href="nhst.html#cb212-16" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
-<span id="cb212-17"><a href="nhst.html#cb212-17" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-69-2.png" width="672" /></p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="nhst.html#cb213-1" tabindex="-1"></a><span class="co"># Compute 96% credible interval</span></span>
-<span id="cb213-2"><a href="nhst.html#cb213-2" tabindex="-1"></a>credible_interval <span class="ot">&lt;-</span> <span class="fu">quantile</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>], <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>))</span>
-<span id="cb213-3"><a href="nhst.html#cb213-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;96% Credible Interval for rho:&quot;</span>,</span>
-<span id="cb213-4"><a href="nhst.html#cb213-4" tabindex="-1"></a>    credible_interval[<span class="dv">1</span>], <span class="st">&quot;to&quot;</span>, credible_interval[<span class="dv">2</span>], <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="nhst.html#cb223-1" tabindex="-1"></a><span class="co"># Independent-candidate M-H = Independent-candiate Metropolis-Hastings algorithm</span></span>
+<span id="cb223-2"><a href="nhst.html#cb223-2" tabindex="-1"></a></span>
+<span id="cb223-3"><a href="nhst.html#cb223-3" tabindex="-1"></a>posterior_samples <span class="sc">%&gt;%</span></span>
+<span id="cb223-4"><a href="nhst.html#cb223-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho)) <span class="sc">+</span></span>
+<span id="cb223-5"><a href="nhst.html#cb223-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb223-6"><a href="nhst.html#cb223-6" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb223-7"><a href="nhst.html#cb223-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb223-8"><a href="nhst.html#cb223-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb223-9"><a href="nhst.html#cb223-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior Distribution of Correlation (rho)&quot;</span>,</span>
+<span id="cb223-10"><a href="nhst.html#cb223-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
+<span id="cb223-11"><a href="nhst.html#cb223-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb223-12"><a href="nhst.html#cb223-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb223-13"><a href="nhst.html#cb223-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb223-14"><a href="nhst.html#cb223-14" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb223-15"><a href="nhst.html#cb223-15" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb223-16"><a href="nhst.html#cb223-16" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb223-17"><a href="nhst.html#cb223-17" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="nhst.html#cb224-1" tabindex="-1"></a><span class="co"># Compute 96% credible interval</span></span>
+<span id="cb224-2"><a href="nhst.html#cb224-2" tabindex="-1"></a>credible_interval <span class="ot">&lt;-</span> <span class="fu">quantile</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>], <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>))</span>
+<span id="cb224-3"><a href="nhst.html#cb224-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;96% Credible Interval for rho:&quot;</span>,</span>
+<span id="cb224-4"><a href="nhst.html#cb224-4" tabindex="-1"></a>    credible_interval[<span class="dv">1</span>], <span class="st">&quot;to&quot;</span>, credible_interval[<span class="dv">2</span>], <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 96% Credible Interval for rho: -0.9083272 to -0.6384908</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="nhst.html#cb215-1" tabindex="-1"></a><span class="fu">median</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="nhst.html#cb226-1" tabindex="-1"></a><span class="fu">median</span>(posterior_samples[, <span class="st">&quot;rho&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] -0.8159496</code></pre>
 <p>The following intervals where obtained in the three different ways:</p>
 <ul>

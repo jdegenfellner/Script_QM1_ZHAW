@@ -447,7 +447,7 @@ in each cell under $H_0$.
 
 ### Fisher's exact test
 
-As mentioned above, we should always use exact tests if available.
+As mentioned above, **we should always use exact tests if available**.
 For the test for independence, we could also use 
 [Fisher's exact test](https://en.wikipedia.org/wiki/Fisher%27s_exact_test).
 The underlying distribution for the test statistic is a hypergeometric distribution.
@@ -462,7 +462,8 @@ The [$t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test) is one of the m
 famous classical statistical tests out there. 
 Consider these links: [1](https://www.youtube.com/watch?v=pXuFeRCMTAo&ab_channel=VeryNormal)
 [2](https://www.youtube.com/watch?v=pLNuDye_tq4&ab_channel=VeryNormal)
-as starting point. 
+as starting point.
+[This article](https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/7-t-tests) could also be interesting.
 
 With the $t$-test, we want to answer the question 
 
@@ -470,6 +471,8 @@ With the $t$-test, we want to answer the question
 specific value ([one sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test)) or
 
 - if the true, but unobserved means of two populations are different from each other ([two sample $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#Two-sample_t-tests)).
+  - [independent samples](https://en.wikipedia.org/wiki/Student%27s_t-test#Independent_two-sample_t-test)
+  - [paired samples](https://en.wikipedia.org/wiki/Student%27s_t-test#Dependent_t-test_for_paired_samples)
 
 Conveniently, R has a built-in function for these tests.
 
@@ -512,7 +515,7 @@ t.test(my_data$weight, mu = 25,
 
 Let' verify the test statistic by "hand" for the two-sided test:
 
-$$t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$$
+$$t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}}$$
 
 $\bar{x} = 19.25$
 
@@ -644,7 +647,7 @@ t.test(y1, y2, conf.level = 0.93)
   **Under the assumption** that there is **no difference in means**,
   the [test statistic](https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_sample_sizes,_unequal_variances_(sX1_%3E_2sX2_or_sX2_%3E_2sX1)) 
   
-  $$ t = \frac{\bar{X}_1 - \bar{X}_1}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} $$
+  $$ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} $$
   
   would be distributed according to a $t$-distribution with 13.928 degrees of freedom.
 
@@ -713,6 +716,77 @@ further away from 0 in both directions since we conducted a two-sided test. The 
 is the $p$-value. As you can see, the $p$-value is the sum of the two red areas and matches the output 
 of the $t$-test function in R.
 
+
+### Paired $t$-test
+In the last case, we assume, that the two samples are *not* independent anymore. We could, for instance,
+think of two weight measurements (kg) of the same person before and after a diet. Obviously, 
+these two measurements are not independent. Higher pre-diet weights could be associated
+with higher post-diet weights.
+
+Analog to before, we now ask if the differences are "significantly" different from $\mu_0$.
+
+In the bodyweight example, let's define a 5 kg weight loss as clinically relevant 
+(in reality this is more like 5%), but we keep it simple.
+
+$H_0: \mu_D \le \mu_0 = 5~kg$. Participants lost 5 kg or less on average, 
+i.e. the true difference between pre- and post weight is on average smaller than 5kg.
+
+$H_1: \mu_D > \mu_0 = 5~kg$. Participants lost more than 5 kg on average.
+
+Aussumptions for the paired $t$-test:
+- Interval or ratio scale
+- The differences are independent of each other
+- 
+
+Let's create some data and perform the test:
+
+```{r}
+library(pacman)
+p_load(MASS, tidyverse)
+
+# Create correlated pre post weight-data
+set.seed(62)  # For reproducibility
+n <- 15  # Number of pairs
+mu <- c(80, 73)  # Mean vector for Pre and Post weights
+rho <- 0.7  # Correlation
+sigma <- 10  # Standard deviation for both variables
+
+Sigma <- matrix(c(sigma^2, rho * sigma^2, rho * sigma^2, sigma^2), nrow = 2)
+weights <- mvrnorm(n, mu = mu, Sigma = Sigma)
+
+df <- data.frame(
+  Pre_Weight = round(weights[, 1], 2),
+  Post_Weight = round(weights[, 2], 2)
+)
+df
+cor(df$Pre_Weight, df$Post_Weight)
+
+df %>% mutate(pre_post_diff = Post_Weight - Pre_Weight) %>%
+  ggplot(aes(x = Pre_Weight, y = Post_Weight)) +
+  geom_point() +
+  labs(title = "Pre-Post Weights with the same person",
+       x = "Pre-Weight [kg]",
+       y = "Post-Weight [kg]") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+t.test(df$Pre_Weight, df$Post_Weight, paired = TRUE)
+```
+
+**Let's verify the test statistic and $p$-value by "hand":**
+
+```{r}
+mean_diff <- mean(df$Post_Weight - df$Pre_Weight)
+sd_diff <- sd(df$Post_Weight - df$Pre_Weight)
+n <- nrow(df)
+t_stat <- mean_diff / (sd_diff / sqrt(n))
+t_stat
+
+pt(t_stat, df = n - 1) * 2
+```
+
+Conclusion: It is unlikely that we would see a mean difference of 6.5 kg or more by chance alone 
+assuming that the true mean difference is 5 kg or less. We reject the null hypothesis and accept the 
+alternative hypothesis that the mean weight loss was more than 5 kg.
 
 ## Correlation test
 

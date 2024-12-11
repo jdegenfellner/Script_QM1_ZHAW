@@ -100,6 +100,7 @@ fishers-exact-test
 classical-t-test
 one-sample-t-test
 two-sample-t-test
+paired-t-test
 correlation-test
 classical-correlation-test
 bootstrap-confidence-interval-for-the-correlation-coefficient
