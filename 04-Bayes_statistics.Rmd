@@ -1,0 +1,1163 @@
+# Bayes statistics {#bayes_statistics}
+
+To gain a richer understanding, I can recommend (optionally) reading the introductory chapters in 
+John Kruschke's book [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf).
+
+As stated in the first chapter, Bayesian statistics is based on the idea that 
+[probability](https://en.wikipedia.org/wiki/Bayesian_probability) is a measure of our uncertainty about an event or a parameter.
+Here, we use *prior* (i.e., before/outside of our experiment) knowledge 
+about a parameter and **update** this knowledge with new data using the 
+famous 
+
+**[Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem)**:
+
+$$
+p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text{data})},
+$$
+
+where:
+
+- \( p(\theta | \text{data}) \) is the **posterior probability (respectively the posterior distribution of the parameter)**: 
+the updated probability of the parameter \( \theta \) given the observed data.
+
+- \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data given a certain value of the parameter \( \theta \).
+
+- \( p(\theta) \) is the **prior probability (respectively the prior distribution of the parameter)**: the initial belief about the parameter \( \theta \) before seeing the data.
+
+- \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
+
+In our context, $\theta$ is an effect size, a group difference ($\mu_1 - \mu_2$), a correlation ($\rho$), 
+a regression coefficient ($\beta$), or a proportion (p)...
+
+## Derivation of Bayes' theorem
+
+We have already come across Bayes' theorem in the context of conditional probability where we have calulated 
+the probability of a person having a disease *given* having tested positive for it: 
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos)}{\mathbb{P}(Tpos)}.
+$$
+
+The numerator is by definition of the conditional probability just: $\mathbb{P}(Tpos \cap Dpos)$. Let's put this in:
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos \cap Dpos)}{\mathbb{P}(Tpos)}.
+$$
+
+which is also true by the definition of conditional probability. 
+
+One can rewrite the denominator as:
+
+$$
+\mathbb{P}(Tpos) = \mathbb{P}(Tpos|Dpos)\mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg)\mathbb{P}(Dneg) = TP + FP,
+$$
+since one can have a positive test result if one has the disease (true positive) or if one does not have the disease (false positive). 
+This is the so-called [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability).
+To see this, just draw a binary tree starting with disease status (pos/neg) and test result (pos/neg) as branches, as we did before. 
+
+Summarized, we have:
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot 
+\mathbb{P}(Dpos)}{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos) + \mathbb{P}(Tpos|Dneg) \cdot \mathbb{P}(Dneg)}.
+$$
+
+We have proven Bayes theorem for the case of a binary test.
+
+Note the simple fact that if $\mathbb{P}(Dpos)$ (which is the prevalence of the disease)
+is small, the probability of having the disease given a positive test result is also small.
+In fact, it is arbitrarily small the smaller the prevalence is.
+For $\mathbb{P}(Dpos)=0$, we have $\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0$, 
+assuming that there can still be false positive test results: $\mathbb{P}(Tpos|Dneg) > 0$.
+
+We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
+
+We would just extend the denominator accordingly 
+(e.g., for a 3-state test with labels $T_1, T_2, T_3$, where $T_3$ indicates a high concentration of some component):
+
+$$
+\mathbb{P}(Dpos|T_3) = \frac{\mathbb{P}(T_3|Dpos) \cdot 
+\mathbb{P}(Dpos)}{\mathbb{P}(T_3|Dpos) \cdot \mathbb{P}(Dpos) + \mathbb{P}(T_3|Dneg) \cdot \mathbb{P}(Dneg)},
+$$
+which would be the probability that the person has the disease given that the test result is $T_3$.
+
+In this context, we are interested in the probability of a state of disease. 
+We estimate this probability based on the test result ($Tpos$ or $Tneg$) and *prior* knowledge about the disease ($\mathbb{P}(Dpos)$).
+The prior knowledge does not necessarily have to be known *before* the test, **the point is to combine knowledge in a coherent way**. We will
+later see that the order of this combination is not important.
+
+## Bayes' theorem in the context of parameter estimation
+If we use the coin flip example, you can always think of probability of a therapy working for instance. 
+It is a placeholder for a parameter of interest.
+
+A probability distribution outlines all possible outcomes of a random process along with their associated probabilities. 
+For instance, in the case of a coin toss, the distribution is straightforward: there are two outcomes, 
+heads and tails, with corresponding probabilities $\theta$ and $1-\theta$. 
+For more complex scenarios, such as measuring the height of a randomly chosen individual, 
+the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm, 
+is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
+in general.
+
+## Examples
+
+We have jumped into the deep end right away with exercise 2 in the previous chapter. Let's now look at some more examples to get a feeling for 
+how the Bayes theorem works.
+
+### Example 1 - defective products {#example_defective_products}
+
+(Example from Script “Statistik und Wahrscheinlichkeitstheorie using R”, 
+S.331 ff, Werner Gurker)
+
+A manufacturer claims that the defect rate of their products is only 5%, while the customer believes it to be 10%. 
+**Before** the result of a sample inspection is known, we assign both rates an equal 50-50 chance:
+
+\[
+\pi(0.05) = \pi(0.10) = 0.5
+\]
+
+Assume that in a sample of size 20, there are 3 defective items. 
+Using the binomial distribution \(B(20, \theta)\), the data information is given as follows:
+
+\[
+p(3|\theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
+\]
+
+\[
+p(3|\theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
+\]
+
+The marginal distribution of \(X\) (the number of defective items in the sample) for \(x = 3\) is as follows:
+
+\[
+m(3) = p(3|0.05)\pi(0.05) + p(3|0.10)\pi(0.10) = 0.1249
+\]
+
+Here, we consider all parameters in the parameter space of interest. We are only interested in $\theta = 0.05$
+vs. $\theta = 0.10$ in this case.
+
+\[
+\pi(0.05 \mid X = 3) = \frac{p(3 \mid 0.05) \pi(0.05)}{m(3)} = 0.2387
+\]
+
+\[
+\pi(0.10 \mid X = 3) = \frac{p(3 \mid 0.10) \pi(0.10)}{m(3)} = \mathbf{0.7613}
+\]
+
+A priori, we had no preference for either of the two defect rates. After observing a relatively high 
+defect rate of \(3/20 = 15\%\) in the sample, the posterior probability for \(\theta = 0.10\) is 
+approximately three times as likely as \(\theta = 0.05\).
+
+Note that in this example the a priori probabilities were equal:
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+
+```{r bar_plot_code, echo=FALSE}
+# Load ggplot2 package
+library(ggplot2)
+
+# Create the data
+data <- data.frame(
+  theta = factor(c("theta[1] == 0.05", "theta[2] == 0.10"),
+                 levels = c("theta[1] == 0.05", "theta[2] == 0.10")),
+  probability = c(0.5, 0.5)
+)
+# Create and render the bar plot
+ggplot(data, aes(x = theta, y = probability, fill = theta)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_x_discrete(labels = c(expression(theta[1] == 0.05),
+                              expression(theta[2] == 0.10))) +
+  scale_y_continuous(name = "Probability", limits = c(0, 1)) +
+  labs(x = NULL, y = "Probability") +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 12, color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold")
+  )
+```
+</details>
+
+
+**After** collecting data, we have updated our prior beliefs about the defect rate:
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+
+```{r, echo=FALSE}
+# Load ggplot2 package
+library(ggplot2)
+
+# Create the data
+data <- data.frame(
+  theta = factor(c("theta[1] == 0.05", "theta[2] == 0.10"),
+                 levels = c("theta[1] == 0.05", "theta[2] == 0.10")),
+  probability = c(0.2387, 0.7613)
+)
+
+# Create the bar plot
+ggplot(data, aes(x = theta, y = probability, fill = theta)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_x_discrete(labels = c(expression(theta[1] == 0.05),
+                              expression(theta[2] == 0.10))) +
+  scale_y_continuous(name = "Probability", limits = c(0, 1)) +
+  labs(x = NULL, y = "Probability") +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 12, color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold")
+  )
+```
+</details>
+
+Let's assume, we know the manufacturer to be rather untrustworthy. Many inspections in the past
+revealed higher defect rates than claimed. For simplicity, we still want to decide between the two 
+defect rates. $0.05$ and $0.10$.
+
+How does the calculation change if we assign a much higher probability to the defect rate of $0.10$?
+See [Exercise 1](#exercise_defective_product_rate) for this.
+
+
+### Example 2 - extending the defective products example {#example_defective_products_extended}
+
+What if we do not want to limit ourselves to the two defect rates of 5% and 10%?
+We now get creative and assign the following prior probability **distribution** to the defective rate $\theta$:
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+```{r, echo=FALSE}
+# Load ggplot2 package
+library(ggplot2)
+
+# Generate beta distribution data
+x <- seq(0, 1, length.out = 1000)  # Values between 0 and 1
+alpha <- 5  # Shape parameter alpha
+beta <- 17  # Shape parameter beta
+density <- dbeta(x, shape1 = alpha, shape2 = beta)  # Beta density
+
+# Create a data frame for plotting
+data <- data.frame(x = x, density = density)
+
+# Plot the beta density using ggplot2
+ggplot(data, aes(x = x, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  labs(
+    title = "Beta Distribution Density (Peaks at ~0.2)",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  ) +
+  geom_vline(xintercept = 0.2, linetype = "dashed", color = "red") +
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
+```
+
+</details>
+
+If we had to guess, we would say that the defect rate is most likely 20%.
+And we are rather sure about this guess. The mode (highest prior probability) of the 
+[beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) is at 0.2. We are also pretty sure that the defect rate is not 0% or above, say, 50%.
+This distribution is an expression of our **prior beliefs** about the defect rate.
+
+Now, we **observe 11 defective items in a sample of 20**.
+We expect as posterior distribution not a bar plot with two probabilities for the parameter values 
+$\theta = 0.05$ and $\theta = 0.10$, but a **distribution** of probabilities for all possible defect rates (in the range of 0-1).
+Btw. we could play the same game using a coin or the effectiveness of a therapy as example.
+
+The only thing we need to do is to plug in the information into Bayes' theorem to get the posterior distribution.
+The calculations would be complex by hand, so we just use R. We want to understand the concept, so calculating by hand
+can be put off until later (if at all necessary for us.)
+
+\[
+\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(11)}
+\]
+
+- $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.
+
+- $\textit{p}(X = 11 \mid \theta)$ is the likelihood of observing 11 defective items 
+  in a sample of 20 given a certain defect rate $\theta$. 
+  This would be the density function of a binomial distribution.
+
+- $m(11)$ is the marginal distribution of the data for $X = 11$ 
+considering **all** possible defect rates between 0 and 1.
+
+- $\textit{p}(\theta \mid X = 11)$ is the posterior density of the defect 
+rate *given* the observed data.
+
+Let's look at the resulting posterior distribution:
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+
+```{r, echo=FALSE}
+# Load required packages
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the posterior density function
+posterior <- function(theta, x, n, alpha, beta, marginal) {
+  unnormalized_posterior(theta, x, n, alpha, beta) / marginal
+}
+
+# Generate data for plotting the prior and posterior
+theta_values <- seq(0, 1, length.out = 1000)
+prior_values <- prior(theta_values, alpha_prior, beta_prior)
+posterior_values <- posterior(theta_values, x_obs, n,
+                              alpha_prior, beta_prior, marginal)
+
+# Create a data frame for plotting
+plot_data <- data.frame(
+  theta = theta_values,
+  Prior = prior_values,
+  Posterior = posterior_values
+)
+
+# Find the peak (mode) of the posterior distribution
+posterior_peak <- theta_values[which.max(posterior_values)]
+
+# Plot the prior and posterior distributions
+ggplot(plot_data, aes(x = theta)) +
+  geom_line(aes(y = Prior, color = "Prior"),
+            linewidth = 1.2, linetype = "dashed") +
+  geom_line(aes(y = Posterior, color = "Posterior"), linewidth = 1.2) +
+  scale_color_manual(
+    values = c("Prior" = "green", "Posterior" = "blue"),
+    name = "Distributions"
+  ) +
+  labs(
+    title = "Prior and Posterior Distributions of Theta",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    legend.position = "top"
+  ) +
+  geom_vline(xintercept = 0.2, linetype = "dotted", color = "darkgreen") +
+  geom_vline(xintercept = x_obs / n, linetype = "dotted", color = "red") +
+  # Annotate the observed defect rate
+  annotate(
+    "text",
+    x = x_obs / n + 0.03,  # Position slightly to the right of the red line
+    y = max(posterior_values) * 0.8,  # Adjust height dynamically
+    label = paste0("Observed defect rate = ", round(x_obs / n, 2)),
+    color = "red",
+    size = 4,
+    hjust = 0
+  ) +
+  # Annotate the peak of the posterior
+  geom_vline(xintercept = posterior_peak,
+             linetype = "dotted", color = "darkblue") +
+  annotate(
+    "text",
+    x = posterior_peak + 0.03,  # Position slightly to the right of the peak
+    y = max(posterior_values) * 0.9,  # Adjust height dynamically
+    label = paste0("Posterior peak = ", round(posterior_peak, 2)),
+    color = "darkblue",
+    size = 4,
+    hjust = 0
+  ) +
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
+```
+</details>
+
+As we can see, the posterior distribution has a new peak at $0.38$. If we had to guess
+now, we would probably say that the defect rate is around 38%.
+We have updated our beliefs about the defect rate based on the new data.
+In the graph, there is also the observed defect rate of 55%. This observed rate (new data)
+draws our prior beliefs towards the observed rate. 
+
+- **The more data we observe**, the more the posterior distribution would be 
+drawn towards the observed rate, because we would be surer due to the large sample size.
+
+- **The stronger our prior beliefs** in a certain value (or range) of $\theta$, the less we are 
+convinced by new data.
+
+One really nice aspect of the Bayesian view is that we get a **full probability distribution** for 
+the parameter of interest, given the prior beliefs and the observed data. 
+We then can elegantly make all kinds of statements when looking at the posterior, like the following:
+
+ - The probability that $\theta$ is between $0.30$ and $0.50$ is (area under the posterior) 
+ approximately $0.80$:
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+```{r, echo=FALSE}
+# Load required libraries
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the normalized posterior density function
+posterior_density <- function(theta) {
+  unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior) / marginal
+}
+
+# Numerically integrate the posterior density between 0.3 and 0.5
+prob_theta_numerical <- integrate(
+  f = posterior_density,
+  lower = 0.3,
+  upper = 0.5
+)$value
+
+# Output the result
+#cat("Numerical probability that theta is between 0.3 and 0.5:",
+#    prob_theta_numerical, "\n")
+
+# Generate data for the posterior curve
+theta_values <- seq(0, 1, length.out = 1000)
+posterior_values <- sapply(theta_values, posterior_density)
+
+# Create a data frame for plotting
+posterior_data <- data.frame(theta = theta_values, density = posterior_values)
+
+# Plot the posterior distribution with shaded area and annotation
+ggplot(posterior_data, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_area(
+    data = posterior_data[posterior_data$theta >= 0.3 &
+                            posterior_data$theta <= 0.5, ],
+    aes(x = theta, y = density),
+    fill = "orange",
+    alpha = 0.6
+  ) +
+  labs(
+    title = "Posterior Distribution of Theta",
+    subtitle = "Shaded area shows P(0.3 ≤ Theta ≤ 0.5)",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  annotate(
+    "text",
+    x = 0.4,  # Position of the annotation text along the x-axis
+    y = max(posterior_data$density) * 0.5,  # Position along the y-axis
+    label = paste0("P(0.3 ≤ Theta ≤ 0.5) = ", round(prob_theta_numerical, 4)),
+    color = "black",
+    size = 4,
+    hjust = 0
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
+```
+</details>
+
+- The probability that $\theta$ is below $0.25$ is (area under the posterior):
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+```{r, echo=FALSE}
+# Load required libraries
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the normalized posterior density function
+posterior_density <- function(theta) {
+  unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior) / marginal
+}
+
+# Numerically integrate the posterior density between 0.0 and 0.25
+prob_theta_numerical <- integrate(
+  f = posterior_density,
+  lower = 0.0,
+  upper = 0.25
+)$value
+
+# Output the result
+#cat("Numerical probability that theta is between 0.0 and 0.25:",
+#    prob_theta_numerical, "\n")
+
+# Generate data for the posterior curve
+theta_values <- seq(0, 1, length.out = 1000)
+posterior_values <- sapply(theta_values, posterior_density)
+
+# Create a data frame for plotting
+posterior_data <- data.frame(theta = theta_values, density = posterior_values)
+
+# Plot the posterior distribution with shaded area and annotation
+ggplot(posterior_data, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_area(
+    data = posterior_data[posterior_data$theta <= 0.25, ],
+    aes(x = theta, y = density),
+    fill = "orange",
+    alpha = 0.6
+  ) +
+  labs(
+    title = "Posterior Distribution of Theta",
+    subtitle = "Shaded area shows P(0.0 ≤ Theta ≤ 0.25)",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  annotate(
+    "text",
+    x = 0.15,  # Position of the annotation text along the x-axis
+    y = max(posterior_data$density) * 0.4,  # Position along the y-axis
+    label = paste0("P(0.0 ≤ Theta ≤ 0.25) = ", round(prob_theta_numerical, 4)),
+    color = "black",
+    size = 4,
+    hjust = 0
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold",
+                              hjust = 0.5, size = 16),  # Center the title
+    plot.subtitle = element_text(hjust = 0.5)  # Center the subtitle
+  )
+```
+</details>
+
+The previous two examples showcase how to **estimate a proportion** using prior knowledge 
+and new data.
+The fact, that we get a full distribution of the parameter of interest, 
+is a key feature of Bayesian statistics and (as far as I know) not available
+in frequentist statistics and Null Hypothesis Significance Testing (NHST), which we
+will discuss in the next chapter.
+
+## Highest Density Intervals (HDI)
+
+Apart from taking the mode or mean of the posterior distribution, 
+another way to **summarize a posterior distribution** is by using 
+the **highest density interval (HDI)**. 
+The HDI identifies the most credible range of values in a distribution while 
+covering a specified portion of the distribution, such as 93%. 
+The key feature of the HDI is that every point 
+inside the interval has a higher probability density than any point outside 
+the interval, making it an effective summary of the most plausible values.
+
+Here is an example for a 93% HDI for the posterior distribution of $\theta$: 
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+```{r, echo=FALSE}
+# Load required libraries
+library(ggplot2)
+
+# Define parameters
+alpha_prior <- 5  # Prior alpha (Beta distribution)
+beta_prior <- 17  # Prior beta (Beta distribution)
+n <- 20           # Sample size
+x_obs <- 11       # Number of defective items observed
+
+# Define the likelihood function
+likelihood <- function(theta, x, n) {
+  choose(n, x) * theta^x * (1 - theta)^(n - x)
+}
+
+# Define the prior density (Beta distribution)
+prior <- function(theta, alpha, beta) {
+  dbeta(theta, shape1 = alpha, shape2 = beta)
+}
+
+# Define the unnormalized posterior
+unnormalized_posterior <- function(theta, x, n, alpha, beta) {
+  likelihood(theta, x, n) * prior(theta, alpha, beta)
+}
+
+# Compute the marginal probability using numerical integration
+marginal <- integrate(
+  f = function(theta) unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior),
+  lower = 0,
+  upper = 1
+)$value
+
+# Define the normalized posterior density function
+posterior_density <- function(theta) {
+  unnormalized_posterior(theta, x_obs, n, alpha_prior, beta_prior) / marginal
+}
+
+# Generate data for the posterior density
+theta_values <- seq(0, 1, length.out = 1000)
+posterior_values <- sapply(theta_values, posterior_density)
+
+# Create a data frame for the posterior
+posterior_data <- data.frame(theta = theta_values, density = posterior_values)
+
+# Compute the 93% HDI
+compute_hdi <- function(theta, density, cred_mass = 0.93) {
+  sorted_indices <- order(-density)  # Sort by descending density
+  cumulative_mass <- cumsum(density[sorted_indices]) / sum(density)  # Cumulative mass
+  included <- sorted_indices[cumulative_mass <= cred_mass]  # Indices within HDI
+  hdi_range <- range(theta[included])  # Range of HDI
+  return(hdi_range)
+}
+
+hdi <- compute_hdi(posterior_data$theta,
+                   posterior_data$density, cred_mass = 0.93)
+
+# Plot the posterior distribution with the HDI
+ggplot(posterior_data, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_area(
+    data = posterior_data[posterior_data$theta >= hdi[1] &
+                            posterior_data$theta <= hdi[2], ],
+    aes(x = theta, y = density),
+    fill = "orange",
+    alpha = 0.6
+  ) +
+  labs(
+    title = "Posterior Distribution with 93% HDI",
+    subtitle = paste0("93% HDI: [", round(hdi[1], 4),
+                      ", ", round(hdi[2], 4), "]"),
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  geom_vline(xintercept = hdi[1], linetype = "dashed", color = "darkred") +
+  geom_vline(xintercept = hdi[2], linetype = "dashed", color = "darkred")
+```
+</details>
+
+**Interpretation**: The 93% HDI for the posterior distribution of $\theta$ is $[0.25, 0.51]$.
+With a probability of 93%, the defect rate is between 25% and 55%, given our prior 
+beliefs and the observed data.
+
+Note that the HDI does not necessarily have to be symmetric around the peak 
+of the distribution. 
+
+There could be, for instance, two peaks in the distribution, as you can see
+[here](https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png) for instance.
+In that case, the HDI would consist of two intervals. One could readily image
+a real life case for such a distribution: 
+
+Think of a group of people where the
+measurement of interest is the 100 m sprint time. There could be two groups of people: 
+The hobby runners and the professional athletes. The distribution of the sprint times would
+probably be bimodal showing two peaks for the two groups.
+
+There are other ways, one can construct credible intervals.
+We could also use the quantiles of the posterior distribution to construct a credible interval.
+If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
+and the HDI is the same as the quantile-based credible interval.
+
+A [credible interval](https://en.wikipedia.org/wiki/Credible_interval) 
+is **not** the same as a 
+[confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) in frequentist statistics.
+We will discuss this in the next chapter. 
+
+Briefly, a **credible interval** is a range of values
+for a parameter of interest that has a specified probability of containing the 
+unobserved parameter.
+
+A **confidence interval** is an interval which is expected to contain the **true, 
+but unknown** parameter of interest in a certain percent of times (e.g., 92%), when 
+[constructed **repeatedly** everytime a new sample is drawn](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg). 
+
+
+## Bayesian $t$-test {#bayesian_t_test}
+
+Above, we looked at some aspects of estimating a parameter (proportion) using Bayes' theorem.
+We can answer all sorts of other questions using this paradigm. In classical statistics,
+one often wants to know if two groups differ with respect to their true means. 
+This answer is typically given by the famous [$t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test) 
+([small "$t$"](https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf) please).
+I encourage you to read the short [history](https://en.wikipedia.org/wiki/Student%27s_t-test#History) of the $t$-test.
+
+For didactic reasons, we will look at the Baysian version of the $t$-test first.
+We want to try to view statistics as more than just a 
+[cookbook of recipes](https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html). 
+Unfortunately, very often it is taught that way and the impression is given that statistics is 
+just a set of tools to apply in a certain order. In my humble opinion, this is not the case. Statistics
+and model building is a creative process and - if you want to go so far - an art form.
+**Statistics is difficult and beautiful - in that order**.
+
+Unfortunately, it is not completely trivial to apply the Bayesian $t$-test, as opposte to the frequentist $t$-test,
+which constitutes one line of code in R.
+
+We'll use the not anymore maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
+for a nice illustration. Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html)
+or [rethinking](https://github.com/rmcelreath/rethinking) for modeling.
+
+### Example - Bayesian $t$-test
+
+For an explanation of the statistical model behind the Bayesian $t$-test, 
+visit [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf), Figure 2.
+
+```{r, echo=TRUE}
+(y1 <- c(-.5, 0, 1.2, 1.2, 1.2, 1.9, 2.4, 3) * 100)
+(y2 <- c(-1.2, -1.2, -.5, 0, 0, .5, 1.1, 1.9) * 100)
+
+length(y1)
+length(y2)
+
+data <- data.frame(y1, y2)
+psych::describe(data)
+
+# Boxplot:
+data.frame(y = c(y1, y2), group = c(rep(1, 8), rep(2, 8))) %>%
+  ggplot(aes(x = factor(group), y = y)) +  # Use factor for discrete x-axis
+  geom_boxplot() +                        # Add boxplot layer
+  geom_jitter(width = 0.1)                # Add jitter for individual
+# -> Visually, there seems to be a difference between the two groups.
+```
+
+We work with a rather small sample size, 8 in each group. 
+**We want to know if the two groups differ in their (unobserved) means**.
+For this, we will apply the R function `BESTmcmc` from the package `BEST`.
+
+```{r, echo=TRUE}
+set.seed(33443)
+p_load(HDInterval, BEST, tictoc, psych, tidyverse)
+# H_0: mue1 - mue2 = delta_0
+a <- 20 # ROPE (region of practical equivalence)
+d_0 <- 0
+BESTout <- BESTmcmc(y1, y2, verbose = TRUE)
+plot(BESTout, which = "mean", compVal = d_0,
+     ROPE = d_0 + c(-1, 1) * a, showCurve = FALSE, credMass = 0.93)
+```
+
+`BESTmcmc` is a function that uses a [Markov Chain Monte Carlo (MCMC)](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) 
+algorithm to estimate the **posterior distribution of the difference between the means of two groups** 
+(the above is not just a histogram of differences).
+We do not care about these details for now, but try to interpret what we see.
+
+The plot shows the posterior distribution of the difference between the means of the two groups.
+
+- With the parameter `which = "mean"`, we are interested in the **posterior distribution of 
+difference of the means** ($\mu_1 - \mu_2$). We see a full probability distribution again.
+
+- The parameter `compVal = d_0` is the value we want to compare the posterior distribution to. Here We
+chose delta_0 = 0, which means that we want to know if the difference between the means is 
+different from zero.
+
+- The parameter `ROPE = d_0 + c(-1, 1) * a` ($= -20$ to $20$) defines the region of practical equivalence (ROPE).
+In our case, we chose a = 20. This means that we consider differences between the means of the two groups
+of $\pm 20$ as practically equivalent. In practice, **you would choose a value that is meaningful for your
+particular research question**. For instance, in a planned experiment, we are interested in changes
+on the Roland Morris Disability Questionnaire (RMDQ) of 2 points. 
+We would then choose a value of 2 for the ROPE, since only a change beyond this value would be
+clinically relevant for the patient. 
+
+- The parameter `credMass = 0.93` is the probability mass to include in credible intervals, in this case 93%.
+
+- The 93% HDI for the difference between the means is shown in the graph, hence given 
+the prior information and the observed data, we can be 93% sure that the 
+difference between the means is in this interval. The HDI changes everytime the code of this 
+script is run since it's simulation based.
+
+We can do more:
+```{r, echo=TRUE}
+summary(BESTout, ROPEm = d_0 + c(-1, 1) * a, compValm = 0,
+        digits = 5, credMass = 0.93) # summary.BEST()
+```
+
+If you look at the row "muDiff" and the column "%>compVal". This is the percentage 
+of the posterior distribution that is greater than 0. We can say, with a probability of 
+~95%, the difference between the means is greater than 0. This is nice but not the whole story.
+The true difference can by greater than 0, but still rather small and clinically irrelevant.
+
+Would we conclude that the two groups differ in their means?
+According to [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) (p.336): 
+
+**"A parameter value is declared to be not credible, 
+or rejected, if its entire ROPE lies outside the highest density interval 
+(HDI) of the posterior distribution of that parameter."**
+
+This is not the case here. We would not conclude, that the means between the groups differ.
+One could argue, that this rule seems rather strict considering, that ~95% of the 
+posterior distribution of the differences is greater than 0.
+
+As opposed to the frequentist $t$-test, we can also **affirm the null hypothesis**, 
+that the means in the two groups are equal. This is a nice feature of the Bayesian $t$-test.
+
+**"A parameter value is declared to be accepted for practical purposes if that value’s 
+ROPE completely contains the X% HDI of the posterior of that parameter."**
+
+This is also not the case here. The 93% HDI lies outside the ROPE to a large part.
+
+Note, "The decision rule for accepting the null value says merely that the most 
+credible values are practically equivalent to the null value according to the 
+chosen ROPE, not necessarily that the null value has high credibility."
+([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)
+
+
+We are above in the situation, that we cannot make a clear decision. 
+The ROPE does not fully contain the 93% HDI, and the 93% HDI is not 
+completely outside the ROPE.
+
+**“When the HDI and ROPE overlap, with the ROPE not completely 
+containing the HDI, then neither of the above decision rules is satisfied, 
+and we withhold a decision. This means merely that the current data are insufficient to 
+yield a clear decision one way or the other, according to the stated decision criteria."**
+([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)"
+
+
+What have we learned so far: 
+
+- Estimating a proportion using Bayes' theorem [Example about the proportion of defective products](#example_defective_products)
+
+- Using a whole continuous distribution as prior knowledge [Example about the proportion of defective products extended](#example_defective_products_extended)
+
+- Analysis if two groups differ in their means or have the same mean [Example about the Bayesian t-test](#bayesian_t_test)
+
+Latest in QM2, we will do Bayesian regression analysis using packages like `brms` from 
+[Paul Bürkner](https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/) or 
+`rethinking` from [Richard McElreath](https://www.eva.mpg.de/ecology/staff/richard-mcelreath/).
+
+## Bayesian updating
+
+See also *5.2.1. Data-order invariance* in [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf).
+
+The following is an animated example of Bayesian updating. 
+The true probability for heads in a coin toss is $\theta = 0.77$.
+We throw a coin 100 times and we start with a uniform prior distribution, i.e., 
+every value between 0 and 1 is equally likely at the beginning.
+Everytime a coin is tossed, the prior distribution is updated with the new data. 
+The posterior distribution is the prior for the next coin toss et cetera.
+One can see that we are converging to the "truth" (which is normally not known).
+
+Code can be found [here.](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
+
+```{r testing, fig.cap="example caption", echo=FALSE}
+library(gifski)
+library(magick)
+img <- magick::image_read("./images/bayesian_updating_sequential.gif")
+print(img)
+```
+
+This [video](https://www.youtube.com/watch?v=rUoJvogN7qQ&t=4s&ab_channel=CoreyChivers) illustrates the concept of Bayesian updating as well 
+using two different starting points. The opinions seem to converge.
+
+
+## More complex parameter spaces
+
+Above we dealt with the rather simple case of one parameter ($\theta$), the proportion of defective products or the fairness of a coin.
+Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
+exactly. **We are mainly interested in simulation-based results, since we are practitioners**. 
+
+In the Baysian $t$-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+estimated (see Figure 2 [here](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf)). 
+Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
+In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently. 
+This can be computationally intensive.
+The [animation](https://revolution-computing.typepad.com/.a/6a010534b1db25970b019aff4a7bbc970d-pi)
+in [this article](https://www.r-bloggers.com/2013/09/an-animated-peek-into-the-workings-of-bayesian-statistics/) 
+shows the walk through of the parameter space nicely for the case of a normal distribution with two parameters ($\mu$ and $\sigma$).
+
+For statistical models with many parameters and observations, the computation can take a long time. Very often though, computational time
+is not an issue and we can make use of the flexibility and intuitive interpretation of Bayesian statistics.
+
+## Advantages/disadvantages of Bayesian statistics
+
+### (Some) Advantages
+- **Full probability distributions**: We get a full probability distribution for the parameter of interest.
+
+- **Flexibility**: We can incorporate prior knowledge into our analysis.
+
+- **Interpretability**: We can make statements about the probability of certain parameter values.
+
+- **No $p$-values**: We do not need to rely on $p$-values and NHST (Null Hypothesis Significance Testing). 
+John Kruschke points out many problems with 
+NHST in his [book](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) and
+ [article](https://psycnet.apa.org/record/2012-18082-001). It seems that for many practinioners, $p$-values are
+ hard to understand and interpret correctly. There are many 
+ [misconceptions about $p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620). 
+ And one should definitely 
+ [move away from dichotomous thinking of "significant" and "non-significant"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) results.
+
+### (Some) Disadvantages
+- **Computational complexity**: Calculating the posterior distribution can be computationally intensive. 
+Even with modern computers and the latest packages, it can take a long time to get results. Classical statistical models
+are often estimated within fractions of a second.
+
+- **Barriers to entry**: Statistics courses and textbooks often focus on frequentist statistics, as well as many
+sofware packages lean more towards frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
+When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.
+
+- **Subjectivity**: The choice of the prior distribution can be subjective.
+
+
+
+
+
+## Exercises
+
+Difficulty levels of exercises: 
+**E**: easy, 
+**M**: intermediate, 
+**D**: difficult
+
+## [E] Exercise 1 - defective product rate {#exercise_defective_product_rate}
+Let's revisit [Example 1](#example_defective_products) and change the prior probabilites to
+$\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
+
+Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.
+
+## [H] Exercise 2 - Bayesian updating
+We want to check empirically that the **order of data collection does not influence the posterior distribution**.
+We want to find out the probability $\theta$ of a therapy to work.
+Since we have absolutely no idea, how effective the therapy is, let our prior distribution be a [uniform 
+distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) between 0 and 1 
+(this has to be argued for more rigorously in practice). Hence, 
+every value between 0 and 1 is equally likely:
+
+$\pi(\theta) = 1$ for $\theta \in [0,1]$.
+
+```{r, echo=TRUE}
+# Load required libraries
+library(ggplot2)
+
+# Generate data for a uniform distribution
+theta <- seq(0, 1, length.out = 100)  # Range of theta
+density <- dunif(theta, min = 0, max = 1)  # Uniform density
+
+# Create a data frame for ggplot
+df <- data.frame(theta = theta, density = density)
+
+# Plot the density function
+ggplot(df, aes(x = theta, y = density)) +
+  geom_line(color = "blue", linewidth = 1.2) +  # Density line
+  geom_area(fill = "lightblue", alpha = 0.5) +  # Shaded area under the curve
+  labs(
+    title = "Prior: Uniform Distribution",
+    x = expression(theta),
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    axis.title = element_text(face = "bold")
+  )
+```
+
+Notize, that the area under the curve is 1, since it is a probability density function. 
+For example, $\mathbb{P}(\theta \in (0.25,0.75)) = 0.5$
+
+- Experiment 1 one shows that the therapy works in 17 out of 50 cases.
+- Experiment 2 shows that the therapy works in 23 out of 50 cases.
+
+So we go from:
+
+Prior $\rightarrow$ experiment 1 $\rightarrow$ posterior 1 $\rightarrow$ experiment 2 $\rightarrow$ posterior12.
+
+Or
+
+Prior $\rightarrow$ experiment 2 $\rightarrow$ posterior 2 $\rightarrow$ experiment 1 $\rightarrow$ posterior21.
+
+- Show that posterior12 and posterior21 should be the same and draw both posterior distributions into one plot.
+
+- [Optional] Show this result analytically.
+
+## Solutions
+Solutions for this chapter can be found [here](https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics).
+
+## Sample exam questions for this chapter (in German since exam is in German)
+
+For this section, no solutions are provided.
+
+### Frage 1
+
+sleep: Daten, die die Wirkung von zwei schlaffördernden Medikamenten 
+(Zunahme der Schlafstunden im Vergleich zur Kontrollgruppe) bei 10 Patienten zeigen.
+
+Wir führen einen Bayesian $t$-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:
+
+```{r, echo=FALSE}
+library(pacman)
+p_load(tidyverse, BEST, tictoc)
+
+attach(sleep)
+#head(sleep)
+#str(sleep)
+ggplot(sleep, aes(x = group, y = extra)) +
+  geom_boxplot() +
+  ggtitle("Extra Sleep in Pharmacology Groups") +
+  xlab("Group") + ylab("Extra Sleep (hours)") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10))
+
+# bayesiant test BEST
+sleep$group <- as.factor(sleep$group)
+#sd(sleep$extra[sleep$group == "1"])
+#sd(sleep$extra[sleep$group == "2"])
+
+# H_0: mue1 - mue2 = delta_0
+a <- 1.8 # ROPE ~1SD of sleep$extra in group 1
+d_0 <- 0  # delta_0 -> the practically relevant difference has to be larger than 20!
+tic()
+BESTout <- BESTmcmc(sleep$extra[sleep$group == "1"],
+                    sleep$extra[sleep$group == "2"],
+                    verbose = TRUE) # numSavedSteps = 1e+05
+toc() # 2s
+
+summary(BESTout, ROPEm = d_0 + c(-1, 1) * a,
+compValm = 0, digits = 5, credMass = 0.93)
+
+plot(BESTout, which = "mean", compVal = d_0,
+ROPE = d_0 + c(-1, 1) * a, showCurve = FALSE,  credMass = 0.93)
+```
+
+Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
+
+- -1.59 ist eine (aufgrund des Bayes $t$-tests) plausible Schätzung für die 
+  Differenz der Mittelwerte der beiden Gruppen.
+- Wäre die ROPE halb so groß, würde die Testentscheidung anders ausfallen.
+- 93% der posterior Verteilung der Differenz der Mittelwerte liegt 
+  im Interval $[-3.48, 0.298]$.
+- Die Testentscheidung lautet: "Die Mittelwerte der beiden Gruppen sind nicht gleich."
+
+### Frage 2
+
+$$
+\mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot 
+\mathbb{P}(Dpos)}{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos) + (1-\mathbb{P}(Tneg|Dneg)) \cdot \mathbb{P}(Dneg)}.
+$$
+
+Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?
+
+- Mit einer Spezifität von 1, wäre die Wahrscheinlichkeit für eine Krankheit, 
+  wenn der Test positiv ist, gleich 1.
+
+- Mit einer Sensitivität von 1, wäre die Wahrscheinlichkeit für eine Krankheit,
+  wenn der Test positiv ist, gleich 1.
+
+- Falls $\mathbb{P}(Dpos) = 1$, ist $\mathbb{P}(Dpos|Tpos) = 1$.
+
+- Im Nenner des Bayes'schen Theorems steht die Wahrscheinlichkeit, dass der Test 
+  positiv ist.
+
+### Frage 3
+
+Bei einer Bayes'schen Analyse eines Fehleranteils verwenden wir folgende a 
+priori Verteilung für den Fehleranteil $\theta$:
+
+```{r bar_plot_code_ueb, echo=FALSE}
+# Load ggplot2 package
+library(ggplot2)
+
+# Create the data
+data <- data.frame(
+  theta = factor(c("theta[1] == 0.05", "theta[2] == 0.10"),
+                 levels = c("theta[1] == 0.05", "theta[2] == 0.10")),
+  probability = c(0.5, 0.5)
+)
+# Create and render the bar plot
+ggplot(data, aes(x = theta, y = probability, fill = theta)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_x_discrete(labels = c(expression(theta[1] == 0.02),
+                              expression(theta[2] == 0.08))) +
+  scale_y_continuous(name = "Probability", limits = c(0, 1)) +
+  labs(x = NULL, y = "Probability") +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 12, color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold")
+  )
+```
+
+Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?
+
+- Die a priori Wahrscheinlichkeit, dass der Fehleranteil $0.02$ beträgt, ist $0.02$.
+
+- Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Interval $[0.02, 0.08]$ liegt, ist 0.
+
+- Hier handelt es sich um eine diskrete a priori Verteilung und man untersucht lediglich, welcher 
+  der beiden Fehleranteile wahrscheinlicher ist.
+
+- Man beobachtet bei einer Stichprobe von $20$ Produkten, dass $0$ davon fehlerhaft sind. 
+  A posteriori wird der Fehleranteil $0.08$ nun mehr als 50% Wahrscheinlichkeit erhalten.

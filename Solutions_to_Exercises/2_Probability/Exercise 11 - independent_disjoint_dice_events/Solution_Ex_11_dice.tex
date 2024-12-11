@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb} 
+
+\title{Examples of Events in a Dice Roll}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+Here are examples of events in a single dice roll:
+
+\section*{1. Not independent and not disjoint}
+\begin{itemize}
+    \item Event $A$: The rolled number is even (i.e., 2, 4, or 6).
+    \item Event $B$: The rolled number is greater than 3 (i.e., 4, 5, or 6).
+\end{itemize}
+These events are \textbf{not independent} because the occurrence of $A$ does change the probability of $B$ and vice versa. However, they are \textbf{not disjoint} because the numbers 4 and 6 are both even and greater than 3 (so $A \cap B = \{ 4,6 \} \neq \emptyset$).\\
+\\
+$\mathbb{P}(A|B) = \frac{2}{3} \ne \mathbb{P}(A) = \frac{1}{2}$\\
+\\
+$\mathbb{P}(B|A) = \frac{2}{3} \ne \mathbb{P}(B) = \frac{1}{2}$
+
+\section*{2. Not independent, but disjoint}
+\begin{itemize}
+    \item Event $C$: The rolled number is 2.
+    \item Event $D$: The rolled number is 5.
+\end{itemize}
+These events are \textbf{disjoint} because they are mutually exclusive (if the number 2 is rolled, it cannot simultaneously be 5, so $C \cap D = \emptyset$). However, they are \textbf{not independent} because the occurrence of $C$ makes the probability of $D$ zero and vice versa.
+
+\section*{3. Independent and not disjoint}
+\begin{itemize}
+    \item Event $E$: The rolled number is even (i.e., 2, 4, or 6).
+    \item Event $F$: The rolled number is a multiple of 3 (i.e., 3 or 6).
+\end{itemize}
+These events are \textbf{independent} because the occurrence of $E$ does not affect the probability of $F$ and vice versa:
+\[
+\mathbb{P}(E) = \frac{3}{6} = 0.5, \quad \mathbb{P}(F) = \frac{2}{6} = \frac{1}{3}
+\]
+\[
+\mathbb{P}(E \cap F) = \frac{1}{6} = \mathbb{P}(E) \cdot \mathbb{P}(F)
+\]
+However, they are \textbf{not disjoint} because the number 6 is both even and a multiple of 3 (so $E \cap F = \{ 6 \} \neq \emptyset$).
+\end{document}

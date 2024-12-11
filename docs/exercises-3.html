@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Exercises | Quantitative Methods 1, ZHAW</title>
+  <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Exercises | Quantitative Methods 1, ZHAW" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Script Quantitative Methods 1, ZHAW," />
+  <meta name="github-repo" content="jdegenfellner/Script_QM1_ZHAW" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Exercises | Quantitative Methods 1, ZHAW" />
+  
+  <meta name="twitter:description" content="Script Quantitative Methods 1, ZHAW," />
+  
+
+<meta name="author" content="Jürgen Degenfellner" />
+
+
+<meta name="date" content="2024-11-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="type-1-and-type-2-errors.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.11/grViz.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Methods 1</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#books-i-can-highly-recommend"><i class="fa fa-check"></i><b>1.1</b> Books I can (highly) recommend:</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.2</b> <img src="images/Rlogo.png" height="20px"/></a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#additional-tools"><i class="fa fa-check"></i><b>1.3</b> Additional Tools</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#workflow-suggestion"><i class="fa fa-check"></i><b>1.4</b> Workflow suggestion</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probs.html"><a href="probs.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probs.html"><a href="probs.html#frequentist-vs.-bayesian-statistics"><i class="fa fa-check"></i><b>2.1</b> Frequentist vs. Bayesian statistics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="probs.html"><a href="probs.html#frequentist-statistics"><i class="fa fa-check"></i><b>2.1.1</b> Frequentist statistics</a></li>
+<li class="chapter" data-level="2.1.2" data-path="probs.html"><a href="probs.html#bayesian-statistics"><i class="fa fa-check"></i><b>2.1.2</b> Bayesian statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="probs.html"><a href="probs.html#foundations-of-probability-theory"><i class="fa fa-check"></i><b>2.2</b> Foundations of probability theory</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="probs.html"><a href="probs.html#Questions_about_the_1000-researcher_experiment"><i class="fa fa-check"></i><b>2.2.1</b> Questions about the 1000 researcher-experiment (among many others):</a></li>
+<li class="chapter" data-level="2.2.2" data-path="probs.html"><a href="probs.html#axioms_of_probability_theory"><i class="fa fa-check"></i><b>2.2.2</b> Axioms of probability theory</a></li>
+<li class="chapter" data-level="2.2.3" data-path="probs.html"><a href="probs.html#independence-of-events"><i class="fa fa-check"></i><b>2.2.3</b> Independence of events</a></li>
+<li class="chapter" data-level="2.2.4" data-path="probs.html"><a href="probs.html#difference-between-independence-and-disjointness"><i class="fa fa-check"></i><b>2.2.4</b> Difference between independence and disjointness</a></li>
+<li class="chapter" data-level="2.2.5" data-path="probs.html"><a href="probs.html#Answers_Questions_about_the_1000-researcher_experiment"><i class="fa fa-check"></i><b>2.2.5</b> Answers to questions about the 1000 researcher-experiment (among many others):</a></li>
+<li class="chapter" data-level="2.2.6" data-path="probs.html"><a href="probs.html#addition_of_probabilities"><i class="fa fa-check"></i><b>2.2.6</b> Addition of probabilities</a></li>
+<li class="chapter" data-level="2.2.7" data-path="probs.html"><a href="probs.html#probabilities_for_health_sciences"><i class="fa fa-check"></i><b>2.2.7</b> Probabilities for health science</a></li>
+<li class="chapter" data-level="2.2.8" data-path="probs.html"><a href="probs.html#discrete_vs_continuous_probability_distributions"><i class="fa fa-check"></i><b>2.2.8</b> Discrete vs. continuous probability distributions</a></li>
+<li class="chapter" data-level="2.2.9" data-path="probs.html"><a href="probs.html#prominent_probability_distributions_in_health_sciences"><i class="fa fa-check"></i><b>2.2.9</b> Examples of prominent probability distributions used in health sciences</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="probs.html"><a href="probs.html#exercises"><i class="fa fa-check"></i><b>2.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="probs.html"><a href="probs.html#exercise1"><i class="fa fa-check"></i><b>2.3.1</b> [M] Exercise 1 - Throwing a die very often</a></li>
+<li class="chapter" data-level="2.3.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>2.3.2</b> [D] Exercise 2 - Bayes-teaser</a></li>
+<li class="chapter" data-level="2.3.3" data-path="probs.html"><a href="probs.html#exercise3"><i class="fa fa-check"></i><b>2.3.3</b> [E] Exercise 3 - Find journals</a></li>
+<li class="chapter" data-level="2.3.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.3.4</b> [M] Exercise 4 - Independent and disjoint</a></li>
+<li class="chapter" data-level="2.3.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.3.5</b> [M] Exercise 5 - Variance</a></li>
+<li class="chapter" data-level="2.3.6" data-path="probs.html"><a href="probs.html#exercise6"><i class="fa fa-check"></i><b>2.3.6</b> [E] Exercise 6 - Three researchers</a></li>
+<li class="chapter" data-level="2.3.7" data-path="probs.html"><a href="probs.html#exercise7"><i class="fa fa-check"></i><b>2.3.7</b> [E] Exercise 7 - Conditional probability</a></li>
+<li class="chapter" data-level="2.3.8" data-path="probs.html"><a href="probs.html#exercise8"><i class="fa fa-check"></i><b>2.3.8</b> [E] Exercise 8 - Invent a discrete probability distribution</a></li>
+<li class="chapter" data-level="2.3.9" data-path="probs.html"><a href="probs.html#exercise9"><i class="fa fa-check"></i><b>2.3.9</b> [E] Exercise 9 - Continuous probability distributions</a></li>
+<li class="chapter" data-level="2.3.10" data-path="probs.html"><a href="probs.html#exercise10"><i class="fa fa-check"></i><b>2.3.10</b> [M] Exercise 10 - MSc-ZHAW-distribution</a></li>
+<li class="chapter" data-level="2.3.11" data-path="probs.html"><a href="probs.html#exercise11"><i class="fa fa-check"></i><b>2.3.11</b> [M] Exercise 11 - Independence and disjointness for dice events</a></li>
+<li class="chapter" data-level="2.3.12" data-path="probs.html"><a href="probs.html#exercise12"><i class="fa fa-check"></i><b>2.3.12</b> [D] Exercise 12 - Student’s t-distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="probs.html"><a href="probs.html#solutions"><i class="fa fa-check"></i><b>2.4</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
+<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#univarate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univarate vs. bivariate statisics</a></li>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example-in-the-wild"><i class="fa fa-check"></i><b>3.3.1</b> Example in the wild</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#example-in-the-wild-1"><i class="fa fa-check"></i><b>3.4.1</b> Example in the wild</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercises-1"><i class="fa fa-check"></i><b>3.5</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#d-exercise-1---recreate-table-with-fake-data"><i class="fa fa-check"></i><b>3.5.1</b> [D] Exercise 1 - Recreate table with fake data</a></li>
+<li class="chapter" data-level="3.5.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#e-exercise-2---outliers-and-estimates"><i class="fa fa-check"></i><b>3.5.2</b> [E] Exercise 2 - Outliers and estimates</a></li>
+<li class="chapter" data-level="3.5.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise3_descriptive_stats"><i class="fa fa-check"></i><b>3.5.3</b> [E] Exercise 3 - Recreating data in Table 2</a></li>
+<li class="chapter" data-level="3.5.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise4_descriptive_stats"><i class="fa fa-check"></i><b>3.5.4</b> [E] Exercise 4 - Z-scores</a></li>
+<li class="chapter" data-level="3.5.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exercise5_descriptive_stats"><i class="fa fa-check"></i><b>3.5.5</b> [M] Exercise 5 - Correlation</a></li>
+<li class="chapter" data-level="3.5.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#m-exercise-6---bike-parking-locations-in-switzerland"><i class="fa fa-check"></i><b>3.5.6</b> [M] Exercise 6 - Bike parking locations in Switzerland</a></li>
+<li class="chapter" data-level="3.5.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#e-exercise-7---median-mean-and-mode"><i class="fa fa-check"></i><b>3.5.7</b> [E] Exercise 7 - Median, Mean, and Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#solutions-1"><i class="fa fa-check"></i><b>3.6</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bayes-statistics.html"><a href="bayes-statistics.html"><i class="fa fa-check"></i><b>4</b> Bayes statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#derivation-of-bayes-theorem"><i class="fa fa-check"></i><b>4.1</b> Derivation of Bayes’ theorem</a></li>
+<li class="chapter" data-level="4.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayes-theorem-in-the-context-of-parameter-estimation"><i class="fa fa-check"></i><b>4.2</b> Bayes’ theorem in the context of parameter estimation</a></li>
+<li class="chapter" data-level="4.3" data-path="bayes-statistics.html"><a href="bayes-statistics.html#examples"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example_defective_products"><i class="fa fa-check"></i><b>4.3.1</b> Example 1 - defective products</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example_defective_products_extended"><i class="fa fa-check"></i><b>4.3.2</b> Example 2 - extending the defective products example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bayes-statistics.html"><a href="bayes-statistics.html#highest-density-intervals-hdi"><i class="fa fa-check"></i><b>4.4</b> Highest Density Intervals (HDI)</a></li>
+<li class="chapter" data-level="4.5" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian_t_test"><i class="fa fa-check"></i><b>4.5</b> Bayesian t-test</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#example---bayesian-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Example - Bayesian t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bayes-statistics.html"><a href="bayes-statistics.html#bayesian-updating"><i class="fa fa-check"></i><b>4.6</b> Bayesian updating</a></li>
+<li class="chapter" data-level="4.7" data-path="bayes-statistics.html"><a href="bayes-statistics.html#more-complex-parameter-spaces"><i class="fa fa-check"></i><b>4.7</b> More complex parameter spaces</a></li>
+<li class="chapter" data-level="4.8" data-path="bayes-statistics.html"><a href="bayes-statistics.html#advantagesdisadvantages-of-bayesian-statistics"><i class="fa fa-check"></i><b>4.8</b> Advantages/disadvantages of Bayesian statistics</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-advantages"><i class="fa fa-check"></i><b>4.8.1</b> (Some) Advantages</a></li>
+<li class="chapter" data-level="4.8.2" data-path="bayes-statistics.html"><a href="bayes-statistics.html#some-disadvantages"><i class="fa fa-check"></i><b>4.8.2</b> (Some) Disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
+<li class="chapter" data-level="4.10" data-path="bayes-statistics.html"><a href="bayes-statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.10</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.11" data-path="bayes-statistics.html"><a href="bayes-statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.11</b> [H] Exercise 2 - Bayesian updating</a></li>
+<li class="chapter" data-level="4.12" data-path="bayes-statistics.html"><a href="bayes-statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.12</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing (NHST)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#binomial-test"><i class="fa fa-check"></i><b>5.1</b> Binomial test</a></li>
+<li class="chapter" data-level="5.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#proportions-test"><i class="fa fa-check"></i><b>5.2</b> Proportions test</a></li>
+<li class="chapter" data-level="5.3" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#classical-t-test"><i class="fa fa-check"></i><b>5.3</b> (classical) t-test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#one-sample-t-test"><i class="fa fa-check"></i><b>5.3.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="5.3.2" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#two-sample-t-test"><i class="fa fa-check"></i><b>5.3.2</b> Two sample t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html#correlation-test"><i class="fa fa-check"></i><b>5.4</b> Correlation test</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="type-1-and-type-2-errors.html"><a href="type-1-and-type-2-errors.html"><i class="fa fa-check"></i><b>6</b> Type 1 and Type 2 errors</a></li>
+<li class="chapter" data-level="7" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>7</b> Exercises</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods 1, ZHAW</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercises-3" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Exercises<a href="exercises-3.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>………
+## Exercise 1</p>
+<ul>
+<li>Create 1000 random samples from a binomial distribution with <span class="math inline">\(n = 100\)</span> and <span class="math inline">\(p = 0.38\)</span>.</li>
+<li>Calculate the 96% confidence interval for each sample.</li>
+<li>How often was the true parameter (<span class="math inline">\(p = 0.38\)</span>) contained in the constructed interval?</li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="type-1-and-type-2-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/05-NHST.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"favicon": "favicon.ico"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

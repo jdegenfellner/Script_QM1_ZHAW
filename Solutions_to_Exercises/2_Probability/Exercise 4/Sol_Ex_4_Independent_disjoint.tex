@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath}  % For math formulas
+\usepackage{amssymb}  % For additional math symbols
+\usepackage{tikz}     % For diagrams (like Venn diagrams)
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,      % Enable colored links
+    linkcolor = blue,       % Internal links (e.g., table of contents)
+    citecolor = blue,       % Citation links
+    filecolor = blue,       % Links to local files
+    urlcolor = blue         % Links to web pages
+}
+
+
+\begin{document}
+
+\noindent Independence of two events $A$ and $B$ is defined as $\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$\\
+\\
+$A$ and $B$ are disjoint if $\mathbb{P}(A \cap B) = 0$.\\
+\\
+Hence, the events $A$ and $B$ can only be independent and disjoint at the same, if either $\mathbb{P}(A)$ or $\mathbb{P}(B)$ or both at the same time is $0$.\\
+\\
+Later: \\
+Formally, this could be true for a uniformly distributed variable $X \sim U(0,1)$: \\
+Event $A = \{(x=0.54345)\}$\\
+Event $B = \{(x=0.886655444)\}$\\
+Obviously, $A \cap B = \emptyset$ since these are different numbers and we only draw one time.
+Furthermore, $\mathbb{P}(A) = \mathbb{P}(B) = 0$ since for all continuous distributions, the \href{https://stats.stackexchange.com/questions/142730/px-x-0-when-x-is-a-continuous-variable}{probability of single numbers equals zero}.
+
+\end{document}

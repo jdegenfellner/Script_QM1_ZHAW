@@ -1,0 +1,105 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz} % If you plan to draw the tree
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\section*{Exercise 6 - Three Researchers}
+
+\begin{enumerate}
+    \item \textbf{What does the event space $\Omega$ look like?}
+    
+    The event space $\Omega$ for 3 researchers consists of all possible combinations of the researchers either finding a positive effect or not finding an effect. Each researcher can either find a positive effect (denoted by "pos") or not (denoted by "neg"). Thus, the event space $\Omega$ consists of $2^3 = 8$ elementary events.
+    \[
+    \Omega = \{(R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{neg}}), \dots, (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{neg}})\}
+    \]
+  
+    \item \textbf{Which elementary events are in the set of all possible outcomes of our 3-researcher experiment and how many are there?}
+    
+    The total number of elementary events is $2^3 = 8$. The set of all possible outcomes is:
+    \[
+    \{(R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{neg}}), (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{neg}}),
+    \]
+    \[
+    (R1_{\text{neg}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{pos}}, R3_{\text{neg}}), (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{neg}})\}
+    \]
+    
+    \item \textbf{Draw the corresponding binary tree for this experiment.}
+    
+
+\begin{center}
+\begin{tikzpicture}[level distance=3cm, sibling distance=3.5cm, 
+  edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}, 
+  scale=0.9, transform shape]
+    % Root node (Start of the experiment)
+    \node {\small Start}
+    % Level 1: Researcher 1
+    child {
+        node {\small R1pos}
+        % Level 2: Researcher 2
+        child { 
+            node {\small R2pos}
+            % Level 3: Researcher 3
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+        child { 
+            node {\small R2neg}
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+    }
+    child {
+        node {\small R1neg}
+        child {
+            node {\small R2pos}
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+        child {
+            node {\small R2neg}
+            child { node[rotate=45] {\small R3pos} }
+            child { node[rotate=-45] {\small R3neg} }
+        }
+    };
+\end{tikzpicture}
+\end{center}
+    \item \textbf{Which elementary events are in the following event: "Researcher 3 finds a positive effect"?}
+    
+    The event that "Researcher 3 finds a positive effect" consists of all outcomes where the third researcher's result is "pos". Thus, the event set is:
+    \[
+    \{(R1_{\text{pos}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{pos}}, R3_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{pos}})\}
+    \]
+    
+    \item \textbf{Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?}
+    
+    The event "only researcher 1 finds an effect" is represented by the elementary event:
+    \[
+    (R1_{\text{pos}}, R2_{\text{neg}}, R3_{\text{neg}})
+    \]
+    
+    The event "only researcher 3 finds an effect" is represented by the elementary event:
+    \[
+    (R1_{\text{neg}}, R2_{\text{neg}}, R3_{\text{pos}})
+    \]
+    
+    These two events are \textbf{disjoint} because they cannot happen simultaneously (i.e., one requires researcher 1 to find an effect while the other requires researcher 1 not to find an effect). 
+    
+    Are they independent?
+    
+    $0 < 0.04*0.96^2 = \\
+    \mathbb{P}(\text{only researcher 1 finds an effect}) \neq \\
+    \mathbb{P}(\text{only researcher 1 finds an effect}|\text{only researcher 3 finds an effect}) = 0$ \\
+    since this is impossible, if only researcher 3 found an effect.
+    
+    
+    
+\end{enumerate}
+
+\end{document}

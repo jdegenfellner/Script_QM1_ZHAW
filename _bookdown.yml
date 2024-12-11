@@ -1,0 +1,20 @@
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files:
+  - index.Rmd
+  #- 01-intro.Rmd
+  - 02-probs.Rmd
+  - 03-descriptive_stats.Rmd
+  - 04-Bayes_statistics.Rmd
+  #- 04-citations.Rmd
+  - 05-NHST.Rmd
+  #- 06-share.Rmd
+  - 07-references.Rmd
+output_dir: "docs"
+
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  template: template.tex

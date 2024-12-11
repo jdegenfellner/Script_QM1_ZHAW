@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Exercise 7 - Conditional Probability}
+
+The event space is:
+
+\[
+\Omega = \{ (R1_{\text{pos}}, R2_{\text{pos}}), (R1_{\text{pos}}, R2_{\text{neg}}), (R1_{\text{neg}}, R2_{\text{pos}}), (R1_{\text{neg}}, R2_{\text{neg}}) \}
+\]
+
+We are interested in the conditional probability:
+
+\[
+P(\text{R1 finds an effect} \mid \text{R2 finds an effect})
+\]
+
+This is given by:
+
+\[
+P(R1_{\text{pos}} \mid R2_{\text{pos}}) = \frac{P(R1_{\text{pos}} \cap R2_{\text{pos}})}{P(R2_{\text{pos}})}
+\]
+\\
+\textbf{Step 1}: Compute the probability of \( R2_{\text{pos}} \)
+The probability that researcher 2 finds an effect, \( P(R2_{\text{pos}}) \), is the sum of the probabilities of the elementary events where \( R2 \) finds an effect:
+
+\[
+P(R2_{\text{pos}}) = P(R1_{\text{pos}} \cap R2_{\text{pos}}) + P(R1_{\text{neg}} \cap R2_{\text{pos}})
+\]
+\\
+\textbf{Step 2}: Compute the probability of \( R1_{\text{pos}} \cap R2_{\text{pos}} \)
+This is the probability of both researchers finding an effect, \( P(R1_{\text{pos}} \cap R2_{\text{pos}}) \).\\
+\\
+\textbf{Step 3}: Finally, the conditional probability is:
+
+\[
+P(R1_{\text{pos}} \mid R2_{\text{pos}}) = \frac{P(R1_{\text{pos}} \cap R2_{\text{pos}})}{P(R2_{\text{pos}})} = \frac{0.04^2}{0.04 \cdot 0.04 + 0.96 \cdot 0.04} = 0.04
+\]
+
+This shows that researcher 1 finding an effect is independent from researcher 2 finding an effect.
+
+\end{document}

@@ -1,0 +1,21 @@
+bookdown::gitbook:
+  cover_image: "images/CoverQM1.png"
+  css: style.css
+  config:
+    favicon: "favicon.ico"
+    toc:
+      before: |
+        <li><a href="./">Quantitative Methods 1</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/%s
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  template: template.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: 
+  cover_image: "images/CoverQM1.png"
