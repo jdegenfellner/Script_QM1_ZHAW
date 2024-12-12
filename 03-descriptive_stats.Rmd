@@ -276,6 +276,9 @@ of the strength and direction of the **linear** relationship between them. It do
 measure other kinds of relationships (for instance monotonic or polynomial). 
 See also [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
 
+You might play around with [this online tool](https://rpsychologist.com/correlation/)
+to get a better feeling what correlation is.
+
 Correlation is often denoted by the Greek letter 
 
 $$\rho = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$$
@@ -523,7 +526,7 @@ Here is an example of a Spearman correlation:
 ```{r}
 set.seed(123)
 x <- 1:7
-y <- round(2*x + rt(7, df = 3))
+y <- round(2 * x + rt(7, df = 3))
 plot(x, y, type = "p", col = "blue", lwd = 2)
 
 cor.test(x, y, method = "pearson")
@@ -532,10 +535,13 @@ cor.test(x, y, method = "spearman")
 # by hand:
 rank(x) # already ordered
 rank(y) # order of y-values
+y
 
 cor(rank(x), rank(y), method = "pearson")
 cor(x, y, method = "spearman")
 ```
+The y-values contain two identical values ($6$), both get rank $3.5$.
+These are so-called [ties](https://stats.stackexchange.com/questions/7941/what-is-tied-data-in-the-context-of-a-rank-correlation-coefficient).
 
 ## Exercises
 
