@@ -762,7 +762,7 @@ df <- data.frame(
 df
 cor(df$Pre_Weight, df$Post_Weight)
 
-df %>% mutate(pre_post_diff = Post_Weight - Pre_Weight) %>%
+df %>% mutate(pre_post_diff = Pre_Weight - Post_Weight) %>%
   ggplot(aes(x = Pre_Weight, y = Post_Weight)) +
   geom_point() +
   labs(title = "Pre-Post Weights with the same person",
@@ -770,24 +770,24 @@ df %>% mutate(pre_post_diff = Post_Weight - Pre_Weight) %>%
        y = "Post-Weight [kg]") +
   theme(plot.title = element_text(hjust = 0.5))
 
-t.test(df$Pre_Weight, df$Post_Weight, paired = TRUE)
+t.test(df$Pre_Weight, df$Post_Weight, paired = TRUE,
+       alternative = "greater", mu = 5)
 ```
 
 **Let's verify the test statistic and $p$-value by "hand":**
 
 ```{r}
-mean_diff <- mean(df$Post_Weight - df$Pre_Weight)
-sd_diff <- sd(df$Post_Weight - df$Pre_Weight)
+mean_diff <- mean(df$Pre_Weight - df$Post_Weight)
+sd_diff <- sd(df$Pre_Weight - df$Post_Weight)
 n <- nrow(df)
-t_stat <- mean_diff / (sd_diff / sqrt(n))
+t_stat <- (mean_diff - 5) / (sd_diff / sqrt(n))
 t_stat
 
-pt(t_stat, df = n - 1) * 2
+pt(-t_stat, df = n - 1)
 ```
 
-Conclusion: It is unlikely that we would see a mean difference of 6.5 kg or more by chance alone 
-assuming that the true mean difference is 5 kg or less. We reject the null hypothesis and accept the 
-alternative hypothesis that the mean weight loss was more than 5 kg.
+Conclusion: The observed mean difference in weights is explainable by chance alone ($p$-value rather high).
+We continue to believe in $H_0$.
 
 ## Correlation test
 

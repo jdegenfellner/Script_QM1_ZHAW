@@ -1170,7 +1170,7 @@ i.e. the true difference between pre- and post weight is on average smaller tha
 ## 15      78.41       56.64</code></pre>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="nhst.html#cb191-1" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>Pre_Weight, df<span class="sc">$</span>Post_Weight)</span></code></pre></div>
 <pre><code>## [1] 0.7023552</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="nhst.html#cb193-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pre_post_diff =</span> Post_Weight <span class="sc">-</span> Pre_Weight) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="nhst.html#cb193-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pre_post_diff =</span> Pre_Weight <span class="sc">-</span> Post_Weight) <span class="sc">%&gt;%</span></span>
 <span id="cb193-2"><a href="nhst.html#cb193-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Pre_Weight, <span class="at">y =</span> Post_Weight)) <span class="sc">+</span></span>
 <span id="cb193-3"><a href="nhst.html#cb193-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb193-4"><a href="nhst.html#cb193-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Pre-Post Weights with the same person&quot;</span>,</span>
@@ -1178,30 +1178,30 @@ i.e. the true difference between pre- and post weight is on average smaller tha
 <span id="cb193-6"><a href="nhst.html#cb193-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Post-Weight [kg]&quot;</span>) <span class="sc">+</span></span>
 <span id="cb193-7"><a href="nhst.html#cb193-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="nhst.html#cb194-1" tabindex="-1"></a><span class="fu">t.test</span>(df<span class="sc">$</span>Pre_Weight, df<span class="sc">$</span>Post_Weight, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="nhst.html#cb194-1" tabindex="-1"></a><span class="fu">t.test</span>(df<span class="sc">$</span>Pre_Weight, df<span class="sc">$</span>Post_Weight, <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb194-2"><a href="nhst.html#cb194-2" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">mu =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
 ## data:  df$Pre_Weight and df$Post_Weight
-## t = 2.987, df = 14, p-value = 0.0098
-## alternative hypothesis: true mean difference is not equal to 0
+## t = 0.69261, df = 14, p-value = 0.2499
+## alternative hypothesis: true mean difference is greater than 5
 ## 95 percent confidence interval:
-##   1.835423 11.183244
+##  2.671093      Inf
 ## sample estimates:
 ## mean difference 
 ##        6.509333</code></pre>
 <p><strong>Let’s verify the test statistic and <span class="math inline">\(p\)</span>-value by “hand”:</strong></p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="nhst.html#cb196-1" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Post_Weight <span class="sc">-</span> df<span class="sc">$</span>Pre_Weight)</span>
-<span id="cb196-2"><a href="nhst.html#cb196-2" tabindex="-1"></a>sd_diff <span class="ot">&lt;-</span> <span class="fu">sd</span>(df<span class="sc">$</span>Post_Weight <span class="sc">-</span> df<span class="sc">$</span>Pre_Weight)</span>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="nhst.html#cb196-1" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Pre_Weight <span class="sc">-</span> df<span class="sc">$</span>Post_Weight)</span>
+<span id="cb196-2"><a href="nhst.html#cb196-2" tabindex="-1"></a>sd_diff <span class="ot">&lt;-</span> <span class="fu">sd</span>(df<span class="sc">$</span>Pre_Weight <span class="sc">-</span> df<span class="sc">$</span>Post_Weight)</span>
 <span id="cb196-3"><a href="nhst.html#cb196-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
-<span id="cb196-4"><a href="nhst.html#cb196-4" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> mean_diff <span class="sc">/</span> (sd_diff <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb196-4"><a href="nhst.html#cb196-4" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (mean_diff <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">/</span> (sd_diff <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
 <span id="cb196-5"><a href="nhst.html#cb196-5" tabindex="-1"></a>t_stat</span></code></pre></div>
-<pre><code>## [1] -2.987034</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="nhst.html#cb198-1" tabindex="-1"></a><span class="fu">pt</span>(t_stat, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 0.009800118</code></pre>
-<p>Conclusion: It is unlikely that we would see a mean difference of 6.5 kg or more by chance alone
-assuming that the true mean difference is 5 kg or less. We reject the null hypothesis and accept the
-alternative hypothesis that the mean weight loss was more than 5 kg.</p>
+<pre><code>## [1] 0.6926101</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="nhst.html#cb198-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span>t_stat, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2499412</code></pre>
+<p>Conclusion: The observed mean difference in weights is explainable by chance alone (<span class="math inline">\(p\)</span>-value rather high).
+We continue to believe in <span class="math inline">\(H_0\)</span>.</p>
 </div>
 </div>
 <div id="correlation-test" class="section level2 hasAnchor" number="5.5">
