@@ -825,7 +825,7 @@ mtcars %>%
 cor.test(mtcars$mpg, mtcars$wt, conf.level = 0.96)
 ```
 
-$r=0.87$ is the sample correlation coefficient. 
+$r=-0.87$ is the sample correlation coefficient. 
 Interestingly, `cor.test` in R can only test $H_0: \rho = 0$.
 
 In the scatter plot, we can see a linear relationship between the two variables.
