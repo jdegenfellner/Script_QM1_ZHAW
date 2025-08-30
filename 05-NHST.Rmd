@@ -40,9 +40,9 @@ There are many [misconeptions about $p$-values](https://sixsigmadsi.com/wp-conte
 - **Significance level $\alpha$**: Researchers set a threshold to determine whether to reject $H_0$. 
 If the $p$-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
 Note, that **there is absolutely no special reason to use $\alpha = 0.05$ as a default value**.
-To quote [Ronald Fisher](https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6):
-"..., and it is convenient to take twice the standard error as the limit of 
-significance; this is roughly equivalent to the corresponding limit P=0.05, ..."
+To quote [Ronald Fisher](https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6) (p.44):
+"The value for which P = .05, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this 
+point as a limit in judging whether a deviation is to be considered significant or not."
 
 
 **How NHST works**:
