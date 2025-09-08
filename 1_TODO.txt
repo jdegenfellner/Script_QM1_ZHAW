@@ -1,3 +1,7 @@
 Use logical fallacy example from
 https://doi.org/10.1007/s11192-018-2655-4
 to show weakness of NHST
+
+Update Link to Statistical Rethinking Second Edition
+https://oceanrep.geomar.de/id/eprint/55819/1/Statistical%20Rethinking%202nd%20Edition.pdf
+...Also in QM2/3...
