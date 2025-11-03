@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Quantitative Methods 1, ZHAW</title>
+  <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Quantitative Methods 1, ZHAW" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Script Quantitative Methods 1, ZHAW," />
+  <meta name="github-repo" content="jdegenfellner/Script_QM1_ZHAW" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Quantitative Methods 1, ZHAW" />
+  
+  <meta name="twitter:description" content="Script Quantitative Methods 1, ZHAW," />
+  
+
+<meta name="author" content="Jürgen Degenfellner" />
+
+
+<meta name="date" content="2025-11-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Methods 1</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#introduction"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#books-i-can-highly-recommend"><i class="fa fa-check"></i><b>1.1</b> Books I can (highly) recommend:</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#section"><i class="fa fa-check"></i><b>1.2</b> <img src="images/Rlogo.png" height="20px"/></a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#additional-tools"><i class="fa fa-check"></i><b>1.3</b> Additional Tools</a></li>
+<li class="chapter" data-level="1.4" data-path=""><a href="#workflow-suggestion"><i class="fa fa-check"></i><b>1.4</b> Workflow suggestion</a></li>
+<li class="chapter" data-level="1.5" data-path=""><a href="#orientation-for-the-course-and-script"><i class="fa fa-check"></i><b>1.5</b> Orientation for the course and script</a></li>
+<li class="chapter" data-level="1.6" data-path=""><a href="#warning-of-incompleteness"><i class="fa fa-check"></i><b>1.6</b> Warning of incompleteness</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods 1, ZHAW</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Quantitative Methods 1, ZHAW</h1>
+<p class="author"><em>Jürgen Degenfellner</em></p>
+<p class="date"><em>2025-11-03</em></p>
+</div>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This script is a collection of notes and exercises for the course “Quantitative Methods 1” (Codename for: Statistical foundations) at <a href="https://www.zhaw.ch/en/university/">ZHAW</a> in Winterthur, Switzerland.
+It is permanently evolving and the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW">github repository</a> is public.</p>
+<p>The <strong>vision</strong> is to write this script in <strong>collaboration with students</strong>. If you find any errors, have suggestions, or want to contribute, feel free to contact me.
+Which (online) content (video, book, blog…) helped you understand the topic at hand better? We should link those resources in the script!</p>
+<p>The <strong>goal</strong> of this script is to provide a starting point for further reading and learning.</p>
+<p>Feel free to use any content for your own purposes.</p>
+<p>At the end of each chapter, you will find a list of exercises. Last year’s exam will be uploaded in time in
+the respective Moodle folder to help you prepare.</p>
+<p>The most important lessons you’ll learn are not part of the final exam: Intellectual honesty and humility.</p>
+<p>A lot of content relevant for this course can be found in the <a href="https://github.com/jdegenfellner/ZHAW_Teaching">ZHAW_teaching</a> folder,
+which contains many R scripts (among other stuff).</p>
+<p>We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data.
+Statistical modeling will be covered later.</p>
+<p>One thing to consider for health sciences with respect to quantitative methods is the following: We do not <em>have</em> to use quantitative methods for each and every
+question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., n=10) often do not warrant the use of inferential
+statistics or estimation or at least make it considerably harder to answer the question at hand.
+<em>If</em> one decides to answer questions in a statistical way, we are bound to the rules of the game.</p>
+<p>GPT4o and Github Copilot where used for writing this script.</p>
+<div id="books-i-can-highly-recommend" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Books I can (highly) recommend:<a href="#books-i-can-highly-recommend" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>(Free, looks nice at first glance) <a href="https://ia803404.us.archive.org/6/items/introduction-to-probability-joseph-k.-blitzstein-jessica-hwang/Introduction%20to%20Probability-Joseph%20K.%20Blitzstein%2C%20Jessica%20Hwang.pdf">Introduction to Probability</a></li>
+<li><a href="https://xcelab.net/rm/">Statistical Rethinking</a>, YouTube-Playlist: <a href="https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa">Statistical Rethinking 2023</a></li>
+<li>(Free) <a href="https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0">Understanding Regression Analysis: A Conditional Distribution Approach</a></li>
+<li><a href="http://www.stat.columbia.edu/~gelman/arm/">Data Analysis Using Regression and Multilevel/Hierarchical Models</a></li>
+<li>(Free) <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Doing Bayesian Data Analysis</a></li>
+<li><a href="https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254">Applied Regression Analysis and Generalized Linear Models</a></li>
+</ul>
+<p>These books are well-written, approachable, and not overly technical.</p>
+<p>For more theoretically advanced approaches, I can recommend:</p>
+<ul>
+<li>(Free) <a href="http://www.stat.columbia.edu/~gelman/book/">Bayesian Data Analysis</a></li>
+<li>(Free) <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">Elements of Statistical Learning</a></li>
+<li>(Free) <a href="https://students.aiu.edu/submissions/profiles/resources/onlineBook/y6z7i8_t4q6Z9_advanced%20statistics.pdf">Unterstanding Advanced Statistical Methods</a></li>
+</ul>
+</div>
+<div id="section" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> <img src="images/Rlogo.png" height="20px"/><a href="#section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this course, we use <a href="https://www.r-project.org/">R</a> as our main tool for data analysis.
+R is a free software environment for statistical computing and graphics.
+It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS.</p>
+<p>We are following a <strong>two-tier</strong> approach to learning R. The <strong>first tier</strong> jumps right into solving
+exercises and problems with R using GPT. This anticipates the capacities of the software
+without knowing the details yet. It is not expected that you understand every detail of the codes
+GPT might suggest. This comes with time.</p>
+<p>The <strong>second tier</strong> is a more detailed approach to R,
+where we learn the basics of the language and how to use it effectively. This part will be done
+in extensive recorded eLearning sessions over the course.</p>
+<p>You may want to give Hadley Wickham’s book a try:</p>
+<ul>
+<li>(Free) <a href="https://r4ds.had.co.nz/">R for Data Science</a></li>
+</ul>
+<p>Especially, the chapter on <a href="https://r4ds.hadley.nz/eda#introduction">exploratory data analysis</a> is very helpful.</p>
+<p>This free book seems also very helpful for beginners:</p>
+<ul>
+<li>(Free) <a href="https://bookdown.org/daniel_dauber_io/r4np_book/">R for non-programmers R4NP</a></li>
+</ul>
+<p>Further resources:</p>
+<p><a href="https://www.youtube.com/watch?v=V8eKsto3Ug&amp;t=140s">(Example) Introduction to R</a></p>
+<p>In this video, many basic commands are explained. There are many more R introductions.
+My tip: Watch the beginning of a few different ones and see which explanations work best for you individually.</p>
+<p><a href="https://cran.r-project.org/other-docs.html">Overview of introductory resources</a></p>
+</div>
+<div id="additional-tools" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Additional Tools<a href="#additional-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Currently I use a combination of <a href="https://github.com/features/copilot">Github Copilot</a> (paid), <a href="https://chatgpt.com/">GPT4o</a> (paid), and <a href="https://posit.co/download/rstudio-desktop/">RStudio</a> for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
+As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet (in the style of AutoGPT or similar approaches). Maybe, we’ll work on that soon as a side project. For the more technically inclined among you,
+you can also use VSCode with the Github Copilot extension to write your R-Code.</p>
+<p>Large Language Models (LLM) like GPT4o enable you to write/adapt code using natural language. Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck. They are far from perfect yet, but an impressive feat of engineering.</p>
+</div>
+<div id="workflow-suggestion" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Workflow suggestion<a href="#workflow-suggestion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You could use RStudio to write and execute your code. In the global options of RStudio (below), you can add your github copilot account. Additionally, you can have your GPT4o(1) window open and copy-paste images of your plots or code in order to achieve your current objective.
+<img src="images/RStudio_Global_Options.png" alt="Alt text" /></p>
+</div>
+<div id="orientation-for-the-course-and-script" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Orientation for the course and script<a href="#orientation-for-the-course-and-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Throughout the script it is important to keep a mental mind map of the topics we are covering and why.
+Typically, we start with a question like “Is this therapy more effective than usual care”,
+then we collect data, summarize it, and then we try to answer the question. Often, we already have
+the data (a so-called convenience sample) and we try to answer
+a question with it (exploratively).</p>
+<p>By answering the question, we make an inference about the population respectively the process generating
+the data. So we want to conclude something about the population from the sample in front of us.</p>
+<p>When we only <strong>describe the data to better understand</strong> it, we are in the realm of
+<strong><a href="#descriptive_stats">descriptive statistics</a></strong>.</p>
+<p>When we try to make an inference about the population, we are in the
+realm of <strong>inferential statistics</strong>. Simply put, we want to find out if, for example, the treatment effect
+we are seeing in the sample is also present in the population or if what we are seeing was just by chance.
+We also add measures of uncertainty (for instance credible or confidence intervals) to our estimates.</p>
+<p>We can do this inference in two ways: <strong>Frequentist approach</strong> using null hypothesis significance
+testing (<a href="#nhst">NHST</a>), or by using the <strong>Bayesian approach</strong> (<a href="#bayes_statistics">Bayesian inference</a>).</p>
+</div>
+<div id="warning-of-incompleteness" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Warning of incompleteness<a href="#warning-of-incompleteness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This script is not static but a continuously evolving document.
+It represents a snapshot of our understanding at the time of writing.
+Many of the topics touched upon or mentioned briefly here are vast research fields
+in their own right, and it is beyond the scope of this script to cover them comprehensively.</p>
+<p>Our goal, however, is to create a resource that aligns closely with the needs
+of health sciences and reflects our needs in applied research.
+While it may not be exhaustive, we aim for it to be both practical and relevant,
+serving as a tailored guide for our specific context.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/%s",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": false,
+  "toc": {
+    "collapse": "subsection"
+  },
+  "favicon": "favicon.ico"
+});
+});
+</script>
+
+</body>
+
+</html>

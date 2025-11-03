@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Quantitative Methods 1, ZHAW</title>
   <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Quantitative Methods 1, ZHAW" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2024-12-23" />
+<meta name="date" content="2025-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -63,12 +63,13 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -78,7 +79,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -362,7 +363,7 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Quantitative Methods 1, ZHAW</h1>
 <p class="author"><em>Jürgen Degenfellner</em></p>
-<p class="date"><em>2024-12-23</em></p>
+<p class="date"><em>2025-11-03</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -370,10 +371,10 @@ div.csl-indent {
 It is permanently evolving and the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW">github repository</a> is public.</p>
 <p>The <strong>vision</strong> is to write this script in <strong>collaboration with students</strong>. If you find any errors, have suggestions, or want to contribute, feel free to contact me.
 Which (online) content (video, book, blog…) helped you understand the topic at hand better? We should link those resources in the script!</p>
-<p>The <strong>goal</strong> of this script is to provide a starting point for further reading and learning.
-It should function as an initial start to get you going. We are all learners.</p>
+<p>The <strong>goal</strong> of this script is to provide a starting point for further reading and learning.</p>
 <p>Feel free to use any content for your own purposes.</p>
-<p>At the end of each chapter, you will find a list of exercises. Last year’s exam will be uploaded in time in the respective Moodle folder to help you prepare.</p>
+<p>At the end of each chapter, you will find a list of exercises. Last year’s exam will be uploaded in time in
+the respective Moodle folder to help you prepare.</p>
 <p>The most important lessons you’ll learn are not part of the final exam: Intellectual honesty and humility.</p>
 <p>A lot of content relevant for this course can be found in the <a href="https://github.com/jdegenfellner/ZHAW_Teaching">ZHAW_teaching</a> folder,
 which contains many R scripts (among other stuff).</p>
@@ -492,43 +493,43 @@ serving as a tailored guide for our specific context.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"favicon": "favicon.ico"
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jdegenfellner/Script_QM1_ZHAW/edit/main/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "favicon": "favicon.ico"
 });
 });
 </script>
