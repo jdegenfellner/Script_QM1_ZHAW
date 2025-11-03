@@ -178,7 +178,7 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#books-i-can-highly-recommend"><i class="fa fa-check"></i><b>1.1</b> Books I can (highly) recommend:</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#books-i-can-recommend"><i class="fa fa-check"></i><b>1.1</b> Books I can recommend:</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.2</b> <img src="images/Rlogo.png" height="20px"/></a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#additional-tools"><i class="fa fa-check"></i><b>1.3</b> Additional Tools</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#workflow-suggestion"><i class="fa fa-check"></i><b>1.4</b> Workflow suggestion</a></li>
@@ -373,7 +373,8 @@ It is permanently evolving and the <a href="https://github.com/jdegenfellner/Scr
 Which (online) content (video, book, blog…) helped you understand the topic at hand better? We should link those resources in the script!</p>
 <p>The <strong>goal</strong> of this script is to provide a starting point for further reading and learning.</p>
 <p>Feel free to use any content for your own purposes.</p>
-<p>At the end of each chapter, you will find a list of exercises. Last year’s exam will be uploaded in time in
+<p>At the end of each chapter, you will find a list of exercises.
+A previous exam will be uploaded in time in
 the respective Moodle folder to help you prepare.</p>
 <p>The most important lessons you’ll learn are not part of the final exam: Intellectual honesty and humility.</p>
 <p>A lot of content relevant for this course can be found in the <a href="https://github.com/jdegenfellner/ZHAW_Teaching">ZHAW_teaching</a> folder,
@@ -381,16 +382,17 @@ which contains many R scripts (among other stuff).</p>
 <p>We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data.
 Statistical modeling will be covered later.</p>
 <p>One thing to consider for health sciences with respect to quantitative methods is the following: We do not <em>have</em> to use quantitative methods for each and every
-question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., n=10) often do not warrant the use of inferential
+question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., <span class="math inline">\(n=10\)</span>) often do not warrant the use of inferential
 statistics or estimation or at least make it considerably harder to answer the question at hand.
 <em>If</em> one decides to answer questions in a statistical way, we are bound to the rules of the game.</p>
-<p>GPT4o and Github Copilot where used for writing this script.</p>
-<div id="books-i-can-highly-recommend" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Books I can (highly) recommend:<a href="index.html#books-i-can-highly-recommend" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>GPT4o and Github Copilot were used for writing this script.</p>
+<div id="books-i-can-recommend" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Books I can recommend:<a href="index.html#books-i-can-recommend" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>(Free, looks nice at first glance) <a href="https://ia803404.us.archive.org/6/items/introduction-to-probability-joseph-k.-blitzstein-jessica-hwang/Introduction%20to%20Probability-Joseph%20K.%20Blitzstein%2C%20Jessica%20Hwang.pdf">Introduction to Probability</a></li>
-<li><a href="https://xcelab.net/rm/">Statistical Rethinking</a>, YouTube-Playlist: <a href="https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa">Statistical Rethinking 2023</a></li>
-<li>(Free) <a href="https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0">Understanding Regression Analysis: A Conditional Distribution Approach</a></li>
+<li>(Free, purchase of the book is recommended; page numbers in our script refer to the printed version of the book) <a href="https://github.com/Booleans/statistical-rethinking/blob/master/Statistical%20Rethinking%202nd%20Edition.pdf">Statistical Rethinking</a>
+, YouTube-Playlist: <a href="https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa">Statistical Rethinking 2023</a></li>
+<li>(Free with a bit of searching) <a href="https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0">Understanding Regression Analysis: A Conditional Distribution Approach</a></li>
 <li><a href="http://www.stat.columbia.edu/~gelman/arm/">Data Analysis Using Regression and Multilevel/Hierarchical Models</a></li>
 <li>(Free) <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Doing Bayesian Data Analysis</a></li>
 <li><a href="https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254">Applied Regression Analysis and Generalized Linear Models</a></li>
@@ -432,10 +434,15 @@ My tip: Watch the beginning of a few different ones and see which explanations w
 </div>
 <div id="additional-tools" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Additional Tools<a href="index.html#additional-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Currently I use a combination of <a href="https://github.com/features/copilot">Github Copilot</a> (paid), <a href="https://chatgpt.com/">GPT4o</a> (paid), and <a href="https://posit.co/download/rstudio-desktop/">RStudio</a> for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
-As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet (in the style of AutoGPT or similar approaches). Maybe, we’ll work on that soon as a side project. For the more technically inclined among you,
-you can also use VSCode with the Github Copilot extension to write your R-Code.</p>
-<p>Large Language Models (LLM) like GPT4o enable you to write/adapt code using natural language. Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck. They are far from perfect yet, but an impressive feat of engineering.</p>
+<p>Currently I use a combination of <a href="https://github.com/features/copilot">Github Copilot</a> (paid),
+<a href="https://chatgpt.com/">GPT5</a> (paid), and <a href="https://posit.co/download/rstudio-desktop/">RStudio</a> for writing code and this script.
+You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity.
+I can highly recommend using these tools in combination. GPT5 can process images as well, which is a game changer.
+As far as I know, there is no self-debugging version of GPT5 in combination with RStudio available yet
+(in the style of AutoGPT or similar approaches).</p>
+<p>Large Language Models (LLM) like GPT5 enable you to write/adapt code using natural language.
+Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck.
+They are far from perfect yet, but an impressive feat of engineering.</p>
 </div>
 <div id="workflow-suggestion" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Workflow suggestion<a href="index.html#workflow-suggestion" class="anchor-section" aria-label="Anchor link to header"></a></h2>

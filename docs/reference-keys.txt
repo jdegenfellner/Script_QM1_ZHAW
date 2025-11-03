@@ -1,6 +1,6 @@
 fig:testing
 introduction
-books-i-can-highly-recommend
+books-i-can-recommend
 section
 additional-tools
 workflow-suggestion

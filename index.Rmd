@@ -31,7 +31,8 @@ The **goal** of this script is to provide a starting point for further reading a
 
 Feel free to use any content for your own purposes.
 
-At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in 
+At the end of each chapter, you will find a list of exercises. 
+A previous exam will be uploaded in time in 
 the respective Moodle folder to help you prepare. 
 
 The most important lessons you'll learn are not part of the final exam: Intellectual honesty and humility.
@@ -43,17 +44,18 @@ We will focus a lot on descriptive statistics and basic concepts as it is a very
 Statistical modeling will be covered later.
 
 One thing to consider for health sciences with respect to quantitative methods is the following: We do not *have* to use quantitative methods for each and every 
-question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., n=10) often do not warrant the use of inferential 
+question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., $n=10$) often do not warrant the use of inferential 
 statistics or estimation or at least make it considerably harder to answer the question at hand. 
 *If* one decides to answer questions in a statistical way, we are bound to the rules of the game. 
 
-GPT4o and Github Copilot where used for writing this script.
+GPT4o and Github Copilot were used for writing this script.
 
-## Books I can (highly) recommend:
+## Books I can recommend:
 
 - (Free, looks nice at first glance) [Introduction to Probability](https://ia803404.us.archive.org/6/items/introduction-to-probability-joseph-k.-blitzstein-jessica-hwang/Introduction%20to%20Probability-Joseph%20K.%20Blitzstein%2C%20Jessica%20Hwang.pdf)
-- [Statistical Rethinking](https://xcelab.net/rm/), YouTube-Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
-- (Free) [Understanding Regression Analysis: A Conditional Distribution Approach](https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0)
+- (Free, purchase of the book is recommended; page numbers in our script refer to the printed version of the book) [Statistical Rethinking](https://github.com/Booleans/statistical-rethinking/blob/master/Statistical%20Rethinking%202nd%20Edition.pdf)
+, YouTube-Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
+- (Free with a bit of searching) [Understanding Regression Analysis: A Conditional Distribution Approach](https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0)
 - [Data Analysis Using Regression and Multilevel/Hierarchical Models](http://www.stat.columbia.edu/~gelman/arm/)
 - (Free) [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
 - [Applied Regression Analysis and Generalized Linear Models](https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254)
@@ -103,11 +105,16 @@ My tip: Watch the beginning of a few different ones and see which explanations w
 
 ## Additional Tools
 
-Currently I use a combination of [Github Copilot](https://github.com/features/copilot) (paid), [GPT4o](https://chatgpt.com/) (paid), and [RStudio](https://posit.co/download/rstudio-desktop/) for writing code and this script. You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. I can highly recommend using these tools in combination. GPT4o can process images as well, which is a game changer.
-As far as I know, there is no self-debugging version of GPT4o in combination with RStudio available yet (in the style of AutoGPT or similar approaches). Maybe, we'll work on that soon as a side project. For the more technically inclined among you, 
-you can also use VSCode with the Github Copilot extension to write your R-Code.
+Currently I use a combination of [Github Copilot](https://github.com/features/copilot) (paid), 
+[GPT5](https://chatgpt.com/) (paid), and [RStudio](https://posit.co/download/rstudio-desktop/) for writing code and this script. 
+You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity. 
+I can highly recommend using these tools in combination. GPT5 can process images as well, which is a game changer.
+As far as I know, there is no self-debugging version of GPT5 in combination with RStudio available yet 
+(in the style of AutoGPT or similar approaches). 
 
-Large Language Models (LLM) like GPT4o enable you to write/adapt code using natural language. Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck. They are far from perfect yet, but an impressive feat of engineering.
+Large Language Models (LLM) like GPT5 enable you to write/adapt code using natural language. 
+Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck. 
+They are far from perfect yet, but an impressive feat of engineering.
 
 ## Workflow suggestion
 
