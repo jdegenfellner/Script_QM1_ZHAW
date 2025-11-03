@@ -28,11 +28,11 @@ The **vision** is to write this script in **collaboration with students**. If yo
 Which (online) content (video, book, blog...) helped you understand the topic at hand better? We should link those resources in the script!
 
 The **goal** of this script is to provide a starting point for further reading and learning. 
-It should function as an initial start to get you going. We are all learners.
 
 Feel free to use any content for your own purposes.
 
-At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in the respective Moodle folder to help you prepare. 
+At the end of each chapter, you will find a list of exercises. Last year's exam will be uploaded in time in 
+the respective Moodle folder to help you prepare. 
 
 The most important lessons you'll learn are not part of the final exam: Intellectual honesty and humility.
 
