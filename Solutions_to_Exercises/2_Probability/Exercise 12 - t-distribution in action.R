@@ -9,7 +9,6 @@
 # standard error, SE. This is the standard deviation of the mean in this case.
 
 # Question 3:
-# Load necessary library
 library(ggplot2)
 
 # Define parameters for each time point for Acapella Only group
@@ -47,7 +46,6 @@ expanded_data_pr <- data.frame(
 # Combine data for both groups
 combined_data <- rbind(expanded_data_acapella, expanded_data_pr)
 
-# Plot the density curves for each time point and group
 ggplot(combined_data, aes(x = distance, color = time, linetype = group)) +
   geom_density() +
   labs(title = "Normal Distributions for Both Groups at Different Time Points",
@@ -57,7 +55,7 @@ ggplot(combined_data, aes(x = distance, color = time, linetype = group)) +
   scale_linetype_manual(values = c("solid", "dashed"))  # Solid lines for one group, dashed for the other
 
 # We can see that in the Acapella only group, there is not discernable difference
-# from baseline to 8/20 weeks, wheras
+# from baseline to 8/20 weeks, whereas
 # in the Acapella + Pulmonary Rehab group, there is a clear shift to the right
 # (higher distance)
 

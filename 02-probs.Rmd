@@ -1052,7 +1052,7 @@ They want to find out if the ISWT is different between the two groups.
 (Note, that an arbitrary threshold for the $p$-value of 0.05 is used to decide if the groups 
 are "significantly" different. One should [avoid](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) these formulations.
 There is no reason not to use a different threshold (like 4.3%).)
-**The standardized difference of the group means is $t$-distributed**. This case is a bit more complex than the simple ones, 
+**The standardized difference of the group means is $t$-distributed (under the assumption that there is no difference between the groups)**. This case is a bit more complex than the simple ones, 
 since we have different sample sizes (15 vs. 12) and different variances in the groups. The statistics software will take care of this
 and use the so-called [Welch's $t$-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).
 
@@ -1063,7 +1063,8 @@ and use the so-called [Welch's $t$-test](https://en.wikipedia.org/wiki/Welch%27s
   for baseline, 8 weeks and 20 weeks for both groups. Make two graphs, one for each group.
 - According to the text, [Figure 2](https://ars.els-cdn.com/content/image/1-s2.0-S0954611112002958-gr2_lrg.jpg) shows the means 
   $\pm$ standard errors ($SE = \frac{s}{\sqrt{n}}$) of the ISWT at baseline, 8 weeks and 20 weeks for both groups. Look at Figure 2, a. 
-  Does this match the description for instance at 8 weeks in the acappella+pulmonary group? Do the bars make sense?
+  Does this match the description for instance at 8 weeks in the acappella+pulmonary group? 
+  Do the bars make sense?
 - Now, let's simulate the differences at week 8 (ISWT) using the parameters given: Group sizes, 15 and 12, 
   means ($338.7$ and $344.2$) and standard deviations ($42.2$ and $115.5$).
   Draw a histogram of the simulated differences.
