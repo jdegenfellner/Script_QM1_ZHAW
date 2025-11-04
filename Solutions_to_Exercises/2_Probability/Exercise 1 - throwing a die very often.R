@@ -22,6 +22,8 @@ barplot(table(throws)/sum(table(throws)),
         xlab = "Number", 
         ylab = "Frequency", 
         col = "lightblue")
+# add horizontal line for true probability
+abline(h = 1/6, col = "red", lwd = 2, lty = 2)
 
 # Calculating the relative frequency of getting a 3 over time
 relative_freq_3 <- cumsum(throws == 3) / 1:1000

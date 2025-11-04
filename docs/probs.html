@@ -806,8 +806,8 @@ What if the events are not disjoint? For simplicity, let’s consider only 2 res
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-1b594f6121df987cc5ef" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-1b594f6121df987cc5ef">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-c4f74bf8776ba4d6ad28" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c4f74bf8776ba4d6ad28">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
@@ -1041,27 +1041,27 @@ drawn from the same distribution are likely to be.</p>
 It is often used to model the distribution of many variables in health sciences, e.g., blood pressure, weight, height, etc.
 Normality is also a common assumption in many statistical tests and models. This is the reason why you will find many statements like
 “we have checked normality using the Shapiro-Wilk test” (Which I would not recommend) in scientific articles.
-Normal distribution theory is very aesthetic and one is sometimes lead to believe that this is the <em>normal</em> state of nature, which is
+Normal distribution theory is very aesthetic and one is sometimes led to believe that this is the <em>normal</em> state of nature, which is
 not the case. See also the <a href="https://en.wikipedia.org/wiki/Normal_distribution#History">history</a> of the normal distribution.
 A common use of the normal distribution is in <a href="https://en.wikipedia.org/wiki/Linear_regression">linear regression</a>,
 where the errors and the conditional distribution of the modeled variable are assumed to be normally distributed.
-We will deal with this in QM2.</p></li>
+We will deal with this in <a href="https://jdegenfellner.github.io/Script_QM2_ZHAW/">QM2</a> in great detail.</p></li>
 <li><p>The <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a> (<span class="math inline">\(X \sim B(n, p)\)</span>) is used to model the number of successes in a fixed number of trials.
 For example, the number of patients that respond to a therapy in a fixed number of patients.
 A special case of it is the <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a>,
 which is used to model a single trial with two outcomes (throw the coin once; <span class="math inline">\(X \sim B(1,p)\)</span>).</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Logistic_distribution">Logistic Distribution</a>. Underpins logistic regression models,
-which are used to predict binary outcomes (e.g., the presence or absence of a disease).</p></li>
+which are used to model binary outcomes (e.g., the presence or absence of a disease).</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a>. Used to model the number of events in a fixed interval of time or space.
 For example, the number of patients arriving at an emergency department in a fixed time interval.
 Maybe you want to watch this <a href="https://www.youtube.com/watch?v=jmqZG6roVqU&amp;ab_channel=jbstatistics">video</a>.</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential distribution</a>.
 For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.
 This <a href="https://www.youtube.com/watch?v=2kg1O0j1J9c&amp;ab_channel=zedstatistics">video</a> might be interesting.</p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution">Student’s <span class="math inline">\(t\)</span>-distribution</a> (small “t” please) generalizes
+<li><p><a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution">Student’s <span class="math inline">\(t\)</span>-distribution</a> (<strong>small</strong> “<span class="math inline">\(t\)</span>” please) generalizes
 the standard normal distribution. Like the latter, it is symmetric around zero and bell-shaped, but
 has <a href="https://en.wikipedia.org/wiki/Fat-tailed_distribution">fatter tails</a> (compared to the normal distribution), i.e.,
-“extreme” values are more likely. It is a very well known distribution underlying the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a>.
+“extreme” values are more likely. It is a very well known distribution underlying the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test"><span class="math inline">\(t\)</span>-test</a>.
 See <a href="probs.html#exercise12">Exercise 12</a> for a practical example.
 This <a href="https://www.youtube.com/watch?v=Uv6nGIgZMVw&amp;ab_channel=jbstatistics">video</a> might be interesting.</p></li>
 </ul>

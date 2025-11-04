@@ -906,11 +906,11 @@ The first 2 are absolutely essential.
    It is often used to model the distribution of many variables in health sciences, e.g., blood pressure, weight, height, etc.
    Normality is also a common assumption in many statistical tests and models. This is the reason why you will find many statements like
    "we have checked normality using the Shapiro-Wilk test" (Which I would not recommend) in scientific articles.
-   Normal distribution theory is very aesthetic and one is sometimes lead to believe that this is the *normal* state of nature, which is
+   Normal distribution theory is very aesthetic and one is sometimes led to believe that this is the *normal* state of nature, which is
    not the case. See also the [history](https://en.wikipedia.org/wiki/Normal_distribution#History) of the normal distribution. 
    A common use of the normal distribution is in [linear regression](https://en.wikipedia.org/wiki/Linear_regression), 
    where the errors and the conditional distribution of the modeled variable are assumed to be normally distributed. 
-   We will deal with this in QM2.
+   We will deal with this in [QM2](https://jdegenfellner.github.io/Script_QM2_ZHAW/) in great detail.
 
 - The [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) ($X \sim B(n, p)$) is used to model the number of successes in a fixed number of trials. 
   For example, the number of patients that respond to a therapy in a fixed number of patients.
@@ -918,7 +918,7 @@ The first 2 are absolutely essential.
   which is used to model a single trial with two outcomes (throw the coin once; $X \sim B(1,p)$).
 
 - [Logistic Distribution](https://en.wikipedia.org/wiki/Logistic_distribution). Underpins logistic regression models, 
-   which are used to predict binary outcomes (e.g., the presence or absence of a disease).
+   which are used to model binary outcomes (e.g., the presence or absence of a disease).
 
 - [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution). Used to model the number of events in a fixed interval of time or space. 
   For example, the number of patients arriving at an emergency department in a fixed time interval.
@@ -928,10 +928,10 @@ The first 2 are absolutely essential.
    For instance used in survival analysis to model the time until an event (e.g. refrigerator stops working) occurs.
   This [video](https://www.youtube.com/watch?v=2kg1O0j1J9c&ab_channel=zedstatistics) might be interesting.
 
-- [Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) (small "t" please) generalizes 
+- [Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) (**small** "$t$" please) generalizes 
   the standard normal distribution. Like the latter, it is symmetric around zero and bell-shaped, but 
   has [fatter tails](https://en.wikipedia.org/wiki/Fat-tailed_distribution) (compared to the normal distribution), i.e.,
-  "extreme" values are more likely. It is a very well known distribution underlying the [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test).
+  "extreme" values are more likely. It is a very well known distribution underlying the [$t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test).
   See [Exercise 12](#exercise12) for a practical example.
   This [video](https://www.youtube.com/watch?v=Uv6nGIgZMVw&ab_channel=jbstatistics) might be interesting.
 
