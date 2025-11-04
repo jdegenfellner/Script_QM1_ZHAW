@@ -962,15 +962,17 @@ Use Bayes' theorem to calculate the posterior probability of the therapy's effec
 For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter 
 $\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
 
-### [E] Exercise 3 - Find journals {#exercise3}
+### [E] Exercise 3 - Find journals and papers {#exercise3}
 **Note: This is among the most important exercises of the course:**
-Use Google or your favourite search engine to find scientific journals in *your* field (physiotherapy, midwifery, nursing, etc.). 
+Use Google (Scholar) or your favourite search engine to find scientific journals in *your* field (physiotherapy, 
+midwifery, nursing, etc.). 
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies). 
 
 - What was the research question? What where they trying to find out/confirm? Write down at least 10 research questions!
 - Which statistical *methods* were used? Write down at least 10 methods!
 - Was prior/external knowledge - before the actual model was estimated - used in any of the analysis?
 - Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
+- Save some of the articles in a folder for later use.
 
 ### [M] Exercise 4 -  Independent and disjoint {#exercise4} 
 

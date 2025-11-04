@@ -208,7 +208,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="probs.html"><a href="probs.html#exercise1"><i class="fa fa-check"></i><b>2.3.1</b> [M] Exercise 1 - Throwing a die very often</a></li>
 <li class="chapter" data-level="2.3.2" data-path="probs.html"><a href="probs.html#exercise2"><i class="fa fa-check"></i><b>2.3.2</b> [D] Exercise 2 - Bayes-teaser</a></li>
-<li class="chapter" data-level="2.3.3" data-path="probs.html"><a href="probs.html#exercise3"><i class="fa fa-check"></i><b>2.3.3</b> [E] Exercise 3 - Find journals</a></li>
+<li class="chapter" data-level="2.3.3" data-path="probs.html"><a href="probs.html#exercise3"><i class="fa fa-check"></i><b>2.3.3</b> [E] Exercise 3 - Find journals and papers</a></li>
 <li class="chapter" data-level="2.3.4" data-path="probs.html"><a href="probs.html#exercise4"><i class="fa fa-check"></i><b>2.3.4</b> [M] Exercise 4 - Independent and disjoint</a></li>
 <li class="chapter" data-level="2.3.5" data-path="probs.html"><a href="probs.html#exercise5"><i class="fa fa-check"></i><b>2.3.5</b> [M] Exercise 5 - Variance</a></li>
 <li class="chapter" data-level="2.3.6" data-path="probs.html"><a href="probs.html#exercise6"><i class="fa fa-check"></i><b>2.3.6</b> [E] Exercise 6 - Three researchers</a></li>
@@ -706,20 +706,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bayes_statistics.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb101-2"><a href="bayes_statistics.html#cb101-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.706 130.59 126.720   93   33.8609 225.45                  
-## mu2         5.572   5.60   3.060   93  -84.5227  94.92                  
-## muDiff    125.133 125.20 123.645   93   -8.1120 256.80       0      95.8
-## sigma1    139.332 128.30 115.558   93   66.3624 223.64                  
-## sigma2    129.589 119.35 105.444   93   61.8542 209.49                  
-## sigmaDiff   9.743   8.34   4.242   93 -114.2397 135.73       0      56.3
-## nu         34.142  25.53   9.742   93    1.2318  83.32                  
-## log10nu     1.375   1.41   1.464   93    0.6563   2.06                  
-## effSz       0.971   0.96   0.954   93   -0.0608   2.02       0      95.8
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.659 130.964 130.024   93   33.6299 227.57                  
+## mu2         5.910   5.774   3.303   93  -84.2971  98.29                  
+## muDiff    124.749 124.869 122.350   93  -10.8073 257.43       0      95.5
+## sigma1    140.115 128.746 112.599   93   65.6421 225.10                  
+## sigma2    130.277 119.596 107.738   93   61.2479 209.76                  
+## sigmaDiff   9.838   8.731   9.902   93 -115.2413 139.51       0      56.5
+## nu         34.238  25.643  10.148   93    1.1114  83.12                  
+## log10nu     1.378   1.409   1.472   93    0.6514   2.04                  
+## effSz       0.967   0.957   0.953   93   -0.0828   2.02       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.32
+## muDiff        -20       20    4.49
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -926,17 +926,17 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.878 sec elapsed</code></pre>
+<pre><code>## 2.124 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.713  0.707  0.685   93 -0.516  1.979                          
-## mu2        2.303  2.299  2.263   93  0.888  3.718                          
-## muDiff    -1.590 -1.590 -1.547   93 -3.443  0.323       0       6.1    -1.8
-## sigma1     2.034  1.918  1.723   93  1.090  3.095                          
-## sigma2     2.305  2.173  1.948   93  1.271  3.494                          
-## sigmaDiff -0.271 -0.248 -0.194   93 -1.947  1.403       0      37.0        
-## nu        35.914 27.322 11.613   93  1.532 85.966                          
-## log10nu    1.409  1.437  1.477   93  0.724  2.069                          
-## effSz     -0.752 -0.748 -0.770   93 -1.632  0.140       0       6.1        
+## mu1        0.711  0.708  0.736   93 -0.545  1.966                          
+## mu2        2.301  2.294  2.291   93  0.910  3.740                          
+## muDiff    -1.590 -1.590 -1.612   93 -3.480  0.300       0      6.08    -1.8
+## sigma1     2.040  1.924  1.710   93  1.091  3.110                          
+## sigma2     2.308  2.178  1.992   93  1.267  3.488                          
+## sigmaDiff -0.268 -0.249 -0.164   93 -1.963  1.390       0     37.10        
+## nu        36.203 27.663 11.183   93  1.558 87.057                          
+## log10nu    1.411  1.442  1.522   93  0.706  2.056                          
+## effSz     -0.750 -0.744 -0.700   93 -1.649  0.122       0      6.08        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
