@@ -6,12 +6,13 @@ The higher the probability of an event, the more likely it is that the event wil
 
 **Why is probability important in our field of study (applied health sciences)?**
 
-Quantative research methods (often a code name for statistics) use probability theory to make statements about a larger 
+Quantative research methods (often a code name for: statistics) use probability theory to make statements about a larger 
 population or a data generating process (DGP), as it should be more appropriately called.
 
-In observational studies, we often make statements about associations between variables.
+In observational studies, we often make statements about the distribution of or
+associations *between* variables.
 
-In experimental studies (e.g., a randomized controlled trial), we often try to make statements about the effect of an intervention on a 
+In experimental studies (e.g., a randomized controlled trial), we try to make statements about the effect of an intervention on a 
 certain outcome - for instance if a therapy lowers [pain](https://jamanetwork.com/journals/jama/fullarticle/2794765) by at least 1 point better compared to usual therapies.
 
 Probability theory has its roots in gambling and betting. [Blaise Pascal](https://en.wikipedia.org/wiki/Blaise_Pascal) wrote a letter to [Pierre de Fermat](https://en.wikipedia.org/wiki/Pierre_de_Fermat) in 1654 when a 
@@ -33,6 +34,10 @@ Here, we could at least put forward that other similar patients have a certain p
 There are of course events that have not happend ever before, like the creation of artificial general intelligence ([AGI](https://en.wikipedia.org/wiki/Artificial_general_intelligence)). 
 Nevertheless, one can still try to assign probabilities [when](https://research.aimultiple.com/artificial-general-intelligence-singularity-timing/) such an event would happen.
 
+**To be very clear:**  
+The main task of all our quantitative methods is to learn how distributions or probabilities of events 
+are "influenced" by other variables or events.
+
 ## Frequentist vs. Bayesian statistics
 
 There are two main schools of thought in statistics: Frequentist and Bayesian. Often one hears that there is a "war" [between the two](https://www.youtube.com/watch?v=8wVq5aGzSqY&t=22s&ab_channel=VeryNormal).
@@ -43,9 +48,9 @@ I would consider the rapant misuse of [$p$-values](https://www.sciencedirect.com
 cookbook-like application of frequentist statistics as a weakness of this approach (in its widely used form at least). 
 Of course, this is not the method's fault but the fault of the user.
 
-Bayesian statistics is often considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
-Computation time is sometimes still an issue in comparison for instance in regression modelling when using an end user laptop.
-It is also argued that for large sample size frequentist and Bayesian statistics converge to the same result.
+Bayesian statistics is by some considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
+Computation time is sometimes still an issue in comparison; for instance in regression modelling when using an end user laptop.
+It is also argued that for large sample size Frequentist and Bayesian statistics converge to the same result.
 
 There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.
 
@@ -53,7 +58,8 @@ Especially one of the early eminent statisticians, [Ronald Fisher](https://en.wi
 or as he called it: ["inverse probability"](https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf).
 
 The only thing we are interested in is the practical application of both methods in the field of applied health sciences. 
-How well can we describe data and make predictions, how well can we learn from data in our field?
+For us, questions like "How well can we describe data and make predictions" or 
+"How well can we learn from data in our field?" are of relevance.
 
 ### Frequentist statistics
 
@@ -67,7 +73,7 @@ if I throw the die infinitely many times, the frequency of getting a 3 will conv
 
 where \(\mathbb{P}\) is the probability measure which we will define more formally later (see [Exercise 1](#exercise1)).
 
-More genereally, in frequentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP). 
+More genereally, in Frequentist statistics, we are looking for **a fixed but unknown parameter from** an underlying data generating process (DGP). 
 In the dice example, the process of repeatedly throwing the die is the data generating process.
 Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data. 
 
@@ -90,13 +96,13 @@ where:
 
 - \( p(\theta | \text{data}) \) is the **posterior probability**: the updated probability of the parameter \( \theta \) given the observed data.
 
-- \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data given a certain value of the parameter \( \theta \).
+- \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data *given* a certain value of the parameter \( \theta \).
 
 - \( p(\theta) \) is the **prior probability**: the initial belief about the parameter \( \theta \) before seeing the data.
 
 - \( p(\text{data}) \) is the **marginal likelihood** or **evidence**: the probability of observing the data under all possible parameter values.
 
-#### Example in applied health sciences (physiotherapy) {#example1_physio}
+#### (Made up) Example in applied health sciences (physiotherapy) {#example1_physio}
 
 Suppose you're a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain (Improvement Yes/No). 
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients. 
@@ -107,12 +113,14 @@ This new data (the result of the trial) *updates* your belief about the effectiv
 Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior knowledge \( \theta = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
 We could assign the probability of $\theta = 0.3$ or $\theta = 0.4$ equally: $p(\theta = 0.3) = p(\theta = 0.4) = 0.5.$ 
+This would indicate that we believe yourself and your colleagues equally.
 
-Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.
+Bayesian analysis allows you to update your estimates as new evidence becomes 
+available, providing a flexible framework for decision-making and estimation in health sciences.
 
 ## Foundations of probability theory
 We need to know some basic concepts of probability theory in order to dive in deeper. We will try to introduce them playfully and find formality as we go along.
-As stated above, in the frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?
+As stated above, in the Frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?
 
 **[Eureka](https://en.wikipedia.org/wiki/Eureka_(word))?**
 
@@ -124,9 +132,11 @@ that even under the assumption of the therapy is not working *at all* - **which 
 
 What would be considered a discovery under these cicumstances?
 
-We now conduct an experiment. All 1000 researchers are conducting a study with 50 patients to answer the same question. This is our random experiment (instead of throwing dice). 
+We now conduct an experiment. All 1000 researchers are conducting a study with 50 patients to answer the same question. 
+This is our random experiment. 
 Instead of throwing a fair die, we do a round of "research" with 1000 researchers. You as observer
-give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can 
+give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. 
+Again, the are not taking to each other and we can 
 (unrealistically) assume that their results will be not influenced by each other.
 
 ![](./images/thousand_researchers_ducks.jpg)
@@ -135,7 +145,8 @@ Now we could ask different questions:
 
 ### Questions about the 1000 researcher-experiment (among many others): {#Questions_about_the_1000-researcher_experiment}
 
-1. If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?
+1. If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not 
+working at all? This would be a *prediction*.
 2. If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?
 3. How many experiments (would you expect) showed a treatment effect if you assume that the therapy is "working" (positive result by chance) in 12% (instead of 4%) of the patients?
 4. Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47 
@@ -148,7 +159,7 @@ We will try to answer these questions [below](#Answers_Questions_about_the_1000-
 First, it seems intuitive that Probability *within* an experiment should add up *if* the events are **disjoint**. 
 The event $A_1=$ "only researcher 45 gets a positive result" and $A_2=$ "only researcher 897 gets a positive result" are mutually exclusive. 
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. They cannot happen at the same time within that one 
-experiment. Hence, the two events are said to be disjoint.
+experiment of 1000 researchers doing their thing *once*. Hence, the two events are said to be disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. 
 We say that the probability of all elementary events (called $\omega$) sums to 1. Let's look at a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram) to illustrate the concept of being mutually exclusive (disjoint).
 
@@ -170,7 +181,7 @@ $$A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.$$
 
 
 An example of **non-disjoint** events (within our 1000-researcher experiment) would be the event $A_1=$ "only researcher 45 gets a positive result" and
-the event $A_3=$ "only researcher 45 or only reasearcher 67 gets a positive result".
+the event $A_3=$ "only researcher 45 or only researcher 67 gets a positive result".
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can't just
 add up the probabilities (of events $A_1$ and $A_3$) here, since we would count the probability of researcher 45 twice.
 The sets look like this: 
@@ -186,20 +197,21 @@ library(eulerr)
 plot(euler(c(A1 = 1, A3 = 2, "A1&A3" = 1)))
 ```
 
-How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment? For every researcher, there are two possible outcomes: positive or negative result. 
+**How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment?** 
+For every researcher, there are two possible outcomes: positive or negative result. 
 Hence, we have $2 \cdot 2 \cdot 2 \cdots = 2^{1000}$ elementary events in our set of all possible outcomes. 
 This is a very large number ($\sim 10^{300}$) - more than there are particles in the universe ($\sim 10^{80}$).
 
 We call the set of all elementary events $\Omega$ (the Greek letter Omega): 
 $$\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}.$$
 
-Note, that **we collect elementary events to form events** like we just did for event $A_3$.
+Note that **we collect elementary events to form events** like we just did for event $A_3$.
 
-Note, that the **$2^{1000}$ elementary events in the 1000 researcher experiment are also disjoint**. Why? For every elementary event, 
+Note that the **$2^{1000}$ elementary events in the 1000 researcher experiment are also disjoint**. Why? For every elementary event, 
 certain researchers found something and others did not. The combinations are all different from each other. Hence, 
 all the elementary events cannot happen at the same time within that one experiment. All of them are disjoint. 
 
-The probability of the event "" (nothing occurred) should be zero ($\mathbb{P}(\emptyset)=0$), were "" denotes 
+The **probability of the event** "" (**nothing** occurred) should be zero ($\mathbb{P}(\emptyset)=0$), were "" denotes 
 the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). 
 This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) 
@@ -231,7 +243,8 @@ As concrete example for law 3 in our example, we can put the following:
 \end{align}
 
 Since the researchers are working independently from each other, we can simply multiply the probabilities of their individual positive or negative results in 
-our larger 1000-researcher experiment. For example, for the first probability there are exactly 3 positive results (=effect found) and 997 negative results (=no effect found).
+our larger 1000-researcher experiment. For example, for the first probability there are exactly 3 specific positive 
+results (=effect found) and 997 specific negative results (=no effect found).
 This can be calculated as:
 $0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}$, which yields a very small number ($1.350826 \cdot 10^{-22}$) 
 since we are fixating on specific researchers to find the effect. 
@@ -270,6 +283,12 @@ This would result in: $1000 \cdot 0.04 = 40 > 1$, which is hardly a probability 
 This leads us to the concept of independence of events.
 
 ### Independence of events
+
+Independence is a very important concept. Whenever you read in a paper that some variables are 
+"associated", they mean that they are not statistically independent. It does **not** necessarily 
+mean that one variable **causes** the other one to change. It just means that knowing the value 
+of one variable gives you information about the value of the other variable.
+
 Two events $A$ and $B$ are independent if the occurrence of one event does not affect the occurrence of the other event. In plain English, 
 the probability of event $A$ happening is the same whether event $B$ happens or not. Mathematically, we can write this as:
 
@@ -301,8 +320,9 @@ Note that even if the probability of event A changes when B has happend, B could
 
 **Example in our context**: 
 Let's assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect. 
-This does not necessarily mean that researcher 67 causes researcher 45 to find an effect. It could
-might as well be that their statistical training was very similar and they both made the same mistake in their analysis.
+This does not necessarily mean that researcher 67 causes researcher 45 to find an effect. 
+It might as well be that their statistical training was very similar and they both made the same mistake in 
+their analysis.
 
 
 ### Difference between independence and disjointness
@@ -386,9 +406,9 @@ plot(0:n, probs, type = "h", lwd = 2, col = "blue",
 abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 ```
 
-Note, this form of distribution looks like a bell curve, aka a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), 
+Note, this form of distribution looks like a bell curve, aka [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), 
 probably the most important distribution in statistics. One can [show formally](https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf) that the binomial distribution converges to the normal distribution under certain conditions.
-So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
+So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40 positive results.
 This guess would also not be too bad considering the whole range (0 to 1000) since we can expect the number of successes above, let's say, 65 and below, let's say, 15 to be very unlikely.
 ```{r}
 sum(dbinom(0:14, size = 1000, prob = 0.04)) # prob of 14 or less
@@ -415,8 +435,9 @@ ggplot(data.frame(value = data), aes(x = as.factor(value))) +
 ```
 
 As you can see, the realized number of found effects matches well the theoretical probabilites
-given by the binomial distribution. Note, that not necessarily 40 is the most often found number of effects
-among 1000 researchers, but we are very close.
+given by the binomial distribution. Note that not necessarily 40 is the most often found number of effects
+among 1000 researchers, but we are very close. If you repeat the simulation, chances are high 
+that you get 40 as the most often found number of effects.
 
 **The second question** [above](#Questions_about_the_1000-researcher_experiment) 
 asked about observing 137 positively reporting researchers. 
@@ -432,7 +453,8 @@ $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0
 (1 / 31474716) / (1 - sum(dbinom(0:136, size = 1000, prob = 0.04)))
 ```
 
-57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.
+72 million times less likely than winning the Swiss lottery. If this event would happen, 
+we would probably reject the assumption that the percentage of false positives is at most 4%.
 
 In the calculation above, we used the [complement rule](https://en.wikipedia.org/wiki/Complement_(set_theory)) to calculate the probability of 
 observing 137 or more positive results: $1 - \mathbb{P}(\text{observing 136 or less})$. 
@@ -456,7 +478,8 @@ plot <- ggplot() +
 print(plot)
 ```
 
-where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
+where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or 
+less is observing 137 or more and vice versa (some brackets were left out for better readability):
 $\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)$.
 
 **The third question** [above](#Questions_about_the_1000-researcher_experiment)
@@ -487,15 +510,15 @@ You may want to read this excellent [article](https://journals.plos.org/plosmedi
 asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) and related to the previous question. 
 If you test many hypotheses, you will find some "significant" results by chance alone.
 One could also call the practice of testing many hypotheses to find "significant" ones [$p$-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
-This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
+This should be **absolutely avoided**. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
-If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of $p$-values and 
+If you report those 4 results as legitimate finding, you are $p$-hacking. When reading a scientific article, watch out for large amounts of $p$-values and 
 their (over-)interpretation as "significant" (relevant) or "non-significant" (not relevant). 
 This [article](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) is recommendable to get away from a too strict dichotomous interpretation of research results.
 
 **The sixth question** [above](#Questions_about_the_1000-researcher_experiment)
 asked about the variation of positive results between large research departments. This demands the very important concept of [variance](https://en.wikipedia.org/wiki/Variance): 
-The expected quadratic deviation from the mean: $\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}$. In simple terms: 
+The expected quadratic deviation from the mean (i.e. the expected value): $\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}$. In simple terms: 
 How much does the number of positive results vary around the mean of 40 on average?
 See also [Exercise 5](#exercise5). Maybe this [video](https://www.youtube.com/watch?v=SzZ6GpcfoQY) helps as well.
 
@@ -504,12 +527,15 @@ See also [Exercise 5](#exercise5). Maybe this [video](https://www.youtube.com/wa
 probabilities of the individual events.
 What if the events are not disjoint? For simplicity, let's consider only 2 researchers (doing 2 parallel experiments) and define event $A_1$ as "researcher 1 finds an effect" and 
 $A_2$ as "researcher 2 finds an effect".
-What is the probability that at least one of the researchers finds an effect?
-Our event space 
+
+**What is the probability that at least one of the researchers finds an effect?**
+
+Our event space looks like this:
 $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}.$
 
 $\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1$
 
+Any of the two finds and effect:
 $A_1 \cup A_2 = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos)\}$
 
 $A_1 = \{ (R1pos, R2pos), (R1pos, R2neg)\}$
@@ -628,8 +654,8 @@ where you only throw the coin once or let one researcher conduct the experiment.
 As an example of a continuous distribution we have mentioned the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) above. 
 It is the most important distribution in statistics for reasons that become increasingly clear as we go along. 
 
-One of them is the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) which we have already mentioned in the 
-introduction slides. Feel free to watch this [video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&t=28s&ab_channel=3Blue1Brown). 
+One of them is the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem). 
+Feel free to watch this [video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&t=28s&ab_channel=3Blue1Brown). 
 
 The theorem states that, under appropriate conditions, the distribution of a normalized version of the **sample 
 mean** 

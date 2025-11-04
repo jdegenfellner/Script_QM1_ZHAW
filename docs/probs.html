@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2025-11-03" />
+<meta name="date" content="2025-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -366,10 +366,11 @@ div.csl-indent {
 where 0 indicates impossibility and 1 indicates certainty, although we will see later that a <a href="https://stats.stackexchange.com/questions/273382/how-can-the-probability-of-each-point-be-zero-in-continuous-random-variable">probability of 0</a> does not necessarily mean that such an event can never occur.
 The higher the probability of an event, the more likely it is that the event will occur.</p>
 <p><strong>Why is probability important in our field of study (applied health sciences)?</strong></p>
-<p>Quantative research methods (often a code name for statistics) use probability theory to make statements about a larger
+<p>Quantative research methods (often a code name for: statistics) use probability theory to make statements about a larger
 population or a data generating process (DGP), as it should be more appropriately called.</p>
-<p>In observational studies, we often make statements about associations between variables.</p>
-<p>In experimental studies (e.g., a randomized controlled trial), we often try to make statements about the effect of an intervention on a
+<p>In observational studies, we often make statements about the distribution of or
+associations <em>between</em> variables.</p>
+<p>In experimental studies (e.g., a randomized controlled trial), we try to make statements about the effect of an intervention on a
 certain outcome - for instance if a therapy lowers <a href="https://jamanetwork.com/journals/jama/fullarticle/2794765">pain</a> by at least 1 point better compared to usual therapies.</p>
 <p>Probability theory has its roots in gambling and betting. <a href="https://en.wikipedia.org/wiki/Blaise_Pascal">Blaise Pascal</a> wrote a letter to <a href="https://en.wikipedia.org/wiki/Pierre_de_Fermat">Pierre de Fermat</a> in 1654 when a
 French essayist Antoine Gombaud, intrigued by gambling, sought to solve “the problem of points,”
@@ -385,6 +386,9 @@ It is hard to argue that this experiment would be repeatable under (almost) iden
 Here, we could at least put forward that other similar patients have a certain proportion of dying within 5 years.</p>
 <p>There are of course events that have not happend ever before, like the creation of artificial general intelligence (<a href="https://en.wikipedia.org/wiki/Artificial_general_intelligence">AGI</a>).
 Nevertheless, one can still try to assign probabilities <a href="https://research.aimultiple.com/artificial-general-intelligence-singularity-timing/">when</a> such an event would happen.</p>
+<p><strong>To be very clear:</strong><br />
+The main task of all our quantitative methods is to learn how distributions or probabilities of events
+are “influenced” by other variables or events.</p>
 <div id="frequentist-vs.-bayesian-statistics" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Frequentist vs. Bayesian statistics<a href="probs.html#frequentist-vs.-bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are two main schools of thought in statistics: Frequentist and Bayesian. Often one hears that there is a “war” <a href="https://www.youtube.com/watch?v=8wVq5aGzSqY&amp;t=22s&amp;ab_channel=VeryNormal">between the two</a>.</p>
@@ -392,14 +396,15 @@ Nevertheless, one can still try to assign probabilities <a href="https://researc
 <p>I would consider the rapant misuse of <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub"><span class="math inline">\(p\)</span>-values</a> and the
 cookbook-like application of frequentist statistics as a weakness of this approach (in its widely used form at least).
 Of course, this is not the method’s fault but the fault of the user.</p>
-<p>Bayesian statistics is often considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
-Computation time is sometimes still an issue in comparison for instance in regression modelling when using an end user laptop.
-It is also argued that for large sample size frequentist and Bayesian statistics converge to the same result.</p>
+<p>Bayesian statistics is by some considered more intuitive and flexible. It is also more computationally demanding and requires prior knowledge which is argued to be subjective.
+Computation time is sometimes still an issue in comparison; for instance in regression modelling when using an end user laptop.
+It is also argued that for large sample size Frequentist and Bayesian statistics converge to the same result.</p>
 <p>There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.</p>
 <p>Especially one of the early eminent statisticians, <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Ronald Fisher</a>, was an oponent of Bayesian statistics,
 or as he called it: <a href="https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf">“inverse probability”</a>.</p>
 <p>The only thing we are interested in is the practical application of both methods in the field of applied health sciences.
-How well can we describe data and make predictions, how well can we learn from data in our field?</p>
+For us, questions like “How well can we describe data and make predictions” or
+“How well can we learn from data in our field?” are of relevance.</p>
 <div id="frequentist-statistics" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Frequentist statistics<a href="probs.html#frequentist-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Frequentist statistics is based on the idea that <a href="https://en.wikipedia.org/wiki/Frequentist_probability">probability</a> is the long-run
@@ -409,7 +414,7 @@ if I throw the die infinitely many times, the frequency of getting a 3 will conv
 \mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6},
 \]</span></p>
 <p>where <span class="math inline">\(\mathbb{P}\)</span> is the probability measure which we will define more formally later (see <a href="probs.html#exercise1">Exercise 1</a>).</p>
-<p>More genereally, in frequentist statistics, we are looking for a fixed but unknown parameter from an underlying data generating process (DGP).
+<p>More genereally, in Frequentist statistics, we are looking for <strong>a fixed but unknown parameter from</strong> an underlying data generating process (DGP).
 In the dice example, the process of repeatedly throwing the die is the data generating process.
 Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data.</p>
 <p><strong>Example</strong>: Throw your (fair or unfair) die often enough and you will get a good estimate of the probability of getting a 3.</p>
@@ -427,12 +432,12 @@ p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text
 <p>where:</p>
 <ul>
 <li><p><span class="math inline">\(p(\theta | \text{data})\)</span> is the <strong>posterior probability</strong>: the updated probability of the parameter <span class="math inline">\(\theta\)</span> given the observed data.</p></li>
-<li><p><span class="math inline">\(p(\text{data} | \theta)\)</span> is the <strong>likelihood</strong>: the probability of observing the data given a certain value of the parameter <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><span class="math inline">\(p(\text{data} | \theta)\)</span> is the <strong>likelihood</strong>: the probability of observing the data <em>given</em> a certain value of the parameter <span class="math inline">\(\theta\)</span>.</p></li>
 <li><p><span class="math inline">\(p(\theta)\)</span> is the <strong>prior probability</strong>: the initial belief about the parameter <span class="math inline">\(\theta\)</span> before seeing the data.</p></li>
 <li><p><span class="math inline">\(p(\text{data})\)</span> is the <strong>marginal likelihood</strong> or <strong>evidence</strong>: the probability of observing the data under all possible parameter values.</p></li>
 </ul>
 <div id="example1_physio" class="section level4 hasAnchor" number="2.1.2.1">
-<h4><span class="header-section-number">2.1.2.1</span> Example in applied health sciences (physiotherapy)<a href="probs.html#example1_physio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">2.1.2.1</span> (Made up) Example in applied health sciences (physiotherapy)<a href="probs.html#example1_physio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Suppose you’re a physiotherapist trying to estimate the probability that a new therapy improves the mobility of patients with chronic back pain (Improvement Yes/No).
 You already have some prior knowledge (based on previous studies or expert opinions) that suggests the therapy works for 30% of patients.
 This is your <strong>prior knowledge</strong>: <span class="math inline">\(\theta = 0.30\)</span>, where <span class="math inline">\(\theta\)</span> is the probability that the therapy is effective.
@@ -441,15 +446,17 @@ Now, you run a small trial with 50 patients and observe that 22 of them showed a
 This new data (the result of the trial) <em>updates</em> your belief about the effectiveness of the therapy.
 Using Bayes’ theorem (<a href="probs.html#exercise2">Exercise 2</a>), you combine the prior knowledge <span class="math inline">\(\theta = 0.30\)</span> with the likelihood of the new data <span class="math inline">\(p(\text{data} | \theta)\)</span>, and you calculate
 the <strong>posterior probability</strong>, <span class="math inline">\(p(\theta | \text{data})\)</span>, which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
-We could assign the probability of <span class="math inline">\(\theta = 0.3\)</span> or <span class="math inline">\(\theta = 0.4\)</span> equally: <span class="math inline">\(p(\theta = 0.3) = p(\theta = 0.4) = 0.5.\)</span></p>
-<p>Bayesian analysis allows you to update your estimates as new evidence becomes available, providing a flexible framework for decision-making in health sciences.</p>
+We could assign the probability of <span class="math inline">\(\theta = 0.3\)</span> or <span class="math inline">\(\theta = 0.4\)</span> equally: <span class="math inline">\(p(\theta = 0.3) = p(\theta = 0.4) = 0.5.\)</span>
+This would indicate that we believe yourself and your colleagues equally.</p>
+<p>Bayesian analysis allows you to update your estimates as new evidence becomes
+available, providing a flexible framework for decision-making and estimation in health sciences.</p>
 </div>
 </div>
 </div>
 <div id="foundations-of-probability-theory" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Foundations of probability theory<a href="probs.html#foundations-of-probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We need to know some basic concepts of probability theory in order to dive in deeper. We will try to introduce them playfully and find formality as we go along.
-As stated above, in the frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?</p>
+As stated above, in the Frequentist sense, we are interested in the long-run frequency of events. How often does an event occur if we repeat the random experiment many times?</p>
 <p><strong><a href="https://en.wikipedia.org/wiki/Eureka_(word)">Eureka</a>?</strong></p>
 <p>Let’s imagine we are in a research department with 1000 researchers all trying to answer the same question:
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let’s assume (unrealistically) that they are all working on this one question and they are not
@@ -457,16 +464,19 @@ talking about their experiments or their research methodology to each other (ass
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
 that even under the assumption of the therapy is not working <em>at all</em> - <strong>which we will assume for the time being</strong> - , one would see an effect just <em>by chance</em> in 4% of the study results.</p>
 <p>What would be considered a discovery under these cicumstances?</p>
-<p>We now conduct an experiment. All 1000 researchers are conducting a study with 50 patients to answer the same question. This is our random experiment (instead of throwing dice).
+<p>We now conduct an experiment. All 1000 researchers are conducting a study with 50 patients to answer the same question.
+This is our random experiment.
 Instead of throwing a fair die, we do a round of “research” with 1000 researchers. You as observer
-give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. Again, the are not taking to each other and we can
+give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments.
+Again, the are not taking to each other and we can
 (unrealistically) assume that their results will be not influenced by each other.</p>
 <p><img src="images/thousand_researchers_ducks.jpg" /></p>
 <p>Now we could ask different questions:</p>
 <div id="Questions_about_the_1000-researcher_experiment" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Questions about the 1000 researcher-experiment (among many others):<a href="probs.html#Questions_about_the_1000-researcher_experiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not working at all?</li>
+<li>If you had to bet, how many experiments showed a treatment effect if you assume that the therapy is not
+working at all? This would be a <em>prediction</em>.</li>
 <li>If you get 137 results showing a treatment effect, would you be surprised? Would you reject the assumption, that the therapy is not working at all? Why?</li>
 <li>How many experiments (would you expect) showed a treatment effect if you assume that the therapy is “working” (positive result by chance) in 12% (instead of 4%) of the patients?</li>
 <li>Assuming that you have 47 results showing a treatment effect and your marketing lead is asking you to write a press release stating that 47
@@ -478,7 +488,7 @@ out of 50 studies showed a treatment effect. What is the problem?</li>
 <p>First, it seems intuitive that Probability <em>within</em> an experiment should add up <em>if</em> the events are <strong>disjoint</strong>.
 The event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span> “only researcher 897 gets a positive result” are mutually exclusive.
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. They cannot happen at the same time within that one
-experiment. Hence, the two events are said to be disjoint.
+experiment of 1000 researchers doing their thing <em>once</em>. Hence, the two events are said to be disjoint.
 If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%.
 We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
@@ -489,7 +499,7 @@ that are in both <a href="https://en.wikipedia.org/wiki/Set_(mathematics)">sets<
 <p><span class="math display">\[and\]</span></p>
 <p><span class="math display">\[A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.\]</span></p>
 <p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and
-the event <span class="math inline">\(A_3=\)</span> “only researcher 45 or only reasearcher 67 gets a positive result”.
+the event <span class="math inline">\(A_3=\)</span> “only researcher 45 or only researcher 67 gets a positive result”.
 Which researchers got a positive result in both events? The answer is: Researcher 45. Hence, the two events are said to be non-mutually exclusive. We can’t just
 add up the probabilities (of events <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_3\)</span>) here, since we would count the probability of researcher 45 twice.
 The sets look like this:</p>
@@ -497,16 +507,17 @@ The sets look like this:</p>
 <p><span class="math display">\[and\]</span></p>
 <p><span class="math display">\[A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}.\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment? For every researcher, there are two possible outcomes: positive or negative result.
+<p><strong>How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment?</strong>
+For every researcher, there are two possible outcomes: positive or negative result.
 Hence, we have <span class="math inline">\(2 \cdot 2 \cdot 2 \cdots = 2^{1000}\)</span> elementary events in our set of all possible outcomes.
 This is a very large number (<span class="math inline">\(\sim 10^{300}\)</span>) - more than there are particles in the universe (<span class="math inline">\(\sim 10^{80}\)</span>).</p>
 <p>We call the set of all elementary events <span class="math inline">\(\Omega\)</span> (the Greek letter Omega):
 <span class="math display">\[\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}.\]</span></p>
-<p>Note, that <strong>we collect elementary events to form events</strong> like we just did for event <span class="math inline">\(A_3\)</span>.</p>
-<p>Note, that the <strong><span class="math inline">\(2^{1000}\)</span> elementary events in the 1000 researcher experiment are also disjoint</strong>. Why? For every elementary event,
+<p>Note that <strong>we collect elementary events to form events</strong> like we just did for event <span class="math inline">\(A_3\)</span>.</p>
+<p>Note that the <strong><span class="math inline">\(2^{1000}\)</span> elementary events in the 1000 researcher experiment are also disjoint</strong>. Why? For every elementary event,
 certain researchers found something and others did not. The combinations are all different from each other. Hence,
 all the elementary events cannot happen at the same time within that one experiment. All of them are disjoint.</p>
-<p>The probability of the event “” (nothing occurred) should be zero (<span class="math inline">\(\mathbb{P}(\emptyset)=0\)</span>), were “” denotes
+<p>The <strong>probability of the event</strong> “” (<strong>nothing</strong> occurred) should be zero (<span class="math inline">\(\mathbb{P}(\emptyset)=0\)</span>), were “” denotes
 the event that no researcher gets a positive or negative result ( = <span class="math inline">\(\emptyset\)</span>, the so-called empty set).
 This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes)
@@ -532,7 +543,8 @@ We could find the first positive result in the first researcher, or the second, 
 \scriptsize \mathbb{P}(\text{&quot;(only) researchers 34, 56 and 777 get a pos. result&quot;}) + \mathbb{P}(\text{&quot;(only) researchers 1 and 5 get a pos. results&quot;})
 \end{align}\]</span></p>
 <p>Since the researchers are working independently from each other, we can simply multiply the probabilities of their individual positive or negative results in
-our larger 1000-researcher experiment. For example, for the first probability there are exactly 3 positive results (=effect found) and 997 negative results (=no effect found).
+our larger 1000-researcher experiment. For example, for the first probability there are exactly 3 specific positive
+results (=effect found) and 997 specific negative results (=no effect found).
 This can be calculated as:
 <span class="math inline">\(0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}\)</span>, which yields a very small number (<span class="math inline">\(1.350826 \cdot 10^{-22}\)</span>)
 since we are fixating on specific researchers to find the effect.
@@ -567,6 +579,10 @@ This would result in: <span class="math inline">\(1000 \cdot 0.04 = 40 &gt; 1\)<
 </div>
 <div id="independence-of-events" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Independence of events<a href="probs.html#independence-of-events" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Independence is a very important concept. Whenever you read in a paper that some variables are
+“associated”, they mean that they are not statistically independent. It does <strong>not</strong> necessarily
+mean that one variable <strong>causes</strong> the other one to change. It just means that knowing the value
+of one variable gives you information about the value of the other variable.</p>
 <p>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if the occurrence of one event does not affect the occurrence of the other event. In plain English,
 the probability of event <span class="math inline">\(A\)</span> happening is the same whether event <span class="math inline">\(B\)</span> happens or not. Mathematically, we can write this as:</p>
 <p><span class="math display">\[\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)\]</span> or equivalently:
@@ -587,8 +603,9 @@ since event B is our reference frame now (as opposed to the whole space <span cl
 Note that even if the probability of event A changes when B has happend, B could still have no <em>causal</em> effect on A. They could have a common cause, for instance.</p>
 <p><strong>Example in our context</strong>:
 Let’s assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect.
-This does not necessarily mean that researcher 67 causes researcher 45 to find an effect. It could
-might as well be that their statistical training was very similar and they both made the same mistake in their analysis.</p>
+This does not necessarily mean that researcher 67 causes researcher 45 to find an effect.
+It might as well be that their statistical training was very similar and they both made the same mistake in
+their analysis.</p>
 </div>
 <div id="difference-between-independence-and-disjointness" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Difference between independence and disjointness<a href="probs.html#difference-between-independence-and-disjointness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -660,9 +677,9 @@ Each one of them has <span class="math inline">\(0.04\)</span> probability of ha
 <span id="cb10-7"><a href="probs.html#cb10-7" tabindex="-1"></a><span class="st">     (yes/no) in 1000 researchers&quot;</span>)</span>
 <span id="cb10-8"><a href="probs.html#cb10-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>Note, this form of distribution looks like a bell curve, aka a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>,
+<p>Note, this form of distribution looks like a bell curve, aka <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>,
 probably the most important distribution in statistics. One can <a href="https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf">show formally</a> that the binomial distribution converges to the normal distribution under certain conditions.
-So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40.
+So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40 positive results.
 This guess would also not be too bad considering the whole range (0 to 1000) since we can expect the number of successes above, let’s say, 65 and below, let’s say, 15 to be very unlikely.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="probs.html#cb11-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)) <span class="co"># prob of 14 or less</span></span></code></pre></div>
 <pre><code>## [1] 1.384829e-06</code></pre>
@@ -686,8 +703,9 @@ the histogram of the number of positive results:</p>
 <span id="cb17-11"><a href="probs.html#cb17-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>As you can see, the realized number of found effects matches well the theoretical probabilites
-given by the binomial distribution. Note, that not necessarily 40 is the most often found number of effects
-among 1000 researchers, but we are very close.</p>
+given by the binomial distribution. Note that not necessarily 40 is the most often found number of effects
+among 1000 researchers, but we are very close. If you repeat the simulation, chances are high
+that you get 40 as the most often found number of effects.</p>
 <p><strong>The second question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
 asked about observing 137 positively reporting researchers.
 We can calculate the probability of observing 137 or more positive results using the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>
@@ -700,7 +718,8 @@ We can calculate the probability of observing 137 or more positive results using
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="probs.html#cb20-1" tabindex="-1"></a><span class="co"># Compare to winning the Swiss lottery</span></span>
 <span id="cb20-2"><a href="probs.html#cb20-2" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">31474716</span>) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">136</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">prob =</span> <span class="fl">0.04</span>)))</span></code></pre></div>
 <pre><code>## [1] 71543134</code></pre>
-<p>57 million times less likely than winning the Swiss lottery. If this event would happen, we would probably reject the assumption that the therapy is not working at all.</p>
+<p>72 million times less likely than winning the Swiss lottery. If this event would happen,
+we would probably reject the assumption that the percentage of false positives is at most 4%.</p>
 <p>In the calculation above, we used the <a href="https://en.wikipedia.org/wiki/Complement_(set_theory)">complement rule</a> to calculate the probability of
 observing 137 or more positive results: <span class="math inline">\(1 - \mathbb{P}(\text{observing 136 or less})\)</span>.</p>
 <p>In general, for an event <span class="math inline">\(A\)</span>:</p>
@@ -718,7 +737,8 @@ observing 137 or more positive results: <span class="math inline">\(1 - \mathbb{
 <span id="cb22-11"><a href="probs.html#cb22-11" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
 <span id="cb22-12"><a href="probs.html#cb22-12" tabindex="-1"></a><span class="fu">print</span>(plot)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>where <span class="math inline">\(A^C\)</span> comprises all elementary events that are not in <span class="math inline">\(A\)</span>. In our case, the compliment of observing 136 or less is observing 137 or more and vice versa:
+<p>where <span class="math inline">\(A^C\)</span> comprises all elementary events that are not in <span class="math inline">\(A\)</span>. In our case, the compliment of observing 136 or
+less is observing 137 or more and vice versa (some brackets were left out for better readability):
 <span class="math inline">\(\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)\)</span>.</p>
 <p><strong>The third question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
 asked about the expected number of positive results if the therapy is working in 12% of the patients.
@@ -748,14 +768,14 @@ You may want to read this excellent <a href="https://journals.plos.org/plosmedic
 asked about the problem of <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple testing</a> and related to the previous question.
 If you test many hypotheses, you will find some “significant” results by chance alone.
 One could also call the practice of testing many hypotheses to find “significant” ones <a href="https://en.wikipedia.org/wiki/Data_dredging"><span class="math inline">\(p\)</span>-hacking</a>.
-This should be absolutely avoided. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
+This should be <strong>absolutely avoided</strong>. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 “significant” results by chance alone.
-If you report those 4 results as legitimate finding, you are p-hacking. When reading a scientific article, watch out for large amounts of <span class="math inline">\(p\)</span>-values and
+If you report those 4 results as legitimate finding, you are <span class="math inline">\(p\)</span>-hacking. When reading a scientific article, watch out for large amounts of <span class="math inline">\(p\)</span>-values and
 their (over-)interpretation as “significant” (relevant) or “non-significant” (not relevant).
 This <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">article</a> is recommendable to get away from a too strict dichotomous interpretation of research results.</p>
 <p><strong>The sixth question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
 asked about the variation of positive results between large research departments. This demands the very important concept of <a href="https://en.wikipedia.org/wiki/Variance">variance</a>:
-The expected quadratic deviation from the mean: <span class="math inline">\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}\)</span>. In simple terms:
+The expected quadratic deviation from the mean (i.e. the expected value): <span class="math inline">\(\mathbb{V}ar(X) = \mathbb{E} \{ (\mathbb{E}(X) - X)^2 \}\)</span>. In simple terms:
 How much does the number of positive results vary around the mean of 40 on average?
 See also <a href="probs.html#exercise5">Exercise 5</a>. Maybe this <a href="https://www.youtube.com/watch?v=SzZ6GpcfoQY">video</a> helps as well.</p>
 </div>
@@ -764,12 +784,13 @@ See also <a href="probs.html#exercise5">Exercise 5</a>. Maybe this <a href="http
 <p><a href="probs.html#axioms_of_probability_theory">Above</a> in axiom 3, we stated that the probability of the union of pairwise disjoint events is the sum of the
 probabilities of the individual events.
 What if the events are not disjoint? For simplicity, let’s consider only 2 researchers (doing 2 parallel experiments) and define event <span class="math inline">\(A_1\)</span> as “researcher 1 finds an effect” and
-<span class="math inline">\(A_2\)</span> as “researcher 2 finds an effect”.
-What is the probability that at least one of the researchers finds an effect?
-Our event space
+<span class="math inline">\(A_2\)</span> as “researcher 2 finds an effect”.</p>
+<p><strong>What is the probability that at least one of the researchers finds an effect?</strong></p>
+<p>Our event space looks like this:
 <span class="math inline">\(\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}.\)</span></p>
 <p><span class="math inline">\(\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1\)</span></p>
-<p><span class="math inline">\(A_1 \cup A_2 = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos)\}\)</span></p>
+<p>Any of the two finds and effect:
+<span class="math inline">\(A_1 \cup A_2 = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos)\}\)</span></p>
 <p><span class="math inline">\(A_1 = \{ (R1pos, R2pos), (R1pos, R2neg)\}\)</span></p>
 <p><span class="math inline">\(A_2 = \{ (R1pos, R2pos), (R1neg, R2pos)\}\)</span></p>
 <p><span class="math inline">\(\mathbb{P}(A_1) = 0.04^2 + 0.04 \times 0.96\)</span> (First researcher finds an effect or both find an effect)</p>
@@ -785,8 +806,8 @@ Our event space
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-6aa33b39e4f972731c6b" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6aa33b39e4f972731c6b">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-1b594f6121df987cc5ef" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1b594f6121df987cc5ef">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
@@ -820,8 +841,8 @@ A special case of it is the <a href="https://en.wikipedia.org/wiki/Bernoulli_dis
 where you only throw the coin once or let one researcher conduct the experiment.</p>
 <p>As an example of a continuous distribution we have mentioned the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a> above.
 It is the most important distribution in statistics for reasons that become increasingly clear as we go along.</p>
-<p>One of them is the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a> which we have already mentioned in the
-introduction slides. Feel free to watch this <a href="https://www.youtube.com/watch?v=zeJD6dqJ5lo&amp;t=28s&amp;ab_channel=3Blue1Brown">video</a>.</p>
+<p>One of them is the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a>.
+Feel free to watch this <a href="https://www.youtube.com/watch?v=zeJD6dqJ5lo&amp;t=28s&amp;ab_channel=3Blue1Brown">video</a>.</p>
 <p>The theorem states that, under appropriate conditions, the distribution of a normalized version of the <strong>sample
 mean</strong></p>
 <p><span class="math display">\[\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i\]</span></p>

@@ -1,0 +1,245 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{book}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Quantitative Methods 1, ZHAW},
+  pdfauthor={Jürgen Degenfellner},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Quantitative Methods 1, ZHAW}
+\author{Jürgen Degenfellner}
+\date{2025-11-03}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter{Introduction}\label{introduction}
+
+This script is a collection of notes and exercises for the course ``Quantitative Methods 1'' (Codename for: Statistical foundations) at \href{https://www.zhaw.ch/en/university/}{ZHAW} in Winterthur, Switzerland.
+It is permanently evolving and the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW}{github repository} is public.
+
+The \textbf{vision} is to write this script in \textbf{collaboration with students}. If you find any errors, have suggestions, or want to contribute, feel free to contact me.
+Which (online) content (video, book, blog\ldots) helped you understand the topic at hand better? We should link those resources in the script!
+
+The \textbf{goal} of this script is to provide a starting point for further reading and learning.
+
+Feel free to use any content for your own purposes.
+
+At the end of each chapter, you will find a list of exercises.
+A previous exam will be uploaded in time in
+the respective Moodle folder to help you prepare.
+
+The most important lessons you'll learn are not part of the final exam: Intellectual honesty and humility.
+
+A lot of content relevant for this course can be found in the \href{https://github.com/jdegenfellner/ZHAW_Teaching}{ZHAW\_teaching} folder,
+which contains many R scripts (among other stuff).
+
+We will focus a lot on descriptive statistics and basic concepts as it is a very important part of understanding data.
+Statistical modeling will be covered later.
+
+One thing to consider for health sciences with respect to quantitative methods is the following: We do not \emph{have} to use quantitative methods for each and every
+question arising in applied research (physiotherapy, midwifery, nursing, occupational therapy). Small sample sizes (e.g., \(n=10\)) often do not warrant the use of inferential
+statistics or estimation or at least make it considerably harder to answer the question at hand.
+\emph{If} one decides to answer questions in a statistical way, we are bound to the rules of the game.
+
+GPT4o and Github Copilot were used for writing this script.
+
+\section{Books I can recommend:}\label{books-i-can-recommend}
+
+\begin{itemize}
+\tightlist
+\item
+  (Free, looks nice at first glance) \href{https://ia803404.us.archive.org/6/items/introduction-to-probability-joseph-k.-blitzstein-jessica-hwang/Introduction\%20to\%20Probability-Joseph\%20K.\%20Blitzstein\%2C\%20Jessica\%20Hwang.pdf}{Introduction to Probability}
+\item
+  (Free, purchase of the book is recommended; page numbers in our script refer to the printed version of the book) \href{https://github.com/Booleans/statistical-rethinking/blob/master/Statistical\%20Rethinking\%202nd\%20Edition.pdf}{Statistical Rethinking}
+  , YouTube-Playlist: \href{https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa}{Statistical Rethinking 2023}
+\item
+  (Free with a bit of searching) \href{https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0}{Understanding Regression Analysis: A Conditional Distribution Approach}
+\item
+  \href{http://www.stat.columbia.edu/~gelman/arm/}{Data Analysis Using Regression and Multilevel/Hierarchical Models}
+\item
+  (Free) \href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Doing Bayesian Data Analysis}
+\item
+  \href{https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254}{Applied Regression Analysis and Generalized Linear Models}
+\end{itemize}
+
+These books are well-written, approachable, and not overly technical.
+
+For more theoretically advanced approaches, I can recommend:
+
+\begin{itemize}
+\tightlist
+\item
+  (Free) \href{http://www.stat.columbia.edu/~gelman/book/}{Bayesian Data Analysis}
+\item
+  (Free) \href{https://web.stanford.edu/~hastie/ElemStatLearn/}{Elements of Statistical Learning}
+\item
+  (Free) \href{https://students.aiu.edu/submissions/profiles/resources/onlineBook/y6z7i8_t4q6Z9_advanced\%20statistics.pdf}{Unterstanding Advanced Statistical Methods}
+\end{itemize}
+
+\section{\texorpdfstring{\includegraphics[height=1.8ex]{images/Rlogo.png}}{}}\label{section}
+
+In this course, we use \href{https://www.r-project.org/}{R} as our main tool for data analysis.
+R is a free software environment for statistical computing and graphics.
+It compiles and runs on a wide variety of UNIX platforms, Windows, and MacOS.
+
+We are following a \textbf{two-tier} approach to learning R. The \textbf{first tier} jumps right into solving
+exercises and problems with R using GPT. This anticipates the capacities of the software
+without knowing the details yet. It is not expected that you understand every detail of the codes
+GPT might suggest. This comes with time.
+
+The \textbf{second tier} is a more detailed approach to R,
+where we learn the basics of the language and how to use it effectively. This part will be done
+in extensive recorded eLearning sessions over the course.
+
+You may want to give Hadley Wickham's book a try:
+
+\begin{itemize}
+\tightlist
+\item
+  (Free) \href{https://r4ds.had.co.nz/}{R for Data Science}
+\end{itemize}
+
+Especially, the chapter on \href{https://r4ds.hadley.nz/eda\#introduction}{exploratory data analysis} is very helpful.
+
+This free book seems also very helpful for beginners:
+
+\begin{itemize}
+\tightlist
+\item
+  (Free) \href{https://bookdown.org/daniel_dauber_io/r4np_book/}{R for non-programmers R4NP}
+\end{itemize}
+
+Further resources:
+
+\href{https://www.youtube.com/watch?v=V8eKsto3Ug&t=140s}{(Example) Introduction to R}
+
+In this video, many basic commands are explained. There are many more R introductions.
+My tip: Watch the beginning of a few different ones and see which explanations work best for you individually.
+
+\href{https://cran.r-project.org/other-docs.html}{Overview of introductory resources}
+
+\section{Additional Tools}\label{additional-tools}
+
+Currently I use a combination of \href{https://github.com/features/copilot}{Github Copilot} (paid),
+\href{https://chatgpt.com/}{GPT5} (paid), and \href{https://posit.co/download/rstudio-desktop/}{RStudio} for writing code and this script.
+You can use Github Copilot directly in RStudio to make code suggestions, which is often increasing productivity.
+I can highly recommend using these tools in combination. GPT5 can process images as well, which is a game changer.
+As far as I know, there is no self-debugging version of GPT5 in combination with RStudio available yet
+(in the style of AutoGPT or similar approaches).
+
+Large Language Models (LLM) like GPT5 enable you to write/adapt code using natural language.
+Among other tasks, they help you create complicated, aesthetic plots. Very often, debugging attempts get stuck.
+They are far from perfect yet, but an impressive feat of engineering.
+
+\section{Workflow suggestion}\label{workflow-suggestion}
+
+You could use RStudio to write and execute your code. In the global options of RStudio (below), you can add your github copilot account. Additionally, you can have your GPT4o(1) window open and copy-paste images of your plots or code in order to achieve your current objective.
+\pandocbounded{\includegraphics[keepaspectratio]{./images/RStudio_Global_Options.png}}
+
+\section{Orientation for the course and script}\label{orientation-for-the-course-and-script}
+
+Throughout the script it is important to keep a mental mind map of the topics we are covering and why.
+Typically, we start with a question like ``Is this therapy more effective than usual care'',
+then we collect data, summarize it, and then we try to answer the question. Often, we already have
+the data (a so-called convenience sample) and we try to answer
+a question with it (exploratively).
+
+By answering the question, we make an inference about the population respectively the process generating
+the data. So we want to conclude something about the population from the sample in front of us.
+
+When we only \textbf{describe the data to better understand} it, we are in the realm of
+\textbf{\hyperref[descriptive_stats]{descriptive statistics}}.
+
+When we try to make an inference about the population, we are in the
+realm of \textbf{inferential statistics}. Simply put, we want to find out if, for example, the treatment effect
+we are seeing in the sample is also present in the population or if what we are seeing was just by chance.
+We also add measures of uncertainty (for instance credible or confidence intervals) to our estimates.
+
+We can do this inference in two ways: \textbf{Frequentist approach} using null hypothesis significance
+testing (\hyperref[nhst]{NHST}), or by using the \textbf{Bayesian approach} (\hyperref[bayes_statistics]{Bayesian inference}).
+
+\section{Warning of incompleteness}\label{warning-of-incompleteness}
+
+This script is not static but a continuously evolving document.
+It represents a snapshot of our understanding at the time of writing.
+Many of the topics touched upon or mentioned briefly here are vast research fields
+in their own right, and it is beyond the scope of this script to cover them comprehensively.
+
+Our goal, however, is to create a resource that aligns closely with the needs
+of health sciences and reflects our needs in applied research.
+While it may not be exhaustive, we aim for it to be both practical and relevant,
+serving as a tailored guide for our specific context.
+
+\end{document}
