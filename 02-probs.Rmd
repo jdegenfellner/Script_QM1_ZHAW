@@ -4,7 +4,6 @@ output:
   pdf_document:
     latex_engine: xelatex
 always_allow_html: true
----
 # Probability {#probs}
 
 Probability is a measure of the likelihood that an event will occur. Probability is quantified as a number between 0 and 1 (or 0 to 100%), 
@@ -672,7 +671,7 @@ $$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$$
 **converges to a standard normal distribution**. 
 By this theorem, we can link **any** distribution to the normal distribution.
 
-Discrete or continuous, the **goal** is the same: We want to now **where** the realization 
+Discrete or continuous, the **goal** is the same: We want to know **where** the realization 
 of my **[random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)** 
 lands **with what probability** when I do the experiment.
 
