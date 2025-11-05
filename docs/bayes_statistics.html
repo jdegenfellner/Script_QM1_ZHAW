@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Bayes statistics | Quantitative Methods 1, ZHAW</title>
+  <title>Chapter 4 Bayes statistics | Probability</title>
   <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Bayes statistics | Quantitative Methods 1, ZHAW" />
+  <meta property="og:title" content="Chapter 4 Bayes statistics | Probability" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="github-repo" content="jdegenfellner/Script_QM1_ZHAW" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Bayes statistics | Quantitative Methods 1, ZHAW" />
+  <meta name="twitter:title" content="Chapter 4 Bayes statistics | Probability" />
   
   <meta name="twitter:description" content="Script Quantitative Methods 1, ZHAW," />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2025-11-04" />
+<meta name="date" content="2025-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -352,7 +352,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods 1, ZHAW</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability</a>
           </h1>
         </div>
 
@@ -706,20 +706,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bayes_statistics.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb101-2"><a href="bayes_statistics.html#cb101-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%    HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.459 130.660 131.394   93   33.226 228.07                  
-## mu2         5.865   5.880   0.882   93  -84.052  97.54                  
-## muDiff    124.594 125.059 129.820   93   -5.724 261.39       0      95.6
-## sigma1    140.109 128.644 113.383   93   67.434 227.12                  
-## sigma2    130.200 119.832 104.010   93   61.099 209.52                  
-## sigmaDiff   9.909   8.771   7.452   93 -114.158 141.97       0      56.5
-## nu         34.460  25.824   9.727   93    1.147  83.76                  
-## log10nu     1.380   1.412   1.460   93    0.658   2.06                  
-## effSz       0.963   0.953   0.968   93   -0.079   2.01       0      95.6
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.339 130.688 128.923   93   31.2513 226.61                  
+## mu2         6.313   5.958   3.897   93  -85.4447  94.72                  
+## muDiff    124.026 124.287 128.513   93   -5.9177 261.39       0      95.5
+## sigma1    140.015 128.658 113.414   93   64.6240 224.50                  
+## sigma2    130.087 119.533 103.003   93   61.9426 210.67                  
+## sigmaDiff   9.928   8.813   8.816   93 -118.3148 138.27       0      56.6
+## nu         34.407  25.822   9.677   93    1.2810  83.84                  
+## log10nu     1.379   1.412   1.496   93    0.6558   2.05                  
+## effSz       0.961   0.951   0.992   93   -0.0962   2.00       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.45
+## muDiff        -20       20    4.49
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -926,21 +926,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.895 sec elapsed</code></pre>
+<pre><code>## 1.874 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.709  0.705  0.673   93 -0.544  1.973                          
-## mu2        2.303  2.301  2.279   93  0.893  3.756                          
-## muDiff    -1.594 -1.591 -1.483   93 -3.464  0.341       0       6.1    -1.8
-## sigma1     2.037  1.922  1.779   93  1.110  3.115                          
-## sigma2     2.312  2.173  1.935   93  1.262  3.512                          
-## sigmaDiff -0.275 -0.246 -0.167   93 -2.005  1.386       0      37.1        
-## nu        35.856 27.371 12.114   93  1.429 85.345                          
-## log10nu    1.409  1.437  1.523   93  0.725  2.062                          
-## effSz     -0.752 -0.747 -0.747   93 -1.643  0.138       0       6.1        
+## mu1        0.711  0.704  0.682   93 -0.543  1.955                          
+## mu2        2.297  2.292  2.259   93  0.905  3.734                          
+## muDiff    -1.586 -1.587 -1.573   93 -3.447  0.316       0      6.06    -1.8
+## sigma1     2.028  1.916  1.700   93  1.102  3.090                          
+## sigma2     2.302  2.169  1.987   93  1.272  3.486                          
+## sigmaDiff -0.273 -0.249 -0.177   93 -1.976  1.341       0     36.92        
+## nu        35.719 27.304 11.387   93  1.627 85.344                          
+## log10nu    1.407  1.436  1.498   93  0.715  2.054                          
+## effSz     -0.752 -0.748 -0.760   93 -1.638  0.132       0      6.06        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.5
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

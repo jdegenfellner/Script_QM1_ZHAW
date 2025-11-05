@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Probability | Quantitative Methods 1, ZHAW</title>
+  <title>Chapter 2 Probability | Probability</title>
   <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Probability | Quantitative Methods 1, ZHAW" />
+  <meta property="og:title" content="Chapter 2 Probability | Probability" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Script Quantitative Methods 1, ZHAW," />
   <meta name="github-repo" content="jdegenfellner/Script_QM1_ZHAW" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Probability | Quantitative Methods 1, ZHAW" />
+  <meta name="twitter:title" content="Chapter 2 Probability | Probability" />
   
   <meta name="twitter:description" content="Script Quantitative Methods 1, ZHAW," />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2025-11-04" />
+<meta name="date" content="2025-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -352,7 +352,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods 1, ZHAW</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability</a>
           </h1>
         </div>
 
@@ -806,8 +806,8 @@ What if the events are not disjoint? For simplicity, let’s consider only 2 res
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-6110831c0ec55156a024" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6110831c0ec55156a024">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-306ec1a3970175f8cc0b" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-306ec1a3970175f8cc0b">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
@@ -848,7 +848,7 @@ mean</strong></p>
 <p><span class="math display">\[\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i\]</span></p>
 <p><strong>converges to a standard normal distribution</strong>.
 By this theorem, we can link <strong>any</strong> distribution to the normal distribution.</p>
-<p>Discrete or continuous, the <strong>goal</strong> is the same: We want to now <strong>where</strong> the realization
+<p>Discrete or continuous, the <strong>goal</strong> is the same: We want to know <strong>where</strong> the realization
 of my <strong><a href="https://www.youtube.com/watch?v=Y9nsL69CwbU&amp;t=18s&amp;ab_channel=VeryNormal">random variable</a></strong>
 lands <strong>with what probability</strong> when I do the experiment.</p>
 <ul>
