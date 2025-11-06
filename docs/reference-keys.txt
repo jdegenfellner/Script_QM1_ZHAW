@@ -14,7 +14,7 @@ example1_physio
 foundations-of-probability-theory
 Questions_about_the_1000-researcher_experiment
 axioms_of_probability_theory
-independence-of-events
+independence_of_events
 difference-between-independence-and-disjointness
 Answers_Questions_about_the_1000-researcher_experiment
 addition_of_probabilities

@@ -18,7 +18,7 @@ We **summarize** data to make them **more easily digestable** for us humans to a
   [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) (root of the variance), 
   [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range#:~:text=The%20IQR%20of%20a%20set,a%20median%20calculated%20as%20follows.&text=The%20second%20quartile%20Q2%20is%20the%20same%20as%20the%20ordinary%20median.) 
   or just the [range](https://en.wikipedia.org/wiki/Range_(statistics)); or even [Gini's mean difference](https://www.dss.uniroma1.it/RePec/mtn/articoli/2003-2-8.pdf).
-- Are there any **outliers** (rare data points that are far away from the rest [@westfall2020, p. 405] and why?
+- Are there any **outliers** (rare data points that are far away from the rest, [Westfall, p. 405](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)) and why?
   This is a bit more complicated.
 
 ## Example: Descriptive statistics in health sciences {#example_study1_physio}
@@ -37,8 +37,9 @@ In **Table 2** of the paper, the authors present the baseline characteristics of
 We find absolute numbers, percentages, means, and standard deviations for the continuous variables, medians, and interquartile ranges for the ordinal variables.
 This should give an idea of the sample. In the population paradigm of statistics, we draw a [sample](https://en.wikipedia.org/wiki/Sampling_(statistics)) from 
 the [population](https://en.wikipedia.org/wiki/Statistical_population) of interest and try to make inferences about the population. We want to learn
-more about the population respectively that data generating process (DGP) producing the data [@westfall2020, pp. 6-8]. How did the data come about?
-Note that this **sample varies everytime we draw from the population**. 
+more about the population respectively that data generating process (DGP) producing the data [Westfall, p. 6-8](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516). 
+How did the data come about?
+Note that the **sample varies everytime we draw from the population**. 
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).
 
 Often, variables in a study are (approximately) normally distributed. 
@@ -48,6 +49,11 @@ making inferences about the population or the DGP.
 It is by no means given that *age* has to be normally distributed in our sample. We could easily have a sample with many young people and few elderly ones.
 This would result in a (positively) [*skewed*](https://en.wikipedia.org/wiki/Skewness) distribution. Having many elderly people and few young ones would 
 result in a negatively skewed distribution of course.
+
+To build a bridge to our concept of statistical [independence](#independence_of_events) from the previous chapter, the paper states: 
+"This study found that baseline level of activity limitation was **associated** with different effects of CFT treatment".
+What they mean is that there was a "statistically significant effect" in the chosen model. We will get to that in chapter 5.
+If you want to be picky, you could argue, that they did not formally define an $\alpha$-level for "significance".
 
 ## Univarate vs. bivariate statisics 
 One can distinguish between [univariate](https://en.wikipedia.org/wiki/Univariate_analysis) and [bivariate](https://en.wikipedia.org/wiki/Bivariate_analysis) statistics.
@@ -105,11 +111,11 @@ p2 <- ggplot(df, aes(x = values)) +
   geom_histogram(aes(y = after_stat(density)),
                  bins = 30, alpha = 0.7, color = "darkgrey") +
   geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
-  geom_boxplot(aes(y = -0.01, x = values), width = 0.02,
+  geom_boxplot(aes(y = -0.025, x = values), width = 0.05,
                position = position_nudge(y = -0.00)) +
-  geom_point(aes(y = -0.01),
-             position = position_jitter(width = 0.002, height = 0.01),
-             size = 1, alpha = 0.05) +
+  geom_point(aes(y = -0.025),
+             position = position_jitter(width = 0.005, height = 0.025),
+             size = 1, alpha = 0.6) +
   ggtitle("Histogram with density plot and boxplot below") +
   theme(plot.title = element_text(hjust = 0.5))
 p2
@@ -129,11 +135,12 @@ shapiro.test(x)
 
 **Firstly**, the histogram looks rather differently when using a different [seed](https://r-coder.com/set-seed-r/). 
 **Secondly**, we would probability
-not be able to tell if the data stems from a normal distribution. **Thirdly**, the sample mean and standard deviation
+not be able to tell if the data stems from a normal distribution. 
+**Thirdly**, the sample mean and standard deviation
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
 the Shapiro test would not reject the null hypothesis of normality in this case.
 
-Let's try the Shapiro test with a t-distribution with 3 degrees of freedom, which is not normal:
+Let's try the Shapiro test with a $t$-distribution with 3 degrees of freedom, which is not normal:
 ```{r}
 set.seed(1245) # to get the same plot every time
 x <- rt(25, df = 3) # random numbers from t-distribution
@@ -143,11 +150,11 @@ p2 <- ggplot(df, aes(x = values)) +
   geom_histogram(aes(y = after_stat(density)),
                  bins = 30, alpha = 0.7, color = "darkgrey") +
   geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
-  geom_boxplot(aes(y = -0.01, x = values), width = 0.02,
+  geom_boxplot(aes(y = -0.05, x = values), width = 0.1,
                position = position_nudge(y = -0.00)) +
-  geom_point(aes(y = -0.01),
+  geom_point(aes(y = -0.05),
              position = position_jitter(width = 0.002, height = 0.01),
-             size = 1, alpha = 0.05) +
+             size = 1, alpha = 0.6) +
   ggtitle("Histogram with density plot and boxplot below") +
   theme(plot.title = element_text(hjust = 0.5))
 p2

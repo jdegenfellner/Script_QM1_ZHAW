@@ -289,7 +289,7 @@ This would result in: $1000 \cdot 0.04 = 40 > 1$, which is hardly a probability 
 
 This leads us to the concept of independence of events.
 
-### Independence of events
+### Independence of events {#independence_of_events}
 
 Independence is a very important concept. Whenever you read in a paper that some variables are 
 "associated", they mean that they are not statistically independent. It does **not** necessarily 
