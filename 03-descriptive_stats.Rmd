@@ -172,7 +172,7 @@ We will try to catch a histogram in the *wild* (= in a research paper): We find 
 [here](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341.full.pdf). 
 [Figure 1](https://bmjopen.bmj.com/content/bmjopen/9/4/e023341/F1.large.jpg) shows a histogram of the
 the foot posture index (FPI-6) scores from the participants (3217 healthy children aged 3 to 15).
-"The FPI score may range from −12 (highly supinated) to +12 (highly pronated)".
+"The FPI score may range from $-12$ (highly supinated) to $+12$ (highly pronated)".
 There are a few things to note here:
 
 - Acccording to the Methods-section: 
@@ -417,8 +417,9 @@ See also [Exercise 5](#exercise5_descriptive_stats).
 [random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&ab_channel=VeryNormal) which is realised when 
 the $X_i$ have materialized into the $x_i$) and sample standard deviation $s$. 
 
-The **sample mean is not robust against outliers**. A single large value can distort the mean arbitrarily much.
-Hence, **the correlation coefficient is not robust against outliers**. Let's see this in action:
+The **sample mean is not robust against outliers**. 
+A single large value can distort the mean arbitrarily much.
+Let's see this in action:
 ```{r}
 # Load necessary libraries
 library(ggplot2)
@@ -478,11 +479,12 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
 
 - A: $r=0.71$ for the original data. 
 
-- B: When we add an outlier in x, $r$ decreases to $0.44$ and the trendline is notably shifted. 
+- B: When we add an outlier in x, $r$ decreases to $0.44$ and the trendline is 
+  notably shifted. 
 
-  The reason for the smaller correlation is that the outlier is above the mean of the x values and below 
-  the mean of the y values and therefore adds negatively to the covariance which is the numberator 
-  in the formula for $r$. The denominator is non-negative.
+  The reason for the smaller correlation is that the outlier is above the mean of 
+  the x values and below the mean of the y values and therefore adds negatively to the covariance which 
+  is the numerator in the formula for $r$. The denominator is positive.
 
 - C: When we add an outlier in both $x$ and $y$, $r$ stays relatively stable. 
  (At least in this case: We could also add, e.g., an outlier above the y mean and below the x mean.)

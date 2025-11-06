@@ -2,6 +2,7 @@ Use logical fallacy example from
 https://doi.org/10.1007/s11192-018-2655-4
 to show weakness of NHST
 
-Update Link to Statistical Rethinking Second Edition
-https://oceanrep.geomar.de/id/eprint/55819/1/Statistical%20Rethinking%202nd%20Edition.pdf
-...Also in QM2/3...
+Improve Correlation plot example... maybe use uniform marginals?
+
+Create an example for chapter 5 that conditioning on p-values, necessarily
+overestimates the effect.
