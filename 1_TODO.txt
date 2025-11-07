@@ -3,6 +3,9 @@ https://doi.org/10.1007/s11192-018-2655-4
 to show weakness of NHST
 
 Improve Correlation plot example... maybe use uniform marginals?
+Take Peter Mary ROM as... Marginals are skewed but cor is a good measure.
 
 Create an example for chapter 5 that conditioning on p-values, necessarily
 overestimates the effect.
+
+Übung: QQ Plot selbst erstellen, manuell...

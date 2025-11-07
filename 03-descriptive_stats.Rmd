@@ -55,7 +55,7 @@ To build a bridge to our concept of statistical [independence](#independence_of_
 What they mean is that there was a "statistically significant effect" in the chosen model. We will get to that in chapter 5.
 If you want to be picky, you could argue, that they did not formally define an $\alpha$-level for "significance".
 
-## Univarate vs. bivariate statisics 
+## Univariate vs. bivariate statisics 
 One can distinguish between [univariate](https://en.wikipedia.org/wiki/Univariate_analysis) and [bivariate](https://en.wikipedia.org/wiki/Bivariate_analysis) statistics.
 In univariate statistics, we look at **one variable at a time**, for instance *Age* in the example above, 
 where we could draw a [boxplot](https://en.wikipedia.org/wiki/Box_plot) or a [histogram](https://en.wikipedia.org/wiki/Histogram). 
@@ -588,7 +588,7 @@ $Age_{CFT} \sim Normal(\mu = 47,\sigma = 15)$.
 - Give a 99% interval for the age in CFT, 
   where we would expect a new person drawn from the same population.
 
-Let's assume *Sex* is binomially distributed with a probability of $p = 0.59$ for both groups.
+Let's assume *Sex* is binomially distributed with a probability for *female* of $p = 0.59$ for both groups.
 
 - What is the probability, that we would see a woman as the next recruited person in the *Usual care* group?
 - What is the probability, that we would see no man in a sample of 10 persons in the *CFT* group?

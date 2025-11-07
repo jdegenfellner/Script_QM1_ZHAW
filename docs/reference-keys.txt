@@ -44,7 +44,7 @@ frage-3---erwartungswert-und-varianz
 frage-4---dichtefunktion
 descriptive_stats
 example_study1_physio
-univarate-vs.-bivariate-statisics
+univariate-vs.-bivariate-statisics
 the-histogram
 example-in-the-wild
 q-q-plots

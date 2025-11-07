@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="descriptive_stats.html"><a href="descriptive_stats.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="descriptive_stats.html"><a href="descriptive_stats.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
-<li class="chapter" data-level="3.2" data-path="descriptive_stats.html"><a href="descriptive_stats.html#univarate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univarate vs. bivariate statisics</a></li>
+<li class="chapter" data-level="3.2" data-path="descriptive_stats.html"><a href="descriptive_stats.html#univariate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univariate vs. bivariate statisics</a></li>
 <li class="chapter" data-level="3.3" data-path="descriptive_stats.html"><a href="descriptive_stats.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="descriptive_stats.html"><a href="descriptive_stats.html#example-in-the-wild"><i class="fa fa-check"></i><b>3.3.1</b> Example in the wild</a></li>
@@ -683,20 +683,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bayes_statistics.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb101-2"><a href="bayes_statistics.html#cb101-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%    HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.865 130.843 131.033   93   28.189 225.43                  
-## mu2         5.945   5.643   4.414   93  -84.997  96.48                  
-## muDiff    124.920 125.239 126.427   93   -9.709 259.89       0      95.4
-## sigma1    140.351 129.020 111.805   93   65.673 226.92                  
-## sigma2    130.510 119.577 106.330   93   62.372 213.15                  
-## sigmaDiff   9.842   8.779   7.211   93 -117.335 141.35       0      56.4
-## nu         34.082  25.425   9.397   93    1.270  83.53                  
-## log10nu     1.375   1.405   1.497   93    0.668   2.06                  
-## effSz       0.965   0.957   0.901   93   -0.119   1.98       0      95.4
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.749 130.861 132.756   93   35.8655 227.41                  
+## mu2         6.109   5.906  11.520   93  -83.8251  96.85                  
+## muDiff    124.640 124.974 123.728   93   -7.2652 258.65       0      95.6
+## sigma1    139.216 128.669 113.563   93   66.7694 224.70                  
+## sigma2    130.278 119.598 103.284   93   60.5517 209.99                  
+## sigmaDiff   8.938   8.338   2.485   93 -117.0248 134.43       0      56.2
+## nu         34.338  25.820  10.399   93    1.2534  83.33                  
+## log10nu     1.379   1.412   1.460   93    0.6526   2.04                  
+## effSz       0.966   0.957   0.975   93   -0.0636   2.02       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.53
+## muDiff        -20       20    4.49
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -903,21 +903,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.894 sec elapsed</code></pre>
+<pre><code>## 2.032 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.717  0.710  0.716   93 -0.517  2.006                          
-## mu2        2.301  2.301  2.316   93  0.886  3.706                          
-## muDiff    -1.584 -1.590 -1.646   93 -3.472  0.313       0      6.21    -1.8
-## sigma1     2.043  1.923  1.751   93  1.092  3.109                          
-## sigma2     2.302  2.172  1.974   93  1.275  3.486                          
-## sigmaDiff -0.260 -0.246 -0.218   93 -1.988  1.363       0     37.37        
-## nu        36.152 27.574 12.304   93  1.453 86.327                          
-## log10nu    1.413  1.440  1.524   93  0.718  2.055                          
-## effSz     -0.749 -0.745 -0.702   93 -1.634  0.140       0      6.21        
+## mu1        0.714  0.708  0.690   93 -0.558  1.982                          
+## mu2        2.304  2.305  2.330   93  0.907  3.727                          
+## muDiff    -1.591 -1.592 -1.594   93 -3.481  0.331       0       6.2    -1.8
+## sigma1     2.043  1.925  1.717   93  1.108  3.133                          
+## sigma2     2.299  2.164  1.977   93  1.252  3.461                          
+## sigmaDiff -0.256 -0.240 -0.277   93 -1.942  1.430       0      37.6        
+## nu        35.790 27.245 11.578   93  1.347 85.138                          
+## log10nu    1.408  1.435  1.458   93  0.715  2.058                          
+## effSz     -0.753 -0.750 -0.758   93 -1.658  0.135       0       6.2        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

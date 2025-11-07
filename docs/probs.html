@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="descriptive_stats.html"><a href="descriptive_stats.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="descriptive_stats.html"><a href="descriptive_stats.html#example_study1_physio"><i class="fa fa-check"></i><b>3.1</b> Example: Descriptive statistics in health sciences</a></li>
-<li class="chapter" data-level="3.2" data-path="descriptive_stats.html"><a href="descriptive_stats.html#univarate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univarate vs. bivariate statisics</a></li>
+<li class="chapter" data-level="3.2" data-path="descriptive_stats.html"><a href="descriptive_stats.html#univariate-vs.-bivariate-statisics"><i class="fa fa-check"></i><b>3.2</b> Univariate vs. bivariate statisics</a></li>
 <li class="chapter" data-level="3.3" data-path="descriptive_stats.html"><a href="descriptive_stats.html#the-histogram"><i class="fa fa-check"></i><b>3.3</b> The histogram</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="descriptive_stats.html"><a href="descriptive_stats.html#example-in-the-wild"><i class="fa fa-check"></i><b>3.3.1</b> Example in the wild</a></li>
@@ -783,8 +783,8 @@ What if the events are not disjoint? For simplicity, let’s consider only 2 res
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-95ab43aa0051c02d7280" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-95ab43aa0051c02d7280">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-061a1c417a95a2cc4a54" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-061a1c417a95a2cc4a54">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
