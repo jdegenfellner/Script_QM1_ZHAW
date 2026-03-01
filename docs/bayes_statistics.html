@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2025-11-06" />
+<meta name="date" content="2025-11-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,15 +261,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#some-advantages"><i class="fa fa-check"></i><b>4.8.1</b> (Some) Advantages</a></li>
 <li class="chapter" data-level="4.8.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#some-disadvantages"><i class="fa fa-check"></i><b>4.8.2</b> (Some) Disadvantages</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
-<li class="chapter" data-level="4.10" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.10</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.11" data-path="bayes_statistics.html"><a href="bayes_statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.11</b> [H] Exercise 2 - Bayesian updating</a></li>
-<li class="chapter" data-level="4.12" data-path="bayes_statistics.html"><a href="bayes_statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.12</b> Solutions</a></li>
-<li class="chapter" data-level="4.13" data-path="bayes_statistics.html"><a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2"><i class="fa fa-check"></i><b>4.13</b> Sample exam questions for this chapter (in German since exam is in German)</a>
+<li class="chapter" data-level="4.9" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.9</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="4.13.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-1"><i class="fa fa-check"></i><b>4.13.1</b> Frage 1</a></li>
-<li class="chapter" data-level="4.13.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-2"><i class="fa fa-check"></i><b>4.13.2</b> Frage 2</a></li>
-<li class="chapter" data-level="4.13.3" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-3"><i class="fa fa-check"></i><b>4.13.3</b> Frage 3</a></li>
+<li class="chapter" data-level="4.9.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.9.1</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.9.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.9.2</b> [H] Exercise 2 - Bayesian updating</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="bayes_statistics.html"><a href="bayes_statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.10</b> Solutions</a></li>
+<li class="chapter" data-level="4.11" data-path="bayes_statistics.html"><a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2"><i class="fa fa-check"></i><b>4.11</b> Sample exam questions for this chapter (in German since exam is in German)</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-1"><i class="fa fa-check"></i><b>4.11.1</b> Frage 1</a></li>
+<li class="chapter" data-level="4.11.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-2"><i class="fa fa-check"></i><b>4.11.2</b> Frage 2</a></li>
+<li class="chapter" data-level="4.11.3" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-3"><i class="fa fa-check"></i><b>4.11.3</b> Frage 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="nhst.html"><a href="nhst.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing (NHST)</a>
@@ -547,7 +549,7 @@ R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blo
 and new data.
 The fact, that we get a full distribution of the parameter of interest,
 is a key feature of Bayesian statistics and (as far as I know) not available
-in frequentist statistics and Null Hypothesis Significance Testing (NHST), which we
+in Frequentist statistics and Null Hypothesis Significance Testing (NHST), which we
 will discuss in the next chapter.</p>
 </div>
 </div>
@@ -587,7 +589,7 @@ If the distribution is symmetric, the quantiles are symmetric around the peak of
 and the HDI is the same as the quantile-based credible interval.</p>
 <p>A <a href="https://en.wikipedia.org/wiki/Credible_interval">credible interval</a>
 is <strong>not</strong> the same as a
-<a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> in frequentist statistics.
+<a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> in Frequentist statistics.
 We will discuss this in the next chapter.</p>
 <p>Briefly, a <strong>credible interval</strong> is a range of values
 for a parameter of interest that has a specified probability of containing the
@@ -604,14 +606,15 @@ one often wants to know if two groups differ with respect to their true means.
 This answer is typically given by the famous <a href="https://en.wikipedia.org/wiki/Student%27s_t-test"><span class="math inline">\(t\)</span>-test</a>
 (<a href="https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf">small “<span class="math inline">\(t\)</span>”</a> please).
 I encourage you to read the short <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#History">history</a> of the <span class="math inline">\(t\)</span>-test.</p>
-<p>For didactic reasons, we will look at the Baysian version of the <span class="math inline">\(t\)</span>-test first.
+<p>For didactic reasons, we will look at the Bayesian version of the <span class="math inline">\(t\)</span>-test first.
 We want to try to view statistics as more than just a
 <a href="https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html">cookbook of recipes</a>.
 Unfortunately, very often it is taught that way and the impression is given that statistics is
 just a set of tools to apply in a certain order. In my humble opinion, this is not the case. Statistics
 and model building is a creative process and - if you want to go so far - an art form.
 <strong>Statistics is difficult and beautiful - in that order</strong>.</p>
-<p>Unfortunately, it is not completely trivial to apply the Bayesian <span class="math inline">\(t\)</span>-test, as opposte to the frequentist <span class="math inline">\(t\)</span>-test,
+<p>Unfortunately, it is not completely trivial to apply the Bayesian <span class="math inline">\(t\)</span>-test,
+as opposte to the Frequentist <span class="math inline">\(t\)</span>-test,
 which constitutes one line of code in R.</p>
 <p>We’ll use the not anymore maintained R package <a href="https://cran.r-project.org/web/packages/BEST/index.html">BEST</a>
 for a nice illustration. Later, we will use more up-to-date packages like <a href="https://cran.r-project.org/web/packages/brms/index.html">brms</a>
@@ -619,8 +622,9 @@ or <a href="https://github.com/rmcelreath/rethinking">rethinking</a> for modelin
 <div id="example---bayesian-t-test" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Example - Bayesian <span class="math inline">\(t\)</span>-test<a href="bayes_statistics.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For an explanation of the statistical model behind the Bayesian <span class="math inline">\(t\)</span>-test,
-visit <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">Kruschke</a>, Figure 2.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="bayes_statistics.html#cb86-1" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+visit <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">Kruschke’s paper</a>, Figure 2.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="bayes_statistics.html#cb86-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb86-2"><a href="bayes_statistics.html#cb86-2" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="bayes_statistics.html#cb88-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
@@ -684,19 +688,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bayes_statistics.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb101-2"><a href="bayes_statistics.html#cb101-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.749 130.861 132.756   93   35.8655 227.41                  
-## mu2         6.109   5.906  11.520   93  -83.8251  96.85                  
-## muDiff    124.640 124.974 123.728   93   -7.2652 258.65       0      95.6
-## sigma1    139.216 128.669 113.563   93   66.7694 224.70                  
-## sigma2    130.278 119.598 103.284   93   60.5517 209.99                  
-## sigmaDiff   8.938   8.338   2.485   93 -117.0248 134.43       0      56.2
-## nu         34.338  25.820  10.399   93    1.2534  83.33                  
-## log10nu     1.379   1.412   1.460   93    0.6526   2.04                  
-## effSz       0.966   0.957   0.975   93   -0.0636   2.02       0      95.6
+## mu1       131.014 131.265 135.307   93   33.6260 228.26                  
+## mu2         6.017   5.763   8.246   93  -81.8116  97.88                  
+## muDiff    124.997 125.229 125.760   93  -10.3938 256.39       0      95.6
+## sigma1    140.022 128.580 112.999   93   68.3122 228.96                  
+## sigma2    129.761 119.373 106.878   93   61.4925 209.28                  
+## sigmaDiff  10.261   8.921   7.238   93 -113.7884 141.56       0      56.7
+## nu         34.713  25.881  10.509   93    1.2243  84.87                  
+## log10nu     1.381   1.413   1.502   93    0.6456   2.06                  
+## effSz       0.967   0.959   0.959   93   -0.0854   2.00       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.49
+## muDiff        -20       20    4.57
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -715,7 +719,7 @@ or rejected, if its entire ROPE lies outside the highest density interval
 <p>This is not the case here. We would not conclude, that the means between the groups differ.
 One could argue, that this rule seems rather strict considering, that ~95% of the
 posterior distribution of the differences is greater than 0.</p>
-<p>As opposed to the frequentist <span class="math inline">\(t\)</span>-test, we can also <strong>affirm the null hypothesis</strong>,
+<p>As opposed to the Frequentist <span class="math inline">\(t\)</span>-test, we can also <strong>affirm the null hypothesis</strong>,
 that the means in the two groups are equal. This is a nice feature of the Bayesian <span class="math inline">\(t\)</span>-test.</p>
 <p><strong>“A parameter value is declared to be accepted for practical purposes if that value’s
 ROPE completely contains the X% HDI of the posterior of that parameter.”</strong></p>
@@ -785,13 +789,12 @@ using two different starting points. The opinions seem to converge.</p>
 <p>Above we dealt with the rather simple case of one parameter (<span class="math inline">\(\theta\)</span>), the proportion of defective products or the fairness of a coin.
 Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
 exactly. <strong>We are mainly interested in simulation-based results, since we are practitioners</strong>.</p>
-<p>In the Baysian <span class="math inline">\(t\)</span>-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
-estimated (see Figure 2 <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">here</a>).
+<p>In the Bayesian <span class="math inline">\(t\)</span>-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+estimated (see Figure 2 <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">here</a>).
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently.
 This can be computationally intensive.
-The <a href="https://revolution-computing.typepad.com/.a/6a010534b1db25970b019aff4a7bbc970d-pi">animation</a>
-in <a href="https://www.r-bloggers.com/2013/09/an-animated-peek-into-the-workings-of-bayesian-statistics/">this article</a>
+The animation in <a href="https://mbjoseph.github.io/posts/2018-12-25-animating-the-metropolis-algorithm/">this article</a>
 shows the walk through of the parameter space nicely for the case of a normal distribution with two parameters (<span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>).</p>
 <p>For statistical models with many parameters and observations, the computation can take a long time. Very often though, computational time
 is not an issue and we can make use of the flexibility and intuitive interpretation of Bayesian statistics.</p>
@@ -807,7 +810,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 <li><p><strong>No <span class="math inline">\(p\)</span>-values</strong>: We do not need to rely on <span class="math inline">\(p\)</span>-values and NHST (Null Hypothesis Significance Testing).
 John Kruschke points out many problems with
 NHST in his <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">book</a> and
-<a href="https://psycnet.apa.org/record/2012-18082-001">article</a>. It seems that for many practinioners, <span class="math inline">\(p\)</span>-values are
+<a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">article</a>. It seems that for many practinioners, <span class="math inline">\(p\)</span>-values are
 hard to understand and interpret correctly. There are many
 <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconceptions about <span class="math inline">\(p\)</span>-values</a>.
 And one should definitely
@@ -820,8 +823,8 @@ And one should definitely
 <li><p><strong>Computational complexity</strong>: Calculating the posterior distribution can be computationally intensive.
 Even with modern computers and the latest packages, it can take a long time to get results. Classical statistical models
 are often estimated within fractions of a second.</p></li>
-<li><p><strong>Barriers to entry</strong>: Statistics courses and textbooks often focus on frequentist statistics, as well as many
-sofware packages lean more towards frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
+<li><p><strong>Barriers to entry</strong>: Statistics courses and textbooks often focus on Frequentist statistics, as well as many
+sofware packages lean more towards Frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
 When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.</p></li>
 <li><p><strong>Subjectivity</strong>: The choice of the prior distribution can be subjective.</p></li>
 </ul>
@@ -833,15 +836,14 @@ When publishing, many reviewers could be sceptical or unfamiliar with Bayesian s
 <strong>E</strong>: easy,
 <strong>M</strong>: intermediate,
 <strong>D</strong>: difficult</p>
-</div>
-<div id="exercise_defective_product_rate" class="section level2 hasAnchor" number="4.10">
-<h2><span class="header-section-number">4.10</span> [E] Exercise 1 - defective product rate<a href="bayes_statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise_defective_product_rate" class="section level3 hasAnchor" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> [E] Exercise 1 - defective product rate<a href="bayes_statistics.html#exercise_defective_product_rate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s revisit <a href="bayes_statistics.html#example_defective_products">Example 1</a> and change the prior probabilites to
 <span class="math inline">\(\pi(0.05) = 0.1\)</span> and <span class="math inline">\(\pi(0.10) = 0.9\)</span>.</p>
 <p>Calculate and plot the posterior probabilities for <span class="math inline">\(\theta = 0.05\)</span> and <span class="math inline">\(\theta = 0.10\)</span>.</p>
 </div>
-<div id="h-exercise-2---bayesian-updating" class="section level2 hasAnchor" number="4.11">
-<h2><span class="header-section-number">4.11</span> [H] Exercise 2 - Bayesian updating<a href="bayes_statistics.html#h-exercise-2---bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="h-exercise-2---bayesian-updating" class="section level3 hasAnchor" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> [H] Exercise 2 - Bayesian updating<a href="bayes_statistics.html#h-exercise-2---bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We want to check empirically that the <strong>order of data collection does not influence the posterior distribution</strong>.
 We want to find out the probability <span class="math inline">\(\theta\)</span> of a therapy to work.
 Since we have absolutely no idea, how effective the therapy is, let our prior distribution be a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform
@@ -889,35 +891,36 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <li><p>[Optional] Show this result analytically.</p></li>
 </ul>
 </div>
-<div id="solutions-2" class="section level2 hasAnchor" number="4.12">
-<h2><span class="header-section-number">4.12</span> Solutions<a href="bayes_statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="solutions-2" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Solutions<a href="bayes_statistics.html#solutions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Solutions for this chapter can be found <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/tree/main/Solutions_to_Exercises/4_Bayes_Statistics">here</a>.</p>
 </div>
-<div id="sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2" class="section level2 hasAnchor" number="4.13">
-<h2><span class="header-section-number">4.13</span> Sample exam questions for this chapter (in German since exam is in German)<a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Sample exam questions for this chapter (in German since exam is in German)<a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For this section, no solutions are provided.</p>
-<div id="frage-1" class="section level3 hasAnchor" number="4.13.1">
-<h3><span class="header-section-number">4.13.1</span> Frage 1<a href="bayes_statistics.html#frage-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="frage-1" class="section level3 hasAnchor" number="4.11.1">
+<h3><span class="header-section-number">4.11.1</span> Frage 1<a href="bayes_statistics.html#frage-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>sleep: Daten, die die Wirkung von zwei schlaffördernden Medikamenten
 (Zunahme der Schlafstunden im Vergleich zur Kontrollgruppe) bei 10 Patienten zeigen.</p>
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 2.032 sec elapsed</code></pre>
+<pre><code>## 1.905 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.714  0.708  0.690   93 -0.558  1.982                          
-## mu2        2.304  2.305  2.330   93  0.907  3.727                          
-## muDiff    -1.591 -1.592 -1.594   93 -3.481  0.331       0       6.2    -1.8
-## sigma1     2.043  1.925  1.717   93  1.108  3.133                          
-## sigma2     2.299  2.164  1.977   93  1.252  3.461                          
-## sigmaDiff -0.256 -0.240 -0.277   93 -1.942  1.430       0      37.6        
-## nu        35.790 27.245 11.578   93  1.347 85.138                          
-## log10nu    1.408  1.435  1.458   93  0.715  2.058                          
-## effSz     -0.753 -0.750 -0.758   93 -1.658  0.135       0       6.2        
+## mu1        0.708  0.707  0.691   93 -0.564  1.941                          
+## mu2        2.298  2.297  2.316   93  0.918  3.740                          
+## muDiff    -1.590 -1.592 -1.674   93 -3.485  0.308       0      6.12    -1.8
+## sigma1     2.040  1.921  1.745   93  1.092  3.092                          
+## sigma2     2.311  2.174  1.949   93  1.264  3.510                          
+## sigmaDiff -0.270 -0.248 -0.204   93 -1.947  1.437       0     37.05        
+## nu        35.891 27.407 11.716   93  1.592 85.712                          
+## log10nu    1.410  1.438  1.495   93  0.722  2.061                          
+## effSz     -0.751 -0.746 -0.799   93 -1.633  0.143       0      6.12        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -935,8 +938,8 @@ im Interval <span class="math inline">\([-3.48, 0.298]\)</span>.</li>
 <li>Die Testentscheidung lautet: “Die Mittelwerte der beiden Gruppen sind nicht gleich.”</li>
 </ul>
 </div>
-<div id="frage-2" class="section level3 hasAnchor" number="4.13.2">
-<h3><span class="header-section-number">4.13.2</span> Frage 2<a href="bayes_statistics.html#frage-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="frage-2" class="section level3 hasAnchor" number="4.11.2">
+<h3><span class="header-section-number">4.11.2</span> Frage 2<a href="bayes_statistics.html#frage-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot
 \mathbb{P}(Dpos)}{\mathbb{P}(Tpos|Dpos) \cdot \mathbb{P}(Dpos) + (1-\mathbb{P}(Tneg|Dneg)) \cdot \mathbb{P}(Dneg)}.
@@ -952,8 +955,8 @@ wenn der Test positiv ist, gleich 1.</p></li>
 positiv ist.</p></li>
 </ul>
 </div>
-<div id="frage-3" class="section level3 hasAnchor" number="4.13.3">
-<h3><span class="header-section-number">4.13.3</span> Frage 3<a href="bayes_statistics.html#frage-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="frage-3" class="section level3 hasAnchor" number="4.11.3">
+<h3><span class="header-section-number">4.11.3</span> Frage 3<a href="bayes_statistics.html#frage-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Bei einer Bayes’schen Analyse eines Fehleranteils verwenden wir folgende a
 priori Verteilung für den Fehleranteil <span class="math inline">\(\theta\)</span>:</p>
 <p><img src="_main_files/figure-html/bar_plot_code_ueb-1.png" width="672" /></p>

@@ -611,7 +611,7 @@ The previous two examples showcase how to **estimate a proportion** using prior 
 and new data.
 The fact, that we get a full distribution of the parameter of interest, 
 is a key feature of Bayesian statistics and (as far as I know) not available
-in frequentist statistics and Null Hypothesis Significance Testing (NHST), which we
+in Frequentist statistics and Null Hypothesis Significance Testing (NHST), which we
 will discuss in the next chapter.
 
 ## Highest Density Intervals (HDI)
@@ -736,7 +736,7 @@ and the HDI is the same as the quantile-based credible interval.
 
 A [credible interval](https://en.wikipedia.org/wiki/Credible_interval) 
 is **not** the same as a 
-[confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) in frequentist statistics.
+[confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) in Frequentist statistics.
 We will discuss this in the next chapter. 
 
 Briefly, a **credible interval** is a range of values
@@ -757,7 +757,7 @@ This answer is typically given by the famous [$t$-test](https://en.wikipedia.org
 ([small "$t$"](https://pure.manchester.ac.uk/ws/portalfiles/portal/78743532/studentt.pdf) please).
 I encourage you to read the short [history](https://en.wikipedia.org/wiki/Student%27s_t-test#History) of the $t$-test.
 
-For didactic reasons, we will look at the Baysian version of the $t$-test first.
+For didactic reasons, we will look at the Bayesian version of the $t$-test first.
 We want to try to view statistics as more than just a 
 [cookbook of recipes](https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html). 
 Unfortunately, very often it is taught that way and the impression is given that statistics is 
@@ -765,7 +765,8 @@ just a set of tools to apply in a certain order. In my humble opinion, this is n
 and model building is a creative process and - if you want to go so far - an art form.
 **Statistics is difficult and beautiful - in that order**.
 
-Unfortunately, it is not completely trivial to apply the Bayesian $t$-test, as opposte to the frequentist $t$-test,
+Unfortunately, it is not completely trivial to apply the Bayesian $t$-test, 
+as opposte to the Frequentist $t$-test,
 which constitutes one line of code in R.
 
 We'll use the not anymore maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
@@ -775,9 +776,10 @@ or [rethinking](https://github.com/rmcelreath/rethinking) for modeling.
 ### Example - Bayesian $t$-test
 
 For an explanation of the statistical model behind the Bayesian $t$-test, 
-visit [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf), Figure 2.
+visit [Kruschke's paper](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf), Figure 2.
 
 ```{r, echo=TRUE}
+library(tidyverse)
 (y1 <- c(-.5, 0, 1.2, 1.2, 1.2, 1.9, 2.4, 3) * 100)
 (y2 <- c(-1.2, -1.2, -.5, 0, 0, .5, 1.1, 1.9) * 100)
 
@@ -861,7 +863,7 @@ This is not the case here. We would not conclude, that the means between the gro
 One could argue, that this rule seems rather strict considering, that ~95% of the 
 posterior distribution of the differences is greater than 0.
 
-As opposed to the frequentist $t$-test, we can also **affirm the null hypothesis**, 
+As opposed to the Frequentist $t$-test, we can also **affirm the null hypothesis**, 
 that the means in the two groups are equal. This is a nice feature of the Bayesian $t$-test.
 
 **"A parameter value is declared to be accepted for practical purposes if that value’s 
@@ -929,13 +931,12 @@ Above we dealt with the rather simple case of one parameter ($\theta$), the prop
 Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
 exactly. **We are mainly interested in simulation-based results, since we are practitioners**. 
 
-In the Baysian $t$-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
-estimated (see Figure 2 [here](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf)). 
+In the Bayesian $t$-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
+estimated (see Figure 2 [here](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf)). 
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently. 
 This can be computationally intensive.
-The [animation](https://revolution-computing.typepad.com/.a/6a010534b1db25970b019aff4a7bbc970d-pi)
-in [this article](https://www.r-bloggers.com/2013/09/an-animated-peek-into-the-workings-of-bayesian-statistics/) 
+The animation in [this article](https://mbjoseph.github.io/posts/2018-12-25-animating-the-metropolis-algorithm/) 
 shows the walk through of the parameter space nicely for the case of a normal distribution with two parameters ($\mu$ and $\sigma$).
 
 For statistical models with many parameters and observations, the computation can take a long time. Very often though, computational time
@@ -953,7 +954,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 - **No $p$-values**: We do not need to rely on $p$-values and NHST (Null Hypothesis Significance Testing). 
 John Kruschke points out many problems with 
 NHST in his [book](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) and
- [article](https://psycnet.apa.org/record/2012-18082-001). It seems that for many practinioners, $p$-values are
+ [article](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf). It seems that for many practinioners, $p$-values are
  hard to understand and interpret correctly. There are many 
  [misconceptions about $p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620). 
  And one should definitely 
@@ -964,8 +965,8 @@ NHST in his [book](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian
 Even with modern computers and the latest packages, it can take a long time to get results. Classical statistical models
 are often estimated within fractions of a second.
 
-- **Barriers to entry**: Statistics courses and textbooks often focus on frequentist statistics, as well as many
-sofware packages lean more towards frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
+- **Barriers to entry**: Statistics courses and textbooks often focus on Frequentist statistics, as well as many
+sofware packages lean more towards Frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
 When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.
 
 - **Subjectivity**: The choice of the prior distribution can be subjective.
@@ -981,13 +982,13 @@ Difficulty levels of exercises:
 **M**: intermediate, 
 **D**: difficult
 
-## [E] Exercise 1 - defective product rate {#exercise_defective_product_rate}
+### [E] Exercise 1 - defective product rate {#exercise_defective_product_rate}
 Let's revisit [Example 1](#example_defective_products) and change the prior probabilites to
 $\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
 
 Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.
 
-## [H] Exercise 2 - Bayesian updating
+### [H] Exercise 2 - Bayesian updating
 We want to check empirically that the **order of data collection does not influence the posterior distribution**.
 We want to find out the probability $\theta$ of a therapy to work.
 Since we have absolutely no idea, how effective the therapy is, let our prior distribution be a [uniform 

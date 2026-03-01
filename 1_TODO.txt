@@ -2,10 +2,34 @@ Use logical fallacy example from
 https://doi.org/10.1007/s11192-018-2655-4
 to show weakness of NHST
 
-Improve Correlation plot example... maybe use uniform marginals?
-Take Peter Mary ROM as... Marginals are skewed but cor is a good measure.
-
 Create an example for chapter 5 that conditioning on p-values, necessarily
 overestimates the effect.
 
-Übung: QQ Plot selbst erstellen, manuell...
+- Übung Deskr: QQ Plot selbst erstellen, manuell...
+
+- Übung Deskr.: Anscombe's quartett - verify:
+
+library(tidyr)
+library(tidyverse)
+
+ans_long <- anscombe |>
+  mutate(id = row_number()) |>
+  pivot_longer(
+    cols = -id,
+    names_to = c(".value", "set"),
+    names_pattern = "([xy])(\\d)"
+  )
+
+head(ans_long)
+
+ggplot(ans_long, aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ set)
+
+- Übungen Bayes: Updating of error rate -> show data order invariance with 3/20 and 7/20.
+
+- Expand Chapter 3
+
+- Implement https://aloy.github.io/qqplotr/
+
+- Show https://www.rdocumentation.org/packages/MKinfer/versions/1.3/topics/perm.t.test

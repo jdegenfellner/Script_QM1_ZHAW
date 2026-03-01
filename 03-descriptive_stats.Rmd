@@ -370,14 +370,14 @@ library(ggExtra)
 set.seed(1234)
 
 # Parameters
-n <- 200  # Sample size
+n <- 350  # Sample size
 beta <- 0.7  # Desired beta
 
 # Generate left-skewed variable x (negative exponential distribution)
 x <- -rexp(n, rate = 1)
 
 # Generate correlated left-skewed variable y
-error <- rnorm(n, mean = 0, sd = 2)
+error <- rnorm(n, mean = 0, sd = 0.6)
 y <- beta * x + error
 
 # Create a data frame

@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2025-11-06" />
+<meta name="date" content="2025-11-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,15 +261,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#some-advantages"><i class="fa fa-check"></i><b>4.8.1</b> (Some) Advantages</a></li>
 <li class="chapter" data-level="4.8.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#some-disadvantages"><i class="fa fa-check"></i><b>4.8.2</b> (Some) Disadvantages</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
-<li class="chapter" data-level="4.10" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.10</b> [E] Exercise 1 - defective product rate</a></li>
-<li class="chapter" data-level="4.11" data-path="bayes_statistics.html"><a href="bayes_statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.11</b> [H] Exercise 2 - Bayesian updating</a></li>
-<li class="chapter" data-level="4.12" data-path="bayes_statistics.html"><a href="bayes_statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.12</b> Solutions</a></li>
-<li class="chapter" data-level="4.13" data-path="bayes_statistics.html"><a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2"><i class="fa fa-check"></i><b>4.13</b> Sample exam questions for this chapter (in German since exam is in German)</a>
+<li class="chapter" data-level="4.9" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercises-2"><i class="fa fa-check"></i><b>4.9</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="4.13.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-1"><i class="fa fa-check"></i><b>4.13.1</b> Frage 1</a></li>
-<li class="chapter" data-level="4.13.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-2"><i class="fa fa-check"></i><b>4.13.2</b> Frage 2</a></li>
-<li class="chapter" data-level="4.13.3" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-3"><i class="fa fa-check"></i><b>4.13.3</b> Frage 3</a></li>
+<li class="chapter" data-level="4.9.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercise_defective_product_rate"><i class="fa fa-check"></i><b>4.9.1</b> [E] Exercise 1 - defective product rate</a></li>
+<li class="chapter" data-level="4.9.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#h-exercise-2---bayesian-updating"><i class="fa fa-check"></i><b>4.9.2</b> [H] Exercise 2 - Bayesian updating</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="bayes_statistics.html"><a href="bayes_statistics.html#solutions-2"><i class="fa fa-check"></i><b>4.10</b> Solutions</a></li>
+<li class="chapter" data-level="4.11" data-path="bayes_statistics.html"><a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2"><i class="fa fa-check"></i><b>4.11</b> Sample exam questions for this chapter (in German since exam is in German)</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-1"><i class="fa fa-check"></i><b>4.11.1</b> Frage 1</a></li>
+<li class="chapter" data-level="4.11.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-2"><i class="fa fa-check"></i><b>4.11.2</b> Frage 2</a></li>
+<li class="chapter" data-level="4.11.3" data-path="bayes_statistics.html"><a href="bayes_statistics.html#frage-3"><i class="fa fa-check"></i><b>4.11.3</b> Frage 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="nhst.html"><a href="nhst.html"><i class="fa fa-check"></i><b>5</b> Null Hypothesis Significance Testing (NHST)</a>
@@ -342,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Null Hypothesis Significance Testing (NHST) is a statistical method widely used in research,
 including health sciences, to evaluate whether observed data provide sufficient evidence <strong>to refute</strong> a specific hypothesis.
 It operates within a framework of probability and decision-making to address the following question:</p>
-<p><strong>Are the observed results likely to occur by chance alone if the null hypothesis is true?</strong></p>
+<p><strong>Are the observed results likely to occur by chance alone if the null hypothesis is true (and other model assumptions are not strongly violated)?</strong></p>
 <p>If one decides that the observed results are unlikely to occur by chance alone,
 the null hypothesis is rejected in favor of an alternative hypothesis.</p>
 <p>NHST is <strong>not designed to “prove” hypotheses</strong> but rather to provide evidence against the null hypothesis.
@@ -351,7 +353,7 @@ If one reads in a paper that there was “no association”, this typically mean
 there is no association (Misconception 2 <a href="https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf">here</a>).</p>
 <p>Underlying NHST is the idea of <a href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>.
 Sometimes one counter example is enough to reject a hypothesis like “all swans are white”.
-Seeing one <a href="https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg">black swan</a>,
+Seeing one <a href="https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg">black swan</a>
 proves the hypothesis wrong.</p>
 <p><strong>Key concepts</strong>:</p>
 <ul>
@@ -372,7 +374,7 @@ A smaller <span class="math inline">\(p\)</span>-value indicates stronger eviden
 There are many <a href="https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf">misconeptions about <span class="math inline">\(p\)</span>-values</a>.</p></li>
 <li><p><strong>Significance level <span class="math inline">\(\alpha\)</span></strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_0\)</span>.
 If the <span class="math inline">\(p\)</span>-value is smaller than <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(H_0\)</span> is rejected in favor of <span class="math inline">\(H_1\)</span>.
-Note, that <strong>there is absolutely no special reason to use <span class="math inline">\(\alpha = 0.05\)</span> as a default value</strong>.
+Note that <strong>there is absolutely no special reason to use <span class="math inline">\(\alpha = 0.05\)</span> as a default value</strong>.
 To quote <a href="https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6">Ronald Fisher</a> (p.44):
 “The value for which P = .05, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this
 point as a limit in judging whether a deviation is to be considered significant or not.”</p></li>
@@ -410,7 +412,8 @@ differences “statistically significant”. Example: Given an arbitrarily small
 always a sample size that makes the difference “significant”. See <a href="nhst.html#exercise2_nhst">Exercise 2</a>.</p></li>
 <li><p><strong><a href="https://en.wikipedia.org/wiki/Publication_bias">Publication bias</a></strong>: Many journals tended to publish studies with “significant” results. “Not significant” results
 were often not published. This leads to a distorted view of the literature. All rigorously
-conducted studies should be published, irrespective of the results.</p></li>
+conducted studies should be published, irrespective of the results. Estimates of parameters will also be <strong>overestimated</strong>
+when focusing on “significant” results only.</p></li>
 <li><p><strong><a href="https://de.wikipedia.org/wiki/P-Hacking"><span class="math inline">\(p\)</span>-hacking</a></strong>: In the pursuit for “significant” results
 (which results in publications, which results in tenure), it is natural to do everything to get them.
 This can include data dredging, selective reporting, and other questionable practices.
@@ -420,7 +423,7 @@ Swiss lottery is rather small and I would take a large bet against it. But every
 After the fact, one should not be surprised <em>that</em> someone won,
 since it follows from the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers</a>.</p></li>
 </ul>
-<p>See <a href="https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf">Kruschke</a> for more limitations of NHST.</p>
+<p>See <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">Kruschke</a> for more limitations of NHST.</p>
 <p>In practice, NHST should at last be accompanied by confidence intervals,
 effect size calculations, and a focus on clinical relevance to provide
 a more comprehensive understanding of the results.</p>

@@ -4,7 +4,7 @@ Null Hypothesis Significance Testing (NHST) is a statistical method widely used 
 including health sciences, to evaluate whether observed data provide sufficient evidence **to refute** a specific hypothesis. 
 It operates within a framework of probability and decision-making to address the following question:
 
-**Are the observed results likely to occur by chance alone if the null hypothesis is true?**
+**Are the observed results likely to occur by chance alone if the null hypothesis is true (and other model assumptions are not strongly violated)?**
 
 If one decides that the observed results are unlikely to occur by chance alone, 
 the null hypothesis is rejected in favor of an alternative hypothesis.
@@ -16,7 +16,7 @@ there is no association (Misconception 2 [here](https://sixsigmadsi.com/wp-conte
 
 Underlying NHST is the idea of [falsifiability](https://en.wikipedia.org/wiki/Falsifiability). 
 Sometimes one counter example is enough to reject a hypothesis like "all swans are white". 
-Seeing one [black swan](https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg), 
+Seeing one [black swan](https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg) 
 proves the hypothesis wrong.
 
 **Key concepts**:
@@ -39,7 +39,7 @@ There are many [misconeptions about $p$-values](https://sixsigmadsi.com/wp-conte
 
 - **Significance level $\alpha$**: Researchers set a threshold to determine whether to reject $H_0$. 
 If the $p$-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
-Note, that **there is absolutely no special reason to use $\alpha = 0.05$ as a default value**.
+Note that **there is absolutely no special reason to use $\alpha = 0.05$ as a default value**.
 To quote [Ronald Fisher](https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6) (p.44):
 "The value for which P = .05, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this 
 point as a limit in judging whether a deviation is to be considered significant or not."
@@ -84,7 +84,8 @@ point as a limit in judging whether a deviation is to be considered significant 
 
 - **[Publication bias](https://en.wikipedia.org/wiki/Publication_bias)**: Many journals tended to publish studies with "significant" results. "Not significant" results
   were often not published. This leads to a distorted view of the literature. All rigorously
-  conducted studies should be published, irrespective of the results.
+  conducted studies should be published, irrespective of the results. Estimates of parameters will also be **overestimated**
+  when focusing on "significant" results only.
 
 - **[$p$-hacking](https://de.wikipedia.org/wiki/P-Hacking)**: In the pursuit for "significant" results 
   (which results in publications, which results in tenure), it is natural to do everything to get them. 
@@ -95,7 +96,7 @@ point as a limit in judging whether a deviation is to be considered significant 
   After the fact, one should not be surprised *that* someone won, 
   since it follows from the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers).
 
-See [Kruschke](https://jkkweb.sitehost.iu.edu/articles/Kruschke2013JEPG.pdf) for more limitations of NHST.
+See [Kruschke](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf) for more limitations of NHST.
 
 In practice, NHST should at last be accompanied by confidence intervals, 
 effect size calculations, and a focus on clinical relevance to provide 
