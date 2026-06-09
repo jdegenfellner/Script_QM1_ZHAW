@@ -23,7 +23,7 @@ proves the hypothesis wrong.
 
 - **Null Hypothesis $H_0$**: This represents the assumption of some specific effect or no effect at all. 
 For example, in a clinical trial comparing two treatments, one might state that both treatments have the same effect. 
-The alternative ist that one treatment is [superior to the other](https://en.wikipedia.org/wiki/Clinical_study_design#Other_terms).
+The alternative is that one treatment is [superior to the other](https://en.wikipedia.org/wiki/Clinical_study_design#Other_terms).
 
 - **Alternative Hypothesis $H_1$**: This is the opposing claim to $H_0$, the logical complement. 
 Example: 
@@ -134,7 +134,7 @@ we would "expect" (around) 40 false positives. We asked, what is the probability
 - $H_0: \theta \le 0.04$
 - $H_1: \theta > 0.04$
 
-Under $H_0$, what is the probabilty to see the oberved number (137) of 
+Under $H_0$, what is the probability to see the observed number (137) of 
 false positives (in our case, this is the test statistic) or more?
 
 The answer was $p = 5.551115 \cdot 10^{-16}$ (or less if one chooses $\theta < 0.04$).
@@ -153,7 +153,7 @@ binom.test(137, 1000, p = 0.04, alternative = "greater")
 
 The output in R tells us the following:
 
-- data: 137 and 1000 successes oberved
+- data: 137 and 1000 successes observed
 - alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
 - $p$-value < $2.2e-16$. This value is smaller than the precision in R (`.Machine').
 - 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
@@ -179,7 +179,7 @@ With some experience, one would probably not test for lower when seeing the obse
 - 95 percent confidence interval: $0.1162817$ to $0.1598810$.
 
 **Interpretation of this frequentist confidence interval (CI)**: When drawing repeated samples, in 95% percent of the samples,
-the so constructed interval (which will be different everytime) contains the true but unknown 
+the so constructed interval (which will be different every time) contains the true but unknown 
 parameter (see Illustration [here](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg),
 animations of the frequentist nature [here](https://seeing-theory.brown.edu/frequentist-inference/index.html)). 
 
@@ -203,7 +203,7 @@ See also [Exercise 3](#exercise3_nhst).
 
 **Comparison with Bayesian version** of estimating $\theta$:
 
-- We cannot include a prior distribution for the paramater $\theta$. 
+- We cannot include a prior distribution for the parameter $\theta$. 
 - We cannot calculate the posterior distribution of $\theta$. 
 Hence, we cannot make statements like "the probability that $\theta$ is larger than 0.04 is 0.9".
 - Prior knowledge could probably be included in the form of the null hypothesis stating, for instance, that $\theta \le 0.2$. 
@@ -413,7 +413,7 @@ chisq.test(table(d$sm, d$grp))
 
 **Let's verify the test statistic by "hand":**
 
-Degress of freedom are: 
+Degrees of freedom are: 
 $df = (number\_of\_columns - 1) \cdot (number\_of\_rows - 1) = 3 \cdot 1 = 3$. 
 
 
@@ -981,7 +981,7 @@ The following intervals were obtained in three different ways:
   - 96% confidence interval: $[-0.9360192, -0.7362129]$
   - Estimate: $-0.8676594$
 - Bootstrap: 
-  - 96% boostrap confidence interval: $[-0.926, -0.782]$
+  - 96% bootstrap confidence interval: $[-0.926, -0.782]$
   - Median of the bootstrap samples: $-0.8745279$
 - Bayesian: 
   - 96% credible interval: $[-0.9083272, -0.6384908]$
@@ -1089,7 +1089,7 @@ There is a 1:1 relationship between "statistical significance" and confidence in
 
 Through the power of modern computers, we can simulate all kinds of hypothesis tests. 
 We just assume that the null hypothesis is true and draw samples from the very distribution.
-In the old times, computational ressources were scarce and one had to rely on 
+In the old times, computational resources were scarce and one had to rely on 
 [tables](https://digital.library.adelaide.edu.au/server/api/core/bitstreams/21f22d02-4a39-4650-8f09-71434ad02897/content)
 that were precalculated. 
 
@@ -1141,7 +1141,7 @@ difference is and how small the $\alpha-$ level is.
 - Draw a $\chi^2$ distribution with 3 degrees of freedom and calculate the 
   probability of observing a value of 12.6 or larger.
 
-### Exercise 6 - correlation coefficent {#exercise6_nhst}
+### Exercise 6 - correlation coefficient {#exercise6_nhst}
 - Create a sample of $234$ pairs of uncorrelated observations $(x_i,y_i)$. 
   $X_i$ and $Y_i$ are drawn from a normal distribution with mean 0 and standard deviation 1.
 - Calculate the sample correlation coefficient $r$.

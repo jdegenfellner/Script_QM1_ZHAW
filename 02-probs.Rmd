@@ -1,11 +1,3 @@
----
-title: "Probability"
-output:
-  pdf_document:
-    latex_engine: xelatex
-always_allow_html: true
----
-
 # Probability {#probs}
 Probability is a measure of the likelihood that an event will occur. Probability is quantified as a number between 0 and 1 (or 0 to 100%), 
 where 0 indicates impossibility and 1 indicates certainty, although we will see later that a [probability of 0](https://stats.stackexchange.com/questions/273382/how-can-the-probability-of-each-point-be-zero-in-continuous-random-variable) does not necessarily mean that such an event can never occur. 
@@ -38,7 +30,7 @@ An example for the latter is the probability of a patient dying within the next 
 It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different whereas the dice are typically much more similar.
 Here, we could at least put forward that other similar patients have a certain proportion of dying within 5 years.
 
-There are of course events that have not happend ever before, like the creation of artificial general intelligence ([AGI](https://en.wikipedia.org/wiki/Artificial_general_intelligence)). 
+There are of course events that have not happened ever before, like the creation of artificial general intelligence ([AGI](https://en.wikipedia.org/wiki/Artificial_general_intelligence)). 
 Nevertheless, one can still try to assign probabilities [when](https://research.aimultiple.com/artificial-general-intelligence-singularity-timing/) such an event would happen.
 
 **To be very clear:**  
@@ -61,7 +53,7 @@ It is also argued that for large sample size Frequentist and Bayesian statistics
 
 There are very smart proponents on both sides and we will try to use and contrast both techniques throughout this script whenever convenient.
 
-Especially one of the early eminent statisticians, [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), was an oponent of Bayesian statistics, 
+Especially one of the early eminent statisticians, [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), was an opponent of Bayesian statistics, 
 or as he called it: ["inverse probability"](https://errorstatistics.com/wp-content/uploads/2016/02/fisher-1930-inverse-probability.pdf).
 
 The only thing we are interested in is the practical application of both methods in the field of applied health sciences. 
@@ -80,9 +72,9 @@ if I throw the die infinitely many times, the frequency of getting a 3 will conv
 
 where \(\mathbb{P}\) is the probability measure which we will define more formally later (see [Exercise 1](#exercise1)).
 
-More genereally, in Frequentist statistics, we are looking for **a fixed but unknown parameter from** an underlying data generating process (DGP). 
+More generally, in Frequentist statistics, we are looking for **a fixed but unknown parameter from** an underlying data generating process (DGP). 
 In the dice example, the process of repeatedly throwing the die is the data generating process.
-Basically, we could estimate the parameter of interest arbitrarily well by reapeated drawing from the DGP if we had enough data. 
+Basically, we could estimate the parameter of interest arbitrarily well by repeated drawing from the DGP if we had enough data. 
 
 **Example**: Throw your (fair or unfair) die often enough and you will get a good estimate of the probability of getting a 3.
 
@@ -224,7 +216,7 @@ This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) 
 this event can indeed *never* happen.
 
-Obviously, the probability of an event should at a mininum be zero and at a maximum be one: 
+Obviously, the probability of an event should at a minimum be zero and at a maximum be one: 
 
 $$0 \le \mathbb{P}(A) \le 1.$$ 
 
@@ -323,7 +315,7 @@ plot(euler(c(A = 1, B = 1, "A&B" = 1)))
 
 For the probability of event A, we are now *only* interested in the light-grey area with respect to the whole area of event B 
 since event B is our reference frame now (as opposed to the whole space $\Omega$ before).
-Note that even if the probability of event A changes when B has happend, B could still have no *causal* effect on A. They could have a common cause, for instance.
+Note that even if the probability of event A changes when B has happened, B could still have no *causal* effect on A. They could have a common cause, for instance.
 
 **Example in our context**: 
 Let's assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect. 
@@ -441,7 +433,7 @@ ggplot(data.frame(value = data), aes(x = as.factor(value))) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-As you can see, the realized number of found effects matches well the theoretical probabilites
+As you can see, the realized number of found effects matches well the theoretical probabilities
 given by the binomial distribution. Note that not necessarily 40 is the most often found number of effects
 among 1000 researchers, but we are very close. If you repeat the simulation, chances are high 
 that you get 40 as the most often found number of effects.
@@ -610,7 +602,7 @@ the probability of both finding an effect, which is the same as that both or exa
 
 We can also visualize the 4 disjoint elementary events 
 $$\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$$ 
-in a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram). The probabilites of these
+in a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram). The probabilities of these
 4 events in the event space $\Omega$ must add up to 1 since they are disjoint and one of them has to happen. There is no "room" left.
 
 ```{r echo=FALSE}
@@ -686,7 +678,7 @@ lands **with what probability** when I do the experiment.
 - When looking at ZHAW students, female, soccer lovers; what kind of hourly intense sports activity 
 can I expect and does that differ from other groups?
 
-#### Discrete probability distrubtions are used when we can count the outcomes, which includes infinitely many. {#discrete_probability_distributions}
+#### Discrete probability distributions are used when we can count the outcomes, which includes infinitely many. {#discrete_probability_distributions}
 Some examples of [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) are:
 
 - **[Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)**: A single trial with two outcomes (e.g., find an effect or do not find an effect).
@@ -694,7 +686,7 @@ Some examples of [discrete probability distributions](https://en.wikipedia.org/w
 - **[Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution)**: The number of events in a fixed interval of time or space.
 - **[Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)**: The number of trials until the first success. This number has no upper limit.
 
-We always assign probabilites to the countable outcomes of these distributions, like in the example of the binomial distribution when 
+We always assign probabilities to the countable outcomes of these distributions, like in the example of the binomial distribution when 
 we throw the dice 20 times and are interested in the number of 3s:
 
 ```{r}
@@ -719,7 +711,7 @@ This principle is true for all discrete probability distributions. Rather simple
 
 $$\sum_{i} \mathbb{P}(X = x_i) = 1,$$
 
-where $X$ ist the [random variable]((https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)) (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
+where $X$ is the [random variable]((https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)) (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
 We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), 
 we'll call it the **MSc-ZHAW-distribution**:
@@ -1000,8 +992,8 @@ Look at the definitions above and try to come up with examples for independent a
 - How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?
 
 ### [E] Exercise 6 - Three researchers {#exercise6}
-Above in [Addition of probabilites](#addition_of_probabilities) we went through in detail the case of 2 researchers finding an effect. 
-Let's now consider 3 researchers simulatenously conducting the experiment.
+Above in [Addition of probabilities](#addition_of_probabilities) we went through in detail the case of 2 researchers finding an effect. 
+Let's now consider 3 researchers simultaneously conducting the experiment.
 
 - What does the event space $\Omega$ look like?
 - Which elementary events are in the set of all possible outcomes of our 3-researcher experiment and how many are there?
@@ -1010,7 +1002,7 @@ Let's now consider 3 researchers simulatenously conducting the experiment.
 - Are the events "only researcher 1 finds an effect" and "only researcher 3 finds an effect" disjoint and/or independent?
 
 ### [E] Exercise 7 - Conditional probability {#exercise7}
-Let's consider again the 2 reasearcher situation from above ([Addition of probabilites](#addition_of_probabilities)).
+Let's consider again the 2 researcher situation from above ([Addition of probabilities](#addition_of_probabilities)).
 
 $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$. 
 
@@ -1137,7 +1129,7 @@ würde man hier auf den Erwartungswert $\mathbb{E}(X)$ tippen.
 
 ### Frage 4 - Dichtefunktion
 Es sei folgende Dichtefunktion der stetigen Zufallsvariablen $X$ gegeben:
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width=5, fig.height=3, out.width="65%", fig.align="center"}
 library(ggplot2)
 
 # Data for the rotated triangular shape with base = 1

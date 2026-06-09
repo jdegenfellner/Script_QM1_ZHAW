@@ -1,0 +1,15 @@
+# Local preview build (not published)
+_preview/
+
+# Local build helper scripts & logs
+_build_preview.R
+_build_docs.log
+_build_all.log
+_build_pdf.log
+_build_preview.log
+
+# macOS
+.DS_Store
+
+# Claude Code local config
+.claude/

@@ -31,7 +31,7 @@ a regression coefficient ($\beta$), or a proportion (p)...
 
 ## Derivation of Bayes' theorem
 
-We have already come across Bayes' theorem in the context of conditional probability where we have calulated 
+We have already come across Bayes' theorem in the context of conditional probability where we have calculated 
 the probability of a person having a disease *given* having tested positive for it: 
 
 $$
@@ -745,7 +745,7 @@ unobserved parameter.
 
 A **confidence interval** is an interval which is expected to contain the **true, 
 but unknown** parameter of interest in a certain percent of times (e.g., 92%), when 
-[constructed **repeatedly** everytime a new sample is drawn](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg). 
+[constructed **repeatedly** every time a new sample is drawn](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg). 
 
 
 ## Bayesian $t$-test {#bayesian_t_test}
@@ -838,7 +838,7 @@ clinically relevant for the patient.
 
 - The 93% HDI for the difference between the means is shown in the graph, hence given 
 the prior information and the observed data, we can be 93% sure that the 
-difference between the means is in this interval. The HDI changes everytime the code of this 
+difference between the means is in this interval. The HDI changes every time the code of this 
 script is run since it's simulation based.
 
 We can do more:
@@ -908,17 +908,25 @@ The following is an animated example of Bayesian updating.
 The true probability for heads in a coin toss is $\theta = 0.77$.
 We throw a coin 100 times and we start with a uniform prior distribution, i.e., 
 every value between 0 and 1 is equally likely at the beginning.
-Everytime a coin is tossed, the prior distribution is updated with the new data. 
+Every time a coin is tossed, the prior distribution is updated with the new data. 
 The posterior distribution is the prior for the next coin toss et cetera.
 One can see that we are converging to the "truth" (which is normally not known).
 
 Code can be found [here.](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
 
-```{r testing, fig.cap="example caption", echo=FALSE}
-library(gifski)
+```{r testing, fig.cap="Bayesian updating: the posterior converges towards the true value as more coin tosses are observed.", echo=FALSE}
 library(magick)
 img <- magick::image_read("./images/bayesian_updating_sequential.gif")
-print(img)
+if (knitr::is_html_output()) {
+  # Animated GIF works in HTML output
+  img
+} else {
+  # PDF/LaTeX cannot embed animated GIFs: show the last frame (converged posterior)
+  frame <- img[length(img)]
+  out <- knitr::fig_path(".png")
+  magick::image_write(frame, path = out, format = "png")
+  knitr::include_graphics(out)
+}
 ```
 
 This [video](https://www.youtube.com/watch?v=rUoJvogN7qQ&t=4s&ab_channel=CoreyChivers) illustrates the concept of Bayesian updating as well 
@@ -966,7 +974,7 @@ Even with modern computers and the latest packages, it can take a long time to g
 are often estimated within fractions of a second.
 
 - **Barriers to entry**: Statistics courses and textbooks often focus on Frequentist statistics, as well as many
-sofware packages lean more towards Frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
+software packages lean more towards Frequentist statistics. This can make it difficult for newcomers to learn Bayesian statistics.
 When publishing, many reviewers could be sceptical or unfamiliar with Bayesian statistics.
 
 - **Subjectivity**: The choice of the prior distribution can be subjective.
@@ -983,7 +991,7 @@ Difficulty levels of exercises:
 **D**: difficult
 
 ### [E] Exercise 1 - defective product rate {#exercise_defective_product_rate}
-Let's revisit [Example 1](#example_defective_products) and change the prior probabilites to
+Let's revisit [Example 1](#example_defective_products) and change the prior probabilities to
 $\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
 
 Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.

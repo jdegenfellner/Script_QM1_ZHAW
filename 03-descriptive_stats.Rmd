@@ -33,13 +33,13 @@ These are birds-eye views on the data. Let's look at a paper which was recently 
 The research question was "Do five baseline moderators identify patients with chronic low back pain who respond best to cognitive 
 functional therapy (CFT) when compared with usual care?".
 
-In **Table 2** of the paper, the authors present the baseline characteristics of the patients stratified by the treatment group (ususal care vs CFT).
+In **Table 2** of the paper, the authors present the baseline characteristics of the patients stratified by the treatment group (usual care vs CFT).
 We find absolute numbers, percentages, means, and standard deviations for the continuous variables, medians, and interquartile ranges for the ordinal variables.
 This should give an idea of the sample. In the population paradigm of statistics, we draw a [sample](https://en.wikipedia.org/wiki/Sampling_(statistics)) from 
 the [population](https://en.wikipedia.org/wiki/Statistical_population) of interest and try to make inferences about the population. We want to learn
 more about the population respectively that data generating process (DGP) producing the data [Westfall, p. 6-8](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516). 
 How did the data come about?
-Note that the **sample varies everytime we draw from the population**. 
+Note that the **sample varies every time we draw from the population**. 
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).
 
 Often, variables in a study are (approximately) normally distributed. 
@@ -55,7 +55,7 @@ To build a bridge to our concept of statistical [independence](#independence_of_
 What they mean is that there was a "statistically significant effect" in the chosen model. We will get to that in chapter 5.
 If you want to be picky, you could argue, that they did not formally define an $\alpha$-level for "significance".
 
-## Univariate vs. bivariate statisics 
+## Univariate vs. bivariate statistics 
 One can distinguish between [univariate](https://en.wikipedia.org/wiki/Univariate_analysis) and [bivariate](https://en.wikipedia.org/wiki/Bivariate_analysis) statistics.
 In univariate statistics, we look at **one variable at a time**, for instance *Age* in the example above, 
 where we could draw a [boxplot](https://en.wikipedia.org/wiki/Box_plot) or a [histogram](https://en.wikipedia.org/wiki/Histogram). 
@@ -175,7 +175,7 @@ the foot posture index (FPI-6) scores from the participants (3217 healthy childr
 "The FPI score may range from $-12$ (highly supinated) to $+12$ (highly pronated)".
 There are a few things to note here:
 
-- Acccording to the Methods-section: 
+- According to the Methods-section: 
 "Testing for normality using a Kolmogorov-Smirnov test, 
 found non-normal distribution of all data...".
 Especially the BMI could be asymmetrically distributed, or also age. Unfortunately, we do not have
@@ -190,7 +190,7 @@ It should be a sufficient approximation.
 $$Z = \frac{X - \mu_X}{\sigma_X}$$ 
 Doing this for the FPI scores would give (FPI right, see Table 1):
 $$z_i = \frac{FPI_i - \overline{FPI}}{SD(FPI)} = \frac{FPI_i - 4.20}{3.00}$$
-$\overline{FPI}$ ist the arithmetic mean of the FPI scores, $SD(FPI)$ the standard deviation of the FPI scores.
+$\overline{FPI}$ is the arithmetic mean of the FPI scores, $SD(FPI)$ the standard deviation of the FPI scores.
 $\mu_X$ is the expectation of X and $\sigma_X$ the standard deviation of X. 
 So we measure not in FPI units anymore, but in **standard deviations from the mean** which makes 
 it easier to compare different variables with each other. If we would only center the data and 
@@ -271,7 +271,7 @@ range of x compared to normal for instance.
 
 The **third plot** shows a Q-Q plot of a sample from a
 [ Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) 
-with 2 degrees of freedom, which has fater tails than the normal distribution.
+with 2 degrees of freedom, which has fatter tails than the normal distribution.
 
 Hint: There are many R packages to display Q-Q plots, for instance [ggpubr](https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html).
 
@@ -316,7 +316,7 @@ Without loss of generality let's assume that $\text{Cov}(X, Y) > 0$. Assuming, o
 An interesting and rarely mentioned version of formula for the correlation coefficient is:
 $$ r_{xy} = \frac{1}{n-1} \sum_{i=1}^{n} \left( \frac{x_i - \bar{x}}{s_x} \right) \left( \frac{y_i - \bar{y}}{s_y} \right) $$
 Here, we see that the correlation coefficient is the average of the products of the z-scores of the two variables.
-This preserves the covariance interpretation of adding a positive or negative product to the sum if the obeservation is above or below the respective mean.
+This preserves the covariance interpretation of adding a positive or negative product to the sum if the observation is above or below the respective mean.
 
 **Remember: We use $r$ to estimate $\rho$ using the sample.**
 
@@ -412,7 +412,7 @@ See also [Exercise 5](#exercise5_descriptive_stats).
 
 **That was all nice, what could go wrong?**
 
-(The sample) Correlation (coefficient) is based (see the formula above) on the artihmetic mean $\bar{X}$ 
+(The sample) Correlation (coefficient) is based (see the formula above) on the arithmetic mean $\bar{X}$ 
 (capital X since we are talking about the 
 [random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&ab_channel=VeryNormal) which is realised when 
 the $X_i$ have materialized into the $x_i$) and sample standard deviation $s$. 
@@ -490,7 +490,7 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
  (At least in this case: We could also add, e.g., an outlier above the y mean and below the x mean.)
   The reason is that the outlier is above the mean of the x values and above the mean of the y values, 
   so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
-  We could ask, what happend in this data point? Was another scale used for instance?
+  We could ask, what happened in this data point? Was another scale used for instance?
 
 - D: When we add an outlier in $y$, the $r$ decreases to 0.48. 
   The reason for the smaller correlation is that the outlier is above the mean of the y values 
@@ -528,7 +528,7 @@ is an example of a scatterplot depicting a non-linear relationship between two v
 Spearman's rank correlation coefficient equals 1 in this case, since the function is perfectly monotonically increasing.
 Pearson's correlation coefficient would be $<1$ in this case and argueably not appropriate here.
 
-We can easily calculate both and compare them. If they differ noticably, we need to understand why.
+We can easily calculate both and compare them. If they differ noticeably, we need to understand why.
 
 Here is an example of a Spearman correlation:
 
