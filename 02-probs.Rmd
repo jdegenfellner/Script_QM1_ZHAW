@@ -5,7 +5,7 @@ The higher the probability of an event, the more likely it is that the event wil
 
 **Why is probability important in our field of study (applied health sciences)?**
 
-Quantative research methods (often a code name for: statistics) use probability theory to make statements about a larger 
+Quantitative research methods (often a code name for: statistics) use probability theory to make statements about a larger 
 population or a data generating process (DGP), as it should be more appropriately called.
 
 In observational studies, we often make statements about the distribution of or
@@ -16,7 +16,7 @@ certain outcome - for instance if a therapy lowers [pain](https://jamanetwork.co
 
 Probability theory has its roots in gambling and betting. [Blaise Pascal](https://en.wikipedia.org/wiki/Blaise_Pascal) wrote a letter to [Pierre de Fermat](https://en.wikipedia.org/wiki/Pierre_de_Fermat) in 1654 when a 
 French essayist Antoine Gombaud, intrigued by gambling, sought to solve "the problem of points," 
-first posed by Luca Paccioli in 1494. The problem asked how to fairly divide the winnings if a game is interrupted before 
+first posed by Luca Pacioli in 1494. The problem asked how to fairly divide the winnings if a game is interrupted before 
 its conclusion. Gombaud approached mathematician Blaise Pascal, who collaborated with Pierre de Fermat. Together, they laid 
 the groundwork for modern probability theory. Fermat’s method involved listing all possible outcomes and calculating each player’s 
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
@@ -43,7 +43,7 @@ There are two main schools of thought in statistics: Frequentist and Bayesian. O
 
 It is *not* our place to say which one is better. Both have their strengths and weaknesses and are used in different contexts.
 
-I would consider the rapant misuse of [$p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub) and the 
+I would consider the rampant misuse of [$p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620?via%3Dihub) and the 
 cookbook-like application of frequentist statistics as a weakness of this approach (in its widely used form at least). 
 Of course, this is not the method's fault but the fault of the user.
 
@@ -70,7 +70,7 @@ if I throw the die infinitely many times, the frequency of getting a 3 will conv
 \mathbb{P}(\text{getting a 3}) = \lim_{n \to \infty} \frac{\text{Number of 3s in } n \text{ throws}}{n} = \frac{1}{6},
 \]
 
-where \(\mathbb{P}\) is the probability measure which we will define more formally later (see [Exercise 1](#exercise1)).
+where \(\mathbb{P}\) is the probability measure which we will define more formally later (see [Axioms of probability theory](#axioms_of_probability_theory)).
 
 More generally, in Frequentist statistics, we are looking for **a fixed but unknown parameter from** an underlying data generating process (DGP). 
 In the dice example, the process of repeatedly throwing the die is the data generating process.
@@ -112,7 +112,7 @@ This new data (the result of the trial) *updates* your belief about the effectiv
 Using Bayes' theorem ([Exercise 2](#exercise2)), you combine the prior knowledge \( \theta = 0.30 \) with the likelihood of the new data \( p(\text{data} | \theta) \), and you calculate 
 the **posterior probability**, \( p(\theta | \text{data}) \), which reflects your updated belief about the effectiveness of the therapy after observing the trial data.
 We could assign the probability of $\theta = 0.3$ or $\theta = 0.4$ equally: $p(\theta = 0.3) = p(\theta = 0.4) = 0.5.$ 
-This would indicate that we believe yourself and your colleagues equally.
+This would indicate that we believe you and your colleagues equally.
 
 Bayesian analysis allows you to update your estimates as new evidence becomes 
 available, providing a flexible framework for decision-making and estimation in health sciences.
@@ -127,15 +127,15 @@ Let's imagine we are in a research department with 1000 researchers all trying t
 Does the new physiotherapy work (e.g., reduce pain by 1 point better than the usual treatment)? Let's assume (unrealistically) that they are all working on this one question and they are not
 talking about their experiments or their research methodology to each other (assumption of independence). The statistician in the department has calculated 
 (due to the variability of such treatment effects in the relevant population and theoretical considerations)
-that even under the assumption of the therapy is not working *at all* - **which we will assume for the time being** - , one would see an effect just *by chance* in 4% of the study results.
+that even under the assumption that the therapy is not working *at all* - **which we will assume for the time being** - , one would see an effect just *by chance* in 4% of the study results.
 
-What would be considered a discovery under these cicumstances?
+What would be considered a discovery under these circumstances?
 
 We now conduct an experiment. All 1000 researchers are conducting a study with 50 patients to answer the same question. 
 This is our random experiment. 
 Instead of throwing a fair die, we do a round of "research" with 1000 researchers. You as observer
-give the assignment to the researchers and come back as soon as all 1000 researeches have finished their experiments. 
-Again, the are not taking to each other and we can 
+give the assignment to the researchers and come back as soon as all 1000 researchers have finished their experiments. 
+Again, they are not talking to each other and we can 
 (unrealistically) assume that their results will be not influenced by each other.
 
 ![](./images/thousand_researchers_ducks.jpg)
@@ -210,8 +210,8 @@ Note that the **$2^{1000}$ elementary events in the 1000 researcher experiment a
 certain researchers found something and others did not. The combinations are all different from each other. Hence, 
 all the elementary events cannot happen at the same time within that one experiment. All of them are disjoint. 
 
-The **probability of the event** "" (**nothing** occurred) should be zero ($\mathbb{P}(\emptyset)=0$), were "" denotes 
-the event that no researcher gets a positive or negative result ( = $\emptyset$, the so-called empty set). 
+The **probability of the event** $\emptyset$ (**nothing** occurred) should be zero ($\mathbb{P}(\emptyset)=0$), where $\emptyset$ denotes 
+the event that no researcher gets a positive or negative result (the so-called empty set). 
 This is impossible due to the design of the experiment.
 We would therefore define this probability as zero and (if we can count the number of different outcomes) 
 this event can indeed *never* happen.
@@ -235,10 +235,10 @@ For instance, we could ask for the number of researchers we need to look at unti
 positive result ([geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)). 
 We could find the first positive result in the first researcher, or the second, etc. There is no upper limit. 
 
-As concrete example for law 3 in our example, we can put the following:
+As a concrete example for axiom 3 in our example, we can put the following:
 \begin{align}
-\scriptsize \mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result" or "(only) researchers 1 and 5 get a pos. results"}) =\\
-\scriptsize \mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result"}) + \mathbb{P}(\text{"(only) researchers 1 and 5 get a pos. results"})
+\scriptsize \mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result" or "(only) researchers 1 and 5 get a pos. result"}) =\\
+\scriptsize \mathbb{P}(\text{"(only) researchers 34, 56 and 777 get a pos. result"}) + \mathbb{P}(\text{"(only) researchers 1 and 5 get a pos. result"})
 \end{align}
 
 Since the researchers are working independently from each other, we can simply multiply the probabilities of their individual positive or negative results in 
@@ -248,7 +248,7 @@ This can be calculated as:
 $0.04 \cdot 0.04 \cdot 0.04 \cdot \underbrace{0.96 \cdots 0.96}_{\text{997 times}} = 0.04^3 \cdot 0.96^{997}$, which yields a very small number ($1.350826 \cdot 10^{-22}$) 
 since we are fixating on specific researchers to find the effect. 
 If we relax the question to the *number of researchers* that find an effect,
-we get much larger numbers. We say, the number $X$ of positive results under $H_0$ (there is no true effect)) for a positive effect is **binomially distributed**: $X \sim Bin(n=1000, p=0.04)$. 
+we get much larger numbers. We say, the number $X$ of positive results under $H_0$ (there is no true effect) for a positive effect is **binomially distributed**: $X \sim Bin(n=1000, p=0.04)$. 
 The YouTube-channel [3Blue1Brown](https://www.youtube.com/@3blue1brown) is highly recommended in general. You should watch this 
 [video](https://www.youtube.com/watch?v=8idr1WZ1A7Q&ab_channel=3Blue1Brown) on the binomial distribution to get a clearer picture. 
 This [video](https://www.youtube.com/watch?v=WWv0RUxDfbs&ab_channel=KhanAcademy) from [KhanAcademy](https://www.youtube.com/@khanacademy) could also be helpful.
@@ -345,7 +345,7 @@ The probability of the patient receiving therapy B could be 50% (if randomized):
 - Event B: The patient wins the lottery during the study.
 
 These two events are independent because the probability of a patient showing a treatment effect is not influenced by whether they win the lottery or not 
-(at least if we assume that lottery participants do not have different properties compared to non-lottery particiants that are conducive to showing a treatment effect). 
+(at least if we assume that lottery participants do not have different properties compared to non-lottery participants that are conducive to showing a treatment effect). 
 Also, the probability of winning the lottery is not influenced by whether the patient shows a treatment effect or not. We would probably see a surge
 in volunteers in our studies.
 The events are unrelated: one depends on the treatment, while the other is purely a matter of luck.
@@ -355,7 +355,7 @@ A patient could experience the treatment effect and also win the lottery during 
 **Example 3: neither independent nor disjoint**
 
 - Event A: The patient shows a treatment effect during a study.
-- Event B: The patient is a heavily motivated and self-sufficient. 
+- Event B: The patient is heavily motivated and self-sufficient. 
 
 These two events are neither independent nor disjoint. The patient's motivation could influence the treatment effect (if for instance home exercises 
 are part of the therapy), making the events dependent.
@@ -407,7 +407,7 @@ abline(v = max_prob_number - 1, col = "red", lwd = 2, lty = 2)
 
 Note, this form of distribution looks like a bell curve, aka [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), 
 probably the most important distribution in statistics. One can [show formally](https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf) that the binomial distribution converges to the normal distribution under certain conditions.
-So, if we would only have one shot to predict the number of researches reporting a treatment effect under the assumption that no treatment exists, we would bet on 40 positive results.
+So, if we would only have one shot to predict the number of researchers reporting a treatment effect under the assumption that no treatment exists, we would bet on 40 positive results.
 This guess would also not be too bad considering the whole range (0 to 1000) since we can expect the number of successes above, let's say, 65 and below, let's say, 15 to be very unlikely.
 ```{r}
 sum(dbinom(0:14, size = 1000, prob = 0.04)) # prob of 14 or less
@@ -488,7 +488,7 @@ plot <- ggplot() +
 print(plot)
 ```
 
-where $A^C$ comprises all elementary events that are not in $A$. In our case, the compliment of observing 136 or 
+where $A^C$ comprises all elementary events that are not in $A$. In our case, the complement of observing 136 or 
 less is observing 137 or more and vice versa (some brackets were left out for better readability):
 $\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)$.
 
@@ -520,7 +520,7 @@ You may want to read this excellent [article](https://journals.plos.org/plosmedi
 asked about the problem of [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) and related to the previous question. 
 If you test many hypotheses, you will find some "significant" results by chance alone.
 One could also call the practice of testing many hypotheses to find "significant" ones [$p$-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
-This should be **absolutely avoided**. Unfornately, it is still common practice in many fields. Often it happens unconsciously.
+This should be **absolutely avoided**. Unfortunately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
 If you report those 4 results as legitimate finding, you are $p$-hacking. When reading a scientific article, watch out for large amounts of $p$-values and 
 their (over-)interpretation as "significant" (relevant) or "non-significant" (not relevant). 
@@ -545,7 +545,7 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}.$
 
 $\sum_{\omega_i} \mathbb{P}(\omega_i) = 0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 + 0.96^2 = 1$
 
-Any of the two finds and effect:
+Any of the two finds an effect:
 $A_1 \cup A_2 = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos)\}$
 
 $A_1 = \{ (R1pos, R2pos), (R1pos, R2neg)\}$
@@ -562,7 +562,7 @@ $\mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) - \mathbb{P}(A_1 \
 Put in the values:
 $0.04^2 + 0.04 \times 0.96 +$
 $0.04^2 + 0.96 \times 0.04 - 0.04^2=$
-$0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04. = 0.0784$.
+$0.04^2 + 0.04 \times 0.96 + 0.96 \times 0.04 = 0.0784$.
 
 Or simpler with the **complement rule**:
 
@@ -648,7 +648,7 @@ In many health-related studies, we want to perform one or more of the following 
 What is the probability that the treatment effect is between x and y points on some scale?),
 - Estimate therapy effects (e.g., the effect of a new therapy on pain reduction: 
   How many points does the pain decrease? How is the pain reduction distributed? 
-  Are there outliers and why? Are there participants that to not benefit from the therapy?)
+  Are there outliers and why? Are there participants that do not benefit from the therapy?)
 
 In all such cases, probability theory is the established tool to answer questions that are afflicted with uncertainty. Would there be no variation in results/effects, 
 we would probably argue differently. In our world, probability theory is the tool to **quantify uncertainty**.
@@ -673,7 +673,7 @@ mean**
 $$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$$ 
 
 **converges to a standard normal distribution**. 
-By this theorem, we can link **any** distribution to the normal distribution.
+By this theorem, we can link **many** distributions (e.g., all with finite variance) to the normal distribution.
 
 Discrete or continuous, the **goal** is the same: We want to know **where** the realization 
 of my **[random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)** 
@@ -698,7 +698,7 @@ Some examples of [discrete probability distributions](https://en.wikipedia.org/w
 - **[Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution)**: The number of trials until the first success. This number has no upper limit.
 
 We always assign probabilities to the countable outcomes of these distributions, like in the example of the binomial distribution when 
-we throw the dice 20 times and are interested in the number of 3s:
+we throw a die 20 times and are interested in the number of 3s:
 
 ```{r}
 # Define parameters for the binomial distribution
@@ -722,7 +722,7 @@ This principle is true for all discrete probability distributions. Rather simple
 
 $$\sum_{i} \mathbb{P}(X = x_i) = 1,$$
 
-where $X$ is the [random variable]((https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)) (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
+where $X$ is the [random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal) (which takes values $x_i$ when the random experiment is conducted) and $x_i$ are the possible outcomes of $X$.
 
 We could **invent our own discrete probability distribution** instantly (see also [Exercise 8](#exercise8)), 
 we'll call it the **MSc-ZHAW-distribution**:
@@ -779,13 +779,13 @@ sum(sapply(x_values, P))
 
 $$\mu = \mathbb{E}(X) = \sum x_i \cdot \mathbb{P}(X = x_i),$$
 
-a weighted sum of possible values $x_i$ with their respsective probabilities $\mathbb{P}(X = x_i)$.
+a weighted sum of possible values $x_i$ with their respective probabilities $\mathbb{P}(X = x_i)$.
 
 The term "expectation" is probably somewhat misleading. It is not necessarily the value we "expect to see" when we do the experiment. For instance,
 the expected value of a Bernoulli distribution is: $\mu = \mathbb{E}(X) = 0 \cdot (1-p) + 1 \cdot p = p$, which could be $0.5$. The individual outcomes are $0$ and $1$, 
 and not $0.5$. But $0.5$ would be the mean of the outcomes of many experiments.
 
-The expectation can be interpreted as the [center of mass](https://mathcenter.oxford.emory.edu/site/math117/expectedValueAndCenterOfMass/) 
+The expectation can be interpreted as the [center of mass](https://web.archive.org/web/2025/https://mathcenter.oxford.emory.edu/site/math117/expectedValueAndCenterOfMass/) 
 of the distribution. It is the value that the distribution "balances" around.
 
 Maybe this [video](https://www.youtube.com/watch?v=KLs_7b7SKi4) helps too.
@@ -817,7 +817,7 @@ A more natural interpretation of variability is the **standard deviation**:
 
 $$\sigma = \sqrt{\mathbb{V}ar(X)},$$
 
-since it's on the same scale as X (e.g. $m^2$ or $kg$).
+since it's on the same scale as X (e.g. $m$ or $kg$).
 
 #### Continuous probability distributions are used when we cannot count the outcomes. {#continuous_probability_distributions}
 The most famous continuous probability distribution is the 
@@ -978,10 +978,10 @@ Use Google (Scholar) or your favourite search engine to find scientific journals
 midwifery, nursing, etc.). 
 Look at the latest articles. We are interested in articles that used statistics (no qualitative studies). 
 
-- What was the research question? What where they trying to find out/confirm? Write down at least 10 research questions!
+- What was the research question? What were they trying to find out/confirm? Write down at least 10 research questions!
 - Which statistical *methods* were used? Write down at least 10 methods!
 - Was prior/external knowledge - before the actual model was estimated - used in any of the analysis?
-- Where the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
+- Were the results presented in a dichotomous way; meaning, was there a "significant"/"non-significant" result or not?
 - Save some of the articles in a folder for later use.
 
 ### [M] Exercise 4 -  Independent and disjoint {#exercise4} 
@@ -997,7 +997,7 @@ Look at the definitions above and try to come up with examples for independent a
 
 - Simulate the number of positive results (found an effect even though there is none) in our 1000-researcher-experiment under the assumption that the therapy is not working at all ($p=0.04$).
 - Do this experiment in `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'` 10,000 times and visualize the results in a histogram.
-- How often do you get 65 or more positive results? How often do you get 15 or less positive results?
+- How often do you get more than 65 positive results? How often do you get fewer than 15 positive results?
 - Can you find the limits of a 90% interval around the mean (of 40) - using the so-called [quantiles](https://en.wikipedia.org/wiki/Quantile) - for the number of positive results?
 - What is the theoretical variance for our experiment?
 - How can you estimate this theoretical (and in reality: unknown) variance from the 10,000 simulations?
@@ -1033,14 +1033,14 @@ $\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$.
 - What is the variance of your distribution?
 - Think of something in the real world that could be modeled by your distribution.
 
-Hint: You can use simple shapes for the densitiy function defined by lines. And you can use simulation to answer questions about expected value and variance.
+Hint: You can use simple shapes for the density function defined by lines. And you can use simulation to answer questions about expected value and variance.
 
 ### [M] Exercise 10 - MSc-ZHAW-distribution {#exercise10}
 
  - Create sufficiently many random numbers (sample) from the MSc-ZHAW-distribution (see [above](#discrete_probability_distributions)) 
    and see if you can produce values outside of $\pm 6$.
  - What is the mode of this distribution and how could we estimate it from the sample?
- - What is the [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
+ - What is the [interquartile range](https://en.wikipedia.org/wiki/Interquartile_range) of this distribution and how could we estimate it from the sample? 
 
 ### [M] Exercise 11 - Independence and disjointness for dice events {#exercise11}
 
@@ -1163,7 +1163,7 @@ ggplot(data, aes(x = x, y = y)) +
   )
 ```
 
-Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
+Welche der folgenden Aussage(n) ist/sind korrekt (0-3 korrekte Antwortoptionen)?
 
 - Die Fläche unter der Dichtefunktion beträgt 1, falls die Spitze des Dreiecks bei Höhe $y=2$ liegt.
 - Modus, Median und Erwartungswert sind identisch.
