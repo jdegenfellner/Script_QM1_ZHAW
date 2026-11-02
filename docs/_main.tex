@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2026-06-09}
+\date{2026-11-02}
 
 \begin{document}
 \maketitle
@@ -847,19 +847,39 @@ We can calculate the probability of observing 137 or more positive results using
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Compare to winning the Swiss lottery}
-\NormalTok{(}\DecValTok{1} \SpecialCharTok{/} \DecValTok{31474716}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{dbinom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{136}\NormalTok{, }\AttributeTok{size =} \DecValTok{1000}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.04}\NormalTok{)))}
+\CommentTok{\# Careful: this result is only rounding noise (see text below)!}
+
+\CommentTok{\# Better: let R compute the upper tail directly}
+\NormalTok{p\_137\_or\_more }\OtherTok{\textless{}{-}} \FunctionTok{pbinom}\NormalTok{(}\DecValTok{136}\NormalTok{, }\AttributeTok{size =} \DecValTok{1000}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.04}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{p\_137\_or\_more}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 71543134
+## [1] 2.339863e-35
 \end{verbatim}
 
-72 million times less likely than winning the Swiss lottery. If this event would happen,
-we would probably reject the assumption that the percentage of false positives is at most 4\%.
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compare to winning the Swiss lottery (1 in 31,474,716)}
+\NormalTok{(}\DecValTok{1} \SpecialCharTok{/} \DecValTok{31474716}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ p\_137\_or\_more}
+\end{Highlighting}
+\end{Shaded}
 
-In the calculation above, we used the \href{https://en.wikipedia.org/wiki/Complement_(set_theory)}{complement rule} to calculate the probability of
+\begin{verbatim}
+## [1] 1.357837e+27
+\end{verbatim}
+
+The probability of observing 137 or more positive results is about \(2.3 \cdot 10^{-35}\).
+That is roughly \(10^{27}\) times less likely than winning the Swiss lottery (jackpot: 1 in 31,474,716).
+If this event would happen, we would probably reject the assumption that the percentage of false positives is at most 4\%.
+
+\textbf{A numerical caveat:} The first line above, \(1 - \mathbb{P}(\text{136 or less})\), is mathematically correct, but R stores numbers with only about 16
+significant digits. Since \(\mathbb{P}(\text{136 or less})\) is extremely close to 1, the subtraction cannot resolve differences
+smaller than roughly \(10^{-16}\) and returns rounding noise (here \(4.4 \cdot 10^{-16}\)) instead of the true value.
+Asking R for the upper tail directly (\texttt{lower.tail\ =\ FALSE}) avoids this problem.
+
+In the first calculation above, we used the \href{https://en.wikipedia.org/wiki/Complement_(set_theory)}{complement rule} to calculate the probability of
 observing 137 or more positive results: \(1 - \mathbb{P}(\text{observing 136 or less})\).
 
 In general, for an event \(A\):
@@ -985,6 +1005,10 @@ See also \hyperref[exercise6]{Exercise 6}.
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-13-1.pdf}}
 
 Here is another helpful depiction of the situation:
+
+\begin{verbatim}
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+\end{verbatim}
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
@@ -3425,20 +3449,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##             mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.18 131.179 130.557   93   34.2090 227.26                  
-## mu2         5.95   5.672   6.051   93  -84.6159  97.25                  
-## muDiff    125.23 125.496 125.251   93   -9.0164 259.44       0      95.6
-## sigma1    139.16 128.478 116.287   93   66.1289 224.14                  
-## sigma2    130.79 119.452 106.217   93   60.8465 213.15                  
-## sigmaDiff   8.37   8.725   9.627   93 -122.6760 134.89       0      56.5
-## nu         34.32  25.560   9.512   93    1.1621  83.67                  
-## log10nu     1.38   1.408   1.482   93    0.6378   2.04                  
-## effSz       0.97   0.958   0.911   93   -0.0863   2.02       0      95.6
+##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.847 130.863 132.734   93   32.9258 226.25                  
+## mu2         6.103   5.877   2.723   93  -86.9775  93.01                  
+## muDiff    124.744 124.764 123.054   93   -7.6262 258.13       0      95.7
+## sigma1    139.226 128.172 113.090   93   66.6698 224.54                  
+## sigma2    130.214 119.484 105.152   93   62.4990 212.26                  
+## sigmaDiff   9.011   8.427   7.947   93 -122.5268 134.24       0      56.3
+## nu         34.309  25.837   9.652   93    1.1703  83.27                  
+## log10nu     1.379   1.412   1.534   93    0.6695   2.06                  
+## effSz       0.967   0.955   0.875   93   -0.0742   2.01       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.51
+## muDiff        -20       20    4.56
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3686,20 +3710,20 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 0.992 sec elapsed
+## 1.104 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.714  0.709  0.671   93 -0.550  1.949                          
-## mu2        2.300  2.297  2.286   93  0.901  3.720                          
-## muDiff    -1.586 -1.586 -1.500   93 -3.522  0.266       0      6.17    -1.8
-## sigma1     2.039  1.922  1.693   93  1.101  3.105                          
-## sigma2     2.302  2.172  1.966   93  1.264  3.476                          
-## sigmaDiff -0.263 -0.243 -0.191   93 -1.930  1.423       0     37.20        
-## nu        36.218 27.552 11.392   93  1.421 86.799                          
-## log10nu    1.413  1.440  1.551   93  0.736  2.074                          
-## effSz     -0.750 -0.747 -0.716   93 -1.629  0.148       0      6.17        
+## mu1        0.716  0.709  0.698   93 -0.561  1.941                          
+## mu2        2.301  2.298  2.293   93  0.871  3.706                          
+## muDiff    -1.584 -1.585 -1.541   93 -3.484  0.313       0      6.17    -1.8
+## sigma1     2.038  1.922  1.730   93  1.103  3.104                          
+## sigma2     2.306  2.170  2.026   93  1.240  3.473                          
+## sigmaDiff -0.268 -0.245 -0.255   93 -1.993  1.353       0     37.20        
+## nu        36.160 27.544 12.108   93  1.472 86.206                          
+## log10nu    1.412  1.440  1.499   93  0.722  2.065                          
+## effSz     -0.749 -0.744 -0.719   93 -1.641  0.143       0      6.17        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       

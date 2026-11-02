@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Bayes statistics | Quantitative Methods 1, ZHAW</title>
   <meta name="description" content="Script Quantitative Methods 1, ZHAW," />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Bayes statistics | Quantitative Methods 1, ZHAW" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2026-06-09" />
+<meta name="date" content="2026-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -622,42 +622,42 @@ or <a href="https://github.com/rmcelreath/rethinking">rethinking</a> for modelin
 <h3><span class="header-section-number">3.5.1</span> Example - Bayesian <span class="math inline">\(t\)</span>-test<a href="bayes_statistics.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For an explanation of the statistical model behind the Bayesian <span class="math inline">\(t\)</span>-test,
 visit <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">Kruschke’s paper</a>, Figure 2.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="bayes_statistics.html#cb86-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb86-2"><a href="bayes_statistics.html#cb86-2" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="bayes_statistics.html#cb88-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb88-2"><a href="bayes_statistics.html#cb88-2" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="bayes_statistics.html#cb88-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="bayes_statistics.html#cb90-1" tabindex="-1"></a>(y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">5</span>, <span class="fl">1.1</span>, <span class="fl">1.9</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -120 -120  -50    0    0   50  110  190</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="bayes_statistics.html#cb90-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="bayes_statistics.html#cb92-1" tabindex="-1"></a><span class="fu">length</span>(y1)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="bayes_statistics.html#cb92-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="bayes_statistics.html#cb94-1" tabindex="-1"></a><span class="fu">length</span>(y2)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="bayes_statistics.html#cb94-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
-<span id="cb94-2"><a href="bayes_statistics.html#cb94-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="bayes_statistics.html#cb96-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y1, y2)</span>
+<span id="cb96-2"><a href="bayes_statistics.html#cb96-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data)</span></code></pre></div>
 <pre><code>##    vars n  mean     sd median trimmed    mad  min max range  skew kurtosis
 ## y1    1 8 130.0 116.00    120   130.0 140.85  -50 300   350 -0.13    -1.39
 ## y2    2 8   7.5 107.94      0     7.5 118.61 -120 190   310  0.29    -1.38
 ##       se
 ## y1 41.01
 ## y2 38.16</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="bayes_statistics.html#cb96-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
-<span id="cb96-2"><a href="bayes_statistics.html#cb96-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb96-3"><a href="bayes_statistics.html#cb96-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
-<span id="cb96-4"><a href="bayes_statistics.html#cb96-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
-<span id="cb96-5"><a href="bayes_statistics.html#cb96-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="bayes_statistics.html#cb98-1" tabindex="-1"></a><span class="co"># Boxplot:</span></span>
+<span id="cb98-2"><a href="bayes_statistics.html#cb98-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">c</span>(y1, y2), <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb98-3"><a href="bayes_statistics.html#cb98-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
+<span id="cb98-4"><a href="bayes_statistics.html#cb98-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
+<span id="cb98-5"><a href="bayes_statistics.html#cb98-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="bayes_statistics.html#cb97-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="bayes_statistics.html#cb99-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
 <p>We work with a rather small sample size, 8 in each group.
 <strong>We want to know if the two groups differ in their (unobserved) means</strong>.
 For this, we will apply the R function <code>BESTmcmc</code> from the package <code>BEST</code>.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="bayes_statistics.html#cb98-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33443</span>)</span>
-<span id="cb98-2"><a href="bayes_statistics.html#cb98-2" tabindex="-1"></a><span class="fu">p_load</span>(HDInterval, BEST, tictoc, psych, tidyverse)</span>
-<span id="cb98-3"><a href="bayes_statistics.html#cb98-3" tabindex="-1"></a><span class="co"># H_0: mue1 - mue2 = delta_0</span></span>
-<span id="cb98-4"><a href="bayes_statistics.html#cb98-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># ROPE (region of practical equivalence)</span></span>
-<span id="cb98-5"><a href="bayes_statistics.html#cb98-5" tabindex="-1"></a>d_0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb98-6"><a href="bayes_statistics.html#cb98-6" tabindex="-1"></a>BESTout <span class="ot">&lt;-</span> <span class="fu">BESTmcmc</span>(y1, y2, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="bayes_statistics.html#cb100-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33443</span>)</span>
+<span id="cb100-2"><a href="bayes_statistics.html#cb100-2" tabindex="-1"></a><span class="fu">p_load</span>(HDInterval, BEST, tictoc, psych, tidyverse)</span>
+<span id="cb100-3"><a href="bayes_statistics.html#cb100-3" tabindex="-1"></a><span class="co"># H_0: mue1 - mue2 = delta_0</span></span>
+<span id="cb100-4"><a href="bayes_statistics.html#cb100-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># ROPE (region of practical equivalence)</span></span>
+<span id="cb100-5"><a href="bayes_statistics.html#cb100-5" tabindex="-1"></a>d_0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb100-6"><a href="bayes_statistics.html#cb100-6" tabindex="-1"></a>BESTout <span class="ot">&lt;-</span> <span class="fu">BESTmcmc</span>(y1, y2, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="bayes_statistics.html#cb100-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
-<span id="cb100-2"><a href="bayes_statistics.html#cb100-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="bayes_statistics.html#cb102-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
+<span id="cb102-2"><a href="bayes_statistics.html#cb102-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" /></p>
 <p><code>BESTmcmc</code> is a function that uses a <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>
 algorithm to estimate the <strong>posterior distribution of the difference between the means of two groups</strong>
@@ -684,22 +684,22 @@ difference between the means is in this interval. The HDI changes every time the
 script is run since it’s simulation based.</p></li>
 </ul>
 <p>We can do more:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bayes_statistics.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
-<span id="cb101-2"><a href="bayes_statistics.html#cb101-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
+<span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.584 130.899 133.085   93   33.4931 229.38                  
-## mu2         6.553   6.048   2.930   93  -83.5304  95.81                  
-## muDiff    124.031 124.292 124.835   93   -8.8234 257.93       0      95.5
-## sigma1    139.733 128.521 113.644   93   66.4750 226.90                  
-## sigma2    129.402 119.126 105.312   93   61.8594 209.41                  
-## sigmaDiff  10.331   8.580   4.671   93 -116.2969 138.97       0      56.5
-## nu         34.291  25.703  10.158   93    1.1042  83.06                  
-## log10nu     1.377   1.410   1.494   93    0.6576   2.06                  
-## effSz       0.963   0.955   0.948   93   -0.0873   2.00       0      95.5
+## mu1       130.250 130.356 131.345   93   33.7389 227.72                  
+## mu2         6.087   5.864   9.868   93  -85.8882  94.54                  
+## muDiff    124.164 124.826 128.012   93  -12.3423 255.17       0      95.5
+## sigma1    139.434 128.539 114.624   93   66.9699 226.07                  
+## sigma2    129.649 119.565 105.029   93   61.6319 209.00                  
+## sigmaDiff   9.785   8.629   4.694   93 -117.7585 136.12       0      56.5
+## nu         34.616  25.797   9.834   93    1.0997  84.65                  
+## log10nu     1.380   1.412   1.441   93    0.6697   2.07                  
+## effSz       0.962   0.955   0.927   93   -0.0982   1.99       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.48
+## muDiff        -20       20    4.55
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -836,30 +836,30 @@ distribution</a> between 0 and 1
 (this has to be argued for more rigorously in practice). Hence,
 every value between 0 and 1 is equally likely:</p>
 <p><span class="math inline">\(\pi(\theta) = 1\)</span> for <span class="math inline">\(\theta \in [0,1]\)</span>.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="bayes_statistics.html#cb104-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb104-2"><a href="bayes_statistics.html#cb104-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb104-3"><a href="bayes_statistics.html#cb104-3" tabindex="-1"></a></span>
-<span id="cb104-4"><a href="bayes_statistics.html#cb104-4" tabindex="-1"></a><span class="co"># Generate data for a uniform distribution</span></span>
-<span id="cb104-5"><a href="bayes_statistics.html#cb104-5" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)  <span class="co"># Range of theta</span></span>
-<span id="cb104-6"><a href="bayes_statistics.html#cb104-6" tabindex="-1"></a>density <span class="ot">&lt;-</span> <span class="fu">dunif</span>(theta, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)  <span class="co"># Uniform density</span></span>
-<span id="cb104-7"><a href="bayes_statistics.html#cb104-7" tabindex="-1"></a></span>
-<span id="cb104-8"><a href="bayes_statistics.html#cb104-8" tabindex="-1"></a><span class="co"># Create a data frame for ggplot</span></span>
-<span id="cb104-9"><a href="bayes_statistics.html#cb104-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">theta =</span> theta, <span class="at">density =</span> density)</span>
-<span id="cb104-10"><a href="bayes_statistics.html#cb104-10" tabindex="-1"></a></span>
-<span id="cb104-11"><a href="bayes_statistics.html#cb104-11" tabindex="-1"></a><span class="co"># Plot the density function</span></span>
-<span id="cb104-12"><a href="bayes_statistics.html#cb104-12" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> density)) <span class="sc">+</span></span>
-<span id="cb104-13"><a href="bayes_statistics.html#cb104-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Density line</span></span>
-<span id="cb104-14"><a href="bayes_statistics.html#cb104-14" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Shaded area under the curve</span></span>
-<span id="cb104-15"><a href="bayes_statistics.html#cb104-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb104-16"><a href="bayes_statistics.html#cb104-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Prior: Uniform Distribution&quot;</span>,</span>
-<span id="cb104-17"><a href="bayes_statistics.html#cb104-17" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta),</span>
-<span id="cb104-18"><a href="bayes_statistics.html#cb104-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
-<span id="cb104-19"><a href="bayes_statistics.html#cb104-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb104-20"><a href="bayes_statistics.html#cb104-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb104-21"><a href="bayes_statistics.html#cb104-21" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb104-22"><a href="bayes_statistics.html#cb104-22" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb104-23"><a href="bayes_statistics.html#cb104-23" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb104-24"><a href="bayes_statistics.html#cb104-24" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="bayes_statistics.html#cb106-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb106-2"><a href="bayes_statistics.html#cb106-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb106-3"><a href="bayes_statistics.html#cb106-3" tabindex="-1"></a></span>
+<span id="cb106-4"><a href="bayes_statistics.html#cb106-4" tabindex="-1"></a><span class="co"># Generate data for a uniform distribution</span></span>
+<span id="cb106-5"><a href="bayes_statistics.html#cb106-5" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)  <span class="co"># Range of theta</span></span>
+<span id="cb106-6"><a href="bayes_statistics.html#cb106-6" tabindex="-1"></a>density <span class="ot">&lt;-</span> <span class="fu">dunif</span>(theta, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)  <span class="co"># Uniform density</span></span>
+<span id="cb106-7"><a href="bayes_statistics.html#cb106-7" tabindex="-1"></a></span>
+<span id="cb106-8"><a href="bayes_statistics.html#cb106-8" tabindex="-1"></a><span class="co"># Create a data frame for ggplot</span></span>
+<span id="cb106-9"><a href="bayes_statistics.html#cb106-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">theta =</span> theta, <span class="at">density =</span> density)</span>
+<span id="cb106-10"><a href="bayes_statistics.html#cb106-10" tabindex="-1"></a></span>
+<span id="cb106-11"><a href="bayes_statistics.html#cb106-11" tabindex="-1"></a><span class="co"># Plot the density function</span></span>
+<span id="cb106-12"><a href="bayes_statistics.html#cb106-12" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb106-13"><a href="bayes_statistics.html#cb106-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Density line</span></span>
+<span id="cb106-14"><a href="bayes_statistics.html#cb106-14" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Shaded area under the curve</span></span>
+<span id="cb106-15"><a href="bayes_statistics.html#cb106-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb106-16"><a href="bayes_statistics.html#cb106-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Prior: Uniform Distribution&quot;</span>,</span>
+<span id="cb106-17"><a href="bayes_statistics.html#cb106-17" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta),</span>
+<span id="cb106-18"><a href="bayes_statistics.html#cb106-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb106-19"><a href="bayes_statistics.html#cb106-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb106-20"><a href="bayes_statistics.html#cb106-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb106-21"><a href="bayes_statistics.html#cb106-21" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb106-22"><a href="bayes_statistics.html#cb106-22" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb106-23"><a href="bayes_statistics.html#cb106-23" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb106-24"><a href="bayes_statistics.html#cb106-24" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" /></p>
 <p>Notize, that the area under the curve is 1, since it is a probability density function.
 For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)</span></p>
@@ -891,21 +891,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.136 sec elapsed</code></pre>
+<pre><code>## 1.157 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.712  0.706  0.721   93 -0.544  1.973                          
-## mu2        2.306  2.304  2.273   93  0.913  3.726                          
-## muDiff    -1.594 -1.596 -1.681   93 -3.455  0.339       0      6.07    -1.8
-## sigma1     2.042  1.926  1.737   93  1.116  3.126                          
-## sigma2     2.309  2.174  1.934   93  1.237  3.494                          
-## sigmaDiff -0.267 -0.238 -0.182   93 -2.006  1.380       0     37.63        
-## nu        36.116 27.538 11.283   93  1.460 86.786                          
-## log10nu    1.412  1.440  1.537   93  0.737  2.079                          
-## effSz     -0.752 -0.748 -0.754   93 -1.652  0.124       0      6.07        
+## mu1        0.712  0.706  0.699   93 -0.526  1.963                          
+## mu2        2.301  2.297  2.238   93  0.900  3.750                          
+## muDiff    -1.590 -1.590 -1.591   93 -3.490  0.286       0      6.03    -1.8
+## sigma1     2.041  1.919  1.718   93  1.102  3.110                          
+## sigma2     2.306  2.172  1.981   93  1.264  3.490                          
+## sigmaDiff -0.265 -0.244 -0.206   93 -1.932  1.453       0     37.25        
+## nu        36.003 27.435 11.095   93  1.425 86.080                          
+## log10nu    1.409  1.438  1.515   93  0.718  2.065                          
+## effSz     -0.751 -0.746 -0.706   93 -1.631  0.137       0      6.03        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8      58
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

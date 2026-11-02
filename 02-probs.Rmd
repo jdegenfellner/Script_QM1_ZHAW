@@ -447,15 +447,26 @@ $\mathbb{P}(\text{observing 137 or more}) = \sum_{i=137}^{1000} \binom{1000}{i}0
 # Calculate the probability of observing 137 or more positive results
 # (using the complement rule)
 1 - sum(dbinom(0:136, size = 1000, prob = 0.04))
+# Careful: this result is only rounding noise (see text below)!
 
-# Compare to winning the Swiss lottery
-(1 / 31474716) / (1 - sum(dbinom(0:136, size = 1000, prob = 0.04)))
+# Better: let R compute the upper tail directly
+p_137_or_more <- pbinom(136, size = 1000, prob = 0.04, lower.tail = FALSE)
+p_137_or_more
+
+# Compare to winning the Swiss lottery (1 in 31,474,716)
+(1 / 31474716) / p_137_or_more
 ```
 
-72 million times less likely than winning the Swiss lottery. If this event would happen, 
-we would probably reject the assumption that the percentage of false positives is at most 4%.
+The probability of observing 137 or more positive results is about $2.3 \cdot 10^{-35}$.
+That is roughly $10^{27}$ times less likely than winning the Swiss lottery (jackpot: 1 in 31,474,716).
+If this event would happen, we would probably reject the assumption that the percentage of false positives is at most 4%.
 
-In the calculation above, we used the [complement rule](https://en.wikipedia.org/wiki/Complement_(set_theory)) to calculate the probability of 
+**A numerical caveat:** The first line above, $1 - \mathbb{P}(\text{136 or less})$, is mathematically correct, but R stores numbers with only about 16
+significant digits. Since $\mathbb{P}(\text{136 or less})$ is extremely close to 1, the subtraction cannot resolve differences
+smaller than roughly $10^{-16}$ and returns rounding noise (here $4.4 \cdot 10^{-16}$) instead of the true value.
+Asking R for the upper tail directly (`lower.tail = FALSE`) avoids this problem.
+
+In the first calculation above, we used the [complement rule](https://en.wikipedia.org/wiki/Complement_(set_theory)) to calculate the probability of 
 observing 137 or more positive results: $1 - \mathbb{P}(\text{observing 136 or less})$. 
 
 In general, for an event $A$: 
