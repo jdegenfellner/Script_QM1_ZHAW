@@ -22,7 +22,7 @@ the groundwork for modern probability theory. Fermat’s method involved listing
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
 and influenced fields like economics and actuarial science.
 
-Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven't happened yet.
+Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable, and probabilities for events that cannot be repeated under identical conditions.
 
 An example for a repeatable event is getting a 6 when throwing a fair die. We can do this experiment right now by fetching a die and throwing it.
 
@@ -159,8 +159,8 @@ First, it seems intuitive that Probability *within* an experiment should add up 
 The event $A_1=$ "only researcher 45 gets a positive result" and $A_2=$ "only researcher 897 gets a positive result" are mutually exclusive. 
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. They cannot happen at the same time within that one 
 experiment of 1000 researchers doing their thing *once*. Hence, the two events are said to be disjoint.
-If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%. 
-We say that the probability of all elementary events (called $\omega$) sums to 1. Let's look at a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram) to illustrate the concept of being mutually exclusive (disjoint).
+If we add up the probabilities of mutually exclusive events, we get the probability that *one of them* occurs. If these events cover *all* possible outcomes, the sum is 1, or 100%. 
+In other words: The probabilities of all elementary events (called $\omega$) sum to 1. Let's look at a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram) to illustrate the concept of being mutually exclusive (disjoint).
 
 ```{r echo=FALSE}
 library(eulerr)
@@ -174,7 +174,7 @@ that are in both [sets](https://en.wikipedia.org/wiki/Set_(mathematics)). In our
 
 $$A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}$$ 
 
-$$and$$ 
+$$\text{and}$$ 
 
 $$A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.$$
 
@@ -187,13 +187,13 @@ The sets look like this:
 
 $$A_1 = \{ (\dots ,R_{45} = pos, \dots) \}$$ 
 
-$$and$$ 
+$$\text{and}$$ 
 
 $$A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}.$$
 
 ```{r echo=FALSE}
 library(eulerr)
-plot(euler(c(A1 = 1, A3 = 2, "A1&A3" = 1)))
+plot(euler(c(A1 = 0, A3 = 1, "A1&A3" = 1))) # A1 lies completely inside A3
 ```
 
 **How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment?** 
@@ -222,13 +222,15 @@ $$0 \le \mathbb{P}(A) \le 1.$$
 
 ### Axioms of probability theory {#axioms_of_probability_theory}
 
-We can summarize these informally stated properties more formally ([Kolmogorov's axioms](https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf)):
+We can summarize these informally stated properties more formally (Kolmogorov's axioms, in their modern form):
 
 \begin{align}
-1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event should be zero.}\\
-2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
+1. &\ \mathbb{P}(A) \ge 0 \text{ for every event } A \text{: Probabilities are never negative.}\\
+2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability that some outcome occurs in our random experiment.}\\
 3. &\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}
+
+All other rules follow from these three axioms, for instance $\mathbb{P}(\emptyset) = 0$ (the "impossible" event has probability zero) and $\mathbb{P}(A) \le 1$. (For infinite $\Omega$, only certain subsets are admitted as events, a so-called $\sigma$-algebra. We ignore this technicality here.)
 
 The $\infty$-symbol in **axiom 3** comes into play if we are dealing with (potentially) infinitely many events. 
 For instance, we could ask for the number of researchers we need to look at until we see the first 
@@ -263,7 +265,7 @@ sum(dbinom(0:80, prob = 0.04, size = 1000))
 # = 1 since the other probabilities are very small
 ```
 
-As we will see later, **axiom 1** above does not mean, that the event can never occur. 
+As we will see later, the "impossible" event has probability zero, but the converse does not hold: An event with probability zero can still occur. 
 For every continuous random variable (e.g. with a [normal](https://en.wikipedia.org/wiki/Normal_distribution) 
 or a [uniform distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)), the probability of a single point is zero.
 This [video](https://www.youtube.com/watch?v=ZA4JkHKZM50&list=PLIhj5_pQwhMQfGZNQZREjDdJRt0t0sn51&index=10&ab_channel=3Blue1Brown) could help.
@@ -271,7 +273,7 @@ This [video](https://www.youtube.com/watch?v=ZA4JkHKZM50&list=PLIhj5_pQwhMQfGZNQ
 **Axiom 2** is always true. Some result *has* to occur in our random experiment. 
 What is $\Omega$ again? In our countable case of researchers, $\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}$ would be the set of all possible outcomes if we let 1000 researchers conduct the experiment. 
 Each researcher can either find an effect or not. Hence, we have $2^{1000}$ possible outcomes of our 1000-researcher experiment. This is a *very* large number. Adding up all
-these probabilities would sum to 1 according to axiom 3. Combining different elementary events $\omega$ from the whole collection of possible outcomes $\Omega$
+these probabilities would sum to 1 according to axioms 2 and 3. Combining different elementary events $\omega$ from the whole collection of possible outcomes $\Omega$
 gives us "events" like the ones we used above ($A_1, A_2, A_3$).
 
 Note that there is a **difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment** of 
@@ -434,9 +436,7 @@ ggplot(data.frame(value = data), aes(x = as.factor(value))) +
 ```
 
 As you can see, the realized number of found effects matches well the theoretical probabilities
-given by the binomial distribution. Note that not necessarily 40 is the most often found number of effects
-among 1000 researchers, but we are very close. If you repeat the simulation, chances are high 
-that you get 40 as the most often found number of effects.
+given by the binomial distribution. Note that 40 is not necessarily the most often found number of effects among 1000 researchers, since 39 has almost the same probability ($0.06418$ vs. $0.06424$ for 40). If you repeat the simulation many times, 40 is the most frequent value in only about 37% of the runs and 39 in about 35%; in the remaining runs it is typically 38 or 41. So the most frequent value is always close to 40, but not always exactly 40.
 
 **The second question** [above](#Questions_about_the_1000-researcher_experiment) 
 asked about observing 137 positively reporting researchers. 
@@ -511,7 +511,7 @@ data.frame(x = 0:10,
 
 **The fourth question** [above](#Questions_about_the_1000-researcher_experiment)
 asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
-Well, this would be scientific fraud and a case of [survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.).
+Well, this would be scientific fraud.
 You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
 This is also relevant in [finance](https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.).
 You may want to read this excellent [article](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124) by John Ioannidis for a humbling big-picture of how relevant published results can be.
@@ -522,7 +522,7 @@ If you test many hypotheses, you will find some "significant" results by chance 
 One could also call the practice of testing many hypotheses to find "significant" ones [$p$-hacking](https://en.wikipedia.org/wiki/Data_dredging). 
 This should be **absolutely avoided**. Unfortunately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 "significant" results by chance alone. 
-If you report those 4 results as legitimate finding, you are $p$-hacking. When reading a scientific article, watch out for large amounts of $p$-values and 
+If you report those 4 results as legitimate finding, you are $p$-hacking. Back to our fifth question: With 65 tested hypotheses, we expect $65 \cdot 0.04 = 2.6$ false positives if all null hypotheses are true. Finding 4 is therefore not surprising (the probability of 4 or more is about 26%). Chance alone explains these results quite well. When reading a scientific article, watch out for large amounts of $p$-values and 
 their (over-)interpretation as "significant" (relevant) or "non-significant" (not relevant). 
 This [article](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) is recommendable to get away from a too strict dichotomous interpretation of research results.
 
@@ -570,9 +570,12 @@ $\mathbb{P}(A_1 \cup A_2) = 1 - \mathbb{P}(\text{neither }A_1 \text{ nor }A_2) =
 
 See also [Exercise 6](#exercise6).
 
+In the following Euler diagram, the areas are proportional to the probabilities: The overlap $\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016$ is very small.
+
 ```{r echo=FALSE}
-# Define the sets A1 and A2 with their intersection
-fit <- euler(c(A1 = 1, A2 = 1, "A1&A2" = 2))
+# Define the sets A1 and A2 with their intersection.
+# The areas are proportional to the probabilities: 0.0384, 0.0384 and 0.0016
+fit <- euler(c(A1 = 0.0384, A2 = 0.0384, "A1&A2" = 0.0016))
 
 # Plot the Euler diagram with both sets and
 #intersection completely filled in gray
@@ -614,25 +617,28 @@ the probability of both finding an effect, which is the same as that both or exa
 We can also visualize the 4 disjoint elementary events 
 $$\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}$$ 
 in a [Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram). The probabilities of these
-4 events in the event space $\Omega$ must add up to 1 since they are disjoint and one of them has to happen. There is no "room" left.
+4 events in the event space $\Omega$ must add up to 1 since they are disjoint and one of them has to happen. There is no "room" left. In the following picture, the areas are proportional to the probabilities ($0.04$ for a positive and $0.96$ for a negative result per researcher).
 
-```{r echo=FALSE}
-# Create a plot for the event space without
-# borders and with the square aligned on the axes
-plot(c(-1, 1), c(-1, 1), type = "n", xlab = "",
-     ylab = "", xaxt = "n", yaxt = "n", bty = "n", asp = 1)
+```{r echo=FALSE, fig.width=6, fig.height=4.9}
+p <- 0.04  # probability that a researcher finds an effect (under H0)
+par(mar = c(0.5, 0.5, 0.5, 0.5))
+plot(c(-0.05, 1.05), c(-0.25, 1.2), type = "n", xlab = "", ylab = "",
+     xaxt = "n", yaxt = "n", bty = "n", asp = 1)
 
-# Add quadrants
-rect(-1, 0, 0, 1, col = "lightblue", border = NA)   # R1neg, R2pos
-rect(0, 0, 1, 1, col = "lightgreen", border = NA)   # R1pos, R2pos
-rect(-1, -1, 0, 0, col = "pink", border = NA)       # R1neg, R2neg
-rect(0, -1, 1, 0, col = "lightyellow", border = NA) # R1pos, R2neg
+# The areas are proportional to the probabilities
+rect(p, p, 1, 1, col = "pink", border = "black")         # R1neg, R2neg
+rect(0, p, p, 1, col = "lightyellow", border = "black")  # R1pos, R2neg
+rect(p, 0, 1, p, col = "lightblue", border = "black")    # R1neg, R2pos
+rect(0, 0, p, p, col = "lightgreen", border = "black")   # R1pos, R2pos
 
-# Add labels for each quadrant
-text(0.5, 0.5, "(R1pos, R2pos)", cex = 1.2)
-text(0.5, -0.5, "(R1pos, R2neg)", cex = 1.2)
-text(-0.5, 0.5, "(R1neg, R2pos)", cex = 1.2)
-text(-0.5, -0.5, "(R1neg, R2neg)", cex = 1.2)
+# Labels with lines to the (small) areas
+text((1 + p) / 2, (1 + p) / 2, "(R1neg, R2neg)\n0.96 * 0.96 = 0.9216", cex = 1.1)
+segments(0.02, 1, 0.02, 1.06)
+text(0.02, 1.07, "(R1pos, R2neg): 0.04 * 0.96 = 0.0384", adj = c(0, 0), cex = 0.9)
+segments(0.6, 0.02, 0.6, -0.06)
+text(0.6, -0.07, "(R1neg, R2pos): 0.96 * 0.04 = 0.0384", adj = c(0.5, 1), cex = 0.9)
+segments(0.02, 0.02, 0.02, -0.14)
+text(0.02, -0.15, "(R1pos, R2pos): 0.04 * 0.04 = 0.0016", adj = c(0, 1), cex = 0.9)
 ```
 
 ### Probabilities for health science {#probabilities_for_health_sciences}
@@ -644,10 +650,9 @@ We have learned a lot so far: The axioms of probability theory, the difference b
 In many health-related studies, we want to perform one or more of the following tasks: 
 
 - Estimate proportions (e.g., the proportion of patients with lower back pain. How big is the problem from a public health perspective?),
-- Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better? 
-What is the probability that the treatment effect is between x and y points on some scale?),
+- Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better?),
 - Estimate therapy effects (e.g., the effect of a new therapy on pain reduction: 
-  How many points does the pain decrease? How is the pain reduction distributed? 
+  How many points does the pain decrease? What is the probability that the effect is between x and y points on some scale? How is the pain reduction distributed? 
   Are there outliers and why? Are there participants that do not benefit from the therapy?)
 
 In all such cases, probability theory is the established tool to answer questions that are afflicted with uncertainty. Would there be no variation in results/effects, 
@@ -880,7 +885,11 @@ In any continuous distribution, we use the area under the curve to calculate pro
 $\mathbb{P}(X \in (a,b))$. Note that the area over a single point would be zero and therefore the probability of a single point is zero.
 
 The graph above is called a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF). 
-Over every point, we express the probability by the height of the curve.
+The height of the curve at a point $x$ is called the *density* $f(x)$. A high curve means that values around $x$ are more likely, a low curve means that they are less likely. 
+But the height itself is **not** a probability: It is a probability *per unit* on the $x$-axis and can therefore be larger than 1. 
+For a small interval of width $\Delta x$ around $x$, we have $\mathbb{P}(X \in [x, x + \Delta x]) \approx f(x) \cdot \Delta x$. 
+Probabilities are *areas* under the curve. 
+For example, a uniform distribution on $[0, 0.5]$ has the height $2$ everywhere (width $0.5 \times$ height $2 = 1$).
 See [exercise 3](#exercise3_descriptive_stats) in the next chapter for a practical example for what we will use this in research.
 
 **Expectation $\mathbb{E}(X)$ of a continuous random variable**: The expectation of a continuous random variable $X$ is defined as:
@@ -927,8 +936,9 @@ The first 2 are absolutely essential.
   A special case of it is the [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution), 
   which is used to model a single trial with two outcomes (throw the coin once; $X \sim B(1,p)$).
 
-- [Logistic Distribution](https://en.wikipedia.org/wiki/Logistic_distribution). Underpins logistic regression models, 
-   which are used to model binary outcomes (e.g., the presence or absence of a disease).
+- [Logistic distribution](https://en.wikipedia.org/wiki/Logistic_distribution). Its cumulative distribution function, the logistic function, 
+   is used in logistic regression, which models binary outcomes (e.g., the presence or absence of a disease): 
+   It links the predictors to the probability of the outcome. The outcome itself is Bernoulli distributed.
 
 - [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution). Used to model the number of events in a fixed interval of time or space. 
   For example, the number of patients arriving at an emergency department in a fixed time interval.

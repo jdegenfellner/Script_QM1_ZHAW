@@ -357,7 +357,7 @@ its conclusion. Gombaud approached mathematician Blaise Pascal, who collaborated
 the groundwork for modern probability theory. Fermat’s method involved listing all possible outcomes and calculating each player’s
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
 and influenced fields like economics and actuarial science.</p>
-<p>Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven’t happened yet.</p>
+<p>Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable, and probabilities for events that cannot be repeated under identical conditions.</p>
 <p>An example for a repeatable event is getting a 6 when throwing a fair die. We can do this experiment right now by fetching a die and throwing it.</p>
 <p>An example for the latter is the probability of a patient dying within the next 5 years after a certain diagnosis.
 It is hard to argue that this experiment would be repeatable under (almost) identical conditions since every patient is different whereas the dice are typically much more similar.
@@ -467,14 +467,14 @@ out of 50 studies showed a treatment effect. What is the problem?</li>
 The event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and <span class="math inline">\(A_2=\)</span> “only researcher 897 gets a positive result” are mutually exclusive.
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. They cannot happen at the same time within that one
 experiment of 1000 researchers doing their thing <em>once</em>. Hence, the two events are said to be disjoint.
-If we add up the probabilities of all mutually exclusive events, we should get 1, or 100%.
-We say that the probability of all elementary events (called <span class="math inline">\(\omega\)</span>) sums to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
+If we add up the probabilities of mutually exclusive events, we get the probability that <em>one of them</em> occurs. If these events cover <em>all</em> possible outcomes, the sum is 1, or 100%.
+In other words: The probabilities of all elementary events (called <span class="math inline">\(\omega\)</span>) sum to 1. Let’s look at a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a> to illustrate the concept of being mutually exclusive (disjoint).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" /></p>
 <p>Again, this refers to being mutually exclusive within our 1000-researcher experiment.
 Both events cannot happen at the same time in this context, so we assign <span class="math inline">\(0\)</span> to the event that both occur simultaneously: <span class="math inline">\(\mathbb{P}(A_1 \cap A_2)=0\)</span>. The <span class="math inline">\(\cap\)</span>-Symbol refers to all elementary events
 that are in both <a href="https://en.wikipedia.org/wiki/Set_(mathematics)">sets</a>. In our case we have the sets</p>
 <p><span class="math display">\[A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\]</span></p>
-<p><span class="math display">\[and\]</span></p>
+<p><span class="math display">\[\text{and}\]</span></p>
 <p><span class="math display">\[A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.\]</span></p>
 <p>An example of <strong>non-disjoint</strong> events (within our 1000-researcher experiment) would be the event <span class="math inline">\(A_1=\)</span> “only researcher 45 gets a positive result” and
 the event <span class="math inline">\(A_3=\)</span> “only researcher 45 or only researcher 67 gets a positive result”.
@@ -482,7 +482,7 @@ Which researchers got a positive result in both events? The answer is: Researche
 add up the probabilities (of events <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_3\)</span>) here, since we would count the probability of researcher 45 twice.
 The sets look like this:</p>
 <p><span class="math display">\[A_1 = \{ (\dots ,R_{45} = pos, \dots) \}\]</span></p>
-<p><span class="math display">\[and\]</span></p>
+<p><span class="math display">\[\text{and}\]</span></p>
 <p><span class="math display">\[A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}.\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
 <p><strong>How many elementary events are in the set of all possible outcomes of our 1000-researcher experiment?</strong>
@@ -505,12 +505,13 @@ this event can indeed <em>never</em> happen.</p>
 </div>
 <div id="axioms_of_probability_theory" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Axioms of probability theory<a href="probs.html#axioms_of_probability_theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We can summarize these informally stated properties more formally (<a href="https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf">Kolmogorov’s axioms</a>):</p>
+<p>We can summarize these informally stated properties more formally (Kolmogorov’s axioms, in their modern form):</p>
 <p><span class="math display">\[\begin{align}
-1. &amp;\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the &quot;impossible&quot; event should be zero.}\\
-2. &amp;\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
+1. &amp;\ \mathbb{P}(A) \ge 0 \text{ for every event } A \text{: Probabilities are never negative.}\\
+2. &amp;\ \mathbb{P}(\Omega) = 1 \text{: Probability that some outcome occurs in our random experiment.}\\
 3. &amp;\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}\]</span></p>
+<p>All other rules follow from these three axioms, for instance <span class="math inline">\(\mathbb{P}(\emptyset) = 0\)</span> (the “impossible” event has probability zero) and <span class="math inline">\(\mathbb{P}(A) \le 1\)</span>. (For infinite <span class="math inline">\(\Omega\)</span>, only certain subsets are admitted as events, a so-called <span class="math inline">\(\sigma\)</span>-algebra. We ignore this technicality here.)</p>
 <p>The <span class="math inline">\(\infty\)</span>-symbol in <strong>axiom 3</strong> comes into play if we are dealing with (potentially) infinitely many events.
 For instance, we could ask for the number of researchers we need to look at until we see the first
 positive result (<a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a>).
@@ -540,14 +541,14 @@ Note that the sum of all elementary events (all possible outcomes) indeed adds u
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="probs.html#cb3-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">80</span>, <span class="at">prob =</span> <span class="fl">0.04</span>, <span class="at">size =</span> <span class="dv">1000</span>))</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="probs.html#cb5-1" tabindex="-1"></a><span class="co"># = 1 since the other probabilities are very small</span></span></code></pre></div>
-<p>As we will see later, <strong>axiom 1</strong> above does not mean, that the event can never occur.
+<p>As we will see later, the “impossible” event has probability zero, but the converse does not hold: An event with probability zero can still occur.
 For every continuous random variable (e.g. with a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal</a>
 or a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform distribution</a>), the probability of a single point is zero.
 This <a href="https://www.youtube.com/watch?v=ZA4JkHKZM50&amp;list=PLIhj5_pQwhMQfGZNQZREjDdJRt0t0sn51&amp;index=10&amp;ab_channel=3Blue1Brown">video</a> could help.</p>
 <p><strong>Axiom 2</strong> is always true. Some result <em>has</em> to occur in our random experiment.
 What is <span class="math inline">\(\Omega\)</span> again? In our countable case of researchers, <span class="math inline">\(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\)</span> would be the set of all possible outcomes if we let 1000 researchers conduct the experiment.
 Each researcher can either find an effect or not. Hence, we have <span class="math inline">\(2^{1000}\)</span> possible outcomes of our 1000-researcher experiment. This is a <em>very</em> large number. Adding up all
-these probabilities would sum to 1 according to axiom 3. Combining different elementary events <span class="math inline">\(\omega\)</span> from the whole collection of possible outcomes <span class="math inline">\(\Omega\)</span>
+these probabilities would sum to 1 according to axioms 2 and 3. Combining different elementary events <span class="math inline">\(\omega\)</span> from the whole collection of possible outcomes <span class="math inline">\(\Omega\)</span>
 gives us “events” like the ones we used above (<span class="math inline">\(A_1, A_2, A_3\)</span>).</p>
 <p>Note that there is a <strong>difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment</strong> of
 1000 researchers we are looking at (simultaneously).
@@ -681,9 +682,7 @@ the histogram of the number of positive results:</p>
 <span id="cb17-11"><a href="probs.html#cb17-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>As you can see, the realized number of found effects matches well the theoretical probabilities
-given by the binomial distribution. Note that not necessarily 40 is the most often found number of effects
-among 1000 researchers, but we are very close. If you repeat the simulation, chances are high
-that you get 40 as the most often found number of effects.</p>
+given by the binomial distribution. Note that 40 is not necessarily the most often found number of effects among 1000 researchers, since 39 has almost the same probability (<span class="math inline">\(0.06418\)</span> vs. <span class="math inline">\(0.06424\)</span> for 40). If you repeat the simulation many times, 40 is the most frequent value in only about 37% of the runs and 39 in about 35%; in the remaining runs it is typically 38 or 41. So the most frequent value is always close to 40, but not always exactly 40.</p>
 <p><strong>The second question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
 asked about observing 137 positively reporting researchers.
 We can calculate the probability of observing 137 or more positive results using the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a>
@@ -749,7 +748,7 @@ Consider a binomial distribution <span class="math inline">\(\text{Bin}(10, 0.77
 ## 3 9 0.2188489</code></pre>
 <p><strong>The fourth question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
 asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
-Well, this would be scientific fraud and a case of <a href="https://en.wikipedia.org/wiki/Survivorship_bias#:~:text=Survivorship%20bias%20or%20survival%20bias,conclusions%20because%20of%20incomplete%20data.">survivorship bias</a>.
+Well, this would be scientific fraud.
 You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
 This is also relevant in <a href="https://www.investopedia.com/terms/s/survivorship-bias-risk.asp#:~:text=This%20risk%20arises%20from%20focusing,or%20removed%20from%20performance%20data.">finance</a>.
 You may want to read this excellent <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124">article</a> by John Ioannidis for a humbling big-picture of how relevant published results can be.</p>
@@ -759,7 +758,7 @@ If you test many hypotheses, you will find some “significant” results by cha
 One could also call the practice of testing many hypotheses to find “significant” ones <a href="https://en.wikipedia.org/wiki/Data_dredging"><span class="math inline">\(p\)</span>-hacking</a>.
 This should be <strong>absolutely avoided</strong>. Unfortunately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4%, you would expect 4 “significant” results by chance alone.
-If you report those 4 results as legitimate finding, you are <span class="math inline">\(p\)</span>-hacking. When reading a scientific article, watch out for large amounts of <span class="math inline">\(p\)</span>-values and
+If you report those 4 results as legitimate finding, you are <span class="math inline">\(p\)</span>-hacking. Back to our fifth question: With 65 tested hypotheses, we expect <span class="math inline">\(65 \cdot 0.04 = 2.6\)</span> false positives if all null hypotheses are true. Finding 4 is therefore not surprising (the probability of 4 or more is about 26%). Chance alone explains these results quite well. When reading a scientific article, watch out for large amounts of <span class="math inline">\(p\)</span>-values and
 their (over-)interpretation as “significant” (relevant) or “non-significant” (not relevant).
 This <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">article</a> is recommendable to get away from a too strict dichotomous interpretation of research results.</p>
 <p><strong>The sixth question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
@@ -793,17 +792,18 @@ What if the events are not disjoint? For simplicity, let’s consider only 2 res
 <p>Or simpler with the <strong>complement rule</strong>:</p>
 <p><span class="math inline">\(\mathbb{P}(A_1 \cup A_2) = 1 - \mathbb{P}(\text{neither }A_1 \text{ nor }A_2) = 1-0.96^2 = 0.0784\)</span>.</p>
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
+<p>In the following Euler diagram, the areas are proportional to the probabilities: The overlap <span class="math inline">\(\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016\)</span> is very small.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-76d12a864ea7b78b80de" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-76d12a864ea7b78b80de">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-a420bdd95e287279ae7a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-a420bdd95e287279ae7a">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
 <span class="math display">\[\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\]</span>
 in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilities of these
-4 events in the event space <span class="math inline">\(\Omega\)</span> must add up to 1 since they are disjoint and one of them has to happen. There is no “room” left.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
+4 events in the event space <span class="math inline">\(\Omega\)</span> must add up to 1 since they are disjoint and one of them has to happen. There is no “room” left. In the following picture, the areas are proportional to the probabilities (<span class="math inline">\(0.04\)</span> for a positive and <span class="math inline">\(0.96\)</span> for a negative result per researcher).</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="576" /></p>
 </div>
 <div id="probabilities_for_health_sciences" class="section level3 hasAnchor" number="1.2.7">
 <h3><span class="header-section-number">1.2.7</span> Probabilities for health science<a href="probs.html#probabilities_for_health_sciences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -812,10 +812,9 @@ in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The 
 <p>In many health-related studies, we want to perform one or more of the following tasks:</p>
 <ul>
 <li>Estimate proportions (e.g., the proportion of patients with lower back pain. How big is the problem from a public health perspective?),</li>
-<li>Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better?
-What is the probability that the treatment effect is between x and y points on some scale?),</li>
+<li>Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better?),</li>
 <li>Estimate therapy effects (e.g., the effect of a new therapy on pain reduction:
-How many points does the pain decrease? How is the pain reduction distributed?
+How many points does the pain decrease? What is the probability that the effect is between x and y points on some scale? How is the pain reduction distributed?
 Are there outliers and why? Are there participants that do not benefit from the therapy?)</li>
 </ul>
 <p>In all such cases, probability theory is the established tool to answer questions that are afflicted with uncertainty. Would there be no variation in results/effects,
@@ -1004,7 +1003,11 @@ about probability distributions in general might be helpful.</p>
 In any continuous distribution, we use the area under the curve to calculate probabilities. The probability of <span class="math inline">\(X\)</span> being between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is the area under the curve (blue shade) between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>:
 <span class="math inline">\(\mathbb{P}(X \in (a,b))\)</span>. Note that the area over a single point would be zero and therefore the probability of a single point is zero.</p>
 <p>The graph above is called a <a href="https://en.wikipedia.org/wiki/Probability_density_function">probability density function</a> (PDF).
-Over every point, we express the probability by the height of the curve.
+The height of the curve at a point <span class="math inline">\(x\)</span> is called the <em>density</em> <span class="math inline">\(f(x)\)</span>. A high curve means that values around <span class="math inline">\(x\)</span> are more likely, a low curve means that they are less likely.
+But the height itself is <strong>not</strong> a probability: It is a probability <em>per unit</em> on the <span class="math inline">\(x\)</span>-axis and can therefore be larger than 1.
+For a small interval of width <span class="math inline">\(\Delta x\)</span> around <span class="math inline">\(x\)</span>, we have <span class="math inline">\(\mathbb{P}(X \in [x, x + \Delta x]) \approx f(x) \cdot \Delta x\)</span>.
+Probabilities are <em>areas</em> under the curve.
+For example, a uniform distribution on <span class="math inline">\([0, 0.5]\)</span> has the height <span class="math inline">\(2\)</span> everywhere (width <span class="math inline">\(0.5 \times\)</span> height <span class="math inline">\(2 = 1\)</span>).
 See <a href="descriptive_stats.html#exercise3_descriptive_stats">exercise 3</a> in the next chapter for a practical example for what we will use this in research.</p>
 <p><strong>Expectation <span class="math inline">\(\mathbb{E}(X)\)</span> of a continuous random variable</strong>: The expectation of a continuous random variable <span class="math inline">\(X\)</span> is defined as:</p>
 <p><span class="math display">\[\mu = \mathbb{E}(X) = \int x \cdot f(x) dx,\]</span></p>
@@ -1039,8 +1042,9 @@ We will deal with this in <a href="https://jdegenfellner.github.io/Script_QM2_ZH
 For example, the number of patients that respond to a therapy in a fixed number of patients.
 A special case of it is the <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a>,
 which is used to model a single trial with two outcomes (throw the coin once; <span class="math inline">\(X \sim B(1,p)\)</span>).</p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Logistic_distribution">Logistic Distribution</a>. Underpins logistic regression models,
-which are used to model binary outcomes (e.g., the presence or absence of a disease).</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Logistic_distribution">Logistic distribution</a>. Its cumulative distribution function, the logistic function,
+is used in logistic regression, which models binary outcomes (e.g., the presence or absence of a disease):
+It links the predictors to the probability of the outcome. The outcome itself is Bernoulli distributed.</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a>. Used to model the number of events in a fixed interval of time or space.
 For example, the number of patients arriving at an emergency department in a fixed time interval.
 Maybe you want to watch this <a href="https://www.youtube.com/watch?v=jmqZG6roVqU&amp;ab_channel=jbstatistics">video</a>.</p></li>

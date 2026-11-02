@@ -331,7 +331,7 @@ the groundwork for modern probability theory. Fermat's method involved listing a
 chance of winning, while Pascal developed a backward induction algorithm to assign probabilities. Their work revolutionized mathematics
 and influenced fields like economics and actuarial science.
 
-Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable respectively have already happened, and probabilities for events that haven't happened yet.
+Philosophically speaking, we could distinguish between two flavors of probability: Probabilities for events that are repeatable, and probabilities for events that cannot be repeated under identical conditions.
 
 An example for a repeatable event is getting a 6 when throwing a fair die. We can do this experiment right now by fetching a die and throwing it.
 
@@ -482,8 +482,8 @@ First, it seems intuitive that Probability \emph{within} an experiment should ad
 The event \(A_1=\) ``only researcher 45 gets a positive result'' and \(A_2=\) ``only researcher 897 gets a positive result'' are mutually exclusive.
 If only researcher 45 finds an effect, then researcher 897 does not find an effect and vice versa. They cannot happen at the same time within that one
 experiment of 1000 researchers doing their thing \emph{once}. Hence, the two events are said to be disjoint.
-If we add up the probabilities of all mutually exclusive events, we should get 1, or 100\%.
-We say that the probability of all elementary events (called \(\omega\)) sums to 1. Let's look at a \href{https://en.wikipedia.org/wiki/Venn_diagram}{Venn diagram} to illustrate the concept of being mutually exclusive (disjoint).
+If we add up the probabilities of mutually exclusive events, we get the probability that \emph{one of them} occurs. If these events cover \emph{all} possible outcomes, the sum is 1, or 100\%.
+In other words: The probabilities of all elementary events (called \(\omega\)) sum to 1. Let's look at a \href{https://en.wikipedia.org/wiki/Venn_diagram}{Venn diagram} to illustrate the concept of being mutually exclusive (disjoint).
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-2-1.pdf}}
 
@@ -493,7 +493,7 @@ that are in both \href{https://en.wikipedia.org/wiki/Set_(mathematics)}{sets}. I
 
 \[A_1 = \{ (\dots ,R_{45} = pos, \dots ,R_{897} = neg, \dots) \}\]
 
-\[and\]
+\[\text{and}\]
 
 \[A_2 = \{ (\dots ,R_{45} = neg, \dots , R_{897} = pos, \dots) \}.\]
 
@@ -505,7 +505,7 @@ The sets look like this:
 
 \[A_1 = \{ (\dots ,R_{45} = pos, \dots) \}\]
 
-\[and\]
+\[\text{and}\]
 
 \[A_3 = \{ (\dots ,R_{45} = pos, \dots), (\dots ,R_{67} = pos, \dots) \}.\]
 
@@ -537,13 +537,15 @@ Obviously, the probability of an event should at a minimum be zero and at a maxi
 
 \subsection{Axioms of probability theory}\label{axioms_of_probability_theory}
 
-We can summarize these informally stated properties more formally (\href{https://altexploit.wordpress.com/wp-content/uploads/2017/07/a-n-kolmogorov-foundations-of-the-theory-of-probability-chelsea-pub-co-1960.pdf}{Kolmogorov's axioms}):
+We can summarize these informally stated properties more formally (Kolmogorov's axioms, in their modern form):
 
 \begin{align}
-1. &\ \mathbb{P}(\emptyset) = 0 \text{: Probability of the "impossible" event should be zero.}\\
-2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability, that any outcome occurs in our random experiment.}\\
+1. &\ \mathbb{P}(A) \ge 0 \text{ for every event } A \text{: Probabilities are never negative.}\\
+2. &\ \mathbb{P}(\Omega) = 1 \text{: Probability that some outcome occurs in our random experiment.}\\
 3. &\ \text{If } A_1, A_2,... \text{ pairwise disjoint: } \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)
 \end{align}
+
+All other rules follow from these three axioms, for instance \(\mathbb{P}(\emptyset) = 0\) (the ``impossible'' event has probability zero) and \(\mathbb{P}(A) \le 1\). (For infinite \(\Omega\), only certain subsets are admitted as events, a so-called \(\sigma\)-algebra. We ignore this technicality here.)
 
 The \(\infty\)-symbol in \textbf{axiom 3} comes into play if we are dealing with (potentially) infinitely many events.
 For instance, we could ask for the number of researchers we need to look at until we see the first
@@ -598,7 +600,7 @@ Note that the sum of all elementary events (all possible outcomes) indeed adds u
 \end{Highlighting}
 \end{Shaded}
 
-As we will see later, \textbf{axiom 1} above does not mean, that the event can never occur.
+As we will see later, the ``impossible'' event has probability zero, but the converse does not hold: An event with probability zero can still occur.
 For every continuous random variable (e.g.~with a \href{https://en.wikipedia.org/wiki/Normal_distribution}{normal}
 or a \href{https://en.wikipedia.org/wiki/Continuous_uniform_distribution}{uniform distribution}), the probability of a single point is zero.
 This \href{https://www.youtube.com/watch?v=ZA4JkHKZM50&list=PLIhj5_pQwhMQfGZNQZREjDdJRt0t0sn51&index=10&ab_channel=3Blue1Brown}{video} could help.
@@ -606,7 +608,7 @@ This \href{https://www.youtube.com/watch?v=ZA4JkHKZM50&list=PLIhj5_pQwhMQfGZNQZR
 \textbf{Axiom 2} is always true. Some result \emph{has} to occur in our random experiment.
 What is \(\Omega\) again? In our countable case of researchers, \(\Omega = \{ \omega_1, \omega_2, \cdots, \omega_{2^{1000}} \}\) would be the set of all possible outcomes if we let 1000 researchers conduct the experiment.
 Each researcher can either find an effect or not. Hence, we have \(2^{1000}\) possible outcomes of our 1000-researcher experiment. This is a \emph{very} large number. Adding up all
-these probabilities would sum to 1 according to axiom 3. Combining different elementary events \(\omega\) from the whole collection of possible outcomes \(\Omega\)
+these probabilities would sum to 1 according to axioms 2 and 3. Combining different elementary events \(\omega\) from the whole collection of possible outcomes \(\Omega\)
 gives us ``events'' like the ones we used above (\(A_1, A_2, A_3\)).
 
 Note that there is a \textbf{difference between the elementary experiment of the individual researcher (finding an effect or not) and the whole experiment} of
@@ -828,9 +830,7 @@ the histogram of the number of positive results:
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-9-1.pdf}}
 
 As you can see, the realized number of found effects matches well the theoretical probabilities
-given by the binomial distribution. Note that not necessarily 40 is the most often found number of effects
-among 1000 researchers, but we are very close. If you repeat the simulation, chances are high
-that you get 40 as the most often found number of effects.
+given by the binomial distribution. Note that 40 is not necessarily the most often found number of effects among 1000 researchers, since 39 has almost the same probability (\(0.06418\) vs.~\(0.06424\) for 40). If you repeat the simulation many times, 40 is the most frequent value in only about 37\% of the runs and 39 in about 35\%; in the remaining runs it is typically 38 or 41. So the most frequent value is always close to 40, but not always exactly 40.
 
 \textbf{The second question} \hyperref[Questions_about_the_1000-researcher_experiment]{above}
 asked about observing 137 positively reporting researchers.
@@ -947,7 +947,7 @@ Consider a binomial distribution \(\text{Bin}(10, 0.77)\):
 
 \textbf{The fourth question} \hyperref[Questions_about_the_1000-researcher_experiment]{above}
 asked about the problem of writing a press release stating that 47 out of 50 studies showed a treatment effect.
-Well, this would be scientific fraud and a case of \href{https://en.wikipedia.org/wiki/Survivorship_bias\#:~:text=Survivorship\%20bias\%20or\%20survival\%20bias,conclusions\%20because\%20of\%20incomplete\%20data.}{survivorship bias}.
+Well, this would be scientific fraud.
 You only look at the studies that showed a treatment effect and ignore the ones that did not or you restrict the number of studies to a certain number lower than the true number.
 This is also relevant in \href{https://www.investopedia.com/terms/s/survivorship-bias-risk.asp\#:~:text=This\%20risk\%20arises\%20from\%20focusing,or\%20removed\%20from\%20performance\%20data.}{finance}.
 You may want to read this excellent \href{https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124}{article} by John Ioannidis for a humbling big-picture of how relevant published results can be.
@@ -958,7 +958,7 @@ If you test many hypotheses, you will find some ``significant'' results by chanc
 One could also call the practice of testing many hypotheses to find ``significant'' ones \href{https://en.wikipedia.org/wiki/Data_dredging}{\(p\)-hacking}.
 This should be \textbf{absolutely avoided}. Unfortunately, it is still common practice in many fields. Often it happens unconsciously.
 Example: If you test 100 hypotheses simultaneously at a significance level of 4\%, you would expect 4 ``significant'' results by chance alone.
-If you report those 4 results as legitimate finding, you are \(p\)-hacking. When reading a scientific article, watch out for large amounts of \(p\)-values and
+If you report those 4 results as legitimate finding, you are \(p\)-hacking. Back to our fifth question: With 65 tested hypotheses, we expect \(65 \cdot 0.04 = 2.6\) false positives if all null hypotheses are true. Finding 4 is therefore not surprising (the probability of 4 or more is about 26\%). Chance alone explains these results quite well. When reading a scientific article, watch out for large amounts of \(p\)-values and
 their (over-)interpretation as ``significant'' (relevant) or ``non-significant'' (not relevant).
 This \href{https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913}{article} is recommendable to get away from a too strict dichotomous interpretation of research results.
 
@@ -1007,6 +1007,8 @@ Or simpler with the \textbf{complement rule}:
 
 See also \hyperref[exercise6]{Exercise 6}.
 
+In the following Euler diagram, the areas are proportional to the probabilities: The overlap \(\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016\) is very small.
+
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-13-1.pdf}}
 
 Here is another helpful depiction of the situation:
@@ -1023,7 +1025,7 @@ the probability of both finding an effect, which is the same as that both or exa
 We can also visualize the 4 disjoint elementary events
 \[\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\]
 in a \href{https://en.wikipedia.org/wiki/Venn_diagram}{Venn diagram}. The probabilities of these
-4 events in the event space \(\Omega\) must add up to 1 since they are disjoint and one of them has to happen. There is no ``room'' left.
+4 events in the event space \(\Omega\) must add up to 1 since they are disjoint and one of them has to happen. There is no ``room'' left. In the following picture, the areas are proportional to the probabilities (\(0.04\) for a positive and \(0.96\) for a negative result per researcher).
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-15-1.pdf}}
 
@@ -1040,11 +1042,10 @@ In many health-related studies, we want to perform one or more of the following 
 \item
   Estimate proportions (e.g., the proportion of patients with lower back pain. How big is the problem from a public health perspective?),
 \item
-  Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better?
-  What is the probability that the treatment effect is between x and y points on some scale?),
+  Test hypotheses (e.g., whether a new therapy is superior to the standard therapy. How sure can we be that the new therapy is better?),
 \item
   Estimate therapy effects (e.g., the effect of a new therapy on pain reduction:
-  How many points does the pain decrease? How is the pain reduction distributed?
+  How many points does the pain decrease? What is the probability that the effect is between x and y points on some scale? How is the pain reduction distributed?
   Are there outliers and why? Are there participants that do not benefit from the therapy?)
 \end{itemize}
 
@@ -1325,7 +1326,11 @@ In any continuous distribution, we use the area under the curve to calculate pro
 \(\mathbb{P}(X \in (a,b))\). Note that the area over a single point would be zero and therefore the probability of a single point is zero.
 
 The graph above is called a \href{https://en.wikipedia.org/wiki/Probability_density_function}{probability density function} (PDF).
-Over every point, we express the probability by the height of the curve.
+The height of the curve at a point \(x\) is called the \emph{density} \(f(x)\). A high curve means that values around \(x\) are more likely, a low curve means that they are less likely.
+But the height itself is \textbf{not} a probability: It is a probability \emph{per unit} on the \(x\)-axis and can therefore be larger than 1.
+For a small interval of width \(\Delta x\) around \(x\), we have \(\mathbb{P}(X \in [x, x + \Delta x]) \approx f(x) \cdot \Delta x\).
+Probabilities are \emph{areas} under the curve.
+For example, a uniform distribution on \([0, 0.5]\) has the height \(2\) everywhere (width \(0.5 \times\) height \(2 = 1\)).
 See \hyperref[exercise3_descriptive_stats]{exercise 3} in the next chapter for a practical example for what we will use this in research.
 
 \textbf{Expectation \(\mathbb{E}(X)\) of a continuous random variable}: The expectation of a continuous random variable \(X\) is defined as:
@@ -1372,8 +1377,9 @@ The first 2 are absolutely essential.
   A special case of it is the \href{https://en.wikipedia.org/wiki/Bernoulli_distribution}{Bernoulli distribution},
   which is used to model a single trial with two outcomes (throw the coin once; \(X \sim B(1,p)\)).
 \item
-  \href{https://en.wikipedia.org/wiki/Logistic_distribution}{Logistic Distribution}. Underpins logistic regression models,
-  which are used to model binary outcomes (e.g., the presence or absence of a disease).
+  \href{https://en.wikipedia.org/wiki/Logistic_distribution}{Logistic distribution}. Its cumulative distribution function, the logistic function,
+  is used in logistic regression, which models binary outcomes (e.g., the presence or absence of a disease):
+  It links the predictors to the probability of the outcome. The outcome itself is Bernoulli distributed.
 \item
   \href{https://en.wikipedia.org/wiki/Poisson_distribution}{Poisson distribution}. Used to model the number of events in a fixed interval of time or space.
   For example, the number of patients arriving at an emergency department in a fixed time interval.
@@ -3455,19 +3461,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.149 130.478 128.222   93   34.3554 228.82                  
-## mu2         6.461   6.185   7.221   93  -83.0988  98.92                  
-## muDiff    123.688 124.108 124.016   93   -8.7534 260.15       0      95.4
-## sigma1    140.048 128.522 114.126   93   67.5276 228.45                  
-## sigma2    130.627 119.833 104.636   93   62.5336 212.86                  
-## sigmaDiff   9.420   8.280   7.190   93 -119.7698 138.77       0      56.2
-## nu         34.828  25.891  10.053   93    1.1679  85.16                  
-## log10nu     1.384   1.413   1.477   93    0.6682   2.07                  
-## effSz       0.957   0.947   0.985   93   -0.0761   2.02       0      95.4
+## mu1       130.745 130.772 129.098   93   32.4387 227.17                  
+## mu2         5.651   5.656   5.918   93  -85.8305  95.18                  
+## muDiff    125.093 125.007 123.687   93   -5.6415 261.60       0      95.7
+## sigma1    140.353 128.847 115.083   93   66.4351 228.35                  
+## sigma2    130.459 119.800 106.866   93   60.8339 210.50                  
+## sigmaDiff   9.894   8.935   7.113   93 -118.2403 139.10       0      56.7
+## nu         34.305  25.660   9.723   93    1.0638  83.07                  
+## log10nu     1.379   1.409   1.512   93    0.6690   2.06                  
+## effSz       0.965   0.955   0.931   93   -0.0671   2.02       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.43
+## muDiff        -20       20    4.41
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3715,24 +3721,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 0.99 sec elapsed
+## 1.029 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.711  0.707  0.704   93 -0.536  1.966                          
-## mu2        2.306  2.301  2.299   93  0.907  3.773                          
-## muDiff    -1.595 -1.593 -1.634   93 -3.452  0.350       0      6.03    -1.8
-## sigma1     2.033  1.920  1.716   93  1.093  3.078                          
-## sigma2     2.314  2.174  1.972   93  1.270  3.520                          
-## sigmaDiff -0.281 -0.252 -0.183   93 -1.985  1.364       0     37.09        
-## nu        36.028 27.657 11.513   93  1.475 85.864                          
-## log10nu    1.412  1.442  1.498   93  0.727  2.064                          
-## effSz     -0.753 -0.748 -0.742   93 -1.637  0.139       0      6.03        
+## mu1        0.710  0.706  0.666   93 -0.529  1.959                          
+## mu2        2.306  2.299  2.277   93  0.895  3.735                          
+## muDiff    -1.596 -1.593 -1.587   93 -3.485  0.305       0      6.03    -1.8
+## sigma1     2.039  1.920  1.735   93  1.100  3.101                          
+## sigma2     2.301  2.170  1.993   93  1.256  3.476                          
+## sigmaDiff -0.263 -0.244 -0.246   93 -1.905  1.434       0     37.36        
+## nu        35.768 27.413 11.712   93  1.491 85.351                          
+## log10nu    1.409  1.438  1.491   93  0.735  2.070                          
+## effSz     -0.754 -0.748 -0.733   93 -1.664  0.115       0      6.03        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
