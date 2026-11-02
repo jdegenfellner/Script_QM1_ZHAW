@@ -1729,7 +1729,7 @@ We do not need to reiterate everything here. You can go through these sources to
 \end{itemize}
 
 The goal is to describe data in a meaningful and honest way.
-We \textbf{summarize} data to make them \textbf{more easily digestable} for us humans to answer questions like
+We \textbf{summarize} data to make them \textbf{more easily digestible} for us humans to answer questions like
 
 \begin{itemize}
 \tightlist
@@ -1741,8 +1741,8 @@ We \textbf{summarize} data to make them \textbf{more easily digestable} for us h
   How widely are they spread? How much do they \textbf{vary}?
   These questions are answered by the dispersion measures such as \href{https://en.wikipedia.org/wiki/Variance}{variance},
   \href{https://en.wikipedia.org/wiki/Standard_deviation}{standard deviation} (root of the variance),
-  \href{https://en.wikipedia.org/wiki/Interquartile_range\#:~:text=The\%20IQR\%20of\%20a\%20set,a\%20median\%20calculated\%20as\%20follows.&text=The\%20second\%20quartile\%20Q2\%20is\%20the\%20same\%20as\%20the\%20ordinary\%20median.}{interquantile range}
-  or just the \href{https://en.wikipedia.org/wiki/Range_(statistics)}{range}; or even \href{https://www.dss.uniroma1.it/RePec/mtn/articoli/2003-2-8.pdf}{Gini's mean difference}.
+  \href{https://en.wikipedia.org/wiki/Interquartile_range\#:~:text=The\%20IQR\%20of\%20a\%20set,a\%20median\%20calculated\%20as\%20follows.&text=The\%20second\%20quartile\%20Q2\%20is\%20the\%20same\%20as\%20the\%20ordinary\%20median.}{interquartile range}
+  or just the \href{https://en.wikipedia.org/wiki/Range_(statistics)}{range}; or even \href{https://ideas.repec.org/a/mtn/ancoec/030208.html}{Gini's mean difference}.
 \item
   Are there any \textbf{outliers} (rare data points that are far away from the rest, \href{https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516}{Westfall, p.~405}) and why?
   This is a bit more complicated.
@@ -1779,7 +1779,7 @@ result in a negatively skewed distribution of course.
 
 To build a bridge to our concept of statistical \hyperref[independence_of_events]{independence} from the previous chapter, the paper states:
 ``This study found that baseline level of activity limitation was \textbf{associated} with different effects of CFT treatment''.
-What they mean is that there was a ``statistically significant effect'' in the chosen model. We will get to that in chapter 5.
+What they mean is that there was a ``statistically significant effect'' in the chosen model. We will get to that in the chapter on \hyperref[nhst]{NHST}.
 If you want to be picky, you could argue, that they did not formally define an \(\alpha\)-level for ``significance''.
 
 \section{Univariate vs.~bivariate statistics}\label{univariate-vs.-bivariate-statistics}
@@ -1834,7 +1834,7 @@ to visualize the raw data points as well.
 Some researchers would discard the values below 10 and above 40 as outliers, but we know here
 that the data points are perfectly legitimate.
 One important thing we should be aware of in connection with small sample sizes is
-variability. Let's create not \(10000\) samples of a normally distributed variable, but only \(25\) samples:
+variability. Let's create not one sample of \(10000\) observations of a normally distributed variable, but only one sample of \(25\) observations:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1862,7 +1862,7 @@ variability. Let's create not \(10000\) samples of a normally distributed variab
 
 We \emph{know} (in this case) that these values come from a normal distribution with a mean
 of \(23.4\) and a standard deviation of \(5.6\). Let's \emph{estimate} the parameters (\(\mu\), \(\sigma\)) from the sample
-and use the often but not recommended Shapiro-wilk test for normality:
+and use the often but not recommended Shapiro-Wilk test for normality:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1919,8 +1919,8 @@ and use the often but not recommended Shapiro-wilk test for normality:
 ## W = 0.95059, p-value = 0.2585
 \end{verbatim}
 
-\textbf{Firstly}, the histogram looks rather differently when using a different \href{https://r-coder.com/set-seed-r/}{seed}.
-\textbf{Secondly}, we would probability
+\textbf{Firstly}, the histogram looks rather different when using a different \href{https://r-coder.com/set-seed-r/}{seed}.
+\textbf{Secondly}, we would probably
 not be able to tell if the data stems from a normal distribution.
 \textbf{Thirdly}, the sample mean and standard deviation
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
@@ -2008,7 +2008,7 @@ There are a few things to note here:
   See \hyperref[exercise4_descriptive_stats]{Exercise 4}. Of course \emph{both}, z-scores as well as FPI scores are
   considered ``continuous'' (in this context).
 \item
-  With so many obsvervations (\(n=3217\)), how would a truly normal distribution with the parameters
+  With so many observations (\(n=3217\)), how would a truly normal distribution with the parameters
   \(FPI \sim N(4.20, 3.00)\) look like? We can simulate this with the following code:
 \end{itemize}
 
@@ -2091,7 +2091,8 @@ Let's look at multiple examples of normal Q-Q plots which demonstrate the concep
 
 The \textbf{first plot} shows a Q-Q plot of a sample from a normal distribution with \(\mu = 45\) and \(\sigma = 6\).
 The points lie on a straight line and are within a confidence band,
-indicating that the data is normally distributed.
+so the data are compatible with a normal distribution. (We know that they are normal here, since we simulated them.
+In practice, a Q-Q plot can reveal deviations from normality, but it can never prove normality.)
 
 The \textbf{second plot} shows a Q-Q plot of a sample from an
 \href{https://en.wikipedia.org/wiki/Exponential_distribution}{exponential distribution},
@@ -2248,7 +2249,7 @@ and we can think of an example with skewed data where the correlation coefficien
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-27-1.pdf}}
 
 \emph{If} X and Y are bivariate normally distributed, then one can use the variable
-\(t = r \sqrt{\frac{n-2}{1-r^2}}\) as test statistic for the null hypothesis (next chapter) \(H_0: \rho = 0\).
+\(t = r \sqrt{\frac{n-2}{1-r^2}}\) as test statistic for the null hypothesis (see the chapter on \hyperref[nhst]{NHST}) \(H_0: \rho = 0\).
 Note: It is not sufficient for X and Y to be individually normally distributed in order to
 be \href{https://en.wikipedia.org/wiki/Multivariate_normal_distribution\#Bivariate_case}{jointly normally distributed}.
 
@@ -2257,7 +2258,7 @@ be \href{https://en.wikipedia.org/wiki/Multivariate_normal_distribution\#Bivaria
 Let's again visit the previous \href{https://bmjopen.bmj.com/content/9/4/e023341}{paper}.
 In the results, correlations are presented in a dichotomous way with regards to \(p\)-values,
 which should be \href{https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913}{avoided}.
-We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be ``significant'',
+We will expand on this in the chapter on \hyperref[nhst]{NHST}. For large sample sizes, even small (true) correlations will be ``significant'',
 especially, if one decides to use an arbitrary threshold for the \(p\)-values like \(0.05\). There is not much information
 in this fact. I would argue that all \(p\)-values for such large sample sizes and larger correlations do not carry much information.
 See also \hyperref[exercise5_descriptive_stats]{Exercise 5}.
@@ -2351,10 +2352,11 @@ Let's see this in action:
   the x values and below the mean of the y values and therefore adds negatively to the covariance which
   is the numerator in the formula for \(r\). The denominator is positive.
 \item
-  C: When we add an outlier in both \(x\) and \(y\), \(r\) stays relatively stable.
-  (At least in this case: We could also add, e.g., an outlier above the y mean and below the x mean.)
+  C: When we add an outlier in both \(x\) and \(y\), \(r\) even \emph{increases} to \(0.82\).
+  (At least in this case: An outlier above the y mean and below the x mean would do the opposite and push \(r\) down to about \(0.04\).)
   The reason is that the outlier is above the mean of the x values and above the mean of the y values,
-  so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
+  so it adds positively to the covariance. Also, the outlier is in line with the trend of the data:
+  A single point far out in the direction of the trend makes the relationship look much stronger than it is for the rest of the data.
   We could ask, what happened in this data point? Was another scale used for instance?
 \item
   D: When we add an outlier in \(y\), the \(r\) decreases to 0.48.
@@ -2371,7 +2373,7 @@ Let's see this in action:
 
 The Pearson correlation coefficient is a measure of the \textbf{linear relationship between two continuous variables}.
 \href{https://en.wikipedia.org/wiki/Spearman\%27s_rank_correlation_coefficient}{Spearman's rank correlation coefficient},
-denoted by \(\rho\), is a non-parametric measure
+denoted by \(r_s\) (sample) or \(\rho_s\) (population), is a non-parametric measure
 of the \textbf{monotonic relationship} between two variables and can also be applied to ordered categorical variables
 (levels like ``bad'', ``medium'', ``best'').
 
@@ -2384,7 +2386,7 @@ the Spearman correlation is \href{https://en.wikipedia.org/wiki/Spearman\%27s_ra
 {\sigma_{\mathrm{R}[X]} \sigma_{\mathrm{R}[Y]}} \]
 
 Interpretation: The sign of the Spearman correlation indicates the direction of
-association between X (the independent variable) and Y (the dependent variable).
+the association between X and Y. (Correlation is symmetric: It makes no difference which variable is called X and which Y.)
 If Y tends to increase when X increases, the Spearman correlation coefficient is
 positive. If Y tends to decrease when X increases, the Spearman correlation
 coefficient is negative.
@@ -2392,7 +2394,7 @@ coefficient is negative.
 \href{https://en.wikipedia.org/wiki/Spearman\%27s_rank_correlation_coefficient\#/media/File:Spearman_fig1.svg}{Here}
 is an example of a scatterplot depicting a non-linear relationship between two variables \(X\) and \(Y\).
 Spearman's rank correlation coefficient equals 1 in this case, since the function is perfectly monotonically increasing.
-Pearson's correlation coefficient would be \(<1\) in this case and argueably not appropriate here.
+Pearson's correlation coefficient would be \(<1\) in this case and arguably not appropriate here.
 
 We can easily calculate both and compare them. If they differ noticeably, we need to understand why.
 
@@ -2536,7 +2538,7 @@ Let's assume we know that the \emph{Cognitive flexibility} is normally distribut
   Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample.
   How good is the estimate of the true (and in this case: known) mean and standard deviation?
 \item
-  Let's replace some of the data points with outliers. Change the score of 5 persons with to impossible CognFlex score of 100.
+  Let's replace some of the data points with outliers. Change the score of 5 persons to the impossible CognFlex score of 100.
   Calculate the mean and standard deviation of the sample. How do the estimates change?
 \item
   When we try to estimate the location of our \emph{Cognitive flexibility} distribution with the median,
@@ -2614,7 +2616,7 @@ The following R-code creates correlated samples with a (true) correlation \(\rho
 \item
   Execute the code above 1000 times and save the correlation coefficient in a vector.
 \item
-  Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
+  Calculate the sample quantiles and interquartile range of the simulated correlation coefficients.
   What do you observe with respect to variability?
 \item
   Plot the histogram of the simulated correlation coefficients.
@@ -2626,7 +2628,8 @@ The following R-code creates correlated samples with a (true) correlation \(\rho
 \tightlist
 \item
   Download the data from the
-  \href{https://opentransportdata.swiss/en/dataset/bike-parking}{bike parking locations} json-file
+  \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/raw/main/DATA/bike_parking.json}{bike parking locations} json-file
+  (original source: \href{https://opentransportdata.swiss/en/cookbook/road-traffic-cookbook/bike-parking/}{opentransportdata.swiss}, where the data set is being replaced by a newer version)
   and execute the following code to see an interactive map of the bike parking locations in
   Switzerland (adapt file path if necessary):
 \end{itemize}
@@ -2943,7 +2946,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 \begin{itemize}
 \tightlist
 \item
-  Pearson's Korrelationskoeffizient ist geignet um den Zusammenhang zwischen \(X\) und \(Y\) zu messen.
+  Pearson's Korrelationskoeffizient ist geeignet, um den Zusammenhang zwischen \(X\) und \(Y\) zu messen.
 \item
   Pearson's Korrelationskoeffizient ist gleich 1.
 \item
@@ -3461,19 +3464,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.745 130.772 129.098   93   32.4387 227.17                  
-## mu2         5.651   5.656   5.918   93  -85.8305  95.18                  
-## muDiff    125.093 125.007 123.687   93   -5.6415 261.60       0      95.7
-## sigma1    140.353 128.847 115.083   93   66.4351 228.35                  
-## sigma2    130.459 119.800 106.866   93   60.8339 210.50                  
-## sigmaDiff   9.894   8.935   7.113   93 -118.2403 139.10       0      56.7
-## nu         34.305  25.660   9.723   93    1.0638  83.07                  
-## log10nu     1.379   1.409   1.512   93    0.6690   2.06                  
-## effSz       0.965   0.955   0.931   93   -0.0671   2.02       0      95.7
+## mu1       130.802 131.027 129.278   93   32.8729 225.63                  
+## mu2         5.863   5.787   8.951   93  -84.3803  97.37                  
+## muDiff    124.939 125.094 125.184   93  -12.6336 254.01       0      95.6
+## sigma1    139.459 128.233 110.592   93   65.2473 225.40                  
+## sigma2    130.154 119.792 106.668   93   60.6338 209.75                  
+## sigmaDiff   9.304   8.129   4.483   93 -116.5969 139.29       0      56.0
+## nu         34.313  25.570   9.347   93    1.0885  83.98                  
+## log10nu     1.377   1.408   1.490   93    0.6651   2.06                  
+## effSz       0.968   0.955   0.928   93   -0.0924   2.00       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.41
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3721,24 +3724,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.029 sec elapsed
+## 1.016 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.710  0.706  0.666   93 -0.529  1.959                          
-## mu2        2.306  2.299  2.277   93  0.895  3.735                          
-## muDiff    -1.596 -1.593 -1.587   93 -3.485  0.305       0      6.03    -1.8
-## sigma1     2.039  1.920  1.735   93  1.100  3.101                          
-## sigma2     2.301  2.170  1.993   93  1.256  3.476                          
-## sigmaDiff -0.263 -0.244 -0.246   93 -1.905  1.434       0     37.36        
-## nu        35.768 27.413 11.712   93  1.491 85.351                          
-## log10nu    1.409  1.438  1.491   93  0.735  2.070                          
-## effSz     -0.754 -0.748 -0.733   93 -1.664  0.115       0      6.03        
+## mu1        0.714  0.705  0.661   93 -0.544  1.984                          
+## mu2        2.303  2.296  2.268   93  0.888  3.723                          
+## muDiff    -1.589 -1.585 -1.524   93 -3.481  0.344       0      6.18    -1.8
+## sigma1     2.042  1.921  1.749   93  1.091  3.115                          
+## sigma2     2.311  2.177  1.919   93  1.266  3.500                          
+## sigmaDiff -0.268 -0.246 -0.208   93 -1.970  1.407       0     37.27        
+## nu        36.129 27.548 11.583   93  1.557 85.923                          
+## log10nu    1.412  1.440  1.498   93  0.725  2.067                          
+## effSz     -0.748 -0.743 -0.691   93 -1.639  0.138       0      6.18        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

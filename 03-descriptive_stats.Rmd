@@ -8,7 +8,7 @@ We do not need to reiterate everything here. You can go through these sources to
 - [Descriptive statistics](https://journals.lww.com/ijam/fulltext/2018/04010/descriptive_statistics.7.aspx)
 
 The goal is to describe data in a meaningful and honest way. 
-We **summarize** data to make them **more easily digestable** for us humans to answer questions like 
+We **summarize** data to make them **more easily digestible** for us humans to answer questions like 
 
 - Where are the data points **located**? 
   These questions are answered (at least attempted) by the location measures such as 
@@ -16,8 +16,8 @@ We **summarize** data to make them **more easily digestable** for us humans to a
 - How widely are they spread? How much do they **vary**?
   These questions are answered by the dispersion measures such as [variance](https://en.wikipedia.org/wiki/Variance), 
   [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) (root of the variance), 
-  [interquantile range](https://en.wikipedia.org/wiki/Interquartile_range#:~:text=The%20IQR%20of%20a%20set,a%20median%20calculated%20as%20follows.&text=The%20second%20quartile%20Q2%20is%20the%20same%20as%20the%20ordinary%20median.) 
-  or just the [range](https://en.wikipedia.org/wiki/Range_(statistics)); or even [Gini's mean difference](https://www.dss.uniroma1.it/RePec/mtn/articoli/2003-2-8.pdf).
+  [interquartile range](https://en.wikipedia.org/wiki/Interquartile_range#:~:text=The%20IQR%20of%20a%20set,a%20median%20calculated%20as%20follows.&text=The%20second%20quartile%20Q2%20is%20the%20same%20as%20the%20ordinary%20median.) 
+  or just the [range](https://en.wikipedia.org/wiki/Range_(statistics)); or even [Gini's mean difference](https://ideas.repec.org/a/mtn/ancoec/030208.html).
 - Are there any **outliers** (rare data points that are far away from the rest, [Westfall, p. 405](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)) and why?
   This is a bit more complicated.
 
@@ -52,7 +52,7 @@ result in a negatively skewed distribution of course.
 
 To build a bridge to our concept of statistical [independence](#independence_of_events) from the previous chapter, the paper states: 
 "This study found that baseline level of activity limitation was **associated** with different effects of CFT treatment".
-What they mean is that there was a "statistically significant effect" in the chosen model. We will get to that in chapter 5.
+What they mean is that there was a "statistically significant effect" in the chosen model. We will get to that in the chapter on [NHST](#nhst).
 If you want to be picky, you could argue, that they did not formally define an $\alpha$-level for "significance".
 
 ## Univariate vs. bivariate statistics 
@@ -100,7 +100,7 @@ p2
 Some researchers would discard the values below 10 and above 40 as outliers, but we know here
 that the data points are perfectly legitimate. 
 One important thing we should be aware of in connection with small sample sizes is
-variability. Let's create not $10000$ samples of a normally distributed variable, but only $25$ samples:
+variability. Let's create not one sample of $10000$ observations of a normally distributed variable, but only one sample of $25$ observations:
 ```{r}
 # Generate normally distributed sample
 set.seed(1245) # to get the same plot every time
@@ -123,7 +123,7 @@ p2
 
 We *know* (in this case) that these values come from a normal distribution with a mean 
 of $23.4$ and a standard deviation of $5.6$. Let's *estimate* the parameters ($\mu$, $\sigma$) from the sample
-and use the often but not recommended Shapiro-wilk test for normality:
+and use the often but not recommended Shapiro-Wilk test for normality:
 ```{r}
 # Estimate mean and standard deviation
 mean(x) # or
@@ -133,8 +133,8 @@ sqrt(1 / (length(x) - 1) * sum((x - mean(x))^2))
 shapiro.test(x)
 ```
 
-**Firstly**, the histogram looks rather differently when using a different [seed](https://r-coder.com/set-seed-r/). 
-**Secondly**, we would probability
+**Firstly**, the histogram looks rather different when using a different [seed](https://r-coder.com/set-seed-r/). 
+**Secondly**, we would probably
 not be able to tell if the data stems from a normal distribution. 
 **Thirdly**, the sample mean and standard deviation
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
@@ -201,7 +201,7 @@ then the z-scores are standard normally distributed ($Z \sim N(0,1$)).
 See [Exercise 4](#exercise4_descriptive_stats). Of course *both*, z-scores as well as FPI scores are 
 considered "continuous" (in this context).
 
-- With so many obsvervations ($n=3217$), how would a truly normal distribution with the parameters
+- With so many observations ($n=3217$), how would a truly normal distribution with the parameters
 $FPI \sim N(4.20, 3.00)$ look like? We can simulate this with the following code:
 ```{r}
 set.seed(8345) # to get the same plot every time
@@ -261,7 +261,8 @@ qqPlot(t_sample, distribution = "norm",
 
 The **first plot** shows a Q-Q plot of a sample from a normal distribution with $\mu = 45$ and $\sigma = 6$. 
 The points lie on a straight line and are within a confidence band, 
-indicating that the data is normally distributed.
+so the data are compatible with a normal distribution. (We know that they are normal here, since we simulated them. 
+In practice, a Q-Q plot can reveal deviations from normality, but it can never prove normality.)
 
 The **second plot** shows a Q-Q plot of a sample from an 
 [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution),
@@ -396,7 +397,7 @@ ggExtra::ggMarginal(p, type = "histogram", fill = "lightblue", color = "black")
 ```
 
 *If* X and Y are bivariate normally distributed, then one can use the variable 
-$t = r \sqrt{\frac{n-2}{1-r^2}}$ as test statistic for the null hypothesis (next chapter) $H_0: \rho = 0$.
+$t = r \sqrt{\frac{n-2}{1-r^2}}$ as test statistic for the null hypothesis (see the chapter on [NHST](#nhst)) $H_0: \rho = 0$.
 Note: It is not sufficient for X and Y to be individually normally distributed in order to 
 be [jointly normally distributed](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Bivariate_case).
 
@@ -404,7 +405,7 @@ be [jointly normally distributed](https://en.wikipedia.org/wiki/Multivariate_nor
 Let's again visit the previous [paper](https://bmjopen.bmj.com/content/9/4/e023341).
 In the results, correlations are presented in a dichotomous way with regards to $p$-values, 
 which should be [avoided](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913). 
-We will expand on this in the next chapter. For large sample sizes, even small (true) correlations will be "significant",
+We will expand on this in the chapter on [NHST](#nhst). For large sample sizes, even small (true) correlations will be "significant",
 especially, if one decides to use an arbitrary threshold for the $p$-values like $0.05$. There is not much information
 in this fact. I would argue that all $p$-values for such large sample sizes and larger correlations do not carry much information.
 See also [Exercise 5](#exercise5_descriptive_stats).
@@ -486,10 +487,11 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
   the x values and below the mean of the y values and therefore adds negatively to the covariance which 
   is the numerator in the formula for $r$. The denominator is positive.
 
-- C: When we add an outlier in both $x$ and $y$, $r$ stays relatively stable. 
- (At least in this case: We could also add, e.g., an outlier above the y mean and below the x mean.)
+- C: When we add an outlier in both $x$ and $y$, $r$ even *increases* to $0.82$. 
+ (At least in this case: An outlier above the y mean and below the x mean would do the opposite and push $r$ down to about $0.04$.)
   The reason is that the outlier is above the mean of the x values and above the mean of the y values, 
-  so it adds positively to the covariance. Also, the outlier is in line with the trend of the data.
+  so it adds positively to the covariance. Also, the outlier is in line with the trend of the data: 
+  A single point far out in the direction of the trend makes the relationship look much stronger than it is for the rest of the data.
   We could ask, what happened in this data point? Was another scale used for instance?
 
 - D: When we add an outlier in $y$, the $r$ decreases to 0.48. 
@@ -505,7 +507,7 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
 
 The Pearson correlation coefficient is a measure of the **linear relationship between two continuous variables**.
 [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient), 
-denoted by $\rho$, is a non-parametric measure 
+denoted by $r_s$ (sample) or $\rho_s$ (population), is a non-parametric measure 
 of the **monotonic relationship** between two variables and can also be applied to ordered categorical variables 
 (levels like "bad", "medium", "best").
 
@@ -518,7 +520,7 @@ $$ r_s = \rho\left[\mathrm{R}[X], \mathrm{R}[Y]\right] =
 {\sigma_{\mathrm{R}[X]} \sigma_{\mathrm{R}[Y]}} $$
 
 Interpretation: The sign of the Spearman correlation indicates the direction of 
-association between X (the independent variable) and Y (the dependent variable). 
+the association between X and Y. (Correlation is symmetric: It makes no difference which variable is called X and which Y.) 
 If Y tends to increase when X increases, the Spearman correlation coefficient is 
 positive. If Y tends to decrease when X increases, the Spearman correlation 
 coefficient is negative.
@@ -526,7 +528,7 @@ coefficient is negative.
 [Here](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient#/media/File:Spearman_fig1.svg) 
 is an example of a scatterplot depicting a non-linear relationship between two variables $X$ and $Y$.
 Spearman's rank correlation coefficient equals 1 in this case, since the function is perfectly monotonically increasing.
-Pearson's correlation coefficient would be $<1$ in this case and argueably not appropriate here.
+Pearson's correlation coefficient would be $<1$ in this case and arguably not appropriate here.
 
 We can easily calculate both and compare them. If they differ noticeably, we need to understand why.
 
@@ -570,7 +572,7 @@ Let's assume we know that the *Cognitive flexibility* is normally distributed wi
 
 - Draw a sample of 165 persons from this distribution and calculate the mean and standard deviation of the sample. 
   How good is the estimate of the true (and in this case: known) mean and standard deviation?
-- Let's replace some of the data points with outliers. Change the score of 5 persons with to impossible CognFlex score of 100. 
+- Let's replace some of the data points with outliers. Change the score of 5 persons to the impossible CognFlex score of 100. 
   Calculate the mean and standard deviation of the sample. How do the estimates change?
 - When we try to estimate the location of our *Cognitive flexibility* distribution with the median, 
   how many outliers of what magnitude are necessary to disturb the estimate by 5 points? 
@@ -613,13 +615,14 @@ cor(x, y)
 ```
 - Try different values for $\rho$ and $n$ and plot the scatterplot of $x$ and $y$.
 - Execute the code above 1000 times and save the correlation coefficient in a vector. 
-- Calculate the sample quantiles and interquantile range of the simulated correlation coefficients.
+- Calculate the sample quantiles and interquartile range of the simulated correlation coefficients.
   What do you observe with respect to variability?
 - Plot the histogram of the simulated correlation coefficients. 
 
 ### [M] Exercise 6 - Bike parking locations in Switzerland
 - Download the data from the 
-  [bike parking locations](https://opentransportdata.swiss/en/dataset/bike-parking) json-file
+  [bike parking locations](https://github.com/jdegenfellner/Script_QM1_ZHAW/raw/main/DATA/bike_parking.json) json-file
+  (original source: [opentransportdata.swiss](https://opentransportdata.swiss/en/cookbook/road-traffic-cookbook/bike-parking/), where the data set is being replaced by a newer version)
   and execute the following code to see an interactive map of the bike parking locations in 
   Switzerland (adapt file path if necessary):
 
@@ -796,7 +799,7 @@ data.frame(x, y) %>%
 
 Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
-- Pearson's Korrelationskoeffizient ist geignet um den Zusammenhang zwischen $X$ und $Y$ zu messen.
+- Pearson's Korrelationskoeffizient ist geeignet, um den Zusammenhang zwischen $X$ und $Y$ zu messen.
 - Pearson's Korrelationskoeffizient ist gleich 1.
 - Spearman's Rangkorrelationskoeffizient ist $<1$.
 - Spearman's Rangkorrelationskoeffizient misst die Stärke des linearen Zusammenhangs zwischen $X$ und $Y$.
