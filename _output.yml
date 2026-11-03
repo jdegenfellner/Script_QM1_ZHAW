@@ -1,8 +1,9 @@
 bookdown::gitbook:
   cover_image: "images/CoverQM1.png"
   css: style.css
+  includes:
+    in_header: favicon_header.html
   config:
-    favicon: "favicon.ico"
     toc:
       before: |
         <li><a href="./">Quantitative Methods 1</a></li>
