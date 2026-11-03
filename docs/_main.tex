@@ -1235,8 +1235,10 @@ This is (roughly) the statement of the \href{https://en.wikipedia.org/wiki/Law_o
 
 See \href{https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R}{here} for an animated example of this law.
 
-\textbf{Remember}: The sample mean \(\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i\) is a (really good) \textbf{estimator} for the expectation \(\mu = \mathbb{E}(X)\) of a distribution.
+\textbf{Remember}: The sample mean \(\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i\) is a (really good) \textbf{estimator} for the expectation \(\mu = \mathbb{E}(X)\) of a distribution.
 This is true for discrete and continuous distributions.
+Since the \(X_i\) are random variables, \(\bar{X}\) is a random variable (a so-called \textbf{statistic}) as well.
+The value \(\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i\) that we compute from one concrete sample is called an \textbf{estimate}.
 
 The \textbf{variance of a discrete random variable} is defined as:
 
@@ -1246,7 +1248,7 @@ the expected squared deviation from the mean. It is a measure of how much the va
 \((\mathbb{E}(X) - x_i)^2\) quantifies the deviation from the mean. We weight this deviation with the probability of such
 a deviation happening. So a large deviation results only in a large variance if it is likely to happen.
 
-\textbf{Remember}: The sample variance \(s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2\) is a so-called \textbf{estimator}
+\textbf{Remember}: The sample variance \(S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2\) is a so-called \textbf{estimator}
 for the variance \(\mathbb{V}ar(X)\) of a distribution.
 This is true for discrete and continuous distributions.
 
@@ -3474,19 +3476,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.744 130.992 130.024   93   31.7682 226.54                  
-## mu2         6.587   6.245  10.696   93  -83.8225  95.89                  
-## muDiff    124.157 124.799 128.900   93   -9.2946 255.98       0      95.5
-## sigma1    140.232 129.020 110.608   93   66.9986 228.04                  
-## sigma2    129.780 119.416 105.435   93   61.9353 209.93                  
-## sigmaDiff  10.452   9.300   7.298   93 -114.4772 141.11       0      57.0
-## nu         34.220  25.824  10.631   93    1.3036  82.90                  
-## log10nu     1.379   1.412   1.528   93    0.6486   2.04                  
-## effSz       0.961   0.952   0.965   93   -0.0787   2.00       0      95.5
+## mu1       131.272 131.313 132.295   93   35.9630 229.54                  
+## mu2         6.466   6.000   5.032   93  -85.1365  95.96                  
+## muDiff    124.806 124.830 123.244   93   -9.7782 258.86       0      95.4
+## sigma1    139.926 128.106 114.612   93   66.1281 226.39                  
+## sigma2    130.527 119.674 103.907   93   60.6229 210.69                  
+## sigmaDiff   9.399   8.395   8.673   93 -119.1220 138.60       0      56.3
+## nu         34.306  25.698  10.151   93    1.1835  83.17                  
+## log10nu     1.378   1.410   1.506   93    0.6581   2.06                  
+## effSz       0.966   0.958   0.951   93   -0.0843   2.02       0      95.4
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.54
+## muDiff        -20       20    4.42
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3734,24 +3736,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.001 sec elapsed
+## 1.08 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.709  0.706  0.676   93 -0.533  1.963                          
-## mu2        2.302  2.296  2.273   93  0.903  3.739                          
-## muDiff    -1.592 -1.590 -1.544   93 -3.456  0.332       0      6.06    -1.8
-## sigma1     2.038  1.921  1.731   93  1.074  3.090                          
-## sigma2     2.307  2.173  1.956   93  1.248  3.478                          
-## sigmaDiff -0.269 -0.248 -0.240   93 -1.997  1.384       0     37.10        
-## nu        35.972 27.378 11.585   93  1.555 86.404                          
-## log10nu    1.410  1.437  1.501   93  0.722  2.061                          
-## effSz     -0.752 -0.746 -0.721   93 -1.628  0.149       0      6.06        
+## mu1        0.712  0.705  0.681   93 -0.504  2.020                          
+## mu2        2.297  2.293  2.298   93  0.898  3.753                          
+## muDiff    -1.585 -1.583 -1.554   93 -3.512  0.305       0      6.33    -1.8
+## sigma1     2.039  1.922  1.759   93  1.111  3.113                          
+## sigma2     2.308  2.174  1.927   93  1.274  3.497                          
+## sigmaDiff -0.269 -0.247 -0.257   93 -1.995  1.373       0     37.27        
+## nu        36.249 27.722 11.931   93  1.429 86.718                          
+## log10nu    1.414  1.443  1.514   93  0.727  2.064                          
+## effSz     -0.749 -0.742 -0.698   93 -1.656  0.135       0      6.33        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8    58.6
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

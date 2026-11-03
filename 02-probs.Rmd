@@ -893,8 +893,10 @@ $$\bar{X}_n \rightarrow \mu = \mathbb{E}(X) \quad \text{as} \quad n \rightarrow 
 
 See [here](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Law_of_Large_Numbers_Dice_animation.R) for an animated example of this law.
 
-**Remember**: The sample mean $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ is a (really good) **estimator** for the expectation $\mu = \mathbb{E}(X)$ of a distribution. 
+**Remember**: The sample mean $\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i$ is a (really good) **estimator** for the expectation $\mu = \mathbb{E}(X)$ of a distribution. 
 This is true for discrete and continuous distributions. 
+Since the $X_i$ are random variables, $\bar{X}$ is a random variable (a so-called **statistic**) as well. 
+The value $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ that we compute from one concrete sample is called an **estimate**.
 
 The **variance of a discrete random variable** is defined as:
 
@@ -905,7 +907,7 @@ $(\mathbb{E}(X) - x_i)^2$ quantifies the deviation from the mean. We weight this
 a deviation happening. So a large deviation results only in a large variance if it is likely to happen. 
 
 
-**Remember**: The sample variance $s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$ is a so-called **estimator** 
+**Remember**: The sample variance $S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2$ is a so-called **estimator** 
 for the variance $\mathbb{V}ar(X)$ of a distribution.
 This is true for discrete and continuous distributions. 
 
