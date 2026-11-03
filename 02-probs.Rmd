@@ -756,8 +756,20 @@ mean**
 
 $$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$$ 
 
-**converges to a standard normal distribution**. 
+**converges to a standard normal distribution**.
 By this theorem, we can link **many** distributions (e.g., all with finite variance) to the normal distribution.
+
+More precisely: Let $X_1, \dots, X_n$ be independent and identically distributed with mean $\mu$ and finite variance $\sigma^2$. Then
+
+$$\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \longrightarrow N(0, 1) \quad \text{for } n \to \infty.$$
+
+In practice, we use the theorem in the following form: For large $n$, the sample mean is **approximately normally distributed**
+around the true mean $\mu$ (here, the second parameter is the variance):
+
+$$\bar{X} \approx N\left(\mu, \frac{\sigma^2}{n}\right).$$
+
+The standard deviation of $\bar{X}$, $\sigma/\sqrt{n}$, is called the **standard error**. It gets smaller as the sample size grows:
+Averages of more observations scatter less around $\mu$.
 
 Discrete or continuous, the **goal** is the same: We want to know **where** the realization 
 of my **[random variable](https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal)** 

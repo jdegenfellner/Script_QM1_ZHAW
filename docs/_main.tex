@@ -1069,6 +1069,18 @@ mean}
 \textbf{converges to a standard normal distribution}.
 By this theorem, we can link \textbf{many} distributions (e.g., all with finite variance) to the normal distribution.
 
+More precisely: Let \(X_1, \dots, X_n\) be independent and identically distributed with mean \(\mu\) and finite variance \(\sigma^2\). Then
+
+\[\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \longrightarrow N(0, 1) \quad \text{for } n \to \infty.\]
+
+In practice, we use the theorem in the following form: For large \(n\), the sample mean is \textbf{approximately normally distributed}
+around the true mean \(\mu\) (here, the second parameter is the variance):
+
+\[\bar{X} \approx N\left(\mu, \frac{\sigma^2}{n}\right).\]
+
+The standard deviation of \(\bar{X}\), \(\sigma/\sqrt{n}\), is called the \textbf{standard error}. It gets smaller as the sample size grows:
+Averages of more observations scatter less around \(\mu\).
+
 Discrete or continuous, the \textbf{goal} is the same: We want to know \textbf{where} the realization
 of my \textbf{\href{https://www.youtube.com/watch?v=Y9nsL69CwbU&t=18s&ab_channel=VeryNormal}{random variable}}
 lands \textbf{with what probability} when I do the experiment.
@@ -3462,19 +3474,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.158 130.923 126.973   93   34.8693 230.09                  
-## mu2         5.750   5.935   9.684   93  -84.6030  95.78                  
-## muDiff    125.408 125.237 121.616   93   -8.8447 259.93       0      95.7
-## sigma1    139.835 128.853 112.456   93   67.4470 226.52                  
-## sigma2    129.648 119.251 107.805   93   60.4855 208.72                  
-## sigmaDiff  10.187   9.029   4.174   93 -116.7907 136.83       0      56.7
-## nu         34.343  25.609   9.562   93    1.0949  84.12                  
-## log10nu     1.378   1.408   1.504   93    0.6644   2.07                  
-## effSz       0.969   0.959   0.958   93   -0.0601   2.03       0      95.7
+## mu1       130.744 130.992 130.024   93   31.7682 226.54                  
+## mu2         6.587   6.245  10.696   93  -83.8225  95.89                  
+## muDiff    124.157 124.799 128.900   93   -9.2946 255.98       0      95.5
+## sigma1    140.232 129.020 110.608   93   66.9986 228.04                  
+## sigma2    129.780 119.416 105.435   93   61.9353 209.93                  
+## sigmaDiff  10.452   9.300   7.298   93 -114.4772 141.11       0      57.0
+## nu         34.220  25.824  10.631   93    1.3036  82.90                  
+## log10nu     1.379   1.412   1.528   93    0.6486   2.04                  
+## effSz       0.961   0.952   0.965   93   -0.0787   2.00       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.52
+## muDiff        -20       20    4.54
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3722,24 +3734,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.114 sec elapsed
+## 1.001 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.719  0.711  0.680   93 -0.539  1.974                          
-## mu2        2.306  2.302  2.282   93  0.916  3.744                          
-## muDiff    -1.586 -1.591 -1.668   93 -3.475  0.300       0      6.02    -1.8
-## sigma1     2.038  1.921  1.793   93  1.099  3.107                          
-## sigma2     2.304  2.170  1.935   93  1.272  3.492                          
-## sigmaDiff -0.266 -0.243 -0.218   93 -1.974  1.385       0     37.37        
-## nu        35.849 27.460 11.530   93  1.443 85.354                          
-## log10nu    1.409  1.439  1.486   93  0.725  2.063                          
-## effSz     -0.750 -0.748 -0.773   93 -1.637  0.139       0      6.02        
+## mu1        0.709  0.706  0.676   93 -0.533  1.963                          
+## mu2        2.302  2.296  2.273   93  0.903  3.739                          
+## muDiff    -1.592 -1.590 -1.544   93 -3.456  0.332       0      6.06    -1.8
+## sigma1     2.038  1.921  1.731   93  1.074  3.090                          
+## sigma2     2.307  2.173  1.956   93  1.248  3.478                          
+## sigmaDiff -0.269 -0.248 -0.240   93 -1.997  1.384       0     37.10        
+## nu        35.972 27.378 11.585   93  1.555 86.404                          
+## log10nu    1.410  1.437  1.501   93  0.722  2.061                          
+## effSz     -0.752 -0.746 -0.721   93 -1.628  0.149       0      6.06        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

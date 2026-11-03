@@ -689,25 +689,25 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##             mean  median   mode HDI%     HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1       130.69 131.014 135.35   93   34.2037 227.34                          
-## mu2         5.60   5.502   3.15   93  -84.1299  95.07                          
-## muDiff    125.09 125.244 124.72   93   -9.4729 255.89       0      95.7     -20
-## sigma1    139.72 128.459 113.02   93   66.3645 226.61                          
-## sigma2    129.69 119.196 103.38   93   60.7286 208.19                          
-## sigmaDiff  10.02   8.807   7.07   93 -116.0789 136.98       0      56.6        
-## nu         34.17  25.630   9.50   93    1.1398  83.00                          
-## log10nu     1.38   1.409   1.48   93    0.6569   2.06                          
-## effSz       0.97   0.959   0.88   93   -0.0551   2.04       0      95.7        
-##           ROPEhigh %InROPE
-## mu1                       
-## mu2                       
-## muDiff          20    4.37
-## sigma1                    
-## sigma2                    
-## sigmaDiff                 
-## nu                        
-## log10nu                   
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.853 130.819 127.770   93   35.1381 228.95                  
+## mu2         6.169   5.950   9.950   93  -84.2245  97.68                  
+## muDiff    124.684 124.677 124.466   93   -8.6152 260.68       0      95.5
+## sigma1    139.190 127.994 111.427   93   66.4112 224.90                  
+## sigma2    130.504 119.760 103.266   93   61.4546 212.49                  
+## sigmaDiff   8.686   7.625   3.320   93 -117.7682 138.24       0      55.8
+## nu         34.406  25.833   9.562   93    1.2329  84.02                  
+## log10nu     1.379   1.412   1.478   93    0.6554   2.06                  
+## effSz       0.966   0.957   0.963   93   -0.0801   2.03       0      95.5
+##           ROPElow ROPEhigh %InROPE
+## mu1                               
+## mu2                               
+## muDiff        -20       20    4.49
+## sigma1                            
+## sigma2                            
+## sigmaDiff                         
+## nu                                
+## log10nu                           
 ## effSz</code></pre>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
@@ -894,17 +894,17 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.149 sec elapsed</code></pre>
+<pre><code>## 1.154 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.716  0.709  0.657   93 -0.519  2.014                          
-## mu2        2.302  2.299  2.274   93  0.871  3.709                          
-## muDiff    -1.585 -1.586 -1.503   93 -3.499  0.315       0      6.26    -1.8
-## sigma1     2.046  1.925  1.764   93  1.092  3.120                          
-## sigma2     2.313  2.179  1.947   93  1.266  3.501                          
-## sigmaDiff -0.266 -0.247 -0.179   93 -1.973  1.411       0     37.15        
-## nu        36.216 27.581 11.667   93  1.501 86.977                          
-## log10nu    1.412  1.441  1.515   93  0.740  2.083                          
-## effSz     -0.748 -0.743 -0.766   93 -1.619  0.161       0      6.26        
+## mu1        0.710  0.707  0.670   93 -0.550  1.983                          
+## mu2        2.301  2.297  2.211   93  0.832  3.696                          
+## muDiff    -1.590 -1.587 -1.582   93 -3.472  0.355       0      6.19    -1.8
+## sigma1     2.043  1.923  1.720   93  1.098  3.125                          
+## sigma2     2.308  2.171  1.992   93  1.269  3.514                          
+## sigmaDiff -0.265 -0.245 -0.273   93 -2.000  1.402       0     37.65        
+## nu        35.820 27.374 11.191   93  1.548 85.501                          
+## log10nu    1.408  1.437  1.506   93  0.719  2.061                          
+## effSz     -0.750 -0.744 -0.659   93 -1.631  0.154       0      6.19        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
