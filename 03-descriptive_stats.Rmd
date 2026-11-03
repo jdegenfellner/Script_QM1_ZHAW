@@ -109,12 +109,12 @@ df <- data.frame(values = x)
 
 p2 <- ggplot(df, aes(x = values)) +
   geom_histogram(aes(y = after_stat(density)),
-                 bins = 30, alpha = 0.7, color = "darkgrey") +
+                 bins = 7, alpha = 0.7, color = "darkgrey") +
   geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
-  geom_boxplot(aes(y = -0.025, x = values), width = 0.05,
+  geom_boxplot(aes(y = -0.012, x = values), width = 0.02,
                position = position_nudge(y = -0.00)) +
-  geom_point(aes(y = -0.025),
-             position = position_jitter(width = 0.005, height = 0.025),
+  geom_point(aes(y = -0.012),
+             position = position_jitter(width = 0.005, height = 0.006),
              size = 1, alpha = 0.6) +
   ggtitle("Histogram with density plot and boxplot below") +
   theme(plot.title = element_text(hjust = 0.5))
@@ -123,7 +123,11 @@ p2
 
 We *know* (in this case) that these values come from a normal distribution with a mean 
 of $23.4$ and a standard deviation of $5.6$. Let's *estimate* the parameters ($\mu$, $\sigma$) from the sample
-and use the often but not recommended Shapiro-Wilk test for normality:
+and use the Shapiro-Wilk test for normality.
+Note up front that **we do not recommend** testing for normality like this:
+In small samples, such tests have low power, i.e., they rarely reject normality even when the data are not normal
+(see [Razali & Wah, 2011](https://www.academia.edu/20549520/Power_comparisons_of_Shapiro_Wilk_Kolmogorov_Smirnov_Lilliefors_and_Anderson_Darling_test)).
+A large $p$-value is therefore no proof of normality.
 ```{r}
 # Estimate mean and standard deviation
 mean(x) # or
@@ -148,7 +152,7 @@ df <- data.frame(values = x)
 
 p2 <- ggplot(df, aes(x = values)) +
   geom_histogram(aes(y = after_stat(density)),
-                 bins = 30, alpha = 0.7, color = "darkgrey") +
+                 bins = 7, alpha = 0.7, color = "darkgrey") +
   geom_density(aes(y = after_stat(density)), color = "blue", linewidth = 1) +
   geom_boxplot(aes(y = -0.05, x = values), width = 0.1,
                position = position_nudge(y = -0.00)) +
@@ -163,7 +167,8 @@ shapiro.test(x)
 ```
 
 Some researchers would argue, that the distribution is normal (since the $p$-value is rather large), 
-but we know it is not. We will be cautious with such ugly rule of thumbs. 
+but we know it is not. We will be cautious with such ugly rule of thumbs
+(the low power of such tests in small samples is discussed in [Razali & Wah, 2011](https://www.academia.edu/20549520/Power_comparisons_of_Shapiro_Wilk_Kolmogorov_Smirnov_Lilliefors_and_Anderson_Darling_test)).
 We will instead use [Q-Q plots](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) and histograms to decide if a variable is normally distributed.
 
 ### Example in the wild

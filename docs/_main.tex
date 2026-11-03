@@ -1853,12 +1853,12 @@ variability. Let's create not one sample of \(10000\) observations of a normally
 
 \NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
   \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)),}
-                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+                 \AttributeTok{bins =} \DecValTok{7}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.025}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.05}\NormalTok{,}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.012}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.02}\NormalTok{,}
                \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.025}\NormalTok{),}
-             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.005}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.025}\NormalTok{),}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.012}\NormalTok{),}
+             \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.005}\NormalTok{, }\AttributeTok{height =} \FloatTok{0.006}\NormalTok{),}
              \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Histogram with density plot and boxplot below"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
@@ -1870,7 +1870,11 @@ variability. Let's create not one sample of \(10000\) observations of a normally
 
 We \emph{know} (in this case) that these values come from a normal distribution with a mean
 of \(23.4\) and a standard deviation of \(5.6\). Let's \emph{estimate} the parameters (\(\mu\), \(\sigma\)) from the sample
-and use the often but not recommended Shapiro-Wilk test for normality:
+and use the Shapiro-Wilk test for normality.
+Note up front that \textbf{we do not recommend} testing for normality like this:
+In small samples, such tests have low power, i.e., they rarely reject normality even when the data are not normal
+(see \href{https://www.academia.edu/20549520/Power_comparisons_of_Shapiro_Wilk_Kolmogorov_Smirnov_Lilliefors_and_Anderson_Darling_test}{Razali \& Wah, 2011}).
+A large \(p\)-value is therefore no proof of normality.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1944,7 +1948,7 @@ Let's try the Shapiro test with a \(t\)-distribution with 3 degrees of freedom, 
 
 \NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ values)) }\SpecialCharTok{+}
   \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)),}
-                 \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
+                 \AttributeTok{bins =} \DecValTok{7}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkgrey"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.05}\NormalTok{, }\AttributeTok{x =}\NormalTok{ values), }\AttributeTok{width =} \FloatTok{0.1}\NormalTok{,}
                \AttributeTok{position =} \FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{{-}}\FloatTok{0.00}\NormalTok{)) }\SpecialCharTok{+}
@@ -1974,7 +1978,8 @@ Let's try the Shapiro test with a \(t\)-distribution with 3 degrees of freedom, 
 \end{verbatim}
 
 Some researchers would argue, that the distribution is normal (since the \(p\)-value is rather large),
-but we know it is not. We will be cautious with such ugly rule of thumbs.
+but we know it is not. We will be cautious with such ugly rule of thumbs
+(the low power of such tests in small samples is discussed in \href{https://www.academia.edu/20549520/Power_comparisons_of_Shapiro_Wilk_Kolmogorov_Smirnov_Lilliefors_and_Anderson_Darling_test}{Razali \& Wah, 2011}).
 We will instead use \href{https://en.wikipedia.org/wiki/Q\%E2\%80\%93Q_plot}{Q-Q plots} and histograms to decide if a variable is normally distributed.
 
 \subsection{Example in the wild}\label{example-in-the-wild}
@@ -3476,19 +3481,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.272 131.313 132.295   93   35.9630 229.54                  
-## mu2         6.466   6.000   5.032   93  -85.1365  95.96                  
-## muDiff    124.806 124.830 123.244   93   -9.7782 258.86       0      95.4
-## sigma1    139.926 128.106 114.612   93   66.1281 226.39                  
-## sigma2    130.527 119.674 103.907   93   60.6229 210.69                  
-## sigmaDiff   9.399   8.395   8.673   93 -119.1220 138.60       0      56.3
-## nu         34.306  25.698  10.151   93    1.1835  83.17                  
-## log10nu     1.378   1.410   1.506   93    0.6581   2.06                  
-## effSz       0.966   0.958   0.951   93   -0.0843   2.02       0      95.4
+## mu1       130.447 130.770 132.044   93   31.6352 226.51                  
+## mu2         6.309   5.833   5.927   93  -86.7355  93.71                  
+## muDiff    124.138 124.793 129.040   93  -10.4986 256.23       0      95.4
+## sigma1    140.249 128.478 114.093   93   67.1516 228.33                  
+## sigma2    129.636 119.344 105.507   93   62.3600 208.86                  
+## sigmaDiff  10.613   8.653   6.810   93 -117.4596 136.62       0      56.4
+## nu         34.112  25.612   9.515   93    1.0475  83.18                  
+## log10nu     1.376   1.408   1.520   93    0.6611   2.06                  
+## effSz       0.964   0.956   0.904   93   -0.0897   2.01       0      95.4
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.42
+## muDiff        -20       20    4.57
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3736,24 +3741,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.08 sec elapsed
+## 0.99 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.712  0.705  0.681   93 -0.504  2.020                          
-## mu2        2.297  2.293  2.298   93  0.898  3.753                          
-## muDiff    -1.585 -1.583 -1.554   93 -3.512  0.305       0      6.33    -1.8
-## sigma1     2.039  1.922  1.759   93  1.111  3.113                          
-## sigma2     2.308  2.174  1.927   93  1.274  3.497                          
-## sigmaDiff -0.269 -0.247 -0.257   93 -1.995  1.373       0     37.27        
-## nu        36.249 27.722 11.931   93  1.429 86.718                          
-## log10nu    1.414  1.443  1.514   93  0.727  2.064                          
-## effSz     -0.749 -0.742 -0.698   93 -1.656  0.135       0      6.33        
+## mu1        0.710  0.706  0.709   93 -0.566  1.948                          
+## mu2        2.301  2.301  2.353   93  0.845  3.694                          
+## muDiff    -1.590 -1.589 -1.529   93 -3.509  0.293       0      6.18    -1.8
+## sigma1     2.043  1.927  1.728   93  1.095  3.108                          
+## sigma2     2.312  2.172  1.930   93  1.268  3.517                          
+## sigmaDiff -0.269 -0.241 -0.186   93 -1.983  1.401       0     37.50        
+## nu        36.261 27.855 11.271   93  1.601 86.273                          
+## log10nu    1.415  1.445  1.492   93  0.723  2.059                          
+## effSz     -0.751 -0.746 -0.689   93 -1.662  0.122       0      6.18        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.6
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
