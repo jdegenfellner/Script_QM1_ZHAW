@@ -467,7 +467,7 @@ R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blo
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
 </details>
 <p>Let’s assume, we know the manufacturer to be rather untrustworthy. Many inspections in the past
 revealed higher defect rates than claimed. For simplicity, we still want to decide between the two
@@ -483,7 +483,7 @@ We now get creative and assign the following prior probability <strong>distribut
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
 </details>
 <p>If we had to guess, we would say that the defect rate is most likely 20%.
 And we are rather sure about this guess. The mode (highest prior probability) of the
@@ -514,7 +514,7 @@ rate <em>given</em> the observed data.</p></li>
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" />
 </details>
 <p>As we can see, the posterior distribution has a new peak at <span class="math inline">\(0.38\)</span>. If we had to guess
 now, we would probably say that the defect rate is around 38%.
@@ -537,7 +537,7 @@ approximately <span class="math inline">\(0.80\)</span>:
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
 </details></li>
 <li>The probability that <span class="math inline">\(\theta\)</span> is below <span class="math inline">\(0.25\)</span> is (area under the posterior):</li>
 </ul>
@@ -545,7 +545,7 @@ R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blo
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" />
 </details>
 <p>The previous two examples showcase how to <strong>estimate a proportion</strong> using prior knowledge
 and new data.
@@ -570,7 +570,7 @@ the interval, making it an effective summary of the most plausible values.</p>
 <summary>
 R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd">git</a> repository
 </summary>
-<img src="_main_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
 </details>
 <p><strong>Interpretation</strong>: The 93% HDI for the posterior distribution of <span class="math inline">\(\theta\)</span> is <span class="math inline">\([0.25, 0.51]\)</span>.
 With a probability of 93%, the defect rate is between 25% and 55%, given our prior
@@ -647,7 +647,7 @@ visit <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/krusch
 <span id="cb98-3"><a href="bayes_statistics.html#cb98-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> y)) <span class="sc">+</span>  <span class="co"># Use factor for discrete x-axis</span></span>
 <span id="cb98-4"><a href="bayes_statistics.html#cb98-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>                        <span class="co"># Add boxplot layer</span></span>
 <span id="cb98-5"><a href="bayes_statistics.html#cb98-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)                <span class="co"># Add jitter for individual</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="bayes_statistics.html#cb99-1" tabindex="-1"></a><span class="co"># -&gt; Visually, there seems to be a difference between the two groups.</span></span></code></pre></div>
 <p>We work with a rather small sample size, 8 in each group.
 <strong>We want to know if the two groups differ in their (unobserved) means</strong>.
@@ -661,7 +661,7 @@ For this, we will apply the R function <code>BESTmcmc</code> from the package <c
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="bayes_statistics.html#cb102-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
 <span id="cb102-2"><a href="bayes_statistics.html#cb102-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" /></p>
 <p><code>BESTmcmc</code> is a function that uses a <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>
 algorithm to estimate the <strong>posterior distribution of the difference between the means of two groups</strong>
 (the above is not just a histogram of differences).
@@ -689,25 +689,25 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.961 131.074 130.972   93   33.3590 228.61                  
-## mu2         6.142   5.766   5.824   93  -84.3694  96.36                  
-## muDiff    124.819 124.942 125.436   93   -7.3317 259.15       0      95.6
-## sigma1    139.523 128.333 112.082   93   65.9124 224.63                  
-## sigma2    129.849 119.466 104.712   93   61.3524 209.87                  
-## sigmaDiff   9.674   8.637   2.057   93 -116.2564 137.22       0      56.4
-## nu         34.509  25.679  10.317   93    1.1612  84.33                  
-## log10nu     1.380   1.410   1.435   93    0.6566   2.06                  
-## effSz       0.966   0.957   0.915   93   -0.0601   2.02       0      95.6
-##           ROPElow ROPEhigh %InROPE
-## mu1                               
-## mu2                               
-## muDiff        -20       20    4.55
-## sigma1                            
-## sigma2                            
-## sigmaDiff                         
-## nu                                
-## log10nu                           
+<pre><code>##             mean  median   mode HDI%     HDIlo  HDIup compVal %&gt;compVal ROPElow
+## mu1       130.69 131.014 135.35   93   34.2037 227.34                          
+## mu2         5.60   5.502   3.15   93  -84.1299  95.07                          
+## muDiff    125.09 125.244 124.72   93   -9.4729 255.89       0      95.7     -20
+## sigma1    139.72 128.459 113.02   93   66.3645 226.61                          
+## sigma2    129.69 119.196 103.38   93   60.7286 208.19                          
+## sigmaDiff  10.02   8.807   7.07   93 -116.0789 136.98       0      56.6        
+## nu         34.17  25.630   9.50   93    1.1398  83.00                          
+## log10nu     1.38   1.409   1.48   93    0.6569   2.06                          
+## effSz       0.97   0.959   0.88   93   -0.0551   2.04       0      95.7        
+##           ROPEhigh %InROPE
+## mu1                       
+## mu2                       
+## muDiff          20    4.37
+## sigma1                    
+## sigma2                    
+## sigmaDiff                 
+## nu                        
+## log10nu                   
 ## effSz</code></pre>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
@@ -863,7 +863,7 @@ every value between 0 and 1 is equally likely:</p>
 <span id="cb106-22"><a href="bayes_statistics.html#cb106-22" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
 <span id="cb106-23"><a href="bayes_statistics.html#cb106-23" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb106-24"><a href="bayes_statistics.html#cb106-24" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" /></p>
 <p>Notize, that the area under the curve is 1, since it is a probability density function.
 For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)</span></p>
 <ul>
@@ -892,30 +892,30 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>sleep: Daten, die die Wirkung von zwei schlaffördernden Medikamenten
 (Zunahme der Schlafstunden im Vergleich zur Kontrollgruppe) bei 10 Patienten zeigen.</p>
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.006 sec elapsed</code></pre>
+<pre><code>## 1.149 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.718  0.713  0.637   93 -0.552  1.962                          
-## mu2        2.294  2.293  2.236   93  0.877  3.718                          
-## muDiff    -1.577 -1.576 -1.538   93 -3.468  0.343       0      6.43    -1.8
-## sigma1     2.035  1.921  1.758   93  1.098  3.088                          
-## sigma2     2.315  2.176  1.964   93  1.256  3.508                          
-## sigmaDiff -0.279 -0.247 -0.140   93 -1.962  1.446       0     37.08        
-## nu        36.294 27.635 11.597   93  1.419 86.997                          
-## log10nu    1.413  1.441  1.510   93  0.730  2.074                          
-## effSz     -0.744 -0.738 -0.731   93 -1.620  0.165       0      6.43        
+## mu1        0.716  0.709  0.657   93 -0.519  2.014                          
+## mu2        2.302  2.299  2.274   93  0.871  3.709                          
+## muDiff    -1.585 -1.586 -1.503   93 -3.499  0.315       0      6.26    -1.8
+## sigma1     2.046  1.925  1.764   93  1.092  3.120                          
+## sigma2     2.313  2.179  1.947   93  1.266  3.501                          
+## sigmaDiff -0.266 -0.247 -0.179   93 -1.973  1.411       0     37.15        
+## nu        36.216 27.581 11.667   93  1.501 86.977                          
+## log10nu    1.412  1.441  1.515   93  0.740  2.083                          
+## effSz     -0.748 -0.743 -0.766   93 -1.619  0.161       0      6.26        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.8
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
 ## nu                        
 ## log10nu                   
 ## effSz</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-45-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-2.png" alt="" width="672" /></p>
 <p>Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?</p>
 <ul>
 <li>-1.59 ist eine (aufgrund des Bayes <span class="math inline">\(t\)</span>-tests) plausible Schätzung für die

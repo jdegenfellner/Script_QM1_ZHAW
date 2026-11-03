@@ -645,29 +645,49 @@ plot(fit,
 
 Here is another helpful depiction of the situation:
 
-```{r echo=FALSE}
+```{r tree-two-researchers, echo=FALSE, out.width="95%"}
 library(DiagrammeR)
-
-# Create the path diagram with a top-to-bottom layout
-grViz("
+g <- grViz("
 digraph {
-  graph [layout = dot, rankdir = TB]
-  
-  # Nodes
-  A [label = 'Researcher 1: Finds effect', shape = box]
-  B [label = 'Researcher 1: No effect', shape = box]
-  C [label = 'Researcher 2: Finds effect', shape = box]
-  D [label = 'Researcher 2: No effect', shape = box]
-  E [label = 'Researcher 2: Finds effect', shape = box]
-  F [label = 'Researcher 2: No effect', shape = box]
-  
-  # Paths
-  A -> C [label = 'Effect found']
-  A -> D [label = 'No effect']
-  B -> E [label = 'Effect found']
-  B -> F [label = 'No effect']
+  graph [layout = dot, rankdir = TB, nodesep = 0.45, ranksep = 0.7, fontname = Helvetica]
+  node  [fontname = Helvetica, fontsize = 13, shape = box, style = 'rounded,filled',
+         penwidth = 2, margin = '0.22,0.13']
+  edge  [fontname = Helvetica, fontsize = 13, color = '#52606d', penwidth = 1.6,
+         arrowsize = 0.8]
+
+  S  [label = 'Two researchers\\ntest a true H0', shape = ellipse,
+      fillcolor = '#f6f7f9', color = '#52606d']
+
+  R1p [label = 'Researcher 1:\\nfinds effect', fillcolor = '#f9d9cd', color = '#eb6834']
+  R1n [label = 'Researcher 1:\\nno effect',    fillcolor = '#e4e7eb', color = '#52606d']
+
+  pp [label = 'Researcher 2: finds effect\\n(R1pos, R2pos)\\n0.04 × 0.04 = 0.0016',
+      fillcolor = '#0f9d8a', color = '#0f9d8a', fontcolor = white]
+  pn [label = 'Researcher 2: no effect\\n(R1pos, R2neg)\\n0.04 × 0.96 = 0.0384',
+      fillcolor = '#f9d9cd', color = '#eb6834']
+  np [label = 'Researcher 2: finds effect\\n(R1neg, R2pos)\\n0.96 × 0.04 = 0.0384',
+      fillcolor = '#f9d9cd', color = '#eb6834']
+  nn [label = 'Researcher 2: no effect\\n(R1neg, R2neg)\\n0.96 × 0.96 = 0.9216',
+      fillcolor = '#e4e7eb', color = '#52606d']
+
+  S   -> R1p [label = '  0.04  ', fontcolor = '#c9501f']
+  S   -> R1n [label = '  0.96  ']
+  R1p -> pp  [label = '  0.04  ', fontcolor = '#c9501f']
+  R1p -> pn  [label = '  0.96  ']
+  R1n -> np  [label = '  0.04  ', fontcolor = '#c9501f']
+  R1n -> nn  [label = '  0.96  ']
 }
 ")
+
+# PhantomJS is not available, so for the PDF the graph is converted to a PNG via SVG
+if (knitr::is_latex_output()) {
+  f <- knitr::fig_path("png")
+  dir.create(dirname(f), recursive = TRUE, showWarnings = FALSE)
+  rsvg::rsvg_png(charToRaw(DiagrammeRsvg::export_svg(g)), f, width = 2000)
+  knitr::include_graphics(f)
+} else {
+  g
+}
 ```
 
 So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus

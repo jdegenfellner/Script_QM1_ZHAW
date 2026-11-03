@@ -804,15 +804,15 @@ What if the events are not disjoint? For simplicity, let’s consider only 2 res
 <p>In the following Euler diagram, the areas are proportional to the probabilities: The overlap (green) <span class="math inline">\(\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016\)</span> is very small.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-15b1185de5af895fac11" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-15b1185de5af895fac11">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-da24cadd5b9cfe50456f" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-da24cadd5b9cfe50456f">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.45, ranksep = 0.7, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6,\n         arrowsize = 0.8]\n\n  S  [label = \"Two researchers\\ntest a true H0\", shape = ellipse,\n      fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  R1p [label = \"Researcher 1:\\nfinds effect\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  R1n [label = \"Researcher 1:\\nno effect\",    fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  pp [label = \"Researcher 2: finds effect\\n(R1pos, R2pos)\\n0.04 × 0.04 = 0.0016\",\n      fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  pn [label = \"Researcher 2: no effect\\n(R1pos, R2neg)\\n0.04 × 0.96 = 0.0384\",\n      fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  np [label = \"Researcher 2: finds effect\\n(R1neg, R2pos)\\n0.96 × 0.04 = 0.0384\",\n      fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  nn [label = \"Researcher 2: no effect\\n(R1neg, R2neg)\\n0.96 × 0.96 = 0.9216\",\n      fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  S   -> R1p [label = \"  0.04  \", fontcolor = \"#c9501f\"]\n  S   -> R1n [label = \"  0.96  \"]\n  R1p -> pp  [label = \"  0.04  \", fontcolor = \"#c9501f\"]\n  R1p -> pn  [label = \"  0.96  \"]\n  R1n -> np  [label = \"  0.04  \", fontcolor = \"#c9501f\"]\n  R1n -> nn  [label = \"  0.96  \"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
 <span class="math display">\[\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\]</span>
 in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilities of these
 4 events in the event space <span class="math inline">\(\Omega\)</span> must add up to 1 since they are disjoint and one of them has to happen. There is no “room” left. In the following picture, the areas are proportional to the probabilities (<span class="math inline">\(0.04\)</span> for a positive and <span class="math inline">\(0.96\)</span> for a negative result per researcher).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="576" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" alt="" width="576" /></p>
 </div>
 <div id="probabilities_for_health_sciences" class="section level3 hasAnchor" number="1.2.7">
 <h3><span class="header-section-number">1.2.7</span> Probabilities for health science<a href="probs.html#probabilities_for_health_sciences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -878,7 +878,7 @@ we throw a die 20 times and are interested in the number of 3s:</p>
 <span id="cb27-9"><a href="probs.html#cb27-9" tabindex="-1"></a></span>
 <span id="cb27-10"><a href="probs.html#cb27-10" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
 <span id="cb27-11"><a href="probs.html#cb27-11" tabindex="-1"></a><span class="fu">points</span>(x_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>Each outcome has a probability <span class="math inline">\(&gt;0\)</span> assigned to it. The sum of all probabilities is 1: <span class="math inline">\(\sum_{i \in \text{Possible outcomes}} \mathbb{P}(X=i) = 1\)</span>.
 For every event, we just add the probabilities of the elementary outcomes that are in the event:</p>
 <p><span class="math inline">\(\mathbb{P}(X \in (3,8,9,14)) = \mathbb{P}(X = 3) + \mathbb{P}(X = 8) + \mathbb{P}(X = 9) + \mathbb{P}(X = 14)\)</span>.
@@ -915,7 +915,7 @@ The final definition is then:</p>
 <span id="cb28-20"><a href="probs.html#cb28-20" tabindex="-1"></a></span>
 <span id="cb28-21"><a href="probs.html#cb28-21" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
 <span id="cb28-22"><a href="probs.html#cb28-22" tabindex="-1"></a><span class="fu">points</span>(x_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="probs.html#cb29-1" tabindex="-1"></a><span class="co"># Check if it sums to 1 (approximately):</span></span>
 <span id="cb29-2"><a href="probs.html#cb29-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span></span>
 <span id="cb29-3"><a href="probs.html#cb29-3" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
@@ -1005,7 +1005,7 @@ about probability distributions in general might be helpful.</p>
 <span id="cb35-40"><a href="probs.html#cb35-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> b <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">4</span>,</span>
 <span id="cb35-41"><a href="probs.html#cb35-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;b =&quot;</span>, b), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb35-42"><a href="probs.html#cb35-42" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
 <p>Here, like in any other “nice” continuous distribution, the area under the curve is 1:</p>
 <p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1.\]</span></p>
 <p>The probability of a single point is zero (<span class="math inline">\(\mathbb{P}(\{ x_i \}) = 0\)</span>).
@@ -1281,7 +1281,7 @@ würde man hier auf den Erwartungswert <span class="math inline">\(\mathbb{E}(X)
 <div id="frage-4---dichtefunktion" class="section level3 hasAnchor" number="1.5.4">
 <h3><span class="header-section-number">1.5.4</span> Frage 4 - Dichtefunktion<a href="probs.html#frage-4---dichtefunktion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Es sei folgende Dichtefunktion der stetigen Zufallsvariablen <span class="math inline">\(X\)</span> gegeben:
-<img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="65%" style="display: block; margin: auto;" /></p>
+<img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <p>Welche der folgenden Aussage(n) ist/sind korrekt (0-3 korrekte Antwortoptionen)?</p>
 <ul>
 <li>Die Fläche unter der Dichtefunktion beträgt 1, falls die Spitze des Dreiecks bei Höhe <span class="math inline">\(y=2\)</span> liegt.</li>
