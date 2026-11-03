@@ -627,17 +627,19 @@ $\mathbb{P}(A_1 \cup A_2) = 1 - \mathbb{P}(\text{neither }A_1 \text{ nor }A_2) =
 
 See also [Exercise 6](#exercise6).
 
-In the following Euler diagram, the areas are proportional to the probabilities: The overlap $\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016$ is very small.
+In the following Euler diagram, the areas are proportional to the probabilities: The overlap (green) $\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016$ is very small.
 
 ```{r echo=FALSE}
 # Define the sets A1 and A2 with their intersection.
 # The areas are proportional to the probabilities: 0.0384, 0.0384 and 0.0016
 fit <- euler(c(A1 = 0.0384, A2 = 0.0384, "A1&A2" = 0.0016))
 
-# Plot the Euler diagram with both sets and
-#intersection completely filled in gray
-plot(fit, fills = c("gray", "gray", "gray"),
-     labels = list(labels = c("A1", "A2")),
+# Same colours as in the Venn diagram above: A1 blue, A2 orange, overlap green
+plot(fit,
+     fills = list(fill = c("#cfdef5", "#f9d9cd", "#0f9d8a")),
+     edges = list(col = c("#2a78d6", "#eb6834", "#0f9d8a"), lwd = 3),
+     labels = list(labels = c("A1", "A2"), col = c("#2a78d6", "#eb6834"),
+                   font = 2, cex = 1.4),
      main = "")
 ```
 
