@@ -52,13 +52,11 @@ GPT4o and Github Copilot were used for writing this script.
 
 ## Books I can recommend: {-}
 
-- (Looks nice at first glance; the freely available PDF that was linked here is no longer online) [Introduction to Probability](https://www.routledge.com/Introduction-to-Probability/Blitzstein-Hwang/p/book/9781138369917)
-- (Free, purchase of the book is recommended; page numbers in our script refer to the printed version of the book) [Statistical Rethinking](https://github.com/Booleans/statistical-rethinking/blob/master/Statistical%20Rethinking%202nd%20Edition.pdf)
+- (Page numbers in our script refer to the printed version of the book) [Statistical Rethinking](https://www.routledge.com/Statistical-Rethinking-A-Bayesian-Course-with-Examples-in-R-and-Stan/McElreath/p/book/9780367139919)
 , YouTube-Playlist: [Statistical Rethinking 2023](https://youtu.be/FdnMWdICdRs?si=q2py5QVY_L299hEa)
-- (Free with a bit of searching) [Understanding Regression Analysis: A Conditional Distribution Approach](https://vdoc.pub/documents/understanding-regression-analysis-a-conditional-distribution-approach-84oqjr8sqva0)
+- [Understanding Regression Analysis: A Conditional Distribution Approach](https://www.routledge.com/Understanding-Regression-Analysis-A-Conditional-Distribution-Approach/Westfall-Arias/p/book/9780367493516)
 - [Data Analysis Using Regression and Multilevel/Hierarchical Models](https://sites.stat.columbia.edu/gelman/arm/)
 - (Free) [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
-- [Applied Regression Analysis and Generalized Linear Models](https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254)
 
 These books are well-written, approachable, and not overly technical.
 
@@ -66,7 +64,6 @@ For more theoretically advanced approaches, I can recommend:
 
 - (Free) [Bayesian Data Analysis](https://sites.stat.columbia.edu/gelman/book/)
 - (Free) [Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)
-- [Understanding Advanced Statistical Methods](https://www.routledge.com/Understanding-Advanced-Statistical-Methods/Westfall-Henning/p/book/9781466512108)
 
 ## `r if (knitr::is_html_output()) '<img src="images/Rlogo.png" height="20px"/>' else '\\includegraphics[height=1.8ex]{images/Rlogo.png}'` {-}
 
