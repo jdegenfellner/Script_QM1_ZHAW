@@ -640,11 +640,14 @@ The probability of event \(A\) \emph{given} that event \(B\) has occurred (not n
 
 This \href{https://www.youtube.com/watch?v=ibINrxJLvlM&ab_channel=Dr.TreforBazett}{video} explains it well.
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-5-1.pdf}}
+\begin{center}\includegraphics[width=1\linewidth]{_main_files/figure-latex/venn-conditional-1} \end{center}
 
-For the probability of event A, we are now \emph{only} interested in the light-grey area with respect to the whole area of event B
-since event B is our reference frame now (as opposed to the whole space \(\Omega\) before).
-Note that even if the probability of event A changes when B has happened, B could still have no \emph{causal} effect on A. They could have a common cause, for instance.
+\textbf{How to read the figure.} For the probability of event \(A\) we are now \emph{only} interested in the green area
+with respect to the whole area of event \(B\), since event \(B\) is our new reference frame
+(as opposed to the whole space \(\Omega\) before).
+
+\textbf{Careful.} Even if the probability of event \(A\) changes when \(B\) has happened, \(B\) could still have no \emph{causal} effect on \(A\).
+They could have a common cause, for instance.
 
 \textbf{Example in our context}:
 Let's assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4\% if we knew that 67 found the effect.
@@ -765,7 +768,7 @@ Now, let's visualize the binomial distribution for this case using base R syntax
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-7-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-6-1.pdf}}
 
 Note, this form of distribution looks like a bell curve, aka \href{https://en.wikipedia.org/wiki/Normal_distribution}{normal distribution},
 probably the most important distribution in statistics. One can \href{https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf}{show formally} that the binomial distribution converges to the normal distribution under certain conditions.
@@ -822,7 +825,7 @@ the histogram of the number of positive results:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-9-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-8-1.pdf}}
 
 As you can see, the realized number of found effects matches well the theoretical probabilities
 given by the binomial distribution. Note that 40 is not necessarily the most often found number of effects among 1000 researchers, since 39 has almost the same probability (\(0.06418\) vs.~\(0.06424\) for 40). If you repeat the simulation many times, 40 is the most frequent value in only about 37\% of the runs and 39 in about 35\%; in the remaining runs it is typically 38 or 41. So the most frequent value is always close to 40, but not always exactly 40.
@@ -903,7 +906,7 @@ In general, for an event \(A\):
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-11-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-10-1.pdf}}
 
 where \(A^C\) comprises all elementary events that are not in \(A\). In our case, the complement of observing 136 or
 less is observing 137 or more and vice versa (some brackets were left out for better readability):
@@ -1004,7 +1007,7 @@ See also \hyperref[exercise6]{Exercise 6}.
 
 In the following Euler diagram, the areas are proportional to the probabilities: The overlap \(\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016\) is very small.
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-13-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-12-1.pdf}}
 
 Here is another helpful depiction of the situation:
 
@@ -1012,7 +1015,7 @@ Here is another helpful depiction of the situation:
 ## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-14-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-13-1.pdf}}
 
 So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.
@@ -1022,7 +1025,7 @@ We can also visualize the 4 disjoint elementary events
 in a \href{https://en.wikipedia.org/wiki/Venn_diagram}{Venn diagram}. The probabilities of these
 4 events in the event space \(\Omega\) must add up to 1 since they are disjoint and one of them has to happen. There is no ``room'' left. In the following picture, the areas are proportional to the probabilities (\(0.04\) for a positive and \(0.96\) for a negative result per researcher).
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-15-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
 \subsection{Probabilities for health science}\label{probabilities_for_health_sciences}
 
@@ -1122,7 +1125,7 @@ we throw a die 20 times and are interested in the number of 3s:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-16-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-15-1.pdf}}
 
 Each outcome has a probability \(>0\) assigned to it. The sum of all probabilities is 1: \(\sum_{i \in \text{Possible outcomes}} \mathbb{P}(X=i) = 1\).
 For every event, we just add the probabilities of the elementary outcomes that are in the event:
@@ -1172,7 +1175,7 @@ The final definition is then:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-17-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-16-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1310,7 +1313,7 @@ about probability distributions in general might be helpful.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-19-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-18-1.pdf}}
 
 Here, like in any other ``nice'' continuous distribution, the area under the curve is 1:
 
@@ -1692,7 +1695,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
 
 Es sei folgende Dichtefunktion der stetigen Zufallsvariablen \(X\) gegeben:
 
-\begin{center}\includegraphics[width=0.65\linewidth]{_main_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics[width=0.65\linewidth]{_main_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 Welche der folgenden Aussage(n) ist/sind korrekt (0-3 korrekte Antwortoptionen)?
 
@@ -1824,7 +1827,7 @@ to visualize the raw data points as well.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-21-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-20-1.pdf}}
 
 Some researchers would discard the values below 10 and above 40 as outliers, but we know here
 that the data points are perfectly legitimate.
@@ -1853,7 +1856,7 @@ variability. Let's create not one sample of \(10000\) observations of a normally
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-22-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-21-1.pdf}}
 
 We \emph{know} (in this case) that these values come from a normal distribution with a mean
 of \(23.4\) and a standard deviation of \(5.6\). Let's \emph{estimate} the parameters (\(\mu\), \(\sigma\)) from the sample
@@ -1944,7 +1947,7 @@ Let's try the Shapiro test with a \(t\)-distribution with 3 degrees of freedom, 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-24-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-23-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2028,7 +2031,7 @@ There are a few things to note here:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-25-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-24-1.pdf}}
 
 Comparing these histograms (using different seed-values), we could assume that for truly normally distributed
 FPI scores, the histogram might look smoother than the one in Figure 1 in the paper. Especially the values around 6
@@ -2060,7 +2063,7 @@ Let's look at multiple examples of normal Q-Q plots which demonstrate the concep
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-26-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-25-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2071,7 +2074,7 @@ Let's look at multiple examples of normal Q-Q plots which demonstrate the concep
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-26-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-25-2.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2082,7 +2085,7 @@ Let's look at multiple examples of normal Q-Q plots which demonstrate the concep
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-26-3.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-25-3.pdf}}
 
 The \textbf{first plot} shows a Q-Q plot of a sample from a normal distribution with \(\mu = 45\) and \(\sigma = 6\).
 The points lie on a straight line and are within a confidence band,
@@ -2241,7 +2244,7 @@ and we can think of an example with skewed data where the correlation coefficien
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-27-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-26-1.pdf}}
 
 \emph{If} X and Y are bivariate normally distributed, then one can use the variable
 \(t = r \sqrt{\frac{n-2}{1-r^2}}\) as test statistic for the null hypothesis (see the chapter on \hyperref[nhst]{NHST}) \(H_0: \rho = 0\).
@@ -2334,7 +2337,7 @@ Let's see this in action:
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-28-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-27-1.pdf}}
 
 \begin{itemize}
 \item
@@ -2404,7 +2407,7 @@ Here is an example of a Spearman correlation:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-29-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-28-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2805,7 +2808,7 @@ The following R-code creates correlated samples with a (true) correlation \(\rho
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-31-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-30-1.pdf}}
 
 Let's look at the data frame \emph{bike\_cleaned} in R.
 
@@ -2878,7 +2881,7 @@ Gegeben sei ein Histogramm einer Stichprobe (\(n=1000\)). Im Bild zu sehen ist d
 Wahrscheinlichkeitsdichte. Die 3 vertikalen strichlierten Linien zeigen den Mittelwert, Median und Modus der
 Stichprobe an (nicht notwendigerweise in der genannten Reihenfolge).
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-33-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-32-1.pdf}}
 
 Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
@@ -2898,19 +2901,19 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
 Es seien zwei Stichproben von Körpergrößen gegeben. \(200\) von Frauen, \(200\) von Kindern. Zu sehen sind 3 Q-Q-Plots.
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-34-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-33-1.pdf}}
 
 \begin{verbatim}
 ## [1] 164  97
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-34-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-33-2.pdf}}
 
 \begin{verbatim}
 ## [1] 164  72
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-34-3.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-33-3.pdf}}
 
 \begin{verbatim}
 ## [1] 160 159
@@ -2934,7 +2937,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
 Gegeben sei folgende Stichprobe von Punktepaaren \((x_i, y_i)\) der Variablen \(X\) und \(Y\):
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-35-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-34-1.pdf}}
 
 Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
@@ -3131,7 +3134,7 @@ R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/m
 
 R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-36-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-35-1.pdf}}
 
 Let's assume, we know the manufacturer to be rather untrustworthy. Many inspections in the past
 revealed higher defect rates than claimed. For simplicity, we still want to decide between the two
@@ -3147,7 +3150,7 @@ We now get creative and assign the following prior probability \textbf{distribut
 
 R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-37-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-36-1.pdf}}
 
 If we had to guess, we would say that the defect rate is most likely 20\%.
 And we are rather sure about this guess. The mode (highest prior probability) of the
@@ -3186,7 +3189,7 @@ Let's look at the resulting posterior distribution:
 
 R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-38-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-37-1.pdf}}
 
 As we can see, the posterior distribution has a new peak at \(0.38\). If we had to guess
 now, we would probably say that the defect rate is around 38\%.
@@ -3215,14 +3218,14 @@ We then can elegantly make all kinds of statements when looking at the posterior
 
   R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
 
-  \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-39-1.pdf}}
+  \pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-38-1.pdf}}
 \item
   The probability that \(\theta\) is below \(0.25\) is (area under the posterior):
 \end{itemize}
 
 R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-40-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-39-1.pdf}}
 
 The previous two examples showcase how to \textbf{estimate a proportion} using prior knowledge
 and new data.
@@ -3246,7 +3249,7 @@ Here is an example for a 93\% HDI for the posterior distribution of \(\theta\):
 
 R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-41-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-40-1.pdf}}
 
 \textbf{Interpretation}: The 93\% HDI for the posterior distribution of \(\theta\) is \([0.25, 0.51]\).
 With a probability of 93\%, the defect rate is between 25\% and 55\%, given our prior
@@ -3380,7 +3383,7 @@ visit \href{https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-42-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-41-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3414,7 +3417,7 @@ For this, we will apply the R function \texttt{BESTmcmc} from the package \textt
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-43-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-42-1.pdf}}
 
 \texttt{BESTmcmc} is a function that uses a \href{https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo}{Markov Chain Monte Carlo (MCMC)}
 algorithm to estimate the \textbf{posterior distribution of the difference between the means of two groups}
@@ -3458,20 +3461,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.835 130.994 132.499   93   32.7233 225.32                  
-## mu2         5.901   5.775   1.541   93  -82.5348  97.33                  
-## muDiff    124.934 125.125 128.385   93   -8.9754 258.15       0      95.6
-## sigma1    139.624 128.286 110.828   93   65.9153 224.72                  
-## sigma2    129.991 119.513 105.192   93   62.3814 211.50                  
-## sigmaDiff   9.633   8.268   5.501   93 -119.0393 135.96       0      56.2
-## nu         34.444  25.742   9.909   93    1.0023  84.24                  
-## log10nu     1.378   1.411   1.469   93    0.6638   2.07                  
-## effSz       0.968   0.958   0.964   93   -0.0764   2.02       0      95.6
+##              mean median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       131.298 131.05 130.817   93   31.2309 226.46                  
+## mu2         6.018   5.82   5.682   93  -81.1416  98.01                  
+## muDiff    125.279 125.44 120.470   93   -8.8208 257.83       0      95.6
+## sigma1    140.178 128.76 113.234   93   66.4822 226.62                  
+## sigma2    129.529 119.47 105.369   93   61.9924 207.89                  
+## sigmaDiff  10.649   9.00   5.935   93 -113.2309 140.49       0      56.8
+## nu         34.477  25.73  10.738   93    1.2821  84.25                  
+## log10nu     1.380   1.41   1.493   93    0.6687   2.07                  
+## effSz       0.968   0.96   0.925   93   -0.0712   2.01       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.46
+## muDiff        -20       20    4.51
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3669,7 +3672,7 @@ every value between 0 and 1 is equally likely:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-45-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-44-1.pdf}}
 
 Notize, that the area under the curve is 1, since it is a probability density function.
 For example, \(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)
@@ -3712,31 +3715,31 @@ sleep: Daten, die die Wirkung von zwei schlaffördernden Medikamenten
 
 Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-46-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-45-1.pdf}}
 
 \begin{verbatim}
 ## Waiting for parallel processing to complete...done.
 \end{verbatim}
 
 \begin{verbatim}
-## 1.014 sec elapsed
+## 0.989 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.709  0.703  0.673   93 -0.538  1.957                          
-## mu2        2.300  2.297  2.249   93  0.894  3.727                          
-## muDiff    -1.590 -1.590 -1.573   93 -3.472  0.298       0      5.99    -1.8
-## sigma1     2.038  1.921  1.741   93  1.103  3.113                          
-## sigma2     2.300  2.168  1.957   93  1.255  3.461                          
-## sigmaDiff -0.262 -0.245 -0.251   93 -1.944  1.402       0     37.40        
-## nu        36.111 27.766 11.993   93  1.528 86.040                          
-## log10nu    1.413  1.444  1.569   93  0.741  2.087                          
-## effSz     -0.752 -0.747 -0.701   93 -1.639  0.125       0      5.99        
+## mu1        0.704  0.702  0.678   93 -0.538  1.989                          
+## mu2        2.302  2.299  2.367   93  0.848  3.701                          
+## muDiff    -1.597 -1.594 -1.502   93 -3.495  0.315       0      6.13    -1.8
+## sigma1     2.043  1.926  1.740   93  1.093  3.109                          
+## sigma2     2.311  2.177  1.963   93  1.264  3.501                          
+## sigmaDiff -0.268 -0.248 -0.237   93 -1.928  1.450       0     37.06        
+## nu        36.163 27.452 11.795   93  1.486 86.845                          
+## log10nu    1.411  1.439  1.501   93  0.715  2.064                          
+## effSz     -0.753 -0.750 -0.785   93 -1.627  0.147       0      6.13        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8      58
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -3745,7 +3748,7 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 ## effSz
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-46-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-45-2.pdf}}
 
 Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
@@ -4381,7 +4384,7 @@ We get a slightly different \(p\)-value and confidence interval but the same con
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-55-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-54-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4681,7 +4684,7 @@ Let's perform a one sample \href{https://www.sthda.com/english/wiki/one-sample-t
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-61-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-60-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4690,7 +4693,7 @@ Let's perform a one sample \href{https://www.sthda.com/english/wiki/one-sample-t
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-61-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-60-2.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4843,7 +4846,7 @@ Another assumption is that \(\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-63-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-62-1.pdf}}
 
 This assumption seems to be met.
 
@@ -4930,7 +4933,7 @@ Let's jump right in and use our example from the previous chapter where we perfo
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-64-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-63-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5040,7 +5043,7 @@ Let's jump right in and use our example from the previous chapter where we perfo
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-65-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-64-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5149,7 +5152,7 @@ Let's create some data and perform the test:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-66-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-65-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5238,7 +5241,7 @@ The correlation plot from the \href{https://www.sthda.com/english/wiki/correlati
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-68-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-67-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5370,7 +5373,7 @@ Let's apply it to finding a confidence interval for the correlation coefficient 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-70-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-69-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5482,7 +5485,7 @@ value 0 (slee prior plot below).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-71-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-70-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5525,7 +5528,7 @@ value 0 (slee prior plot below).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-71-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/_main_files/figure-latex/unnamed-chunk-70-2.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]

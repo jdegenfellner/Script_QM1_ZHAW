@@ -579,10 +579,16 @@ an effect/not finding an effect to get the probability of the whole elementary e
 The probability of event <span class="math inline">\(A\)</span> <em>given</em> that event <span class="math inline">\(B\)</span> has occurred (not necessarily chronologically different!) is denoted as</p>
 <p><span class="math display">\[\mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.\]</span></p>
 <p>This <a href="https://www.youtube.com/watch?v=ibINrxJLvlM&amp;ab_channel=Dr.TreforBazett">video</a> explains it well.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" /></p>
-<p>For the probability of event A, we are now <em>only</em> interested in the light-grey area with respect to the whole area of event B
-since event B is our reference frame now (as opposed to the whole space <span class="math inline">\(\Omega\)</span> before).
-Note that even if the probability of event A changes when B has happened, B could still have no <em>causal</em> effect on A. They could have a common cause, for instance.</p>
+<p><img src="_main_files/figure-html/venn-conditional-1.png" alt="" width="100%" style="display: block; margin: auto;" /></p>
+<div class="venn-note">
+<p><strong>How to read the figure.</strong> For the probability of event <span class="math inline">\(A\)</span> we are now <em>only</em> interested in the green area
+with respect to the whole area of event <span class="math inline">\(B\)</span>, since event <span class="math inline">\(B\)</span> is our new reference frame
+(as opposed to the whole space <span class="math inline">\(\Omega\)</span> before).</p>
+</div>
+<div class="venn-warn">
+<p><strong>Careful.</strong> Even if the probability of event <span class="math inline">\(A\)</span> changes when <span class="math inline">\(B\)</span> has happened, <span class="math inline">\(B\)</span> could still have no <em>causal</em> effect on <span class="math inline">\(A\)</span>.
+They could have a common cause, for instance.</p>
+</div>
 <p><strong>Example in our context</strong>:
 Let’s assume researchers 45 and 67 would not be independent. We would for instance find that the probability of 45 is higher than 4% if we knew that 67 found the effect.
 This does not necessarily mean that researcher 67 causes researcher 45 to find an effect.
@@ -658,7 +664,7 @@ Each one of them has <span class="math inline">\(0.04\)</span> probability of ha
 <span id="cb10-6"><a href="probs.html#cb10-6" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Binomial distribution for treatment effect </span></span>
 <span id="cb10-7"><a href="probs.html#cb10-7" tabindex="-1"></a><span class="st">     (yes/no) in 1000 researchers&quot;</span>)</span>
 <span id="cb10-8"><a href="probs.html#cb10-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> max_prob_number <span class="sc">-</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
 <p>Note, this form of distribution looks like a bell curve, aka <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>,
 probably the most important distribution in statistics. One can <a href="https://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf">show formally</a> that the binomial distribution converges to the normal distribution under certain conditions.
 So, if we would only have one shot to predict the number of researchers reporting a treatment effect under the assumption that no treatment exists, we would bet on 40 positive results.
@@ -683,7 +689,7 @@ the histogram of the number of positive results:</p>
 <span id="cb17-9"><a href="probs.html#cb17-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Number of Effects Found&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
 <span id="cb17-10"><a href="probs.html#cb17-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb17-11"><a href="probs.html#cb17-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
 <p>As you can see, the realized number of found effects matches well the theoretical probabilities
 given by the binomial distribution. Note that 40 is not necessarily the most often found number of effects among 1000 researchers, since 39 has almost the same probability (<span class="math inline">\(0.06418\)</span> vs. <span class="math inline">\(0.06424\)</span> for 40). If you repeat the simulation many times, 40 is the most frequent value in only about 37% of the runs and 39 in about 35%; in the remaining runs it is typically 38 or 41. So the most frequent value is always close to 40, but not always exactly 40.</p>
 <p><strong>The second question</strong> <a href="probs.html#Questions_about_the_1000-researcher_experiment">above</a>
@@ -727,7 +733,7 @@ observing 137 or more positive results: <span class="math inline">\(1 - \mathbb{
 <span id="cb24-10"><a href="probs.html#cb24-10" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
 <span id="cb24-11"><a href="probs.html#cb24-11" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
 <span id="cb24-12"><a href="probs.html#cb24-12" tabindex="-1"></a><span class="fu">print</span>(plot)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
 <p>where <span class="math inline">\(A^C\)</span> comprises all elementary events that are not in <span class="math inline">\(A\)</span>. In our case, the complement of observing 136 or
 less is observing 137 or more and vice versa (some brackets were left out for better readability):
 <span class="math inline">\(\mathbb{P}(0, \dots, 136) = 1 - \mathbb{P}((0, \dots, 136)^C) = 1 - \mathbb{P}(137, \dots, 1000)\)</span>.</p>
@@ -796,17 +802,17 @@ What if the events are not disjoint? For simplicity, let’s consider only 2 res
 <p><span class="math inline">\(\mathbb{P}(A_1 \cup A_2) = 1 - \mathbb{P}(\text{neither }A_1 \text{ nor }A_2) = 1-0.96^2 = 0.0784\)</span>.</p>
 <p>See also <a href="probs.html#exercise6">Exercise 6</a>.</p>
 <p>In the following Euler diagram, the areas are proportional to the probabilities: The overlap <span class="math inline">\(\mathbb{P}(A_1 \cap A_2) = 0.04^2 = 0.0016\)</span> is very small.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p>Here is another helpful depiction of the situation:</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-4d40f4fa2d5912a297e2" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-4d40f4fa2d5912a297e2">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-d5a2fe7c39bf70bbd85e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d5a2fe7c39bf70bbd85e">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n  \n  # Nodes\n  A [label = \"Researcher 1: Finds effect\", shape = box]\n  B [label = \"Researcher 1: No effect\", shape = box]\n  C [label = \"Researcher 2: Finds effect\", shape = box]\n  D [label = \"Researcher 2: No effect\", shape = box]\n  E [label = \"Researcher 2: Finds effect\", shape = box]\n  F [label = \"Researcher 2: No effect\", shape = box]\n  \n  # Paths\n  A -> C [label = \"Effect found\"]\n  A -> D [label = \"No effect\"]\n  B -> E [label = \"Effect found\"]\n  B -> F [label = \"No effect\"]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>So, the probability of at least one researcher finding an effect is the sum of the probabilities of the individual researchers finding an effect minus
 the probability of both finding an effect, which is the same as that both or exactly one of them finds an effect.</p>
 <p>We can also visualize the 4 disjoint elementary events
 <span class="math display">\[\Omega = \{ (R1pos, R2pos), (R1pos, R2neg), (R1neg, R2pos), (R1neg, R2neg) \}\]</span>
 in a <a href="https://en.wikipedia.org/wiki/Venn_diagram">Venn diagram</a>. The probabilities of these
 4 events in the event space <span class="math inline">\(\Omega\)</span> must add up to 1 since they are disjoint and one of them has to happen. There is no “room” left. In the following picture, the areas are proportional to the probabilities (<span class="math inline">\(0.04\)</span> for a positive and <span class="math inline">\(0.96\)</span> for a negative result per researcher).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="576" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="576" /></p>
 </div>
 <div id="probabilities_for_health_sciences" class="section level3 hasAnchor" number="1.2.7">
 <h3><span class="header-section-number">1.2.7</span> Probabilities for health science<a href="probs.html#probabilities_for_health_sciences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -872,7 +878,7 @@ we throw a die 20 times and are interested in the number of 3s:</p>
 <span id="cb27-9"><a href="probs.html#cb27-9" tabindex="-1"></a></span>
 <span id="cb27-10"><a href="probs.html#cb27-10" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
 <span id="cb27-11"><a href="probs.html#cb27-11" tabindex="-1"></a><span class="fu">points</span>(x_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 <p>Each outcome has a probability <span class="math inline">\(&gt;0\)</span> assigned to it. The sum of all probabilities is 1: <span class="math inline">\(\sum_{i \in \text{Possible outcomes}} \mathbb{P}(X=i) = 1\)</span>.
 For every event, we just add the probabilities of the elementary outcomes that are in the event:</p>
 <p><span class="math inline">\(\mathbb{P}(X \in (3,8,9,14)) = \mathbb{P}(X = 3) + \mathbb{P}(X = 8) + \mathbb{P}(X = 9) + \mathbb{P}(X = 14)\)</span>.
@@ -909,7 +915,7 @@ The final definition is then:</p>
 <span id="cb28-20"><a href="probs.html#cb28-20" tabindex="-1"></a></span>
 <span id="cb28-21"><a href="probs.html#cb28-21" tabindex="-1"></a><span class="co"># Add points for clarity</span></span>
 <span id="cb28-22"><a href="probs.html#cb28-22" tabindex="-1"></a><span class="fu">points</span>(x_values, probabilities, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="probs.html#cb29-1" tabindex="-1"></a><span class="co"># Check if it sums to 1 (approximately):</span></span>
 <span id="cb29-2"><a href="probs.html#cb29-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1000</span><span class="sc">:</span><span class="dv">1000</span></span>
 <span id="cb29-3"><a href="probs.html#cb29-3" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">sapply</span>(x_values, P))</span></code></pre></div>
@@ -999,7 +1005,7 @@ about probability distributions in general might be helpful.</p>
 <span id="cb35-40"><a href="probs.html#cb35-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> b <span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="fu">max</span>(y_vals) <span class="sc">/</span> <span class="dv">4</span>,</span>
 <span id="cb35-41"><a href="probs.html#cb35-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;b =&quot;</span>, b), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb35-42"><a href="probs.html#cb35-42" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
 <p>Here, like in any other “nice” continuous distribution, the area under the curve is 1:</p>
 <p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1.\]</span></p>
 <p>The probability of a single point is zero (<span class="math inline">\(\mathbb{P}(\{ x_i \}) = 0\)</span>).
@@ -1275,7 +1281,7 @@ würde man hier auf den Erwartungswert <span class="math inline">\(\mathbb{E}(X)
 <div id="frage-4---dichtefunktion" class="section level3 hasAnchor" number="1.5.4">
 <h3><span class="header-section-number">1.5.4</span> Frage 4 - Dichtefunktion<a href="probs.html#frage-4---dichtefunktion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Es sei folgende Dichtefunktion der stetigen Zufallsvariablen <span class="math inline">\(X\)</span> gegeben:
-<img src="_main_files/figure-html/unnamed-chunk-20-1.png" alt="" width="65%" style="display: block; margin: auto;" /></p>
+<img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <p>Welche der folgenden Aussage(n) ist/sind korrekt (0-3 korrekte Antwortoptionen)?</p>
 <ul>
 <li>Die Fläche unter der Dichtefunktion beträgt 1, falls die Spitze des Dreiecks bei Höhe <span class="math inline">\(y=2\)</span> liegt.</li>
