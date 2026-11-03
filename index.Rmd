@@ -145,7 +145,8 @@ we are seeing in the sample is also present in the population or if what we are 
 We also add measures of uncertainty (for instance credible or confidence intervals) to our estimates.
 
 We can do this inference in two ways: **Frequentist approach** using null hypothesis significance 
-testing ([NHST](#nhst)), or by using the **Bayesian approach** ([Bayesian inference](#bayes_statistics)).
+testing ([NHST](#nhst)) (or, even better: use estimates and confidence intervals instead of hypothesis testing, 
+but more on that later ...), or by using the **Bayesian approach** ([Bayesian inference](#bayes_statistics)).
 
 ## Warning of incompleteness {-}
 
