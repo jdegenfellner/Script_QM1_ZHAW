@@ -907,7 +907,7 @@ $(\mathbb{E}(X) - x_i)^2$ quantifies the deviation from the mean. We weight this
 a deviation happening. So a large deviation results only in a large variance if it is likely to happen. 
 
 
-**Remember**: The sample variance $S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2$ is a so-called **estimator** 
+**Remember**: The sample variance $s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2$ is a so-called **estimator** 
 for the variance $\mathbb{V}ar(X)$ of a distribution.
 This is true for discrete and continuous distributions. 
 

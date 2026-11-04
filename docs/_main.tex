@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2026-11-03}
+\date{2026-11-04}
 
 \begin{document}
 \maketitle
@@ -1248,7 +1248,7 @@ the expected squared deviation from the mean. It is a measure of how much the va
 \((\mathbb{E}(X) - x_i)^2\) quantifies the deviation from the mean. We weight this deviation with the probability of such
 a deviation happening. So a large deviation results only in a large variance if it is likely to happen.
 
-\textbf{Remember}: The sample variance \(S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2\) is a so-called \textbf{estimator}
+\textbf{Remember}: The sample variance \(s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2\) is a so-called \textbf{estimator}
 for the variance \(\mathbb{V}ar(X)\) of a distribution.
 This is true for discrete and continuous distributions.
 
@@ -3481,19 +3481,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.447 130.770 132.044   93   31.6352 226.51                  
-## mu2         6.309   5.833   5.927   93  -86.7355  93.71                  
-## muDiff    124.138 124.793 129.040   93  -10.4986 256.23       0      95.4
-## sigma1    140.249 128.478 114.093   93   67.1516 228.33                  
-## sigma2    129.636 119.344 105.507   93   62.3600 208.86                  
-## sigmaDiff  10.613   8.653   6.810   93 -117.4596 136.62       0      56.4
-## nu         34.112  25.612   9.515   93    1.0475  83.18                  
-## log10nu     1.376   1.408   1.520   93    0.6611   2.06                  
-## effSz       0.964   0.956   0.904   93   -0.0897   2.01       0      95.4
+## mu1       130.453 130.606 132.329   93   33.6636 226.82                  
+## mu2         6.148   5.787   3.950   93  -83.7127  96.49                  
+## muDiff    124.306 124.554 123.119   93   -6.3670 260.01       0      95.6
+## sigma1    139.552 128.232 111.940   93   66.7770 226.45                  
+## sigma2    130.336 119.677 103.731   93   62.0954 211.98                  
+## sigmaDiff   9.216   8.108   0.380   93 -115.5322 142.39       0      56.0
+## nu         33.742  25.439   9.820   93    1.1631  81.65                  
+## log10nu     1.373   1.406   1.486   93    0.6450   2.03                  
+## effSz       0.963   0.953   0.926   93   -0.0963   1.99       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.57
+## muDiff        -20       20    4.44
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3741,24 +3741,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 0.99 sec elapsed
+## 1.05 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.710  0.706  0.709   93 -0.566  1.948                          
-## mu2        2.301  2.301  2.353   93  0.845  3.694                          
-## muDiff    -1.590 -1.589 -1.529   93 -3.509  0.293       0      6.18    -1.8
-## sigma1     2.043  1.927  1.728   93  1.095  3.108                          
-## sigma2     2.312  2.172  1.930   93  1.268  3.517                          
-## sigmaDiff -0.269 -0.241 -0.186   93 -1.983  1.401       0     37.50        
-## nu        36.261 27.855 11.271   93  1.601 86.273                          
-## log10nu    1.415  1.445  1.492   93  0.723  2.059                          
-## effSz     -0.751 -0.746 -0.689   93 -1.662  0.122       0      6.18        
+## mu1        0.717  0.712  0.730   93 -0.510  1.985                          
+## mu2        2.300  2.296  2.309   93  0.882  3.711                          
+## muDiff    -1.582 -1.583 -1.537   93 -3.479  0.316       0      6.23    -1.8
+## sigma1     2.036  1.918  1.746   93  1.096  3.111                          
+## sigma2     2.311  2.176  1.954   93  1.265  3.516                          
+## sigmaDiff -0.274 -0.252 -0.243   93 -1.992  1.404       0     37.21        
+## nu        35.725 27.245 11.879   93  1.515 85.735                          
+## log10nu    1.408  1.435  1.496   93  0.735  2.074                          
+## effSz     -0.748 -0.742 -0.700   93 -1.631  0.150       0      6.23        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
