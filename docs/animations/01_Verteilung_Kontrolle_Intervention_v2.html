@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control vs. intervention: shape of the pain distributions</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='white' stroke='%23cbd2d9' stroke-width='2'/%3E%3Cpath d='M5 50 C14 50 18 14 26 14 C34 14 36 46 43 50Z' fill='%232a78d6' fill-opacity='.35' stroke='%232a78d6' stroke-width='3'/%3E%3Cpath d='M21 50 C30 50 34 14 42 14 C50 14 52 46 59 50Z' fill='%23eb6834' fill-opacity='.35' stroke='%23eb6834' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f3f2ef;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --grid:           #e6e5e1;
+    --axis:           #bdbcb6;
+    --series-1:       #2a78d6;   /* control */
+    --series-2:       #eb6834;   /* intervention */
+    --series-3:       #1baf7a;   /* difference chart */
+    --focus:          #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #262624;
+      --text-primary:   #f0efec;
+      --text-secondary: #c3c2b7;
+      --grid:           #2f2f2d;
+      --axis:           #55544f;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --focus:          #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #262624;
+    --text-primary:   #f0efec;
+    --text-secondary: #c3c2b7;
+    --grid:           #2f2f2d;
+    --axis:           #55544f;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --focus:          #3987e5;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-1);
+    color: var(--text-primary);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 40px; }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 4px; font-weight: 650; }
+  .sub { margin: 0 0 16px; color: var(--text-secondary); max-width: 74ch; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin: 0 0 12px; }
+  button {
+    font: inherit; font-weight: 600;
+    padding: 9px 18px; border-radius: 8px; cursor: pointer;
+    border: 1px solid transparent;
+  }
+  button.primary { background: var(--series-2); color: #fff; }
+  button.primary[disabled], button.ghost[disabled] { opacity: .45; cursor: default; }
+  button.ghost { background: transparent; color: var(--text-primary); border-color: var(--axis); }
+  button:focus-visible, input[type=range]:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .slider { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+  .slider output { color: var(--text-primary); font-weight: 650; min-width: 3ch; text-align: right; }
+  input[type=range] { width: 170px; accent-color: var(--series-2); }
+
+  .switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-secondary); user-select: none; }
+  .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .switch .track { width: 42px; height: 24px; border-radius: 12px; background: var(--axis); position: relative; transition: background .2s; flex: none; }
+  .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface-1); transition: transform .2s; }
+  .switch input:checked + .track { background: var(--series-1); }
+  .switch input:checked + .track::after { transform: translateX(18px); }
+  .switch input:focus-visible + .track { outline: 3px solid var(--focus); outline-offset: 2px; }
+  fieldset.seg { border: 0; margin: 0; padding: 0; display: inline-flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+  fieldset.seg legend { float: left; padding: 0; margin-right: 10px; }
+  .seg .opts { display: inline-flex; border: 1px solid var(--axis); border-radius: 8px; overflow: hidden; }
+  .seg label { cursor: pointer; }
+  .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .seg .opts span { display: block; padding: 7px 14px; font-weight: 600; color: var(--text-primary); }
+  .seg label + label span { border-left: 1px solid var(--axis); }
+  .seg input:checked + span { background: var(--text-primary); color: var(--surface-1); }
+  .seg input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: -3px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--axis); margin: 0 0 16px; }
+  .tab { background: transparent; color: var(--text-secondary); border: 0; border-bottom: 3px solid transparent; border-radius: 0; padding: 10px 16px; margin-bottom: -1px; cursor: pointer; font-weight: 600; }
+  .tab[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--series-2); }
+  .tab:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+  [role="tabpanel"][hidden] { display: none; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; min-height: 24px; margin: 0 0 4px; color: var(--text-secondary); font-size: .9rem; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; transition: opacity .3s; }
+  .legend i { display: inline-block; width: 22px; height: 0; border-top: 2px solid; border-radius: 2px; }
+
+  .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 12px; }
+  @media (max-width: 720px) { .panels { grid-template-columns: 1fr; } }
+  .panel { background: var(--surface-2); border-radius: 10px; padding: 10px 14px 12px; border-top: 4px solid var(--acc); }
+  .panel h3 { margin: 0 0 4px; font-size: 1rem; font-weight: 650; }
+  .panel .prow { display: grid; grid-template-columns: 112px 1fr 56px; gap: 8px; align-items: center; margin: 2px 0; font-size: .92rem; color: var(--text-secondary); }
+  .panel .prow input[type=range] { width: 100%; accent-color: var(--acc); }
+  .panel .prow output { color: var(--text-primary); font-weight: 650; text-align: right; font-variant-numeric: tabular-nums; }
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; color: var(--text-secondary); font-size: .88rem; }
+  .presets button { padding: 4px 10px; font-size: .85rem; }
+  .hint { color: var(--text-secondary); font-size: .88rem; margin: 0 0 12px; max-width: 90ch; }
+
+  .chart { position: relative; }
+  svg { display: block; width: 100%; height: auto; touch-action: pan-y; }
+  svg text { font: 13px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: var(--text-secondary); }
+  svg .t-strong { fill: var(--text-primary); font-weight: 650; font-size: 15px; }
+  svg .t-small { font-size: 12px; }
+  .tooltip {
+    position: absolute; pointer-events: none; display: none;
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--axis); border-radius: 8px;
+    padding: 8px 10px; font-size: .85rem; line-height: 1.4; min-width: 150px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  }
+  .tooltip .hd { color: var(--text-secondary); margin-bottom: 4px; }
+  .tooltip .row { display: flex; align-items: center; gap: 8px; }
+  .tooltip .key { width: 14px; height: 0; border-top: 2px solid; border-radius: 2px; flex: none; }
+  .tooltip .val { font-weight: 650; margin-left: auto; padding-left: 12px; }
+  .tooltip .nm { color: var(--text-secondary); }
+
+  h2 { font-size: 1.2rem; line-height: 1.3; margin: 0 0 4px; font-weight: 650; }
+  .tiles { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 8px; }
+  .tile { flex: 1 1 230px; background: var(--surface-2); border-radius: 8px; padding: 12px 16px; }
+  .tile .tl { color: var(--text-secondary); font-size: .92rem; }
+  .tile .tl .dv { color: var(--text-primary); font-weight: 650; }
+  .tile .tv { font-size: 2rem; line-height: 1.2; font-weight: 650; margin-top: 2px; }
+  .tile .ts { color: var(--text-secondary); font-size: .88rem; min-height: 1.3em; }
+  .legend2 { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--text-secondary); font-size: .9rem; margin: 8px 0 2px; }
+  .legend2 span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend2 i { display: inline-block; width: 18px; height: 12px; border-radius: 2px; background: var(--series-3); }
+  .status { margin: 10px 0 0; min-height: 1.5em; color: var(--text-secondary); }
+  .note { margin: 14px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--surface-2); color: var(--text-secondary); max-width: 82ch; font-size: .95rem; }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+  table { border-collapse: collapse; margin-top: 8px; font-size: .92rem; }
+  th, td { text-align: right; padding: 6px 14px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--text-secondary); font-weight: 600; }
+  td .key { display: inline-block; width: 14px; height: 0; border-top: 2px solid; margin-right: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Control vs. intervention: pain intensity in two groups</h1>
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" id="tab1" aria-controls="panel1" aria-selected="true" type="button">1 &middot; The two distributions</button>
+    <button class="tab" role="tab" id="tab2" aria-controls="panel2" aria-selected="false" tabindex="-1" type="button">2 &middot; How different are two random patients?</button>
+  </div>
+
+  <section id="panel1" role="tabpanel" aria-labelledby="tab1">
+  <p class="sub">Outcome: pain intensity on a numeric rating scale from 0 (no pain) to 10 (worst pain). Higher is worse.
+     Set the distribution of each group yourself: mean, spread (SD), skewness and the share of patients with no pain at all (a spike at 0, "zero inflation").
+     Both groups start from the control distribution. Press <em>Apply intervention</em> and the intervention group moves to the settings you chose for it.</p>
+
+  <div class="panels" id="panels"></div>
+  <p class="hint">Mean, SD and skewness describe the curve of the patients with pain <em>before</em> it is cut off at 0 and 10. The table at the bottom shows the resulting values of the whole group, including patients with no pain.
+     The settings of the intervention group take effect when you press <em>Apply intervention</em>.</p>
+
+  <div class="controls">
+    <button id="apply" class="primary" type="button">Apply intervention</button>
+    <button id="reset" class="ghost" type="button" disabled>Reset</button>
+    <button id="newData" class="ghost" type="button">New random patients</button>
+    <fieldset class="seg"><legend>Mark the</legend>
+      <span class="opts">
+        <label><input type="radio" name="loc" value="mean" checked><span>Mean</span></label>
+        <label><input type="radio" name="loc" value="median"><span>Median</span></label>
+        <label><input type="radio" name="loc" value="mode"><span>Mode</span></label>
+      </span>
+    </fieldset>
+    <label class="switch"><input id="rawToggle" type="checkbox" role="switch"><span class="track"></span>Show raw data (dots, histogram, boxplot)</label>
+  </div>
+
+  <div class="legend" id="legend" aria-hidden="true"></div>
+
+  <div class="chart" id="chart">
+    <svg id="svg" viewBox="0 0 880 490" role="img" aria-labelledby="svgTitle svgDesc">
+      <title id="svgTitle">Two density curves of pain intensity with the raw data below, control and intervention</title>
+      <desc id="svgDesc">Density curves of the pain intensity in the control and the intervention group. Each group has its own mean, spread, skewness and share of patients with no pain, shown as a bar at 0. Lower pain is better.</desc>
+      <defs><clipPath id="clipPlot"><rect x="56" y="0" width="664" height="490"></rect></clipPath></defs>
+      <g id="grid"></g>
+      <g id="hists"></g>
+      <path id="areaC" fill="var(--series-1)" fill-opacity="0.10"></path>
+      <path id="areaI" fill="var(--series-2)" fill-opacity="0.10"></path>
+      <path id="lineC" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+      <path id="lineI" fill="none" stroke="var(--series-2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+      <g id="spikes"></g>
+      <g id="bandlabs"></g>
+      <g id="boxes" clip-path="url(#clipPlot)"></g>
+      <g id="pts" clip-path="url(#clipPlot)"></g>
+      <g id="marks"></g>
+      <g id="labels"></g>
+      <line id="cross" y1="24" y2="428" stroke="var(--axis)" stroke-width="1" style="display:none"></line>
+      <rect id="hit" x="56" y="24" width="664" height="330" fill="transparent"></rect>
+    </svg>
+    <div class="tooltip" id="tip" role="status"></div>
+  </div>
+
+  <p class="status" id="status" aria-live="polite"></p>
+
+  <p class="note">The height of a curve is a density, not a probability. What counts is the <strong>area</strong> under the curve.
+     The bar at 0 is different: its height is the <strong>probability</strong> of exactly no pain (full plot height = 100 %).
+     Curve area and bar together always add up to 1 for each group.
+     Skewness 0 gives a symmetric (bell-shaped) curve, positive skewness a long tail towards severe pain, negative skewness a long tail towards mild pain.
+     A pure shift changes mean, median and mode by the same amount and leaves the shape unchanged. With different shapes the three can move by different amounts, or even in different directions.</p>
+
+  <details>
+    <summary>Table view</summary>
+    <table id="tbl"></table>
+    <p class="hint">Mode: peak of the curve. It is 0 if the bar at 0 is higher than the probability mass around the peak (a one-point-wide interval).</p>
+  </details>
+  </section>
+
+  <section id="panel2" role="tabpanel" aria-labelledby="tab2" hidden>
+  <h2>How different are two random patients?</h2>
+  <p class="status"><span id="effNote"></span> <button type="button" class="ghost" id="goTab1" style="padding:4px 12px">Go to tab 1</button></p>
+  <p class="sub">Draw one patient at random from the control group and one from the intervention group, independently of each other.
+     How likely is it that they differ by at least <em>d</em> points of pain? The difference of two random patients is itself a random variable.
+     Its curve is shown below, and the probability is the shaded area. The slider sets <em>d</em>.</p>
+  <div class="controls">
+    <label class="slider" for="d2">Difference of at least d (points)
+      <input id="d2" type="range" min="0" max="6" step="0.25" value="1">
+      <output id="d2Out" for="d2">1.00</output>
+    </label>
+    <button id="simBtn" class="ghost" type="button">Simulate 10,000 pairs</button>
+  </div>
+  <div class="tiles">
+    <div class="tile"><div class="tl">The control patient has at least <span class="dv" data-d>1.00</span> points <strong>more</strong> pain than the intervention patient</div>
+      <div class="tv" id="pDir">&ndash;</div><div class="ts" id="simDir"></div></div>
+    <div class="tile"><div class="tl">The intervention patient has at least <span class="dv" data-d>1.00</span> points <strong>more</strong> pain than the control patient</div>
+      <div class="tv" id="pRev">&ndash;</div><div class="ts" id="simRev"></div></div>
+    <div class="tile"><div class="tl">The two differ by at least <span class="dv" data-d>1.00</span> points, in <strong>either</strong> direction</div>
+      <div class="tv" id="pAbs">&ndash;</div><div class="ts" id="simAbs"></div></div>
+  </div>
+  <div class="legend2" aria-hidden="true">
+    <span><i style="opacity:.38"></i>control has at least d more pain</span>
+    <span><i style="opacity:.16"></i>intervention has at least d more pain</span>
+  </div>
+  <div class="chart" id="chart2">
+    <svg id="svg2" viewBox="0 0 880 270" role="img" aria-labelledby="svg2Title svg2Desc">
+      <title id="svg2Title">Density of the pain difference between a random control patient and a random intervention patient</title>
+      <desc id="svg2Desc">The density of the difference control minus intervention. The area to the right of d and to the left of minus d is shaded. A bar at 0 appears if both groups contain patients with no pain.</desc>
+    </svg>
+    <div class="tooltip" id="tip2" role="status"></div>
+  </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ===== Model ===========================================================================================
+  // Each group: with probability p the patient has NO pain (exactly 0). Otherwise pain follows a continuous
+  // curve on [0, 10] with mean m, SD s and skewness g (shifted/reflected Gamma, Normal at g = 0),
+  // cut off at 0 and 10 and renormalised. Everything is computed on a fine grid.
+  var GH = 0.025, GN = 400, XS = new Float64Array(GN + 1), WT = new Float64Array(GN + 1);
+  (function () { for (var i = 0; i <= GN; i++) { XS[i] = i * GH; WT[i] = (i === 0 || i === GN) ? 0.5 : 1; } })();
+
+  function buildGroup(P) {
+    var i, lp = new Float64Array(GN + 1), mx = -Infinity, g = P.g;
+    if (Math.abs(g) < 0.05) {
+      for (i = 0; i <= GN; i++) { var z = (XS[i] - P.m) / P.s; lp[i] = -0.5 * z * z; }
+    } else {
+      var k = 4 / (g * g), th = P.s / Math.sqrt(k), loc = P.m - k * th;
+      for (i = 0; i <= GN; i++) {
+        var xx = g > 0 ? XS[i] : 2 * P.m - XS[i], u = xx - loc;
+        lp[i] = u > 0 ? (k - 1) * Math.log(u) - u / th : -Infinity;
+      }
+    }
+    for (i = 0; i <= GN; i++) if (lp[i] > mx) mx = lp[i];
+    var f = new Float64Array(GN + 1), tot = 0;
+    for (i = 0; i <= GN; i++) { f[i] = isFinite(mx) ? Math.exp(lp[i] - mx) : 1; tot += WT[i] * f[i] * GH; }
+    var dens = new Float64Array(GN + 1), c = new Float64Array(GN + 1), cdf = new Float64Array(GN + 1);
+    var cum = 0, mc = 0, m2 = 0, amax = 0;
+    for (i = 0; i <= GN; i++) {
+      dens[i] = f[i] / tot;
+      c[i] = WT[i] * dens[i] * GH;
+      cum += c[i]; cdf[i] = cum;
+      mc += c[i] * XS[i]; m2 += c[i] * XS[i] * XS[i];
+      if (dens[i] > dens[amax]) amax = i;
+    }
+    cdf[GN] = 1;
+    var p = P.p, mean = (1 - p) * mc, sd = Math.sqrt(Math.max(0, (1 - p) * m2 - mean * mean));
+    var G = { p: p, dens: dens, c: c, cdf: cdf, mean: mean, sd: sd, maxDens: (1 - p) * dens[amax] };
+    G.mode = p > (1 - p) * dens[amax] ? 0 : XS[amax];
+    G.median = quantile(G, 0.5);
+    return G;
+  }
+  function quantile(G, u) {
+    if (u < G.p) return 0;
+    var v = (u - G.p) / (1 - G.p), lo = 0, hi = GN, cdf = G.cdf;
+    while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (cdf[mid] < v) lo = mid; else hi = mid; }
+    var idx = cdf[lo] >= v ? lo : hi;
+    var base = idx === 0 ? 0 : cdf[idx - 1], width = cdf[idx] - base, t = width > 0 ? (v - base) / width : 0;
+    var start = idx === 0 ? 0 : XS[idx] - GH / 2, span = (idx === 0 || idx === GN) ? GH / 2 : GH;
+    return Math.min(10, start + t * span);
+  }
+  function densAt(G, x) {                       // plotted height: (1 - p) * continuous density
+    var u = x / GH; if (u < 0 || u > GN) return 0;
+    var a = Math.floor(u), b = Math.min(GN, a + 1), fr = u - a;
+    return (1 - G.p) * (G.dens[a] * (1 - fr) + G.dens[b] * fr);
+  }
+
+  // ===== Random patients (common random numbers: the dots move smoothly when settings change) ============
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  var N = 100, UC = [], UI = [], JC = [], JI = [];
+  function drawUniforms(seedC, seedI) {
+    var rc = mulberry32(seedC), ri = mulberry32(seedI), i;
+    UC = []; UI = []; JC = []; JI = [];
+    for (i = 0; i < N; i++) { UC.push(rc()); JC.push(rc()); UI.push(ri()); JI.push(ri()); }
+  }
+  drawUniforms(35, 19);
+
+  // ===== State ===========================================================================================
+  var DEF_C = { m: 4.75, s: 1.74, g: 1.26, p: 0 };
+  var DEF_I = { m: 3.75, s: 1.74, g: 1.26, p: 0 };
+  var state = { ctrl: Object.assign({}, DEF_C), intv: Object.assign({}, DEF_I),
+                prog: 0, alpha: 0, applied: false, busy: false, keyFrom: "mean", keyTo: "mean", keyT: 1, d2: 1 };
+  var GC = null, GI = null, DC = [], DI = [];
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function dispIntv() {
+    var t = state.prog, c = state.ctrl, v = state.intv;
+    return { m: lerp(c.m, v.m, t), s: lerp(c.s, v.s, t), g: lerp(c.g, v.g, t), p: lerp(c.p, v.p, t) };
+  }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  // ===== Panels with sliders =============================================================================
+  var DEFS = [
+    { k: "m", label: "Mean",              min: 1,   max: 9, step: 0.05, dec: 2 },
+    { k: "s", label: "SD (spread)",       min: 0.5, max: 4, step: 0.01, dec: 2 },
+    { k: "g", label: "Skewness",          min: -2,  max: 2, step: 0.01, dec: 2 },
+    { k: "p", label: "No pain (exactly 0)", min: 0, max: 60, step: 1,    dec: 0 }
+  ];
+  var panelsEl = document.getElementById("panels"), sliders = { ctrl: {}, intv: {} };
+  function fmtVal(d, v) { return d.k === "p" ? Math.round(v * 100) + " %" : v.toFixed(d.dec); }
+  function setSlider(grp, k, v) {
+    var d = DEFS.filter(function (x) { return x.k === k; })[0], s = sliders[grp][k];
+    s.input.value = k === "p" ? v * 100 : v; s.out.textContent = fmtVal(d, v);
+  }
+  function buildPanel(grp, title, colorVar) {
+    var box = document.createElement("div"); box.className = "panel"; box.style.setProperty("--acc", colorVar);
+    var h = document.createElement("h3"); h.textContent = title; box.appendChild(h);
+    DEFS.forEach(function (d) {
+      var row = document.createElement("div"); row.className = "prow";
+      var id = "s_" + grp + "_" + d.k;
+      var lab = document.createElement("label"); lab.setAttribute("for", id); lab.textContent = d.label;
+      var inp = document.createElement("input"); inp.type = "range"; inp.id = id;
+      inp.min = d.min; inp.max = d.max; inp.step = d.step;
+      var out = document.createElement("output"); out.setAttribute("for", id);
+      row.appendChild(lab); row.appendChild(inp); row.appendChild(out); box.appendChild(row);
+      sliders[grp][d.k] = { input: inp, out: out };
+      inp.addEventListener("input", function () {
+        var v = parseFloat(inp.value); if (d.k === "p") v /= 100;
+        state[grp][d.k] = v; out.textContent = fmtVal(d, v);
+        if (grp === "ctrl" || (state.applied && !state.busy)) render();
+      });
+    });
+    var pr = document.createElement("div"); pr.className = "presets";
+    var pl = document.createElement("span"); pl.textContent = "Shape:"; pr.appendChild(pl);
+    [["Right-skewed", 1.26], ["Symmetric", 0], ["Left-skewed", -1.26]].forEach(function (p) {
+      var b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = p[0];
+      b.addEventListener("click", function () {
+        state[grp].g = p[1]; setSlider(grp, "g", p[1]);
+        if (grp === "ctrl" || (state.applied && !state.busy)) render();
+      });
+      pr.appendChild(b);
+    });
+    if (grp === "intv") {
+      var cp = document.createElement("button"); cp.type = "button"; cp.className = "ghost"; cp.textContent = "Copy control shape";
+      cp.title = "Take SD, skewness and no-pain share from the control group; the mean stays as it is.";
+      cp.addEventListener("click", function () {
+        ["s", "g", "p"].forEach(function (k) { state.intv[k] = state.ctrl[k]; setSlider("intv", k, state.ctrl[k]); });
+        if (state.applied && !state.busy) render();
+      });
+      pr.appendChild(cp);
+    }
+    box.appendChild(pr); panelsEl.appendChild(box);
+  }
+  buildPanel("ctrl", "Control group", "var(--series-1)");
+  buildPanel("intv", "Intervention group", "var(--series-2)");
+  DEFS.forEach(function (d) { setSlider("ctrl", d.k, state.ctrl[d.k]); setSlider("intv", d.k, state.intv[d.k]); });
+
+  // ===== Geometry ========================================================================================
+  var W = 880, H = 490, ML = 56, MR = 160, MT = 24;
+  var PH = 330, BASE = MT + PH;
+  var BAND_C = { top: 366, h: 28 }, BAND_I = { top: 400, h: 28 };
+  var PW = W - ML - MR;
+  var XMAX = 10, YMAX = 0.38;
+  function X(x) { return ML + x / XMAX * PW; }
+  function Y(y) { return BASE - y / YMAX * PH; }
+  function invX(px) { return (px - ML) / PW * XMAX; }
+
+  var NS = "http://www.w3.org/2000/svg";
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  // ----- static parts -----
+  var gGrid = document.getElementById("grid");
+  var gTicks = el("g", {}, gGrid), vLines = [];
+  (function () {
+    var i;
+    for (i = 0; i <= 10; i++) {
+      vLines.push(el("line", { x1: X(i), x2: X(i), y1: MT, y2: BAND_I.top + BAND_I.h, stroke: "var(--grid)", "stroke-width": 1 }, gGrid));
+      var t = el("text", { x: X(i), y: BAND_I.top + BAND_I.h + 20, "text-anchor": "middle" }, gTicks);
+      t.textContent = i;
+    }
+    el("line", { x1: ML, x2: ML + PW, y1: BASE, y2: BASE, stroke: "var(--axis)", "stroke-width": 1 }, gGrid);
+    var xt = el("text", { x: ML + PW / 2, y: H - 12, "text-anchor": "middle" }, gTicks);
+    xt.textContent = "Pain intensity (0 = no pain, 10 = worst pain)";
+    var yt = el("text", { x: 16, y: MT + PH / 2, "text-anchor": "middle", transform: "rotate(-90 16 " + (MT + PH / 2) + ")" }, gGrid);
+    yt.textContent = "Density (curve area + bar at 0 = 1)";
+  })();
+  var gBand = document.getElementById("bandlabs");
+  var bandLabC = el("text", { x: ML + PW + 12, y: BAND_C.top + BAND_C.h / 2 + 4, "class": "t-small" }, gBand);
+  bandLabC.textContent = "Control (n = 100)";
+  var bandLabI = el("text", { x: ML + PW + 12, y: BAND_I.top + BAND_I.h / 2 + 4, "class": "t-small" }, gBand);
+  bandLabI.textContent = "Intervention (n = 100)";
+
+  // ----- dynamic parts -----
+  var areaC = document.getElementById("areaC"), areaI = document.getElementById("areaI");
+  var lineC = document.getElementById("lineC"), lineI = document.getElementById("lineI");
+  var gPts = document.getElementById("pts"), gMarks = document.getElementById("marks"), gLabels = document.getElementById("labels");
+  var gHist = document.getElementById("hists"), gBox = document.getElementById("boxes"), gSpk = document.getElementById("spikes");
+
+  var ptsC = [], ptsI = [], i0;
+  for (i0 = 0; i0 < N; i0++) {
+    ptsC.push(el("circle", { r: 3.2, fill: "var(--series-1)", "fill-opacity": 0.6 }, gPts));
+    ptsI.push(el("circle", { r: 3.2, fill: "var(--series-2)", "fill-opacity": 0.6 }, gPts));
+  }
+  var histC = el("g", {}, gHist), histI = el("g", {}, gHist);
+  var boxC = el("g", {}, gBox), boxI = el("g", {}, gBox);
+  var spkC = el("rect", { fill: "var(--series-1)", "fill-opacity": 0.55, width: 9 }, gSpk);
+  var spkI = el("rect", { fill: "var(--series-2)", "fill-opacity": 0.55, width: 9 }, gSpk);
+
+  function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }
+  function drawHist(data, g, color) {
+    clear(g);
+    var BW = 1, nb = 10, cnt = [], b;
+    for (b = 0; b < nb; b++) cnt.push(0);
+    data.forEach(function (v) { if (v <= 0) return; var k = Math.min(nb - 1, Math.floor(v / BW)); cnt[k]++; });
+    for (b = 0; b < nb; b++) {
+      if (!cnt[b]) continue;
+      var dens = Math.min(cnt[b] / (N * BW), YMAX);
+      el("rect", { x: (X(b * BW) + 0.5).toFixed(1), y: Y(dens).toFixed(1), width: (X(BW) - X(0) - 1).toFixed(1),
+                   height: (Y(0) - Y(dens)).toFixed(1), fill: color, "fill-opacity": 0.16 }, g);
+    }
+  }
+  function drawBox(data, g, color, band) {
+    clear(g);
+    var d = data.slice().sort(function (a, b) { return a - b; });
+    function q(p) { var h = (d.length - 1) * p, lo = Math.floor(h), hi = Math.ceil(h); return d[lo] + (h - lo) * (d[hi] - d[lo]); }
+    var q1 = q(0.25), med = q(0.5), q3 = q(0.75), iqr = q3 - q1;
+    var lo = d.filter(function (v) { return v >= q1 - 1.5 * iqr; })[0];
+    var hi = d.filter(function (v) { return v <= q3 + 1.5 * iqr; }).pop();
+    var cy = band.top + band.h / 2, bh = 14;
+    var st = { stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 };
+    function ln(x1, x2, y1, y2, extra) { var a = { x1: x1, x2: x2, y1: y1, y2: y2 }; for (var k in st) a[k] = st[k]; for (var k2 in extra) a[k2] = extra[k2]; el("line", a, g); }
+    ln(X(lo), X(q1), cy, cy, {}); ln(X(q3), X(hi), cy, cy, {});
+    ln(X(lo), X(lo), cy - 4, cy + 4, {}); ln(X(hi), X(hi), cy - 4, cy + 4, {});
+    el("rect", { x: X(q1), y: cy - bh / 2, width: Math.max(0, X(q3) - X(q1)), height: bh, fill: color, "fill-opacity": 0.16,
+                 stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 }, g);
+    ln(X(med), X(med), cy - bh / 2, cy + bh / 2, { "stroke-opacity": 0.9, "stroke-width": 2.5 });
+  }
+
+  // mean markers + bracket
+  var mkC = el("line", { stroke: "var(--series-1)", "stroke-width": 1.5 }, gMarks);
+  var mkI = el("line", { stroke: "var(--series-2)", "stroke-width": 1.5 }, gMarks);
+  var brL = el("line", { stroke: "var(--text-primary)", "stroke-width": 1.5 }, gMarks);
+  var brA = el("path", { fill: "var(--text-primary)" }, gMarks);
+  var brB = el("path", { fill: "var(--text-primary)" }, gMarks);
+  var dotC = el("circle", { r: 5, fill: "var(--series-1)", stroke: "var(--surface-1)", "stroke-width": 2 }, gMarks);
+  var dotI = el("circle", { r: 5, fill: "var(--series-2)", stroke: "var(--surface-1)", "stroke-width": 2 }, gMarks);
+  var brT = el("text", { "text-anchor": "middle", "class": "t-strong" }, gMarks);
+  var labSingle = el("text", { "class": "t-strong" }, gLabels);
+  labSingle.textContent = "Control = intervention group (same distribution)";
+  labSingle.style.fill = "var(--series-1)";
+
+  // legend
+  var legendEl = document.getElementById("legend");
+  var legC = document.createElement("span"), legI = document.createElement("span"), legS = document.createElement("span");
+  function legItem(span, color, text) {
+    if (color) { var i = document.createElement("i"); i.style.borderTopColor = color; span.appendChild(i); }
+    span.appendChild(document.createTextNode(text)); legendEl.appendChild(span);
+  }
+  legItem(legC, "var(--series-1)", "Control group");
+  legItem(legI, "var(--series-2)", "Intervention group");
+  legItem(legS, null, "");
+
+  function curvePath(G, close) {
+    var d = "", x, i, step = 4;                     // every 4th grid point = 0.1
+    if (close) d = "M" + X(0).toFixed(1) + " " + Y(0).toFixed(1);
+    for (i = 0; i <= GN; i += step) {
+      x = XS[i];
+      d += (i === 0 && !close ? "M" : "L") + X(x).toFixed(1) + " " + Y(densAt(G, x)).toFixed(1);
+    }
+    if (close) d += "L" + X(XMAX).toFixed(1) + " " + Y(0).toFixed(1) + "Z";
+    return d;
+  }
+
+  var tbl = document.getElementById("tbl");
+  function f1(v) { return v.toFixed(2); }
+  function buildTable(sampC, sampI) {
+    function row(color, name, G, samp) {
+      return "<tr><td><span class='key' style='border-top-color:" + color + "'></span>" + name + "</td><td>" +
+             f1(G.mean) + "</td><td>" + f1(G.median) + "</td><td>" + f1(G.mode) + "</td><td>" + f1(G.sd) +
+             "</td><td>" + Math.round(G.p * 100) + " %</td><td>" + f1(samp) + "</td></tr>";
+    }
+    var html = "<thead><tr><th>Group</th><th>Mean</th><th>Median</th><th>Mode</th><th>SD</th><th>No pain</th><th>Sample mean (n = 100)</th></tr></thead><tbody>";
+    html += row("var(--series-1)", state.alpha > 0.01 ? "Control" : "Control and intervention", GC, sampC);
+    if (state.alpha > 0.01) html += row("var(--series-2)", "Intervention", GI, sampI);
+    tbl.innerHTML = html + "</tbody>";
+  }
+  function mean(a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; }
+  function locAt(G, from, to, t) { return lerp(G[from], G[to], t); }
+
+  // ===== Render ==========================================================================================
+  function render() {
+    var a = state.alpha, ip = dispIntv();
+    GC = buildGroup(state.ctrl); GI = buildGroup(ip);
+    YMAX = Math.max(0.12, 1.15 * Math.max(GC.maxDens, a > 0.01 ? GI.maxDens : 0));
+    var Y_BR = 0.95 * YMAX;
+
+    lineC.setAttribute("d", curvePath(GC, false)); areaC.setAttribute("d", curvePath(GC, true));
+    lineI.setAttribute("d", curvePath(GI, false)); areaI.setAttribute("d", curvePath(GI, true));
+    lineI.style.opacity = a; areaI.style.opacity = a;
+
+    // spikes at 0 (probability of no pain, full plot height = 100 %)
+    var x0 = X(0);
+    spkC.setAttribute("x", x0 + 2); spkC.setAttribute("width", 9);
+    spkC.setAttribute("y", Y(0) - GC.p * PH); spkC.setAttribute("height", GC.p * PH);
+    spkI.setAttribute("x", x0 + 13); spkI.setAttribute("width", 9);
+    spkI.setAttribute("y", Y(0) - GI.p * PH); spkI.setAttribute("height", GI.p * PH);
+    spkC.style.opacity = GC.p > 0 ? 1 : 0; spkI.style.opacity = GI.p > 0 ? a : 0;
+
+    // raw data
+    var dc = [], di = [], i;
+    for (i = 0; i < N; i++) {
+      dc.push(quantile(GC, UC[i])); di.push(quantile(GI, UI[i]));
+      ptsC[i].setAttribute("cx", X(dc[i]).toFixed(1)); ptsC[i].setAttribute("cy", BAND_C.top + 4 + JC[i] * (BAND_C.h - 8));
+      ptsI[i].setAttribute("cx", X(di[i]).toFixed(1)); ptsI[i].setAttribute("cy", BAND_I.top + 4 + JI[i] * (BAND_I.h - 8));
+      ptsI[i].style.opacity = a;
+    }
+    bandLabI.style.opacity = a;
+    drawHist(dc, histC, "var(--series-1)"); drawHist(di, histI, "var(--series-2)");
+    histI.style.opacity = a;
+    drawBox(dc, boxC, "var(--series-1)", BAND_C); drawBox(di, boxI, "var(--series-2)", BAND_I);
+    boxI.style.opacity = a;
+
+    // location markers and bracket
+    var et = easeIO(state.keyT);
+    var xc = locAt(GC, state.keyFrom, state.keyTo, et), xi = locAt(GI, state.keyFrom, state.keyTo, et);
+    var dl = xc - xi, show = a > 0.01 && Math.abs(dl) > 0.05, vis = show ? Math.min(1, a) : 0;
+    [mkC, mkI, brL, brA, brB, dotC, dotI, brT].forEach(function (n) { n.style.opacity = vis; });
+    mkC.setAttribute("x1", X(xc)); mkC.setAttribute("x2", X(xc)); mkC.setAttribute("y1", Y(0)); mkC.setAttribute("y2", Y(Y_BR));
+    mkI.setAttribute("x1", X(xi)); mkI.setAttribute("x2", X(xi)); mkI.setAttribute("y1", Y(0)); mkI.setAttribute("y2", Y(Y_BR));
+    dotC.setAttribute("cx", X(xc)); dotC.setAttribute("cy", Y(0));
+    dotI.setAttribute("cx", X(xi)); dotI.setAttribute("cy", Y(0));
+    var yb = Y(Y_BR), xlo = Math.min(xc, xi), xhi = Math.max(xc, xi);
+    brL.setAttribute("x1", X(xlo) + 6); brL.setAttribute("x2", Math.max(X(xlo) + 6, X(xhi) - 6));
+    brL.setAttribute("y1", yb); brL.setAttribute("y2", yb);
+    brA.setAttribute("d", "M" + (X(xhi) - 1) + " " + yb + "l-8 -5v10z");
+    brB.setAttribute("d", "M" + (X(xlo) + 1) + " " + yb + "l8 -5v10z");
+    brT.setAttribute("x", clamp((X(xc) + X(xi)) / 2, ML + 90, ML + PW - 90)); brT.setAttribute("y", yb - 10);
+    var kn = state.keyTo;
+    brT.textContent = "Δ = " + Math.abs(dl).toFixed(1) + (dl >= 0 ? " points less pain (" : " points more pain (") + kn + ")";
+
+    labSingle.setAttribute("x", X(4.9)); labSingle.setAttribute("y", Y(0.97 * YMAX) + 4);
+    labSingle.style.opacity = 1 - clamp(a * 1.5, 0, 1);
+
+    legC.style.opacity = a > 0.01 ? 1 : 0; legI.style.opacity = a > 0.01 ? 1 : 0;
+    var parts = [];
+    if (GC.p > 0) parts.push("control " + Math.round(GC.p * 100) + " %");
+    if (a > 0.01 && GI.p > 0) parts.push("intervention " + Math.round(GI.p * 100) + " %");
+    legS.textContent = parts.length ? "Bars at 0 = share with no pain: " + parts.join(", ") : "";
+    buildTable(mean(dc), mean(di));
+    if (!panelEls[1].hidden) render2();
+  }
+
+  // ===== Tween engine ====================================================================================
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var raf = null;
+  function easeIO(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function tween(dur, fn, done) {
+    if (raf) cancelAnimationFrame(raf);
+    if (reduce || dur === 0) { fn(1); render(); raf = null; if (done) done(); return; }
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var t = clamp((ts - t0) / dur, 0, 1);
+      fn(t); render();
+      if (t < 1) raf = requestAnimationFrame(step); else { raf = null; if (done) done(); }
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  var btnApply = document.getElementById("apply"), btnReset = document.getElementById("reset");
+  var statusEl = document.getElementById("status");
+  function setButtons() { btnApply.disabled = state.applied || state.busy; btnReset.disabled = !state.applied && !state.busy; }
+
+  btnApply.addEventListener("click", function () {
+    if (state.applied || state.busy) return;
+    state.applied = true; state.busy = true; setButtons(); statusEl.textContent = "";
+    tween(450, function (t) { state.alpha = easeOut(t); state.prog = 0; }, function () {
+      tween(2400, function (t) { state.prog = easeIO(t); }, function () {
+        state.busy = false; setButtons();
+        var d = GC.mean - GI.mean;
+        statusEl.textContent = "Intervention applied. Mean pain: control " + GC.mean.toFixed(2) + ", intervention " + GI.mean.toFixed(2) +
+          " (difference of the means: " + d.toFixed(2) + " points).";
+      });
+    });
+  });
+  btnReset.addEventListener("click", function () {
+    var p0 = state.prog;
+    state.busy = true; setButtons(); statusEl.textContent = "";
+    tween(1500, function (t) { state.prog = p0 * (1 - easeIO(t)); }, function () {
+      var a0 = state.alpha;
+      tween(350, function (t) { state.alpha = a0 * (1 - t); }, function () {
+        state.applied = false; state.busy = false; state.prog = 0; state.alpha = 0; render(); setButtons();
+        statusEl.textContent = "Back to the start: one distribution for both groups.";
+      });
+    });
+  });
+  document.getElementById("newData").addEventListener("click", function () {
+    drawUniforms(Math.floor(Math.random() * 1e9), Math.floor(Math.random() * 1e9)); render();
+  });
+
+  // ===== Hover chart 1 ===================================================================================
+  var svg = document.getElementById("svg"), hit = document.getElementById("hit");
+  var cross = document.getElementById("cross"), tip = document.getElementById("tip"), chart = document.getElementById("chart");
+  hit.addEventListener("pointermove", function (ev) {
+    var r = svg.getBoundingClientRect();
+    var x = clamp(invX((ev.clientX - r.left) / r.width * W), 0, XMAX);
+    cross.setAttribute("x1", X(x)); cross.setAttribute("x2", X(x)); cross.style.display = "";
+    tip.textContent = "";
+    var hd = document.createElement("div"); hd.className = "hd"; hd.textContent = "Pain intensity = " + x.toFixed(1); tip.appendChild(hd);
+    function row(color, name, val) {
+      var d = document.createElement("div"); d.className = "row";
+      var k = document.createElement("span"); k.className = "key"; k.style.borderTopColor = color;
+      var n = document.createElement("span"); n.className = "nm"; n.textContent = name;
+      var v = document.createElement("span"); v.className = "val"; v.textContent = val.toFixed(3);
+      d.appendChild(k); d.appendChild(n); d.appendChild(v); tip.appendChild(d);
+    }
+    row("var(--series-1)", state.alpha > 0.01 ? "Control" : "Both groups", densAt(GC, x));
+    if (state.alpha > 0.01) row("var(--series-2)", "Intervention", densAt(GI, x));
+    var note = document.createElement("div"); note.className = "hd"; note.style.marginTop = "4px"; note.textContent = "density";
+    tip.appendChild(note);
+    tip.style.display = "block";
+    var cr = chart.getBoundingClientRect();
+    var left = ev.clientX - cr.left + 14, top = ev.clientY - cr.top - 10;
+    if (left + tip.offsetWidth > cr.width) left = ev.clientX - cr.left - tip.offsetWidth - 14;
+    tip.style.left = left + "px"; tip.style.top = Math.max(0, top) + "px";
+  });
+  hit.addEventListener("pointerleave", function () { cross.style.display = "none"; tip.style.display = "none"; });
+
+  // ===== Tab 2: difference D = control - intervention ====================================================
+  // pmf of D on the grid k*GH (k = -GN..GN): continuous x continuous, atom x continuous; atom x atom (D = 0 exactly)
+  var DQ = new Float64Array(2 * GN + 1), DCUM = new Float64Array(2 * GN + 1), DTAIL = new Float64Array(2 * GN + 1), DAA = 0;
+  function buildDiff(A, B) {
+    var i, j, k, n = 2 * GN + 1;
+    var cA = new Float64Array(GN + 1), cB = new Float64Array(GN + 1);
+    for (i = 0; i <= GN; i++) { cA[i] = (1 - A.p) * A.c[i]; cB[i] = (1 - B.p) * B.c[i]; }
+    DQ.fill(0);
+    for (i = 0; i <= GN; i++) {
+      var ci = cA[i];
+      if (ci > 0) for (j = 0; j <= GN; j++) DQ[i - j + GN] += ci * cB[j];
+      DQ[i + GN] += cA[i] * B.p;                 // control patient has pain, intervention patient none: D = x
+      DQ[-i + GN] += A.p * cB[i];                // control patient no pain: D = -y
+    }
+    DAA = A.p * B.p;
+    var run = 0;
+    for (k = 0; k < n; k++) { DCUM[k] = run; run += DQ[k]; }
+    run = 0;
+    for (k = n - 1; k >= 0; k--) { DTAIL[k] = run; run += DQ[k]; }
+  }
+  function kOf(t) { return clamp(Math.round(t / GH), -GN - 1, GN + 1); }
+  function pGE(t) {                              // P(D >= t)
+    var K = kOf(t); if (K < -GN) return 1; if (K > GN) return 0;
+    return DTAIL[K + GN] + 0.5 * DQ[K + GN] + (t <= 0 ? DAA : 0);
+  }
+  function pLE(t) {                              // P(D <= t)
+    var K = kOf(t); if (K < -GN) return 0; if (K > GN) return 1;
+    return DCUM[K + GN] + 0.5 * DQ[K + GN] + (t >= 0 ? DAA : 0);
+  }
+  function dDens(t) {                            // density of the continuous part of D
+    var u = t / GH + GN; if (u <= 0 || u >= 2 * GN) return 0;
+    var a = Math.floor(u), f = u - a; return (DQ[a] * (1 - f) + DQ[a + 1] * f) / GH;
+  }
+
+  var svg2 = document.getElementById("svg2"), tip2 = document.getElementById("tip2"), chart2 = document.getElementById("chart2");
+  var W2 = 880, H2 = 270, ML2 = 56, MR2 = 24, MT2 = 16, PH2 = 170, PW2 = W2 - ML2 - MR2, BASE2 = MT2 + PH2;
+  var T0 = -10, T1 = 10, YMAX2 = 0.3;
+  function X2(t) { return ML2 + (t - T0) / (T1 - T0) * PW2; }
+  function Y2(y) { return BASE2 - y / YMAX2 * PH2; }
+  (function () {
+    var t, g2 = el("g", {}, svg2);
+    for (t = T0; t <= T1; t += 2) {
+      el("line", { x1: X2(t), x2: X2(t), y1: MT2, y2: BASE2, stroke: "var(--grid)", "stroke-width": 1 }, g2);
+      var tx = el("text", { x: X2(t), y: BASE2 + 20, "text-anchor": "middle" }, g2); tx.textContent = t;
+    }
+    el("line", { x1: ML2, x2: ML2 + PW2, y1: BASE2, y2: BASE2, stroke: "var(--axis)", "stroke-width": 1 }, g2);
+    var xt2 = el("text", { x: ML2 + PW2 / 2, y: H2 - 12, "text-anchor": "middle" }, g2);
+    xt2.textContent = "Pain difference: control patient minus intervention patient (points)";
+    var yt2 = el("text", { x: 16, y: MT2 + PH2 / 2, "text-anchor": "middle", transform: "rotate(-90 16 " + (MT2 + PH2 / 2) + ")" }, g2);
+    yt2.textContent = "Density";
+  })();
+  var tailB = el("path", { fill: "var(--series-3)", "fill-opacity": 0.16 }, svg2);
+  var tailA = el("path", { fill: "var(--series-3)", "fill-opacity": 0.38 }, svg2);
+  var lineD = el("path", { fill: "none", stroke: "var(--text-primary)", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg2);
+  var spkD = el("rect", { fill: "var(--text-primary)", "fill-opacity": 0.45, width: 8 }, svg2);
+  var spkDT = el("text", { "class": "t-small", "text-anchor": "start" }, svg2);
+  var zeroL = el("line", { x1: X2(0), x2: X2(0), y1: MT2, y2: BASE2, stroke: "var(--text-secondary)", "stroke-width": 1.5, "stroke-dasharray": "4 3" }, svg2);
+  var zeroT = el("text", { x: X2(0) + 6, y: MT2 + 12, "class": "t-small" }, svg2); zeroT.textContent = "0 = no difference";
+  var thA = el("line", { y1: MT2, y2: BASE2, stroke: "var(--series-3)", "stroke-width": 1.5 }, svg2);
+  var thB = el("line", { y1: MT2, y2: BASE2, stroke: "var(--series-3)", "stroke-width": 1.5, "stroke-opacity": 0.5 }, svg2);
+  var cross2 = el("line", { y1: MT2, y2: BASE2, stroke: "var(--axis)", "stroke-width": 1, style: "display:none" }, svg2);
+  var hit2 = el("rect", { x: ML2, y: MT2, width: PW2, height: PH2, fill: "transparent" }, svg2);
+
+  function curve2() {
+    var d = "", k;
+    for (k = -GN; k <= GN; k += 2) d += (k === -GN ? "M" : "L") + X2(k * GH).toFixed(1) + " " + Y2(DQ[k + GN] / GH).toFixed(1);
+    return d;
+  }
+  function tailPath(a, b) {
+    a = clamp(a, T0, T1); b = clamp(b, T0, T1);
+    if (b - a < 0.01) return "";
+    var ka = clamp(Math.round(a / GH), -GN, GN), kb = clamp(Math.round(b / GH), -GN, GN), k;
+    var d = "M" + X2(ka * GH).toFixed(1) + " " + Y2(0).toFixed(1);
+    for (k = ka; k <= kb; k += 2) d += "L" + X2(k * GH).toFixed(1) + " " + Y2(DQ[k + GN] / GH).toFixed(1);
+    return d + "L" + X2(kb * GH).toFixed(1) + " " + Y2(DQ[kb + GN] / GH).toFixed(1) + "L" + X2(kb * GH).toFixed(1) + " " + Y2(0).toFixed(1) + "Z";
+  }
+  var pDirEl = document.getElementById("pDir"), pRevEl = document.getElementById("pRev"), pAbsEl = document.getElementById("pAbs");
+  var simDirEl = document.getElementById("simDir"), simRevEl = document.getElementById("simRev"), simAbsEl = document.getElementById("simAbs");
+  var effNoteEl = document.getElementById("effNote");
+  var d2Slider = document.getElementById("d2"), d2Out = document.getElementById("d2Out");
+  var dSpans = document.querySelectorAll("[data-d]"), sim = null;
+  function pct(p) { return (clamp(p, 0, 1) * 100).toFixed(1) + " %"; }
+
+  function render2() {
+    var d = state.d2, k, mx = 0;
+    buildDiff(GC, GI);
+    for (k = 0; k < DQ.length; k += 2) if (DQ[k] / GH > mx) mx = DQ[k] / GH;
+    YMAX2 = Math.max(0.05, mx * 1.18);
+    lineD.setAttribute("d", curve2());
+    tailA.setAttribute("d", tailPath(d, T1));
+    tailB.setAttribute("d", tailPath(T0, -d));
+    thA.setAttribute("x1", X2(d)); thA.setAttribute("x2", X2(d));
+    thB.setAttribute("x1", X2(-d)); thB.setAttribute("x2", X2(-d));
+    thA.style.opacity = thB.style.opacity = d > 0.01 && d <= T1 ? 1 : 0;
+    var hh = clamp(DAA * PH2, 0, PH2);
+    spkD.setAttribute("x", X2(0) - 4); spkD.setAttribute("y", BASE2 - hh); spkD.setAttribute("height", hh);
+    spkD.style.opacity = DAA > 0.0005 ? 1 : 0;
+    spkDT.setAttribute("x", X2(0) + 8); spkDT.setAttribute("y", BASE2 - hh + 12);
+    spkDT.textContent = DAA > 0.0005 ? "both no pain: " + (DAA * 100).toFixed(1) + " % (bar = probability)" : "";
+    effNoteEl.textContent = state.alpha > 0.01
+      ? "Distributions in use: control mean " + GC.mean.toFixed(2) + ", intervention mean " + GI.mean.toFixed(2) + " (set in tab 1)."
+      : "No intervention applied yet: both groups are identical. Apply the intervention in tab 1 to see how the probabilities change.";
+    pDirEl.textContent = pct(pGE(d));
+    pRevEl.textContent = pct(pLE(-d));
+    pAbsEl.textContent = d <= 0 ? "100.0 %" : pct(pGE(d) + pLE(-d));
+    Array.prototype.forEach.call(dSpans, function (e) { e.textContent = d.toFixed(2); });
+    var fresh = sim && sim.d === d && sim.key === simKey();
+    simDirEl.textContent = fresh ? "Simulation (" + sim.n.toLocaleString("en-US") + " pairs): " + pct(sim.dir) : "";
+    simRevEl.textContent = fresh ? "Simulation (" + sim.n.toLocaleString("en-US") + " pairs): " + pct(sim.rev) : "";
+    simAbsEl.textContent = fresh ? "Simulation (" + sim.n.toLocaleString("en-US") + " pairs): " + pct(sim.abs) : "";
+  }
+  function simKey() { return JSON.stringify([state.ctrl, dispIntv()]); }
+  d2Slider.addEventListener("input", function () {
+    state.d2 = parseFloat(d2Slider.value); d2Out.textContent = state.d2.toFixed(2); render2();
+  });
+  document.getElementById("simBtn").addEventListener("click", function () {
+    var n = 10000, c = 0, a = 0, r = 0, k, D, d = state.d2;
+    for (k = 0; k < n; k++) {
+      D = quantile(GC, Math.random()) - quantile(GI, Math.random());
+      if (D >= d) c++;
+      if (D <= -d) r++;
+      if (Math.abs(D) >= d) a++;
+    }
+    sim = { d: d, key: simKey(), n: n, dir: c / n, rev: r / n, abs: a / n };
+    render2();
+  });
+  hit2.addEventListener("pointermove", function (ev) {
+    var r = svg2.getBoundingClientRect();
+    var t = clamp(T0 + ((ev.clientX - r.left) / r.width * W2 - ML2) / PW2 * (T1 - T0), T0, T1);
+    cross2.setAttribute("x1", X2(t)); cross2.setAttribute("x2", X2(t)); cross2.style.display = "";
+    tip2.textContent = "";
+    var hd = document.createElement("div"); hd.className = "hd"; hd.textContent = "Difference = " + t.toFixed(1) + " points"; tip2.appendChild(hd);
+    var d = document.createElement("div"); d.className = "row";
+    var k = document.createElement("span"); k.className = "key"; k.style.borderTopColor = "var(--text-primary)";
+    var n = document.createElement("span"); n.className = "nm"; n.textContent = "density";
+    var v = document.createElement("span"); v.className = "val"; v.textContent = dDens(t).toFixed(3);
+    d.appendChild(k); d.appendChild(n); d.appendChild(v); tip2.appendChild(d);
+    tip2.style.display = "block";
+    var cr = chart2.getBoundingClientRect();
+    var left = ev.clientX - cr.left + 14, top = ev.clientY - cr.top - 10;
+    if (left + tip2.offsetWidth > cr.width) left = ev.clientX - cr.left - tip2.offsetWidth - 14;
+    tip2.style.left = left + "px"; tip2.style.top = Math.max(0, top) + "px";
+  });
+  hit2.addEventListener("pointerleave", function () { cross2.style.display = "none"; tip2.style.display = "none"; });
+
+  // ===== Location marker: mean, median or mode (markers glide) ===========================================
+  var rafLoc = null;
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="loc"]'), function (r) {
+    r.addEventListener("change", function () {
+      if (!r.checked) return;
+      state.keyFrom = state.keyT >= 1 ? state.keyTo : state.keyTo; state.keyTo = r.value; state.keyT = 0;
+      if (rafLoc) cancelAnimationFrame(rafLoc);
+      if (reduce) { state.keyT = 1; render(); return; }
+      var t0 = null;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        state.keyT = clamp((ts - t0) / 450, 0, 1); render();
+        if (state.keyT < 1) rafLoc = requestAnimationFrame(step); else rafLoc = null;
+      }
+      rafLoc = requestAnimationFrame(step);
+    });
+  });
+
+  // ===== Tabs ============================================================================================
+  var tabEls = [document.getElementById("tab1"), document.getElementById("tab2")];
+  var panelEls = [document.getElementById("panel1"), document.getElementById("panel2")];
+  function selectTab(i, focus) {
+    tabEls.forEach(function (tb, k) {
+      tb.setAttribute("aria-selected", k === i ? "true" : "false");
+      tb.tabIndex = k === i ? 0 : -1;
+      panelEls[k].hidden = k !== i;
+    });
+    if (focus) tabEls[i].focus();
+    if (i === 1) render2();
+  }
+  tabEls.forEach(function (tb, k) {
+    tb.addEventListener("click", function () { selectTab(k, false); });
+    tb.addEventListener("keydown", function (ev) {
+      var n = ev.key === "ArrowRight" || ev.key === "ArrowLeft" ? (k + 1) % 2 : ev.key === "Home" ? 0 : ev.key === "End" ? 1 : -1;
+      if (n >= 0) { ev.preventDefault(); selectTab(n, true); }
+    });
+  });
+  document.getElementById("goTab1").addEventListener("click", function () { selectTab(0, true); });
+
+  // ===== Raw data switch =================================================================================
+  var rawToggle = document.getElementById("rawToggle");
+  var bandBottom = BAND_I.top + BAND_I.h, shiftUp = bandBottom - BASE;
+  [gPts, gHist, gBand, gBox].forEach(function (g) { g.style.transition = "opacity .3s"; g.style.pointerEvents = "none"; });
+  function setRaw(on) {
+    [gPts, gHist, gBand, gBox].forEach(function (g) { g.style.opacity = on ? 1 : 0; });
+    var bottom = on ? bandBottom : BASE;
+    vLines.forEach(function (l) { l.setAttribute("y2", bottom); });
+    gTicks.setAttribute("transform", "translate(0 " + (on ? 0 : -shiftUp) + ")");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + (on ? H : H - shiftUp));
+    cross.setAttribute("y2", bottom);
+  }
+  rawToggle.addEventListener("change", function () { setRaw(rawToggle.checked); });
+
+  render(); setButtons(); setRaw(false);
+})();
+</script>
+</body>
+</html>
