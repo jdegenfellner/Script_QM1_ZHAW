@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1000 researchers, no real effect: how many discoveries?</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGVsbGlwc2UgY3g9IjMwIiBjeT0iNDAiIHJ4PSIxOSIgcnk9IjEyIiBmaWxsPSIjZjZjMjQ0Ii8+PGNpcmNsZSBjeD0iNDAiIGN5PSIyNCIgcj0iMTAiIGZpbGw9IiNmNmMyNDQiLz48cGF0aCBkPSJNNDgsMjQgTDU4LDI3IEw0OCwzMCBaIiBmaWxsPSIjZWI2ODM0Ii8+PGNpcmNsZSBjeD0iNDIiIGN5PSIyMiIgcj0iMiIgZmlsbD0iIzFmMjkzMyIvPjxwYXRoIGQ9Ik0xNiwzOCBxMTAsMTAgMjIsMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDk5YTFiIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==">
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f3f2ef;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --grid:           #e6e5e1;
+    --axis:           #bdbcb6;
+    --series-1:       #2a78d6;   /* no effect found */
+    --series-2:       #eb6834;   /* effect found (false positive) */
+    --focus:          #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #262624;
+      --text-primary:   #f0efec;
+      --text-secondary: #c3c2b7;
+      --grid:           #2f2f2d;
+      --axis:           #55544f;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --focus:          #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #262624;
+    --text-primary:   #f0efec;
+    --text-secondary: #c3c2b7;
+    --grid:           #2f2f2d;
+    --axis:           #55544f;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --focus:          #3987e5;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-1); color: var(--text-primary);
+         font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 40px; }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 4px; font-weight: 650; }
+  h2 { font-size: 1.15rem; line-height: 1.3; margin: 28px 0 4px; font-weight: 650; }
+  .sub { margin: 0 0 14px; color: var(--text-secondary); max-width: 78ch; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 0 0 12px; }
+  button { font: inherit; font-weight: 600; padding: 9px 18px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
+  button.primary { background: var(--series-2); color: #fff; }
+  button.ghost { background: transparent; color: var(--text-primary); border-color: var(--axis); }
+  button[disabled] { opacity: .45; cursor: default; }
+  button:focus-visible, input[type=range]:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .slider { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+  .slider output { color: var(--text-primary); font-weight: 650; min-width: 3.5ch; text-align: right; }
+  input[type=range] { width: 170px; accent-color: var(--series-2); }
+
+  .tiles { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; }
+  .tile { flex: 1 1 220px; background: var(--surface-2); border-radius: 8px; padding: 10px 16px; }
+  .tile .tl { color: var(--text-secondary); font-size: .9rem; }
+  .tile .tv { font-size: 2rem; line-height: 1.2; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .tile .ts { color: var(--text-secondary); font-size: .88rem; min-height: 1.3em; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; color: var(--text-secondary); font-size: .9rem; margin: 6px 0 2px; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend svg { width: 20px; height: 20px; }
+
+  .chart { position: relative; }
+  svg.plot { display: block; width: 100%; height: auto; }
+  svg.plot text { font: 13px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: var(--text-secondary); }
+  svg.plot .t-small { font-size: 12px; }
+
+  /* ducks */
+  .duck .hop { transform-box: fill-box; transform-origin: 50% 100%; }
+  .duck use { color: var(--series-1); opacity: .5; transition: color .25s, opacity .25s; }
+  .duck .ring { fill: none; stroke: var(--series-2); stroke-width: 1.6; opacity: 0; }
+  .duck.found use { color: var(--series-2); opacity: 1; }
+  .duck.found .ring { opacity: 1; transition: opacity .25s; }
+  .duck.found .hop { animation: hop .75s ease-out both; }
+  @keyframes hop {
+    0%   { transform: translateY(0) scale(1); }
+    30%  { transform: translateY(-9px) scale(1.45); }
+    58%  { transform: translateY(0) scale(1.2); }
+    100% { transform: translateY(0) scale(1.2); }
+  }
+  #ducks.busy .duck use { animation: pulse .5s ease-in-out 2; }
+  @keyframes pulse { 0%, 100% { opacity: .5; } 50% { opacity: .9; } }
+  @media (prefers-reduced-motion: reduce) {
+    .duck.found .hop, #ducks.busy .duck use { animation: none; }
+  }
+
+  .status { margin: 8px 0 0; min-height: 1.5em; color: var(--text-secondary); }
+  .note { margin: 14px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--surface-2); color: var(--text-secondary); max-width: 84ch; font-size: .95rem; }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+  table { border-collapse: collapse; margin-top: 8px; font-size: .92rem; }
+  th, td { text-align: right; padding: 6px 14px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th { color: var(--text-secondary); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>1000 researchers, no real effect: how many discoveries?</h1>
+  <p class="sub">1000 researchers each test the same therapy, and in reality the therapy does <strong>not</strong> work at all.
+     Each study still has a small chance of a false positive. Press the button and see who finds an effect anyway.</p>
+
+  <div class="controls">
+    <button id="run" class="primary" type="button">Run the experiment</button>
+    <button id="reset" class="ghost" type="button" disabled>Reset ducks</button>
+    <label class="slider" for="pFalse">Chance of a false positive per study
+      <input id="pFalse" type="range" min="1" max="10" step="1" value="4"><output id="pOut" for="pFalse">4 %</output></label>
+  </div>
+
+  <div class="tiles" aria-live="off">
+    <div class="tile"><div class="tl">Researchers who found an effect</div><div class="tv" id="tvFound">&ndash;</div><div class="ts" id="tsFound"></div></div>
+    <div class="tile"><div class="tl">Expected by chance alone</div><div class="tv" id="tvExp">40</div><div class="ts" id="tsExp">1000 &times; 4 %, typical spread &plusmn; 6</div></div>
+    <div class="tile"><div class="tl">Chance of this many or more</div><div class="tv" id="tvTail">&ndash;</div><div class="ts" id="tsTail"></div></div>
+  </div>
+
+  <div class="legend" aria-hidden="true">
+    <span><svg viewBox="0 0 24 24"><use href="#duck" style="color:var(--series-1);opacity:.5"></use></svg>no effect found</span>
+    <span><svg viewBox="0 0 24 24"><use href="#duck" style="color:var(--series-2)"></use><circle cx="12" cy="12" r="11" fill="none" stroke="var(--series-2)" stroke-width="1.6"></circle></svg>found an effect (a false positive)</span>
+  </div>
+
+  <div class="chart">
+    <svg class="plot" id="duckSvg" viewBox="0 0 920 372" role="img" aria-labelledby="dTitle dDesc">
+      <title id="dTitle">1000 ducks, each one a researcher</title>
+      <desc id="dDesc">A grid of 1000 ducks. After the experiment is run, the ducks of the researchers who found an effect change colour and jump.</desc>
+      <defs>
+        <symbol id="duck" viewBox="0 0 24 24">
+          <ellipse cx="11" cy="15" rx="8.5" ry="5.5" fill="currentColor"></ellipse>
+          <circle cx="17.5" cy="8.5" r="4.2" fill="currentColor"></circle>
+          <path d="M21.2 8.2 L24 9.4 L21.2 10.6 Z" fill="currentColor"></path>
+          <path d="M6 14.2 Q10 10.8 14.5 15" fill="none" stroke="var(--surface-1)" stroke-width="1.3" stroke-linecap="round"></path>
+          <circle cx="18.7" cy="7.7" r="0.95" fill="var(--surface-1)"></circle>
+        </symbol>
+      </defs>
+      <g id="ducks"></g>
+    </svg>
+  </div>
+
+  <p class="status" id="status" aria-live="polite"></p>
+
+  <h2>Do it again and again: how much does the number vary?</h2>
+  <p class="sub">Each dot below the axis is one research department of 1000 researchers, placed at the number of false positives it got by chance.
+     The orange bars show the <strong>share of departments</strong> per count (a density, so the total area is 1) and appear after 10 departments.
+     The line is what theory predicts (binomial distribution, n = 1000). It stays the same, the bars come closer to it with every department.</p>
+  <div class="controls">
+    <button id="sim100" class="ghost" type="button">Simulate 100 more departments</button>
+    <button id="clearH" class="ghost" type="button" disabled>Clear history</button>
+  </div>
+  <div class="chart">
+    <svg class="plot" id="histSvg" viewBox="0 0 920 310" role="img" aria-labelledby="hTitle hDesc">
+      <title id="hTitle">Number of false positives per department</title>
+      <desc id="hDesc">A histogram of relative frequencies with the theoretical density of the binomial distribution. The bars approach the fixed curve as more departments are added. Each department is also shown as a dot below the axis.</desc>
+    </svg>
+  </div>
+
+  <p class="note">Nobody in this department has an effect to find: every orange duck is a <strong>false positive</strong>.
+     With a 4 % chance per study, about 40 out of 1000 researchers will report something &ldquo;significant&rdquo; by chance alone.
+     Getting 47 would not be unusual, getting 137 would be extremely unusual.</p>
+
+  <details>
+    <summary>Table view</summary>
+    <table id="tbl"></table>
+  </details>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var N = 1000, COLS = 50, ROWS = 20, CELL = 18, X0 = 10, Y0 = 6;
+  var p = 0.04, busy = false;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var LF = [0], i0;
+  for (i0 = 1; i0 <= N; i0++) LF.push(LF[i0 - 1] + Math.log(i0));
+  function pmf(k) { return k < 0 || k > N ? 0 : Math.exp(LF[N] - LF[k] - LF[N - k] + k * Math.log(p) + (N - k) * Math.log(1 - p)); }
+  function tail(x) { var s = 0, k; for (k = x; k <= N; k++) s += pmf(k); return Math.min(1, s); }
+  function fmtP(q) { return q >= 0.995 ? "> 99 %" : q < 0.0001 ? "< 0.01 %" : q < 0.1 ? (q * 100).toFixed(1) + " %" : Math.round(q * 100) + " %"; }
+  var NS = "http://www.w3.org/2000/svg";
+  function el(name, attrs, parent) { var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  // ----- Ducks ----------------------------------------------------------------------------------
+  var gDucks = document.getElementById("ducks"), ducks = [], j;
+  for (j = 0; j < N; j++) {
+    var g = el("g", { "class": "duck", transform: "translate(" + (X0 + (j % COLS) * CELL) + " " + (Y0 + Math.floor(j / COLS) * CELL) + ")" }, gDucks);
+    var hop = el("g", { "class": "hop" }, g);
+    el("circle", { "class": "ring", cx: CELL / 2, cy: CELL / 2, r: CELL / 2 - 0.5 }, hop);
+    el("use", { href: "#duck", x: 1.5, y: 1.5, width: CELL - 3, height: CELL - 3 }, hop);
+    ducks.push({ g: g, hop: hop, use: hop.lastChild, ring: hop.firstChild });
+  }
+
+  // ----- Readouts -------------------------------------------------------------------------------
+  var tvFound = document.getElementById("tvFound"), tsFound = document.getElementById("tsFound");
+  var tvExp = document.getElementById("tvExp"), tsExp = document.getElementById("tsExp");
+  var tvTail = document.getElementById("tvTail"), tsTail = document.getElementById("tsTail");
+  var statusEl = document.getElementById("status");
+  function showExpected() {
+    var m = N * p, sd = Math.sqrt(N * p * (1 - p));
+    tvExp.textContent = Math.round(m);
+    tsExp.textContent = "1000 × " + Math.round(p * 100) + " %, typical spread ± " + sd.toFixed(1);
+  }
+  function showCount(c, final) {
+    tvFound.textContent = c;
+    tsFound.textContent = (c / N * 100).toFixed(1) + " % of all researchers";
+    if (final) {
+      tvTail.textContent = fmtP(tail(c));
+      tsTail.textContent = "if nobody has a real effect";
+    } else { tvTail.textContent = "–"; tsTail.textContent = ""; }
+  }
+  function clearReadouts() { tvFound.textContent = "–"; tsFound.textContent = ""; tvTail.textContent = "–"; tsTail.textContent = ""; }
+
+  // ----- History (dot plot) ---------------------------------------------------------------------
+  var history = [];
+  var hs = document.getElementById("histSvg"), HW = 920, HML = 56, HMR = 24, HPW = HW - HML - HMR, HBASE = 214, HTOP = 34;
+  function hRender() {
+    while (hs.children.length > 2) hs.removeChild(hs.lastElementChild);      // keep <title> and <desc>
+    var m = N * p, sd = Math.sqrt(N * p * (1 - p)), xm = Math.max(80, Math.ceil((m + 5 * sd) / 10) * 10);
+    function X(k) { return HML + k / xm * HPW; }
+    var k, i, R = history.length, bw = Math.max(1, Math.round(sd / 3)), peak = 0;
+    for (k = 0; k <= xm; k++) peak = Math.max(peak, pmf(k));
+    var ymax = peak * 2.4;
+    function Y(d) { return HBASE - clamp(d, 0, ymax) / ymax * (HBASE - HTOP); }
+    // grid and axes
+    var ys = [0.005, 0.01, 0.02, 0.025, 0.05, 0.1], ystep = ys[0];
+    for (i = 0; i < ys.length; i++) { ystep = ys[i]; if (ymax / ystep <= 6) break; }
+    for (var v = ystep; v <= ymax + 1e-9; v += ystep) {
+      el("line", { x1: HML, x2: HML + HPW, y1: Y(v), y2: Y(v), stroke: "var(--grid)", "stroke-width": 1 }, hs);
+      var yl = el("text", { x: HML - 8, y: Y(v) + 4, "text-anchor": "end", "class": "t-small" }, hs); yl.textContent = v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+    }
+    for (k = 0; k <= xm; k += 10) {
+      el("line", { x1: X(k), x2: X(k), y1: HTOP, y2: HBASE + 32, stroke: "var(--grid)", "stroke-width": 1 }, hs);
+      var t = el("text", { x: X(k), y: HBASE + 52, "text-anchor": "middle" }, hs); t.textContent = k;
+    }
+    el("line", { x1: HML, x2: HML + HPW, y1: HBASE, y2: HBASE, stroke: "var(--axis)", "stroke-width": 1 }, hs);
+    var xt = el("text", { x: HML + HPW / 2, y: HBASE + 76, "text-anchor": "middle" }, hs);
+    xt.textContent = "Number of researchers (out of 1000) who found an effect";
+    var yt = el("text", { x: 16, y: (HTOP + HBASE) / 2, "text-anchor": "middle", transform: "rotate(-90 16 " + ((HTOP + HBASE) / 2) + ")" }, hs);
+    yt.textContent = "Density (share of departments per count)";
+    // histogram of relative frequencies, drawn as a density (share / bin width)
+    if (R >= 10) {
+      var bins = {}, b;
+      history.forEach(function (c) { b = Math.floor(c / bw) * bw; bins[b] = (bins[b] || 0) + 1; });
+      Object.keys(bins).forEach(function (key) {
+        var s = +key, dens = bins[key] / R / bw, x1 = X(s - 0.5), x2 = X(s + bw - 0.5);
+        el("rect", { x: x1 + 0.5, y: Y(dens), width: Math.max(1, x2 - x1 - 1), height: HBASE - Y(dens), fill: "var(--series-2)", "fill-opacity": 0.45 }, hs);
+      });
+    }
+    // theory: the density of the binomial distribution (does not depend on the number of departments)
+    var d = "", first = true;
+    for (k = 0; k <= xm; k++) { d += (first ? "M" : "L") + X(k).toFixed(1) + " " + Y(pmf(k)).toFixed(1); first = false; }
+    el("path", { d: d, fill: "none", stroke: "var(--text-primary)", "stroke-width": 2, "stroke-linejoin": "round" }, hs);
+    // the departments themselves: one dot each, in a strip below the axis (fixed jitter)
+    history.forEach(function (c, idx) {
+      var jy = ((idx * 0.6180339887) % 1);
+      el("circle", { cx: X(c), cy: HBASE + 9 + jy * 22, r: 3, fill: "var(--series-2)", "fill-opacity": 0.55 }, hs);
+    });
+    // marker for the expected value
+    el("line", { x1: X(m), x2: X(m), y1: HTOP, y2: HBASE, stroke: "var(--text-secondary)", "stroke-width": 1.5 }, hs);
+    var et = el("text", { x: X(m), y: HTOP - 8, "class": "t-small", "text-anchor": "middle" }, hs); et.style.fill = "var(--text-primary)"; et.textContent = "expected: " + Math.round(m);
+    document.getElementById("clearH").disabled = R === 0;
+    buildTable();
+  }
+  function buildTable() {
+    var tb = document.getElementById("tbl"), h = history, n = h.length, html = "";
+    if (n === 0) { tb.innerHTML = "<tbody><tr><td>No department yet.</td></tr></tbody>"; return; }
+    var mean = h.reduce(function (a, b) { return a + b; }, 0) / n, sd = n > 1 ? Math.sqrt(h.reduce(function (a, b) { return a + (b - mean) * (b - mean); }, 0) / (n - 1)) : NaN;
+    html += "<thead><tr><th>Departments</th><th>Mean count</th><th>SD of counts</th><th>Smallest</th><th>Largest</th><th>Theory: mean</th><th>Theory: SD</th></tr></thead><tbody>";
+    html += "<tr><td>" + n + "</td><td>" + mean.toFixed(1) + "</td><td>" + (isNaN(sd) ? "&ndash;" : sd.toFixed(1)) + "</td><td>" + Math.min.apply(null, h) + "</td><td>" + Math.max.apply(null, h) +
+            "</td><td>" + (N * p).toFixed(1) + "</td><td>" + Math.sqrt(N * p * (1 - p)).toFixed(1) + "</td></tr></tbody>";
+    tb.innerHTML = html;
+  }
+
+  // ----- Running one experiment -----------------------------------------------------------------
+  var runBtn = document.getElementById("run"), resetBtn = document.getElementById("reset");
+  var timers = [], rafId = null;
+  function clearDucks() {
+    timers.forEach(clearTimeout); timers = []; if (rafId) cancelAnimationFrame(rafId); rafId = null;
+    document.getElementById("ducks").classList.remove("busy");
+    ducks.forEach(function (d) {
+      d.g.classList.remove("found");
+      d.hop.style.animationDelay = ""; d.use.style.transitionDelay = ""; d.ring.style.transitionDelay = "";
+    });
+  }
+  function run() {
+    if (busy) return;
+    clearDucks(); clearReadouts(); busy = true;
+    runBtn.disabled = true; resetBtn.disabled = true;
+    statusEl.textContent = "All researchers are running their studies …";
+    document.getElementById("ducks").classList.add("busy");
+    var found = [], k;
+    for (k = 0; k < N; k++) found.push(Math.random() < p);
+    var count = found.filter(Boolean).length, delays = [];
+    var pause = reduce ? 0 : 1100, spread = reduce ? 0 : 1.7;
+    found.forEach(function (f, i) { if (f) delays.push(Math.random() * spread); });
+    delays.sort(function (a, b) { return a - b; });
+    timers.push(setTimeout(function () {
+      document.getElementById("ducks").classList.remove("busy");
+      statusEl.textContent = "Results are coming in …";
+      var di = 0;
+      found.forEach(function (f, i) {
+        if (!f) return;
+        var d = ducks[i], dl = Math.random() * spread;
+        d.hop.style.animationDelay = dl + "s"; d.use.style.transitionDelay = dl + "s"; d.ring.style.transitionDelay = dl + "s";
+        d.g.classList.add("found");
+        d._delay = dl;
+      });
+      var delaysSorted = ducks.filter(function (d, i) { return found[i]; }).map(function (d) { return d._delay; }).sort(function (a, b) { return a - b; });
+      var t0 = null, idx = 0;
+      function tick(ts) {
+        if (t0 === null) t0 = ts;
+        var t = (ts - t0) / 1000;
+        while (idx < delaysSorted.length && delaysSorted[idx] <= t) idx++;
+        showCount(idx, false);
+        if (idx < count || t < spread) rafId = requestAnimationFrame(tick);
+        else finish();
+      }
+      function finish() {
+        rafId = null; showCount(count, true);
+        history.push(count); hRender();
+        var m = N * p;
+        statusEl.textContent = count + " of 1000 researchers found an effect, although there is none. By chance alone we expect about " + Math.round(m) +
+          ". The chance of " + count + " or more is " + fmtP(tail(count)) + ".";
+        busy = false; runBtn.disabled = false; resetBtn.disabled = false; runBtn.textContent = "Run the experiment again";
+      }
+      if (reduce) { showCount(count, true); finish(); } else rafId = requestAnimationFrame(tick);
+    }, pause));
+  }
+  runBtn.addEventListener("click", run);
+  resetBtn.addEventListener("click", function () {
+    if (busy) return;
+    clearDucks(); clearReadouts(); statusEl.textContent = ""; resetBtn.disabled = true; runBtn.textContent = "Run the experiment";
+  });
+
+  // ----- Settings and history buttons -----------------------------------------------------------
+  var slider = document.getElementById("pFalse");
+  slider.addEventListener("input", function () {
+    if (busy) { slider.value = Math.round(p * 100); return; }
+    p = parseInt(slider.value, 10) / 100;
+    document.getElementById("pOut").textContent = slider.value + " %";
+    clearDucks(); clearReadouts(); showExpected(); history = []; hRender();
+    statusEl.textContent = "New chance of a false positive. The history was cleared."; resetBtn.disabled = true; runBtn.textContent = "Run the experiment";
+  });
+  document.getElementById("sim100").addEventListener("click", function () {
+    if (busy) return;
+    var r, k, c;
+    for (r = 0; r < 100; r++) { c = 0; for (k = 0; k < N; k++) if (Math.random() < p) c++; history.push(c); }
+    hRender();
+    statusEl.textContent = "100 more departments simulated: " + history.length + " departments in total.";
+  });
+  document.getElementById("clearH").addEventListener("click", function () { if (busy) return; history = []; hRender(); statusEl.textContent = ""; });
+
+  showExpected(); hRender();
+})();
+</script>
+</body>
+</html>

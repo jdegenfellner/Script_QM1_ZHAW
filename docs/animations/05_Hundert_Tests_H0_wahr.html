@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>100 True Null Hypotheses</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTEiIHk9IjExIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNkYmUwZTYiLz48cmVjdCB4PSIyMyIgeT0iMTEiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgcng9IjIuNSIgZmlsbD0iI2RiZTBlNiIvPjxyZWN0IHg9IjM2IiB5PSIxMSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMi41IiBmaWxsPSIjZWI2ODM0Ii8+PHJlY3QgeD0iNDgiIHk9IjExIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNkYmUwZTYiLz48cmVjdCB4PSIxMSIgeT0iMjMiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgcng9IjIuNSIgZmlsbD0iI2RiZTBlNiIvPjxyZWN0IHg9IjIzIiB5PSIyMyIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMi41IiBmaWxsPSIjZGJlMGU2Ii8+PHJlY3QgeD0iMzYiIHk9IjIzIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNkYmUwZTYiLz48cmVjdCB4PSI0OCIgeT0iMjMiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgcng9IjIuNSIgZmlsbD0iI2RiZTBlNiIvPjxyZWN0IHg9IjExIiB5PSIzNiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMi41IiBmaWxsPSIjZWI2ODM0Ii8+PHJlY3QgeD0iMjMiIHk9IjM2IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNkYmUwZTYiLz48cmVjdCB4PSIzNiIgeT0iMzYiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgcng9IjIuNSIgZmlsbD0iI2RiZTBlNiIvPjxyZWN0IHg9IjQ4IiB5PSIzNiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMi41IiBmaWxsPSIjZGJlMGU2Ii8+PHJlY3QgeD0iMTEiIHk9IjQ4IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNkYmUwZTYiLz48cmVjdCB4PSIyMyIgeT0iNDgiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgcng9IjIuNSIgZmlsbD0iI2RiZTBlNiIvPjxyZWN0IHg9IjM2IiB5PSI0OCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMi41IiBmaWxsPSIjZGJlMGU2Ii8+PHJlY3QgeD0iNDgiIHk9IjQ4IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNlYjY4MzQiLz48L3N2Zz4=">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --tile:#e4e7eb; --tileOn:#f6f7f9; --tileInk:#52606d;
+  --sig:#c9501f; --sigSoft:#f2a98c; --theory:#2a78d6; --accent:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --tile:#2a313b; --tileOn:#1c222a; --tileInk:#a3adb8;
+    --sig:#d95926; --sigSoft:#8a4126; --theory:#3987e5; --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:940px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 6px}
+.lead{color:var(--ink2);margin:0 0 18px}
+.controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-bottom:16px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:8px 14px;font:inherit;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+.lab{font-size:.88rem;color:var(--ink2);margin-right:8px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 16px;border-radius:10px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--sig);border-color:var(--sig);color:#fff;font-weight:700}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,.seg button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.stage{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:760px){.stage{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;background:var(--card);padding:10px;border-radius:14px}
+.tile{aspect-ratio:1;border-radius:8px;background:var(--tile);display:flex;align-items:center;justify-content:center;
+  font-size:clamp(9px,1.7vw,13px);color:var(--tileInk);font-variant-numeric:tabular-nums;transition:background .15s}
+.tile.on{background:var(--tileOn);box-shadow:inset 0 0 0 1px var(--line)}
+.tile.sig{background:var(--sig);color:#fff;font-weight:700;box-shadow:none;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.5)}60%{transform:scale(1.22)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion: reduce){.tile.sig{animation:none}.tile{transition:none}}
+.cards{display:grid;gap:10px}
+.card{background:var(--card);border-radius:12px;padding:12px 16px}
+.card .k{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.9rem;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.card .v small{font-size:1rem;font-weight:500;color:var(--ink2)}
+.card .s{font-size:.88rem;color:var(--ink2)}
+.v.sigc{color:var(--sig)}
+.chartbox{margin-top:20px;background:var(--card);border-radius:14px;padding:12px 12px 6px}
+.chartbox h2{font-size:.98rem;margin:2px 4px 2px}
+.chartbox p{font-size:.85rem;color:var(--ink2);margin:0 4px 6px}
+svg{width:100%;height:auto;display:block}
+svg text{fill:var(--ink2);font-family:inherit;font-size:13px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--ink2);margin:4px 4px 8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+details{margin-top:14px;font-size:.9rem}
+summary{cursor:pointer;color:var(--ink2)}
+table{border-collapse:collapse;margin-top:8px}
+td,th{padding:3px 12px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+.note{margin-top:20px;border-left:5px solid var(--sig);background:var(--card);border-radius:0 12px 12px 0;padding:12px 16px}
+.note p{margin:0}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<main>
+<h1>100 true null hypotheses: how many come out “significant”?</h1>
+<p class="lead">Each tile is one study. In every single one, <strong>there is no effect</strong> (H<sub>0</sub> is true).
+Press the button and watch which tiles are nevertheless “significant”.</p>
+
+<div class="controls">
+  <span><span class="lab">Significance level</span>
+    <span class="seg" role="group" aria-label="Significance level">
+      <button type="button" data-a="0.01" aria-pressed="false">1 %</button>
+      <button type="button" data-a="0.04" aria-pressed="true">4 %</button>
+      <button type="button" data-a="0.05" aria-pressed="false">5 %</button>
+    </span>
+  </span>
+  <button id="run" class="btn primary" type="button">Run 100 new tests</button>
+  <button id="fast" class="btn" type="button">100 more runs, fast</button>
+  <button id="reset" class="btn" type="button">Reset</button>
+</div>
+
+<div class="stage">
+  <div id="grid" class="grid" role="img" aria-label="Ten by ten field of 100 hypothesis tests"></div>
+  <div class="cards">
+    <div class="card"><div class="k">This run</div>
+      <div class="v sigc"><span id="cnt">–</span> <small>of 100 significant</small></div>
+      <div class="s" id="cntSub">Press “Run 100 new tests”.</div></div>
+    <div class="card"><div class="k">Expected by chance alone</div>
+      <div class="v" id="exp">4</div>
+      <div class="s" id="expSub">100 × 0.04</div></div>
+    <div class="card"><div class="k">Chance of at least one “finding”</div>
+      <div class="v" id="pAny">98.3 %</div>
+      <div class="s" id="pAnySub">1 − 0.96<sup>100</sup>. Your runs so far: –</div></div>
+  </div>
+</div>
+
+<div class="chartbox">
+  <h2>How many significant results per run?</h2>
+  <p id="chartSub">Every run adds one dot. From 10 runs on, the dots become a histogram of relative frequencies.</p>
+  <div class="legend">
+    <span><i style="background:var(--sigSoft)"></i>your runs</span>
+    <span><i style="background:var(--theory)"></i>theory: binomial distribution Bin(100, α)</span>
+  </div>
+  <svg id="chart" viewBox="0 0 920 270" role="img" aria-label="Distribution of the number of significant tests per run"></svg>
+</div>
+
+<details>
+  <summary>Table of the significant tests in the current run</summary>
+  <table id="tbl"><thead><tr><th>Test no.</th><th>p-value</th></tr></thead><tbody></tbody></table>
+</details>
+
+<div class="note">
+  <p>Every single test has only an α chance of a false alarm. But with 100 tests, at least one false alarm is almost certain,
+  and the average run produces about 100 × α of them. If only those tiles were reported, they would look like discoveries.
+  This is the multiple-testing problem behind <em>p</em>-hacking.
+  (Under H<sub>0</sub> a p-value is uniformly distributed between 0 and 1, which is exactly what is simulated here.)</p>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+</main>
+
+<script>
+(function(){
+  var N = 100, alpha = 0.04, ps = [], busy = false, revealed = 0;
+  var hist = [], KMAX = 14;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(id){ return document.getElementById(id); };
+  var grid = $('grid'), tiles = [];
+
+  for (var i = 0; i < N; i++){
+    var t = document.createElement('div'); t.className = 'tile'; t.title = 'Test ' + (i + 1);
+    grid.appendChild(t); tiles.push(t);
+  }
+
+  function fmtP(p){ return (p < 0.1 ? p.toFixed(3) : p.toFixed(2)).replace(/^0/, ''); }
+  function pct(x){ return (100 * x).toFixed(1).replace(/\.0$/, '') + ' %'; }
+
+  // binomial pmf via log factorials
+  var lf = [0]; for (var m = 1; m <= N; m++) lf[m] = lf[m - 1] + Math.log(m);
+  function pmf(k){
+    return Math.exp(lf[N] - lf[k] - lf[N - k] + k * Math.log(alpha) + (N - k) * Math.log(1 - alpha));
+  }
+  function genP(){ var a = []; for (var i = 0; i < N; i++) a.push(Math.random()); return a; }
+  function countSig(a){ var c = 0; for (var i = 0; i < a.length; i++) if (a[i] < alpha) c++; return c; }
+
+  function showTile(i){
+    var t = tiles[i], p = ps[i];
+    t.textContent = fmtP(p);
+    t.className = 'tile on' + (p < alpha ? ' sig' : '');
+    t.title = 'Test ' + (i + 1) + ': p = ' + p.toFixed(4) + (p < alpha ? ' (significant)' : '');
+  }
+  function clearTiles(){
+    for (var i = 0; i < N; i++){ tiles[i].className = 'tile'; tiles[i].textContent = ''; tiles[i].title = 'Test ' + (i + 1); }
+  }
+  function showAll(){ for (var i = 0; i < N; i++) showTile(i); revealed = N; }
+
+  function updateStatic(){
+    var e = N * alpha;
+    $('exp').textContent = (Math.round(e * 100) / 100).toString();
+    $('expSub').textContent = '100 × ' + alpha;
+    $('pAny').textContent = pct(1 - Math.pow(1 - alpha, N));
+  }
+  function updateRuns(){
+    var R = hist.length, any = 0, sum = 0;
+    for (var i = 0; i < R; i++){ if (hist[i] >= 1) any++; sum += hist[i]; }
+    $('pAnySub').innerHTML = '1 − ' + (1 - alpha).toFixed(2) + '<sup>100</sup>. Your runs so far: ' +
+      (R ? any + ' of ' + R + ' had at least one' : '–');
+    $('cntSub').textContent = R ? ('Average over ' + R + ' run' + (R > 1 ? 's' : '') + ': ' + (sum / R).toFixed(1)) : 'Press “Run 100 new tests”.';
+  }
+  function updateTable(){
+    var tb = document.querySelector('#tbl tbody'); tb.innerHTML = '';
+    for (var i = 0; i < ps.length; i++) if (ps[i] < alpha){
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + (i + 1) + '</td><td>' + ps[i].toFixed(4) + '</td>';
+      tb.appendChild(tr);
+    }
+  }
+
+  // ---- chart ----
+  function renderChart(){
+    var svg = $('chart'), W = 920, H = 270, L = 58, Rm = 16, T = 14, B = 44;
+    var pw = W - L - Rm, ph = H - T - B, nb = KMAX + 1, bw = pw / nb;
+    var peak = 0; for (var k = 0; k <= KMAX; k++) peak = Math.max(peak, pmf(k));
+    var ymax = Math.min(1, Math.ceil(peak * 2 * 20) / 20);
+    var step = ymax <= 0.25 ? 0.05 : 0.1;
+    function X(k){ return L + (k + 0.5) * bw; }
+    function Y(v){ return T + ph - v / ymax * ph; }
+    var R = hist.length, s = '';
+    for (var v = 0; v <= ymax + 1e-9; v += step){
+      s += '<line x1="' + L + '" x2="' + (W - Rm) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--grid)"/>';
+      s += '<text x="' + (L - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + v.toFixed(2) + '</text>';
+    }
+    s += '<text x="14" y="' + (T + ph / 2) + '" transform="rotate(-90 14 ' + (T + ph / 2) + ')" text-anchor="middle">relative frequency</text>';
+    for (k = 0; k <= KMAX; k++){
+      s += '<text x="' + X(k) + '" y="' + (H - 24) + '" text-anchor="middle">' + (k === KMAX ? k + '+' : k) + '</text>';
+    }
+    s += '<text x="' + (L + pw / 2) + '" y="' + (H - 4) + '" text-anchor="middle">number of significant tests in one run</text>';
+    s += '<line x1="' + L + '" x2="' + (W - Rm) + '" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="var(--line)" stroke-width="1.5"/>';
+
+    var counts = []; for (k = 0; k <= KMAX; k++) counts.push(0);
+    for (var i = 0; i < R; i++) counts[Math.min(hist[i], KMAX)]++;
+
+    if (R >= 10){
+      s += '<defs><clipPath id="clipc"><rect x="' + L + '" y="' + T + '" width="' + pw + '" height="' + ph + '"/></clipPath></defs><g clip-path="url(#clipc)">';
+      for (k = 0; k <= KMAX; k++){
+        var f = counts[k] / R, h = f / ymax * ph;
+        if (counts[k]) s += '<rect x="' + (X(k) - bw * 0.4) + '" y="' + (Y(0) - h) + '" width="' + (bw * 0.8) + '" height="' + h + '" rx="3" fill="var(--sigSoft)"/>';
+      }
+      s += '</g>';
+    } else {
+      var stack = {}, r = Math.min(11, bw * 0.4);
+      for (i = 0; i < R; i++){
+        var kk = Math.min(hist[i], KMAX); stack[kk] = (stack[kk] || 0) + 1;
+        s += '<circle cx="' + X(kk) + '" cy="' + (Y(0) - r - (stack[kk] - 1) * (2 * r + 2)) + '" r="' + r + '" fill="var(--sig)" stroke="var(--bg)" stroke-width="2"/>';
+      }
+    }
+    // theory
+    var pts = [];
+    for (k = 0; k <= KMAX; k++){
+      var pv = k === KMAX ? (function(){ var a = 0; for (var q = KMAX; q <= N; q++) a += pmf(q); return a; })() : pmf(k);
+      pts.push([X(k), Y(pv)]);
+    }
+    s += '<polyline fill="none" stroke="var(--theory)" stroke-width="2.5" points="' + pts.map(function(p){ return p[0] + ',' + p[1]; }).join(' ') + '"/>';
+    for (k = 0; k <= KMAX; k++) s += '<circle cx="' + pts[k][0] + '" cy="' + pts[k][1] + '" r="4" fill="var(--theory)" stroke="var(--bg)" stroke-width="2"/>';
+    // expected marker
+    var ex = L + (N * alpha + 0.5) * bw;
+    s += '<line x1="' + ex + '" x2="' + ex + '" y1="' + T + '" y2="' + Y(0) + '" stroke="var(--ink2)" stroke-dasharray="4 4"/>';
+    s += '<text x="' + (ex + 6) + '" y="' + (T + 12) + '">expected = ' + (Math.round(N * alpha * 100) / 100) + '</text>';
+    // hover targets
+    for (k = 0; k <= KMAX; k++){
+      var th = pmf(k);
+      s += '<rect x="' + (X(k) - bw / 2) + '" y="' + T + '" width="' + bw + '" height="' + ph + '" fill="transparent"><title>' +
+        (k === KMAX ? k + ' or more' : k) + ' significant: ' + counts[k] + ' of ' + R + ' runs' + (R ? ' (' + pct(counts[k] / R) + ')' : '') +
+        '; theory ' + pct(th) + '</title></rect>';
+    }
+    svg.innerHTML = s;
+  }
+
+  function setBusy(b){
+    busy = b;
+    ['run', 'fast', 'reset'].forEach(function(id){ $(id).disabled = b; });
+    Array.prototype.forEach.call(document.querySelectorAll('.seg button'), function(x){ x.disabled = b; });
+  }
+
+  function finishRun(c){
+    hist.push(c);
+    $('cnt').textContent = c;
+    updateRuns(); updateTable(); renderChart();
+    $('live').textContent = c + ' of 100 tests significant although there is no effect.';
+    setBusy(false);
+  }
+
+  function runAnimated(){
+    if (busy) return;
+    setBusy(true); ps = genP(); clearTiles(); revealed = 0; $('cnt').textContent = '0';
+    var c = 0, total = countSig(ps);
+    if (reduce){ showAll(); finishRun(total); return; }
+    (function step(){
+      var i = revealed++;
+      showTile(i);
+      if (ps[i] < alpha){ c++; $('cnt').textContent = c; }
+      if (revealed < N) setTimeout(step, 13); else finishRun(c);
+    })();
+  }
+
+  function runFast(){
+    if (busy) return;
+    var last = 0;
+    for (var r = 0; r < 100; r++){ ps = genP(); last = countSig(ps); hist.push(last); }
+    showAll(); $('cnt').textContent = last;
+    updateRuns(); updateTable(); renderChart();
+    $('live').textContent = hist.length + ' runs in total.';
+  }
+
+  function resetAll(){
+    if (busy) return;
+    hist = []; ps = []; clearTiles(); $('cnt').textContent = '–';
+    updateRuns(); updateTable(); renderChart();
+    document.querySelector('#tbl tbody').innerHTML = '';
+  }
+
+  function setAlpha(a){
+    if (busy) return;
+    alpha = a;
+    Array.prototype.forEach.call(document.querySelectorAll('.seg button'), function(x){
+      x.setAttribute('aria-pressed', parseFloat(x.dataset.a) === a ? 'true' : 'false');
+    });
+    hist = [];
+    updateStatic();
+    if (ps.length){ showAll(); $('cnt').textContent = countSig(ps); updateTable(); }
+    updateRuns(); renderChart();
+  }
+
+  $('run').addEventListener('click', runAnimated);
+  $('fast').addEventListener('click', runFast);
+  $('reset').addEventListener('click', resetAll);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg button'), function(b){
+    b.addEventListener('click', function(){ setAlpha(parseFloat(b.dataset.a)); });
+  });
+
+  updateStatic(); updateRuns(); renderChart();
+})();
+</script>
+</body>
+</html>

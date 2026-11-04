@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central Limit Theorem</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTAuMCIgeT0iNDciIHdpZHRoPSI0LjYiIGhlaWdodD0iNSIgcng9IjEiIGZpbGw9IiNlYjY4MzQiIGZpbGwtb3BhY2l0eT0iLjc1Ii8+PHJlY3QgeD0iMTUuMiIgeT0iNDEiIHdpZHRoPSI0LjYiIGhlaWdodD0iMTEiIHJ4PSIxIiBmaWxsPSIjZWI2ODM0IiBmaWxsLW9wYWNpdHk9Ii43NSIvPjxyZWN0IHg9IjIwLjQiIHk9IjMyIiB3aWR0aD0iNC42IiBoZWlnaHQ9IjIwIiByeD0iMSIgZmlsbD0iI2ViNjgzNCIgZmlsbC1vcGFjaXR5PSIuNzUiLz48cmVjdCB4PSIyNS42IiB5PSIyMiIgd2lkdGg9IjQuNiIgaGVpZ2h0PSIzMCIgcng9IjEiIGZpbGw9IiNlYjY4MzQiIGZpbGwtb3BhY2l0eT0iLjc1Ii8+PHJlY3QgeD0iMzAuOCIgeT0iMTYiIHdpZHRoPSI0LjYiIGhlaWdodD0iMzYiIHJ4PSIxIiBmaWxsPSIjZWI2ODM0IiBmaWxsLW9wYWNpdHk9Ii43NSIvPjxyZWN0IHg9IjM2LjAiIHk9IjIyIiB3aWR0aD0iNC42IiBoZWlnaHQ9IjMwIiByeD0iMSIgZmlsbD0iI2ViNjgzNCIgZmlsbC1vcGFjaXR5PSIuNzUiLz48cmVjdCB4PSI0MS4yIiB5PSIzMiIgd2lkdGg9IjQuNiIgaGVpZ2h0PSIyMCIgcng9IjEiIGZpbGw9IiNlYjY4MzQiIGZpbGwtb3BhY2l0eT0iLjc1Ii8+PHJlY3QgeD0iNDYuNCIgeT0iNDEiIHdpZHRoPSI0LjYiIGhlaWdodD0iMTEiIHJ4PSIxIiBmaWxsPSIjZWI2ODM0IiBmaWxsLW9wYWNpdHk9Ii43NSIvPjxyZWN0IHg9IjUxLjYiIHk9IjQ3IiB3aWR0aD0iNC42IiBoZWlnaHQ9IjUiIHJ4PSIxIiBmaWxsPSIjZWI2ODM0IiBmaWxsLW9wYWNpdHk9Ii43NSIvPjxwYXRoIGQ9Ik03LjAsNDguNCBMNy44LDQ3LjcgTDguNyw0Ny4wIEw5LjUsNDYuMiBMMTAuMyw0NS4zIEwxMS4yLDQ0LjQgTDEyLjAsNDMuMyBMMTIuOCw0Mi4xIEwxMy43LDQwLjggTDE0LjUsMzkuNSBMMTUuMywzOC4wIEwxNi4yLDM2LjUgTDE3LjAsMzQuOCBMMTcuOCwzMy4yIEwxOC43LDMxLjQgTDE5LjUsMjkuNiBMMjAuMywyNy44IEwyMS4yLDI2LjAgTDIyLjAsMjQuMiBMMjIuOCwyMi40IEwyMy43LDIwLjcgTDI0LjUsMTkuMCBMMjUuMywxNy41IEwyNi4yLDE2LjEgTDI3LjAsMTQuOCBMMjcuOCwxMy43IEwyOC43LDEyLjcgTDI5LjUsMTIuMCBMMzAuMywxMS40IEwzMS4yLDExLjEgTDMyLjAsMTEuMCBMMzIuOCwxMS4xIEwzMy43LDExLjQgTDM0LjUsMTIuMCBMMzUuMywxMi43IEwzNi4yLDEzLjcgTDM3LjAsMTQuOCBMMzcuOCwxNi4xIEwzOC43LDE3LjUgTDM5LjUsMTkuMCBMNDAuMywyMC43IEw0MS4yLDIyLjQgTDQyLjAsMjQuMiBMNDIuOCwyNi4wIEw0My43LDI3LjggTDQ0LjUsMjkuNiBMNDUuMywzMS40IEw0Ni4yLDMzLjIgTDQ3LjAsMzQuOCBMNDcuOCwzNi41IEw0OC43LDM4LjAgTDQ5LjUsMzkuNSBMNTAuMyw0MC44IEw1MS4yLDQyLjEgTDUyLjAsNDMuMyBMNTIuOCw0NC40IEw1My43LDQ1LjMgTDU0LjUsNDYuMiBMNTUuMyw0Ny4wIEw1Ni4yLDQ3LjcgTDU3LjAsNDguNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGY5ZDhhIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --pop:#2a78d6; --mean:#eb6834; --meanSoft:#f2a98c; --norm:#0f9d8a; --accent:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --pop:#3987e5; --mean:#d95926; --meanSoft:#8a4126; --norm:#2ec4ae; --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 6px}
+.lead{color:var(--ink2);margin:0 0 16px}
+.row{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-bottom:12px}
+.lab{font-size:.88rem;color:var(--ink2);margin-right:8px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:8px 12px;font:inherit;font-size:.92rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 16px;border-radius:10px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--mean);border-color:var(--mean);color:#fff;font-weight:700}
+.btn:disabled,.seg button:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,.seg button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.nbox{display:inline-flex;align-items:center;gap:10px}
+input[type=range]{width:min(320px,60vw);accent-color:var(--accent)}
+.nval{font-weight:700;font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
+label.chk{font-size:.92rem;display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 0 14px}
+@media (max-width:720px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:12px;padding:10px 14px}
+.card .k{font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.15rem;font-weight:700;font-variant-numeric:tabular-nums}
+.card .s{font-size:.86rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.chartbox{background:var(--card);border-radius:14px;padding:10px 10px 4px}
+svg{width:100%;height:auto;display:block}
+svg text{fill:var(--ink2);font-family:inherit;font-size:13px}
+svg text.t{fill:var(--ink);font-size:14px;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--ink2);margin:2px 6px 6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.note{margin-top:18px;border-left:5px solid var(--norm);background:var(--card);border-radius:0 12px 12px 0;padding:12px 16px}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<main>
+<h1>Central limit theorem: means of samples look normal</h1>
+<p class="lead">Pick a population, pick a sample size <em>n</em>, then draw samples. Each sample gives one mean <span style="white-space:nowrap">X̄</span>.
+Watch what the collection of means looks like.</p>
+
+<div class="row">
+  <span><span class="lab">Population</span>
+    <span class="seg" id="distSeg" role="group" aria-label="Population distribution"></span></span>
+</div>
+<div class="row">
+  <span class="nbox"><span class="lab">Sample size n</span>
+    <input id="nrange" type="range" min="1" max="100" value="30" aria-label="Sample size n">
+    <span class="nval" id="nval">30</span></span>
+  <label class="chk"><input type="checkbox" id="zoom"> zoom in on the means</label>
+  <label class="chk"><input type="checkbox" id="shownorm" checked> show normal curve</label>
+</div>
+<div class="row">
+  <button id="b1" class="btn primary" type="button">Draw 1 sample</button>
+  <button id="b100" class="btn" type="button">Draw 100 samples</button>
+  <button id="b1000" class="btn" type="button">Draw 1,000 samples</button>
+  <button id="breset" class="btn" type="button">Reset</button>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="k">Population</div><div class="v" id="cPop">–</div><div class="s" id="cPopS"></div></div>
+  <div class="card"><div class="k">Theory</div><div class="v" id="cTh">–</div><div class="s" id="cThS"></div></div>
+  <div class="card"><div class="k">Your sample means</div><div class="v" id="cEmp">–</div><div class="s" id="cEmpS"></div></div>
+</div>
+
+<div class="chartbox">
+  <div class="legend">
+    <span><i style="background:var(--pop);opacity:.6"></i>population / single observations X</span>
+    <span><i style="background:var(--meanSoft)"></i>histogram of the sample means X̄ (relative frequency density)</span>
+    <span><i style="background:var(--norm)"></i>normal curve N(μ, σ²/n)</span>
+  </div>
+  <svg id="chart" viewBox="0 0 920 560" role="img" aria-label="Population distribution above, histogram of sample means with normal curve below"></svg>
+</div>
+
+<div class="note">
+  <p>Whatever the shape of the population (skewed, flat, two humps, a coin), the means of many samples pile up in a bell shape
+  around the true mean μ. For large <em>n</em>, X̄ is approximately <strong>N(μ, σ²/n)</strong>.</p>
+  <p>The spread of X̄ is the <strong>standard error</strong> σ/√n. It shrinks when n grows, but slowly: four times as many observations halve it.
+  How large n has to be depends on the population. Try the very skewed one: n = 30 is not enough yet.</p>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function gauss(){ var u = 1 - Math.random(), v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function npdf(x, m, s){ var z = (x - m) / s; return Math.exp(-0.5 * z * z) / (s * Math.sqrt(2 * Math.PI)); }
+
+  var D = {
+    exp:  {name: 'Skewed (exponential)', mu: 1, sd: 1, a: -0.3, b: 6, ymax: 1.1,
+           pdf: function(x){ return x < 0 ? 0 : Math.exp(-x); }, draw: function(){ return -Math.log(1 - Math.random()); }},
+    unif: {name: 'Flat (uniform)', mu: 0.5, sd: Math.sqrt(1 / 12), a: -0.25, b: 1.25, ymax: 1.3,
+           pdf: function(x){ return (x >= 0 && x <= 1) ? 1 : 0; }, draw: Math.random},
+    bi:   {name: 'Two humps', mu: 0, sd: Math.sqrt(2.5), a: -4, b: 4, ymax: 0.9,
+           pdf: function(x){ return 0.5 * npdf(x, -1.5, 0.5) + 0.5 * npdf(x, 1.5, 0.5); },
+           draw: function(){ return (Math.random() < 0.5 ? -1.5 : 1.5) + 0.5 * gauss(); }},
+    coin: {name: 'Coin (1 with prob. 0.2)', mu: 0.2, sd: 0.4, a: -0.5, b: 1.5, ymax: 1, discrete: [[0, 0.8], [1, 0.2]],
+           draw: function(){ return Math.random() < 0.2 ? 1 : 0; }},
+    logn: {name: 'Very skewed (lognormal)', mu: Math.exp(0.5), sd: Math.sqrt((Math.E - 1) * Math.E), a: -0.3, b: 9, ymax: 0.75,
+           pdf: function(x){ return x <= 0 ? 0 : Math.exp(-0.5 * Math.log(x) * Math.log(x)) / (x * Math.sqrt(2 * Math.PI)); },
+           draw: function(){ return Math.exp(gauss()); }}
+  };
+  var order = ['exp', 'unif', 'bi', 'coin', 'logn'];
+  var key = 'exp', n = 30, means = [], last = [], busy = false, ref = null;
+
+  // layout
+  var W = 920, L = 58, R = 20, pw = W - L - R;
+  var A = {top: 34, h: 150}, rugH = 34, B = {top: 316, h: 170};
+  var axisAy = A.top + A.h, axisBy = B.top + B.h;
+
+  function fmt(x, d){ return (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); }
+  function niceStep(raw){ var p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p; }
+  function ticks(a, b, k){
+    var st = niceStep((b - a) / k), t = [], s = Math.ceil(a / st - 1e-9) * st;
+    for (var v = s; v <= b + 1e-9; v += st) t.push(Math.abs(v) < 1e-12 ? 0 : v);
+    var dec = Math.max(0, -Math.floor(Math.log10(st) + 1e-9)); return {t: t, d: dec};
+  }
+
+  function rangeB(){
+    var d = D[key], se = d.sd / Math.sqrt(n);
+    if ($('zoom').checked) return [d.mu - 4.2 * se, d.mu + 4.2 * se];
+    return [d.a, d.b];
+  }
+  function binSpec(){
+    var rb = rangeB(), bw = (rb[1] - rb[0]) / ($('zoom').checked ? 48 : 120), d = D[key];
+    if (d.discrete){ var m = Math.max(1, Math.ceil(bw * n)); return {bw: m / n, lattice: true}; }
+    return {bw: bw, lattice: false, e0: rb[0]};
+  }
+  function bins(arr){
+    var sp = binSpec(), map = {}, i, idx;
+    for (i = 0; i < arr.length; i++){
+      idx = sp.lattice ? Math.round(arr[i] / sp.bw) : Math.floor((arr[i] - sp.e0) / sp.bw);
+      map[idx] = (map[idx] || 0) + 1;
+    }
+    var out = [];
+    for (var k in map){
+      var j = +k, x0 = sp.lattice ? (j - 0.5) * sp.bw : sp.e0 + j * sp.bw;
+      out.push({x0: x0, x1: x0 + sp.bw, dens: map[k] / (arr.length * sp.bw), c: map[k]});
+    }
+    return out;
+  }
+  function computeRef(){
+    var d = D[key], arr = [], i, j, s;
+    for (i = 0; i < 4000; i++){ s = 0; for (j = 0; j < n; j++) s += d.draw(); arr.push(s / n); }
+    var pk = 0; bins(arr).forEach(function(b){ pk = Math.max(pk, b.dens); }); ref = pk;
+  }
+  function ymaxB(){
+    var d = D[key], se = d.sd / Math.sqrt(n), np = npdf(0, 0, se);
+    var m = 1.2 * Math.max(np, ref || 0), st = niceStep(m / 4);
+    return Math.ceil(m / st) * st;
+  }
+
+  function render(fall){
+    var d = D[key], se = d.sd / Math.sqrt(n), s = '', i;
+    var xA = function(x){ return L + (Math.min(d.b, Math.max(d.a, x)) - d.a) / (d.b - d.a) * pw; };
+    var rb = rangeB(), xB = function(x){ return L + (Math.min(rb[1], Math.max(rb[0], x)) - rb[0]) / (rb[1] - rb[0]) * pw; };
+    var yA = function(v){ return A.top + A.h - Math.min(v, d.ymax) / d.ymax * A.h; };
+    var yb = ymaxB(), yB = function(v){ return B.top + B.h - Math.min(v, yb) / yb * B.h; };
+
+    // ===== Panel A =====
+    s += '<text class="t" x="' + L + '" y="18">Population: how one observation X is distributed</text>';
+    var tk = ticks(0, d.ymax, 3);
+    tk.t.forEach(function(v){
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yA(v) + '" y2="' + yA(v) + '" stroke="var(--grid)"/>';
+      s += '<text x="' + (L - 8) + '" y="' + (yA(v) + 4) + '" text-anchor="end">' + fmt(v, tk.d) + '</text>';
+    });
+    s += '<text x="12" y="' + (A.top + A.h / 2) + '" transform="rotate(-90 12 ' + (A.top + A.h / 2) + ')" text-anchor="middle">' + (d.discrete ? 'probability' : 'density') + '</text>';
+    if (d.discrete){
+      d.discrete.forEach(function(p){
+        s += '<rect x="' + (xA(p[0]) - 22) + '" y="' + yA(p[1]) + '" width="44" height="' + (axisAy - yA(p[1])) + '" rx="3" fill="var(--pop)" fill-opacity=".35" stroke="var(--pop)" stroke-width="2.5"/>';
+      });
+    } else {
+      var path = 'M' + xA(d.a) + ',' + axisAy, N2 = 360;
+      for (i = 0; i <= N2; i++){ var x = d.a + (d.b - d.a) * i / N2; path += ' L' + xA(x) + ',' + yA(d.pdf(x)); }
+      path += ' L' + xA(d.b) + ',' + axisAy + ' Z';
+      s += '<path d="' + path + '" fill="var(--pop)" fill-opacity=".3" stroke="var(--pop)" stroke-width="2.5" stroke-linejoin="round"/>';
+    }
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + axisAy + '" y2="' + axisAy + '" stroke="var(--line)" stroke-width="1.5"/>';
+    var ta = ticks(d.a, d.b, 8);
+    ta.t.forEach(function(v){ s += '<text x="' + xA(v) + '" y="' + (axisAy + rugH + 14) + '" text-anchor="middle">' + fmt(v, ta.d) + '</text>'; });
+    // true mean marker
+    s += '<line x1="' + xA(d.mu) + '" x2="' + xA(d.mu) + '" y1="' + (A.top - 2) + '" y2="' + (axisAy + rugH - 2) + '" stroke="var(--ink2)" stroke-dasharray="4 4"/>';
+    s += '<text x="' + (xA(d.mu) + 6) + '" y="' + (A.top + 8) + '">μ = ' + fmt(d.mu, 2) + '</text>';
+    // sample rug
+    s += '<text x="' + (L - 8) + '" y="' + (axisAy + 22) + '" text-anchor="end" style="font-size:11px">last sample</text>';
+    if (last.length){
+      var sm = 0;
+      for (i = 0; i < last.length; i++){
+        sm += last[i];
+        var jy = axisAy + 10 + ((i * 7919) % 17) / 17 * (rugH - 16);
+        s += '<circle cx="' + xA(last[i]) + '" cy="' + jy + '" r="3.2" fill="var(--pop)" fill-opacity=".75"/>';
+      }
+      sm /= last.length;
+      s += '<path d="M' + xA(sm) + ',' + (axisAy + 3) + ' l-7,-11 l14,0 Z" fill="var(--mean)" stroke="var(--bg)" stroke-width="1.5"/>';
+      s += '<text x="' + (xA(sm) + 10) + '" y="' + (axisAy - 4) + '" style="fill:var(--mean);font-weight:700">x̄ = ' + fmt(sm, 2) + '</text>';
+    }
+
+    // ===== Panel B =====
+    var M = means.length;
+    s += '<text class="t" x="' + L + '" y="' + (B.top - 16) + '">Sample means X̄ (each from n = ' + n + ' observations)' + (M ? ', ' + M.toLocaleString('en-US') + ' sample' + (M > 1 ? 's' : '') : '') + '</text>';
+    var tb = ticks(0, yb, 4);
+    tb.t.forEach(function(v){
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yB(v) + '" y2="' + yB(v) + '" stroke="var(--grid)"/>';
+      s += '<text x="' + (L - 8) + '" y="' + (yB(v) + 4) + '" text-anchor="end">' + fmt(v, tb.d) + '</text>';
+    });
+    s += '<text x="12" y="' + (B.top + B.h / 2) + '" transform="rotate(-90 12 ' + (B.top + B.h / 2) + ')" text-anchor="middle">density</text>';
+    s += '<defs><clipPath id="clB"><rect x="' + L + '" y="' + B.top + '" width="' + pw + '" height="' + (B.h + 1) + '"/></clipPath></defs>';
+    s += '<g clip-path="url(#clB)">';
+    if (M >= 20){
+      bins(means).forEach(function(b){
+        var x0 = xB(b.x0), x1 = xB(b.x1), h = axisBy - yB(b.dens);
+        s += '<rect x="' + x0 + '" y="' + (axisBy - h) + '" width="' + Math.max(0.8, x1 - x0 - 0.6) + '" height="' + h + '" fill="var(--meanSoft)" stroke="var(--mean)" stroke-width=".8"><title>' +
+          fmt(b.x0, 3) + ' to ' + fmt(b.x1, 3) + ': ' + b.c + ' of ' + M + ' means, density ' + fmt(b.dens, 2) + '</title></rect>';
+      });
+    } else {
+      var stack = {};
+      for (i = 0; i < M; i++){
+        var cx = xB(means[i]), col = Math.round(cx / 12); stack[col] = (stack[col] || 0) + 1;
+        s += '<circle cx="' + cx + '" cy="' + (axisBy - 7 - (stack[col] - 1) * 13) + '" r="6" fill="var(--mean)" stroke="var(--bg)" stroke-width="1.5"/>';
+      }
+    }
+    s += '</g>';
+    if ($('shownorm').checked){
+      var p2 = '', N3 = 300;
+      for (i = 0; i <= N3; i++){ var xv = rb[0] + (rb[1] - rb[0]) * i / N3; p2 += (i ? ' L' : 'M') + xB(xv) + ',' + yB(npdf(xv, d.mu, se)); }
+      s += '<g clip-path="url(#clB)"><path d="' + p2 + '" fill="none" stroke="var(--norm)" stroke-width="3"/></g>';
+    }
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + axisBy + '" y2="' + axisBy + '" stroke="var(--line)" stroke-width="1.5"/>';
+    s += '<line x1="' + xB(d.mu) + '" x2="' + xB(d.mu) + '" y1="' + B.top + '" y2="' + axisBy + '" stroke="var(--ink2)" stroke-dasharray="4 4"/>';
+    var tbx = ticks(rb[0], rb[1], 8);
+    tbx.t.forEach(function(v){ s += '<text x="' + xB(v) + '" y="' + (axisBy + 18) + '" text-anchor="middle">' + fmt(v, tbx.d) + '</text>'; });
+    s += '<text x="' + (L + pw / 2) + '" y="' + (axisBy + 40) + '" text-anchor="middle">sample mean X̄' + ($('zoom').checked ? '  (zoomed axis)' : '  (same axis as above)') + '</text>';
+    // falling dot
+    if (fall) s += '<circle cx="' + fall.x + '" cy="' + fall.y + '" r="7" fill="var(--mean)" stroke="var(--bg)" stroke-width="2"/>';
+    $('chart').innerHTML = s;
+  }
+
+  function cards(){
+    var d = D[key], se = d.sd / Math.sqrt(n), M = means.length;
+    $('cPop').textContent = d.name;
+    $('cPopS').textContent = 'μ = ' + fmt(d.mu, 2) + ',  σ = ' + fmt(d.sd, 2);
+    $('cTh').textContent = 'X̄ ≈ N(' + fmt(d.mu, 2) + ', ' + fmt(se * se, 3) + ')';
+    $('cThS').textContent = 'σ²/n = ' + fmt(d.sd * d.sd, 2) + ' / ' + n + ',  standard error σ/√n = ' + fmt(se, 3);
+    if (M < 2){ $('cEmp').textContent = M ? 'x̄ = ' + fmt(means[0], 3) : '–'; $('cEmpS').textContent = M ? '1 sample so far' : 'No samples yet'; return; }
+    var m = 0, v = 0, i; for (i = 0; i < M; i++) m += means[i]; m /= M;
+    for (i = 0; i < M; i++) v += (means[i] - m) * (means[i] - m); v /= (M - 1);
+    $('cEmp').textContent = 'mean ' + fmt(m, 3) + ',  SD ' + fmt(Math.sqrt(v), 3);
+    $('cEmpS').textContent = M.toLocaleString('en-US') + ' samples. Compare with μ and σ/√n on the left.';
+  }
+  function refresh(){ cards(); render(null); }
+
+  function setBusy(b){ busy = b; ['b1', 'b100', 'b1000', 'breset'].forEach(function(id){ $(id).disabled = b; });
+    Array.prototype.forEach.call(document.querySelectorAll('#distSeg button'), function(x){ x.disabled = b; }); $('nrange').disabled = b; }
+
+  function oneSample(){ var d = D[key], s = [], i; for (i = 0; i < n; i++) s.push(d.draw()); return s; }
+  function mean(a){ var t = 0; for (var i = 0; i < a.length; i++) t += a[i]; return t / a.length; }
+
+  function drawMany(k){
+    if (busy) return;
+    for (var r = 0; r < k; r++){ last = oneSample(); means.push(mean(last)); }
+    refresh();
+    $('live').textContent = means.length + ' sample means drawn.';
+  }
+  function ease(t){ return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function drawOne(){
+    if (busy) return;
+    last = oneSample(); var m = mean(last);
+    if (reduce){ means.push(m); refresh(); return; }
+    setBusy(true); cards(); render(null);
+    var d = D[key], rb = rangeB();
+    var x0 = L + (Math.min(d.b, Math.max(d.a, m)) - d.a) / (d.b - d.a) * pw;
+    var x1 = L + (Math.min(rb[1], Math.max(rb[0], m)) - rb[0]) / (rb[1] - rb[0]) * pw;
+    var y0 = axisAy + 4, y1 = axisBy - 7;
+    setTimeout(function(){
+      var t0 = performance.now(), dur = 750;
+      (function frame(now){
+        var t = Math.min(1, (now - t0) / dur), e = ease(t);
+        render({x: x0 + (x1 - x0) * e, y: y0 + (y1 - y0) * e});
+        if (t < 1) requestAnimationFrame(frame);
+        else { means.push(m); setBusy(false); refresh(); $('live').textContent = means.length + ' sample means drawn.'; }
+      })(t0);
+    }, 450);
+  }
+  function resetMeans(){ means = []; last = []; }
+  function structureChanged(){ resetMeans(); computeRef(); refresh(); }
+
+  // controls
+  var seg = $('distSeg');
+  order.forEach(function(k){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = D[k].name; b.dataset.k = k;
+    b.setAttribute('aria-pressed', k === key ? 'true' : 'false');
+    b.addEventListener('click', function(){
+      if (busy) return; key = k;
+      Array.prototype.forEach.call(seg.children, function(x){ x.setAttribute('aria-pressed', x.dataset.k === k ? 'true' : 'false'); });
+      structureChanged();
+    });
+    seg.appendChild(b);
+  });
+  $('nrange').addEventListener('input', function(){ n = +this.value; $('nval').textContent = n; structureChanged(); });
+  $('zoom').addEventListener('change', function(){ computeRef(); refresh(); });
+  $('shownorm').addEventListener('change', function(){ render(null); });
+  $('b1').addEventListener('click', drawOne);
+  $('b100').addEventListener('click', function(){ drawMany(100); });
+  $('b1000').addEventListener('click', function(){ drawMany(1000); });
+  $('breset').addEventListener('click', function(){ if (busy) return; resetMeans(); refresh(); });
+
+  computeRef(); refresh();
+})();
+</script>
+</body>
+</html>

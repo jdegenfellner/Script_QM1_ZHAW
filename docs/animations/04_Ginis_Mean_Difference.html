@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gini's Mean Difference</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTEyLDQ2IFEyNCwxNCAzNiw0NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWI2ODM0IiBzdHJva2Utd2lkdGg9IjMuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI0LDQ2IFEzOCw2IDUyLDQ2IiBmaWxsPSJub25lIiBzdHJva2U9IiNlYjY4MzQiIHN0cm9rZS13aWR0aD0iMy41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIuNiIvPjxwYXRoIGQ9Ik0xMiw0NiBRMzIsLTYgNTIsNDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViNjgzNCIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW9wYWNpdHk9Ii4zNSIvPjxsaW5lIHgxPSI4IiB5MT0iNDgiIHgyPSI1NiIgeTI9IjQ4IiBzdHJva2U9IiM1MjYwNmQiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iNDgiIHI9IjUiIGZpbGw9IiMyYTc4ZDYiLz48Y2lyY2xlIGN4PSIyNCIgY3k9IjQ4IiByPSI1IiBmaWxsPSIjMmE3OGQ2Ii8+PGNpcmNsZSBjeD0iMzYiIGN5PSI0OCIgcj0iNSIgZmlsbD0iIzJhNzhkNiIvPjxjaXJjbGUgY3g9IjUyIiBjeT0iNDgiIHI9IjUiIGZpbGw9IiMyYTc4ZDYiLz48L3N2Zz4=">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --pt:#2a78d6; --gmd:#eb6834; --sd:#2a78d6; --accent:#2a78d6; --hl:#0f9d8a;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --pt:#3987e5; --gmd:#d95926; --sd:#3987e5; --accent:#3987e5; --hl:#2ec4ae;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 6px}
+.lead{color:var(--ink2);margin:0 0 12px}
+.formula{background:var(--card);border-radius:12px;padding:10px 16px;margin:0 0 14px;font-size:1.02rem;overflow-x:auto}
+.formula b{color:var(--gmd)}
+.row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:12px}
+.lab{font-size:.88rem;color:var(--ink2);margin-right:8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:8px 14px;font:inherit;font-size:.92rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:10px;font:inherit;font-size:.92rem;cursor:pointer}
+.btn.primary{background:var(--gmd);border-color:var(--gmd);color:#fff;font-weight:700}
+.btn:focus-visible,.seg button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input[type=range]{width:min(220px,50vw);accent-color:var(--accent)}
+.nval{font-weight:700;min-width:2ch;display:inline-block;text-align:right}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:6px 0 14px}
+@media (max-width:820px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:12px;padding:10px 14px}
+.card .k{font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.card .s{font-size:.84rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.card.g .v{color:var(--gmd)} .card.s2 .v{color:var(--sd)}
+.chartbox{background:var(--card);border-radius:14px;padding:8px 8px 4px;touch-action:none}
+svg{width:100%;height:auto;display:block;user-select:none;-webkit-user-select:none}
+svg text{fill:var(--ink2);font-family:inherit;font-size:13px}
+svg text.t{fill:var(--ink);font-size:14px;font-weight:600}
+.arc{fill:none;stroke:var(--gmd);stroke-opacity:.2;stroke-width:2;transition:stroke-opacity .1s}
+.arc.hl{stroke:var(--hl);stroke-opacity:1;stroke-width:3.5}
+.bar{fill:var(--gmd);fill-opacity:.55}
+.bar.hl{fill:var(--hl);fill-opacity:1}
+.dot{fill:var(--pt);stroke:var(--bg);stroke-width:2.5;cursor:ew-resize}
+.dot.hl{fill:var(--hl)}
+.dot:focus{outline:none}
+.note{margin-top:16px;border-left:5px solid var(--gmd);background:var(--card);border-radius:0 12px 12px 0;padding:12px 16px}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<main>
+<h1>Gini's mean difference: the average distance between two observations</h1>
+<p class="lead">Take any two different observations. How far apart are they, on average? Drag the blue points and watch all pairwise distances (arcs above, bars below).</p>
+
+<div class="formula">
+  GMD = <b>average of |x<sub>i</sub> − x<sub>j</sub>|</b> over all pairs i &lt; j
+  = 2 / (n·(n−1)) · Σ<sub>i&lt;j</sub> |x<sub>i</sub> − x<sub>j</sub>|
+</div>
+
+<div class="row">
+  <span><span class="lab">New sample from</span>
+    <span class="seg" id="srcSeg" role="group" aria-label="Distribution of the new sample">
+      <button type="button" data-k="norm" aria-pressed="true">Normal</button>
+      <button type="button" data-k="skew" aria-pressed="false">Skewed</button>
+    </span></span>
+  <span><span class="lab">n</span><input id="nr" type="range" min="4" max="12" value="8" aria-label="Sample size n"> <span class="nval" id="nv">8</span></span>
+  <button id="bnew" class="btn primary" type="button">Draw new sample</button>
+  <button id="bout" class="btn" type="button">Send largest point to the edge (outlier)</button>
+</div>
+
+<div class="cards">
+  <div class="card g"><div class="k">Gini's mean difference</div><div class="v" id="cG">–</div><div class="s" id="cGs"></div></div>
+  <div class="card s2"><div class="k">Standard deviation s</div><div class="v" id="cS">–</div><div class="s" id="cSs"></div></div>
+  <div class="card"><div class="k">GMD / s</div><div class="v" id="cR">–</div><div class="s">For normal data about 1.13</div></div>
+  <div class="card"><div class="k">Change since this sample</div><div class="v" id="cC" style="font-size:1.05rem">–</div><div class="s" id="cCs"></div></div>
+</div>
+
+<div class="chartbox"><svg id="chart" viewBox="0 0 920 600" role="group" aria-label="Points on a number line with all pairwise distances"></svg></div>
+
+<div class="row" style="margin-top:12px">
+  <span class="lab">Pick two observations at random:</span>
+  <button id="p1" class="btn" type="button">1 random pair</button>
+  <button id="p100" class="btn" type="button">100 random pairs</button>
+  <span id="pr" style="font-variant-numeric:tabular-nums"></span>
+</div>
+
+<div class="note">
+  <p>The GMD is exactly the expected distance between two observations drawn at random (without putting the first back).
+  The experiment above shows it: the average of many random pairs settles at the GMD.</p>
+  <p>Like the standard deviation it measures spread, but it works with plain distances instead of <em>squared</em> deviations from the mean.
+  That makes it less sensitive to single extreme values: push one point to the edge and compare how much s and the GMD grow.
+  For normally distributed data GMD = 2σ/√π ≈ 1.13 σ. (The Gini coefficient of inequality is GMD / (2 · mean).)</p>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var W = 920, L = 50, R = 30, pw = W - L - R;
+  var AX = 238, K = 0.17;           // panel A axis y and arc height factor
+  var BT = 340, BH = 200, BB = BT + BH;   // panel B
+  var src = 'norm', n = 8, pts = [], base = null, hover = null, active = null, rp = {k: 0, s: 0};
+
+  function xs(v){ return L + v / 10 * pw; }
+  function gauss(){ var u = 1 - Math.random(), v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function clip(v){ return Math.max(0.2, Math.min(9.8, v)); }
+  function sample(){
+    var a = [];
+    for (var i = 0; i < n; i++) a.push(clip(src === 'norm' ? 5 + 1.5 * gauss() : 0.6 - 1.6 * Math.log(1 - Math.random())));
+    return a;
+  }
+  function stats(a){
+    var m = a.length, i, j, sum = 0, mean = 0, ss = 0;
+    for (i = 0; i < m; i++) mean += a[i]; mean /= m;
+    for (i = 0; i < m; i++) ss += (a[i] - mean) * (a[i] - mean);
+    var pairs = [];
+    for (i = 0; i < m; i++) for (j = i + 1; j < m; j++){ var d = Math.abs(a[i] - a[j]); pairs.push({i: i, j: j, d: d}); sum += d; }
+    return {gmd: sum / pairs.length, sd: Math.sqrt(ss / (m - 1)), sum: sum, pairs: pairs, mean: mean};
+  }
+  function f2(x){ return x.toFixed(2); }
+
+  function render(){
+    var st = stats(pts), s = '', i;
+    var np = st.pairs.length;
+    // ---- Panel A ----
+    s += '<text class="t" x="' + L + '" y="22">Your data: ' + n + ' observations, ' + np + ' pairs (each arc is one pair, higher arc = larger distance)</text>';
+    st.pairs.forEach(function(p){
+      var x1 = xs(pts[p.i]), x2 = xs(pts[p.j]), h = K * Math.abs(x2 - x1), mid = (x1 + x2) / 2;
+      s += '<path id="arc-' + p.i + '-' + p.j + '" class="arc" d="M' + x1 + ',' + AX + ' Q' + mid + ',' + (AX - 2 * h) + ' ' + x2 + ',' + AX + '"/>';
+    });
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + AX + '" y2="' + AX + '" stroke="var(--line)" stroke-width="1.5"/>';
+    for (i = 0; i <= 10; i++){
+      s += '<line x1="' + xs(i) + '" x2="' + xs(i) + '" y1="' + AX + '" y2="' + (AX + 5) + '" stroke="var(--line)"/>';
+      s += '<text x="' + xs(i) + '" y="' + (AX + 22) + '" text-anchor="middle">' + i + '</text>';
+    }
+    // mean marker
+    s += '<path d="M' + xs(st.mean) + ',' + (AX + 8) + ' l-6,10 l12,0 Z" fill="var(--ink2)"/><text x="' + (xs(st.mean) + 9) + '" y="' + (AX + 34) + '" style="font-size:11px">mean</text>';
+    pts.forEach(function(v, k){
+      s += '<circle id="dot-' + k + '" class="dot" data-i="' + k + '" cx="' + xs(v) + '" cy="' + AX + '" r="11" tabindex="0" role="slider" aria-label="Point ' + (k + 1) + '" aria-valuemin="0" aria-valuemax="10" aria-valuenow="' + f2(v) + '"/>';
+    });
+    // ---- Panel B ----
+    s += '<text class="t" x="' + L + '" y="' + (BT - 16) + '">All ' + np + ' distances |xi − xj|, sorted</text>';
+    var ys = function(v){ return BB - Math.min(v, 10) / 10 * BH; };
+    for (i = 0; i <= 10; i += 2){
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ys(i) + '" y2="' + ys(i) + '" stroke="var(--grid)"/>';
+      s += '<text x="' + (L - 8) + '" y="' + (ys(i) + 4) + '" text-anchor="end">' + i + '</text>';
+    }
+    var sorted = st.pairs.slice().sort(function(a, b){ return b.d - a.d; });
+    var bw = pw / np;
+    sorted.forEach(function(p, k){
+      s += '<rect class="bar" data-p="' + p.i + '-' + p.j + '" x="' + (L + k * bw + 1) + '" y="' + ys(p.d) + '" width="' + Math.max(1, bw - 2) + '" height="' + (BB - ys(p.d)) + '" rx="2"><title>points ' + (p.i + 1) + ' and ' + (p.j + 1) + ': distance ' + f2(p.d) + '</title></rect>';
+    });
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + BB + '" y2="' + BB + '" stroke="var(--line)" stroke-width="1.5"/>';
+    // GMD and SD lines
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ys(st.gmd) + '" y2="' + ys(st.gmd) + '" stroke="var(--gmd)" stroke-width="3"/>';
+    s += '<text x="' + (W - R) + '" y="' + (ys(st.gmd) - 7) + '" text-anchor="end" style="fill:var(--gmd);font-weight:700">GMD = ' + f2(st.gmd) + '</text>';
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ys(st.sd) + '" y2="' + ys(st.sd) + '" stroke="var(--sd)" stroke-width="2.5" stroke-dasharray="7 5"/>';
+    s += '<text x="' + (L + 6) + '" y="' + (ys(st.sd) - 7) + '" style="fill:var(--sd);font-weight:700">s = ' + f2(st.sd) + '</text>';
+    s += '<text x="' + (L + pw / 2) + '" y="' + (BB + 24) + '" text-anchor="middle">pairs, from the largest to the smallest distance</text>';
+    $('chart').innerHTML = s;
+    cards(st);
+    if (hover) setHover(hover, true);
+  }
+
+  function cards(st){
+    $('cG').textContent = f2(st.gmd);
+    $('cGs').textContent = 'sum of ' + st.pairs.length + ' distances = ' + f2(st.sum) + ', divided by ' + st.pairs.length;
+    $('cS').textContent = f2(st.sd);
+    $('cSs').textContent = 'mean = ' + f2(st.mean);
+    $('cR').textContent = f2(st.gmd / st.sd);
+    if (base){
+      var dg = (st.gmd / base.gmd - 1) * 100, ds = (st.sd / base.sd - 1) * 100;
+      var sgn = function(x){ return (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(0) + ' %'; };
+      $('cC').innerHTML = 'GMD ' + sgn(dg) + '<br>s ' + sgn(ds);
+      $('cCs').textContent = 'compared with the drawn sample';
+    }
+    $('pr').innerHTML = rp.k ? ('average of ' + rp.k + ' random pair' + (rp.k > 1 ? 's' : '') + ': <b>' + f2(rp.s / rp.k) + '</b> (GMD = ' + f2(st.gmd) + ')') : '';
+  }
+
+  function setHover(key, on){
+    var parts = key.split('-');
+    var arc = $('arc-' + key); if (arc) arc.classList.toggle('hl', on);
+    [].slice.call(document.querySelectorAll('.bar[data-p="' + key + '"]')).forEach(function(b){ b.classList.toggle('hl', on); });
+    parts.forEach(function(p){ var d = $('dot-' + p); if (d) d.classList.toggle('hl', on); });
+  }
+
+  function newSample(){ pts = sample(); var st = stats(pts); base = {gmd: st.gmd, sd: st.sd}; rp = {k: 0, s: 0}; hover = null; render(); }
+
+  // events
+  var svg = $('chart');
+  svg.addEventListener('pointerdown', function(e){
+    var d = e.target.closest && e.target.closest('.dot'); if (!d) return;
+    active = +d.dataset.i; e.preventDefault();
+  });
+  window.addEventListener('pointermove', function(e){
+    if (active === null) return;
+    var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+    pts[active] = Math.max(0, Math.min(10, (p.x - L) / pw * 10));
+    rp = {k: 0, s: 0}; render();
+  });
+  window.addEventListener('pointerup', function(){ active = null; });
+  window.addEventListener('pointercancel', function(){ active = null; });
+  svg.addEventListener('keydown', function(e){
+    var d = e.target.closest && e.target.closest('.dot'); if (!d) return;
+    var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!dir) return; e.preventDefault();
+    var i = +d.dataset.i; pts[i] = Math.max(0, Math.min(10, pts[i] + dir * (e.shiftKey ? 1 : 0.1))); rp = {k: 0, s: 0}; render();
+    var nd = $('dot-' + i); if (nd) nd.focus();
+  });
+  svg.addEventListener('mouseover', function(e){
+    var b = e.target.closest && e.target.closest('.bar'); if (!b) return;
+    hover = b.getAttribute('data-p'); setHover(hover, true);
+  });
+  svg.addEventListener('mouseout', function(e){
+    var b = e.target.closest && e.target.closest('.bar'); if (!b) return;
+    setHover(b.getAttribute('data-p'), false); hover = null;
+  });
+
+  function randPair(){
+    var i = Math.floor(Math.random() * n), j = Math.floor(Math.random() * (n - 1)); if (j >= i) j++;
+    return [i, j];
+  }
+  $('p1').addEventListener('click', function(){
+    var p = randPair(); rp.k++; rp.s += Math.abs(pts[p[0]] - pts[p[1]]);
+    var key = Math.min(p[0], p[1]) + '-' + Math.max(p[0], p[1]);
+    if (hover) setHover(hover, false); hover = key; render();
+    $('live').textContent = 'Random pair: points ' + (p[0] + 1) + ' and ' + (p[1] + 1);
+  });
+  $('p100').addEventListener('click', function(){
+    for (var r = 0; r < 100; r++){ var p = randPair(); rp.k++; rp.s += Math.abs(pts[p[0]] - pts[p[1]]); }
+    hover = null; render();
+  });
+  $('bnew').addEventListener('click', newSample);
+  $('bout').addEventListener('click', function(){
+    var m = 0; for (var i = 1; i < pts.length; i++) if (pts[i] > pts[m]) m = i;
+    pts[m] = 10; rp = {k: 0, s: 0}; hover = null; render();
+  });
+  $('nr').addEventListener('input', function(){ n = +this.value; $('nv').textContent = n; newSample(); });
+  [].slice.call(document.querySelectorAll('#srcSeg button')).forEach(function(b){
+    b.addEventListener('click', function(){
+      src = b.dataset.k;
+      [].slice.call(document.querySelectorAll('#srcSeg button')).forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      newSample();
+    });
+  });
+
+  newSample();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Table 2 as a Random Process</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTAiIHk9IjEyIiB3aWR0aD0iNDQiIGhlaWdodD0iOCIgcng9IjIiIGZpbGw9IiM1MjYwNmQiLz48cmVjdCB4PSIxMCIgeT0iMjQiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3IiByeD0iMiIgZmlsbD0iI2ViNjgzNCIvPjxyZWN0IHg9IjM0IiB5PSIyNCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjciIHJ4PSIyIiBmaWxsPSIjMmE3OGQ2Ii8+PHJlY3QgeD0iMTAiIHk9IjM1IiB3aWR0aD0iMjAiIGhlaWdodD0iNyIgcng9IjIiIGZpbGw9IiNmMmE5OGMiLz48cmVjdCB4PSIzNCIgeT0iMzUiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3IiByeD0iMiIgZmlsbD0iIzhhYjRlZSIvPjxyZWN0IHg9IjEwIiB5PSI0NiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjciIHJ4PSIyIiBmaWxsPSIjZWI2ODM0Ii8+PHJlY3QgeD0iMzQiIHk9IjQ2IiB3aWR0aD0iMjAiIGhlaWdodD0iNyIgcng9IjIiIGZpbGw9IiMyYTc4ZDYiLz48L3N2Zz4=">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --accent:#2a78d6; --new:#fbe3b5; --pub:#7b8794; --uc:#eb6834; --cft:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --accent:#3987e5; --new:#5a4a22; --pub:#8d98a5; --uc:#d95926; --cft:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 6px}
+.lead{color:var(--ink2);margin:0 0 6px}
+.src{font-size:.86rem;color:var(--ink2);margin:0 0 14px}
+.row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:12px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 18px;border-radius:10px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--uc);border-color:var(--uc);color:#fff;font-weight:700}
+.btn:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+label.chk{font-size:.92rem;display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.cnt{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:.95rem}
+.wrap{overflow-x:auto;background:var(--card);border-radius:14px;padding:10px 12px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.95rem}
+caption{text-align:left;font-weight:700;padding:2px 4px 8px}
+th,td{padding:5px 10px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{border-bottom:2px solid var(--line);vertical-align:bottom}
+thead th.g{text-align:center;border-bottom:1px solid var(--line)}
+thead th.uc{color:var(--uc)} thead th.cft{color:var(--cft)}
+td.sim{font-weight:600}
+td.pub,th.pub{color:var(--pub);font-weight:400;font-size:.88rem}
+tr.sub td:first-child{padding-left:28px}
+tr.hd td{font-weight:600}
+body.nopub .pub{display:none}
+td.new{animation:flash 1.1s ease-out both}
+@keyframes flash{0%{background:var(--new)}100%{background:transparent}}
+@media (prefers-reduced-motion: reduce){td.new{animation:none}}
+.fn{font-size:.82rem;color:var(--ink2);margin:8px 4px 0}
+details{margin-top:16px;font-size:.92rem}
+summary{cursor:pointer;color:var(--ink2)}
+table.d{margin-top:8px;font-size:.88rem}
+table.d td{white-space:normal;text-align:left}
+.note{margin-top:16px;border-left:5px solid var(--uc);background:var(--card);border-radius:0 12px 12px 0;padding:12px 16px}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<main>
+<h1>Table 2 is not fixed: it comes out of a random process</h1>
+<p class="lead">Pretend the patients of this trial were drawn from populations described by the published numbers.
+Every click recruits a new trial with <strong>165 patients</strong> (usual care) and <strong>327 patients</strong> (CFT), and the table is built again from the raw values.</p>
+<p class="src">Layout and published values: Table 2, “Baseline characteristics including potential moderators”, of the secondary analysis of a randomised trial of cognitive functional therapy (CFT) for chronic low back pain,
+<em>Journal of Physiotherapy</em> 2024;70, doi:10.1016/j.jphys.2024.08.005. The simulated values are illustrative, not the trial data.</p>
+
+<div class="row">
+  <button id="draw" class="btn primary" type="button">Draw a new sample (n = 165 and n = 327)</button>
+  <label class="chk"><input type="checkbox" id="pubchk" checked> show published values</label>
+  <span class="cnt" id="cnt">Draw no. 0</span>
+</div>
+
+<div class="wrap">
+<table id="tbl">
+  <caption>Baseline characteristics</caption>
+  <thead>
+    <tr><th rowspan="2">Characteristic</th>
+        <th class="g uc" colspan="2">Usual care (n = 165)</th>
+        <th class="g cft" colspan="2">CFT (n = 327)</th></tr>
+    <tr><th class="uc">new draw</th><th class="pub">published</th><th class="cft">new draw</th><th class="pub">published</th></tr>
+  </thead>
+  <tbody id="tb"></tbody>
+</table>
+<p class="fn">n = 164 (usual care) and n = 324 (CFT) for university education; n = 140 and n = 292 for confidence in treatment assigned (as in the published table footnotes).
+Percentages in brackets are rounded to whole numbers.</p>
+</div>
+
+<details>
+  <summary>Which random process generates each row?</summary>
+  <table class="d" id="dtbl"><thead><tr><th>Row</th><th>Process used for the simulation</th></tr></thead><tbody></tbody></table>
+</details>
+
+<div class="note">
+  <p>Click again and again: almost every cell changes, but around the same centre. Nothing in a published table is “the” truth about a group.
+  It is <em>one</em> realisation of a random process, and a new trial from the same populations would print slightly different numbers.</p>
+  <p>Look at the medians and quartiles of the two skewed rows and at the small percentages (“&lt; 1”, “1”) in the confidence rows:
+  rare categories and skewed durations fluctuate much more than the mean of a roughly symmetric scale.</p>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+
+  // ---------- random number helpers ----------
+  function gauss(){ var u = 1 - Math.random(), v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function gamma(a){
+    if (a < 1) return gamma(a + 1) * Math.pow(Math.random(), 1 / a);
+    var d = a - 1 / 3, c = 1 / Math.sqrt(9 * d), x, v, u;
+    for (;;){
+      do { x = gauss(); v = 1 + c * x; } while (v <= 0);
+      v = v * v * v; u = Math.random();
+      if (u < 1 - 0.0331 * x * x * x * x || Math.log(u) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v;
+    }
+  }
+  function beta(a, b){ var x = gamma(a), y = gamma(b); return x / (x + y); }
+  function binom(n, p){ var c = 0; for (var i = 0; i < n; i++) if (Math.random() < p) c++; return c; }
+  function betaPar(lo, hi, mean, sd){
+    var m = (mean - lo) / (hi - lo), v = Math.pow(sd / (hi - lo), 2), k = m * (1 - m) / v - 1;
+    return {a: m * k, b: (1 - m) * k, lo: lo, hi: hi};
+  }
+  function weibullPar(q1, med, q3){
+    var invk = Math.log(q3 / q1) / Math.log(Math.log(4) / Math.log(4 / 3));
+    return {k: 1 / invk, lam: med / Math.pow(Math.LN2, invk)};
+  }
+  function rweibull(w, cap){ var x; do { x = w.lam * Math.pow(-Math.log(1 - Math.random()), 1 / w.k); } while (x > cap); return x; }
+  function quant(sorted, p){ var h = (sorted.length - 1) * p, lo = Math.floor(h), hi = Math.ceil(h); return sorted[lo] + (h - lo) * (sorted[hi] - sorted[lo]); }
+  function meanSd(a){
+    var n = a.length, m = 0, s = 0, i; for (i = 0; i < n; i++) m += a[i]; m /= n;
+    for (i = 0; i < n; i++) s += (a[i] - m) * (a[i] - m); return [m, Math.sqrt(s / (n - 1))];
+  }
+  function pctStr(c, n){ var p = 100 * c / n; return (c > 0 && p < 1) ? '< 1' : String(Math.round(p)); }
+
+  // ---------- row definitions (published values: Table 2) ----------
+  var N = [165, 327];
+  var rows = [
+    {t: 'bin', label: 'Sex, n (%) female', n: N, p: [98 / 165, 194 / 327], pub: ['98 (59)', '194 (59)'],
+     proc: 'Binomial(n, p) with p = 98/165 (usual care) and 194/327 (CFT), the published proportions.'},
+    {t: 'beta', label: 'Age (y), mean (SD)', lo: 18, hi: 90, ms: [[48, 16], [47, 15]], dec: 0, int: true, pub: ['48 (16)', '47 (15)'],
+     proc: 'Beta distribution on 18 to 90 years, matched to the published mean and SD, rounded to whole years.'},
+    {t: 'q', label: 'Duration of care seeking (y), median (IQR)', q: [[1.3, 4.0, 10.0], [1.0, 4.0, 11.0]], pub: ['4.0 (1.3 to 10.0)', '4.0 (1.0 to 11.0)'],
+     proc: 'Weibull distribution (right-skewed), fitted to the published median and quartiles; values above 60 years are discarded.'},
+    {t: 'q', label: 'Length of current episode (y), median (IQR)', q: [[1.8, 5.0, 10.0], [1.4, 5.0, 11.1]], pub: ['5.0 (1.8 to 10.0)', '5.0 (1.4 to 11.1)'],
+     proc: 'Weibull distribution, fitted to the published median and quartiles; values above 60 years are discarded.'},
+    {t: 'bin', label: 'University education, n (%)', n: [164, 324], p: [89 / 164, 154 / 324], pub: ['89 (54)', '154 (48)'],
+     proc: 'Binomial(n, p) among the patients with data (n = 164 and 324), p = 89/164 and 154/324.'},
+    {t: 'head', label: 'Confidence in treatment assigned, n (%)'},
+    {t: 'cat', label: 'very unconfident', i: 0}, {t: 'cat', label: 'unconfident', i: 1}, {t: 'cat', label: 'uncertain', i: 2},
+    {t: 'cat', label: 'somewhat confident', i: 3}, {t: 'cat', label: 'confident', i: 4}, {t: 'cat', label: 'very confident', i: 5},
+    {t: 'beta', label: 'Activity limitation (0 to 24), mean (SD)', lo: 0, hi: 24, ms: [[13.5, 5.4], [13.6, 5.1]], dec: 1, int: true, pub: ['13.5 (5.4)', '13.6 (5.1)'],
+     proc: 'Beta distribution on 0 to 24, matched to the published mean and SD, rounded to whole points (RMDQ).'},
+    {t: 'beta', label: 'Cognitive flexibility (12 to 72), mean (SD)', lo: 12, hi: 72, ms: [[59.9, 7.4], [58.3, 7.6]], dec: 1, int: true, pub: ['59.9 (7.4)', '58.3 (7.6)'],
+     proc: 'Beta distribution on 12 to 72 (skewed to the left), matched to the published mean and SD, rounded to whole points.'},
+    {t: 'beta', label: 'Pain intensity (0 to 10), mean (SD)', lo: 0, hi: 10, ms: [[5.8, 1.6], [5.8, 1.7]], dec: 1, int: false, pub: ['5.8 (1.6)', '5.8 (1.7)'],
+     proc: 'Beta distribution on 0 to 10, matched to the published mean and SD (an average over 14 days, so not rounded to integers).'},
+    {t: 'beta', label: 'Pain self-efficacy (0 to 60), mean (SD)', lo: 0, hi: 60, ms: [[36.4, 13.5], [34.0, 13.9]], dec: 1, int: true, pub: ['36.4 (13.5)', '34.0 (13.9)'],
+     proc: 'Beta distribution on 0 to 60, matched to the published mean and SD, rounded to whole points.'},
+    {t: 'beta', label: 'Pain catastrophising (0 to 52), mean (SD)', lo: 0, hi: 52, ms: [[24.3, 12.4], [24.7, 12.6]], dec: 1, int: true, pub: ['24.3 (12.4)', '24.7 (12.6)'],
+     proc: 'Beta distribution on 0 to 52, matched to the published mean and SD, rounded to whole points.'}
+  ];
+  var catCounts = [[14, 27, 64, 9, 18, 8], [1, 4, 82, 80, 88, 37]], catN = [140, 292];
+  var catPub = [['14 (10)', '27 (19)', '64 (46)', '9 (6)', '18 (13)', '8 (6)'], ['1 (< 1)', '4 (1)', '82 (28)', '80 (27)', '88 (30)', '37 (13)']];
+
+  // precompute fitted parameters
+  rows.forEach(function(r){
+    if (r.t === 'beta') r.par = r.ms.map(function(m){ return betaPar(r.lo, r.hi, m[0], m[1]); });
+    if (r.t === 'q') r.par = r.q.map(function(q){ return weibullPar(q[0], q[1], q[2]); });
+  });
+
+  // ---------- one simulated trial ----------
+  function f(x, d){ return x.toFixed(d); }
+  function genGroup(g){
+    var out = [];
+    rows.forEach(function(r){
+      if (r.t === 'head' || r.t === 'cat'){ out.push(''); return; }
+      if (r.t === 'bin'){ var c = binom(r.n[g], r.p[g]); out.push(c + ' (' + pctStr(c, r.n[g]) + ')'); return; }
+      if (r.t === 'beta'){
+        var a = [], P = r.par[g], i;
+        for (i = 0; i < N[g]; i++){ var v = P.lo + (P.hi - P.lo) * beta(P.a, P.b); a.push(r.int ? Math.round(v) : Math.round(v * 10) / 10); }
+        var ms = meanSd(a); out.push(f(ms[0], r.dec) + ' (' + f(ms[1], r.dec) + ')'); return;
+      }
+      if (r.t === 'q'){
+        var b = [], W = r.par[g];
+        for (var j = 0; j < N[g]; j++) b.push(rweibull(W, 60));
+        b.sort(function(x, y){ return x - y; });
+        out.push(f(quant(b, 0.5), 1) + ' (' + f(quant(b, 0.25), 1) + ' to ' + f(quant(b, 0.75), 1) + ')'); return;
+      }
+    });
+    // categorical block: one multinomial draw per group
+    var probs = catCounts[g].map(function(c){ return c / catN[g]; }), cnt = [0, 0, 0, 0, 0, 0];
+    for (var k = 0; k < catN[g]; k++){ var u = Math.random(), s = 0, idx = 0; for (; idx < 5; idx++){ s += probs[idx]; if (u < s) break; } cnt[idx]++; }
+    rows.forEach(function(r, ri){ if (r.t === 'cat') out[ri] = cnt[r.i] + ' (' + pctStr(cnt[r.i], catN[g]) + ')'; });
+    return out;
+  }
+
+  // ---------- table ----------
+  var tb = $('tb'), draws = 0;
+  rows.forEach(function(r, ri){
+    var tr = document.createElement('tr');
+    if (r.t === 'head'){ tr.className = 'hd'; tr.innerHTML = '<td colspan="5">' + r.label + '</td>'; }
+    else {
+      if (r.t === 'cat') tr.className = 'sub';
+      var pu = r.t === 'cat' ? [catPub[0][r.i], catPub[1][r.i]] : r.pub;
+      tr.innerHTML = '<td>' + r.label + '</td><td class="sim" data-c="0">–</td><td class="pub">' + pu[0] + '</td><td class="sim" data-c="1">–</td><td class="pub">' + pu[1] + '</td>';
+      tr._cells = [tr.children[1], tr.children[3]];
+    }
+    tb._rows = tb._rows || []; tb._rows[ri] = tr; tb.appendChild(tr);
+  });
+  var dt = document.querySelector('#dtbl tbody');
+  rows.forEach(function(r){ if (r.proc){ var t = document.createElement('tr'); t.innerHTML = '<td>' + r.label + '</td><td>' + r.proc + '</td>'; dt.appendChild(t); } });
+  var tc = document.createElement('tr'); tc.innerHTML = '<td>Confidence in treatment assigned</td><td>Multinomial draw: each of the 140 (usual care) and 292 (CFT) patients falls into one of six categories with the published category shares.</td>'; dt.appendChild(tc);
+
+  function draw(){
+    var res = [genGroup(0), genGroup(1)];
+    draws++;
+    rows.forEach(function(r, ri){
+      var tr = tb._rows[ri]; if (!tr._cells) return;
+      [0, 1].forEach(function(g){
+        var cell = tr._cells[g]; cell.textContent = res[g][ri];
+        cell.classList.remove('new'); void cell.offsetWidth;
+        cell.style.animationDelay = (ri * 35) + 'ms'; cell.classList.add('new');
+      });
+    });
+    $('cnt').textContent = 'Draw no. ' + draws;
+    $('live').textContent = 'New sample drawn. Draw number ' + draws + '.';
+  }
+
+  $('draw').addEventListener('click', draw);
+  $('pubchk').addEventListener('change', function(){ document.body.classList.toggle('nopub', !this.checked); });
+  window.__QM = {genGroup: genGroup, rows: rows};
+  draw();
+})();
+</script>
+</body>
+</html>

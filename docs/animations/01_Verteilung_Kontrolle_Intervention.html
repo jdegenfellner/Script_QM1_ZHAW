@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control vs. intervention: shift in pain intensity</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTUuMCw0Ny4wIEw1LjYsNDYuNSBMNi4zLDQ1LjkgTDYuOSw0NS4yIEw3LjUsNDQuNSBMOC4yLDQzLjcgTDguOCw0Mi44IEw5LjQsNDEuOCBMMTAuMSw0MC43IEwxMC43LDM5LjYgTDExLjMsMzguNCBMMTIuMCwzNy4xIEwxMi42LDM1LjggTDEzLjIsMzQuNCBMMTMuOSwzMi45IEwxNC41LDMxLjQgTDE1LjEsMjkuOSBMMTUuOCwyOC40IEwxNi40LDI2LjkgTDE3LjAsMjUuNCBMMTcuNywyNC4wIEwxOC4zLDIyLjcgTDE4LjksMjEuNCBMMTkuNiwyMC4yIEwyMC4yLDE5LjEgTDIwLjgsMTguMiBMMjEuNSwxNy40IEwyMi4xLDE2LjggTDIyLjcsMTYuNCBMMjMuNCwxNi4xIEwyNC4wLDE2LjAgTDI0LjYsMTYuMSBMMjUuMywxNi40IEwyNS45LDE2LjggTDI2LjUsMTcuNCBMMjcuMiwxOC4yIEwyNy44LDE5LjEgTDI4LjQsMjAuMiBMMjkuMSwyMS40IEwyOS43LDIyLjcgTDMwLjMsMjQuMCBMMzEuMCwyNS40IEwzMS42LDI2LjkgTDMyLjIsMjguNCBMMzIuOSwyOS45IEwzMy41LDMxLjQgTDM0LjEsMzIuOSBMMzQuOCwzNC40IEwzNS40LDM1LjggTDM2LjAsMzcuMSBMMzYuNywzOC40IEwzNy4zLDM5LjYgTDM3LjksNDAuNyBMMzguNiw0MS44IEwzOS4yLDQyLjggTDM5LjgsNDMuNyBMNDAuNSw0NC41IEw0MS4xLDQ1LjIgTDQxLjcsNDUuOSBMNDIuNCw0Ni41IEw0My4wLDQ3LjAgTDQzLjAsNTAuMCBMNS4wLDUwLjAgWiIgZmlsbD0iIzJhNzhkNiIgZmlsbC1vcGFjaXR5PSIuMzUiIHN0cm9rZT0iIzJhNzhkNiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTIxLjAsNDcuMCBMMjEuNiw0Ni41IEwyMi4zLDQ1LjkgTDIyLjksNDUuMiBMMjMuNSw0NC41IEwyNC4yLDQzLjcgTDI0LjgsNDIuOCBMMjUuNCw0MS44IEwyNi4xLDQwLjcgTDI2LjcsMzkuNiBMMjcuMywzOC40IEwyOC4wLDM3LjEgTDI4LjYsMzUuOCBMMjkuMiwzNC40IEwyOS45LDMyLjkgTDMwLjUsMzEuNCBMMzEuMSwyOS45IEwzMS44LDI4LjQgTDMyLjQsMjYuOSBMMzMuMCwyNS40IEwzMy43LDI0LjAgTDM0LjMsMjIuNyBMMzQuOSwyMS40IEwzNS42LDIwLjIgTDM2LjIsMTkuMSBMMzYuOCwxOC4yIEwzNy41LDE3LjQgTDM4LjEsMTYuOCBMMzguNywxNi40IEwzOS40LDE2LjEgTDQwLjAsMTYuMCBMNDAuNiwxNi4xIEw0MS4zLDE2LjQgTDQxLjksMTYuOCBMNDIuNSwxNy40IEw0My4yLDE4LjIgTDQzLjgsMTkuMSBMNDQuNCwyMC4yIEw0NS4xLDIxLjQgTDQ1LjcsMjIuNyBMNDYuMywyNC4wIEw0Ny4wLDI1LjQgTDQ3LjYsMjYuOSBMNDguMiwyOC40IEw0OC45LDI5LjkgTDQ5LjUsMzEuNCBMNTAuMSwzMi45IEw1MC44LDM0LjQgTDUxLjQsMzUuOCBMNTIuMCwzNy4xIEw1Mi43LDM4LjQgTDUzLjMsMzkuNiBMNTMuOSw0MC43IEw1NC42LDQxLjggTDU1LjIsNDIuOCBMNTUuOCw0My43IEw1Ni41LDQ0LjUgTDU3LjEsNDUuMiBMNTcuNyw0NS45IEw1OC40LDQ2LjUgTDU5LjAsNDcuMCBMNTkuMCw1MC4wIEwyMS4wLDUwLjAgWiIgZmlsbD0iI2ViNjgzNCIgZmlsbC1vcGFjaXR5PSIuMzUiIHN0cm9rZT0iI2ViNjgzNCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9zdmc+">
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f3f2ef;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --grid:           #e6e5e1;
+    --axis:           #bdbcb6;
+    --series-1:       #2a78d6;   /* control */
+    --series-2:       #eb6834;   /* intervention */
+    --series-3:       #1baf7a;   /* difference chart */
+    --focus:          #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #262624;
+      --text-primary:   #f0efec;
+      --text-secondary: #c3c2b7;
+      --grid:           #2f2f2d;
+      --axis:           #55544f;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --focus:          #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #262624;
+    --text-primary:   #f0efec;
+    --text-secondary: #c3c2b7;
+    --grid:           #2f2f2d;
+    --axis:           #55544f;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --focus:          #3987e5;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-1);
+    color: var(--text-primary);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 40px; }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 4px; font-weight: 650; }
+  .sub { margin: 0 0 16px; color: var(--text-secondary); max-width: 74ch; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin: 0 0 12px; }
+  button {
+    font: inherit; font-weight: 600;
+    padding: 9px 18px; border-radius: 8px; cursor: pointer;
+    border: 1px solid transparent;
+  }
+  button.primary { background: var(--series-2); color: #fff; }
+  button.primary[disabled], button.ghost[disabled] { opacity: .45; cursor: default; }
+  button.ghost { background: transparent; color: var(--text-primary); border-color: var(--axis); }
+  button:focus-visible, input[type=range]:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .slider { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+  .slider output { color: var(--text-primary); font-weight: 650; min-width: 3ch; text-align: right; }
+  input[type=range] { width: 170px; accent-color: var(--series-2); }
+
+  .switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-secondary); user-select: none; }
+  .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .switch .track { width: 42px; height: 24px; border-radius: 12px; background: var(--axis); position: relative; transition: background .2s; flex: none; }
+  .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface-1); transition: transform .2s; }
+  .switch input:checked + .track { background: var(--series-1); }
+  .switch input:checked + .track::after { transform: translateX(18px); }
+  .switch input:focus-visible + .track { outline: 3px solid var(--focus); outline-offset: 2px; }
+  fieldset.seg { border: 0; margin: 0; padding: 0; display: inline-flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+  fieldset.seg legend { float: left; padding: 0; margin-right: 10px; }
+  .seg .opts { display: inline-flex; border: 1px solid var(--axis); border-radius: 8px; overflow: hidden; }
+  .seg label { cursor: pointer; }
+  .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .seg .opts span { display: block; padding: 7px 14px; font-weight: 600; color: var(--text-primary); }
+  .seg label + label span { border-left: 1px solid var(--axis); }
+  .seg input:checked + span { background: var(--text-primary); color: var(--surface-1); }
+  .seg input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: -3px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--axis); margin: 0 0 16px; }
+  .tab { background: transparent; color: var(--text-secondary); border: 0; border-bottom: 3px solid transparent; border-radius: 0; padding: 10px 16px; margin-bottom: -1px; cursor: pointer; font-weight: 600; }
+  .tab[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--series-2); }
+  .tab:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+  [role="tabpanel"][hidden] { display: none; }
+  .legend { display: flex; gap: 18px; min-height: 24px; margin: 0 0 4px; color: var(--text-secondary); font-size: .9rem; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; transition: opacity .3s; }
+  .legend i { display: inline-block; width: 22px; height: 0; border-top: 2px solid; border-radius: 2px; }
+
+  .chart { position: relative; }
+  svg { display: block; width: 100%; height: auto; touch-action: pan-y; }
+  svg text { font: 13px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: var(--text-secondary); }
+  svg .t-strong { fill: var(--text-primary); font-weight: 650; font-size: 15px; }
+  svg .t-small { font-size: 12px; }
+  .tooltip {
+    position: absolute; pointer-events: none; display: none;
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--axis); border-radius: 8px;
+    padding: 8px 10px; font-size: .85rem; line-height: 1.4; min-width: 150px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  }
+  .tooltip .hd { color: var(--text-secondary); margin-bottom: 4px; }
+  .tooltip .row { display: flex; align-items: center; gap: 8px; }
+  .tooltip .key { width: 14px; height: 0; border-top: 2px solid; border-radius: 2px; flex: none; }
+  .tooltip .val { font-weight: 650; margin-left: auto; padding-left: 12px; }
+  .tooltip .nm { color: var(--text-secondary); }
+
+  h2 { font-size: 1.2rem; line-height: 1.3; margin: 0 0 4px; font-weight: 650; }
+  .tiles { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 8px; }
+  .tile { flex: 1 1 230px; background: var(--surface-2); border-radius: 8px; padding: 12px 16px; }
+  .tile .tl { color: var(--text-secondary); font-size: .92rem; }
+  .tile .tl .dv { color: var(--text-primary); font-weight: 650; }
+  .tile .tv { font-size: 2rem; line-height: 1.2; font-weight: 650; margin-top: 2px; }
+  .tile .ts { color: var(--text-secondary); font-size: .88rem; min-height: 1.3em; }
+  .legend2 { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--text-secondary); font-size: .9rem; margin: 8px 0 2px; }
+  .legend2 span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend2 i { display: inline-block; width: 18px; height: 12px; border-radius: 2px; background: var(--series-3); }
+  .status { margin: 10px 0 0; min-height: 1.5em; color: var(--text-secondary); }
+  .note { margin: 14px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--surface-2); color: var(--text-secondary); max-width: 82ch; font-size: .95rem; }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+  table { border-collapse: collapse; margin-top: 8px; font-size: .92rem; }
+  th, td { text-align: right; padding: 6px 14px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--text-secondary); font-weight: 600; }
+  td .key { display: inline-block; width: 14px; height: 0; border-top: 2px solid; margin-right: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Control vs. intervention: pain intensity in two groups</h1>
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" id="tab1" aria-controls="panel1" aria-selected="true" type="button">1 &middot; Shift of the distributions</button>
+    <button class="tab" role="tab" id="tab2" aria-controls="panel2" aria-selected="false" tabindex="-1" type="button">2 &middot; How different are two random patients?</button>
+  </div>
+  <section id="panel1" role="tabpanel" aria-labelledby="tab1">
+  <p class="sub">Outcome: pain intensity on a numeric rating scale from 0 (no pain) to 10 (worst pain). Higher is worse.
+     Most patients have mild to moderate pain and a few have severe pain, so the distribution is left-peaked.
+     Both groups start from the same distribution. Switch on the raw data to see 100 simulated patients per group (different people in each group) as dots, as a light histogram and as a boxplot.
+     Press the button and watch the intervention group move to the left, away from the control group.</p>
+
+  <div class="controls">
+    <button id="apply" class="primary" type="button">Apply intervention</button>
+    <button id="reset" class="ghost" type="button" disabled>Reset</button>
+    <label class="slider" for="delta">Effect &Delta; (points less pain)
+      <input id="delta" type="range" min="0.5" max="2" step="0.5" value="1">
+      <output id="deltaOut" for="delta">1.0</output>
+    </label>
+    <fieldset class="seg"><legend>Mark the</legend>
+      <span class="opts">
+        <label><input type="radio" name="loc" value="mean" checked><span>Mean</span></label>
+        <label><input type="radio" name="loc" value="median"><span>Median</span></label>
+        <label><input type="radio" name="loc" value="mode"><span>Mode</span></label>
+      </span>
+    </fieldset>
+    <label class="switch"><input id="rawToggle" type="checkbox" role="switch"><span class="track"></span>Show raw data (dots, histogram, boxplot)</label>
+  </div>
+
+  <div class="legend" id="legend" aria-hidden="true"></div>
+
+  <div class="chart" id="chart">
+    <svg id="svg" viewBox="0 0 880 490" role="img" aria-labelledby="svgTitle svgDesc">
+      <title id="svgTitle">Two density curves of pain intensity with the raw data below, control and intervention</title>
+      <desc id="svgDesc">Both curves have the same left-peaked, right-skewed shape. After the intervention is applied, the intervention curve and its 100 data points move to the left by the effect size, in points on the 0 to 10 pain scale. Lower pain is better.</desc>
+      <defs><clipPath id="clipPlot"><rect x="56" y="0" width="664" height="490"></rect></clipPath></defs>
+      <g id="grid"></g>
+      <g id="hists"></g>
+      <path id="areaC" fill="var(--series-1)" fill-opacity="0.10"></path>
+      <path id="areaI" fill="var(--series-2)" fill-opacity="0.10"></path>
+      <path id="lineC" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+      <path id="lineI" fill="none" stroke="var(--series-2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+      <g id="bandlabs"></g>
+      <g id="boxes" clip-path="url(#clipPlot)"></g>
+      <g id="pts" clip-path="url(#clipPlot)"></g>
+      <g id="marks"></g>
+      <g id="labels"></g>
+      <line id="cross" y1="24" y2="428" stroke="var(--axis)" stroke-width="1" style="display:none"></line>
+      <rect id="hit" x="56" y="24" width="664" height="330" fill="transparent"></rect>
+    </svg>
+    <div class="tooltip" id="tip" role="status"></div>
+  </div>
+
+  <p class="status" id="status" aria-live="polite"></p>
+
+  <p class="note">The height of a curve is a density, not a probability. What counts is the <strong>area</strong> under the curve,
+     and it is 1 for each group. A pure shift moves mean, median and mode by the same amount &Delta; (here downwards) and leaves the shape unchanged.
+     A shift of &Delta; = 1 corresponds to the example in the script: the therapy lowers pain by 1 point more than usual care.
+     Lower pain is better, so the intervention curve moves to the left.</p>
+
+  <details>
+    <summary>Table view</summary>
+    <table id="tbl"></table>
+  </details>
+  </section>
+
+  <section id="panel2" role="tabpanel" aria-labelledby="tab2" hidden>
+  <h2>How different are two random patients?</h2>
+  <p class="status"><span id="effNote"></span> <button type="button" class="ghost" id="goTab1" style="padding:4px 12px">Go to tab 1</button></p>
+  <p class="sub">Draw one patient at random from the control group and one from the intervention group, independently of each other.
+     How likely is it that they differ by at least <em>d</em> points of pain? The difference of two random patients is itself a random variable.
+     Its curve is shown below, and the probability is the shaded area. The slider sets <em>d</em>.</p>
+  <div class="controls">
+    <label class="slider" for="d2">Difference of at least d (points)
+      <input id="d2" type="range" min="0" max="6" step="0.25" value="1">
+      <output id="d2Out" for="d2">1.00</output>
+    </label>
+    <button id="simBtn" class="ghost" type="button">Simulate 10,000 pairs</button>
+  </div>
+  <div class="tiles">
+    <div class="tile"><div class="tl">The control patient has at least <span class="dv" data-d>1.00</span> points <strong>more</strong> pain than the intervention patient</div>
+      <div class="tv" id="pDir">&ndash;</div><div class="ts" id="simDir"></div></div>
+    <div class="tile"><div class="tl">The intervention patient has at least <span class="dv" data-d>1.00</span> points <strong>more</strong> pain than the control patient</div>
+      <div class="tv" id="pRev">&ndash;</div><div class="ts" id="simRev"></div></div>
+    <div class="tile"><div class="tl">The two differ by at least <span class="dv" data-d>1.00</span> points, in <strong>either</strong> direction</div>
+      <div class="tv" id="pAbs">&ndash;</div><div class="ts" id="simAbs"></div></div>
+  </div>
+  <div class="legend2" aria-hidden="true">
+    <span><i style="opacity:.38"></i>control has at least d more pain</span>
+    <span><i style="opacity:.16"></i>intervention has at least d more pain</span>
+  </div>
+  <div class="chart" id="chart2">
+    <svg id="svg2" viewBox="0 0 880 270" role="img" aria-labelledby="svg2Title svg2Desc">
+      <title id="svg2Title">Density of the pain difference between a random control patient and a random intervention patient</title>
+      <desc id="svg2Desc">A bell-shaped curve centred at the average effect. The area to the right of d and to the left of minus d is shaded.</desc>
+    </svg>
+    <div class="tooltip" id="tip2" role="status"></div>
+  </div>
+
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ----- Model: shifted Gamma(shape K, scale TH) is left-peaked (right-skewed) ------------------
+  var K = 2.5, TH = 1.1, LOC = 2;          // control: pain intensity starts at LOC
+  var GAMMA_K = 1.329340388179137;         // Gamma(2.5)
+  function pdf(x) {
+    var u = x - LOC;
+    return u > 0 ? Math.pow(u, K - 1) * Math.exp(-u / TH) / (GAMMA_K * Math.pow(TH, K)) : 0;
+  }
+  var MEAN0 = LOC + K * TH, MODE0 = LOC + (K - 1) * TH, SD = Math.sqrt(K) * TH;
+
+  // numeric cdf table (also used to draw random patients and for the median)
+  var CDF_X = [], CDF = [];
+  (function () {
+    var h = 0.002, cum = 0, x = LOC;
+    CDF_X.push(x); CDF.push(0);
+    while (x < 30) { cum += 0.5 * (pdf(x) + pdf(x + h)) * h; x += h; CDF_X.push(x); CDF.push(cum); }
+  })();
+  function quantile(u) {
+    var lo = 0, hi = CDF.length - 1;
+    while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (CDF[mid] < u) lo = mid; else hi = mid; }
+    return CDF_X[hi];
+  }
+  var MEDIAN0 = quantile(0.5);
+
+  // reproducible random numbers (so that the picture is the same every time)
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  var N = 100, rnd = mulberry32(35), DATA = [], JIT = [];
+  while (DATA.length < N) {
+    var v = quantile(rnd());
+    if (v < 9.8) { DATA.push(v); JIT.push(rnd()); }
+  }
+  var SAMPLE_MEAN = DATA.reduce(function (a, b) { return a + b; }, 0) / N;
+  // the intervention group consists of different patients: an independent sample from the same distribution
+  var rnd2 = mulberry32(19), DATA_I = [], JIT_I = [];
+  while (DATA_I.length < N) {
+    var w = quantile(rnd2());
+    if (w < 9.8) { DATA_I.push(w); JIT_I.push(rnd2()); }
+  }
+  var SAMPLE_MEAN_I = DATA_I.reduce(function (a, b) { return a + b; }, 0) / N;
+
+  // ----- Difference of two random patients ---------------------------------------------------------
+  // g(t) = density of C - C' for two independent patients from the SAME base distribution (t = k * HX).
+  // The intervention group is the base distribution moved to the left by s, so D = C - I = (C - C') + s.
+  var HX = 0.05, NX = Math.round(28 / HX) + 1, KMAX = Math.round(12 / HX), FX = [], GD = [], GT_ = [];
+  (function () {
+    var i, k, sum, tot = 0, acc = 0;
+    for (i = 0; i < NX; i++) FX.push(pdf(LOC + i * HX));
+    for (k = -KMAX; k <= KMAX; k++) {
+      sum = 0;
+      for (i = Math.max(0, k); i < Math.min(NX, NX + k); i++) sum += FX[i] * FX[i - k];
+      GD.push(sum * HX); tot += sum * HX * HX;
+    }
+    for (k = 0; k < GD.length; k++) GD[k] /= tot;                       // normalise the numerical integral to 1
+    GT_ = new Array(GD.length);
+    for (k = GD.length - 1; k >= 0; k--) { acc += GD[k] * HX; GT_[k] = acc - 0.5 * GD[k] * HX; }   // tail integral from t_k
+  })();
+  function gAt(t) {
+    var u = t / HX + KMAX; if (u <= 0 || u >= GD.length - 1) return 0;
+    var a = Math.floor(u), f = u - a; return GD[a] * (1 - f) + GD[a + 1] * f;
+  }
+  function tailAt(t) {                                                   // P(C - C' >= t)
+    var u = t / HX + KMAX; if (u <= 0) return 1; if (u >= GT_.length - 1) return 0;
+    var a = Math.floor(u), f = u - a; return GT_[a] * (1 - f) + GT_[a + 1] * f;
+  }
+  function pDirect(d, s) { return tailAt(d - s); }                       // P(D >= d)
+  function pReverse(d, s) { return tailAt(d + s); }                      // P(D <= -d): intervention patient has more pain
+  function pEither(d, s) { return Math.min(1, tailAt(d - s) + tailAt(d + s)); }   // P(|D| >= d), g is symmetric
+
+  // ----- Geometry --------------------------------------------------------------------------------
+  var W = 880, H = 490, ML = 56, MR = 160, MT = 24;      // wide right margin for the band labels
+  var PH = 330, BASE = MT + PH;                       // density area, baseline at y = 354
+  var BAND_C = { top: 366, h: 28 }, BAND_I = { top: 400, h: 28 };
+  var PW = W - ML - MR;
+  var XMAX = 10, YMAX = 0.38, Y_BR = 0.33;            // y of the bracket (data units)
+  function X(x) { return ML + x / XMAX * PW; }
+  function Y(y) { return BASE - y / YMAX * PH; }
+  function invX(px) { return (px - ML) / PW * XMAX; }
+
+  var NS = "http://www.w3.org/2000/svg";
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  // ----- Static parts: grid, axes, band labels --------------------------------------------------
+  var gGrid = document.getElementById("grid");
+  var gTicks = el("g", {}, gGrid), vLines = [];
+  (function () {
+    var i, x;
+    for (i = 0; i <= 10; i++) {
+      x = i;
+      vLines.push(el("line", { x1: X(x), x2: X(x), y1: MT, y2: BAND_I.top + BAND_I.h, stroke: "var(--grid)", "stroke-width": 1 }, gGrid));
+      var t = el("text", { x: X(x), y: BAND_I.top + BAND_I.h + 20, "text-anchor": "middle" }, gTicks);
+      t.textContent = x;
+    }
+    el("line", { x1: ML, x2: ML + PW, y1: BASE, y2: BASE, stroke: "var(--axis)", "stroke-width": 1 }, gGrid);
+    var xt = el("text", { x: ML + PW / 2, y: H - 12, "text-anchor": "middle" }, gTicks);
+    xt.textContent = "Pain intensity (0 = no pain, 10 = worst pain)";
+    var yt = el("text", { x: 16, y: MT + PH / 2, "text-anchor": "middle", transform: "rotate(-90 16 " + (MT + PH / 2) + ")" }, gGrid);
+    yt.textContent = "Density (area under each curve = 1)";
+  })();
+  var gBand = document.getElementById("bandlabs");
+  var bandLabC = el("text", { x: ML + PW + 12, y: BAND_C.top + BAND_C.h / 2 + 4, "text-anchor": "start", "class": "t-small" }, gBand);
+  bandLabC.textContent = "Control (n = 100)";
+  var bandLabI = el("text", { x: ML + PW + 12, y: BAND_I.top + BAND_I.h / 2 + 4, "text-anchor": "start", "class": "t-small" }, gBand);
+  bandLabI.textContent = "Intervention (n = 100)";
+
+  // ----- Dynamic parts --------------------------------------------------------------------------
+  var areaC = document.getElementById("areaC"), areaI = document.getElementById("areaI");
+  var lineC = document.getElementById("lineC"), lineI = document.getElementById("lineI");
+  var gPts = document.getElementById("pts"), gMarks = document.getElementById("marks"), gLabels = document.getElementById("labels");
+
+  // raw data points (jittered vertically inside their band)
+  var ptsC = [], ptsI = [];
+  DATA.forEach(function (x, i) {
+    ptsC.push(el("circle", { r: 3.2, fill: "var(--series-1)", "fill-opacity": 0.6, cy: BAND_C.top + 4 + JIT[i] * (BAND_C.h - 8) }, gPts));
+  });
+  DATA_I.forEach(function (x, i) {
+    ptsI.push(el("circle", { r: 3.2, fill: "var(--series-2)", "fill-opacity": 0.6, cy: BAND_I.top + 4 + JIT_I[i] * (BAND_I.h - 8) }, gPts));
+  });
+
+  // light histograms of the raw data (bin width 1, scaled as density so that they match the curves)
+  var gHist = document.getElementById("hists");
+  var histC = el("g", {}, gHist), histI = el("g", {}, gHist);
+  function drawHist(data, g, color) {
+    var BW = 1, nb = Math.round(XMAX / BW), cnt = [], b;
+    for (b = 0; b < nb; b++) cnt.push(0);
+    data.forEach(function (v) { var k = Math.floor(v / BW); if (k >= 0 && k < nb) cnt[k]++; });
+    for (b = 0; b < nb; b++) {
+      if (!cnt[b]) continue;
+      var dens = Math.min(cnt[b] / (N * BW), YMAX);
+      el("rect", { x: (X(b * BW) + 0.5).toFixed(1), y: Y(dens).toFixed(1), width: (X(BW) - X(0) - 1).toFixed(1),
+                   height: (Y(0) - Y(dens)).toFixed(1), fill: color, "fill-opacity": 0.16 }, g);
+    }
+  }
+  drawHist(DATA, histC, "var(--series-1)");
+  drawHist(DATA_I, histI, "var(--series-2)");
+
+  // light boxplots of the raw data (quartiles by linear interpolation, whiskers to the last value within 1.5 IQR)
+  var gBox = document.getElementById("boxes");
+  var boxC = el("g", {}, gBox), boxI = el("g", {}, gBox);
+  function drawBox(data, g, color, band) {
+    var d = data.slice().sort(function (a, b) { return a - b; });
+    function q(p) { var h = (d.length - 1) * p, lo = Math.floor(h), hi = Math.ceil(h); return d[lo] + (h - lo) * (d[hi] - d[lo]); }
+    var q1 = q(0.25), med = q(0.5), q3 = q(0.75), iqr = q3 - q1;
+    var lo = d.filter(function (v) { return v >= q1 - 1.5 * iqr; })[0];
+    var hi = d.filter(function (v) { return v <= q3 + 1.5 * iqr; }).pop();
+    var cy = band.top + band.h / 2, bh = 14;
+    el("line", { x1: X(lo), x2: X(q1), y1: cy, y2: cy, stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 }, g);
+    el("line", { x1: X(q3), x2: X(hi), y1: cy, y2: cy, stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 }, g);
+    el("line", { x1: X(lo), x2: X(lo), y1: cy - 4, y2: cy + 4, stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 }, g);
+    el("line", { x1: X(hi), x2: X(hi), y1: cy - 4, y2: cy + 4, stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 }, g);
+    el("rect", { x: X(q1), y: cy - bh / 2, width: X(q3) - X(q1), height: bh, fill: color, "fill-opacity": 0.16,
+                 stroke: color, "stroke-opacity": 0.55, "stroke-width": 1.5 }, g);
+    el("line", { x1: X(med), x2: X(med), y1: cy - bh / 2, y2: cy + bh / 2, stroke: color, "stroke-opacity": 0.9, "stroke-width": 2.5 }, g);
+  }
+  drawBox(DATA, boxC, "var(--series-1)", BAND_C);
+  drawBox(DATA_I, boxI, "var(--series-2)", BAND_I);
+
+  // mean markers + bracket
+  var mkC = el("line", { stroke: "var(--series-1)", "stroke-width": 1.5 }, gMarks);
+  var mkI = el("line", { stroke: "var(--series-2)", "stroke-width": 1.5 }, gMarks);
+  var brL = el("line", { stroke: "var(--text-primary)", "stroke-width": 1.5 }, gMarks);
+  var brA = el("path", { fill: "var(--text-primary)" }, gMarks);
+  var brB = el("path", { fill: "var(--text-primary)" }, gMarks);
+  var dotC = el("circle", { r: 5, fill: "var(--series-1)", stroke: "var(--surface-1)", "stroke-width": 2 }, gMarks);
+  var dotI = el("circle", { r: 5, fill: "var(--series-2)", stroke: "var(--surface-1)", "stroke-width": 2 }, gMarks);
+  var brT = el("text", { "text-anchor": "middle", "class": "t-strong" }, gMarks);
+
+  // direct labels
+  function mkLabel(color) {
+    var g = el("g", {}, gLabels);
+    var l = el("line", { stroke: color, "stroke-width": 2, "stroke-linecap": "round" }, g);
+    var t = el("text", {}, g);
+    return { g: g, l: l, t: t };
+  }
+  var labSingle = mkLabel("var(--series-1)"); labSingle.t.textContent = "Control = intervention group (same distribution)";
+  var labC = mkLabel("var(--series-1)"); labC.t.textContent = "Control";
+  var labI = mkLabel("var(--series-2)"); labI.t.textContent = "Intervention";
+  function place(lab, x, y) {
+    lab.l.setAttribute("x1", X(x)); lab.l.setAttribute("x2", X(x) + 22);
+    lab.l.setAttribute("y1", Y(y)); lab.l.setAttribute("y2", Y(y));
+    lab.t.setAttribute("x", X(x) + 30); lab.t.setAttribute("y", Y(y) + 4);
+  }
+
+  function curvePath(shift, close) {
+    var d = "", x, first = true, step = 0.04;
+    for (x = 0; x <= XMAX + 1e-9; x += step) {
+      d += (first ? "M" : "L") + X(x).toFixed(1) + " " + Y(pdf(x - shift)).toFixed(1);
+      first = false;
+    }
+    if (close) d += "L" + X(XMAX).toFixed(1) + " " + Y(0).toFixed(1) + "L" + X(0).toFixed(1) + " " + Y(0).toFixed(1) + "Z";
+    return d;
+  }
+
+  // ----- State and rendering --------------------------------------------------------------------
+  // s = how far the intervention distribution has moved to the LEFT (in pain points)
+  var state = { s: 0, alpha: 0, applied: false, busy: false, delta: 1, loc: MEAN0, locKey: "mean", d2: 1 };
+
+  var legendEl = document.getElementById("legend");
+  var legC = document.createElement("span"), legI = document.createElement("span");
+  function legItem(span, color, text) {
+    var i = document.createElement("i"); i.style.borderTopColor = color;
+    span.appendChild(i); span.appendChild(document.createTextNode(text));
+    legendEl.appendChild(span);
+  }
+  legItem(legC, "var(--series-1)", "Control group");
+  legItem(legI, "var(--series-2)", "Intervention group");
+
+  var tbl = document.getElementById("tbl");
+  function fmt(v) { return v.toFixed(1); }
+  function buildTable() {
+    function row(color, name, shift, sampleMean) {
+      return "<tr><td><span class='key' style='border-top-color:" + color + "'></span>" + name + "</td><td>" +
+             fmt(MEAN0 + shift) + "</td><td>" + fmt(MEDIAN0 + shift) + "</td><td>" + fmt(MODE0 + shift) +
+             "</td><td>" + fmt(SD) + "</td><td>" + fmt(sampleMean) + "</td></tr>";
+    }
+    var html = "<thead><tr><th>Group</th><th>Mean</th><th>Median</th><th>Mode</th><th>SD</th><th>Sample mean (n = 100)</th></tr></thead><tbody>";
+    html += row("var(--series-1)", state.alpha > 0.01 ? "Control" : "Control and intervention", 0, SAMPLE_MEAN);
+    if (state.alpha > 0.01) html += row("var(--series-2)", "Intervention", -state.s, SAMPLE_MEAN_I - state.s);
+    tbl.innerHTML = html + "</tbody>";
+  }
+
+  function render() {
+    var s = state.s, a = state.alpha;
+    lineC.setAttribute("d", curvePath(0, false)); areaC.setAttribute("d", curvePath(0, true));
+    lineI.setAttribute("d", curvePath(-s, false)); areaI.setAttribute("d", curvePath(-s, true));
+    lineI.style.opacity = a; areaI.style.opacity = a;
+
+    // raw data: the intervention patients move together with their curve
+    var i;
+    for (i = 0; i < N; i++) {
+      ptsC[i].setAttribute("cx", X(DATA[i]).toFixed(1));
+      ptsI[i].setAttribute("cx", X(DATA_I[i] - s).toFixed(1));
+      ptsI[i].style.opacity = a;
+    }
+    bandLabI.style.opacity = a;
+    histI.setAttribute("transform", "translate(" + (-s * PW / XMAX).toFixed(1) + " 0)");
+    histI.style.opacity = a;
+    boxI.setAttribute("transform", "translate(" + (-s * PW / XMAX).toFixed(1) + " 0)");
+    boxI.style.opacity = a;
+
+    // mean markers and bracket (intervention mean lies to the left of the control mean)
+    var xc = state.loc, xi = state.loc - s, show = a > 0.01 && s > 0.05;
+    var vis = show ? Math.min(1, a) : 0;
+    [mkC, mkI, brL, brA, brB, dotC, dotI, brT].forEach(function (n) { n.style.opacity = vis; });
+    mkC.setAttribute("x1", X(xc)); mkC.setAttribute("x2", X(xc)); mkC.setAttribute("y1", Y(0)); mkC.setAttribute("y2", Y(Y_BR));
+    mkI.setAttribute("x1", X(xi)); mkI.setAttribute("x2", X(xi)); mkI.setAttribute("y1", Y(0)); mkI.setAttribute("y2", Y(Y_BR));
+    dotC.setAttribute("cx", X(xc)); dotC.setAttribute("cy", Y(0));
+    dotI.setAttribute("cx", X(xi)); dotI.setAttribute("cy", Y(0));
+    var yb = Y(Y_BR);
+    brL.setAttribute("x1", X(xi) + 6); brL.setAttribute("x2", X(xc) - 6);
+    brL.setAttribute("y1", yb); brL.setAttribute("y2", yb);
+    brA.setAttribute("d", "M" + (X(xc) - 1) + " " + yb + "l-8 -5v10z");     // arrow head at the control mean (right)
+    brB.setAttribute("d", "M" + (X(xi) + 1) + " " + yb + "l8 -5v10z");      // arrow head at the intervention mean (left)
+    brT.setAttribute("x", (X(xc) + X(xi)) / 2); brT.setAttribute("y", yb - 10);
+    brT.textContent = "Δ = " + s.toFixed(1) + " points less pain (" + state.locKey + ")";
+
+    // direct labels on the right tails (they only appear once the curves are apart)
+    // control label above its curve, intervention label below its own curve (right of the control mean line)
+    place(labC, 6.4, pdf(6.4) + 0.03); place(labI, 4.85, 0.012);
+    var sepFade = a * clamp((s - 0.2) / 0.3, 0, 1);
+    labC.g.style.opacity = sepFade; labI.g.style.opacity = sepFade;
+    place(labSingle, 4.9, 0.2);
+    labSingle.g.style.opacity = 1 - clamp(Math.max(s / 0.4, a * 1.2), 0, 1);
+
+    legC.style.opacity = a > 0.01 ? 1 : 0; legI.style.opacity = a > 0.01 ? 1 : 0;
+    buildTable();
+    render2();
+  }
+
+  // ----- Tween engine ---------------------------------------------------------------------------
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var raf = null;
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }   // easeInOutCubic
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function tween(dur, fn, done) {
+    if (raf) cancelAnimationFrame(raf);
+    if (reduce || dur === 0) { fn(1); render(); raf = null; if (done) done(); return; }
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var t = clamp((ts - t0) / dur, 0, 1);
+      fn(t); render();
+      if (t < 1) raf = requestAnimationFrame(step); else { raf = null; if (done) done(); }
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  var btnApply = document.getElementById("apply"), btnReset = document.getElementById("reset");
+  var slider = document.getElementById("delta"), sliderOut = document.getElementById("deltaOut");
+  var statusEl = document.getElementById("status");
+  function setButtons() {
+    btnApply.disabled = state.applied || state.busy;
+    btnReset.disabled = !state.applied && !state.busy;
+  }
+
+  btnApply.addEventListener("click", function () {
+    if (state.applied || state.busy) return;
+    state.applied = true; state.busy = true; setButtons();
+    statusEl.textContent = "";
+    var target = state.delta;
+    // 1) the intervention curve and its patients appear exactly on top of the control group
+    tween(450, function (t) { state.alpha = easeOut(t); state.s = 0; }, function () {
+      // 2) then they slide to the left, smoothly
+      tween(2400, function (t) { state.s = target * ease(t); }, function () {
+        state.busy = false; setButtons();
+        statusEl.textContent = "Intervention applied: the intervention group has on average " + state.s.toFixed(1) +
+          " points less pain than the control group (Δ = " + state.s.toFixed(1) + "). The shape is unchanged.";
+      });
+    });
+  });
+
+  btnReset.addEventListener("click", function () {
+    var s0 = state.s;
+    state.busy = true; setButtons(); statusEl.textContent = "";
+    tween(1500, function (t) { state.s = s0 * (1 - ease(t)); }, function () {
+      var a0 = state.alpha;
+      tween(350, function (t) { state.alpha = a0 * (1 - t); }, function () {
+        state.applied = false; state.busy = false; state.s = 0; state.alpha = 0; render(); setButtons();
+        statusEl.textContent = "Back to the start: one distribution for both groups.";
+      });
+    });
+  });
+
+  slider.addEventListener("input", function () {
+    state.delta = parseFloat(slider.value);
+    sliderOut.textContent = state.delta.toFixed(1);
+    if (state.applied && !state.busy) {
+      var s0 = state.s, s1 = state.delta;
+      state.busy = true; setButtons();
+      tween(600, function (t) { state.s = s0 + (s1 - s0) * ease(t); }, function () {
+        state.busy = false; setButtons();
+        statusEl.textContent = "Effect changed: Δ = " + state.s.toFixed(1) + " points less pain.";
+      });
+    }
+  });
+
+  // ----- Hover layer: crosshair + tooltip -------------------------------------------------------
+  var svg = document.getElementById("svg"), hit = document.getElementById("hit");
+  var cross = document.getElementById("cross"), tip = document.getElementById("tip"), chart = document.getElementById("chart");
+  function hover(ev) {
+    var r = svg.getBoundingClientRect();
+    var x = clamp(invX((ev.clientX - r.left) / r.width * W), 0, XMAX);
+    cross.setAttribute("x1", X(x)); cross.setAttribute("x2", X(x)); cross.style.display = "";
+    tip.textContent = "";
+    var hd = document.createElement("div"); hd.className = "hd"; hd.textContent = "Pain intensity = " + x.toFixed(1); tip.appendChild(hd);
+    function row(color, name, val) {
+      var d = document.createElement("div"); d.className = "row";
+      var k = document.createElement("span"); k.className = "key"; k.style.borderTopColor = color;
+      var n = document.createElement("span"); n.className = "nm"; n.textContent = name;
+      var v = document.createElement("span"); v.className = "val"; v.textContent = val.toFixed(3);
+      d.appendChild(k); d.appendChild(n); d.appendChild(v); tip.appendChild(d);
+    }
+    row("var(--series-1)", state.alpha > 0.01 ? "Control" : "Both groups", pdf(x));
+    if (state.alpha > 0.01) row("var(--series-2)", "Intervention", pdf(x + state.s));
+    var note = document.createElement("div"); note.className = "hd"; note.style.marginTop = "4px"; note.textContent = "density";
+    tip.appendChild(note);
+    tip.style.display = "block";
+    var cr = chart.getBoundingClientRect();
+    var left = ev.clientX - cr.left + 14, top = ev.clientY - cr.top - 10;
+    if (left + tip.offsetWidth > cr.width) left = ev.clientX - cr.left - tip.offsetWidth - 14;
+    tip.style.left = left + "px"; tip.style.top = Math.max(0, top) + "px";
+  }
+  hit.addEventListener("pointermove", hover);
+  hit.addEventListener("pointerleave", function () { cross.style.display = "none"; tip.style.display = "none"; });
+
+  // ----- Chart 2: density of D = control - intervention, shaded tails, tiles, simulation -----------
+  var svg2 = document.getElementById("svg2"), tip2 = document.getElementById("tip2"), chart2 = document.getElementById("chart2");
+  var W2 = 880, H2 = 270, ML2 = 56, MR2 = 24, MT2 = 16, PH2 = 170, PW2 = W2 - ML2 - MR2, BASE2 = MT2 + PH2;
+  var T0 = -8, T1 = 10, YMAX2 = gAt(0) * 1.18;
+  function X2(t) { return ML2 + (t - T0) / (T1 - T0) * PW2; }
+  function Y2(y) { return BASE2 - y / YMAX2 * PH2; }
+  (function () {
+    var t, g2 = el("g", {}, svg2);
+    for (t = T0; t <= T1; t += 2) {
+      el("line", { x1: X2(t), x2: X2(t), y1: MT2, y2: BASE2, stroke: "var(--grid)", "stroke-width": 1 }, g2);
+      var tx = el("text", { x: X2(t), y: BASE2 + 20, "text-anchor": "middle" }, g2); tx.textContent = t;
+    }
+    el("line", { x1: ML2, x2: ML2 + PW2, y1: BASE2, y2: BASE2, stroke: "var(--axis)", "stroke-width": 1 }, g2);
+    var xt2 = el("text", { x: ML2 + PW2 / 2, y: H2 - 12, "text-anchor": "middle" }, g2);
+    xt2.textContent = "Pain difference: control patient minus intervention patient (points)";
+    var yt2 = el("text", { x: 16, y: MT2 + PH2 / 2, "text-anchor": "middle", transform: "rotate(-90 16 " + (MT2 + PH2 / 2) + ")" }, g2);
+    yt2.textContent = "Density";
+  })();
+  var tailB = el("path", { fill: "var(--series-3)", "fill-opacity": 0.16 }, svg2);
+  var tailA = el("path", { fill: "var(--series-3)", "fill-opacity": 0.38 }, svg2);
+  var lineD = el("path", { fill: "none", stroke: "var(--text-primary)", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg2);
+  var zeroL = el("line", { x1: X2(0), x2: X2(0), y1: MT2, y2: BASE2, stroke: "var(--text-secondary)", "stroke-width": 1.5 }, svg2);
+  var zeroT = el("text", { x: X2(0) + 6, y: MT2 + 12, "class": "t-small" }, svg2); zeroT.textContent = "0 = no difference";
+  var thA = el("line", { y1: MT2, y2: BASE2, stroke: "var(--series-3)", "stroke-width": 1.5 }, svg2);
+  var thB = el("line", { y1: MT2, y2: BASE2, stroke: "var(--series-3)", "stroke-width": 1.5, "stroke-opacity": 0.5 }, svg2);
+  var cross2 = el("line", { y1: MT2, y2: BASE2, stroke: "var(--axis)", "stroke-width": 1, style: "display:none" }, svg2);
+  var hit2 = el("rect", { x: ML2, y: MT2, width: PW2, height: PH2, fill: "transparent" }, svg2);
+
+  function curve2(s) {
+    var d = "", t, first = true;
+    for (t = T0; t <= T1 + 1e-9; t += 0.1) { d += (first ? "M" : "L") + X2(t).toFixed(1) + " " + Y2(gAt(t - s)).toFixed(1); first = false; }
+    return d;
+  }
+  function tailPath(a, b, s) {                       // area under the curve between a and b
+    a = clamp(a, T0, T1); b = clamp(b, T0, T1);
+    if (b - a < 0.01) return "";
+    var d = "M" + X2(a).toFixed(1) + " " + Y2(0).toFixed(1), t;
+    for (t = a; t < b; t += 0.05) d += "L" + X2(t).toFixed(1) + " " + Y2(gAt(t - s)).toFixed(1);
+    return d + "L" + X2(b).toFixed(1) + " " + Y2(gAt(b - s)).toFixed(1) + "L" + X2(b).toFixed(1) + " " + Y2(0).toFixed(1) + "Z";
+  }
+  var pDirEl = document.getElementById("pDir"), pRevEl = document.getElementById("pRev"), pAbsEl = document.getElementById("pAbs");
+  var simDirEl = document.getElementById("simDir"), simRevEl = document.getElementById("simRev"), simAbsEl = document.getElementById("simAbs");
+  var effNoteEl = document.getElementById("effNote");
+  var d2Slider = document.getElementById("d2"), d2Out = document.getElementById("d2Out");
+  var dSpans = document.querySelectorAll("[data-d]"), sim = null;
+  function pct(p) { return (p * 100).toFixed(1) + " %"; }
+
+  function render2() {
+    var s = state.s, d = state.d2;
+    lineD.setAttribute("d", curve2(s));
+    tailA.setAttribute("d", tailPath(d, T1, s));
+    tailB.setAttribute("d", tailPath(T0, -d, s));
+    thA.setAttribute("x1", X2(d)); thA.setAttribute("x2", X2(d));
+    thB.setAttribute("x1", X2(-d)); thB.setAttribute("x2", X2(-d));
+    thA.style.opacity = thB.style.opacity = d > 0.01 && d <= T1 ? 1 : 0;
+    effNoteEl.textContent = state.alpha > 0.01
+      ? "Effect in use: \u0394 = " + s.toFixed(1) + " points less pain in the intervention group (set in tab 1)."
+      : "No intervention applied yet: both groups are identical (\u0394 = 0). Apply the intervention in tab 1 to see how the probabilities change.";
+    pDirEl.textContent = pct(pDirect(d, s));
+    pRevEl.textContent = pct(pReverse(d, s));
+    pAbsEl.textContent = pct(pEither(d, s));
+    Array.prototype.forEach.call(dSpans, function (e) { e.textContent = d.toFixed(2); });
+    var fresh = sim && sim.d === d && Math.abs(sim.s - s) < 0.005;
+    simDirEl.textContent = fresh ? "Simulation (" + sim.n.toLocaleString("en-US") + " pairs): " + pct(sim.dir) : "";
+    simRevEl.textContent = fresh ? "Simulation (" + sim.n.toLocaleString("en-US") + " pairs): " + pct(sim.rev) : "";
+    simAbsEl.textContent = fresh ? "Simulation (" + sim.n.toLocaleString("en-US") + " pairs): " + pct(sim.abs) : "";
+  }
+  d2Slider.addEventListener("input", function () {
+    state.d2 = parseFloat(d2Slider.value); d2Out.textContent = state.d2.toFixed(2); render2();
+  });
+  document.getElementById("simBtn").addEventListener("click", function () {
+    var n = 10000, c = 0, a = 0, r = 0, k, x, y, D, d = state.d2, s = state.s;
+    for (k = 0; k < n; k++) {                         // one random patient per group, independently
+      x = quantile(Math.random()); y = quantile(Math.random()) - s; D = x - y;
+      if (D >= d) c++;
+      if (D <= -d) r++;
+      if (Math.abs(D) >= d) a++;
+    }
+    sim = { d: d, s: s, n: n, dir: c / n, rev: r / n, abs: a / n };
+    render2();
+  });
+  hit2.addEventListener("pointermove", function (ev) {
+    var r = svg2.getBoundingClientRect();
+    var t = clamp(T0 + ((ev.clientX - r.left) / r.width * W2 - ML2) / PW2 * (T1 - T0), T0, T1);
+    cross2.setAttribute("x1", X2(t)); cross2.setAttribute("x2", X2(t)); cross2.style.display = "";
+    tip2.textContent = "";
+    var hd = document.createElement("div"); hd.className = "hd"; hd.textContent = "Difference = " + t.toFixed(1) + " points"; tip2.appendChild(hd);
+    var d = document.createElement("div"); d.className = "row";
+    var k = document.createElement("span"); k.className = "key"; k.style.borderTopColor = "var(--text-primary)";
+    var n = document.createElement("span"); n.className = "nm"; n.textContent = "density";
+    var v = document.createElement("span"); v.className = "val"; v.textContent = gAt(t - state.s).toFixed(3);
+    d.appendChild(k); d.appendChild(n); d.appendChild(v); tip2.appendChild(d);
+    tip2.style.display = "block";
+    var cr = chart2.getBoundingClientRect();
+    var left = ev.clientX - cr.left + 14, top = ev.clientY - cr.top - 10;
+    if (left + tip2.offsetWidth > cr.width) left = ev.clientX - cr.left - tip2.offsetWidth - 14;
+    tip2.style.left = left + "px"; tip2.style.top = Math.max(0, top) + "px";
+  });
+  hit2.addEventListener("pointerleave", function () { cross2.style.display = "none"; tip2.style.display = "none"; });
+
+  // ----- Location marker: mean, median or mode (the markers glide to the new position) --------------
+  var LOCS = { mean: MEAN0, median: MEDIAN0, mode: MODE0 }, rafLoc = null;
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="loc"]'), function (r) {
+    r.addEventListener("change", function () {
+      if (!r.checked) return;
+      var from = state.loc, to = LOCS[r.value], t0 = null;
+      state.locKey = r.value;
+      if (rafLoc) cancelAnimationFrame(rafLoc);
+      if (reduce) { state.loc = to; render(); return; }
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var t = clamp((ts - t0) / 450, 0, 1);
+        state.loc = from + (to - from) * ease(t); render();
+        if (t < 1) rafLoc = requestAnimationFrame(step); else rafLoc = null;
+      }
+      rafLoc = requestAnimationFrame(step);
+    });
+  });
+
+  // ----- Tabs (arrow keys, Home, End) -------------------------------------------------------------
+  var tabEls = [document.getElementById("tab1"), document.getElementById("tab2")];
+  var panelEls = [document.getElementById("panel1"), document.getElementById("panel2")];
+  function selectTab(i, focus) {
+    tabEls.forEach(function (tb, k) {
+      tb.setAttribute("aria-selected", k === i ? "true" : "false");
+      tb.tabIndex = k === i ? 0 : -1;
+      panelEls[k].hidden = k !== i;
+    });
+    if (focus) tabEls[i].focus();
+    if (i === 1) render2();
+  }
+  tabEls.forEach(function (tb, k) {
+    tb.addEventListener("click", function () { selectTab(k, false); });
+    tb.addEventListener("keydown", function (ev) {
+      var n = ev.key === "ArrowRight" ? (k + 1) % 2 : ev.key === "ArrowLeft" ? (k + 1) % 2 : ev.key === "Home" ? 0 : ev.key === "End" ? 1 : -1;
+      if (n >= 0) { ev.preventDefault(); selectTab(n, true); }
+    });
+  });
+  document.getElementById("goTab1").addEventListener("click", function () { selectTab(0, true); });
+
+  // ----- Raw data switch: dots + histogram (off by default to keep the picture calm) ---------------
+  var rawToggle = document.getElementById("rawToggle"), rawOn = false;
+  var bandBottom = BAND_I.top + BAND_I.h, shiftUp = bandBottom - BASE + 0;   // space that disappears when raw data is off
+  [gPts, gHist, gBand, gBox].forEach(function (g) { g.style.transition = "opacity .3s"; g.style.pointerEvents = "none"; });
+  function setRaw(on) {
+    rawOn = on;
+    [gPts, gHist, gBand, gBox].forEach(function (g) { g.style.opacity = on ? 1 : 0; });
+    var bottom = on ? bandBottom : BASE;
+    vLines.forEach(function (l) { l.setAttribute("y2", bottom); });
+    gTicks.setAttribute("transform", "translate(0 " + (on ? 0 : -shiftUp) + ")");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + (on ? H : H - shiftUp));
+    cross.setAttribute("y2", bottom);
+  }
+  rawToggle.addEventListener("change", function () { setRaw(rawToggle.checked); });
+
+  render(); setButtons(); setRaw(false);
+})();
+</script>
+</body>
+</html>

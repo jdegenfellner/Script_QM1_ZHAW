@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayes' theorem step by step: prior, data, posterior</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTYuMCw0OC42IEw2LjksNDguMyBMNy43LDQ4LjEgTDguNiw0Ny43IEw5LjUsNDcuNCBMMTAuMyw0Ny4wIEwxMS4yLDQ2LjYgTDEyLjEsNDYuMSBMMTIuOSw0NS42IEwxMy44LDQ1LjEgTDE0LjcsNDQuNSBMMTUuNSw0My45IEwxNi40LDQzLjMgTDE3LjMsNDIuNiBMMTguMSw0Mi4wIEwxOS4wLDQxLjMgTDE5LjksNDAuNiBMMjAuNywzOS44IEwyMS42LDM5LjEgTDIyLjUsMzguNCBMMjMuMywzNy44IEwyNC4yLDM3LjEgTDI1LjEsMzYuNSBMMjUuOSwzNi4wIEwyNi44LDM1LjUgTDI3LjcsMzUuMCBMMjguNSwzNC43IEwyOS40LDM0LjQgTDMwLjMsMzQuMiBMMzEuMSwzNC4wIEwzMi4wLDM0LjAgTDMyLjksMzQuMCBMMzMuNywzNC4yIEwzNC42LDM0LjQgTDM1LjUsMzQuNyBMMzYuMywzNS4wIEwzNy4yLDM1LjUgTDM4LjEsMzYuMCBMMzguOSwzNi41IEwzOS44LDM3LjEgTDQwLjcsMzcuOCBMNDEuNSwzOC40IEw0Mi40LDM5LjEgTDQzLjMsMzkuOCBMNDQuMSw0MC42IEw0NS4wLDQxLjMgTDQ1LjksNDIuMCBMNDYuNyw0Mi42IEw0Ny42LDQzLjMgTDQ4LjUsNDMuOSBMNDkuMyw0NC41IEw1MC4yLDQ1LjEgTDUxLjEsNDUuNiBMNTEuOSw0Ni4xIEw1Mi44LDQ2LjYgTDUzLjcsNDcuMCBMNTQuNSw0Ny40IEw1NS40LDQ3LjcgTDU2LjMsNDguMSBMNTcuMSw0OC4zIEw1OC4wLDQ4LjYgTDU4LjAsNTAuMCBMNi4wLDUwLjAgWiIgZmlsbD0iIzJhNzhkNiIgZmlsbC1vcGFjaXR5PSIuMzAiIHN0cm9rZT0iIzJhNzhkNiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTI3LjAsNDYuNiBMMjcuNCw0Ni4wIEwyNy43LDQ1LjQgTDI4LjEsNDQuNiBMMjguNSw0My44IEwyOC44LDQyLjkgTDI5LjIsNDEuOSBMMjkuNiw0MC44IEwyOS45LDM5LjcgTDMwLjMsMzguNCBMMzAuNywzNy4wIEwzMS4wLDM1LjYgTDMxLjQsMzQuMSBMMzEuOCwzMi41IEwzMi4xLDMwLjkgTDMyLjUsMjkuMiBMMzIuOSwyNy42IEwzMy4yLDI1LjkgTDMzLjYsMjQuMiBMMzQuMCwyMi42IEwzNC4zLDIxLjAgTDM0LjcsMTkuNCBMMzUuMSwxOC4wIEwzNS40LDE2LjcgTDM1LjgsMTUuNSBMMzYuMiwxNC41IEwzNi41LDEzLjYgTDM2LjksMTIuOSBMMzcuMywxMi40IEwzNy42LDEyLjEgTDM4LjAsMTIuMCBMMzguNCwxMi4xIEwzOC43LDEyLjQgTDM5LjEsMTIuOSBMMzkuNSwxMy42IEwzOS44LDE0LjUgTDQwLjIsMTUuNSBMNDAuNiwxNi43IEw0MC45LDE4LjAgTDQxLjMsMTkuNCBMNDEuNywyMS4wIEw0Mi4wLDIyLjYgTDQyLjQsMjQuMiBMNDIuOCwyNS45IEw0My4xLDI3LjYgTDQzLjUsMjkuMiBMNDMuOSwzMC45IEw0NC4yLDMyLjUgTDQ0LjYsMzQuMSBMNDUuMCwzNS42IEw0NS4zLDM3LjAgTDQ1LjcsMzguNCBMNDYuMSwzOS43IEw0Ni40LDQwLjggTDQ2LjgsNDEuOSBMNDcuMiw0Mi45IEw0Ny41LDQzLjggTDQ3LjksNDQuNiBMNDguMyw0NS40IEw0OC42LDQ2LjAgTDQ5LjAsNDYuNiBMNDkuMCw1MC4wIEwyNy4wLDUwLjAgWiIgZmlsbD0iI2ViNjgzNCIgZmlsbC1vcGFjaXR5PSIuNDUiIHN0cm9rZT0iI2ViNjgzNCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9zdmc+">
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f3f2ef;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --grid:           #e6e5e1;
+    --axis:           #bdbcb6;
+    --series-1:       #2a78d6;   /* theta = 0.30 */
+    --series-2:       #eb6834;   /* theta = 0.40 */
+    --focus:          #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #262624;
+      --text-primary:   #f0efec;
+      --text-secondary: #c3c2b7;
+      --grid:           #2f2f2d;
+      --axis:           #55544f;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --focus:          #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #262624;
+    --text-primary:   #f0efec;
+    --text-secondary: #c3c2b7;
+    --grid:           #2f2f2d;
+    --axis:           #55544f;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --focus:          #3987e5;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface-1); color: var(--text-primary);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 40px; }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 4px; font-weight: 650; }
+  .sub { margin: 0 0 16px; color: var(--text-secondary); max-width: 76ch; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: center; margin: 0 0 10px; }
+  button {
+    font: inherit; font-weight: 600; padding: 9px 18px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;
+  }
+  button.primary { background: var(--series-2); color: #fff; }
+  button.ghost { background: transparent; color: var(--text-primary); border-color: var(--axis); }
+  button[disabled] { opacity: .45; cursor: default; }
+  button:focus-visible, input[type=range]:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .stepdots { display: inline-flex; gap: 8px; margin-left: 6px; align-items: center; color: var(--text-secondary); font-size: .9rem; }
+  .stepdots i { width: 10px; height: 10px; border-radius: 50%; background: var(--axis); display: inline-block; }
+  .stepdots i.on { background: var(--text-primary); }
+
+  .caption {
+    margin: 0 0 8px; padding: 12px 14px; border-radius: 8px; background: var(--surface-2);
+    color: var(--text-primary); min-height: 4.6em; max-width: 90ch;
+  }
+  .chart { position: relative; }
+  svg { display: block; width: 100%; height: auto; }
+  svg text { font: 13px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: var(--text-secondary); }
+  svg .t-title { fill: var(--text-primary); font-weight: 650; font-size: 15px; }
+  svg .t-strong { fill: var(--text-primary); font-weight: 650; font-size: 18px; }
+  svg .t-small { font-size: 12px; }
+  .tooltip {
+    position: absolute; pointer-events: none; display: none;
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; font-size: .85rem; line-height: 1.4; min-width: 170px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  }
+  .tooltip .hd { color: var(--text-secondary); margin-bottom: 4px; }
+  .tooltip .row { display: flex; align-items: center; gap: 8px; }
+  .tooltip .key { width: 14px; height: 0; border-top: 2px solid; border-radius: 2px; flex: none; }
+  .tooltip .val { font-weight: 650; margin-left: auto; padding-left: 12px; }
+  .tooltip .nm { color: var(--text-secondary); }
+
+  .calc { margin: 10px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--surface-2); max-width: 90ch;
+          font-variant-numeric: tabular-nums; transition: opacity .4s; }
+  .calc div { margin: 2px 0; }
+  .calc .k { color: var(--text-secondary); }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+  .settings { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 10px; }
+  .slider { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+  .slider output { color: var(--text-primary); font-weight: 650; min-width: 4ch; text-align: right; }
+  input[type=range] { width: 160px; accent-color: var(--series-2); }
+  table { border-collapse: collapse; margin-top: 8px; font-size: .92rem; }
+  th, td { text-align: right; padding: 6px 14px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--text-secondary); font-weight: 600; }
+  td .key { display: inline-block; width: 14px; height: 0; border-top: 2px solid; margin-right: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Bayes' theorem step by step: prior, data, posterior</h1>
+  <p class="sub">A physiotherapist wants to know how likely it is that a new therapy helps a patient with chronic back pain (&theta; = probability of improvement).
+     She guesses &theta; = 0.30, her colleagues think &theta; = 0.40, and we trust both equally. Then a trial with 50 patients is run. How does our belief change?</p>
+
+  <div class="controls">
+    <button id="back" class="ghost" type="button">&larr; Back</button>
+    <button id="next" class="primary" type="button">Next step &rarr;</button>
+    <button id="play" class="ghost" type="button">Play all</button>
+    <button id="reset" class="ghost" type="button">Reset</button>
+    <span class="stepdots" id="dots" aria-hidden="true"></span>
+  </div>
+
+  <p class="caption" id="caption" aria-live="polite"></p>
+
+  <div class="chart" id="chart">
+    <svg id="svg" viewBox="0 0 920 680" role="img" aria-labelledby="svgTitle svgDesc">
+      <title id="svgTitle">Prior, data, likelihood and posterior for the two candidate values of theta</title>
+      <desc id="svgDesc">Two bars show how strongly we believe theta is 0.30 or 0.40. A grid of patient circles shows the trial data. A bar chart shows how probable the observed number of improvements is under each theta. After the last step, the bars show the posterior.</desc>
+      <g id="static"></g>
+      <g id="beliefs"></g>
+      <g id="patients"></g>
+      <g id="pmfGroup"></g>
+      <g id="hiGroup"></g>
+      <rect id="hit" x="60" y="410" width="800" height="190" fill="transparent"></rect>
+    </svg>
+    <div class="tooltip" id="tip" role="status"></div>
+  </div>
+
+  <div class="calc" id="calc" style="opacity:0" aria-live="polite"></div>
+
+  <details>
+    <summary>Change the numbers</summary>
+    <div class="settings">
+      <label class="slider" for="p03">Prior for &theta; = 0.30
+        <input id="p03" type="range" min="0" max="100" step="5" value="50"><output id="p03Out" for="p03">50 %</output></label>
+      <label class="slider" for="nPat">Patients n
+        <input id="nPat" type="range" min="10" max="100" step="10" value="50"><output id="nOut" for="nPat">50</output></label>
+      <label class="slider" for="kImp">Improved k
+        <input id="kImp" type="range" min="0" max="50" step="1" value="22"><output id="kOut" for="kImp">22</output></label>
+    </div>
+  </details>
+
+  <details>
+    <summary>Table view</summary>
+    <table id="tbl"></table>
+  </details>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ----- Model ---------------------------------------------------------------------------------
+  var TH = [0.3, 0.4];
+  var NAMES = ["θ = 0.30", "θ = 0.40"];
+  var LF = [0], i0;
+  for (i0 = 1; i0 <= 200; i0++) LF.push(LF[i0 - 1] + Math.log(i0));       // log factorials
+  function pmf(k, n, th) { return Math.exp(LF[n] - LF[k] - LF[n - k] + k * Math.log(th) + (n - k) * Math.log(1 - th)); }
+  var S = { stage: 0, patients: 0, pmfA: 0, hiA: 0, mix: 0, busy: false, p03: 0.5, n: 50, k: 22 };
+  function prior() { return [S.p03, 1 - S.p03]; }
+  function lik() { return TH.map(function (th) { return pmf(S.k, S.n, th); }); }
+  function joint() { var p = prior(), l = lik(); return [p[0] * l[0], p[1] * l[1]]; }
+  function post() { var u = joint(), s = u[0] + u[1]; return s > 0 ? [u[0] / s, u[1] / s] : [0.5, 0.5]; }
+  function pct(p) { return p >= 0.9995 ? "100 %" : p < 0.001 && p > 0 ? (p * 100).toFixed(2) + " %" : (p * 100).toFixed(p < 0.1 ? 1 : 0) + " %"; }
+  function pct2(p) { return (p * 100).toPrecision(2) + " %"; }
+
+  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  var outcomes = [];
+  function makeOutcomes() {
+    var arr = [], j, r = mulberry32(7);
+    for (j = 0; j < S.n; j++) arr.push(j < S.k);
+    for (j = arr.length - 1; j > 0; j--) { var m = Math.floor(r() * (j + 1)), t = arr[j]; arr[j] = arr[m]; arr[m] = t; }
+    outcomes = arr;
+  }
+
+  // ----- SVG helpers ----------------------------------------------------------------------------
+  var NS = "http://www.w3.org/2000/svg";
+  function el(name, attrs, parent) { var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }
+  var COLORS = ["var(--series-1)", "var(--series-2)"];
+
+  // ----- Layout ---------------------------------------------------------------------------------
+  var BASE_A = 300, H_A = 200, BAR_W = 110, BAR_X = [150, 330];            // belief bars
+  function YA(p) { return BASE_A - p * H_A; }
+  var gStatic = document.getElementById("static");
+  var gBel = document.getElementById("beliefs"), gPat = document.getElementById("patients");
+  var gPmf = document.getElementById("pmfGroup"), gHi = document.getElementById("hiGroup");
+
+  // static: belief panel grid and labels
+  var titleA = el("text", { x: 60, y: 34, "class": "t-title" }, gStatic);
+  var titleWord = el("tspan", {}, titleA), titleRest = el("tspan", {}, titleA);
+  var subA = el("text", { x: 60, y: 54, "class": "t-small" }, gStatic);
+  (function () {
+    var p;
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
+      el("line", { x1: 60, x2: 420, y1: YA(v), y2: YA(v), stroke: "var(--grid)", "stroke-width": 1 }, gStatic);
+      var t = el("text", { x: 52, y: YA(v) + 4, "text-anchor": "end", "class": "t-small" }, gStatic); t.textContent = (v * 100) + " %";
+    });
+    el("line", { x1: 60, x2: 420, y1: BASE_A, y2: BASE_A, stroke: "var(--axis)", "stroke-width": 1 }, gStatic);
+    var l1 = [["θ = 0.30", "physiotherapist"], ["θ = 0.40", "colleagues"]];
+    l1.forEach(function (lab, i) {
+      var a = el("text", { x: BAR_X[i], y: BASE_A + 22, "text-anchor": "middle", fill: "var(--text-primary)", "class": "t-title" }, gStatic); a.textContent = lab[0];
+      var b = el("text", { x: BAR_X[i], y: BASE_A + 40, "text-anchor": "middle", "class": "t-small" }, gStatic); b.textContent = lab[1];
+    });
+    var tb = el("text", { x: 480, y: 34, "class": "t-title" }, gStatic); tb.textContent = "Data: the trial";
+    var tc = el("text", { x: 60, y: 388, "class": "t-title" }, gStatic);
+    tc.id = "titleC";
+  })();
+
+  // belief bars (created once)
+  var barEls = [], ghostEls = [], valEls = [], barTitles = [];
+  [0, 1].forEach(function (i) {
+    ghostEls.push(el("rect", { x: BAR_X[i] - BAR_W / 2, width: BAR_W, fill: "none", stroke: COLORS[i], "stroke-width": 2, "stroke-dasharray": "5 4", opacity: 0 }, gBel));
+    var r = el("rect", { x: BAR_X[i] - BAR_W / 2, width: BAR_W, fill: COLORS[i], rx: 4 }, gBel);
+    barTitles.push(el("title", {}, r)); barEls.push(r);
+    valEls.push(el("text", { x: BAR_X[i], "text-anchor": "middle", "class": "t-strong" }, gBel));
+  });
+  var tagPrior = el("text", { x: 60, y: 72, "class": "t-small" }, gBel);   // "dashed = prior"
+
+  // ----- Patients grid --------------------------------------------------------------------------
+  var patEls = [], counterEl = el("text", { x: 500, y: 0, "class": "t-title" }, gPat);
+  function buildPatients() {
+    clear(gPat); patEls = [];
+    counterEl = el("text", { x: 500, y: 0, "class": "t-title" }, gPat);
+    var cols = 10, rows = Math.ceil(S.n / cols), step = Math.min(36, 220 / rows), r = step * 0.3, j;
+    for (j = 0; j < S.n; j++) {
+      var cx = 500 + (j % cols) * step + step / 2, cy = 78 + Math.floor(j / cols) * step + step / 2;
+      patEls.push(el("circle", { cx: cx, cy: cy, r: r, "stroke-width": 2, opacity: 0 }, gPat));
+    }
+    counterEl.setAttribute("y", 78 + rows * step + 24);
+  }
+
+  // ----- Likelihood panel -----------------------------------------------------------------------
+  var PX0 = 60, PW = 800, PBASE = 600, PH = 165, pmax = 0.1, hiBand, hiDots = [], hiLabs = [], hiLines = [];
+  function XK(k) { return PX0 + (k + 0.5) / (S.n + 1) * PW; }
+  function YP(p) { return PBASE - p / pmax * PH; }
+  function buildPmf() {
+    clear(gPmf); clear(gHi); hiDots = []; hiLabs = [];
+    var n = S.n, k, th, m = 0;
+    for (k = 0; k <= n; k++) TH.forEach(function (t) { m = Math.max(m, pmf(k, n, t)); });
+    pmax = m * 1.18;
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
+      var val = v * pmax; if (v === 0) return;
+      el("line", { x1: PX0, x2: PX0 + PW, y1: YP(val), y2: YP(val), stroke: "var(--grid)", "stroke-width": 1 }, gPmf);
+      var t = el("text", { x: PX0 - 8, y: YP(val) + 4, "text-anchor": "end", "class": "t-small" }, gPmf); t.textContent = (val * 100).toFixed(0) + " %";
+    });
+    el("line", { x1: PX0, x2: PX0 + PW, y1: PBASE, y2: PBASE, stroke: "var(--axis)", "stroke-width": 1 }, gPmf);
+    var slot = PW / (n + 1), bw = Math.max(1.5, slot * 0.42);
+    for (k = 0; k <= n; k++) {
+      TH.forEach(function (t, i) {
+        var p = pmf(k, n, t), x = XK(k) + (i === 0 ? -bw : 0);
+        if (p > 0.0005) el("rect", { x: x, y: YP(p), width: bw, height: PBASE - YP(p), fill: COLORS[i], opacity: 0.85 }, gPmf);
+      });
+    }
+    var step = n <= 50 ? 5 : 10;
+    for (k = 0; k <= n; k += step) { var tt = el("text", { x: XK(k), y: PBASE + 18, "text-anchor": "middle", "class": "t-small" }, gPmf); tt.textContent = k; }
+    var ax = el("text", { x: PX0 + PW / 2, y: PBASE + 42, "text-anchor": "middle" }, gPmf); ax.textContent = "Number of improved patients among " + n;
+    var ay = el("text", { x: 16, y: PBASE - PH / 2, "text-anchor": "middle", transform: "rotate(-90 16 " + (PBASE - PH / 2) + ")" }, gPmf); ay.textContent = "Probability";
+    // highlight of the observed result
+    hiBand = el("rect", { x: XK(S.k) - slot / 2, y: PBASE - PH - 6, width: slot, height: PH + 6, fill: "var(--text-primary)", opacity: 0.08 }, gHi);
+    var l = lik();
+    TH.forEach(function (t, i) {
+      hiDots.push(el("circle", { cx: XK(S.k) + (i === 0 ? -bw / 2 : bw / 2), cy: YP(l[i]), r: 5, fill: COLORS[i], stroke: "var(--surface-1)", "stroke-width": 2 }, gHi));
+    });
+  }
+  // readout of the observed likelihoods: a small box in a free corner of the plot (right, or left if the observed k is far right)
+  var hiHead = el("text", { "class": "t-small" }, gHi);
+  var hiLabEls = [el("text", { "class": "t-small" }, gHi), el("text", { "class": "t-small" }, gHi)];
+  var hiKeys = [el("circle", { r: 5, fill: COLORS[0] }, gHi), el("circle", { r: 5, fill: COLORS[1] }, gHi)];
+  function placeHiLabels() {
+    [hiBand, hiHead, hiLabEls[0], hiLabEls[1], hiKeys[0], hiKeys[1]].forEach(function (n) { if (n && n.parentNode !== gHi) gHi.appendChild(n); });
+    var l = lik(), right = XK(S.k) < PX0 + PW * 0.55, x = right ? PX0 + PW - 250 : PX0 + 20;
+    hiHead.setAttribute("x", x); hiHead.setAttribute("y", 418);
+    hiHead.textContent = "Observed result: " + S.k + " of " + S.n + " improved"; hiHead.style.fill = "var(--text-primary)"; hiHead.style.fontWeight = "650";
+    [0, 1].forEach(function (i) {
+      var y = 438 + i * 20;
+      hiKeys[i].setAttribute("cx", x + 5); hiKeys[i].setAttribute("cy", y - 4);
+      hiLabEls[i].setAttribute("x", x + 18); hiLabEls[i].setAttribute("y", y);
+      hiLabEls[i].textContent = "P(" + S.k + " | " + NAMES[i] + ") = " + pct2(l[i]);
+      hiLabEls[i].style.fill = "var(--text-primary)";
+    });
+  }
+
+  // ----- Rendering ------------------------------------------------------------------------------
+  var captionEl = document.getElementById("caption"), calcEl = document.getElementById("calc");
+  function render() {
+    var pr = prior(), po = post(), a = S.mix, i;
+    var post_ = a >= 0.5;
+    titleWord.textContent = post_ ? "Posterior" : "Prior";
+    titleRest.textContent = post_ ? ": what we believe after the data" : ": what we believe before the trial";
+    titleWord.style.textDecoration = post_ ? "underline" : "none";
+    titleWord.style.textDecorationThickness = "2px";
+    titleWord.style.textUnderlineOffset = "4px";
+    subA.textContent = post_ ? "Updated beliefs about \u03b8, not trial results" : "How strongly we believe each value of \u03b8";
+    for (i = 0; i < 2; i++) {
+      var p = pr[i] * (1 - a) + po[i] * a;
+      barEls[i].setAttribute("y", YA(p)); barEls[i].setAttribute("height", Math.max(0, BASE_A - YA(p)));
+      ghostEls[i].setAttribute("y", YA(pr[i])); ghostEls[i].setAttribute("height", Math.max(0, BASE_A - YA(pr[i]))); ghostEls[i].setAttribute("opacity", a * 0.9);
+      valEls[i].setAttribute("y", YA(p) - 8); valEls[i].textContent = pct(p);
+      barTitles[i].textContent = NAMES[i] + ": " + (a > 0.5 ? "posterior " : "prior ") + pct(p);
+    }
+    tagPrior.textContent = a > 0.02 ? "dashed outline = prior" : "";
+    tagPrior.style.opacity = a;
+    // patients
+    var shown = Math.round(S.patients), improved = 0, j;
+    for (j = 0; j < patEls.length; j++) {
+      if (j < shown) {
+        var good = outcomes[j]; if (good) improved++;
+        patEls[j].setAttribute("opacity", 1);
+        patEls[j].setAttribute("fill", good ? "var(--text-primary)" : "none");
+        patEls[j].setAttribute("stroke", good ? "var(--text-primary)" : "var(--axis)");
+      } else patEls[j].setAttribute("opacity", 0);
+    }
+    counterEl.textContent = shown > 0 ? improved + " of " + shown + " patients improved" + (shown === S.n ? " (" + Math.round(100 * improved / shown) + " %)" : "") : "";
+    // likelihood panel
+    gPmf.style.opacity = S.pmfA; gHi.style.opacity = S.hiA;
+    document.getElementById("titleC").textContent = S.pmfA > 0.02 ? "Likelihood: how probable is each possible trial result under each θ?" : "";
+    // calc box
+    calcEl.style.opacity = a > 0.02 ? Math.min(1, a * 1.5) : 0;
+  }
+
+  function fillCalc() {
+    var pr = prior(), l = lik(), u = joint(), s = u[0] + u[1], po = post();
+    calcEl.textContent = "";
+    function line(k, v) { var d = document.createElement("div"); var a = document.createElement("span"); a.className = "k"; a.textContent = k; d.appendChild(a); d.appendChild(document.createTextNode(v)); calcEl.appendChild(d); }
+    line("Prior × likelihood:  ", NAMES[0] + ":  " + pct(pr[0]) + " × " + pct2(l[0]) + " = " + pct2(u[0]) + "     " + NAMES[1] + ":  " + pct(pr[1]) + " × " + pct2(l[1]) + " = " + pct2(u[1]));
+    line("Sum = probability of the data:  ", pct2(s));
+    line("Posterior = product / sum:  ", NAMES[0] + ":  " + pct2(u[0]) + " / " + pct2(s) + " = " + pct(po[0]) + "     " + NAMES[1] + ":  " + pct2(u[1]) + " / " + pct2(s) + " = " + pct(po[1]));
+  }
+
+  var STEPS = 4;
+  function caption() {
+    var pr = prior(), l = lik(), po = post(), t;
+    if (S.stage === 0) t = "Step 1 of 4. Prior: before the trial we have two candidate values for θ, the probability that the therapy works. The physiotherapist says 0.30, her colleagues say 0.40. We give them " + pct(pr[0]) + " and " + pct(pr[1]) + ".";
+    else if (S.stage === 1) t = "Step 2 of 4. Data: " + S.n + " patients receive the therapy and " + S.k + " of them improve (" + Math.round(100 * S.k / S.n) + " %). This is the new information.";
+    else if (S.stage === 2) t = "Step 3 of 4. Likelihood: if θ were 0.30, the result " + S.k + " of " + S.n + " would have a probability of " + pct2(l[0]) + ". If θ were 0.40, it would be " + pct2(l[1]) + ", about " + (l[1] / l[0]).toFixed(1) + " times as plausible.";
+    else t = "Step 4 of 4. Posterior: we weigh each prior with its likelihood and rescale so that both add up to 100 %. After the data, θ = 0.30 gets " + pct(po[0]) + " and θ = 0.40 gets " + pct(po[1]) + ".";
+    captionEl.textContent = t;
+    var dots = document.getElementById("dots"); dots.textContent = "";
+    for (var j = 0; j < STEPS; j++) { var d = document.createElement("i"); if (j <= S.stage) d.className = "on"; dots.appendChild(d); }
+    dots.appendChild(document.createTextNode("  step " + (S.stage + 1) + " of " + STEPS));
+    document.getElementById("back").disabled = S.stage === 0 || S.busy;
+    document.getElementById("next").disabled = S.stage === STEPS - 1 || S.busy;
+    document.getElementById("play").disabled = S.busy;
+    document.getElementById("reset").disabled = S.busy || (S.stage === 0 && S.mix === 0);
+  }
+
+  // ----- Table ----------------------------------------------------------------------------------
+  function buildTable() {
+    var pr = prior(), l = lik(), u = joint(), s = u[0] + u[1], po = post();
+    var html = "<thead><tr><th>θ</th><th>Prior</th><th>Likelihood P(data | θ)</th><th>Prior × likelihood</th><th>Posterior</th></tr></thead><tbody>";
+    [0, 1].forEach(function (i) {
+      html += "<tr><td><span class='key' style='border-top-color:" + COLORS[i] + "'></span>" + NAMES[i] + "</td><td>" + pct(pr[i]) + "</td><td>" + pct2(l[i]) + "</td><td>" + pct2(u[i]) + "</td><td>" + pct(po[i]) + "</td></tr>";
+    });
+    html += "<tr><td>Sum</td><td>" + pct(pr[0] + pr[1]) + "</td><td></td><td>" + pct2(s) + "</td><td>" + pct(po[0] + po[1]) + "</td></tr></tbody>";
+    document.getElementById("tbl").innerHTML = html;
+  }
+
+  // ----- Tween engine and stage machine ---------------------------------------------------------
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var raf = null;
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function win(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+  function targets(stage) {
+    return [{ patients: 0, pmfA: 0, hiA: 0, mix: 0 }, { patients: S.n, pmfA: 0, hiA: 0, mix: 0 },
+            { patients: S.n, pmfA: 1, hiA: 1, mix: 0 }, { patients: S.n, pmfA: 1, hiA: 1, mix: 1 }][stage];
+  }
+  function applyAll() { render(); caption(); buildTable(); fillCalc(); }
+  function goStage(to, done) {
+    var from = { patients: S.patients, pmfA: S.pmfA, hiA: S.hiA, mix: S.mix }, tg = targets(to);
+    var forward = to > S.stage;
+    var dur = reduce ? 0 : (to === 1 && forward ? Math.max(900, S.n * 40) : to === 3 ? 1800 : to === 2 ? 1300 : 700);
+    S.busy = true; S.stage = to; caption();
+    if (raf) cancelAnimationFrame(raf);
+    function setAt(t) {
+      S.patients = from.patients + (tg.patients - from.patients) * (to === 1 || to === 0 ? t : 1 * (t > 0 ? 1 : 0) * (tg.patients === from.patients ? 1 : t));
+      S.pmfA = from.pmfA + (tg.pmfA - from.pmfA) * ease(win(t, 0, 0.6));
+      S.hiA = from.hiA + (tg.hiA - from.hiA) * ease(win(t, 0.5, 1));
+      S.mix = from.mix + (tg.mix - from.mix) * ease(t);
+    }
+    function finish() { S.patients = tg.patients; S.pmfA = tg.pmfA; S.hiA = tg.hiA; S.mix = tg.mix; S.busy = false; applyAll(); if (done) done(); }
+    if (dur === 0) { finish(); return; }
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var t = clamp((ts - t0) / dur, 0, 1);
+      setAt(t); render();
+      if (t < 1) raf = requestAnimationFrame(step); else { raf = null; finish(); }
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  document.getElementById("next").addEventListener("click", function () { if (!S.busy && S.stage < STEPS - 1) goStage(S.stage + 1); });
+  document.getElementById("back").addEventListener("click", function () { if (!S.busy && S.stage > 0) goStage(S.stage - 1); });
+  document.getElementById("reset").addEventListener("click", function () { if (!S.busy) goStage(0); });
+  document.getElementById("play").addEventListener("click", function () {
+    if (S.busy) return;
+    function chain() { if (S.stage < STEPS - 1) setTimeout(function () { goStage(S.stage + 1, chain); }, reduce ? 0 : 900); }
+    if (S.stage === STEPS - 1) { goStage(0, chain); } else chain();
+  });
+
+  // ----- Settings -------------------------------------------------------------------------------
+  var p03 = document.getElementById("p03"), nPat = document.getElementById("nPat"), kImp = document.getElementById("kImp");
+  function rebuild() {
+    makeOutcomes(); buildPatients(); buildPmf(); placeHiLabels();
+    var t = targets(S.stage); S.patients = t.patients;
+    applyAll();
+  }
+  p03.addEventListener("input", function () {
+    S.p03 = parseFloat(p03.value) / 100; document.getElementById("p03Out").textContent = p03.value + " %"; applyAll();
+  });
+  nPat.addEventListener("input", function () {
+    if (S.busy) return;
+    S.n = parseInt(nPat.value, 10); document.getElementById("nOut").textContent = S.n;
+    kImp.max = S.n; if (S.k > S.n) S.k = S.n; kImp.value = S.k; document.getElementById("kOut").textContent = S.k;
+    rebuild();
+  });
+  kImp.addEventListener("input", function () {
+    if (S.busy) return;
+    S.k = parseInt(kImp.value, 10); document.getElementById("kOut").textContent = S.k; rebuild();
+  });
+
+  // ----- Hover on the likelihood panel ----------------------------------------------------------
+  var svg = document.getElementById("svg"), hit = document.getElementById("hit"), tip = document.getElementById("tip"), chart = document.getElementById("chart");
+  hit.addEventListener("pointermove", function (ev) {
+    if (S.pmfA < 0.5) return;
+    var r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) / r.width * 920;
+    var k = clamp(Math.round((px - PX0) / PW * (S.n + 1) - 0.5), 0, S.n);
+    tip.textContent = "";
+    var hd = document.createElement("div"); hd.className = "hd"; hd.textContent = k + " of " + S.n + " patients improve"; tip.appendChild(hd);
+    TH.forEach(function (t, i) {
+      var d = document.createElement("div"); d.className = "row";
+      var kk = document.createElement("span"); kk.className = "key"; kk.style.borderTopColor = COLORS[i];
+      var n = document.createElement("span"); n.className = "nm"; n.textContent = "if " + NAMES[i];
+      var v = document.createElement("span"); v.className = "val"; v.textContent = pct2(pmf(k, S.n, t));
+      d.appendChild(kk); d.appendChild(n); d.appendChild(v); tip.appendChild(d);
+    });
+    tip.style.display = "block";
+    var cr = chart.getBoundingClientRect(), left = ev.clientX - cr.left + 14, top = ev.clientY - cr.top - 10;
+    if (left + tip.offsetWidth > cr.width) left = ev.clientX - cr.left - tip.offsetWidth - 14;
+    tip.style.left = left + "px"; tip.style.top = Math.max(0, top) + "px";
+  });
+  hit.addEventListener("pointerleave", function () { tip.style.display = "none"; });
+
+  rebuild();
+})();
+</script>
+</body>
+</html>

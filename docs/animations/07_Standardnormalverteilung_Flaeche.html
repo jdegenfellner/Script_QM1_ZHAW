@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standard Normal Area</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiByeD0iMTQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NiZDJkOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTIyLjQsNTIgTDIyLjQsMjQuOCBMMjMuMiwyMy4xIEwyNC4wLDIxLjQgTDI0LjgsMTkuOCBMMjUuNiwxOC4zIEwyNi40LDE2LjkgTDI3LjIsMTUuNyBMMjguMCwxNC42IEwyOC44LDEzLjcgTDI5LjYsMTMuMCBMMzAuNCwxMi40IEwzMS4yLDEyLjEgTDMyLjAsMTIuMCBMMzIuOCwxMi4xIEwzMy42LDEyLjQgTDM0LjQsMTMuMCBMMzUuMiwxMy43IEwzNi4wLDE0LjYgTDM2LjgsMTUuNyBMMzcuNiwxNi45IEwzOC40LDE4LjMgTDM5LjIsMTkuOCBMNDAuMCwyMS40IEw0MC4wLDUyIFoiIGZpbGw9IiMwZjlkOGEiIGZpbGwtb3BhY2l0eT0iLjUiLz48cGF0aCBkPSJNOC4wLDQ4LjQgTDguOCw0Ny44IEw5LjYsNDcuMSBMMTAuNCw0Ni40IEwxMS4yLDQ1LjUgTDEyLjAsNDQuNSBMMTIuOCw0My41IEwxMy42LDQyLjQgTDE0LjQsNDEuMSBMMTUuMiwzOS44IEwxNi4wLDM4LjQgTDE2LjgsMzYuOCBMMTcuNiwzNS4zIEwxOC40LDMzLjYgTDE5LjIsMzEuOSBMMjAuMCwzMC4yIEwyMC44LDI4LjQgTDIxLjYsMjYuNiBMMjIuNCwyNC44IEwyMy4yLDIzLjEgTDI0LjAsMjEuNCBMMjQuOCwxOS44IEwyNS42LDE4LjMgTDI2LjQsMTYuOSBMMjcuMiwxNS43IEwyOC4wLDE0LjYgTDI4LjgsMTMuNyBMMjkuNiwxMy4wIEwzMC40LDEyLjQgTDMxLjIsMTIuMSBMMzIuMCwxMi4wIEwzMi44LDEyLjEgTDMzLjYsMTIuNCBMMzQuNCwxMy4wIEwzNS4yLDEzLjcgTDM2LjAsMTQuNiBMMzYuOCwxNS43IEwzNy42LDE2LjkgTDM4LjQsMTguMyBMMzkuMiwxOS44IEw0MC4wLDIxLjQgTDQwLjgsMjMuMSBMNDEuNiwyNC44IEw0Mi40LDI2LjYgTDQzLjIsMjguNCBMNDQuMCwzMC4yIEw0NC44LDMxLjkgTDQ1LjYsMzMuNiBMNDYuNCwzNS4zIEw0Ny4yLDM2LjggTDQ4LjAsMzguNCBMNDguOCwzOS44IEw0OS42LDQxLjEgTDUwLjQsNDIuNCBMNTEuMiw0My41IEw1Mi4wLDQ0LjUgTDUyLjgsNDUuNSBMNTMuNiw0Ni40IEw1NC40LDQ3LjEgTDU1LjIsNDcuOCBMNTYuMCw0OC40IiBmaWxsPSJub25lIiBzdHJva2U9IiMyYTc4ZDYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjIyIiB5MT0iMTQiIHgyPSIyMiIgeTI9IjUyIiBzdHJva2U9IiMxZjI5MzMiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtZGFzaGFycmF5PSIzIDMiLz48bGluZSB4MT0iNDAiIHkxPSIxNCIgeDI9IjQwIiB5Mj0iNTIiIHN0cm9rZT0iIzFmMjkzMyIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjMgMyIvPjwvc3ZnPg==">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --curve:#2a78d6; --area:#0f9d8a; --handle:#1f2933; --mean:#eb6834; --accent:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --curve:#3987e5; --area:#2ec4ae; --handle:#e6e9ee; --mean:#d95926; --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 6px}
+.lead{color:var(--ink2);margin:0 0 14px}
+.row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:12px}
+.lab{font-size:.88rem;color:var(--ink2);margin-right:8px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:8px 12px;font:inherit;font-size:.92rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+label.chk{font-size:.92rem;display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 0 14px}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:12px;padding:10px 14px}
+.card.big{border-left:6px solid var(--area)}
+.card .k{font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.card.big .v{font-size:1.9rem;color:var(--area)}
+.card .s{font-size:.86rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.bar{height:10px;background:var(--grid);border-radius:6px;margin-top:8px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--area);width:0}
+.chartbox{background:var(--card);border-radius:14px;padding:8px 8px 4px;touch-action:none}
+svg{width:100%;height:auto;display:block;user-select:none;-webkit-user-select:none}
+svg text{fill:var(--ink2);font-family:inherit;font-size:13px}
+svg text.lab2{fill:var(--ink);font-weight:700;font-size:15px}
+svg text.flab{font-size:12.5px;fill:var(--ink)}
+.hgrp{cursor:ew-resize}
+.hgrp:focus{outline:none}
+.hgrp:focus-visible .hc{stroke:var(--accent);stroke-width:4}
+.note{margin-top:16px;border-left:5px solid var(--curve);background:var(--card);border-radius:0 12px 12px 0;padding:12px 16px}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<main>
+<h1>Standard normal distribution: area between two limits</h1>
+<p class="lead">Drag the limits <strong>a</strong> and <strong>b</strong> along the curve (or use the arrow keys when a limit is selected).
+Whole numbers snap into place. The area under the curve between the limits is the probability P(a ≤ X ≤ b).</p>
+
+<div class="row">
+  <span><span class="lab">Quick set</span>
+    <span class="seg" id="presets" role="group" aria-label="Preset limits">
+      <button type="button" data-a="-1" data-b="1">−1 … 1</button>
+      <button type="button" data-a="-1.96" data-b="1.96">−1.96 … 1.96</button>
+      <button type="button" data-a="-2" data-b="2">−2 … 2</button>
+      <button type="button" data-a="-3" data-b="3">−3 … 3</button>
+      <button type="button" data-a="-2" data-b="-1">−2 … −1</button>
+    </span></span>
+  <label class="chk"><input type="checkbox" id="hard"> whole numbers only</label>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="k">Left limit a</div><div class="v" id="va">–</div><div class="s" id="sa"></div></div>
+  <div class="card"><div class="k">Right limit b</div><div class="v" id="vb">–</div><div class="s" id="sb"></div></div>
+  <div class="card big"><div class="k">Area between a and b</div><div class="v" id="area">–</div><div class="s" id="areaS"></div>
+    <div class="bar" aria-hidden="true"><i id="barfill"></i></div></div>
+</div>
+
+<div class="chartbox"><svg id="chart" viewBox="0 0 920 440" role="group" aria-label="Standard normal density with two draggable limits"></svg></div>
+
+<div class="note">
+  <p>The x-axis is measured in <strong>standard deviations</strong> from the mean 0. The height f(x) is the <em>density</em>, not a probability.
+  Only the <em>area</em> under the curve is a probability, and the whole area is 1.</p>
+  <p>Try the rule of thumb: between −1 and 1 lie about 68 % of the values, between −2 and 2 about 95 %, between −3 and 3 about 99.7 %.</p>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+</main>
+
+<script>
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+  var $ = function(id){ return document.getElementById(id); };
+  var W = 920, H = 440, L = 64, R = 24, T = 40, B = 56, pw = W - L - R, ph = H - T - B;
+  var X0 = -4.6, X1 = 4.6, YMAX = 0.45, LIM = 4;
+  var a = -2, b = -1, active = null;
+
+  function xs(x){ return L + (x - X0) / (X1 - X0) * pw; }
+  function ys(y){ return T + ph - y / YMAX * ph; }
+  function xd(px){ return X0 + (px - L) / pw * (X1 - X0); }
+  function f(x){ return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI); }
+  // standard normal cdf via erfc (Numerical Recipes, Chebyshev fit, |err| < 1.2e-7)
+  function erfc(x){
+    var z = Math.abs(x), t = 1 / (1 + 0.5 * z);
+    var r = t * Math.exp(-z * z - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 +
+      t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277)))))))));
+    return x >= 0 ? r : 2 - r;
+  }
+  function Phi(x){ return 0.5 * erfc(-x / Math.SQRT2); }
+  function mk(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e); return e;
+  }
+  function fmtX(x){ var r = Math.round(x * 100) / 100; return (Number.isInteger(r) ? String(r) : r.toFixed(2)).replace('-', '−'); }
+  function pct(p){ return (100 * p).toFixed(2) + ' %'; }
+
+  var svg = $('chart');
+  // grid + axes
+  var i, v;
+  for (v = 0; v <= 0.4001; v += 0.1){
+    mk('line', {x1: L, x2: W - R, y1: ys(v), y2: ys(v), stroke: 'var(--grid)'}, svg);
+    mk('text', {x: L - 8, y: ys(v) + 4, 'text-anchor': 'end'}, svg).textContent = v.toFixed(1);
+  }
+  for (v = -4; v <= 4; v++){
+    mk('line', {x1: xs(v), x2: xs(v), y1: T, y2: ys(0), stroke: 'var(--grid)'}, svg);
+    mk('text', {x: xs(v), y: ys(0) + 20, 'text-anchor': 'middle'}, svg).textContent = String(v).replace('-', '−');
+  }
+  mk('text', {x: 16, y: T + ph / 2, transform: 'rotate(-90 16 ' + (T + ph / 2) + ')', 'text-anchor': 'middle'}, svg).textContent = 'density f(x)';
+  mk('text', {x: L + pw / 2, y: H - 8, 'text-anchor': 'middle'}, svg).textContent = 'x (in standard deviations)';
+  mk('text', {x: L + pw / 2, y: 22, 'text-anchor': 'middle', 'class': 'lab2'}, svg).textContent = 'Standard normal distribution N(0, 1)';
+  // shaded area (below the curve)
+  var shade = mk('path', {fill: 'var(--area)', 'fill-opacity': '.38'}, svg);
+  // curve
+  var d = '';
+  for (i = 0; i <= 400; i++){ var x = -4.6 + 9.2 * i / 400; d += (i ? ' L' : 'M') + xs(x).toFixed(1) + ',' + ys(f(x)).toFixed(1); }
+  mk('path', {d: d, fill: 'none', stroke: 'var(--curve)', 'stroke-width': 3.5, 'stroke-linejoin': 'round'}, svg);
+  mk('line', {x1: L, x2: W - R, y1: ys(0), y2: ys(0), stroke: 'var(--line)', 'stroke-width': 1.5}, svg);
+  // mean line
+  mk('line', {x1: xs(0), x2: xs(0), y1: T, y2: ys(0), stroke: 'var(--mean)', 'stroke-dasharray': '5 5', 'stroke-width': 1.8}, svg);
+  var tm = mk('text', {x: xs(0) + 8, y: T + 14, style: 'fill:var(--mean);font-weight:700'}, svg); tm.textContent = 'E(X) = 0';
+
+  // handles
+  function handle(name){
+    var g = mk('g', {'class': 'hgrp', tabindex: 0, role: 'slider', 'aria-label': 'Limit ' + name,
+      'aria-valuemin': -LIM, 'aria-valuemax': LIM}, svg);
+    var line = mk('line', {stroke: 'var(--handle)', 'stroke-width': 2, 'stroke-dasharray': '6 5'}, g);
+    var hit = mk('rect', {width: 30, fill: 'transparent'}, g);
+    var hz = mk('line', {stroke: 'var(--handle)', 'stroke-width': 1.2, 'stroke-dasharray': '2 4'}, g);
+    var hc = mk('circle', {r: 9, fill: 'var(--bg)', stroke: 'var(--handle)', 'stroke-width': 3, 'class': 'hc'}, g);
+    var tx = mk('text', {'class': 'lab2'}, g);
+    var tf = mk('text', {'class': 'flab'}, g);
+    var o = {g: g, line: line, hit: hit, hz: hz, hc: hc, tx: tx, tf: tf, name: name};
+    g.addEventListener('pointerdown', function(e){ active = name; g.focus({preventScroll: true}); e.preventDefault(); });
+    g.addEventListener('keydown', function(e){
+      var step = e.shiftKey ? 1 : 0.1, dir = (e.key === 'ArrowRight' || e.key === 'ArrowUp') ? 1 : (e.key === 'ArrowLeft' || e.key === 'ArrowDown') ? -1 : 0;
+      if (!dir) return; e.preventDefault();
+      var cur = name === 'a' ? a : b; setLimit(name, Math.round((cur + dir * step) * 100) / 100);
+    });
+    return o;
+  }
+  var ha = handle('a'), hb = handle('b');
+
+  function setLimit(name, x){
+    x = Math.max(-LIM, Math.min(LIM, x));
+    if (name === 'a'){ a = Math.min(x, b); } else { b = Math.max(x, a); }
+    update();
+  }
+  function snap(x){
+    if ($('hard').checked) return Math.round(x);
+    var r = Math.round(x);
+    return Math.abs(x - r) < 0.14 ? r : Math.round(x * 100) / 100;
+  }
+  function onMove(e){
+    if (!active) return;
+    var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+    setLimit(active, snap(xd(p.x)));
+  }
+  window.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', function(){ active = null; });
+  window.addEventListener('pointercancel', function(){ active = null; });
+
+  function place(h, x, left){
+    var px = xs(x), py = ys(f(x));
+    h.line.setAttribute('x1', px); h.line.setAttribute('x2', px); h.line.setAttribute('y1', T); h.line.setAttribute('y2', ys(0));
+    h.hit.setAttribute('x', px - 15); h.hit.setAttribute('y', T); h.hit.setAttribute('height', ph);
+    h.hz.setAttribute('x1', L); h.hz.setAttribute('x2', px); h.hz.setAttribute('y1', py); h.hz.setAttribute('y2', py);
+    h.hc.setAttribute('cx', px); h.hc.setAttribute('cy', py);
+    var anchor = left ? 'end' : 'start', dx = left ? -12 : 12;
+    h.tx.setAttribute('x', px + dx); h.tx.setAttribute('y', T + 32); h.tx.setAttribute('text-anchor', anchor);
+    h.tx.textContent = h.name + ' = ' + fmtX(x);
+    h.tf.setAttribute('x', px + dx); h.tf.setAttribute('y', Math.min(ys(0) - 8, Math.max(T + 54, py - 12))); h.tf.setAttribute('text-anchor', anchor);
+    h.tf.textContent = 'f(' + h.name + ') = ' + f(x).toFixed(4);
+    h.g.setAttribute('aria-valuenow', x); h.g.setAttribute('aria-valuetext', h.name + ' equals ' + fmtX(x));
+  }
+
+  function update(){
+    place(ha, a, true); place(hb, b, false);
+    var dpath = 'M' + xs(a).toFixed(1) + ',' + ys(0), n = Math.max(2, Math.ceil((b - a) * 60));
+    for (var k = 0; k <= n; k++){ var x = a + (b - a) * k / n; dpath += ' L' + xs(x).toFixed(1) + ',' + ys(f(x)).toFixed(1); }
+    dpath += ' L' + xs(b).toFixed(1) + ',' + ys(0) + ' Z';
+    shade.setAttribute('d', dpath);
+    var Pa = Phi(a), Pb = Phi(b), area = Pb - Pa;
+    $('va').textContent = 'x = ' + fmtX(a); $('sa').textContent = 'density f(a) = ' + f(a).toFixed(4) + '   |   Φ(a) = ' + Pa.toFixed(4);
+    $('vb').textContent = 'x = ' + fmtX(b); $('sb').textContent = 'density f(b) = ' + f(b).toFixed(4) + '   |   Φ(b) = ' + Pb.toFixed(4);
+    $('area').textContent = area.toFixed(4);
+    $('areaS').textContent = 'P(' + fmtX(a) + ' ≤ X ≤ ' + fmtX(b) + ') = ' + Pb.toFixed(4) + ' − ' + Pa.toFixed(4) + ' = ' + pct(area) + ' of the total area 1';
+    $('barfill').style.width = (100 * area).toFixed(2) + '%';
+    $('live').textContent = 'Area between ' + fmtX(a) + ' and ' + fmtX(b) + ' is ' + area.toFixed(4) + '.';
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('#presets button'), function(bt){
+    bt.addEventListener('click', function(){ a = parseFloat(bt.dataset.a); b = parseFloat(bt.dataset.b); update(); });
+  });
+  update();
+})();
+</script>
+</body>
+</html>

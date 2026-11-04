@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Law of Large Numbers: Rolling a Die</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='white' stroke='%23697684' stroke-width='4'/%3E%3Cg fill='%232a78d6'%3E%3Ccircle cx='20' cy='20' r='5'/%3E%3Ccircle cx='44' cy='20' r='5'/%3E%3Ccircle cx='20' cy='32' r='5'/%3E%3Ccircle cx='44' cy='32' r='5'/%3E%3Ccircle cx='20' cy='44' r='5'/%3E%3Ccircle cx='44' cy='44' r='5'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --pt:#2a78d6; --ref:#d9381e; --band:rgba(15,157,138,.16); --bar:#2a78d6; --accent:#2a78d6; --btn:#eb6834;
+  --die:#ffffff; --pip:#1f2933;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --pt:#3987e5; --ref:#ff6b4a; --band:rgba(46,196,174,.20); --bar:#3987e5; --accent:#3987e5; --btn:#d95926;
+    --die:#e9edf2; --pip:#14181d;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 6px}
+h2{font-size:1rem;margin:18px 0 4px}
+.lead{color:var(--ink2);margin:0 0 14px}
+.row{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:12px}
+.lab{font-size:.88rem;color:var(--ink2);margin-right:8px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:8px 12px;font:inherit;font-size:.92rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:10px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--btn);border-color:var(--btn);color:#fff;font-weight:700}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,.seg button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.top{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:stretch;margin-bottom:6px}
+@media (max-width:700px){.top{grid-template-columns:1fr}}
+.dieBox{background:var(--card);border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.die{width:112px;height:112px;background:var(--die);border:3px solid var(--line);border-radius:20px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:12px;gap:2px}
+.pip{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.pip i{display:block;width:20px;height:20px;border-radius:50%;background:var(--pip)}
+.dieCap{font-size:.88rem;color:var(--ink2);text-align:center}
+.barsBox{background:var(--card);border-radius:12px;padding:10px 12px}
+canvas{display:block;width:100%}
+#bars{height:190px}
+#freq,#diff{height:300px}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:12px 0}
+@media (max-width:820px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{background:var(--card);border-radius:12px;padding:10px 12px}
+.card b{display:block;font-size:1.25rem;font-variant-numeric:tabular-nums}
+.card span{font-size:.82rem;color:var(--ink2)}
+.note{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;color:var(--ink2);font-size:.93rem;margin-top:16px}
+.cap{font-size:.86rem;color:var(--ink2);margin:2px 0 0}
+</style>
+</head>
+<body>
+<main>
+<h1>Law of Large Numbers: Rolling a Fair Die</h1>
+<p class="lead">Each face has probability 1/6 ≈ 0.1667. Roll the die again and again and watch how the <em>relative frequency</em> of one face settles down at 1/6.</p>
+
+<div class="row">
+  <span class="lab">Roll:</span>
+  <button class="btn primary" id="r1">+1</button>
+  <button class="btn" id="r10">+10</button>
+  <button class="btn" id="r100">+100</button>
+  <button class="btn" id="r1000">+1000</button>
+  <button class="btn" id="play" aria-pressed="false">▶ Play</button>
+  <button class="btn" id="reset">Reset</button>
+</div>
+<div class="row">
+  <span><span class="lab">Face to track:</span>
+    <span class="seg" id="faceSeg"></span></span>
+  <span><span class="lab">Independent runs:</span>
+    <span class="seg" id="runSeg"></span></span>
+</div>
+<div class="row">
+  <span><span class="lab">Play speed (rolls/s):</span>
+    <span class="seg" id="speedSeg"></span></span>
+  <span><span class="lab">x-axis:</span>
+    <span class="seg" id="scaleSeg"></span></span>
+</div>
+
+<div class="top">
+  <div class="dieBox">
+    <div class="die" id="die" role="img" aria-label="Last roll"></div>
+    <div class="dieCap" id="dieCap">No roll yet</div>
+  </div>
+  <div class="barsBox">
+    <canvas id="bars" role="img" aria-label="Relative frequency of each face in run 1"></canvas>
+    <p class="cap">Relative frequency of each face (run 1). Dashed line: 1/6.</p>
+  </div>
+</div>
+
+<div class="cards">
+  <div class="card"><b id="cN">0</b><span>rolls so far (n)</span></div>
+  <div class="card"><b id="cK">0</b><span id="cKl">count of face 6</span></div>
+  <div class="card"><b id="cF">–</b><span>relative frequency (run 1)</span></div>
+  <div class="card"><b id="cD">–</b><span>relative freq. − 1/6</span></div>
+  <div class="card"><b id="cA">–</b><span>count − n/6</span></div>
+</div>
+
+<h2>Relative frequency of the tracked face</h2>
+<canvas id="freq" role="img" aria-label="Relative frequency of the tracked face against the number of rolls"></canvas>
+<p class="cap">Blue: relative frequency (run 1 bold). Dashed red: 1/6. Green band: ±2 standard errors, √(p(1−p)/n), around 1/6. It narrows like 1/√n.</p>
+
+<h2>Absolute deviation from the expected count</h2>
+<canvas id="diff" role="img" aria-label="Count of the tracked face minus n/6 against the number of rolls"></canvas>
+<p class="cap">Count minus n/6. Green band: ±2√(n·p·(1−p)). The band <em>widens</em> with n.</p>
+
+<div class="note">
+  <strong>Take-away.</strong> The <em>relative</em> frequency converges to 1/6, but the <em>absolute</em> difference between the count and n/6 does not shrink; it typically grows like √n. The die has no memory and does not "make up" for earlier deviations. The law of large numbers works by dilution, not by compensation.
+</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var NMAX = 10000, P = 1/6, STRIDE = NMAX + 1;
+var state = {sel:5, R:1, speed:10, log:true, n:0, last:null, runs:[], playing:false};
+
+/* ---------- helpers ---------- */
+function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function $(id){ return document.getElementById(id); }
+function fmt(x,d){ return x.toFixed(d); }
+var logFrac = new Float32Array(STRIDE);
+for (var i=1;i<=NMAX;i++) logFrac[i] = Math.log10(i)/Math.log10(NMAX);
+
+function makeRuns(){
+  state.runs = [];
+  for (var r=0;r<state.R;r++){
+    state.runs.push({counts:new Uint32Array(6), cum:new Uint16Array(6*STRIDE)});
+  }
+  state.n = 0; state.last = null;
+}
+
+function roll(k){
+  k = Math.min(k, NMAX - state.n);
+  for (var s=0;s<k;s++){
+    state.n++;
+    var n = state.n;
+    for (var r=0;r<state.runs.length;r++){
+      var run = state.runs[r];
+      var f = Math.floor(Math.random()*6);
+      run.counts[f]++;
+      for (var j=0;j<6;j++) run.cum[j*STRIDE+n] = run.counts[j];
+      if (r===0) state.last = f;
+    }
+  }
+  if (state.n >= NMAX) setPlaying(false);
+  draw();
+}
+
+/* ---------- UI ---------- */
+function seg(id, items, getPressed, onPick){
+  var el = $(id); el.innerHTML = "";
+  items.forEach(function(it){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = it.label;
+    b.setAttribute("aria-pressed", String(getPressed(it.value)));
+    b.addEventListener("click", function(){ onPick(it.value); refreshSegs(); });
+    el.appendChild(b);
+  });
+}
+function refreshSegs(){
+  seg("faceSeg", [1,2,3,4,5,6].map(function(v){return {label:String(v),value:v-1};}),
+      function(v){return v===state.sel;}, function(v){ state.sel=v; draw(); });
+  seg("runSeg", [1,5,20].map(function(v){return {label:String(v),value:v};}),
+      function(v){return v===state.R;}, function(v){ state.R=v; setPlaying(false); makeRuns(); draw(); });
+  seg("speedSeg", [1,10,100,1000].map(function(v){return {label:String(v),value:v};}),
+      function(v){return v===state.speed;}, function(v){ state.speed=v; });
+  seg("scaleSeg", [{label:"log",value:true},{label:"linear",value:false}],
+      function(v){return v===state.log;}, function(v){ state.log=v; draw(); });
+}
+
+var PIPS = [[4],[0,8],[0,4,8],[0,2,6,8],[0,2,4,6,8],[0,2,3,5,6,8]];
+function drawDie(){
+  var d = $("die"); d.innerHTML = "";
+  var on = state.last===null ? [] : PIPS[state.last];
+  for (var i=0;i<9;i++){
+    var c = document.createElement("div"); c.className = "pip";
+    if (on.indexOf(i)>=0) c.appendChild(document.createElement("i"));
+    d.appendChild(c);
+  }
+  d.setAttribute("aria-label", state.last===null ? "No roll yet" : "Last roll: " + (state.last+1));
+  $("dieCap").textContent = state.last===null ? "No roll yet" : "Last roll (run 1): " + (state.last+1);
+}
+
+function setPlaying(p){
+  state.playing = p;
+  var b = $("play");
+  b.textContent = p ? "⏸ Pause" : "▶ Play";
+  b.setAttribute("aria-pressed", String(p));
+  if (p){ lastT = null; acc = 0; requestAnimationFrame(tick); }
+}
+var lastT = null, acc = 0;
+function tick(t){
+  if (!state.playing) return;
+  if (lastT===null) lastT = t;
+  acc += (t-lastT)/1000*state.speed; lastT = t;
+  var k = Math.floor(acc);
+  if (k>0){ acc -= k; roll(k); }
+  if (state.playing) requestAnimationFrame(tick);
+}
+
+/* ---------- drawing ---------- */
+function setup(cv){
+  var r = cv.getBoundingClientRect(), d = window.devicePixelRatio||1;
+  cv.width = Math.round(r.width*d); cv.height = Math.round(r.height*d);
+  var g = cv.getContext("2d"); g.setTransform(d,0,0,d,0,0);
+  return {g:g, w:r.width, h:r.height};
+}
+
+function lineChart(cv, o){
+  var s = setup(cv), g = s.g, w = s.w, h = s.h;
+  var L=58, Rr=14, T=12, B=36, pw=w-L-Rr, ph=h-T-B;
+  var ink2 = css("--ink2"), grid = css("--grid");
+  function X(i){ return L + (state.log ? logFrac[i] : i/NMAX)*pw; }
+  function Y(v){ return T + (1-(v-o.min)/(o.max-o.min))*ph; }
+  g.font = "12px system-ui, sans-serif"; g.textBaseline = "middle";
+  // y grid
+  g.lineWidth = 1;
+  o.yTicks.forEach(function(v){
+    var y = Y(v);
+    g.strokeStyle = grid; g.beginPath(); g.moveTo(L,y); g.lineTo(L+pw,y); g.stroke();
+    g.fillStyle = ink2; g.textAlign = "right"; g.fillText(o.yFmt(v), L-6, y);
+  });
+  // x grid
+  var xt = state.log ? [1,10,100,1000,10000] : [0,2500,5000,7500,10000];
+  xt.forEach(function(v){
+    var x = L + (state.log ? Math.log10(v)/4 : v/NMAX)*pw;
+    g.strokeStyle = grid; g.beginPath(); g.moveTo(x,T); g.lineTo(x,T+ph); g.stroke();
+    g.fillStyle = ink2; g.textAlign = "center"; g.textBaseline = "top";
+    g.fillText(v.toLocaleString("en-US"), x, T+ph+6);
+  });
+  g.textBaseline = "middle"; g.textAlign = "center"; g.fillStyle = ink2;
+  g.fillText("number of rolls n", L+pw/2, h-8);
+
+  g.save(); g.beginPath(); g.rect(L,T,pw,ph); g.clip();
+  // band
+  var up=[], lo=[], lastX=-9;
+  for (var i=1;i<=NMAX;i++){
+    var x = X(i);
+    if (x-lastX<1.2 && i<NMAX) continue;
+    lastX = x;
+    var b = o.band(i);
+    up.push([x,Y(b[1])]); lo.push([x,Y(b[0])]);
+  }
+  g.fillStyle = css("--band"); g.beginPath();
+  up.forEach(function(p,k){ k?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); });
+  for (var k=lo.length-1;k>=0;k--) g.lineTo(lo[k][0],lo[k][1]);
+  g.closePath(); g.fill();
+  // reference
+  g.setLineDash([6,4]); g.lineWidth = 1.6; g.strokeStyle = css("--ref");
+  g.beginPath(); g.moveTo(L,Y(o.ref)); g.lineTo(L+pw,Y(o.ref)); g.stroke(); g.setLineDash([]);
+  // runs (thin first, bold run 1 on top)
+  var n = state.n;
+  for (var r=state.runs.length-1;r>=0;r--){
+    var run = state.runs[r];
+    g.strokeStyle = css("--pt"); g.globalAlpha = r===0 ? 1 : 0.35; g.lineWidth = r===0 ? 2.2 : 1;
+    g.beginPath(); var lx=-9, first=true;
+    for (var j=1;j<=n;j++){
+      var xx = X(j);
+      if (xx-lx<0.8 && j<n) continue;
+      lx = xx;
+      var yy = Y(o.value(run,j));
+      if (first){ g.moveTo(xx,yy); first=false; } else g.lineTo(xx,yy);
+    }
+    g.stroke();
+  }
+  g.globalAlpha = 1;
+  g.restore();
+  // frame
+  g.strokeStyle = css("--line"); g.lineWidth = 1; g.strokeRect(L,T,pw,ph);
+}
+
+function drawBars(){
+  var s = setup($("bars")), g = s.g, w = s.w, h = s.h;
+  var L=44, Rr=10, T=18, B=26, pw=w-L-Rr, ph=h-T-B;
+  var n = state.n, run = state.runs[0];
+  var fr = [], mx = 0;
+  for (var j=0;j<6;j++){ fr[j] = n ? run.counts[j]/n : 0; mx = Math.max(mx, fr[j]); }
+  var ymax = Math.max(0.35, Math.ceil(mx*1.1/0.05)*0.05);
+  function Y(v){ return T + (1-v/ymax)*ph; }
+  var ink2 = css("--ink2"), grid = css("--grid");
+  g.font = "12px system-ui, sans-serif"; g.textBaseline = "middle";
+  var step = ymax>0.5 ? 0.25 : 0.1;
+  for (var v=0; v<=ymax+1e-9; v+=step){
+    var y = Y(v);
+    g.strokeStyle = grid; g.lineWidth = 1; g.beginPath(); g.moveTo(L,y); g.lineTo(L+pw,y); g.stroke();
+    g.fillStyle = ink2; g.textAlign = "right"; g.fillText(fmt(v,2), L-6, y);
+  }
+  var bw = pw/6;
+  for (var f=0; f<6; f++){
+    var x = L + f*bw + bw*0.18, ww = bw*0.64, y0 = Y(0), y1 = Y(fr[f]);
+    g.fillStyle = css("--bar"); g.globalAlpha = f===state.sel ? 1 : 0.5;
+    g.fillRect(x, y1, ww, y0-y1); g.globalAlpha = 1;
+    g.fillStyle = css("--ink"); g.textAlign = "center";
+    g.textBaseline = "top"; g.fillText(String(f+1), x+ww/2, y0+6);
+    g.textBaseline = "bottom"; if (n) g.fillText(fmt(fr[f],3), x+ww/2, y1-2);
+  }
+  g.setLineDash([6,4]); g.lineWidth = 1.6; g.strokeStyle = css("--ref");
+  g.beginPath(); g.moveTo(L,Y(P)); g.lineTo(L+pw,Y(P)); g.stroke(); g.setLineDash([]);
+}
+
+function draw(){
+  var sel = state.sel, n = state.n, run = state.runs[0];
+  drawDie(); drawBars();
+  lineChart($("freq"), {
+    min:0, max:0.5, yTicks:[0,0.1,0.1667,0.2,0.3,0.4,0.5],
+    yFmt:function(v){ return Math.abs(v-P)<1e-3 ? "1/6" : fmt(v,2); },
+    ref:P,
+    band:function(i){ var se=Math.sqrt(P*(1-P)/i); return [P-2*se, P+2*se]; },
+    value:function(r,i){ return r.cum[sel*STRIDE+i]/i; }
+  });
+  lineChart($("diff"), {
+    min:-100, max:100, yTicks:[-100,-50,0,50,100],
+    yFmt:function(v){ return String(v); },
+    ref:0,
+    band:function(i){ var sd=Math.sqrt(i*P*(1-P)); return [-2*sd, 2*sd]; },
+    value:function(r,i){ return r.cum[sel*STRIDE+i] - i*P; }
+  });
+  var k = n ? run.counts[sel] : 0;
+  $("cN").textContent = n.toLocaleString("en-US");
+  $("cKl").textContent = "count of face " + (sel+1);
+  $("cK").textContent = k.toLocaleString("en-US");
+  $("cF").textContent = n ? fmt(k/n,4) : "–";
+  $("cD").textContent = n ? (k/n-P>=0?"+":"") + fmt(k/n-P,4) : "–";
+  $("cA").textContent = n ? (k-n*P>=0?"+":"") + fmt(k-n*P,1) : "–";
+  [$("r1"),$("r10"),$("r100"),$("r1000"),$("play")].forEach(function(b){ b.disabled = n>=NMAX; });
+}
+
+/* ---------- wiring ---------- */
+$("r1").addEventListener("click", function(){ roll(1); });
+$("r10").addEventListener("click", function(){ roll(10); });
+$("r100").addEventListener("click", function(){ roll(100); });
+$("r1000").addEventListener("click", function(){ roll(1000); });
+$("play").addEventListener("click", function(){ setPlaying(!state.playing); });
+$("reset").addEventListener("click", function(){ setPlaying(false); makeRuns(); draw(); });
+window.addEventListener("resize", draw);
+if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+
+refreshSegs(); makeRuns(); draw();
+})();
+</script>
+</body>
+</html>
