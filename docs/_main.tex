@@ -2124,6 +2124,14 @@ The \textbf{third plot} shows a Q-Q plot of a sample from a
 \href{https://en.wikipedia.org/wiki/Student\%27s_t-distribution}{Student's \(t\)-distribution}
 with 2 degrees of freedom, which has fatter tails than the normal distribution.
 
+\begin{quote}
+\textbf{Try it yourself.} In the animation
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/09_QQ_Plots_Stichprobe_ziehen.html}{Q-Q plots from samples}
+you draw new samples from different distributions and see the histogram next to the Q-Q plot.
+Compare n = 10 with n = 500: with small samples even normal data wiggle a lot and skewed data are hard to
+recognise. Switch on the grey overlay to see how much the Q-Q plot of normal data varies from sample to sample.
+\end{quote}
+
 Hint: There are many R packages to display Q-Q plots, for instance \href{https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html}{ggpubr}.
 
 \section{Correlation}\label{correlation}
@@ -3488,19 +3496,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.868 130.913 125.226   93   35.5998 229.98                  
-## mu2         6.280   6.102   9.859   93  -85.2370  95.31                  
-## muDiff    124.588 124.719 123.640   93   -5.7532 261.77       0      95.6
-## sigma1    139.860 128.701 115.349   93   66.3519 227.31                  
-## sigma2    130.011 119.371 104.258   93   62.7055 212.36                  
-## sigmaDiff   9.848   8.672   7.529   93 -119.3507 137.13       0      56.5
-## nu         34.196  25.654   9.905   93    1.1216  82.74                  
-## log10nu     1.377   1.409   1.497   93    0.6553   2.05                  
-## effSz       0.964   0.953   0.921   93   -0.0635   2.03       0      95.6
+## mu1       130.673 130.833 132.607   93   32.5348 226.41                  
+## mu2         6.232   6.265   7.929   93  -84.2326  97.46                  
+## muDiff    124.441 124.531 124.742   93  -10.0092 258.49       0      95.5
+## sigma1    139.659 128.524 114.959   93   64.7756 225.00                  
+## sigma2    130.389 119.835 105.407   93   62.9725 211.93                  
+## sigmaDiff   9.271   8.560   9.046   93 -119.3815 135.65       0      56.3
+## nu         34.507  25.756   9.799   93    1.0021  84.11                  
+## log10nu     1.379   1.411   1.461   93    0.6492   2.05                  
+## effSz       0.963   0.952   0.931   93   -0.0618   2.04       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.55
+## muDiff        -20       20    4.49
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3748,24 +3756,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.043 sec elapsed
+## 1 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.716  0.712  0.797   93 -0.536  1.979                          
-## mu2        2.302  2.302  2.231   93  0.856  3.690                          
-## muDiff    -1.585 -1.591 -1.677   93 -3.489  0.294       0      6.11    -1.8
-## sigma1     2.043  1.920  1.708   93  1.088  3.104                          
-## sigma2     2.313  2.172  1.940   93  1.253  3.517                          
-## sigmaDiff -0.271 -0.249 -0.243   93 -1.985  1.443       0     37.07        
-## nu        35.892 27.415 12.069   93  1.275 85.280                          
-## log10nu    1.411  1.438  1.500   93  0.727  2.054                          
-## effSz     -0.748 -0.745 -0.753   93 -1.634  0.138       0      6.11        
+## mu1        0.717  0.709  0.627   93 -0.540  1.961                          
+## mu2        2.301  2.294  2.277   93  0.851  3.702                          
+## muDiff    -1.583 -1.585 -1.622   93 -3.454  0.332       0      6.19    -1.8
+## sigma1     2.036  1.921  1.722   93  1.097  3.089                          
+## sigma2     2.317  2.179  1.976   93  1.255  3.489                          
+## sigmaDiff -0.280 -0.252 -0.222   93 -1.971  1.401       0     36.95        
+## nu        36.269 27.661 11.641   93  1.408 86.660                          
+## log10nu    1.413  1.442  1.481   93  0.734  2.076                          
+## effSz     -0.746 -0.742 -0.765   93 -1.617  0.150       0      6.19        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.6
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

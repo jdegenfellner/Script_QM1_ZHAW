@@ -284,6 +284,12 @@ The **third plot** shows a Q-Q plot of a sample from a
 [ Student's $t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) 
 with 2 degrees of freedom, which has fatter tails than the normal distribution.
 
+> **Try it yourself.** In the animation
+> [Q-Q plots from samples](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/09_QQ_Plots_Stichprobe_ziehen.html)
+> you draw new samples from different distributions and see the histogram next to the Q-Q plot.
+> Compare n = 10 with n = 500: with small samples even normal data wiggle a lot and skewed data are hard to
+> recognise. Switch on the grey overlay to see how much the Q-Q plot of normal data varies from sample to sample.
+
 Hint: There are many R packages to display Q-Q plots, for instance [ggpubr](https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html).
 
 
