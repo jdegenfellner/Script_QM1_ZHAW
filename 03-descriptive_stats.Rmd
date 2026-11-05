@@ -42,6 +42,11 @@ How did the data come about?
 Note that the **sample varies every time we draw from the population**. 
 We can either imagine an infinitely large population or a finite one (e.g. population of Switzerland).
 
+> **Try it yourself.** In the animation
+> [Table 2 as a random process](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/08_Tabelle_2_neu_ziehen_CFT.html)
+> we pretend that the patients of this trial were drawn from populations described by the published numbers.
+> Every click draws a new trial with the same sample sizes and builds Table 2 again from the raw values.
+
 Often, variables in a study are (approximately) normally distributed. 
 We can then efficiently summarize the variable with its mean and standard deviation (location and scale parameter) as is done 
 in the paper for *Age* in years for instance. We do not want to present $p$-values in such an overview table since we merely *describe* data instead of

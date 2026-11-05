@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2026-11-04}
+\date{2026-11-05}
 
 \begin{document}
 \maketitle
@@ -1776,6 +1776,13 @@ more about the population respectively that data generating process (DGP) produc
 How did the data come about?
 Note that the \textbf{sample varies every time we draw from the population}.
 We can either imagine an infinitely large population or a finite one (e.g.~population of Switzerland).
+
+\begin{quote}
+\textbf{Try it yourself.} In the animation
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/08_Tabelle_2_neu_ziehen_CFT.html}{Table 2 as a random process}
+we pretend that the patients of this trial were drawn from populations described by the published numbers.
+Every click draws a new trial with the same sample sizes and builds Table 2 again from the raw values.
+\end{quote}
 
 Often, variables in a study are (approximately) normally distributed.
 We can then efficiently summarize the variable with its mean and standard deviation (location and scale parameter) as is done
@@ -3481,19 +3488,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.682 130.865 131.364   93   29.4511 226.68                  
-## mu2         5.427   5.263   3.731   93  -81.2855 100.36                  
-## muDiff    125.254 125.574 124.829   93  -13.0998 256.01       0      95.5
-## sigma1    140.147 128.787 114.713   93   66.0829 226.77                  
-## sigma2    130.256 119.477 105.071   93   61.8280 210.72                  
-## sigmaDiff   9.891   8.899   6.988   93 -115.9396 140.13       0      56.6
-## nu         34.233  25.618  10.085   93    1.0743  83.14                  
-## log10nu     1.377   1.409   1.438   93    0.6536   2.05                  
-## effSz       0.968   0.962   0.955   93   -0.0986   2.00       0      95.5
+## mu1       130.868 130.913 125.226   93   35.5998 229.98                  
+## mu2         6.280   6.102   9.859   93  -85.2370  95.31                  
+## muDiff    124.588 124.719 123.640   93   -5.7532 261.77       0      95.6
+## sigma1    139.860 128.701 115.349   93   66.3519 227.31                  
+## sigma2    130.011 119.371 104.258   93   62.7055 212.36                  
+## sigmaDiff   9.848   8.672   7.529   93 -119.3507 137.13       0      56.5
+## nu         34.196  25.654   9.905   93    1.1216  82.74                  
+## log10nu     1.377   1.409   1.497   93    0.6553   2.05                  
+## effSz       0.964   0.953   0.921   93   -0.0635   2.03       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.58
+## muDiff        -20       20    4.55
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3741,24 +3748,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.079 sec elapsed
+## 1.043 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.714  0.708  0.668   93 -0.511  1.991                          
-## mu2        2.305  2.301  2.194   93  0.899  3.724                          
-## muDiff    -1.592 -1.594 -1.609   93 -3.486  0.310       0      6.16    -1.8
-## sigma1     2.038  1.920  1.770   93  1.119  3.132                          
-## sigma2     2.304  2.170  2.019   93  1.262  3.479                          
-## sigmaDiff -0.266 -0.245 -0.185   93 -1.970  1.395       0     37.26        
-## nu        36.222 27.465 12.193   93  1.486 87.026                          
-## log10nu    1.411  1.439  1.508   93  0.722  2.068                          
-## effSz     -0.752 -0.748 -0.702   93 -1.649  0.131       0      6.16        
+## mu1        0.716  0.712  0.797   93 -0.536  1.979                          
+## mu2        2.302  2.302  2.231   93  0.856  3.690                          
+## muDiff    -1.585 -1.591 -1.677   93 -3.489  0.294       0      6.11    -1.8
+## sigma1     2.043  1.920  1.708   93  1.088  3.104                          
+## sigma2     2.313  2.172  1.940   93  1.253  3.517                          
+## sigmaDiff -0.271 -0.249 -0.243   93 -1.985  1.443       0     37.07        
+## nu        35.892 27.415 12.069   93  1.275 85.280                          
+## log10nu    1.411  1.438  1.500   93  0.727  2.054                          
+## effSz     -0.748 -0.745 -0.753   93 -1.634  0.138       0      6.11        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
