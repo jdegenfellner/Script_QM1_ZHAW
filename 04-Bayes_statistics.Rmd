@@ -53,7 +53,45 @@ $$
 $$
 since one can have a positive test result if one has the disease (true positive) or if one does not have the disease (false positive). 
 This is the so-called [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability).
-To see this, just draw a binary tree starting with disease status (pos/neg) and test result (pos/neg) as branches, as we did before. 
+To see this, just draw a binary tree starting with disease status (pos/neg) and test result (pos/neg) as branches, as we did before.
+Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
+The two branches ending in a positive test (green and orange) add up to $\mathbb{P}(Tpos)$,
+and the posterior probability is the green share of this sum.
+
+```{r tree-bayes-derivation, echo=FALSE, out.width="95%"}
+library(DiagrammeR)
+grViz("
+digraph {
+  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]
+  node  [fontname = Helvetica, fontsize = 13, shape = box, style = 'rounded,filled',
+         penwidth = 2, margin = '0.22,0.13']
+  edge  [fontname = Helvetica, fontsize = 13, color = '#52606d', penwidth = 1.6, arrowsize = 0.8]
+
+  S  [label = 'Person tested\\nfor a disease', shape = ellipse, fillcolor = '#f6f7f9', color = '#52606d']
+
+  Dp [label = 'Disease present\\n(Dpos)', fillcolor = '#cfdef5', color = '#2a78d6']
+  Dn [label = 'Disease absent\\n(Dneg)',  fillcolor = '#e4e7eb', color = '#52606d']
+
+  TP [label = 'Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019', fillcolor = '#0f9d8a', color = '#0f9d8a', fontcolor = white]
+  FN [label = 'Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001', fillcolor = '#e4e7eb', color = '#52606d']
+  FP [label = 'Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098', fillcolor = '#f9d9cd', color = '#eb6834']
+  TN [label = 'Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882', fillcolor = '#e4e7eb', color = '#52606d']
+
+  R  [label = 'P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162',
+      shape = box, style = 'filled', fillcolor = '#fbe3b5', color = '#c9501f']
+
+  S  -> Dp [label = '  P(Dpos) = 0.02  ', fontcolor = '#2a78d6']
+  S  -> Dn [label = '  P(Dneg) = 0.98  ']
+  Dp -> TP [label = '  P(Tpos | Dpos) = 0.95  ', fontcolor = '#0f9d8a']
+  Dp -> FN [label = '  P(Tneg | Dpos) = 0.05  ']
+  Dn -> FP [label = '  P(Tpos | Dneg) = 0.10  ', fontcolor = '#c9501f']
+  Dn -> TN [label = '  P(Tneg | Dneg) = 0.90  ']
+
+  TP -> R [style = dashed, color = '#0f9d8a', penwidth = 2.2]
+  FP -> R [style = dashed, color = '#eb6834', penwidth = 2.2]
+}
+")
+```
 
 Summarized, we have:
 
