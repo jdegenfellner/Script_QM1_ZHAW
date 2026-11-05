@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Outlier and the Correlation</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='white' stroke='%23cbd2d9' stroke-width='2'/%3E%3Cg fill='%232a78d6' fill-opacity='.8'%3E%3Ccircle cx='14' cy='48' r='3'/%3E%3Ccircle cx='20' cy='42' r='3'/%3E%3Ccircle cx='26' cy='44' r='3'/%3E%3Ccircle cx='31' cy='36' r='3'/%3E%3Ccircle cx='37' cy='38' r='3'/%3E%3Ccircle cx='42' cy='30' r='3'/%3E%3C/g%3E%3Ccircle cx='52' cy='14' r='5' fill='%23d9381e'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --pt:#2a78d6; --pos:#2a78d6; --neg:#e8890c; --out:#d9381e; --fit:#d9381e; --fit0:#7b8794; --accent:#2a78d6; --btn:#eb6834;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --pt:#3987e5; --pos:#4a95f0; --neg:#f0a040; --out:#ff6b4a; --fit:#ff6b4a; --fit0:#8a96a3; --accent:#3987e5; --btn:#d95926;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1080px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.3rem;margin:0 0 4px}
+.lead{color:var(--ink2);margin:0 0 14px;max-width:84ch}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-bottom:10px}
+.sl{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:.92rem}
+.sl output{color:var(--ink);font-weight:700;min-width:4ch;text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:min(210px,45vw);accent-color:var(--accent)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:9px;font:inherit;font-size:.9rem;cursor:pointer}
+.btn:focus-visible,input:focus-visible,svg [tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.chk{display:inline-flex;gap:7px;align-items:center;font-size:.9rem;color:var(--ink2);cursor:pointer}
+.presets{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px;color:var(--ink2);font-size:.9rem}
+.wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}}
+svg{display:block;width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px;touch-action:none}
+svg text{font:12.5px system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink2)}
+svg .lab{fill:var(--ink);font-weight:650}
+#out{cursor:grab}
+#out:active{cursor:grabbing}
+.panel{background:var(--card);border-radius:12px;padding:12px 14px}
+.eq{font-size:1.02rem;margin:0 0 10px;line-height:1.7}
+.eq b{font-variant-numeric:tabular-nums}
+.big{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.big small{font-size:.85rem;color:var(--ink2);font-weight:500}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin-top:8px}
+th,td{padding:5px 8px;border-bottom:1px solid var(--grid);text-align:right;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--ink2);font-weight:600;font-size:.8rem}
+td.chg{color:var(--ink2)}
+tr.hl td{font-weight:700;color:var(--ink)}
+.msg{margin:10px 0 0;color:var(--ink2);font-size:.92rem}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:10px;font-size:.84rem;color:var(--ink2)}
+@media (max-width:560px){.legend{grid-template-columns:1fr}}
+.legend>div{display:flex;gap:8px;align-items:flex-start}
+.legend b{color:var(--ink)}
+.legend i{flex:none;display:inline-block;margin-top:5px}
+.legend .dot{width:11px;height:11px;border-radius:50%}
+.legend .dot.big{width:15px;height:15px;margin-top:3px}
+.legend .ring{width:13px;height:13px;border-radius:50%;border:2px dashed var(--ink2);margin-top:4px}
+.legend .ln{width:24px;height:0;margin-top:9px}
+.legend .sq{width:16px;height:12px;background:var(--pos);opacity:.4;border:1px solid var(--pos);margin-top:4px}
+.note{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;color:var(--ink2);font-size:.9rem;margin-top:14px;max-width:96ch}
+</style>
+</head>
+<body>
+<main>
+<h1>One outlier and the correlation</h1>
+<p class="lead">100 points from a bivariate normal distribution (same data as in the script, seed 123). The last point is the one you can move: drag the red point with the mouse, or select it and use the arrow keys. Watch how the numerator and the standard deviations of x and y change, and what that does to <em>r</em>.</p>
+
+<div class="ctl">
+  <label class="sl" for="rho">True correlation ρ <input id="rho" type="range" min="0" max="1" step="0.05" value="0.75"><output id="rhoO"></output></label>
+  <label class="sl" for="nn">Sample size n <input id="nn" type="range" min="10" max="100" step="5" value="100"><output id="nnO"></output></label>
+  <button class="btn" id="newS" type="button">New random sample</button>
+  <button class="btn" id="scriptS" type="button">Script data (seed 123)</button>
+</div>
+<div class="presets"><span>Place the point (as in the script):</span>
+  <button class="btn" data-p="A" type="button">A · original position</button>
+  <button class="btn" data-p="B" type="button">B · outlier in x</button>
+  <button class="btn" data-p="C" type="button">C · outlier in x and y</button>
+  <button class="btn" data-p="D" type="button">D · outlier in y</button>
+  <label class="chk" style="margin-left:10px"><input type="checkbox" id="kLines" checked>Regression lines</label>
+  <label class="chk"><input type="checkbox" id="kSign" checked>Colour points by sign of (x−x̄)(y−ȳ)</label>
+  <label class="chk"><input type="checkbox" id="kRect" checked>Rectangle of the moved point</label>
+</div>
+
+<div class="wrap">
+  <div>
+    <svg id="svg" viewBox="0 0 600 600" role="img" aria-label="Scatterplot with one movable outlier"></svg>
+    <div class="legend" aria-label="Legend">
+      <div><i class="dot" style="background:var(--pos)"></i><span><b>Blue point:</b> adds <em>positively</em> to the numerator, (x−x̄)(y−ȳ) &gt; 0. It lies right of and above, or left of and below, the crossing of the dashed mean lines.</span></div>
+      <div><i class="dot" style="background:var(--neg)"></i><span><b>Orange point:</b> adds <em>negatively</em>, (x−x̄)(y−ȳ) &lt; 0. It lies left of and above, or right of and below, the crossing of the mean lines.</span></div>
+      <div><i class="dot big" style="background:var(--out)"></i><span><b>Red point:</b> the point you can move.</span></div>
+      <div><i class="ring"></i><span><b>Dashed ring and line:</b> where the red point was originally.</span></div>
+      <div><i class="ln" style="border-top:3px solid var(--fit)"></i><span><b>Red line:</b> regression line now.</span></div>
+      <div><i class="ln" style="border-top:3px dashed var(--fit0)"></i><span><b>Grey dashed line:</b> regression line of the original data.</span></div>
+      <div><i class="ln" style="border-top:2px dashed var(--ink2)"></i><span><b>Thin dashed lines:</b> means x̄ and ȳ (now).</span></div>
+      <div><i class="sq"></i><span><b>Shaded rectangle:</b> cross-product of the red point, blue if positive, orange if negative.</span></div>
+    </div>
+    <p class="msg" style="margin-top:6px">If the colouring is switched off, all points except the red one are blue.</p>
+  </div>
+  <div>
+    <div class="panel">
+      <div class="big"><span id="rNow">–</span> <small>r now</small> &nbsp; <small>(original: <span id="rOrig">–</span>)</small></div>
+      <p class="eq" id="eq"></p>
+      <table id="tbl"></table>
+      <p class="msg" id="msg"></p>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>Formula.</strong> r = Σ(xᵢ − x̄)(yᵢ − ȳ) / √( Σ(xᵢ − x̄)² · Σ(yᵢ − ȳ)² ). This is the same as S<sub>xy</sub> / (sₓ · s<sub>y</sub>) with covariance and standard deviations that all divide by n − 1: the n − 1 cancels, so (n − 1) · sₓ · s<sub>y</sub> equals the denominator above. The numerator is the sum of the cross-products. A point above the mean of y and right of the mean of x (or below and left) adds a <em>positive</em> amount, the other two quadrants add a <em>negative</em> amount. The denominator is always positive and grows with the spread of x and of y.
+  The original line shows the data with the last point at its original position (A). Spearman's r<sub>s</sub> uses ranks only and is much less affected by the moved point.
+  The data are the same as in the R code of the script (<code>set.seed(123)</code>, ρ = 0.75, n = 100): r = 0.71 originally, 0.44 for B, 0.82 for C and 0.48 for D.
+</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+function $(id){ return document.getElementById(id); }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+var SEEDX = [-0.560476,-0.230177,1.558708,0.070508,0.129288,1.715065,0.460916,-1.265061,-0.686853,-0.445662,1.224082,0.359814,0.400771,0.110683,-0.555841,1.786913,0.497850,-1.966617,0.701356,-0.472791,-1.067824,-0.217975,-1.026004,-0.728891,-0.625039,-1.686693,0.837787,0.153373,-1.138137,1.253815,0.426464,-0.295071,0.895126,0.878133,0.821581,0.688640,0.553918,-0.061912,-0.305963,-0.380471,-0.694707,-0.207917,-1.265396,2.168956,1.207962,-1.123109,-0.402885,-0.466655,0.779965,-0.083369,0.253319,-0.028547,-0.042870,1.368602,-0.225771,1.516471,-1.548753,0.584614,0.123854,0.215942,0.379639,-0.502323,-0.333207,-1.018575,-1.071791,0.303529,0.448210,0.053004,0.922267,2.050085,-0.491031,-2.309169,1.005739,-0.709201,-0.688009,1.025571,-0.284773,-1.220718,0.181303,-0.138891,0.005764,0.385280,-0.370660,0.644377,-0.220487,0.331782,1.096839,0.435181,-0.325932,1.148808,0.993504,0.548397,0.238732,-0.627906,1.360652,-0.600260,2.187333,1.532611,-0.235700,-1.026421];
+var SEEDE = [-0.710407,0.256884,-0.246692,-0.347543,-0.951619,-0.045028,-0.784904,-1.667942,-0.380227,0.918997,-0.575347,0.607964,-1.617883,-0.055562,0.519407,0.301153,0.105676,-0.640706,-0.849704,-1.024129,0.117647,-0.947475,-0.490557,-0.256092,1.843862,-0.651950,0.235387,0.077961,-0.961857,-0.071308,1.444551,0.451504,0.041233,-0.422497,-2.053247,1.131337,-1.460640,0.739948,1.909104,-1.443893,0.701784,-0.262197,-1.572144,-1.514668,-1.601536,-0.530907,-1.461756,0.687917,2.100109,-1.287030,0.787739,0.769042,0.332203,-1.008377,-0.119453,-0.280395,0.562990,-0.372439,0.976973,-0.374581,1.052711,-1.049177,-1.260155,3.241040,-0.416858,0.298228,0.636570,-0.483781,0.516862,0.368965,-0.215381,0.065293,-0.034067,2.128452,-0.741336,-1.095996,0.037788,0.310481,0.436523,-0.458365,-1.063326,1.263185,-0.349650,-0.865513,-0.236280,-0.197176,1.109920,0.084737,0.754054,-0.499292,0.214445,-0.324686,0.094584,-0.895363,-1.310802,1.997213,0.600709,-1.251271,-0.611166,-1.185480];
+var NMAX = 100, LO = -8, HI = 8;
+var Z1 = SEEDX.slice(), Z2 = SEEDE.slice();
+var S = { rho:0.75, n:100, ox:0, oy:0, mode:"B", kLines:true, kSign:true, kRect:true };
+
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function newSample(){
+  var r=mulberry32(Math.floor(Math.random()*1e9)), i, spare=null;
+  function nrm(){ if (spare!==null){ var s=spare; spare=null; return s; } var u=Math.max(r(),1e-12), v=r(), m=Math.sqrt(-2*Math.log(u)); spare=m*Math.sin(2*Math.PI*v); return m*Math.cos(2*Math.PI*v); }
+  for (i=0;i<NMAX;i++){ Z1[i]=nrm(); Z2[i]=nrm(); }
+}
+function dataXY(){
+  var n=S.n, xs=new Array(n), ys=new Array(n), a=S.rho, b=Math.sqrt(1-a*a), i;
+  for (i=0;i<n;i++){ xs[i]=Z1[i]; ys[i]=a*Z1[i]+b*Z2[i]; }
+  return {xs:xs, ys:ys};
+}
+function stats(xs,ys){
+  var n=xs.length, i, mx=0, my=0;
+  for (i=0;i<n;i++){ mx+=xs[i]; my+=ys[i]; } mx/=n; my/=n;
+  var sxx=0, syy=0, sxy=0;
+  for (i=0;i<n;i++){ var dx=xs[i]-mx, dy=ys[i]-my; sxx+=dx*dx; syy+=dy*dy; sxy+=dx*dy; }
+  var sx=Math.sqrt(sxx/(n-1)), sy=Math.sqrt(syy/(n-1));
+  return { n:n, mx:mx, my:my, sx:sx, sy:sy, sxx:sxx, syy:syy, num:sxy, den:Math.sqrt(sxx*syy), r:sxy/Math.sqrt(sxx*syy), slope:sxy/sxx, icpt:my-(sxy/sxx)*mx };
+}
+function ranks(a){
+  var idx=a.map(function(v,i){return i;}).sort(function(p,q){return a[p]-a[q];}), r=new Array(a.length), i=0;
+  while (i<idx.length){ var j=i; while (j+1<idx.length && a[idx[j+1]]===a[idx[i]]) j++; var rk=(i+j)/2+1; for (var k=i;k<=j;k++) r[idx[k]]=rk; i=j+1; }
+  return r;
+}
+function spearman(xs,ys){ return stats(ranks(xs),ranks(ys)).r; }
+
+/* ---------- geometry ---------- */
+var svg=$("svg"), NS="http://www.w3.org/2000/svg", L=50, T=10, P=540;
+function X(v){ return L+(v-LO)/(HI-LO)*P; }
+function Y(v){ return T+(HI-v)/(HI-LO)*P; }
+function el(n,a,p){ var e=document.createElementNS(NS,n); for (var k in a) e.setAttribute(k,a[k]); if (p) p.appendChild(e); return e; }
+var gGrid=el("g",{},svg), gRect=el("g",{},svg), gMean=el("g",{},svg), gLines=el("g",{},svg), gPts=el("g",{},svg), gTop=el("g",{},svg);
+(function(){
+  for (var v=LO; v<=HI; v+=2){
+    el("line",{x1:X(v),x2:X(v),y1:T,y2:T+P,stroke:"var(--grid)"},gGrid); el("line",{x1:L,x2:L+P,y1:Y(v),y2:Y(v),stroke:"var(--grid)"},gGrid);
+    var tx=el("text",{x:X(v),y:T+P+18,"text-anchor":"middle"},gGrid); tx.textContent=v;
+    var ty=el("text",{x:L-8,y:Y(v)+4,"text-anchor":"end"},gGrid); ty.textContent=v;
+  }
+  el("rect",{x:L,y:T,width:P,height:P,fill:"none",stroke:"var(--line)"},gGrid);
+  var xl=el("text",{x:L+P/2,y:T+P+38,"text-anchor":"middle"},gGrid); xl.textContent="x";
+  var yl=el("text",{x:14,y:T+P/2,"text-anchor":"middle",transform:"rotate(-90 14 "+(T+P/2)+")"},gGrid); yl.textContent="y";
+})();
+var clip=el("clipPath",{id:"cp"},svg); el("rect",{x:L,y:T,width:P,height:P},clip);
+[gRect,gMean,gLines,gPts,gTop].forEach(function(g){ g.setAttribute("clip-path","url(#cp)"); });
+var rectEl=el("rect",{},gRect), rectT=el("text",{"class":"lab","text-anchor":"middle"},gTop);
+var mxL=el("line",{stroke:"var(--ink2)","stroke-dasharray":"4 4"},gMean), myL=el("line",{stroke:"var(--ink2)","stroke-dasharray":"4 4"},gMean);
+var fit0=el("line",{stroke:"var(--fit0)","stroke-width":2,"stroke-dasharray":"7 5"},gLines), fit1=el("line",{stroke:"var(--fit)","stroke-width":2.4},gLines);
+var pts=[], i0; for (i0=0;i0<NMAX-1;i0++) pts.push(el("circle",{r:4.2},gPts));
+var origRing=el("circle",{r:6,fill:"none",stroke:"var(--ink2)","stroke-dasharray":"3 3"},gPts), tie=el("line",{stroke:"var(--ink2)","stroke-dasharray":"3 3"},gPts);
+var outG=el("g",{id:"out",tabindex:"0",role:"slider","aria-label":"Movable outlier. Use arrow keys to move it."},gTop);
+var outC=el("circle",{r:9,fill:"var(--out)",stroke:"var(--bg)","stroke-width":2.5},outG);
+var outH=el("circle",{r:18,fill:"transparent"},outG);
+function clip2(v){ return clamp(v,LO+0.05,HI-0.05); }
+
+/* ---------- state helpers ---------- */
+function origPoint(){ var d=dataXY(), n=S.n; return {x:d.xs[n-1], y:d.ys[n-1], xs:d.xs, ys:d.ys}; }
+function maxOf(a){ return Math.max.apply(null,a); }
+function place(kind){
+  var o=origPoint(), mxv=maxOf(o.xs), myv=maxOf(o.ys);
+  S.mode=kind;
+  if (kind==="A"){ S.ox=o.x; S.oy=o.y; }
+  if (kind==="B"){ S.ox=mxv+5; S.oy=o.y; }
+  if (kind==="C"){ S.ox=mxv+5; S.oy=myv+5; }
+  if (kind==="D"){ S.ox=o.x; S.oy=myv+5; }
+  S.ox=clip2(S.ox); S.oy=clip2(S.oy);
+}
+
+/* ---------- render ---------- */
+function f2(v){ return v.toFixed(2); }
+function sgn(v){ return (v>=0?"+":"−")+Math.abs(v).toFixed(2); }
+function render(){
+  var d=dataXY(), n=S.n, xs=d.xs.slice(), ys=d.ys.slice();
+  var o={x:xs[n-1],y:ys[n-1]};
+  if (S.mode==="A"){ S.ox=o.x; S.oy=o.y; }
+  var base=stats(xs,ys);
+  xs[n-1]=S.ox; ys[n-1]=S.oy;
+  var cur=stats(xs,ys), rsB=spearman(d.xs,d.ys), rsC=spearman(xs,ys);
+
+  // points
+  var i;
+  for (i=0;i<NMAX-1;i++){
+    var c=pts[i];
+    if (i<n-1){
+      var dx=xs[i]-cur.mx, dy=ys[i]-cur.my, pos=dx*dy>=0;
+      c.setAttribute("cx",X(xs[i]).toFixed(1)); c.setAttribute("cy",Y(ys[i]).toFixed(1));
+      c.setAttribute("fill", S.kSign ? (pos?"var(--pos)":"var(--neg)") : "var(--pt)"); c.setAttribute("fill-opacity",0.62); c.style.display="";
+    } else c.style.display="none";
+  }
+  outG.setAttribute("transform","translate("+X(S.ox).toFixed(1)+" "+Y(S.oy).toFixed(1)+")");
+  var moved=Math.hypot(S.ox-o.x,S.oy-o.y)>0.02;
+  origRing.setAttribute("cx",X(o.x)); origRing.setAttribute("cy",Y(o.y)); origRing.style.display=moved?"":"none";
+  tie.setAttribute("x1",X(o.x)); tie.setAttribute("y1",Y(o.y)); tie.setAttribute("x2",X(S.ox)); tie.setAttribute("y2",Y(S.oy)); tie.style.display=moved?"":"none";
+
+  // means
+  mxL.setAttribute("x1",X(cur.mx)); mxL.setAttribute("x2",X(cur.mx)); mxL.setAttribute("y1",T); mxL.setAttribute("y2",T+P);
+  myL.setAttribute("y1",Y(cur.my)); myL.setAttribute("y2",Y(cur.my)); myL.setAttribute("x1",L); myL.setAttribute("x2",L+P);
+
+  // regression lines
+  fit0.style.display=fit1.style.display=S.kLines?"":"none";
+  function line(e,s){ e.setAttribute("x1",X(LO)); e.setAttribute("x2",X(HI)); e.setAttribute("y1",Y(s.icpt+s.slope*LO)); e.setAttribute("y2",Y(s.icpt+s.slope*HI)); }
+  line(fit0,base); line(fit1,cur);
+
+  // rectangle of the moved point
+  var cp=(S.ox-cur.mx)*(S.oy-cur.my);
+  rectEl.setAttribute("x",Math.min(X(cur.mx),X(S.ox))); rectEl.setAttribute("y",Math.min(Y(cur.my),Y(S.oy)));
+  rectEl.setAttribute("width",Math.abs(X(S.ox)-X(cur.mx))); rectEl.setAttribute("height",Math.abs(Y(S.oy)-Y(cur.my)));
+  rectEl.setAttribute("fill",cp>=0?"var(--pos)":"var(--neg)"); rectEl.setAttribute("fill-opacity",0.22);
+  rectEl.setAttribute("stroke",cp>=0?"var(--pos)":"var(--neg)");
+  rectEl.style.display=S.kRect?"":"none";
+  rectT.style.display=S.kRect?"":"none";
+  rectT.setAttribute("x",(X(cur.mx)+X(S.ox))/2); rectT.setAttribute("y",clamp((Y(cur.my)+Y(S.oy))/2,T+16,T+P-8));
+  rectT.textContent="(x−x̄)(y−ȳ) = "+cp.toFixed(1);
+
+  // panel
+  $("rNow").textContent=f2(cur.r); $("rOrig").textContent=f2(base.r);
+  $("eq").innerHTML="r = Σ(xᵢ−x̄)(yᵢ−ȳ) / √( Σ(xᵢ−x̄)² · Σ(yᵢ−ȳ)² ) = <b>"+cur.num.toFixed(1)+"</b> / √( <b>"+cur.sxx.toFixed(1)+"</b> · <b>"+cur.syy.toFixed(1)+"</b> ) = <b>"+cur.num.toFixed(1)+"</b> / <b>"+cur.den.toFixed(1)+"</b> = <b>"+f2(cur.r)+"</b>";
+  function row(name,a,b,dec,hl){ var v=b-a; return "<tr"+(hl?' class="hl"':'')+"><td>"+name+"</td><td>"+a.toFixed(dec)+"</td><td>"+b.toFixed(dec)+"</td><td class='chg'>"+(v>=0?"+":"−")+Math.abs(v).toFixed(dec)+"</td></tr>"; }
+  $("tbl").innerHTML="<thead><tr><th></th><th>Original</th><th>Now</th><th>Change</th></tr></thead><tbody>"+
+    row("Mean of x, x̄",base.mx,cur.mx,2)+row("Mean of y, ȳ",base.my,cur.my,2)+
+    row("SD of x, sₓ",base.sx,cur.sx,2)+row("SD of y, s<sub>y</sub>",base.sy,cur.sy,2)+
+    row("Numerator Σ(xᵢ−x̄)(yᵢ−ȳ)",base.num,cur.num,1,true)+row("Σ(xᵢ−x̄)²",base.sxx,cur.sxx,1)+row("Σ(yᵢ−ȳ)²",base.syy,cur.syy,1)+row("Denominator √(Σ(xᵢ−x̄)²·Σ(yᵢ−ȳ)²)",base.den,cur.den,1,true)+
+    row("Pearson r",base.r,cur.r,2,true)+row("Spearman r<sub>s</sub>",rsB,rsC,2)+row("Slope of the line",base.slope,cur.slope,2)+"</tbody>";
+  var hx=S.ox>=cur.mx?"right of":"left of", hy=S.oy>=cur.my?"above":"below";
+  $("msg").textContent=moved
+    ? "The moved point is at ("+f2(S.ox)+", "+f2(S.oy)+"): "+hx+" the mean of x and "+hy+" the mean of y. Its cross-product is "+sgn(cp)+", so it adds "+(cp>=0?"positively":"negatively")+" to the numerator. Pearson r changes from "+f2(base.r)+" to "+f2(cur.r)+", Spearman r_s from "+f2(rsB)+" to "+f2(rsC)+"."
+    : "The point is at its original position, so nothing has changed yet. Drag it away.";
+  $("rhoO").textContent=S.rho.toFixed(2); $("nnO").textContent=String(S.n);
+}
+
+/* ---------- interaction ---------- */
+var dragging=false;
+function toData(ev){ var r=svg.getBoundingClientRect(), px=(ev.clientX-r.left)/r.width*600, py=(ev.clientY-r.top)/r.height*600;
+  return { x:LO+(px-L)/P*(HI-LO), y:HI-(py-T)/P*(HI-LO) }; }
+outG.addEventListener("pointerdown",function(ev){ dragging=true; outG.setPointerCapture(ev.pointerId); S.mode="free"; ev.preventDefault(); });
+outG.addEventListener("pointermove",function(ev){ if (!dragging) return; var p=toData(ev); S.ox=clip2(p.x); S.oy=clip2(p.y); render(); });
+outG.addEventListener("pointerup",function(){ dragging=false; });
+outG.addEventListener("pointercancel",function(){ dragging=false; });
+outG.addEventListener("keydown",function(ev){
+  var st=ev.shiftKey?0.5:0.1, h=false;
+  if (ev.key==="ArrowLeft"){ S.ox=clip2(S.ox-st); h=true; } else if (ev.key==="ArrowRight"){ S.ox=clip2(S.ox+st); h=true; }
+  else if (ev.key==="ArrowUp"){ S.oy=clip2(S.oy+st); h=true; } else if (ev.key==="ArrowDown"){ S.oy=clip2(S.oy-st); h=true; }
+  if (h){ ev.preventDefault(); S.mode="free"; render(); }
+});
+$("rho").addEventListener("input",function(){ S.rho=parseFloat($("rho").value); if (S.mode!=="free" && S.mode!=="A") place(S.mode); render(); });
+$("nn").addEventListener("input",function(){ S.n=parseInt($("nn").value,10); if (S.mode!=="free" && S.mode!=="A") place(S.mode); render(); });
+$("newS").addEventListener("click",function(){ newSample(); if (S.mode!=="free" && S.mode!=="A") place(S.mode); render(); });
+$("scriptS").addEventListener("click",function(){ Z1=SEEDX.slice(); Z2=SEEDE.slice(); S.rho=0.75; S.n=100; $("rho").value=0.75; $("nn").value=100; place("B"); render(); });
+Array.prototype.forEach.call(document.querySelectorAll("[data-p]"),function(b){ b.addEventListener("click",function(){ place(b.dataset.p); render(); }); });
+[["kLines","kLines"],["kSign","kSign"],["kRect","kRect"]].forEach(function(p){ $(p[0]).addEventListener("change",function(){ S[p[1]]=$(p[0]).checked; render(); }); });
+if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",render);
+
+place("B"); render();
+})();
+</script>
+</body>
+</html>
