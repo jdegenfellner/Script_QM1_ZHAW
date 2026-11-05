@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correlation and Prediction Intervals</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='white' stroke='%23cbd2d9' stroke-width='2'/%3E%3Cpath d='M8 50L56 14' stroke='%232a78d6' stroke-width='3'/%3E%3Cpath d='M8 38L56 2M8 62L56 26' stroke='%232a78d6' stroke-width='1.5' stroke-dasharray='4 3'/%3E%3Cpath d='M38 12v40' stroke='%23eb6834' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --pt:#2a78d6; --cond:#eb6834; --marg:#7b8794; --band:rgba(42,120,214,.12); --accent:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --pt:#4a95f0; --cond:#ff8a5c; --marg:#9aa5b1; --band:rgba(74,149,240,.16); --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1080px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.3rem;margin:0 0 4px}
+.lead{color:var(--ink2);margin:0 0 12px;max-width:86ch}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-bottom:12px}
+.sl{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:.92rem}
+.sl output{color:var(--ink);font-weight:700;min-width:4ch;text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:min(210px,45vw);accent-color:var(--accent)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:7px 12px;font:inherit;font-size:.9rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:650}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:9px;font:inherit;font-size:.9rem;cursor:pointer}
+.chk{display:inline-flex;gap:7px;align-items:center;font-size:.9rem;color:var(--ink2);cursor:pointer}
+button:focus-visible,input:focus-visible,svg [tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:880px){.wrap{grid-template-columns:1fr}}
+svg{display:block;width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px;touch-action:none}
+svg text{font:12.5px system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink2)}
+svg text.t{fill:var(--ink);font-weight:650}
+#handle{cursor:ew-resize}
+.panel{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.iv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:baseline;font-variant-numeric:tabular-nums}
+.iv b{font-size:1.15rem}
+.iv .k{color:var(--ink2);font-size:.88rem}
+.cond b{color:var(--cond)} .marg b{color:var(--marg)}
+.big{font-size:2.1rem;font-weight:700;line-height:1.1;color:var(--cond);font-variant-numeric:tabular-nums}
+.big small{font-size:.9rem;color:var(--ink2);font-weight:500}
+.eq{font-size:.92rem;color:var(--ink2);margin:6px 0 0}
+.note{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;color:var(--ink2);font-size:.92rem;margin-top:14px;max-width:98ch}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.msg{margin:6px 0 0;color:var(--ink2);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Correlation and prediction intervals</h1>
+<p class="lead">X and Y are jointly normal, each with mean 0 and SD 1, with the correlation you choose. Move the orange line to a value of X. The grey interval is where a new Y falls if you know nothing about X, the orange interval is where it falls if you know X. How much shorter is the orange one?</p>
+
+<div class="ctl">
+  <label class="sl" for="rho">Correlation ρ <input id="rho" type="range" min="-0.99" max="0.99" step="0.01" value="0.5"><output id="rhoO"></output></label>
+  <label class="sl" for="x0">Given X = <input id="x0" type="range" min="-3" max="3" step="0.05" value="1.5"><output id="x0O"></output></label>
+  <span class="seg" id="lvSeg" role="group" aria-label="Coverage of the interval"></span>
+  <button class="btn" id="newS" type="button">New sample</button>
+</div>
+<div class="ctl">
+  <label class="chk"><input type="checkbox" id="kPts" checked>Show a sample of 300 pairs</label>
+  <label class="chk"><input type="checkbox" id="kBand" checked>Show the band around the regression line</label>
+</div>
+
+<div class="wrap">
+  <svg id="svg" viewBox="0 0 600 580" role="img" aria-label="Scatterplot with the prediction interval for Y given X"></svg>
+  <div>
+    <div class="panel">
+      <div class="big"><span id="red">–</span> <small>shorter interval for Y once X is known</small></div>
+      <p class="eq" id="eq"></p>
+    </div>
+    <div class="panel iv">
+      <span class="k marg">Without X</span><span class="marg">Y between <b id="mLo"></b> and <b id="mHi"></b> &nbsp;(length <b id="mLen"></b>)</span>
+      <span class="k cond">Given X = <span id="xv"></span></span><span class="cond">Y between <b id="cLo"></b> and <b id="cHi"></b> &nbsp;(length <b id="cLen"></b>)</span>
+    </div>
+    <svg id="svg2" viewBox="0 0 440 300" role="img" aria-label="Reduction of the interval length by the correlation"></svg>
+    <p class="msg" id="chk"></p>
+  </div>
+</div>
+
+<div class="note">
+  <p><strong>The numbers.</strong> Without X: mean ± z · SD of Y, with z = 1.96 for 95 %. Given X = x: the mean of Y moves to ρ · x, and the SD shrinks from 1 to √(1 − ρ²), so the interval is ρ · x ± z · √(1 − ρ²). Its length is √(1 − ρ²) times the original length, i.e. it is shorter by 1 − √(1 − ρ²).</p>
+  <p><strong>Why a high correlation helps so little for one person.</strong> The curve on the right is flat at the beginning: ρ = 0.5 shortens the interval by only 13 %, ρ = 0.7 by 29 %, ρ = 0.9 by 56 %. The position of X changes where the interval lies, but not how long it is. The length depends on ρ alone.</p>
+  <p><strong>What is not included.</strong> The intervals use the true ρ, means and SDs. In practice these are estimated, so a prediction interval from data is a bit wider (the estimation error of the regression line comes on top). Normality of X and Y is assumed.</p>
+</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+function $(id){ return document.getElementById(id); }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+var NP=300, Z1=[], Z2=[];
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function newSample(seed){
+  var r=mulberry32(seed), spare=null, i;
+  function nrm(){ if (spare!==null){ var s=spare; spare=null; return s; } var u=Math.max(r(),1e-12), v=r(), m=Math.sqrt(-2*Math.log(u)); spare=m*Math.sin(2*Math.PI*v); return m*Math.cos(2*Math.PI*v); }
+  for (i=0;i<NP;i++){ Z1[i]=nrm(); Z2[i]=nrm(); }
+}
+newSample(2026);
+var S={rho:0.5,x0:1.5,lv:0.95,pts:true,band:true};
+var ZV={0.90:1.644854,0.95:1.959964,0.99:2.575829};
+
+var svg=$("svg"), NS="http://www.w3.org/2000/svg", L=48, T=10, P=530, LO=-3.5, HI=3.5;
+function X(v){ return L+(v-LO)/(HI-LO)*P; } function Y(v){ return T+(HI-v)/(HI-LO)*P; }
+function el(n,a,p){ var e=document.createElementNS(NS,n); for (var k in a) e.setAttribute(k,a[k]); if (p) p.appendChild(e); return e; }
+function clear(g){ while (g.firstChild) g.removeChild(g.firstChild); }
+var gGrid=el("g",{},svg), gBand=el("g",{},svg), gPts=el("g",{},svg), gTop=el("g",{},svg);
+(function(){
+  for (var v=-3; v<=3; v++){
+    el("line",{x1:X(v),x2:X(v),y1:T,y2:T+P,stroke:"var(--grid)"},gGrid); el("line",{x1:L,x2:L+P,y1:Y(v),y2:Y(v),stroke:"var(--grid)"},gGrid);
+    var a=el("text",{x:X(v),y:T+P+18,"text-anchor":"middle"},gGrid); a.textContent=v;
+    var b=el("text",{x:L-8,y:Y(v)+4,"text-anchor":"end"},gGrid); b.textContent=v;
+  }
+  el("rect",{x:L,y:T,width:P,height:P,fill:"none",stroke:"var(--line)"},gGrid);
+  var xl=el("text",{x:L+P/2,y:T+P+40,"text-anchor":"middle"},gGrid); xl.textContent="X (in SD units)";
+  var yl=el("text",{x:14,y:T+P/2,"text-anchor":"middle",transform:"rotate(-90 14 "+(T+P/2)+")"},gGrid); yl.textContent="Y (in SD units)";
+  var cp=el("clipPath",{id:"cp"},svg); el("rect",{x:L,y:T,width:P,height:P},cp);
+  [gBand,gPts,gTop].forEach(function(g){ g.setAttribute("clip-path","url(#cp)"); });
+})();
+var handleG=el("g",{id:"handle",tabindex:"0",role:"slider","aria-label":"Value of X. Use arrow keys.","aria-valuemin":"-3","aria-valuemax":"3"},svg);
+var hLine=el("line",{stroke:"var(--cond)","stroke-width":2.5},handleG), hKnob=el("circle",{r:9,fill:"var(--cond)",stroke:"var(--bg)","stroke-width":2.5},handleG), hHit=el("rect",{width:30,fill:"transparent"},handleG);
+
+function stats(){
+  var z=ZV[S.lv], r=S.rho, sd=Math.sqrt(1-r*r), c=r*S.x0, h=z*sd;
+  return {z:z,sd:sd,c:c,h:h,red:1-sd};
+}
+function f2(v){ return v.toFixed(2); }
+function render(){
+  var s=stats(), r=S.rho, i;
+  clear(gBand); clear(gPts); clear(gTop);
+  // marginal band (without X)
+  el("rect",{x:L,y:Y(s.z),width:P,height:Y(-s.z)-Y(s.z),fill:"var(--marg)","fill-opacity":0.12,stroke:"var(--marg)","stroke-dasharray":"5 4"},gBand);
+  var mt=el("text",{x:L+8,y:Y(s.z)-5},gBand); mt.textContent="Y without X: ± "+f2(s.z)+" (mean ± z · SD)";
+  // conditional band around the regression line
+  if (S.band){
+    var up=[],lo=[]; for (i=0;i<=40;i++){ var xx=LO+(HI-LO)*i/40; up.push([X(xx),Y(r*xx+s.h)]); lo.push([X(xx),Y(r*xx-s.h)]); }
+    var d="M"+up.map(function(p){return p[0].toFixed(1)+" "+p[1].toFixed(1);}).join("L")+"L"+lo.reverse().map(function(p){return p[0].toFixed(1)+" "+p[1].toFixed(1);}).join("L")+"Z";
+    el("path",{d:d,fill:"var(--band)",stroke:"none"},gBand);
+  }
+  el("line",{x1:X(LO),x2:X(HI),y1:Y(r*LO),y2:Y(r*HI),stroke:"var(--pt)","stroke-width":1.8,"stroke-dasharray":"7 5"},gBand);
+  // points
+  var inSlice=0, inIv=0;
+  if (S.pts) for (i=0;i<NP;i++){
+    var px=Z1[i], py=r*Z1[i]+Math.sqrt(1-r*r)*Z2[i];
+    var slice=Math.abs(px-S.x0)<0.2;
+    if (slice){ inSlice++; if (Math.abs(py-s.c)<=s.h) inIv++; }
+    el("circle",{cx:X(px),cy:Y(py),r:slice?4.2:3,fill:slice?"var(--cond)":"var(--pt)","fill-opacity":slice?0.9:0.45},gPts);
+  }
+  // slice window
+  el("rect",{x:X(S.x0-0.2),y:T,width:X(S.x0+0.2)-X(S.x0-0.2),height:P,fill:"var(--cond)","fill-opacity":0.06},gBand);
+  // intervals at x0
+  el("line",{x1:X(S.x0)-8,x2:X(S.x0)-8,y1:Y(-s.z),y2:Y(s.z),stroke:"var(--marg)","stroke-width":6,"stroke-linecap":"round"},gTop);
+  el("line",{x1:X(S.x0)+8,x2:X(S.x0)+8,y1:Y(s.c-s.h),y2:Y(s.c+s.h),stroke:"var(--cond)","stroke-width":6,"stroke-linecap":"round"},gTop);
+  el("circle",{cx:X(S.x0)+8,cy:Y(s.c),r:4.5,fill:"var(--bg)",stroke:"var(--cond)","stroke-width":2},gTop);
+  // handle
+  hLine.setAttribute("x1",X(S.x0)); hLine.setAttribute("x2",X(S.x0)); hLine.setAttribute("y1",T); hLine.setAttribute("y2",T+P);
+  hKnob.setAttribute("cx",X(S.x0)); hKnob.setAttribute("cy",T+14);
+  hHit.setAttribute("x",X(S.x0)-15); hHit.setAttribute("y",T); hHit.setAttribute("height",P);
+  handleG.setAttribute("aria-valuenow",S.x0.toFixed(2));
+  // panel
+  var lvl=Math.round(S.lv*100);
+  $("rhoO").textContent=r.toFixed(2); $("x0O").textContent=S.x0.toFixed(2); $("xv").textContent=f2(S.x0);
+  $("mLo").textContent=f2(-s.z); $("mHi").textContent=f2(s.z); $("mLen").textContent=f2(2*s.z);
+  $("cLo").textContent=f2(s.c-s.h); $("cHi").textContent=f2(s.c+s.h); $("cLen").textContent=f2(2*s.h);
+  $("red").textContent=(s.red*100).toFixed(1)+" %";
+  $("eq").innerHTML="Length "+f2(2*s.h)+" instead of "+f2(2*s.z)+": √(1 − ρ²) = √(1 − "+r.toFixed(2)+"²) = "+s.sd.toFixed(3)+", so the interval is "+(s.red*100).toFixed(1)+" % shorter. Centre: ρ · x = "+r.toFixed(2)+" · "+f2(S.x0)+" = "+f2(s.c)+".";
+  $("chk").textContent= S.pts ? (inSlice>0 ? "Check: "+inSlice+" of the 300 pairs lie near X = "+f2(S.x0)+" (orange dots). "+inIv+" of them ("+Math.round(100*inIv/inSlice)+" %) fall inside the "+lvl+" % interval." : "No pair lies near this X in the sample.") : "";
+  curve(s);
+}
+
+// curve: reduction of the interval length against |rho|
+var svg2=$("svg2"), L2=52, T2=12, W2=440, H2=300, PW2=W2-L2-14, PH2=H2-T2-44;
+function curve(s){
+  clear(svg2);
+  function X2(v){ return L2+v*PW2; } function Y2(v){ return T2+PH2-v*PH2; }
+  var i;
+  for (i=0;i<=4;i++){ var v=i/4; el("line",{x1:L2,x2:L2+PW2,y1:Y2(v),y2:Y2(v),stroke:"var(--grid)"},svg2); el("line",{x1:X2(v),x2:X2(v),y1:T2,y2:T2+PH2,stroke:"var(--grid)"},svg2);
+    var a=el("text",{x:L2-8,y:Y2(v)+4,"text-anchor":"end"},svg2); a.textContent=Math.round(v*100)+" %";
+    var b=el("text",{x:X2(v),y:T2+PH2+16,"text-anchor":"middle"},svg2); b.textContent=v.toFixed(2); }
+  el("rect",{x:L2,y:T2,width:PW2,height:PH2,fill:"none",stroke:"var(--line)"},svg2);
+  var xl=el("text",{x:L2+PW2/2,y:H2-8,"text-anchor":"middle"},svg2); xl.textContent="correlation |ρ|";
+  var yl=el("text",{x:13,y:T2+PH2/2,"text-anchor":"middle",transform:"rotate(-90 13 "+(T2+PH2/2)+")"},svg2); yl.textContent="interval shorter by";
+  var d=""; for (i=0;i<=100;i++){ var r=i/100; d+=(i?"L":"M")+X2(r).toFixed(1)+" "+Y2(1-Math.sqrt(1-r*r)).toFixed(1); }
+  el("path",{d:d,fill:"none",stroke:"var(--pt)","stroke-width":2.6},svg2);
+  var tt=el("text",{x:L2+8,y:T2+14,"class":"t"},svg2); tt.textContent="Shortening: 1 − √(1 − ρ²)";
+  [0.5,0.7,0.9].forEach(function(r){ var y=1-Math.sqrt(1-r*r); el("circle",{cx:X2(r),cy:Y2(y),r:3.5,fill:"var(--ink2)"},svg2);
+    var t=el("text",{x:X2(r)+6,y:Y2(y)+14},svg2); t.textContent=Math.round(y*100)+" %"; });
+  var ar=Math.abs(S.rho), cy=Y2(1-Math.sqrt(1-ar*ar));
+  el("line",{x1:X2(ar),x2:X2(ar),y1:cy,y2:T2+PH2,stroke:"var(--cond)","stroke-dasharray":"4 3"},svg2);
+  el("circle",{cx:X2(ar),cy:cy,r:7,fill:"var(--cond)",stroke:"var(--bg)","stroke-width":2},svg2);
+}
+
+/* interaction */
+var dragging=false;
+function toX(ev){ var r=svg.getBoundingClientRect(); var px=(ev.clientX-r.left)/r.width*600; return clamp(LO+(px-L)/P*(HI-LO),-3,3); }
+function setX0(v){ S.x0=Math.round(v*20)/20; $("x0").value=S.x0; render(); }
+svg.addEventListener("pointerdown",function(ev){ dragging=true; svg.setPointerCapture(ev.pointerId); setX0(toX(ev)); ev.preventDefault(); });
+svg.addEventListener("pointermove",function(ev){ if (dragging) setX0(toX(ev)); });
+svg.addEventListener("pointerup",function(){ dragging=false; });
+svg.addEventListener("pointercancel",function(){ dragging=false; });
+handleG.addEventListener("keydown",function(ev){ var st=ev.shiftKey?0.5:0.05; if (ev.key==="ArrowLeft"){ setX0(S.x0-st); ev.preventDefault(); } else if (ev.key==="ArrowRight"){ setX0(S.x0+st); ev.preventDefault(); } });
+$("rho").addEventListener("input",function(){ S.rho=parseFloat($("rho").value); render(); });
+$("x0").addEventListener("input",function(){ S.x0=parseFloat($("x0").value); render(); });
+$("newS").addEventListener("click",function(){ newSample(Math.floor(Math.random()*1e9)); render(); });
+$("kPts").addEventListener("change",function(){ S.pts=this.checked; render(); });
+$("kBand").addEventListener("change",function(){ S.band=this.checked; render(); });
+(function(){ var e=$("lvSeg"); [[0.90,"90 %"],[0.95,"95 %"],[0.99,"99 %"]].forEach(function(it){ var b=document.createElement("button"); b.type="button"; b.textContent=it[1]; b.setAttribute("aria-pressed",String(S.lv===it[0]));
+  b.addEventListener("click",function(){ S.lv=it[0]; Array.prototype.forEach.call(e.children,function(c){ c.setAttribute("aria-pressed",String(c===b)); }); render(); }); e.appendChild(b); }); })();
+if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",render);
+render();
+})();
+</script>
+</body>
+</html>

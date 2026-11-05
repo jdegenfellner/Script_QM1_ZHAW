@@ -374,6 +374,12 @@ the correlation does not tell us much about the value of Y given X.
 Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5 
 (which is considered high in many areas), the prediction interval for Y is only 13% smaller.
 
+> **Try it yourself.** In the animation
+> [Correlation and prediction intervals](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/15_Prediction_Intervals_Korrelation.html)
+> you choose the correlation $\rho$ and move the value of $X$. It shows where the prediction interval for $Y$ lies
+> and how much shorter it is than the interval based on the mean and standard deviation of $Y$ alone.
+> The shortening depends on $\rho$ only: $1 - \sqrt{1 - \rho^2}$.
+
 One often reads that the two variables used for calculation of a 
 [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) should be normally distributed.
 This is not necessary, at least not for descriptive purposes. The correlation coefficient is a measure of the linear relationship

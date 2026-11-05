@@ -2227,6 +2227,14 @@ the correlation does not tell us much about the value of Y given X.
 Of course with correlation 1, we can predict the value of Y perfectly, but even with a correlation of 0.5
 (which is considered high in many areas), the prediction interval for Y is only 13\% smaller.
 
+\begin{quote}
+\textbf{Try it yourself.} In the animation
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/15_Prediction_Intervals_Korrelation.html}{Correlation and prediction intervals}
+you choose the correlation \(\rho\) and move the value of \(X\). It shows where the prediction interval for \(Y\) lies
+and how much shorter it is than the interval based on the mean and standard deviation of \(Y\) alone.
+The shortening depends on \(\rho\) only: \(1 - \sqrt{1 - \rho^2}\).
+\end{quote}
+
 One often reads that the two variables used for calculation of a
 \href{https://en.wikipedia.org/wiki/Pearson_correlation_coefficient}{Pearson correlation coefficient} should be normally distributed.
 This is not necessary, at least not for descriptive purposes. The correlation coefficient is a measure of the linear relationship
@@ -3512,20 +3520,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
-## mu1       131.033 131.146 136.371   93   36.252 230.31                  
-## mu2         6.123   5.809   5.515   93  -83.511  98.73                  
-## muDiff    124.910 125.434 131.819   93  -10.669 258.19       0      95.5
-## sigma1    139.729 128.637 115.476   93   67.360 227.21                  
-## sigma2    130.748 119.935 104.387   93   60.301 209.97                  
-## sigmaDiff   8.981   8.416   5.578   93 -118.793 138.55       0      56.1
-## nu         34.758  26.003   9.708   93    1.160  84.87                  
-## log10nu     1.382   1.415   1.473   93    0.652   2.06                  
-## effSz       0.966   0.959   0.973   93   -0.069   2.02       0      95.5
+##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.769 130.902 133.892   93   34.8394 227.99                  
+## mu2         6.064   5.893   3.670   93  -82.6196  98.71                  
+## muDiff    124.705 124.724 119.857   93  -10.8314 255.05       0      95.7
+## sigma1    138.568 127.779 113.192   93   65.7176 222.41                  
+## sigma2    130.130 119.685 106.130   93   61.7219 209.90                  
+## sigmaDiff   8.439   7.820   8.862   93 -116.6983 133.81       0      55.9
+## nu         34.219  25.655  10.460   93    1.0077  83.14                  
+## log10nu     1.377   1.409   1.494   93    0.6653   2.06                  
+## effSz       0.968   0.958   0.971   93   -0.0824   2.00       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.47
+## muDiff        -20       20    4.49
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3773,24 +3781,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.079 sec elapsed
+## 1.145 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.713  0.710  0.740   93 -0.521  1.989                          
-## mu2        2.298  2.294  2.278   93  0.891  3.715                          
-## muDiff    -1.584 -1.582 -1.557   93 -3.477  0.306       0      6.19    -1.8
-## sigma1     2.046  1.926  1.749   93  1.098  3.108                          
-## sigma2     2.305  2.171  1.977   93  1.263  3.475                          
-## sigmaDiff -0.259 -0.240 -0.294   93 -1.971  1.414       0     37.74        
-## nu        36.528 27.937 10.881   93  1.512 87.418                          
-## log10nu    1.417  1.446  1.537   93  0.740  2.076                          
-## effSz     -0.747 -0.744 -0.768   93 -1.622  0.143       0      6.19        
+## mu1        0.711  0.709  0.721   93 -0.483  2.025                          
+## mu2        2.305  2.304  2.340   93  0.896  3.725                          
+## muDiff    -1.594 -1.594 -1.526   93 -3.480  0.299       0       6.1    -1.8
+## sigma1     2.041  1.924  1.743   93  1.077  3.094                          
+## sigma2     2.304  2.169  1.967   93  1.256  3.477                          
+## sigmaDiff -0.263 -0.243 -0.223   93 -1.919  1.454       0      37.6        
+## nu        36.333 27.837 11.351   93  1.411 86.944                          
+## log10nu    1.414  1.445  1.526   93  0.721  2.066                          
+## effSz     -0.752 -0.748 -0.741   93 -1.640  0.135       0       6.1        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
