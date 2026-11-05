@@ -76,7 +76,7 @@ svg text.t{fill:var(--ink);font-size:14px;font-weight:600}
     </span></span>
   <span><span class="lab">n</span><input id="nr" type="range" min="4" max="12" value="8" aria-label="Sample size n"> <span class="nval" id="nv">8</span></span>
   <button id="bnew" class="btn primary" type="button">Draw new sample</button>
-  <button id="bout" class="btn" type="button">Send largest point to the edge (outlier)</button>
+  <button id="bout" class="btn" type="button">Move the largest point to the edge (outlier)</button>
 </div>
 
 <div class="cards">
@@ -131,11 +131,36 @@ svg text.t{fill:var(--ink);font-size:14px;font-weight:600}
   }
   function f2(x){ return x.toFixed(2); }
 
+  // density of the distribution the new sample is drawn from
+  function dens(x){
+    if (src === 'norm') return Math.exp(-0.5 * Math.pow((x - 5) / 1.5, 2)) / (1.5 * Math.sqrt(2 * Math.PI));
+    return x >= 0.6 ? Math.exp(-(x - 0.6) / 1.6) / 1.6 : 0;
+  }
+  // faint background of panel A: histogram of the current data (bars) and the true distribution (curve)
+  function background(){
+    var DHA = 95, ymax = src === 'norm' ? 0.30 : 0.66, out = '', b, k, cnt = [];
+    var Ya = function(v){ return AX - Math.min(v, ymax) / ymax * DHA; };
+    for (b = 0; b < 10; b++) cnt.push(0);
+    pts.forEach(function(v){ cnt[Math.min(9, Math.max(0, Math.floor(v)))]++; });
+    cnt.forEach(function(c, b){
+      if (!c) return;
+      var y = Ya(c / n);
+      out += '<rect x="' + (xs(b) + 1) + '" y="' + y + '" width="' + (xs(1) - xs(0) - 2) + '" height="' + (AX - y) + '" fill="var(--pt)" fill-opacity=".13" stroke="var(--pt)" stroke-opacity=".30"/>';
+    });
+    var d = 'M' + xs(0) + ',' + AX;
+    for (k = 0; k <= 200; k++){ var x = k / 20; d += 'L' + xs(x).toFixed(1) + ',' + Ya(dens(x)).toFixed(1); }
+    d += 'L' + xs(10) + ',' + AX + 'Z';
+    out += '<path d="' + d + '" fill="var(--ink2)" fill-opacity=".07" stroke="var(--ink2)" stroke-opacity=".45" stroke-width="2"/>';
+    return out;
+  }
+
   function render(){
     var st = stats(pts), s = '', i;
     var np = st.pairs.length;
     // ---- Panel A ----
     s += '<text class="t" x="' + L + '" y="22">Your data: ' + n + ' observations, ' + np + ' pairs (each arc is one pair, higher arc = larger distance)</text>';
+    s += background();
+    s += '<text x="' + L + '" y="42" style="font-size:12px">Faint background: histogram of your current data (bars) and the distribution it was drawn from (curve).</text>';
     st.pairs.forEach(function(p){
       var x1 = xs(pts[p.i]), x2 = xs(pts[p.j]), h = K * Math.abs(x2 - x1), mid = (x1 + x2) / 2;
       s += '<path id="arc-' + p.i + '-' + p.j + '" class="arc" d="M' + x1 + ',' + AX + ' Q' + mid + ',' + (AX - 2 * h) + ' ' + x2 + ',' + AX + '"/>';
