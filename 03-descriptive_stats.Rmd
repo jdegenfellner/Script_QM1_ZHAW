@@ -514,7 +514,13 @@ ggarrange(p_original, p_outlier_x, p_outlier_xy, p_outlier_y,
   The reason for the smaller correlation is that the outlier is above the mean of the y values 
   and below the mean of the x values and therefore adds negatively to the covariance.
 
-- We could also ask why the trend lines (created with simple linear regression) change the way they do. 
+> **Try it yourself.** The animation
+> [One outlier and the correlation](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/13_Korrelation_Ausreisser_verschieben.html)
+> uses the same data as the plots above (A to D are buttons there). Drag the red point anywhere and watch how
+> the numerator, the standard deviations of x and y and finally $r$ change. Which quadrants make $r$ smaller, which larger?
+> Compare Pearson's $r$ with Spearman's $r_s$, which is much less affected by the moved point.
+
+- We could also ask why the trend lines (created with simple linear regression) change the way they do.
   We will come to this later in our courses. 
   Please look at this [really cool animation](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Correlation_Outliers_around_the_clock.R).
   This is the simulation of the regression line when an outlier with distance 8 to the center is introduced and wanders around the clock.
