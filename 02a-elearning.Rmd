@@ -1,0 +1,33 @@
+# eLearning 9.11. - 13.11. {-#elearning_9_11}
+
+## 1. Review the material {-}
+
+Go through everything we have covered together. Read the script at your own pace and revisit the
+[animations](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/) we showed in class.
+You are welcome to extend the animations with further elements that you find useful (using coding tools).
+
+## 2. Standard deviations that are too large {-}
+
+In class we noticed that Table 1 of a paper often reports a standard deviation that is too large for the scale of a
+(semi-)continuous variable. Create realistic examples with scales you know and reproduce this phenomenon.
+
+- What do the raw data look like in such cases?
+- What goes wrong?
+
+## 3. Exercises {-}
+
+Please work on the following exercises of the chapter on [probability](#probs):
+
+- [Exercise 2](#exercise2) (Bayes-teaser)
+- [Exercise 3](#exercise3) (Find journals and papers): In addition, please pick at least one paper that is particularly relevant for you right away.
+  We will discuss some of them together in class and look at the methods critically.
+  Publications with data and code would be ideal, although they are probably rare.
+  We need a few days of lead time so that everybody can look at the papers beforehand.
+  I would not be surprised if we find errors.
+- [Exercise 4](#exercise4) (Independent and disjoint)
+- [Exercise 6](#exercise6) (Three researchers)
+- [Exercise 7](#exercise7) (Conditional probability): In addition, invent an example of your own with a single throw of a die.
+
+## 4. Questions {-}
+
+Feel free to ask me at any time by email.

@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2026-11-05}
+\date{2026-11-07}
 
 \begin{document}
 \maketitle
@@ -1721,6 +1721,58 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-3 korrekte Antwortoptionen)?
   \(\mathbb{P}(X = 0.5) = 0\).
 \end{itemize}
 
+\chapter*{eLearning 9.11. - 13.11.}\label{elearning_9_11}
+\addcontentsline{toc}{chapter}{eLearning 9.11. - 13.11.}
+
+\section*{1. Review the material}\label{review-the-material}
+\addcontentsline{toc}{section}{1. Review the material}
+
+Go through everything we have covered together. Read the script at your own pace and revisit the
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/}{animations} we showed in class.
+You are welcome to extend the animations with further elements that you find useful (using coding tools).
+
+\section*{2. Standard deviations that are too large}\label{standard-deviations-that-are-too-large}
+\addcontentsline{toc}{section}{2. Standard deviations that are too large}
+
+In class we noticed that Table 1 of a paper often reports a standard deviation that is too large for the scale of a
+(semi-)continuous variable. Create realistic examples with scales you know and reproduce this phenomenon.
+
+\begin{itemize}
+\tightlist
+\item
+  What do the raw data look like in such cases?
+\item
+  What goes wrong?
+\end{itemize}
+
+\section*{3. Exercises}\label{exercises-1}
+\addcontentsline{toc}{section}{3. Exercises}
+
+Please work on the following exercises of the chapter on \hyperref[probs]{probability}:
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[exercise2]{Exercise 2} (Bayes-teaser)
+\item
+  \hyperref[exercise3]{Exercise 3} (Find journals and papers): In addition, please pick at least one paper that is particularly relevant for you right away.
+  We will discuss some of them together in class and look at the methods critically.
+  Publications with data and code would be ideal, although they are probably rare.
+  We need a few days of lead time so that everybody can look at the papers beforehand.
+  I would not be surprised if we find errors.
+\item
+  \hyperref[exercise4]{Exercise 4} (Independent and disjoint)
+\item
+  \hyperref[exercise6]{Exercise 6} (Three researchers)
+\item
+  \hyperref[exercise7]{Exercise 7} (Conditional probability): In addition, invent an example of your own with a single throw of a die.
+\end{itemize}
+
+\section*{4. Questions}\label{questions}
+\addcontentsline{toc}{section}{4. Questions}
+
+Feel free to ask me at any time by email.
+
 \chapter{Descriptive statistics}\label{descriptive_stats}
 
 There are a myriad sources (books, websites, videos) explaining the concepts of \href{https://en.wikipedia.org/wiki/Descriptive_statistics}{descriptive statistics}.
@@ -2556,7 +2608,7 @@ Here is an example of a Spearman correlation:
 The y-values contain two identical values (\(6\)), both get rank \(3.5\).
 These are so-called \href{https://stats.stackexchange.com/questions/7941/what-is-tied-data-in-the-context-of-a-rank-correlation-coefficient}{ties}.
 
-\section{Exercises}\label{exercises-1}
+\section{Exercises}\label{exercises-2}
 
 Difficulty levels of exercises:
 \textbf{E}: easy,
@@ -3521,19 +3573,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.769 130.902 133.892   93   34.8394 227.99                  
-## mu2         6.064   5.893   3.670   93  -82.6196  98.71                  
-## muDiff    124.705 124.724 119.857   93  -10.8314 255.05       0      95.7
-## sigma1    138.568 127.779 113.192   93   65.7176 222.41                  
-## sigma2    130.130 119.685 106.130   93   61.7219 209.90                  
-## sigmaDiff   8.439   7.820   8.862   93 -116.6983 133.81       0      55.9
-## nu         34.219  25.655  10.460   93    1.0077  83.14                  
-## log10nu     1.377   1.409   1.494   93    0.6653   2.06                  
-## effSz       0.968   0.958   0.971   93   -0.0824   2.00       0      95.7
+## mu1       130.559 130.657 136.911   93   33.7888 226.92                  
+## mu2         5.762   5.464   1.742   93  -83.2151  97.18                  
+## muDiff    124.797 124.916 126.555   93   -8.4790 257.05       0      95.7
+## sigma1    139.510 128.589 110.529   93   65.6944 224.40                  
+## sigma2    129.672 119.601 103.500   93   61.3322 208.01                  
+## sigmaDiff   9.839   8.694   2.217   93 -116.2567 134.91       0      56.4
+## nu         34.269  25.644   9.565   93    1.0010  83.30                  
+## log10nu     1.377   1.409   1.467   93    0.6765   2.08                  
+## effSz       0.968   0.957   0.972   93   -0.0731   2.02       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.49
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3677,7 +3729,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
   \textbf{Subjectivity}: The choice of the prior distribution can be subjective.
 \end{itemize}
 
-\section{Exercises}\label{exercises-2}
+\section{Exercises}\label{exercises-3}
 
 Difficulty levels of exercises:
 \textbf{E}: easy,
@@ -3781,24 +3833,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.145 sec elapsed
+## 1.077 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.711  0.709  0.721   93 -0.483  2.025                          
-## mu2        2.305  2.304  2.340   93  0.896  3.725                          
-## muDiff    -1.594 -1.594 -1.526   93 -3.480  0.299       0       6.1    -1.8
-## sigma1     2.041  1.924  1.743   93  1.077  3.094                          
-## sigma2     2.304  2.169  1.967   93  1.256  3.477                          
-## sigmaDiff -0.263 -0.243 -0.223   93 -1.919  1.454       0      37.6        
-## nu        36.333 27.837 11.351   93  1.411 86.944                          
-## log10nu    1.414  1.445  1.526   93  0.721  2.066                          
-## effSz     -0.752 -0.748 -0.741   93 -1.640  0.135       0       6.1        
+## mu1        0.712  0.710  0.697   93 -0.539  1.964                          
+## mu2        2.297  2.295  2.303   93  0.838  3.694                          
+## muDiff    -1.586 -1.585 -1.514   93 -3.456  0.340       0       6.3    -1.8
+## sigma1     2.037  1.922  1.746   93  1.102  3.109                          
+## sigma2     2.307  2.176  1.939   93  1.246  3.485                          
+## sigmaDiff -0.270 -0.249 -0.224   93 -1.986  1.395       0      37.1        
+## nu        36.238 27.670 11.786   93  1.319 86.354                          
+## log10nu    1.412  1.442  1.570   93  0.731  2.076                          
+## effSz     -0.749 -0.746 -0.776   93 -1.630  0.149       0       6.3        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.5
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -5768,7 +5820,7 @@ In the Bayesian framework from Kruschke, we defined a region of practical equiva
 Then try to simulate it. This helps to understand what constitutes a qualitatively different result
 (from the null hypothesis) considering variability in the data.
 
-\section{Exercises}\label{exercises-3}
+\section{Exercises}\label{exercises-4}
 
 \subsection{Exercise 1 - frequentist confidence interval}\label{exercise1_nhst}
 
