@@ -1167,7 +1167,7 @@ The $\chi^2$-distribution is defined as the sum of squared standard normals.
 
 ## Sample exam questions for this chapter (in German since exam is in German)
 
-For this section, no solutions are provided.
+Click **Show solutions** below a question to mark the correct options (HTML version of the script).
 
 ### Frage 1
 
@@ -1179,6 +1179,8 @@ Welche der folgenden Aussage(n) über Nullhypothesen-Signifikanztests (NHST) ist
 - Dichotomes Denken im NHST vereinfacht die Komplexität von realen Daten zu stark.
 - Das Signifikanzniveau ($\alpha$) gibt die Wahrscheinlichkeit dafür an, dass man die 
   Nullhypothese ($H_0$) beibehält, obwohl die Alternativhypothese ($H_1$) wahr ist.
+
+<div class="exam-solutions" data-correct="1,3"></div>
 
 ### Frage 2
 
@@ -1207,6 +1209,8 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
   unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.
 - Über die Stichprobe $(1,1,1)$ wäre man weniger überrascht als über die Stichprobe $(4,4,4)$.
 
+<div class="exam-solutions" data-correct="2,3,4"></div>
+
 ### Frage 3 - $t$-Test
 
 ```{r, echo=FALSE}
@@ -1225,6 +1229,8 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 - Aufgrund des $p$-Wertes würde man in diesem Fall die Nullhypothese nicht verwerfen.
 - Die Alternativhypothese lautet: $H_1: \mu_{group\_a} - \mu_{group\_b} > 0$.
 - Die Nullhypothese lautet: $H_0: \mu_{group\_a} = \mu_{group\_b}$.
+
+<div class="exam-solutions" data-correct="2,3,4"></div>
 
 ### Frage 4
 
@@ -1249,3 +1255,5 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
   Intervall $[0.5317140, 0.7356931]$ liegt, beträgt 97%.
 - Die Nullhypothese lautet: $H_0: \text{p} \ge 0.75$.
 - Würde man statt 97% nur 90% wählen, wäre das Intervall breiter.
+
+<div class="exam-solutions" data-correct="1"></div>

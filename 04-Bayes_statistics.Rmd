@@ -1094,7 +1094,7 @@ Solutions for this chapter can be found [here](https://github.com/jdegenfellner/
 
 ## Sample exam questions for this chapter (in German since exam is in German)
 
-For this section, no solutions are provided.
+Click **Show solutions** below a question to mark the correct options (HTML version of the script).
 
 ### Frage 1
 
@@ -1146,6 +1146,8 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
   im Interval $[-3.48, 0.298]$.
 - Die Testentscheidung lautet: "Die Mittelwerte der beiden Gruppen sind nicht gleich."
 
+<div class="exam-solutions" data-correct="1,3"></div>
+
 ### Frage 2
 
 $$
@@ -1165,6 +1167,8 @@ Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?
 
 - Im Nenner des Bayes'schen Theorems steht die Wahrscheinlichkeit, dass der Test 
   positiv ist.
+
+<div class="exam-solutions" data-correct="1,3,4"></div>
 
 ### Frage 3
 
@@ -1208,3 +1212,5 @@ Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?
 
 - Man beobachtet bei einer Stichprobe von $20$ Produkten, dass $0$ davon fehlerhaft sind. 
   A posteriori wird der Fehleranteil $0.08$ nun mehr als 50% Wahrscheinlichkeit erhalten.
+
+<div class="exam-solutions" data-correct="3"></div>

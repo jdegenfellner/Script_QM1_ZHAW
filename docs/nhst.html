@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2026-11-07" />
+<meta name="date" content="2026-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1607,7 +1607,7 @@ probability of observing a value of 12.6 or larger.</li>
 </div>
 <div id="sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-3" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> Sample exam questions for this chapter (in German since exam is in German)<a href="nhst.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this section, no solutions are provided.</p>
+<p>Click <strong>Show solutions</strong> below a question to mark the correct options (HTML version of the script).</p>
 <div id="frage-1-1" class="section level3 hasAnchor" number="4.10.1">
 <h3><span class="header-section-number">4.10.1</span> Frage 1<a href="nhst.html#frage-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Welche der folgenden Aussage(n) über Nullhypothesen-Signifikanztests (NHST) ist/sind korrekt (0-4 korrekte Antworten)?</p>
@@ -1619,6 +1619,9 @@ die genauso extrem (oder extremer) ist wie die beobachtete, vorausgesetzt, die N
 <li>Das Signifikanzniveau (<span class="math inline">\(\alpha\)</span>) gibt die Wahrscheinlichkeit dafür an, dass man die
 Nullhypothese (<span class="math inline">\(H_0\)</span>) beibehält, obwohl die Alternativhypothese (<span class="math inline">\(H_1\)</span>) wahr ist.</li>
 </ul>
+<div class="exam-solutions" data-correct="1,3">
+
+</div>
 </div>
 <div id="frage-2-1" class="section level3 hasAnchor" number="4.10.2">
 <h3><span class="header-section-number">4.10.2</span> Frage 2<a href="nhst.html#frage-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1646,6 +1649,9 @@ ist <span class="math inline">\(10^{-4}\)</span>.</li>
 unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.</li>
 <li>Über die Stichprobe <span class="math inline">\((1,1,1)\)</span> wäre man weniger überrascht als über die Stichprobe <span class="math inline">\((4,4,4)\)</span>.</li>
 </ul>
+<div class="exam-solutions" data-correct="2,3,4">
+
+</div>
 </div>
 <div id="frage-3---t-test" class="section level3 hasAnchor" number="4.10.3">
 <h3><span class="header-section-number">4.10.3</span> Frage 3 - <span class="math inline">\(t\)</span>-Test<a href="nhst.html#frage-3---t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1667,6 +1673,9 @@ unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.</li>
 <li>Die Alternativhypothese lautet: <span class="math inline">\(H_1: \mu_{group\_a} - \mu_{group\_b} &gt; 0\)</span>.</li>
 <li>Die Nullhypothese lautet: <span class="math inline">\(H_0: \mu_{group\_a} = \mu_{group\_b}\)</span>.</li>
 </ul>
+<div class="exam-solutions" data-correct="2,3,4">
+
+</div>
 </div>
 <div id="frage-4-1" class="section level3 hasAnchor" number="4.10.4">
 <h3><span class="header-section-number">4.10.4</span> Frage 4<a href="nhst.html#frage-4-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1691,10 +1700,61 @@ Intervall <span class="math inline">\([0.5317140, 0.7356931]\)</span> liegt, bet
 <li>Die Nullhypothese lautet: <span class="math inline">\(H_0: \text{p} \ge 0.75\)</span>.</li>
 <li>Würde man statt 97% nur 90% wählen, wäre das Intervall breiter.</li>
 </ul>
+<div class="exam-solutions" data-correct="1">
+
+</div>
 
 </div>
 </div>
 </div>
+<script>
+(function () {
+  "use strict";
+  function init() {
+    var boxes = document.querySelectorAll("div.exam-solutions");
+    Array.prototype.forEach.call(boxes, function (box) {
+      if (box.getAttribute("data-ready")) return;
+      box.setAttribute("data-ready", "1");
+      var list = box.previousElementSibling;
+      while (list && list.tagName !== "UL") list = list.previousElementSibling;
+      if (!list) return;
+      var items = Array.prototype.filter.call(list.children, function (c) { return c.tagName === "LI"; });
+      var correct = (box.getAttribute("data-correct") || "").split(",").filter(Boolean).map(Number);
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "exam-solutions-btn"; btn.textContent = "Show solutions";
+      btn.setAttribute("aria-pressed", "false");
+      var note = document.createElement("p");
+      note.className = "exam-solutions-note"; note.hidden = true;
+      note.textContent = correct.length === 0
+        ? "None of the four options is correct (0 of 4)."
+        : "Correct: option" + (correct.length > 1 ? "s " : " ") + correct.join(", ") + " (" + correct.length + " of " + items.length + ").";
+      box.appendChild(btn); box.appendChild(note);
+      var shown = false;
+      btn.addEventListener("click", function () {
+        shown = !shown;
+        items.forEach(function (li, i) {
+          var old = li.querySelector(".exam-badge");
+          if (old) old.parentNode.removeChild(old);
+          li.classList.remove("exam-correct", "exam-wrong");
+          if (shown) {
+            var ok = correct.indexOf(i + 1) !== -1;
+            li.classList.add(ok ? "exam-correct" : "exam-wrong");
+            var b = document.createElement("span");
+            b.className = "exam-badge"; b.textContent = ok ? "✓ correct" : "✗ incorrect";
+            var host = li.lastElementChild && li.lastElementChild.tagName === "P" ? li.lastElementChild : li;
+            host.appendChild(b);
+          }
+        });
+        note.hidden = !shown;
+        btn.textContent = shown ? "Hide solutions" : "Show solutions";
+        btn.setAttribute("aria-pressed", shown ? "true" : "false");
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+  if (window.gitbook && window.gitbook.events && window.gitbook.events.bind) window.gitbook.events.bind("page.change", init);
+})();
+</script>
             </section>
 
           </div>

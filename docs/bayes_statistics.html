@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2026-11-07" />
+<meta name="date" content="2026-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -393,8 +393,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
 The two branches ending in a positive test (green and orange) add up to <span class="math inline">\(\mathbb{P}(Tpos)\)</span>,
 and the posterior probability is the green share of this sum.</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-2aa9791d6965d4bd777e" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-2aa9791d6965d4bd777e">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-a831c8aa7b1597a49838" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-a831c8aa7b1597a49838">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Summarized, we have:</p>
 <p><span class="math display">\[
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot
@@ -701,20 +701,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median   mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.657 131.083 132.37   93   33.0012 226.59                  
-## mu2         6.307   5.866   5.54   93  -83.0018  96.05                  
-## muDiff    124.350 124.881 120.23   93   -5.3367 259.68       0      95.6
-## sigma1    139.374 128.573 113.06   93   65.0459 224.29                  
-## sigma2    130.210 120.098 106.30   93   62.1629 211.35                  
-## sigmaDiff   9.165   8.200   5.94   93 -116.7048 136.31       0      56.1
-## nu         34.158  25.667   9.36   93    1.1625  83.40                  
-## log10nu     1.376   1.409   1.48   93    0.6642   2.06                  
-## effSz       0.964   0.957   1.01   93   -0.0544   2.03       0      95.6
+<pre><code>##              mean  median    mode HDI%    HDIlo  HDIup compVal %&gt;compVal
+## mu1       131.017 131.256 129.795   93   34.776 227.86                  
+## mu2         6.256   6.014   6.333   93  -85.871  96.14                  
+## muDiff    124.762 125.313 123.125   93   -6.500 260.13       0      95.6
+## sigma1    139.517 128.675 111.123   93   67.458 226.93                  
+## sigma2    130.176 119.855 104.109   93   61.348 210.26                  
+## sigmaDiff   9.341   8.256   4.938   93 -116.969 137.52       0      56.1
+## nu         34.423  25.578  10.144   93    1.241  84.76                  
+## log10nu     1.378   1.408   1.517   93    0.659   2.06                  
+## effSz       0.966   0.958   0.873   93   -0.105   1.99       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.55
+## muDiff        -20       20    4.54
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -898,7 +898,7 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 </div>
 <div id="sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2" class="section level2 hasAnchor" number="3.11">
 <h2><span class="header-section-number">3.11</span> Sample exam questions for this chapter (in German since exam is in German)<a href="bayes_statistics.html#sample-exam-questions-for-this-chapter-in-german-since-exam-is-in-german-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this section, no solutions are provided.</p>
+<p>Click <strong>Show solutions</strong> below a question to mark the correct options (HTML version of the script).</p>
 <div id="frage-1" class="section level3 hasAnchor" number="3.11.1">
 <h3><span class="header-section-number">3.11.1</span> Frage 1<a href="bayes_statistics.html#frage-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>sleep: Daten, die die Wirkung von zwei schlaffördernden Medikamenten
@@ -906,21 +906,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.113 sec elapsed</code></pre>
+<pre><code>## 1.183 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.706  0.702  0.664   93 -0.512  1.987                          
-## mu2        2.301  2.302  2.358   93  0.859  3.727                          
-## muDiff    -1.594 -1.594 -1.512   93 -3.524  0.309       0      6.27    -1.8
-## sigma1     2.041  1.922  1.784   93  1.105  3.123                          
-## sigma2     2.310  2.176  1.948   93  1.285  3.530                          
-## sigmaDiff -0.269 -0.249 -0.216   93 -1.998  1.399       0     37.19        
-## nu        36.198 27.538 11.697   93  1.413 86.612                          
-## log10nu    1.412  1.440  1.533   93  0.726  2.070                          
-## effSz     -0.752 -0.748 -0.722   93 -1.643  0.148       0      6.27        
+## mu1        0.714  0.711  0.721   93 -0.519  2.009                          
+## mu2        2.300  2.295  2.253   93  0.892  3.768                          
+## muDiff    -1.586 -1.585 -1.606   93 -3.530  0.308       0      6.36    -1.8
+## sigma1     2.041  1.921  1.774   93  1.088  3.108                          
+## sigma2     2.310  2.178  1.980   93  1.262  3.485                          
+## sigmaDiff -0.269 -0.250 -0.244   93 -1.927  1.456       0     36.92        
+## nu        35.981 27.429 12.077   93  1.510 85.692                          
+## log10nu    1.410  1.438  1.466   93  0.715  2.066                          
+## effSz     -0.747 -0.743 -0.713   93 -1.639  0.140       0      6.36        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    57.9
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -937,6 +937,9 @@ Differenz der Mittelwerte der beiden Gruppen.</li>
 im Interval <span class="math inline">\([-3.48, 0.298]\)</span>.</li>
 <li>Die Testentscheidung lautet: “Die Mittelwerte der beiden Gruppen sind nicht gleich.”</li>
 </ul>
+<div class="exam-solutions" data-correct="1,3">
+
+</div>
 </div>
 <div id="frage-2" class="section level3 hasAnchor" number="3.11.2">
 <h3><span class="header-section-number">3.11.2</span> Frage 2<a href="bayes_statistics.html#frage-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -954,6 +957,9 @@ wenn der Test positiv ist, gleich 1.</p></li>
 <li><p>Im Nenner des Bayes’schen Theorems steht die Wahrscheinlichkeit, dass der Test
 positiv ist.</p></li>
 </ul>
+<div class="exam-solutions" data-correct="1,3,4">
+
+</div>
 </div>
 <div id="frage-3" class="section level3 hasAnchor" number="3.11.3">
 <h3><span class="header-section-number">3.11.3</span> Frage 3<a href="bayes_statistics.html#frage-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -969,10 +975,61 @@ der beiden Fehleranteile wahrscheinlicher ist.</p></li>
 <li><p>Man beobachtet bei einer Stichprobe von <span class="math inline">\(20\)</span> Produkten, dass <span class="math inline">\(0\)</span> davon fehlerhaft sind.
 A posteriori wird der Fehleranteil <span class="math inline">\(0.08\)</span> nun mehr als 50% Wahrscheinlichkeit erhalten.</p></li>
 </ul>
+<div class="exam-solutions" data-correct="3">
+
+</div>
 
 </div>
 </div>
 </div>
+<script>
+(function () {
+  "use strict";
+  function init() {
+    var boxes = document.querySelectorAll("div.exam-solutions");
+    Array.prototype.forEach.call(boxes, function (box) {
+      if (box.getAttribute("data-ready")) return;
+      box.setAttribute("data-ready", "1");
+      var list = box.previousElementSibling;
+      while (list && list.tagName !== "UL") list = list.previousElementSibling;
+      if (!list) return;
+      var items = Array.prototype.filter.call(list.children, function (c) { return c.tagName === "LI"; });
+      var correct = (box.getAttribute("data-correct") || "").split(",").filter(Boolean).map(Number);
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "exam-solutions-btn"; btn.textContent = "Show solutions";
+      btn.setAttribute("aria-pressed", "false");
+      var note = document.createElement("p");
+      note.className = "exam-solutions-note"; note.hidden = true;
+      note.textContent = correct.length === 0
+        ? "None of the four options is correct (0 of 4)."
+        : "Correct: option" + (correct.length > 1 ? "s " : " ") + correct.join(", ") + " (" + correct.length + " of " + items.length + ").";
+      box.appendChild(btn); box.appendChild(note);
+      var shown = false;
+      btn.addEventListener("click", function () {
+        shown = !shown;
+        items.forEach(function (li, i) {
+          var old = li.querySelector(".exam-badge");
+          if (old) old.parentNode.removeChild(old);
+          li.classList.remove("exam-correct", "exam-wrong");
+          if (shown) {
+            var ok = correct.indexOf(i + 1) !== -1;
+            li.classList.add(ok ? "exam-correct" : "exam-wrong");
+            var b = document.createElement("span");
+            b.className = "exam-badge"; b.textContent = ok ? "✓ correct" : "✗ incorrect";
+            var host = li.lastElementChild && li.lastElementChild.tagName === "P" ? li.lastElementChild : li;
+            host.appendChild(b);
+          }
+        });
+        note.hidden = !shown;
+        btn.textContent = shown ? "Hide solutions" : "Show solutions";
+        btn.setAttribute("aria-pressed", shown ? "true" : "false");
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+  if (window.gitbook && window.gitbook.events && window.gitbook.events.bind) window.gitbook.events.bind("page.change", init);
+})();
+</script>
             </section>
 
           </div>

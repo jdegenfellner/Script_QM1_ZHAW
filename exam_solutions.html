@@ -1,0 +1,48 @@
+<script>
+(function () {
+  "use strict";
+  function init() {
+    var boxes = document.querySelectorAll("div.exam-solutions");
+    Array.prototype.forEach.call(boxes, function (box) {
+      if (box.getAttribute("data-ready")) return;
+      box.setAttribute("data-ready", "1");
+      var list = box.previousElementSibling;
+      while (list && list.tagName !== "UL") list = list.previousElementSibling;
+      if (!list) return;
+      var items = Array.prototype.filter.call(list.children, function (c) { return c.tagName === "LI"; });
+      var correct = (box.getAttribute("data-correct") || "").split(",").filter(Boolean).map(Number);
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "exam-solutions-btn"; btn.textContent = "Show solutions";
+      btn.setAttribute("aria-pressed", "false");
+      var note = document.createElement("p");
+      note.className = "exam-solutions-note"; note.hidden = true;
+      note.textContent = correct.length === 0
+        ? "None of the four options is correct (0 of 4)."
+        : "Correct: option" + (correct.length > 1 ? "s " : " ") + correct.join(", ") + " (" + correct.length + " of " + items.length + ").";
+      box.appendChild(btn); box.appendChild(note);
+      var shown = false;
+      btn.addEventListener("click", function () {
+        shown = !shown;
+        items.forEach(function (li, i) {
+          var old = li.querySelector(".exam-badge");
+          if (old) old.parentNode.removeChild(old);
+          li.classList.remove("exam-correct", "exam-wrong");
+          if (shown) {
+            var ok = correct.indexOf(i + 1) !== -1;
+            li.classList.add(ok ? "exam-correct" : "exam-wrong");
+            var b = document.createElement("span");
+            b.className = "exam-badge"; b.textContent = ok ? "✓ correct" : "✗ incorrect";
+            var host = li.lastElementChild && li.lastElementChild.tagName === "P" ? li.lastElementChild : li;
+            host.appendChild(b);
+          }
+        });
+        note.hidden = !shown;
+        btn.textContent = shown ? "Hide solutions" : "Show solutions";
+        btn.setAttribute("aria-pressed", shown ? "true" : "false");
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+  if (window.gitbook && window.gitbook.events && window.gitbook.events.bind) window.gitbook.events.bind("page.change", init);
+})();
+</script>

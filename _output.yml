@@ -3,6 +3,7 @@ bookdown::gitbook:
   css: style.css
   includes:
     in_header: favicon_header.html
+    after_body: exam_solutions.html
   config:
     toc:
       before: |

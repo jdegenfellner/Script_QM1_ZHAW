@@ -1188,7 +1188,7 @@ Solutions for this chapter can be found [here](https://github.com/jdegenfellner/
 
 ## Sample exam questions for this chapter (in German since exam is in German)
 
-For this section, no solutions are provided.
+Click **Show solutions** below a question to mark the correct options (HTML version of the script).
 
 ### Question 1 - Independence and disjointness
 
@@ -1203,6 +1203,8 @@ Wir werfen einen fairen Würfel einmal und betrachten die Augenzahl. Welche der 
 - Die Wahrscheinlichkeit, eine Zahl größer als 3 zu werfen, ist **unabhängig** (independent) **und**
   **disjunkt** (disjoint) von der Wahrscheinlichkeit, eine Zahl kleiner als 4 zu werfen.
 
+<div class="exam-solutions" data-correct="2"></div>
+
 ### Frage 2 - Bedingte Wahrscheinlichkeit
 
 Ein medizinischer Test wird verwendet, um eine bestimmte Krankheit zu erkennen. Der Test hat folgende Eigenschaften:  
@@ -1216,6 +1218,8 @@ Welche der folgenden Aussage(n) ist/sind korrekt  (0-4 korrekte Antwortoptionen)
 - Die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die Krankheit nicht hat, beträgt 90%.
 - Die Wahrscheinlichkeit, dass der Test positiv ist, wenn die Person die Krankheit nicht hat, beträgt 10%.
 - Die Wahrscheinlichkeit, dass die Person die Krankheit hat, wenn der Test positiv ist, beträgt $0.1623932$.
+
+<div class="exam-solutions" data-correct="1,3,4"></div>
 
 ### Frage 3 - Erwartungswert und Varianz
 
@@ -1240,6 +1244,8 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
 - In einer Wette, welche Ausprägung von $X$ beim nächsten Ziehen kommt, 
 würde man hier auf den Erwartungswert $\mathbb{E}(X)$ tippen.
 - Die Wahrscheinlichkeit für das Ereignis, dass $X$ eine gerade Zahl ist, ist 50%.
+
+<div class="exam-solutions" data-correct=""></div>
 
 ### Frage 4 - Dichtefunktion
 Es sei folgende Dichtefunktion der stetigen Zufallsvariablen $X$ gegeben:
@@ -1266,9 +1272,11 @@ ggplot(data, aes(x = x, y = y)) +
   )
 ```
 
-Welche der folgenden Aussage(n) ist/sind korrekt (0-3 korrekte Antwortoptionen)?
+Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antwortoptionen)?
 
 - Die Fläche unter der Dichtefunktion beträgt 1, falls die Spitze des Dreiecks bei Höhe $y=2$ liegt.
 - Modus, Median und Erwartungswert sind identisch.
 - $\mathbb{P}(X \in (0,0.25)) = \frac{1}{8}$.
 - $\mathbb{P}(X = 0.5) = 0$.
+
+<div class="exam-solutions" data-correct="1,2,3,4"></div>

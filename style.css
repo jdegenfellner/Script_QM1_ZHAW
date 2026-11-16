@@ -22,3 +22,19 @@ pre code {
 }
 .venn-warn { border-left-color: #eb6834; }
 .venn-note p, .venn-warn p { margin: 0; }
+
+/* Sample exam questions: "Show solutions" button (see exam_solutions.html) */
+.exam-solutions { margin: 4px 0 18px; }
+.exam-solutions-btn {
+  font: inherit; font-weight: 600; cursor: pointer;
+  padding: 6px 14px; border-radius: 6px;
+  border: 1px solid #0f9d8a; background: transparent; color: #0f9d8a;
+}
+.exam-solutions-btn:hover { background: rgba(15, 157, 138, .12); }
+.exam-solutions-btn:focus-visible { outline: 3px solid #0f9d8a; outline-offset: 2px; }
+.exam-solutions-note { margin: 8px 0 0; font-weight: 600; }
+li.exam-correct { background: rgba(26, 127, 55, .14); border-left: 4px solid #1a7f37; padding-left: 8px; margin-left: -12px; border-radius: 0 4px 4px 0; }
+li.exam-wrong { background: rgba(180, 35, 24, .10); border-left: 4px solid #b42318; padding-left: 8px; margin-left: -12px; border-radius: 0 4px 4px 0; }
+.exam-badge { display: inline-block; margin-left: 10px; font-size: .85em; font-weight: 700; white-space: nowrap; }
+li.exam-correct .exam-badge { color: #1a7f37; }
+li.exam-wrong .exam-badge { color: #b42318; }
