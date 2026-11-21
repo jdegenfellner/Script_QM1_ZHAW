@@ -108,7 +108,7 @@ In fact, it is arbitrarily small the smaller the prevalence is.
 For $\mathbb{P}(Dpos)=0$, we have $\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0$, 
 assuming that there can still be false positive test results: $\mathbb{P}(Tpos|Dneg) > 0$.
 
-We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
+We could easily imagine that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
 
 We would just extend the denominator accordingly 
 (e.g., for a 3-state test with labels $T_1, T_2, T_3$, where $T_3$ indicates a high concentration of some component):
@@ -132,13 +132,13 @@ A probability distribution outlines all possible outcomes of a random process al
 For instance, in the case of a coin toss, the distribution is straightforward: there are two outcomes, 
 heads and tails, with corresponding probabilities $\theta$ and $1-\theta$. 
 For more complex scenarios, such as measuring the height of a randomly chosen individual, 
-the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm, 
-is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
-in general.
+the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm,
+is assigned a probability density as we have discussed in the context of the normal distribution and continuous distributions
+in general. Probabilities are then areas under the density, for instance $P(170 \le \text{height} \le 175)$.
 
 ## Examples
 
-We have jumped into the deep end right away with exercise 2 in the previous chapter. Let's now look at some more examples to get a feeling for 
+We have jumped into the deep end right away with [Exercise 2](#exercise2) (Bayes-teaser) in the chapter on probability. Let's now look at some more examples to get a feeling for 
 how the Bayes theorem works.
 
 ### Example 1 - defective products {#example_defective_products}
@@ -751,7 +751,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
 </details>
 
 **Interpretation**: The 93% HDI for the posterior distribution of $\theta$ is $[0.25, 0.51]$.
-With a probability of 93%, the defect rate is between 25% and 55%, given our prior 
+With a probability of 93%, the defect rate is between 25% and 51%, given our prior 
 beliefs and the observed data.
 
 Note that the HDI does not necessarily have to be symmetric around the peak 
@@ -759,7 +759,7 @@ of the distribution.
 
 There could be, for instance, two peaks in the distribution, as you can see
 [here](https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png) for instance.
-In that case, the HDI would consist of two intervals. One could readily image
+In that case, the HDI would consist of two intervals. One could readily imagine
 a real life case for such a distribution: 
 
 Think of a group of people where the
@@ -769,7 +769,7 @@ probably be bimodal showing two peaks for the two groups.
 
 There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.
-If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
+If the distribution is symmetric and has a single peak (unimodal), the quantiles are symmetric around the peak of the distribution
 and the HDI is the same as the quantile-based credible interval.
 
 A [credible interval](https://en.wikipedia.org/wiki/Credible_interval) 
@@ -804,17 +804,17 @@ and model building is a creative process and - if you want to go so far - an art
 **Statistics is difficult and beautiful - in that order**.
 
 Unfortunately, it is not completely trivial to apply the Bayesian $t$-test, 
-as opposte to the Frequentist $t$-test,
+as opposed to the Frequentist $t$-test,
 which constitutes one line of code in R.
 
-We'll use the not anymore maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
+We'll use the no longer maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
 for a nice illustration. Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html)
 or [rethinking](https://github.com/rmcelreath/rethinking) for modeling.
 
 ### Example - Bayesian $t$-test
 
 For an explanation of the statistical model behind the Bayesian $t$-test, 
-visit [Kruschke's paper](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf), Figure 2.
+visit [Kruschke's paper](https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf), Figure 2.
 
 ```{r, echo=TRUE}
 library(tidyverse)
@@ -841,6 +841,7 @@ For this, we will apply the R function `BESTmcmc` from the package `BEST`.
 
 ```{r, echo=TRUE}
 set.seed(33443)
+library(pacman)
 p_load(HDInterval, BEST, tictoc, psych, tidyverse)
 # H_0: mue1 - mue2 = delta_0
 a <- 20 # ROPE (region of practical equivalence)
@@ -860,7 +861,7 @@ The plot shows the posterior distribution of the difference between the means of
 - With the parameter `which = "mean"`, we are interested in the **posterior distribution of 
 difference of the means** ($\mu_1 - \mu_2$). We see a full probability distribution again.
 
-- The parameter `compVal = d_0` is the value we want to compare the posterior distribution to. Here We
+- The parameter `compVal = d_0` is the value we want to compare the posterior distribution to. Here we
 chose delta_0 = 0, which means that we want to know if the difference between the means is 
 different from zero.
 
@@ -888,7 +889,7 @@ summary(BESTout, ROPEm = d_0 + c(-1, 1) * a, compValm = 0,
 If you look at the row "muDiff" and the column "%>compVal". This is the percentage 
 of the posterior distribution that is greater than 0. We can say, with a probability of 
 ~95%, the difference between the means is greater than 0. This is nice but not the whole story.
-The true difference can by greater than 0, but still rather small and clinically irrelevant.
+The true difference can be greater than 0, but still rather small and clinically irrelevant.
 
 Would we conclude that the two groups differ in their means?
 According to [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) (p.336): 
@@ -901,8 +902,9 @@ This is not the case here. We would not conclude, that the means between the gro
 One could argue, that this rule seems rather strict considering, that ~95% of the 
 posterior distribution of the differences is greater than 0.
 
-As opposed to the Frequentist $t$-test, we can also **affirm the null hypothesis**, 
-that the means in the two groups are equal. This is a nice feature of the Bayesian $t$-test.
+As opposed to the Frequentist $t$-test, we can also find evidence for **practical equivalence**,
+that is, that the means in the two groups are practically the same (not exactly equal).
+This is a nice feature of the Bayesian $t$-test.
 
 **"A parameter value is declared to be accepted for practical purposes if that value’s 
 ROPE completely contains the X% HDI of the posterior of that parameter."**
@@ -934,7 +936,7 @@ What have we learned so far:
 
 - Analysis if two groups differ in their means or have the same mean [Example about the Bayesian t-test](#bayesian_t_test)
 
-Latest in QM2, we will do Bayesian regression analysis using packages like `brms` from 
+At the latest in QM2, we will do Bayesian regression analysis using packages like `brms` from 
 [Paul Bürkner](https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/) or 
 `rethinking` from [Richard McElreath](https://www.eva.mpg.de/ecology/staff/richard-mcelreath/).
 
@@ -978,7 +980,7 @@ Some of these cases can be solved analytically, like the coin toss example. One 
 exactly. **We are mainly interested in simulation-based results, since we are practitioners**. 
 
 In the Bayesian $t$-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
-estimated (see Figure 2 [here](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf)). 
+estimated (see Figure 2 [here](https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf)). 
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently. 
 This can be computationally intensive.
@@ -1000,7 +1002,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 - **No $p$-values**: We do not need to rely on $p$-values and NHST (Null Hypothesis Significance Testing). 
 John Kruschke points out many problems with 
 NHST in his [book](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) and
- [article](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf). It seems that for many practinioners, $p$-values are
+ [article](https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf). It seems that for many practitioners, $p$-values are
  hard to understand and interpret correctly. There are many 
  [misconceptions about $p$-values](https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620). 
  And one should definitely 
@@ -1071,10 +1073,10 @@ ggplot(df, aes(x = theta, y = density)) +
   )
 ```
 
-Notize, that the area under the curve is 1, since it is a probability density function. 
+Note that the area under the curve is 1, since it is a probability density function. 
 For example, $\mathbb{P}(\theta \in (0.25,0.75)) = 0.5$
 
-- Experiment 1 one shows that the therapy works in 17 out of 50 cases.
+- Experiment 1 shows that the therapy works in 17 out of 50 cases.
 - Experiment 2 shows that the therapy works in 23 out of 50 cases.
 
 So we go from:
@@ -1107,7 +1109,6 @@ Wir führen einen Bayesian $t$-test auf Gleichheit der Mittelwerte der beiden Gr
 library(pacman)
 p_load(tidyverse, BEST, tictoc)
 
-attach(sleep)
 #head(sleep)
 #str(sleep)
 ggplot(sleep, aes(x = group, y = extra)) +
@@ -1116,7 +1117,7 @@ ggplot(sleep, aes(x = group, y = extra)) +
   xlab("Group") + ylab("Extra Sleep (hours)") +
   theme(plot.title = element_text(hjust = 0.5, size = 10))
 
-# bayesiant test BEST
+# Bayesian t-test with BEST
 sleep$group <- as.factor(sleep$group)
 #sd(sleep$extra[sleep$group == "1"])
 #sd(sleep$extra[sleep$group == "2"])
@@ -1139,11 +1140,12 @@ ROPE = d_0 + c(-1, 1) * a, showCurve = FALSE,  credMass = 0.93)
 
 Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
-- -1.59 ist eine (aufgrund des Bayes $t$-tests) plausible Schätzung für die 
+- Ungefähr -1.6 ist eine (aufgrund des Bayes $t$-tests) plausible Schätzung für die 
   Differenz der Mittelwerte der beiden Gruppen.
 - Wäre die ROPE halb so groß, würde die Testentscheidung anders ausfallen.
-- 93% der posterior Verteilung der Differenz der Mittelwerte liegt 
-  im Interval $[-3.48, 0.298]$.
+- 93% der Posterior-Verteilung der Differenz der Mittelwerte liegt 
+  im Intervall von ungefähr $-3.5$ bis $0.3$ (die Nachkommastellen
+  schwanken von Lauf zu Lauf).
 - Die Testentscheidung lautet: "Die Mittelwerte der beiden Gruppen sind nicht gleich."
 
 <div class="exam-solutions" data-correct="1,3"></div>
@@ -1205,7 +1207,7 @@ Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?
 
 - Die a priori Wahrscheinlichkeit, dass der Fehleranteil $0.02$ beträgt, ist $0.02$.
 
-- Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Interval $[0.02, 0.08]$ liegt, ist 0.
+- Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Intervall $[0.02, 0.08]$ liegt, ist 0.
 
 - Hier handelt es sich um eine diskrete a priori Verteilung und man untersucht lediglich, welcher 
   der beiden Fehleranteile wahrscheinlicher ist.

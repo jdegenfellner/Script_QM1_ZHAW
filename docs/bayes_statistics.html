@@ -393,8 +393,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
 The two branches ending in a positive test (green and orange) add up to <span class="math inline">\(\mathbb{P}(Tpos)\)</span>,
 and the posterior probability is the green share of this sum.</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-314a6d1b6a71b9d39076" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-314a6d1b6a71b9d39076">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-6e2b69e753745b16f5c9" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-6e2b69e753745b16f5c9">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Summarized, we have:</p>
 <p><span class="math display">\[
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot
@@ -406,7 +406,7 @@ is small, the probability of having the disease given a positive test result is 
 In fact, it is arbitrarily small the smaller the prevalence is.
 For <span class="math inline">\(\mathbb{P}(Dpos)=0\)</span>, we have <span class="math inline">\(\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0\)</span>,
 assuming that there can still be false positive test results: <span class="math inline">\(\mathbb{P}(Tpos|Dneg) &gt; 0\)</span>.</p>
-<p>We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.</p>
+<p>We could easily imagine that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.</p>
 <p>We would just extend the denominator accordingly
 (e.g., for a 3-state test with labels <span class="math inline">\(T_1, T_2, T_3\)</span>, where <span class="math inline">\(T_3\)</span> indicates a high concentration of some component):</p>
 <p><span class="math display">\[
@@ -428,12 +428,12 @@ For instance, in the case of a coin toss, the distribution is straightforward: t
 heads and tails, with corresponding probabilities <span class="math inline">\(\theta\)</span> and <span class="math inline">\(1-\theta\)</span>.
 For more complex scenarios, such as measuring the height of a randomly chosen individual,
 the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm,
-is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
-in general.</p>
+is assigned a probability density as we have discussed in the context of the normal distribution and continuous distributions
+in general. Probabilities are then areas under the density, for instance <span class="math inline">\(P(170 \le \text{height} \le 175)\)</span>.</p>
 </div>
 <div id="examples" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Examples<a href="bayes_statistics.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We have jumped into the deep end right away with exercise 2 in the previous chapter. Let’s now look at some more examples to get a feeling for
+<p>We have jumped into the deep end right away with <a href="probs.html#exercise2">Exercise 2</a> (Bayes-teaser) in the chapter on probability. Let’s now look at some more examples to get a feeling for
 how the Bayes theorem works.</p>
 <div id="example_defective_products" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Example 1 - defective products<a href="bayes_statistics.html#example_defective_products" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -585,13 +585,13 @@ R codes are in the <a href="https://github.com/jdegenfellner/Script_QM1_ZHAW/blo
 <img src="_main_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
 </details>
 <p><strong>Interpretation</strong>: The 93% HDI for the posterior distribution of <span class="math inline">\(\theta\)</span> is <span class="math inline">\([0.25, 0.51]\)</span>.
-With a probability of 93%, the defect rate is between 25% and 55%, given our prior
+With a probability of 93%, the defect rate is between 25% and 51%, given our prior
 beliefs and the observed data.</p>
 <p>Note that the HDI does not necessarily have to be symmetric around the peak
 of the distribution.</p>
 <p>There could be, for instance, two peaks in the distribution, as you can see
 <a href="https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png">here</a> for instance.
-In that case, the HDI would consist of two intervals. One could readily image
+In that case, the HDI would consist of two intervals. One could readily imagine
 a real life case for such a distribution:</p>
 <p>Think of a group of people where the
 measurement of interest is the 100 m sprint time. There could be two groups of people:
@@ -599,7 +599,7 @@ The hobby runners and the professional athletes. The distribution of the sprint 
 probably be bimodal showing two peaks for the two groups.</p>
 <p>There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.
-If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
+If the distribution is symmetric and has a single peak (unimodal), the quantiles are symmetric around the peak of the distribution
 and the HDI is the same as the quantile-based credible interval.</p>
 <p>A <a href="https://en.wikipedia.org/wiki/Credible_interval">credible interval</a>
 is <strong>not</strong> the same as a
@@ -628,15 +628,15 @@ just a set of tools to apply in a certain order. In my humble opinion, this is n
 and model building is a creative process and - if you want to go so far - an art form.
 <strong>Statistics is difficult and beautiful - in that order</strong>.</p>
 <p>Unfortunately, it is not completely trivial to apply the Bayesian <span class="math inline">\(t\)</span>-test,
-as opposte to the Frequentist <span class="math inline">\(t\)</span>-test,
+as opposed to the Frequentist <span class="math inline">\(t\)</span>-test,
 which constitutes one line of code in R.</p>
-<p>We’ll use the not anymore maintained R package <a href="https://cran.r-project.org/web/packages/BEST/index.html">BEST</a>
+<p>We’ll use the no longer maintained R package <a href="https://cran.r-project.org/web/packages/BEST/index.html">BEST</a>
 for a nice illustration. Later, we will use more up-to-date packages like <a href="https://cran.r-project.org/web/packages/brms/index.html">brms</a>
 or <a href="https://github.com/rmcelreath/rethinking">rethinking</a> for modeling.</p>
 <div id="example---bayesian-t-test" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Example - Bayesian <span class="math inline">\(t\)</span>-test<a href="bayes_statistics.html#example---bayesian-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For an explanation of the statistical model behind the Bayesian <span class="math inline">\(t\)</span>-test,
-visit <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">Kruschke’s paper</a>, Figure 2.</p>
+visit <a href="https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf">Kruschke’s paper</a>, Figure 2.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="bayes_statistics.html#cb88-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb88-2"><a href="bayes_statistics.html#cb88-2" tabindex="-1"></a>(y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.9</span>, <span class="fl">2.4</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -50   0 120 120 120 190 240 300</code></pre>
@@ -665,11 +665,12 @@ visit <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/krusch
 <strong>We want to know if the two groups differ in their (unobserved) means</strong>.
 For this, we will apply the R function <code>BESTmcmc</code> from the package <code>BEST</code>.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="bayes_statistics.html#cb100-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33443</span>)</span>
-<span id="cb100-2"><a href="bayes_statistics.html#cb100-2" tabindex="-1"></a><span class="fu">p_load</span>(HDInterval, BEST, tictoc, psych, tidyverse)</span>
-<span id="cb100-3"><a href="bayes_statistics.html#cb100-3" tabindex="-1"></a><span class="co"># H_0: mue1 - mue2 = delta_0</span></span>
-<span id="cb100-4"><a href="bayes_statistics.html#cb100-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># ROPE (region of practical equivalence)</span></span>
-<span id="cb100-5"><a href="bayes_statistics.html#cb100-5" tabindex="-1"></a>d_0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb100-6"><a href="bayes_statistics.html#cb100-6" tabindex="-1"></a>BESTout <span class="ot">&lt;-</span> <span class="fu">BESTmcmc</span>(y1, y2, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb100-2"><a href="bayes_statistics.html#cb100-2" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb100-3"><a href="bayes_statistics.html#cb100-3" tabindex="-1"></a><span class="fu">p_load</span>(HDInterval, BEST, tictoc, psych, tidyverse)</span>
+<span id="cb100-4"><a href="bayes_statistics.html#cb100-4" tabindex="-1"></a><span class="co"># H_0: mue1 - mue2 = delta_0</span></span>
+<span id="cb100-5"><a href="bayes_statistics.html#cb100-5" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># ROPE (region of practical equivalence)</span></span>
+<span id="cb100-6"><a href="bayes_statistics.html#cb100-6" tabindex="-1"></a>d_0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb100-7"><a href="bayes_statistics.html#cb100-7" tabindex="-1"></a>BESTout <span class="ot">&lt;-</span> <span class="fu">BESTmcmc</span>(y1, y2, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="bayes_statistics.html#cb102-1" tabindex="-1"></a><span class="fu">plot</span>(BESTout, <span class="at">which =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">compVal =</span> d_0,</span>
 <span id="cb102-2"><a href="bayes_statistics.html#cb102-2" tabindex="-1"></a>     <span class="at">ROPE =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">showCurve =</span> <span class="cn">FALSE</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>)</span></code></pre></div>
@@ -682,7 +683,7 @@ We do not care about these details for now, but try to interpret what we see.</p
 <ul>
 <li><p>With the parameter <code>which = "mean"</code>, we are interested in the <strong>posterior distribution of
 difference of the means</strong> (<span class="math inline">\(\mu_1 - \mu_2\)</span>). We see a full probability distribution again.</p></li>
-<li><p>The parameter <code>compVal = d_0</code> is the value we want to compare the posterior distribution to. Here We
+<li><p>The parameter <code>compVal = d_0</code> is the value we want to compare the posterior distribution to. Here we
 chose delta_0 = 0, which means that we want to know if the difference between the means is
 different from zero.</p></li>
 <li><p>The parameter <code>ROPE = d_0 + c(-1, 1) * a</code> (<span class="math inline">\(= -20\)</span> to <span class="math inline">\(20\)</span>) defines the region of practical equivalence (ROPE).
@@ -702,19 +703,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.614 130.836 128.674   93   33.8652 227.31                  
-## mu2         6.217   6.107   6.236   93  -87.2608  94.36                  
-## muDiff    124.397 124.719 127.572   93  -11.7463 255.07       0      95.5
-## sigma1    139.404 128.170 114.140   93   65.0246 225.47                  
-## sigma2    129.862 119.595 102.982   93   62.1053 210.40                  
-## sigmaDiff   9.542   8.261   5.026   93 -112.9379 140.36       0      56.2
-## nu         34.460  25.684  10.103   93    1.1548  84.03                  
-## log10nu     1.378   1.410   1.471   93    0.6523   2.06                  
-## effSz       0.965   0.955   0.938   93   -0.0867   2.00       0      95.5
+## mu1       130.804 130.980 130.190   93   33.5066 228.73                  
+## mu2         6.402   6.130   6.241   93  -83.6190  96.34                  
+## muDiff    124.402 124.642 122.815   93   -8.3300 257.92       0      95.5
+## sigma1    140.185 128.950 111.503   93   66.4099 227.83                  
+## sigma2    129.708 119.511 107.466   93   61.3226 208.81                  
+## sigmaDiff  10.477   8.975   7.394   93 -115.5428 137.55       0      56.8
+## nu         34.084  25.447   9.752   93    1.0879  83.28                  
+## log10nu     1.375   1.406   1.477   93    0.6639   2.06                  
+## effSz       0.963   0.954   0.982   93   -0.0704   2.02       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.45
+## muDiff        -20       20     4.5
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -724,7 +725,7 @@ script is run since it’s simulation based.</p></li>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
 ~95%, the difference between the means is greater than 0. This is nice but not the whole story.
-The true difference can by greater than 0, but still rather small and clinically irrelevant.</p>
+The true difference can be greater than 0, but still rather small and clinically irrelevant.</p>
 <p>Would we conclude that the two groups differ in their means?
 According to <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Kruschke</a> (p.336):</p>
 <p><strong>“A parameter value is declared to be not credible,
@@ -733,8 +734,9 @@ or rejected, if its entire ROPE lies outside the highest density interval
 <p>This is not the case here. We would not conclude, that the means between the groups differ.
 One could argue, that this rule seems rather strict considering, that ~95% of the
 posterior distribution of the differences is greater than 0.</p>
-<p>As opposed to the Frequentist <span class="math inline">\(t\)</span>-test, we can also <strong>affirm the null hypothesis</strong>,
-that the means in the two groups are equal. This is a nice feature of the Bayesian <span class="math inline">\(t\)</span>-test.</p>
+<p>As opposed to the Frequentist <span class="math inline">\(t\)</span>-test, we can also find evidence for <strong>practical equivalence</strong>,
+that is, that the means in the two groups are practically the same (not exactly equal).
+This is a nice feature of the Bayesian <span class="math inline">\(t\)</span>-test.</p>
 <p><strong>“A parameter value is declared to be accepted for practical purposes if that value’s
 ROPE completely contains the X% HDI of the posterior of that parameter.”</strong></p>
 <p>This is also not the case here. The 93% HDI lies outside the ROPE to a large part.</p>
@@ -756,7 +758,7 @@ yield a clear decision one way or the other, according to the stated decision cr
 <li><p>Using a whole continuous distribution as prior knowledge <a href="bayes_statistics.html#example_defective_products_extended">Example about the proportion of defective products extended</a></p></li>
 <li><p>Analysis if two groups differ in their means or have the same mean <a href="bayes_statistics.html#bayesian_t_test">Example about the Bayesian t-test</a></p></li>
 </ul>
-<p>Latest in QM2, we will do Bayesian regression analysis using packages like <code>brms</code> from
+<p>At the latest in QM2, we will do Bayesian regression analysis using packages like <code>brms</code> from
 <a href="https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/">Paul Bürkner</a> or
 <code>rethinking</code> from <a href="https://www.eva.mpg.de/ecology/staff/richard-mcelreath/">Richard McElreath</a>.</p>
 </div>
@@ -790,7 +792,7 @@ using two different starting points. The opinions seem to converge.</p>
 Some of these cases can be solved analytically, like the coin toss example. One can calculate the shape of the posterior distribution
 exactly. <strong>We are mainly interested in simulation-based results, since we are practitioners</strong>.</p>
 <p>In the Bayesian <span class="math inline">\(t\)</span>-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
-estimated (see Figure 2 <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">here</a>).
+estimated (see Figure 2 <a href="https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf">here</a>).
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently.
 This can be computationally intensive.
@@ -810,7 +812,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 <li><p><strong>No <span class="math inline">\(p\)</span>-values</strong>: We do not need to rely on <span class="math inline">\(p\)</span>-values and NHST (Null Hypothesis Significance Testing).
 John Kruschke points out many problems with
 NHST in his <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">book</a> and
-<a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">article</a>. It seems that for many practinioners, <span class="math inline">\(p\)</span>-values are
+<a href="https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf">article</a>. It seems that for many practitioners, <span class="math inline">\(p\)</span>-values are
 hard to understand and interpret correctly. There are many
 <a href="https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620">misconceptions about <span class="math inline">\(p\)</span>-values</a>.
 And one should definitely
@@ -876,10 +878,10 @@ every value between 0 and 1 is equally likely:</p>
 <span id="cb106-23"><a href="bayes_statistics.html#cb106-23" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb106-24"><a href="bayes_statistics.html#cb106-24" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" /></p>
-<p>Notize, that the area under the curve is 1, since it is a probability density function.
+<p>Note that the area under the curve is 1, since it is a probability density function.
 For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)</span></p>
 <ul>
-<li>Experiment 1 one shows that the therapy works in 17 out of 50 cases.</li>
+<li>Experiment 1 shows that the therapy works in 17 out of 50 cases.</li>
 <li>Experiment 2 shows that the therapy works in 23 out of 50 cases.</li>
 </ul>
 <p>So we go from:</p>
@@ -906,21 +908,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.084 sec elapsed</code></pre>
+<pre><code>## 1.09 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.711  0.708  0.719   93 -0.539  1.958                          
-## mu2        2.309  2.303  2.321   93  0.882  3.732                          
-## muDiff    -1.598 -1.598 -1.636   93 -3.520  0.277       0      6.03    -1.8
-## sigma1     2.034  1.920  1.757   93  1.102  3.099                          
-## sigma2     2.309  2.171  1.967   93  1.270  3.505                          
-## sigmaDiff -0.275 -0.252 -0.189   93 -1.928  1.432       0     37.00        
-## nu        35.970 27.455 11.960   93  1.587 86.063                          
-## log10nu    1.411  1.439  1.485   93  0.734  2.070                          
-## effSz     -0.754 -0.750 -0.769   93 -1.633  0.145       0      6.03        
+## mu1        0.713  0.709  0.729   93 -0.561  1.956                          
+## mu2        2.295  2.293  2.302   93  0.827  3.685                          
+## muDiff    -1.582 -1.582 -1.565   93 -3.434  0.379       0      6.23    -1.8
+## sigma1     2.037  1.921  1.722   93  1.106  3.105                          
+## sigma2     2.316  2.179  1.966   93  1.263  3.513                          
+## sigmaDiff -0.279 -0.252 -0.227   93 -1.994  1.396       0     36.96        
+## nu        36.289 27.618 11.489   93  1.624 86.683                          
+## log10nu    1.413  1.441  1.546   93  0.738  2.080                          
+## effSz     -0.746 -0.742 -0.754   93 -1.641  0.138       0      6.23        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8      58
+## muDiff         1.8    58.5
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -930,11 +932,12 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p><img src="_main_files/figure-html/unnamed-chunk-44-2.png" alt="" width="672" /></p>
 <p>Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?</p>
 <ul>
-<li>-1.59 ist eine (aufgrund des Bayes <span class="math inline">\(t\)</span>-tests) plausible Schätzung für die
+<li>Ungefähr -1.6 ist eine (aufgrund des Bayes <span class="math inline">\(t\)</span>-tests) plausible Schätzung für die
 Differenz der Mittelwerte der beiden Gruppen.</li>
 <li>Wäre die ROPE halb so groß, würde die Testentscheidung anders ausfallen.</li>
-<li>93% der posterior Verteilung der Differenz der Mittelwerte liegt
-im Interval <span class="math inline">\([-3.48, 0.298]\)</span>.</li>
+<li>93% der Posterior-Verteilung der Differenz der Mittelwerte liegt
+im Intervall von ungefähr <span class="math inline">\(-3.5\)</span> bis <span class="math inline">\(0.3\)</span> (die Nachkommastellen
+schwanken von Lauf zu Lauf).</li>
 <li>Die Testentscheidung lautet: “Die Mittelwerte der beiden Gruppen sind nicht gleich.”</li>
 </ul>
 <div class="exam-solutions" data-correct="1,3">
@@ -969,7 +972,7 @@ priori Verteilung für den Fehleranteil <span class="math inline">\(\theta\)</sp
 <p>Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?</p>
 <ul>
 <li><p>Die a priori Wahrscheinlichkeit, dass der Fehleranteil <span class="math inline">\(0.02\)</span> beträgt, ist <span class="math inline">\(0.02\)</span>.</p></li>
-<li><p>Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Interval <span class="math inline">\([0.02, 0.08]\)</span> liegt, ist 0.</p></li>
+<li><p>Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Intervall <span class="math inline">\([0.02, 0.08]\)</span> liegt, ist 0.</p></li>
 <li><p>Hier handelt es sich um eine diskrete a priori Verteilung und man untersucht lediglich, welcher
 der beiden Fehleranteile wahrscheinlicher ist.</p></li>
 <li><p>Man beobachtet bei einer Stichprobe von <span class="math inline">\(20\)</span> Produkten, dass <span class="math inline">\(0\)</span> davon fehlerhaft sind.

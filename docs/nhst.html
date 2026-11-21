@@ -380,7 +380,7 @@ while <span class="math inline">\(H_1\)</span> states that the treatment effect 
 <li><p><strong><span class="math inline">\(p\)</span>-value</strong>: The <span class="math inline">\(p\)</span>-value quantifies the probability of obtaining results (test statistic) as extreme as (or more extreme than)
 the observed data, assuming that <span class="math inline">\(H_0\)</span> is true.
 A smaller <span class="math inline">\(p\)</span>-value indicates stronger evidence against <span class="math inline">\(H_0\)</span>.
-There are many <a href="https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf">misconeptions about <span class="math inline">\(p\)</span>-values</a>.</p></li>
+There are many <a href="https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf">misconceptions about <span class="math inline">\(p\)</span>-values</a>.</p></li>
 <li><p><strong>Significance level <span class="math inline">\(\alpha\)</span></strong>: Researchers set a threshold to determine whether to reject <span class="math inline">\(H_0\)</span>.
 If the <span class="math inline">\(p\)</span>-value is smaller than <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(H_0\)</span> is rejected in favor of <span class="math inline">\(H_1\)</span>.
 Note that <strong>there is absolutely no special reason to use <span class="math inline">\(\alpha = 0.05\)</span> as a default value</strong>.
@@ -431,9 +431,31 @@ that probabilities are defined <em>before</em> an event has happened. The probab
 Swiss lottery is rather small and I would take a large bet against it. But every week, someone wins (approximately).
 After the fact, one should not be surprised <em>that</em> someone won,
 since it follows from the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers</a>.</p></li>
+<li><p><strong>The probabilistic modus tollens</strong>: “If <span class="math inline">\(H_0\)</span> is true, the data follow an expected pattern. The data do not.
+Therefore <span class="math inline">\(H_0\)</span> is false” is valid logic. Replacing certainty by probability breaks it:
+“If a person is an American, it is highly unlikely that she is a member of Congress.
+This person is a member of Congress. Therefore it is highly unlikely that she is an American.”
+A small <span class="math inline">\(P(D \mid H_0)\)</span> does not imply a small <span class="math inline">\(P(H_0 \mid D)\)</span>
+(<a href="https://doi.org/10.1177/106591299905200309">Gill 1999</a>).</p></li>
+<li><p><strong>The inverse probability problem</strong>: The <span class="math inline">\(p\)</span>-value is <span class="math inline">\(P(D \mid H_0)\)</span>, the probability of the data
+(or more extreme data) given <span class="math inline">\(H_0\)</span>. It is not <span class="math inline">\(P(H_0 \mid D)\)</span>, the probability that <span class="math inline">\(H_0\)</span> is true given the data.
+<a href="bayes_statistics.html#bayes_statistics">Bayes’ theorem</a> links the two: <span class="math inline">\(P(H_0 \mid D) = \frac{P(H_0)}{P(D)} P(D \mid H_0)\)</span>.
+Without the prior <span class="math inline">\(P(H_0)\)</span> we cannot get from one to the other.</p></li>
+<li><p><strong>Low power and replication</strong>: Even with a power of 80%, <span class="math inline">\(p\)</span>-values vary strongly from study to study
+(<a href="https://doi.org/10.1111/j.1745-6924.2008.00079.x">Cumming 2008</a>). A <span class="math inline">\(p\)</span>-value therefore says little
+about the <span class="math inline">\(p\)</span>-value of an exact replication. See the animation
+<a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html">Dance of the p-values</a>.</p></li>
+<li><p><strong>Confidence intervals predict replications better</strong>: About 83% of the estimates of an exact replication
+fall inside the 95% confidence interval of the first experiment
+(<a href="https://doi.org/10.1111/j.1745-6924.2008.00079.x">Cumming 2008</a>). The interval therefore tells us more
+about what to expect in the future than the <span class="math inline">\(p\)</span>-value does. In the animation
+<a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/19_CI_naechste_Schaetzung.html">The next estimate and the current confidence interval</a>
+you set the confidence level and check by simulation how often the estimate of a repeated experiment falls inside the first interval.</p></li>
+<li><p><strong>Testing against “no effect”</strong>: NHST tests against a null effect, often one that prior knowledge
+already considers implausible, and it ignores such outside knowledge.</p></li>
 </ul>
-<p>See <a href="https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf">Kruschke</a> for more limitations of NHST.</p>
-<p>In practice, NHST should at last be accompanied by confidence intervals,
+<p>See <a href="https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf">Kruschke</a> for more limitations of NHST.</p>
+<p>In practice, NHST should at least be accompanied by confidence intervals,
 effect size calculations, and a focus on clinical relevance to provide
 a more comprehensive understanding of the results.</p>
 <p>This <a href="https://f1000research.com/articles/4-621/v3">Review of NHST</a> or
@@ -441,7 +463,7 @@ a more comprehensive understanding of the results.</p>
 <p>This <a href="https://www.youtube.com/watch?v=FZ2_hzMyJpY&amp;ab_channel=VeryNormal">video</a> could also help to understand the basic concepts.</p>
 <div id="example-in-the-literature" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Example in the literature<a href="nhst.html#example-in-the-literature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(p\)</span>-values are omnipresent in the scientific literature. There rather few papers in our field that do not contain them.
+<p><span class="math inline">\(p\)</span>-values are omnipresent in the scientific literature. There are rather few papers in our field that do not contain them.
 We <strong>do not use <span class="math inline">\(p\)</span>-values in descriptive tables</strong>
 (see <a href="https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/">here</a> and
 <a href="https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1">here</a>).</p>
@@ -466,7 +488,7 @@ we would “expect” (around) 40 false positives. We asked, what is the probabi
 </ul>
 <p>Under <span class="math inline">\(H_0\)</span>, what is the probability to see the observed number (137) of
 false positives (in our case, this is the test statistic) or more?</p>
-<p>The answer was <span class="math inline">\(p = 5.551115 \cdot 10^{-16}\)</span> (or less if one chooses <span class="math inline">\(\theta &lt; 0.04\)</span>).</p>
+<p>The answer was <span class="math inline">\(p = 2.3 \cdot 10^{-35}\)</span> (see the first chapter; R prints this as <code>&lt; 2.2e-16</code> below, which is just its display limit).</p>
 <p>A reasonable person would say, that this result did not happen by chance alone and
 therefore conclude, the true, but unknown false positive rate <span class="math inline">\(\theta\)</span> is larger than 0.04.</p>
 <p>Formally, this is called a <strong>(one-sided) <a href="https://en.wikipedia.org/wiki/Binomial_test">binomial test</a></strong>.</p>
@@ -488,7 +510,7 @@ therefore conclude, the true, but unknown false positive rate <span class="math 
 <ul>
 <li>data: 137 and 1000 successes observed</li>
 <li>alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.</li>
-<li><span class="math inline">\(p\)</span>-value &lt; <span class="math inline">\(2.2e-16\)</span>. This value is smaller than the precision in R (`.Machine’).</li>
+<li><span class="math inline">\(p\)</span>-value &lt; <span class="math inline">\(2.2e-16\)</span>. This value is smaller than the precision in R (<code>.Machine</code>).</li>
 <li>95 percent confidence interval: <span class="math inline">\(0.1194241\)</span> to <span class="math inline">\(1.0000000\)</span>.
 The upper limit of <span class="math inline">\(1\)</span> occurs since we have a one-sided test.
 95% is just convention and has no special meaning.</li>
@@ -519,12 +541,12 @@ The upper limit of <span class="math inline">\(1\)</span> occurs since we have a
 With some experience, one would probably not test for lower when seeing the observed number of 137.</li>
 <li>95 percent confidence interval: <span class="math inline">\(0.1162817\)</span> to <span class="math inline">\(0.1598810\)</span>.</li>
 </ul>
-<p><strong>Interpretation of this frequentist confidence interval (CI)</strong>: When drawing repeated samples, in 95% percent of the samples,
+<p><strong>Interpretation of this frequentist confidence interval (CI)</strong>: When drawing repeated samples, in 95% of the samples,
 the so constructed interval (which will be different every time) contains the true but unknown
 parameter (see Illustration <a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">here</a>,
 animations of the frequentist nature <a href="https://seeing-theory.brown.edu/frequentist-inference/index.html">here</a>).</p>
 <p>Note, that the “Exact binomial test” was used. There were no approximations made. I would recommend always
-using <a href="https://en.wikipedia.org/wiki/Exact_test">exact tests</a> if available, since we are in the 21th century and computers are fast.</p>
+using <a href="https://en.wikipedia.org/wiki/Exact_test">exact tests</a> if available, since we are in the 21st century and computers are fast.</p>
 <p>Again, <strong>the <span class="math inline">\(\alpha\)</span> level of <span class="math inline">\(0.05\)</span> has nothing special (apart from convention) to it</strong>.
 We can also use a <span class="math inline">\(\alpha = 0.14\)</span> level. In this case, we construct confidence intervals
 with a 86% confidence level. We’ll discuss the <span class="math inline">\(\alpha\)</span> level <a href="nhst.html#error_types">below</a>.</p>
@@ -637,7 +659,7 @@ can be more certain about the true proportion with increasing sample size.</p>
 <p>Given this distributional statement, it follows that if we subtract the mean assumed under <span class="math inline">\(H_0\)</span> (<span class="math inline">\(p_0 = 0.5\)</span>) and divide by the standard deviation,
 the resulting test statistic is (approximately) distributed according to a standard normal distribution:</p>
 <p><span class="math display">\[Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \sim N(0, 1).\]</span></p>
-<p>This value squared gives us the value of the test statistic above: <span class="math inline">\(0.36\)</span>.</p>
+<p>This value squared gives us the value of the test statistic <strong>without continuity correction</strong> above: <span class="math inline">\(0.36\)</span> (with the correction, R reports <span class="math inline">\(0.25\)</span>).</p>
 <div id="or-the-same-with-binomial-test" class="section level4 hasAnchor" number="4.3.1.1">
 <h4><span class="header-section-number">4.3.1.1</span> Or the same with binomial test<a href="nhst.html#or-the-same-with-binomial-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math inline">\(H_0: p = 0.5\)</span> The true but unknown proportion is <span class="math inline">\(0.5\)</span>.</p>
@@ -678,13 +700,15 @@ since they always have coverage probability of at least <span class="math inline
 <pre><code>## [1] 0.03000002</code></pre>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="nhst.html#cb132-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">46</span>, <span class="dv">100</span>, <span class="fl">0.3731683</span>)</span></code></pre></div>
 <pre><code>## [1] 0.02999993</code></pre>
-<p>The confidence interval is indeed <span class="math inline">\(0.3739955\)</span> to <span class="math inline">\(0.5681618\)</span>.</p></li>
+<p>The exact confidence interval is <span class="math inline">\(0.3731683\)</span> to <span class="math inline">\(0.5685327\)</span>.
+(The interval from <code>prop.test</code> above, <span class="math inline">\(0.3739955\)</span> to <span class="math inline">\(0.5681618\)</span>, is a slightly different, approximate interval.)</p></li>
 </ul>
 </div>
 </div>
 <div id="proportions_test_more_samples" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> More than one proportion<a href="nhst.html#proportions_test_more_samples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math inline">\(H_0: p_1 = p_2 = p_3 = p_4 = \frac{\sum smokers}{\sum patients} = 0.9370277\)</span>. Proportions are equal in all 4 groups.</p>
+<p><span class="math inline">\(H_0: p_1 = p_2 = p_3 = p_4\)</span>. Proportions are equal in all 4 groups. The common value is not specified by <span class="math inline">\(H_0\)</span>,
+it is estimated from the pooled data by <span class="math inline">\(\frac{\sum smokers}{\sum patients} = 0.9370277\)</span>.</p>
 <p><span class="math inline">\(H_1: \text{At least one of the proportions is different}\)</span></p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="nhst.html#cb134-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb134-2"><a href="nhst.html#cb134-2" tabindex="-1"></a><span class="co"># Data from Fleiss (1981), p. 139.</span></span>
@@ -727,9 +751,14 @@ since they always have coverage probability of at least <span class="math inline
 alone and reject the null hypothesis, that all proportions are equal.</p></li>
 <li><p>X-squared = 12.6, df = 3. The test statistic is distributed according to a <span class="math inline">\(\chi^2\)</span> distribution
 with 3 <a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">degrees of freedom</a>.
-See also <a href="nhst.html#exercise5_nhst">exercise 5</a>. Three degrees of freedom since we know the last component of the
-test statistic when 3 out of 4 are given.
-Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.</p></li>
+See also <a href="nhst.html#exercise5_nhst">exercise 5</a>.</p>
+<p>It is not easy to describe what degrees of freedom really are. The common phrase “the number of values that are free to vary”
+is only a rough picture. A geometric explanation is given in this video series by Sam Levey
+(<a href="https://www.youtube.com/watch?v=VDlnuO96p58">1</a>, <a href="https://www.youtube.com/watch?v=8e9aDMXRRlc">2</a>,
+<a href="https://www.youtube.com/watch?v=ExQJQPF_Fpk">3</a>, <a href="https://www.youtube.com/watch?v=hsZw9hJspTY">4</a>).
+For now, remember this: the degrees of freedom are a <strong>parameter of the distribution of the test statistic under <span class="math inline">\(H_0\)</span></strong>,
+and we can determine it from the setting. Here, the data form a <span class="math inline">\(4 \times 2\)</span> table (smokers and non-smokers in 4 groups),
+and <span class="math inline">\(df = (4-1)(2-1) = 3\)</span>.</p></li>
 </ul>
 <p><strong>The <span class="math inline">\(p\)</span>-value is calculated quickly:</strong></p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="nhst.html#cb137-1" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="fl">12.6</span>, <span class="at">df =</span> <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
@@ -803,7 +832,7 @@ of people in the sample.</p>
 These are the expected values in this cell,
 if one would assume that the proportion of smokers does not depend on the group.
 Hence, one just multiplies the column (<span class="math inline">\(86/397\)</span>) and row (<span class="math inline">\(25/397\)</span>) proportions
-and multiples with the grand total (<span class="math inline">\(397\)</span>) to get the absolute number of observations
+and multiplies with the grand total (<span class="math inline">\(397\)</span>) to get the absolute number of observations
 in each cell under <span class="math inline">\(H_0\)</span>.</p>
 </div>
 <div id="fishers-exact-test" class="section level3 hasAnchor" number="4.3.3">
@@ -871,7 +900,7 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 <span id="cb163-3"><a href="nhst.html#cb163-3" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb163-4"><a href="nhst.html#cb163-4" tabindex="-1"></a>          <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="nhst.html#cb164-1" tabindex="-1"></a><span class="fu">ggqqplot</span>(my_data<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;Men&#39;s weight&quot;</span>,</span>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="nhst.html#cb164-1" tabindex="-1"></a><span class="fu">ggqqplot</span>(my_data<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;Mouse weight (g)&quot;</span>,</span>
 <span id="cb164-2"><a href="nhst.html#cb164-2" tabindex="-1"></a>         <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-59-2.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="nhst.html#cb165-1" tabindex="-1"></a><span class="fu">t.test</span>(my_data<span class="sc">$</span>weight, <span class="at">mu =</span> <span class="dv">25</span>,</span>
@@ -913,7 +942,7 @@ specific value (<a href="https://en.wikipedia.org/wiki/Student%27s_t-test#One-sa
 ## sample estimates:
 ## mean of x 
 ##     19.25</code></pre>
-<p>Let’ verify the test statistic by “hand” for the two-sided test:</p>
+<p>Let’s verify the test statistic by “hand” for the two-sided test:</p>
 <p><span class="math display">\[t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}}\]</span></p>
 <p><span class="math inline">\(\bar{x} = 19.25\)</span></p>
 <p><span class="math inline">\(s = 2.002915\)</span></p>
@@ -929,13 +958,13 @@ Hence, the <span class="math inline">\(p\)</span>-value is:</p>
 <p>This matches the output of the <code>t.test</code> function in R.</p>
 <p><strong><a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Assumptions">Assumptions of the <span class="math inline">\(t\)</span>-test</a></strong>:</p>
 <p>You will often see that researchers check if the <em>data</em> is normally distributed.
-This is not strictly necessary. Merely <span class="math inline">\(\bar{X}\)</span> must be normally distributed, which is
+This is not strictly necessary. Merely <span class="math inline">\(\bar{X}\)</span> (instead of the raw data) must be normally distributed, which is
 often guaranteed by the
 <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a> for a
 large enough sample size <span class="math inline">\(n\)</span>.</p>
 <p><strong>IF the data is normally distributed, then <span class="math inline">\(\bar{X}\)</span> is exactly normally distributed</strong>.
 This is always true
-and the reason for testing for normality of the data.</p>
+and is probably the reason for testing for normality of the data.</p>
 <p>Another assumption is that <span class="math inline">\(\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}\)</span></p>
 <p><strong>Let’s try to verify this assumption empirically:</strong></p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="nhst.html#cb173-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
@@ -1027,14 +1056,17 @@ has the same distribution.</p>
 ## mean of x mean of y 
 ##     130.0       7.5</code></pre>
 <ul>
-<li><p>The test statistic is a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(13.928\)</span> degrees of freedom (under <span class="math inline">\(H_0\)</span>).</p></li>
+<li><p>The test statistic follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(13.928\)</span> degrees of freedom (under <span class="math inline">\(H_0\)</span>).
+The non-integer value comes from the Welch correction: by default, <code>t.test</code> does not assume equal variances
+in the two groups (“Welch Two Sample t-test”). With <code>var.equal = TRUE</code> one gets the classical pooled test
+with <span class="math inline">\(n_1 + n_2 - 2 = 14\)</span> degrees of freedom and <span class="math inline">\(p = 0.04624\)</span>, here almost the same.</p></li>
 <li><p>The value of the test statistic is <span class="math inline">\(2.1867\)</span>.</p></li>
 <li><p><span class="math inline">\(H_0: \mu_1 = \mu_2\)</span>. The group means are equal.</p></li>
 <li><p><span class="math inline">\(H_1: \mu_1 \ne \mu_2\)</span>. The group means are different.</p></li>
 <li><p><span class="math inline">\(p\)</span>-value <span class="math inline">\(= 0.04634\)</span>. In the classical framework,
 this would be considered “significant” at the <span class="math inline">\(\alpha = 0.05\)</span> level
 and one would reject the null hypothesis and accept the alternative hypothesis.
-<strong>In the Baysian framework, we abstained from making a decision</strong>.</p></li>
+<strong>In the Bayesian framework, we abstained from making a decision</strong>.</p></li>
 <li><p>93% confidence interval for the difference in means is rather wide:
 <span class="math inline">\(12.55847\)</span> to <span class="math inline">\(232.44153\)</span>.</p>
 <p>Let’s try to visualize this.</p>
@@ -1047,47 +1079,47 @@ the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_s
 <span id="cb187-2"><a href="nhst.html#cb187-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb187-3"><a href="nhst.html#cb187-3" tabindex="-1"></a></span>
 <span id="cb187-4"><a href="nhst.html#cb187-4" tabindex="-1"></a><span class="co"># Define degrees of freedom</span></span>
-<span id="cb187-5"><a href="nhst.html#cb187-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fl">13.928</span></span>
+<span id="cb187-5"><a href="nhst.html#cb187-5" tabindex="-1"></a>df_t <span class="ot">&lt;-</span> <span class="fl">13.928</span></span>
 <span id="cb187-6"><a href="nhst.html#cb187-6" tabindex="-1"></a></span>
-<span id="cb187-7"><a href="nhst.html#cb187-7" tabindex="-1"></a><span class="co"># Define the range for x and the critical t-values</span></span>
+<span id="cb187-7"><a href="nhst.html#cb187-7" tabindex="-1"></a><span class="co"># Define the range for x and the observed t-value</span></span>
 <span id="cb187-8"><a href="nhst.html#cb187-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
-<span id="cb187-9"><a href="nhst.html#cb187-9" tabindex="-1"></a>critical_t <span class="ot">&lt;-</span> <span class="fl">2.1867</span></span>
+<span id="cb187-9"><a href="nhst.html#cb187-9" tabindex="-1"></a>t_obs <span class="ot">&lt;-</span> <span class="fl">2.1867</span></span>
 <span id="cb187-10"><a href="nhst.html#cb187-10" tabindex="-1"></a></span>
 <span id="cb187-11"><a href="nhst.html#cb187-11" tabindex="-1"></a><span class="co"># Create a data frame with x and corresponding density values</span></span>
 <span id="cb187-12"><a href="nhst.html#cb187-12" tabindex="-1"></a>t_dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb187-13"><a href="nhst.html#cb187-13" tabindex="-1"></a>  <span class="at">x =</span> x,</span>
-<span id="cb187-14"><a href="nhst.html#cb187-14" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dt</span>(x, df)</span>
+<span id="cb187-14"><a href="nhst.html#cb187-14" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dt</span>(x, df_t)</span>
 <span id="cb187-15"><a href="nhst.html#cb187-15" tabindex="-1"></a>)</span>
 <span id="cb187-16"><a href="nhst.html#cb187-16" tabindex="-1"></a></span>
 <span id="cb187-17"><a href="nhst.html#cb187-17" tabindex="-1"></a><span class="co"># Plot the t-distribution with shaded tail areas</span></span>
 <span id="cb187-18"><a href="nhst.html#cb187-18" tabindex="-1"></a><span class="fu">ggplot</span>(t_dist, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density)) <span class="sc">+</span></span>
 <span id="cb187-19"><a href="nhst.html#cb187-19" tabindex="-1"></a>  <span class="co"># Add the main t-distribution curve</span></span>
 <span id="cb187-20"><a href="nhst.html#cb187-20" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb187-21"><a href="nhst.html#cb187-21" tabindex="-1"></a>  <span class="co"># Add shaded areas below the curve outside the critical t-values</span></span>
+<span id="cb187-21"><a href="nhst.html#cb187-21" tabindex="-1"></a>  <span class="co"># Add shaded areas below the curve beyond the observed t-value</span></span>
 <span id="cb187-22"><a href="nhst.html#cb187-22" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb187-23"><a href="nhst.html#cb187-23" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&lt;</span> <span class="sc">-</span>critical_t),</span>
+<span id="cb187-23"><a href="nhst.html#cb187-23" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&lt;</span> <span class="sc">-</span>t_obs),</span>
 <span id="cb187-24"><a href="nhst.html#cb187-24" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
 <span id="cb187-25"><a href="nhst.html#cb187-25" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
 <span id="cb187-26"><a href="nhst.html#cb187-26" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
 <span id="cb187-27"><a href="nhst.html#cb187-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb187-28"><a href="nhst.html#cb187-28" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb187-29"><a href="nhst.html#cb187-29" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&gt;</span> critical_t),</span>
+<span id="cb187-29"><a href="nhst.html#cb187-29" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">subset</span>(t_dist, x <span class="sc">&gt;</span> t_obs),</span>
 <span id="cb187-30"><a href="nhst.html#cb187-30" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> density),</span>
 <span id="cb187-31"><a href="nhst.html#cb187-31" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
 <span id="cb187-32"><a href="nhst.html#cb187-32" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
 <span id="cb187-33"><a href="nhst.html#cb187-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb187-34"><a href="nhst.html#cb187-34" tabindex="-1"></a>  <span class="co"># Add vertical lines for the critical t-values</span></span>
-<span id="cb187-35"><a href="nhst.html#cb187-35" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>critical_t, critical_t),</span>
+<span id="cb187-34"><a href="nhst.html#cb187-34" tabindex="-1"></a>  <span class="co"># Add vertical lines for the observed t-value</span></span>
+<span id="cb187-35"><a href="nhst.html#cb187-35" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>t_obs, t_obs),</span>
 <span id="cb187-36"><a href="nhst.html#cb187-36" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb187-37"><a href="nhst.html#cb187-37" tabindex="-1"></a>  <span class="co"># Annotate the critical t-values</span></span>
-<span id="cb187-38"><a href="nhst.html#cb187-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span>critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
-<span id="cb187-39"><a href="nhst.html#cb187-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;-t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb187-40"><a href="nhst.html#cb187-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> critical_t, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
-<span id="cb187-41"><a href="nhst.html#cb187-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;t = &quot;</span>, critical_t), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb187-37"><a href="nhst.html#cb187-37" tabindex="-1"></a>  <span class="co"># Annotate the observed t-value</span></span>
+<span id="cb187-38"><a href="nhst.html#cb187-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span>t_obs, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
+<span id="cb187-39"><a href="nhst.html#cb187-39" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;-t = &quot;</span>, t_obs), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb187-40"><a href="nhst.html#cb187-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> t_obs, <span class="at">y =</span> <span class="fl">0.05</span>,</span>
+<span id="cb187-41"><a href="nhst.html#cb187-41" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;t = &quot;</span>, t_obs), <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb187-42"><a href="nhst.html#cb187-42" tabindex="-1"></a>  <span class="co"># Add labels and style</span></span>
 <span id="cb187-43"><a href="nhst.html#cb187-43" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb187-44"><a href="nhst.html#cb187-44" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;t-Distribution with Shaded Critical Areas (Two-Sided Test)&quot;</span>,</span>
-<span id="cb187-45"><a href="nhst.html#cb187-45" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Degrees of Freedom:&quot;</span>, df),</span>
+<span id="cb187-44"><a href="nhst.html#cb187-44" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;t-Distribution with Shaded Tail Areas Beyond the Observed t (Two-Sided Test)&quot;</span>,</span>
+<span id="cb187-45"><a href="nhst.html#cb187-45" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Degrees of Freedom:&quot;</span>, df_t),</span>
 <span id="cb187-46"><a href="nhst.html#cb187-46" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;t&quot;</span>,</span>
 <span id="cb187-47"><a href="nhst.html#cb187-47" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
 <span id="cb187-48"><a href="nhst.html#cb187-48" tabindex="-1"></a>  ) <span class="sc">+</span></span>
@@ -1098,7 +1130,7 @@ the <a href="https://en.wikipedia.org/wiki/Student%27s_t-test#Equal_or_unequal_s
 <span id="cb187-53"><a href="nhst.html#cb187-53" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="nhst.html#cb188-1" tabindex="-1"></a><span class="co"># p-value manually:</span></span>
-<span id="cb188-2"><a href="nhst.html#cb188-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<span id="cb188-2"><a href="nhst.html#cb188-2" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">2.1867</span>, df_t) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.04633225</code></pre>
 <p>The plot shows the <span class="math inline">\(t\)</span>-distribution. Marked in red are the areas where the test statistic
 takes the value we observed or “more extreme” values. With “more extreme” we mean values that are
@@ -1119,10 +1151,9 @@ with higher post-diet weights.</p>
 <p><span class="math inline">\(H_0: \mu_D \le \mu_0 = 5~kg\)</span>. Participants lost 5 kg or less on average,
 i.e. the true difference between pre- and post weight is on average smaller than 5kg.</p>
 <p><span class="math inline">\(H_1: \mu_D &gt; \mu_0 = 5~kg\)</span>. Participants lost more than 5 kg on average.</p>
-<p>Aussumptions for the paired <span class="math inline">\(t\)</span>-test:
+<p>Assumptions for the paired <span class="math inline">\(t\)</span>-test:
 - Interval or ratio scale
-- The differences are independent of each other
--</p>
+- The differences are independent of each other</p>
 <p>Let’s create some data and perform the test:</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="nhst.html#cb190-1" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
 <span id="cb190-2"><a href="nhst.html#cb190-2" tabindex="-1"></a><span class="fu">p_load</span>(MASS, tidyverse)</span>
@@ -1241,7 +1272,7 @@ The correlation might therefore be a useful measure to describe the relationship
 <ul>
 <li>t is the <span class="math inline">\(t\)</span>-test statistic value (t = -9.559),</li>
 <li>df is the degrees of freedom (df= 30),</li>
-<li><span class="math inline">\(p\)</span>-value of the <span class="math inline">\(t\)</span>-test (<span class="math inline">\(p\)</span>-value = <span class="math inline">\(1.29410^{-10}\)</span>).</li>
+<li><span class="math inline">\(p\)</span>-value of the <span class="math inline">\(t\)</span>-test (<span class="math inline">\(p\)</span>-value = <span class="math inline">\(1.294 \cdot 10^{-10}\)</span>).</li>
 <li>conf.int is the confidence interval of the correlation coefficient at 96% (conf.int = <span class="math inline">\([-0.9360192, -0.7362129]\)</span>)
 This is what is most interesting to us and should be interpreted in the context of the data.</li>
 <li>sample estimates is the correlation coefficient (<span class="math inline">\(r = -0.87\)</span>).</li>
@@ -1289,7 +1320,7 @@ These are the steps:</p>
 <pre><code>##         2%        50%        98% 
 ## -0.9260149 -0.8745279 -0.7821605</code></pre>
 <p>We used the variability <strong>contained in the data</strong> to estimate the variability of
-the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
+the correlation coefficient. As you can see in the histogram, correlations close to 0 are
 very unlikely. The 96% bootstrap confidence interval is <span class="math inline">\([-0.926, -0.782]\)</span>.</p>
 <p>You can also study the nice animation of the bootstrap <a href="https://seeing-theory.brown.edu/frequentist-inference/index.html">here</a>.</p>
 </div>
@@ -1298,7 +1329,7 @@ very unlikely. The 96% bootstrap confidence interval is <span class="math inline
 <p>For the Bayesian approach, we can use the <code>correlationBF</code> function from
 the <code>BayesFactor</code> package. In analogy to the classical test, we can “test” the null hypothesis
 by assuming a prior distribution for the correlation coefficient symmetric around the
-value 0 (slee prior plot below).</p>
+value 0 (see prior plot below).</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="nhst.html#cb215-1" tabindex="-1"></a><span class="fu">library</span>(BayesFactor)</span></code></pre></div>
 <pre><code>## Loading required package: coda</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
@@ -1366,7 +1397,7 @@ value 0 (slee prior plot below).</p>
 <span id="cb224-9"><a href="nhst.html#cb224-9" tabindex="-1"></a>  <span class="at">iterations =</span> <span class="dv">10000</span>    <span class="co"># Number of MCMC iterations</span></span>
 <span id="cb224-10"><a href="nhst.html#cb224-10" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Independent-candidate M-H acceptance rate: 49%</code></pre>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="nhst.html#cb226-1" tabindex="-1"></a><span class="co"># Independent-candidate M-H = Independent-candiate Metropolis-Hastings algorithm</span></span>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="nhst.html#cb226-1" tabindex="-1"></a><span class="co"># Independent-candidate M-H = Independent-candidate Metropolis-Hastings algorithm</span></span>
 <span id="cb226-2"><a href="nhst.html#cb226-2" tabindex="-1"></a></span>
 <span id="cb226-3"><a href="nhst.html#cb226-3" tabindex="-1"></a>posterior_samples <span class="sc">%&gt;%</span></span>
 <span id="cb226-4"><a href="nhst.html#cb226-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rho)) <span class="sc">+</span></span>
@@ -1483,18 +1514,24 @@ merely shifted away from the choice of <span class="math inline">\(\alpha\)</spa
 that if a researcher wants to find statistical significance using <span class="math inline">\(\alpha = 0.05\)</span>,
 they should conduct a test with a large sample size …”</p>
 <p>For the case of equal a priori probability of the <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> and equal consequence
-for both types or errors, the suggest to <a href="https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0032734.g002">choose alpha by minimizing</a></p>
+for both types of errors, they suggest to <a href="https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0032734.g002">choose alpha by minimizing</a></p>
 <p><span class="math display">\[\omega = \frac{\alpha + \beta}{2}.\]</span></p>
 </div>
 <div id="the-frequentist-confidence-interval" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> The frequentist confidence interval<a href="nhst.html#the-frequentist-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>In frequentist statistics, a <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval (CI)</a> is an interval which is expected to
-typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).</strong></p>
+<p><strong>In frequentist statistics, a <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval (CI)</a> is an interval computed by a procedure that, with repeated sampling,
+contains the true but unknown parameter in a certain percentage of the samples (the confidence level).</strong></p>
 <p>It is very important to understand that for every sample, the confidence interval is different and in the long run,
 these intervals will contain the true parameter in a certain percentage of cases.</p>
 <p>This is a <a href="https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg">nice visualization</a>
 of the concept.
 See also <a href="nhst.html#exercise7_nhst">exercise 7</a>.</p>
+<blockquote>
+<p><strong>Try it yourself.</strong> In the animation
+<a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/16_Konfidenzintervalle_frequentistisch.html">Confidence intervals: what “95 %” really means</a>
+each click draws a new sample from a distribution with known true mean and builds a confidence interval.
+The intervals pile up, and you can see how many of them contain the true mean and how many miss it.</p>
+</blockquote>
 <p><strong>1:1 relationship between <span class="math inline">\(p\)</span>-values and confidence intervals:</strong></p>
 <p>There is a 1:1 relationship between “statistical significance” and confidence intervals.</p>
 <ul>
@@ -1505,8 +1542,8 @@ will not contain 0.</p></li>
 <li><p>Example 2: If we test (<span class="math inline">\(\alpha = 0.07\)</span>) the null hypothesis that means of two independent
 populations are equal (<span class="math inline">\(H_1: \mu_1 \ne \mu_2\)</span>), and we get a <span class="math inline">\(p\)</span>-value of 0.0433,
 then the 93% confidence interval for the <strong>difference in means</strong> will not contain 0.</p></li>
-<li><p>Example 3: If we test (<span class="math inline">\(\alpha = 0.05\)</span>) the null hypothesis that the risk ratio for
-lung cancer equas 1 in smokers vs. non-smokers (<span class="math inline">\(H_1: RR \ne 1\)</span>), and we get a
+<li><p>Example 3: If we test (<span class="math inline">\(\alpha = 0.03\)</span>) the null hypothesis that the risk ratio for
+lung cancer equals 1 in smokers vs. non-smokers (<span class="math inline">\(H_1: RR \ne 1\)</span>), and we get a
 <span class="math inline">\(p\)</span>-value of 0.00032, then the 97% confidence interval for the <strong>risk ratio (RR)</strong>
 will not contain 1.</p></li>
 </ul>
@@ -1514,14 +1551,14 @@ will not contain 1.</p></li>
 <div id="simulations-based-approaches" class="section level2 hasAnchor" number="4.8">
 <h2><span class="header-section-number">4.8</span> Simulations based approaches<a href="nhst.html#simulations-based-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Through the power of modern computers, we can simulate all kinds of hypothesis tests.
-We just assume that the null hypothesis is true and draw samples from the very distribution.
+We just assume that the null hypothesis is true and draw samples from that very distribution.
 In the old times, computational resources were scarce and one had to rely on
 <a href="https://digital.library.adelaide.edu.au/server/api/core/bitstreams/21f22d02-4a39-4650-8f09-71434ad02897/content">tables</a>
 that were precalculated.</p>
 <p><a href="https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R">This</a>
 shows you how the correlation coefficient behaves under the null hypothesis (that there is no correlation; <span class="math inline">\(\rho = 0\)</span>).
 This is a very useful tool to understand the behavior of a test statistic under the null hypothesis.
-Of course, the probability that a correlation coefficient is exactly 0 is 0 since it’s a continuous variable,
+Of course, it is hardly plausible that the true correlation is exactly 0,
 but in practice we are interested in “indistinguishable from 0” which is a small value.
 In the Bayesian framework from Kruschke, we defined a region of practical equivalence (ROPE) for this purpose.</p>
 <p><strong>We ask ourselves</strong>: What does my test statistic do <em>if</em> the null hypothesis is true?
@@ -1542,15 +1579,15 @@ Then try to simulate it. This helps to understand what constitutes a qualitative
 <h3><span class="header-section-number">4.9.2</span> Exercise 2 - everything becomes “significant”<a href="nhst.html#exercise2_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setting: two sample <span class="math inline">\(t\)</span>-test. Assume there is a small difference between the means of two groups.
 - Show via simulation that with increasing sample size, the <span class="math inline">\(p\)</span>-value becomes smaller and
-smaller and will be “significant” at some point irresespective of how small the true mean
-difference is and how small the <span class="math inline">\(\alpha-\)</span> level is.</p>
+smaller and will be “significant” at some point irrespective of how small the true mean
+difference is and how small the <span class="math inline">\(\alpha\)</span>-level is.</p>
 </div>
 <div id="exercise3_nhst" class="section level3 hasAnchor" number="4.9.3">
 <h3><span class="header-section-number">4.9.3</span> Exercise 3 - binomial test<a href="nhst.html#exercise3_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Create a sample from a binomial distribution with <span class="math inline">\(n = 54\)</span> and <span class="math inline">\(p = 0.68\)</span>.</li>
 <li>Perform a two-sided binomial test with <span class="math inline">\(H_0: p = 0.5\)</span>.</li>
-<li>Calculate the 90% confidence interval for the sample proportion.</li>
+<li>Calculate the 90% confidence interval for the true proportion.</li>
 <li>Calculate the p-value for the two-sided test by “hand” (using dbinom/pbinom in R).</li>
 </ul>
 </div>
@@ -1597,7 +1634,7 @@ probability of observing a value of 12.6 or larger.</li>
 <h3><span class="header-section-number">4.9.8</span> Exercise 8 - <span class="math inline">\(\chi^2\)</span>-distribution<a href="nhst.html#exercise8_nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <span class="math inline">\(\chi^2\)</span>-distribution is defined as the sum of squared standard normals.</p>
 <ul>
-<li>Very this by simulation in R.</li>
+<li>Verify this by simulation in R.</li>
 <li>Draw 1000 samples of size 3 from a standard normal distribution.</li>
 <li>Calculate the sum of squared values for each sample.</li>
 <li>Do this repeatedly and plot the histogram of the resulting values with the <span class="math inline">\(\chi^2\)</span>-density in the diagram.</li>
@@ -1644,7 +1681,7 @@ x &amp; P(X = x) \\
 <li>Die Wahrscheinlichkeit, dieses Ereignis unter der Annahme der Gültigkeit obiger Verteilung zu beobachten
 ist <span class="math inline">\(10^{-4}\)</span>.</li>
 <li>Unter der Annahme der Gültigkeit obiger Verteilung wäre die Wahrscheinlichkeit mindestens einmal
-<span class="math inline">\(1,2\)</span> oder <span class="math inline">\(3\)</span> zu sehen 99,9%.</li>
+<span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> oder <span class="math inline">\(3\)</span> zu sehen 99,9%.</li>
 <li>Wählt man als Teststatistik die Anzahl der <span class="math inline">\(4\)</span>er in der Stichprobe, so ist die Teststatistik
 unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.</li>
 <li>Über die Stichprobe <span class="math inline">\((1,1,1)\)</span> wäre man weniger überrascht als über die Stichprobe <span class="math inline">\((4,4,4)\)</span>.</li>
@@ -1671,7 +1708,7 @@ unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.</li>
 <li>Es handelt sich um einen zweiseitigen <span class="math inline">\(t\)</span>-Test.</li>
 <li>Aufgrund des <span class="math inline">\(p\)</span>-Wertes würde man in diesem Fall die Nullhypothese nicht verwerfen.</li>
 <li>Die Alternativhypothese lautet: <span class="math inline">\(H_1: \mu_{group\_a} - \mu_{group\_b} &gt; 0\)</span>.</li>
-<li>Die Nullhypothese lautet: <span class="math inline">\(H_0: \mu_{group\_a} = \mu_{group\_b}\)</span>.</li>
+<li>Die Nullhypothese lautet: <span class="math inline">\(H_0: \mu_{group\_a} - \mu_{group\_b} \le 0\)</span>.</li>
 </ul>
 <div class="exam-solutions" data-correct="2,3,4">
 
@@ -1695,7 +1732,7 @@ Hinweis: Nicht den <span class="math inline">\(p\)</span>-Wert mit dem Parameter
 <p>Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?</p>
 <ul>
 <li>Es waren 64 “Erfolge” in 100 Versuchen.</li>
-<li>Die Wahrscheinlichkeit, dass der ware aber unbekannte Parameter p im
+<li>Die Wahrscheinlichkeit, dass der wahre aber unbekannte Parameter p im
 Intervall <span class="math inline">\([0.5317140, 0.7356931]\)</span> liegt, beträgt 97%.</li>
 <li>Die Nullhypothese lautet: <span class="math inline">\(H_0: \text{p} \ge 0.75\)</span>.</li>
 <li>Würde man statt 97% nur 90% wählen, wäre das Intervall breiter.</li>

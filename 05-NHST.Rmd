@@ -35,7 +35,7 @@ Example:
 - **$p$-value**: The $p$-value quantifies the probability of obtaining results (test statistic) as extreme as (or more extreme than) 
 the observed data, assuming that $H_0$ is true. 
 A smaller $p$-value indicates stronger evidence against $H_0$. 
-There are many [misconeptions about $p$-values](https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf).
+There are many [misconceptions about $p$-values](https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf).
 
 - **Significance level $\alpha$**: Researchers set a threshold to determine whether to reject $H_0$. 
 If the $p$-value is smaller than $\alpha$, $H_0$ is rejected in favor of $H_1$.
@@ -96,9 +96,36 @@ point as a limit in judging whether a deviation is to be considered significant 
   After the fact, one should not be surprised *that* someone won, 
   since it follows from the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers).
 
-See [Kruschke](https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf) for more limitations of NHST.
+- **The probabilistic modus tollens**: "If $H_0$ is true, the data follow an expected pattern. The data do not.
+  Therefore $H_0$ is false" is valid logic. Replacing certainty by probability breaks it:
+  "If a person is an American, it is highly unlikely that she is a member of Congress.
+  This person is a member of Congress. Therefore it is highly unlikely that she is an American."
+  A small $P(D \mid H_0)$ does not imply a small $P(H_0 \mid D)$
+  ([Gill 1999](https://doi.org/10.1177/106591299905200309)).
 
-In practice, NHST should at last be accompanied by confidence intervals, 
+- **The inverse probability problem**: The $p$-value is $P(D \mid H_0)$, the probability of the data
+  (or more extreme data) given $H_0$. It is not $P(H_0 \mid D)$, the probability that $H_0$ is true given the data.
+  [Bayes' theorem](#bayes_statistics) links the two: $P(H_0 \mid D) = \frac{P(H_0)}{P(D)} P(D \mid H_0)$.
+  Without the prior $P(H_0)$ we cannot get from one to the other.
+
+- **Low power and replication**: Even with a power of 80%, $p$-values vary strongly from study to study
+  ([Cumming 2008](https://doi.org/10.1111/j.1745-6924.2008.00079.x)). A $p$-value therefore says little
+  about the $p$-value of an exact replication. See the animation
+  [Dance of the p-values](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html).
+
+- **Confidence intervals predict replications better**: About 83% of the estimates of an exact replication
+  fall inside the 95% confidence interval of the first experiment
+  ([Cumming 2008](https://doi.org/10.1111/j.1745-6924.2008.00079.x)). The interval therefore tells us more
+  about what to expect in the future than the $p$-value does. In the animation
+  [The next estimate and the current confidence interval](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/19_CI_naechste_Schaetzung.html)
+  you set the confidence level and check by simulation how often the estimate of a repeated experiment falls inside the first interval.
+
+- **Testing against "no effect"**: NHST tests against a null effect, often one that prior knowledge
+  already considers implausible, and it ignores such outside knowledge.
+
+See [Kruschke](https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf) for more limitations of NHST.
+
+In practice, NHST should at least be accompanied by confidence intervals, 
 effect size calculations, and a focus on clinical relevance to provide 
 a more comprehensive understanding of the results.
 
@@ -109,7 +136,7 @@ This [video](https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal) 
 
 ## Example in the literature
 
-$p$-values are omnipresent in the scientific literature. There rather few papers in our field that do not contain them. 
+$p$-values are omnipresent in the scientific literature. There are rather few papers in our field that do not contain them. 
 We **do not use $p$-values in descriptive tables** 
 (see [here](https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/) and 
 [here](https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1)).
@@ -137,7 +164,7 @@ we would "expect" (around) 40 false positives. We asked, what is the probability
 Under $H_0$, what is the probability to see the observed number (137) of 
 false positives (in our case, this is the test statistic) or more?
 
-The answer was $p = 5.551115 \cdot 10^{-16}$ (or less if one chooses $\theta < 0.04$).
+The answer was $p = 2.3 \cdot 10^{-35}$ (see the first chapter; R prints this as `< 2.2e-16` below, which is just its display limit).
 
 A reasonable person would say, that this result did not happen by chance alone and 
 therefore conclude, the true, but unknown false positive rate $\theta$ is larger than 0.04.
@@ -155,7 +182,7 @@ The output in R tells us the following:
 
 - data: 137 and 1000 successes observed
 - alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
-- $p$-value < $2.2e-16$. This value is smaller than the precision in R (`.Machine').
+- $p$-value < $2.2e-16$. This value is smaller than the precision in R (`.Machine`).
 - 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
   The upper limit of $1$ occurs since we have a one-sided test. 
   95% is just convention and has no special meaning.
@@ -178,13 +205,13 @@ binom.test(137, 1000, p = 0.04, alternative = "two.sided")
 With some experience, one would probably not test for lower when seeing the observed number of 137.
 - 95 percent confidence interval: $0.1162817$ to $0.1598810$.
 
-**Interpretation of this frequentist confidence interval (CI)**: When drawing repeated samples, in 95% percent of the samples,
+**Interpretation of this frequentist confidence interval (CI)**: When drawing repeated samples, in 95% of the samples,
 the so constructed interval (which will be different every time) contains the true but unknown 
 parameter (see Illustration [here](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg),
 animations of the frequentist nature [here](https://seeing-theory.brown.edu/frequentist-inference/index.html)). 
 
 Note, that the "Exact binomial test" was used. There were no approximations made. I would recommend always
-using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21th century and computers are fast.
+using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21st century and computers are fast.
 
 Again, **the $\alpha$ level of $0.05$ has nothing special (apart from convention) to it**. 
 We can also use a $\alpha = 0.14$ level. In this case, we construct confidence intervals 
@@ -285,7 +312,7 @@ the resulting test statistic is (approximately) distributed according to a stand
 
 $$Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \sim N(0, 1).$$
 
-This value squared gives us the value of the test statistic above: $0.36$.
+This value squared gives us the value of the test statistic **without continuity correction** above: $0.36$ (with the correction, R reports $0.25$).
 
 #### Or the same with binomial test
 
@@ -324,12 +351,14 @@ since they always have coverage probability of at least $1 - \alpha$.
   pbinom(47, 100, 0.5685327)
   1-pbinom(46, 100, 0.3731683)
   ```
-  The confidence interval is indeed $0.3739955$ to $0.5681618$.
+  The exact confidence interval is $0.3731683$ to $0.5685327$.
+  (The interval from `prop.test` above, $0.3739955$ to $0.5681618$, is a slightly different, approximate interval.)
 
 
 ### More than one proportion {#proportions_test_more_samples}
 
-$H_0: p_1 = p_2 = p_3 = p_4 = \frac{\sum smokers}{\sum patients} = 0.9370277$. Proportions are equal in all 4 groups.
+$H_0: p_1 = p_2 = p_3 = p_4$. Proportions are equal in all 4 groups. The common value is not specified by $H_0$,
+it is estimated from the pooled data by $\frac{\sum smokers}{\sum patients} = 0.9370277$.
 
 $H_1: \text{At least one of the proportions is different}$
 
@@ -368,9 +397,15 @@ alone and reject the null hypothesis, that all proportions are equal.
 
 - X-squared = 12.6, df = 3. The test statistic is distributed according to a $\chi^2$ distribution 
 with 3 [degrees of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)).
-See also [exercise 5](#exercise5_nhst).  Three degrees of freedom since we know the last component of the 
-test statistic when 3 out of 4 are given. 
-Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.
+See also [exercise 5](#exercise5_nhst).
+
+  It is not easy to describe what degrees of freedom really are. The common phrase "the number of values that are free to vary"
+  is only a rough picture. A geometric explanation is given in this video series by Sam Levey
+  ([1](https://www.youtube.com/watch?v=VDlnuO96p58), [2](https://www.youtube.com/watch?v=8e9aDMXRRlc),
+  [3](https://www.youtube.com/watch?v=ExQJQPF_Fpk), [4](https://www.youtube.com/watch?v=hsZw9hJspTY)).
+  For now, remember this: the degrees of freedom are a **parameter of the distribution of the test statistic under $H_0$**,
+  and we can determine it from the setting. Here, the data form a $4 \times 2$ table (smokers and non-smokers in 4 groups),
+  and $df = (4-1)(2-1) = 3$.
 
 **The $p$-value is calculated quickly:**
 ```{r}
@@ -443,7 +478,7 @@ $\frac{86 \cdot 25}{397} = \frac{86}{397} \cdot \frac{25}{397} \cdot 397 = 5.415
 These are the expected values in this cell, 
 if one would assume that the proportion of smokers does not depend on the group.
 Hence, one just multiplies the column ($86/397$) and row ($25/397$) proportions
-and multiples with the grand total ($397$) to get the absolute number of observations
+and multiplies with the grand total ($397$) to get the absolute number of observations
 in each cell under $H_0$.
 
 ### Fisher's exact test
@@ -501,7 +536,7 @@ ggboxplot(my_data$weight,
           ylab = "Weight (g)", xlab = FALSE,
           ggtheme = theme_minimal())
 
-ggqqplot(my_data$weight, ylab = "Men's weight",
+ggqqplot(my_data$weight, ylab = "Mouse weight (g)",
          ggtheme = theme_minimal())
 
 t.test(my_data$weight, mu = 25,
@@ -514,7 +549,7 @@ t.test(my_data$weight, mu = 25,
        alternative = "greater", conf.level = 0.94)
 ```
 
-Let' verify the test statistic by "hand" for the two-sided test:
+Let's verify the test statistic by "hand" for the two-sided test:
 
 $$t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}}$$
 
@@ -539,14 +574,14 @@ This matches the output of the `t.test` function in R.
 **[Assumptions of the $t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test#Assumptions)**:
 
 You will often see that researchers check if the *data* is normally distributed. 
-This is not strictly necessary. Merely $\bar{X}$ must be normally distributed, which is
+This is not strictly necessary. Merely $\bar{X}$ (instead of the raw data) must be normally distributed, which is
 often guaranteed by the 
 [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) for a 
 large enough sample size $n$.
 
 **IF the data is normally distributed, then $\bar{X}$ is exactly normally distributed**. 
 This is always true 
-and the reason for testing for normality of the data.
+and is probably the reason for testing for normality of the data.
 
 Another assumption is that $\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}$
 
@@ -632,14 +667,17 @@ data.frame(y = c(y1, y2), group = c(rep(1, 8), rep(2, 8))) %>%
 t.test(y1, y2, conf.level = 0.93)
 ```
 
-- The test statistic is a $t$-distribution with $13.928$ degrees of freedom (under $H_0$).
+- The test statistic follows a $t$-distribution with $13.928$ degrees of freedom (under $H_0$).
+  The non-integer value comes from the Welch correction: by default, `t.test` does not assume equal variances
+  in the two groups ("Welch Two Sample t-test"). With `var.equal = TRUE` one gets the classical pooled test
+  with $n_1 + n_2 - 2 = 14$ degrees of freedom and $p = 0.04624$, here almost the same.
 - The value of the test statistic is $2.1867$.
 - $H_0: \mu_1 = \mu_2$. The group means are equal.
 - $H_1: \mu_1 \ne \mu_2$. The group means are different.
 - $p$-value $= 0.04634$. In the classical framework, 
   this would be considered "significant" at the $\alpha = 0.05$ level 
   and one would reject the null hypothesis and accept the alternative hypothesis.
-  **In the Baysian framework, we abstained from making a decision**.
+  **In the Bayesian framework, we abstained from making a decision**.
 - 93% confidence interval for the difference in means is rather wide: 
   $12.55847$ to $232.44153$.
 
@@ -657,47 +695,47 @@ t.test(y1, y2, conf.level = 0.93)
 library(ggplot2)
 
 # Define degrees of freedom
-df <- 13.928
+df_t <- 13.928
 
-# Define the range for x and the critical t-values
+# Define the range for x and the observed t-value
 x <- seq(-4, 4, length.out = 500)
-critical_t <- 2.1867
+t_obs <- 2.1867
 
 # Create a data frame with x and corresponding density values
 t_dist <- data.frame(
   x = x,
-  density = dt(x, df)
+  density = dt(x, df_t)
 )
 
 # Plot the t-distribution with shaded tail areas
 ggplot(t_dist, aes(x = x, y = density)) +
   # Add the main t-distribution curve
   geom_line(linewidth = 1, color = "blue") +
-  # Add shaded areas below the curve outside the critical t-values
+  # Add shaded areas below the curve beyond the observed t-value
   geom_ribbon(
-    data = subset(t_dist, x < -critical_t),
+    data = subset(t_dist, x < -t_obs),
     aes(ymin = 0, ymax = density),
     fill = "red",
     alpha = 0.3
   ) +
   geom_ribbon(
-    data = subset(t_dist, x > critical_t),
+    data = subset(t_dist, x > t_obs),
     aes(ymin = 0, ymax = density),
     fill = "red",
     alpha = 0.3
   ) +
-  # Add vertical lines for the critical t-values
-  geom_vline(xintercept = c(-critical_t, critical_t),
+  # Add vertical lines for the observed t-value
+  geom_vline(xintercept = c(-t_obs, t_obs),
              linetype = "dashed", color = "black") +
-  # Annotate the critical t-values
-  annotate("text", x = -critical_t, y = 0.05,
-           label = paste0("-t = ", critical_t), angle = 90, vjust = -0.5) +
-  annotate("text", x = critical_t, y = 0.05,
-           label = paste0("t = ", critical_t), angle = 90, vjust = -0.5) +
+  # Annotate the observed t-value
+  annotate("text", x = -t_obs, y = 0.05,
+           label = paste0("-t = ", t_obs), angle = 90, vjust = -0.5) +
+  annotate("text", x = t_obs, y = 0.05,
+           label = paste0("t = ", t_obs), angle = 90, vjust = -0.5) +
   # Add labels and style
   labs(
-    title = "t-Distribution with Shaded Critical Areas (Two-Sided Test)",
-    subtitle = paste("Degrees of Freedom:", df),
+    title = "t-Distribution with Shaded Tail Areas Beyond the Observed t (Two-Sided Test)",
+    subtitle = paste("Degrees of Freedom:", df_t),
     x = "t",
     y = "Density"
   ) +
@@ -708,7 +746,7 @@ ggplot(t_dist, aes(x = x, y = density)) +
   )
 
 # p-value manually:
-pt(-2.1867, df) * 2
+pt(-2.1867, df_t) * 2
 ```
 
 The plot shows the $t$-distribution. Marked in red are the areas where the test statistic 
@@ -735,10 +773,9 @@ i.e. the true difference between pre- and post weight is on average smaller than
 
 $H_1: \mu_D > \mu_0 = 5~kg$. Participants lost more than 5 kg on average.
 
-Aussumptions for the paired $t$-test:
+Assumptions for the paired $t$-test:
 - Interval or ratio scale
 - The differences are independent of each other
-- 
 
 Let's create some data and perform the test:
 
@@ -834,7 +871,7 @@ The correlation might therefore be a useful measure to describe the relationship
 
 - t is the $t$-test statistic value (t = -9.559),
 - df is the degrees of freedom (df= 30),
-- $p$-value of the $t$-test ($p$-value = $1.29410^{-10}$).
+- $p$-value of the $t$-test ($p$-value = $1.294 \cdot 10^{-10}$).
 - conf.int is the confidence interval of the correlation coefficient at 96% (conf.int = $[-0.9360192, -0.7362129]$)
   This is what is most interesting to us and should be interpreted in the context of the data.
 - sample estimates is the correlation coefficient ($r = -0.87$).
@@ -888,7 +925,7 @@ quantile(cors, c(0.02, 0.5, 0.98)) # 96% confidence interval
 ```
 
 We used the variability **contained in the data** to estimate the variability of 
-the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
+the correlation coefficient. As you can see in the histogram, correlations close to 0 are
 very unlikely. The 96% bootstrap confidence interval is $[-0.926, -0.782]$.
 
 You can also study the nice animation of the bootstrap [here](https://seeing-theory.brown.edu/frequentist-inference/index.html).
@@ -898,7 +935,7 @@ You can also study the nice animation of the bootstrap [here](https://seeing-the
 For the Bayesian approach, we can use the `correlationBF` function from 
 the `BayesFactor` package. In analogy to the classical test, we can "test" the null hypothesis
 by assuming a prior distribution for the correlation coefficient symmetric around the 
-value 0 (slee prior plot below).
+value 0 (see prior plot below).
 
 ```{r}
 library(BayesFactor)
@@ -950,7 +987,7 @@ posterior_samples <- correlationBF(
   posterior = TRUE,     # Get posterior samples
   iterations = 10000    # Number of MCMC iterations
 )
-# Independent-candidate M-H = Independent-candiate Metropolis-Hastings algorithm
+# Independent-candidate M-H = Independent-candidate Metropolis-Hastings algorithm
 
 posterior_samples %>%
 ggplot(aes(x = rho)) +
@@ -1049,7 +1086,7 @@ that if a researcher wants to find statistical significance using $\alpha = 0.05
 they should conduct a test with a large sample size ..."
 
 For the case of equal a priori probability of the $H_0$ and $H_1$ and equal consequence 
-for both types or errors, the suggest to [choose alpha by minimizing](https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0032734.g002)
+for both types of errors, they suggest to [choose alpha by minimizing](https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0032734.g002)
 
 $$\omega = \frac{\alpha + \beta}{2}.$$
 
@@ -1057,8 +1094,8 @@ $$\omega = \frac{\alpha + \beta}{2}.$$
 
 ## The frequentist confidence interval
 
-**In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval which is expected to 
-typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).**
+**In frequentist statistics, a [confidence interval (CI)](https://en.wikipedia.org/wiki/Confidence_interval) is an interval computed by a procedure that, with repeated sampling, 
+contains the true but unknown parameter in a certain percentage of the samples (the confidence level).**
 
 It is very important to understand that for every sample, the confidence interval is different and in the long run,
 these intervals will contain the true parameter in a certain percentage of cases.
@@ -1066,6 +1103,11 @@ these intervals will contain the true parameter in a certain percentage of cases
 This is a [nice visualization](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg) 
 of the concept.
 See also [exercise 7](#exercise7_nhst).
+
+> **Try it yourself.** In the animation
+> [Confidence intervals: what "95 %" really means](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/16_Konfidenzintervalle_frequentistisch.html)
+> each click draws a new sample from a distribution with known true mean and builds a confidence interval.
+> The intervals pile up, and you can see how many of them contain the true mean and how many miss it.
 
 **1:1 relationship between $p$-values and confidence intervals:**
 
@@ -1080,15 +1122,15 @@ There is a 1:1 relationship between "statistical significance" and confidence in
   populations are equal ($H_1: \mu_1 \ne \mu_2$), and we get a $p$-value of 0.0433, 
   then the 93% confidence interval for the **difference in means** will not contain 0.
 
-- Example 3: If we test ($\alpha = 0.05$) the null hypothesis that the risk ratio for 
-  lung cancer equas 1 in smokers vs. non-smokers ($H_1: RR \ne 1$), and we get a 
+- Example 3: If we test ($\alpha = 0.03$) the null hypothesis that the risk ratio for 
+  lung cancer equals 1 in smokers vs. non-smokers ($H_1: RR \ne 1$), and we get a 
   $p$-value of 0.00032, then the 97% confidence interval for the **risk ratio (RR)** 
   will not contain 1.
 
 ## Simulations based approaches
 
 Through the power of modern computers, we can simulate all kinds of hypothesis tests. 
-We just assume that the null hypothesis is true and draw samples from the very distribution.
+We just assume that the null hypothesis is true and draw samples from that very distribution.
 In the old times, computational resources were scarce and one had to rely on 
 [tables](https://digital.library.adelaide.edu.au/server/api/core/bitstreams/21f22d02-4a39-4650-8f09-71434ad02897/content)
 that were precalculated. 
@@ -1096,7 +1138,7 @@ that were precalculated.
 [This](https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R)
 shows you how the correlation coefficient behaves under the null hypothesis (that there is no correlation; $\rho = 0$).
 This is a very useful tool to understand the behavior of a test statistic under the null hypothesis.
-Of course, the probability that a correlation coefficient is exactly 0 is 0 since it's a continuous variable,
+Of course, it is hardly plausible that the true correlation is exactly 0,
 but in practice we are interested in "indistinguishable from 0" which is a small value. 
 In the Bayesian framework from Kruschke, we defined a region of practical equivalence (ROPE) for this purpose.
 
@@ -1116,14 +1158,14 @@ Then try to simulate it. This helps to understand what constitutes a qualitative
 
 Setting: two sample $t$-test. Assume there is a small difference between the means of two groups.
 - Show via simulation that with increasing sample size, the $p$-value becomes smaller and 
-smaller and will be "significant" at some point irresespective of how small the true mean 
-difference is and how small the $\alpha-$ level is.
+smaller and will be "significant" at some point irrespective of how small the true mean 
+difference is and how small the $\alpha$-level is.
 
 ### Exercise 3 - binomial test {#exercise3_nhst}
 
 - Create a sample from a binomial distribution with $n = 54$ and $p = 0.68$.
 - Perform a two-sided binomial test with $H_0: p = 0.5$.
-- Calculate the 90% confidence interval for the sample proportion.
+- Calculate the 90% confidence interval for the true proportion.
 - Calculate the p-value for the two-sided test by "hand" (using dbinom/pbinom in R).
 
 ### Exercise 4 - proportions test {#exercise4_nhst}
@@ -1159,7 +1201,7 @@ difference is and how small the $\alpha-$ level is.
 
 The $\chi^2$-distribution is defined as the sum of squared standard normals. 
 
-- Very this by simulation in R.
+- Verify this by simulation in R.
 - Draw 1000 samples of size 3 from a standard normal distribution.
 - Calculate the sum of squared values for each sample.
 - Do this repeatedly and plot the histogram of the resulting values with the $\chi^2$-density in the diagram.
@@ -1204,7 +1246,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 - Die Wahrscheinlichkeit, dieses Ereignis unter der Annahme der Gültigkeit obiger Verteilung zu beobachten
   ist $10^{-4}$.
 - Unter der Annahme der Gültigkeit obiger Verteilung wäre die Wahrscheinlichkeit mindestens einmal 
-  $1,2$ oder $3$ zu sehen 99,9%.
+  $1$, $2$ oder $3$ zu sehen 99,9%.
 - Wählt man als Teststatistik die Anzahl der $4$er in der Stichprobe, so ist die Teststatistik 
   unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.
 - Über die Stichprobe $(1,1,1)$ wäre man weniger überrascht als über die Stichprobe $(4,4,4)$.
@@ -1228,7 +1270,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 - Es handelt sich um einen zweiseitigen $t$-Test.
 - Aufgrund des $p$-Wertes würde man in diesem Fall die Nullhypothese nicht verwerfen.
 - Die Alternativhypothese lautet: $H_1: \mu_{group\_a} - \mu_{group\_b} > 0$.
-- Die Nullhypothese lautet: $H_0: \mu_{group\_a} = \mu_{group\_b}$.
+- Die Nullhypothese lautet: $H_0: \mu_{group\_a} - \mu_{group\_b} \le 0$.
 
 <div class="exam-solutions" data-correct="2,3,4"></div>
 
@@ -1251,7 +1293,7 @@ prop.test(x = x, n = n,
 Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
 - Es waren 64 "Erfolge" in 100 Versuchen.
-- Die Wahrscheinlichkeit, dass der ware aber unbekannte Parameter p im 
+- Die Wahrscheinlichkeit, dass der wahre aber unbekannte Parameter p im 
   Intervall $[0.5317140, 0.7356931]$ liegt, beträgt 97%.
 - Die Nullhypothese lautet: $H_0: \text{p} \ge 0.75$.
 - Würde man statt 97% nur 90% wählen, wäre das Intervall breiter.

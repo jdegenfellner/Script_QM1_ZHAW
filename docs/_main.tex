@@ -2005,6 +2005,10 @@ not be able to tell if the data stems from a normal distribution.
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
 the Shapiro test would not reject the null hypothesis of normality in this case.
 
+Note the factor \(\frac{1}{n-1}\) instead of \(\frac{1}{n}\) in the sample standard deviation above.
+Why we divide by \(n-1\) can be explained geometrically with the Pythagorean theorem.
+This \href{https://www.youtube.com/watch?v=8e9aDMXRRlc}{video} shows how.
+
 Let's try the Shapiro test with a \(t\)-distribution with 3 degrees of freedom, which is not normal:
 
 \begin{Shaded}
@@ -3167,7 +3171,7 @@ In fact, it is arbitrarily small the smaller the prevalence is.
 For \(\mathbb{P}(Dpos)=0\), we have \(\mathbb{P}(Dpos|Tpos) = \frac{0}{0 + \mathbb{P}(Tpos|Dneg) \cdot 1} = 0\),
 assuming that there can still be false positive test results: \(\mathbb{P}(Tpos|Dneg) > 0\).
 
-We could easily image that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
+We could easily imagine that there are not only two states reported by a test. Maybe, it is a more sophisticated test reporting 3 or 4 states.
 
 We would just extend the denominator accordingly
 (e.g., for a 3-state test with labels \(T_1, T_2, T_3\), where \(T_3\) indicates a high concentration of some component):
@@ -3193,12 +3197,12 @@ For instance, in the case of a coin toss, the distribution is straightforward: t
 heads and tails, with corresponding probabilities \(\theta\) and \(1-\theta\).
 For more complex scenarios, such as measuring the height of a randomly chosen individual,
 the distribution is less straightforward. Here, each possible height, say 172 cm or 181 cm,
-is assigned a probability as we have discussed in the context of the normal distribution and continuous distributions
-in general.
+is assigned a probability density as we have discussed in the context of the normal distribution and continuous distributions
+in general. Probabilities are then areas under the density, for instance \(P(170 \le \text{height} \le 175)\).
 
 \section{Examples}\label{examples}
 
-We have jumped into the deep end right away with exercise 2 in the previous chapter. Let's now look at some more examples to get a feeling for
+We have jumped into the deep end right away with \hyperref[exercise2]{Exercise 2} (Bayes-teaser) in the chapter on probability. Let's now look at some more examples to get a feeling for
 how the Bayes theorem works.
 
 \subsection{Example 1 - defective products}\label{example_defective_products}
@@ -3373,7 +3377,7 @@ R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/m
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-39-1.pdf}}
 
 \textbf{Interpretation}: The 93\% HDI for the posterior distribution of \(\theta\) is \([0.25, 0.51]\).
-With a probability of 93\%, the defect rate is between 25\% and 55\%, given our prior
+With a probability of 93\%, the defect rate is between 25\% and 51\%, given our prior
 beliefs and the observed data.
 
 Note that the HDI does not necessarily have to be symmetric around the peak
@@ -3381,7 +3385,7 @@ of the distribution.
 
 There could be, for instance, two peaks in the distribution, as you can see
 \href{https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png}{here} for instance.
-In that case, the HDI would consist of two intervals. One could readily image
+In that case, the HDI would consist of two intervals. One could readily imagine
 a real life case for such a distribution:
 
 Think of a group of people where the
@@ -3391,7 +3395,7 @@ probably be bimodal showing two peaks for the two groups.
 
 There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.
-If the distribution is symmetric, the quantiles are symmetric around the peak of the distribution
+If the distribution is symmetric and has a single peak (unimodal), the quantiles are symmetric around the peak of the distribution
 and the HDI is the same as the quantile-based credible interval.
 
 A \href{https://en.wikipedia.org/wiki/Credible_interval}{credible interval}
@@ -3425,17 +3429,17 @@ and model building is a creative process and - if you want to go so far - an art
 \textbf{Statistics is difficult and beautiful - in that order}.
 
 Unfortunately, it is not completely trivial to apply the Bayesian \(t\)-test,
-as opposte to the Frequentist \(t\)-test,
+as opposed to the Frequentist \(t\)-test,
 which constitutes one line of code in R.
 
-We'll use the not anymore maintained R package \href{https://cran.r-project.org/web/packages/BEST/index.html}{BEST}
+We'll use the no longer maintained R package \href{https://cran.r-project.org/web/packages/BEST/index.html}{BEST}
 for a nice illustration. Later, we will use more up-to-date packages like \href{https://cran.r-project.org/web/packages/brms/index.html}{brms}
 or \href{https://github.com/rmcelreath/rethinking}{rethinking} for modeling.
 
 \subsection{\texorpdfstring{Example - Bayesian \(t\)-test}{Example - Bayesian t-test}}\label{example---bayesian-t-test}
 
 For an explanation of the statistical model behind the Bayesian \(t\)-test,
-visit \href{https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf}{Kruschke's paper}, Figure 2.
+visit \href{https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf}{Kruschke's paper}, Figure 2.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3519,6 +3523,7 @@ For this, we will apply the R function \texttt{BESTmcmc} from the package \textt
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{33443}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(pacman)}
 \FunctionTok{p\_load}\NormalTok{(HDInterval, BEST, tictoc, psych, tidyverse)}
 \CommentTok{\# H\_0: mue1 {-} mue2 = delta\_0}
 \NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{20} \CommentTok{\# ROPE (region of practical equivalence)}
@@ -3552,7 +3557,7 @@ The plot shows the posterior distribution of the difference between the means of
   With the parameter \texttt{which\ =\ "mean"}, we are interested in the \textbf{posterior distribution of
   difference of the means} (\(\mu_1 - \mu_2\)). We see a full probability distribution again.
 \item
-  The parameter \texttt{compVal\ =\ d\_0} is the value we want to compare the posterior distribution to. Here We
+  The parameter \texttt{compVal\ =\ d\_0} is the value we want to compare the posterior distribution to. Here we
   chose delta\_0 = 0, which means that we want to know if the difference between the means is
   different from zero.
 \item
@@ -3583,19 +3588,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.550 130.816 128.060   93   34.9523 228.08                  
-## mu2         6.182   5.735   3.402   93  -85.2121  93.73                  
-## muDiff    124.368 124.793 120.616   93   -7.7461 256.65       0      95.6
-## sigma1    139.981 128.391 113.891   93   66.2355 226.68                  
-## sigma2    129.667 119.330 104.766   93   62.0248 209.14                  
-## sigmaDiff  10.314   8.627   4.605   93 -114.7509 139.44       0      56.6
-## nu         34.339  25.665   9.746   93    1.1073  83.04                  
-## log10nu     1.379   1.409   1.445   93    0.6524   2.05                  
-## effSz       0.966   0.958   0.974   93   -0.0802   1.99       0      95.6
+## mu1       131.098 130.945 131.497   93   34.4462 228.09                  
+## mu2         6.164   5.968   3.558   93  -82.2278  97.40                  
+## muDiff    124.934 124.863 122.594   93   -5.9261 259.27       0      95.8
+## sigma1    139.281 128.273 114.615   93   66.0998 224.25                  
+## sigma2    130.396 119.384 103.346   93   60.2951 209.33                  
+## sigmaDiff   8.885   8.433   8.673   93 -116.4027 137.55       0      56.3
+## nu         34.365  25.774   9.523   93    1.0888  83.67                  
+## log10nu     1.378   1.411   1.534   93    0.6676   2.07                  
+## effSz       0.967   0.959   0.986   93   -0.0614   2.02       0      95.8
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.44
+## muDiff        -20       20    4.43
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3607,7 +3612,7 @@ We can do more:
 If you look at the row ``muDiff'' and the column ``\%\textgreater compVal''. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
 \textasciitilde95\%, the difference between the means is greater than 0. This is nice but not the whole story.
-The true difference can by greater than 0, but still rather small and clinically irrelevant.
+The true difference can be greater than 0, but still rather small and clinically irrelevant.
 
 Would we conclude that the two groups differ in their means?
 According to \href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke} (p.336):
@@ -3620,8 +3625,9 @@ This is not the case here. We would not conclude, that the means between the gro
 One could argue, that this rule seems rather strict considering, that \textasciitilde95\% of the
 posterior distribution of the differences is greater than 0.
 
-As opposed to the Frequentist \(t\)-test, we can also \textbf{affirm the null hypothesis},
-that the means in the two groups are equal. This is a nice feature of the Bayesian \(t\)-test.
+As opposed to the Frequentist \(t\)-test, we can also find evidence for \textbf{practical equivalence},
+that is, that the means in the two groups are practically the same (not exactly equal).
+This is a nice feature of the Bayesian \(t\)-test.
 
 \textbf{``A parameter value is declared to be accepted for practical purposes if that value's
 ROPE completely contains the X\% HDI of the posterior of that parameter.''}
@@ -3654,7 +3660,7 @@ What have we learned so far:
   Analysis if two groups differ in their means or have the same mean \hyperref[bayesian_t_test]{Example about the Bayesian t-test}
 \end{itemize}
 
-Latest in QM2, we will do Bayesian regression analysis using packages like \texttt{brms} from
+At the latest in QM2, we will do Bayesian regression analysis using packages like \texttt{brms} from
 \href{https://www.tu-dortmund.de/universitaet/neuberufene-professorinnen/prof-paul-christian-buerkner/}{Paul Bürkner} or
 \texttt{rethinking} from \href{https://www.eva.mpg.de/ecology/staff/richard-mcelreath/}{Richard McElreath}.
 
@@ -3692,7 +3698,7 @@ Some of these cases can be solved analytically, like the coin toss example. One 
 exactly. \textbf{We are mainly interested in simulation-based results, since we are practitioners}.
 
 In the Bayesian \(t\)-test, we had two groups and the difference of their means. Behind the scenes there were already more than two parameters
-estimated (see Figure 2 \href{https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf}{here}).
+estimated (see Figure 2 \href{https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf}{here}).
 Here lies the computational bottleneck of Bayesian statistics. The more parameters we have, the more complex the parameter space becomes.
 In order to estimate the posterior distribution, we have to sample from the parameter space by walking through intelligently.
 This can be computationally intensive.
@@ -3717,7 +3723,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
   \textbf{No \(p\)-values}: We do not need to rely on \(p\)-values and NHST (Null Hypothesis Significance Testing).
   John Kruschke points out many problems with
   NHST in his \href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{book} and
-  \href{https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf}{article}. It seems that for many practinioners, \(p\)-values are
+  \href{https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf}{article}. It seems that for many practitioners, \(p\)-values are
   hard to understand and interpret correctly. There are many
   \href{https://www.sciencedirect.com/science/article/abs/pii/S0037196308000620}{misconceptions about \(p\)-values}.
   And one should definitely
@@ -3795,13 +3801,13 @@ every value between 0 and 1 is equally likely:
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-43-1.pdf}}
 
-Notize, that the area under the curve is 1, since it is a probability density function.
+Note that the area under the curve is 1, since it is a probability density function.
 For example, \(\mathbb{P}(\theta \in (0.25,0.75)) = 0.5\)
 
 \begin{itemize}
 \tightlist
 \item
-  Experiment 1 one shows that the therapy works in 17 out of 50 cases.
+  Experiment 1 shows that the therapy works in 17 out of 50 cases.
 \item
   Experiment 2 shows that the therapy works in 23 out of 50 cases.
 \end{itemize}
@@ -3843,24 +3849,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.01 sec elapsed
+## 1.011 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.712  0.705  0.603   93 -0.552  1.989                          
-## mu2        2.302  2.297  2.306   93  0.894  3.738                          
-## muDiff    -1.590 -1.587 -1.556   93 -3.516  0.305       0      6.19    -1.8
-## sigma1     2.043  1.924  1.763   93  1.097  3.100                          
-## sigma2     2.308  2.171  1.984   93  1.258  3.513                          
-## sigmaDiff -0.265 -0.244 -0.192   93 -1.952  1.423       0     37.45        
-## nu        35.875 27.203 11.707   93  1.491 86.171                          
-## log10nu    1.408  1.435  1.484   93  0.727  2.072                          
-## effSz     -0.751 -0.746 -0.777   93 -1.646  0.137       0      6.19        
+## mu1        0.716  0.713  0.747   93 -0.512  2.017                          
+## mu2        2.305  2.302  2.300   93  0.911  3.758                          
+## muDiff    -1.589 -1.592 -1.574   93 -3.544  0.254       0      6.19    -1.8
+## sigma1     2.042  1.923  1.737   93  1.110  3.132                          
+## sigma2     2.309  2.174  2.024   93  1.277  3.522                          
+## sigmaDiff -0.267 -0.242 -0.204   93 -1.964  1.424       0     37.45        
+## nu        36.070 27.543 11.125   93  1.459 86.069                          
+## log10nu    1.411  1.440  1.510   93  0.729  2.071                          
+## effSz     -0.749 -0.746 -0.733   93 -1.638  0.138       0      6.19        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -3876,13 +3882,14 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 \begin{itemize}
 \tightlist
 \item
-  -1.59 ist eine (aufgrund des Bayes \(t\)-tests) plausible Schätzung für die
+  Ungefähr -1.6 ist eine (aufgrund des Bayes \(t\)-tests) plausible Schätzung für die
   Differenz der Mittelwerte der beiden Gruppen.
 \item
   Wäre die ROPE halb so groß, würde die Testentscheidung anders ausfallen.
 \item
-  93\% der posterior Verteilung der Differenz der Mittelwerte liegt
-  im Interval \([-3.48, 0.298]\).
+  93\% der Posterior-Verteilung der Differenz der Mittelwerte liegt
+  im Intervall von ungefähr \(-3.5\) bis \(0.3\) (die Nachkommastellen
+  schwanken von Lauf zu Lauf).
 \item
   Die Testentscheidung lautet: ``Die Mittelwerte der beiden Gruppen sind nicht gleich.''
 \end{itemize}
@@ -3923,7 +3930,7 @@ Welche der folgenden Aussagen ist/sind korrekt (0-4 korrekte Antworten)?
 \item
   Die a priori Wahrscheinlichkeit, dass der Fehleranteil \(0.02\) beträgt, ist \(0.02\).
 \item
-  Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Interval \([0.02, 0.08]\) liegt, ist 0.
+  Die a priori Wahrscheinlichkeit, dass der Fehleranteil im (geschlossenen) Intervall \([0.02, 0.08]\) liegt, ist 0.
 \item
   Hier handelt es sich um eine diskrete a priori Verteilung und man untersucht lediglich, welcher
   der beiden Fehleranteile wahrscheinlicher ist.
@@ -3978,7 +3985,7 @@ proves the hypothesis wrong.
   \textbf{\(p\)-value}: The \(p\)-value quantifies the probability of obtaining results (test statistic) as extreme as (or more extreme than)
   the observed data, assuming that \(H_0\) is true.
   A smaller \(p\)-value indicates stronger evidence against \(H_0\).
-  There are many \href{https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf}{misconeptions about \(p\)-values}.
+  There are many \href{https://sixsigmadsi.com/wp-content/uploads/2020/10/A-Dirty-Dozen-Twelve-P-Value-Misconceptions.pdf}{misconceptions about \(p\)-values}.
 \item
   \textbf{Significance level \(\alpha\)}: Researchers set a threshold to determine whether to reject \(H_0\).
   If the \(p\)-value is smaller than \(\alpha\), \(H_0\) is rejected in favor of \(H_1\).
@@ -4049,11 +4056,38 @@ proves the hypothesis wrong.
   Swiss lottery is rather small and I would take a large bet against it. But every week, someone wins (approximately).
   After the fact, one should not be surprised \emph{that} someone won,
   since it follows from the \href{https://en.wikipedia.org/wiki/Law_of_large_numbers}{law of large numbers}.
+\item
+  \textbf{The probabilistic modus tollens}: ``If \(H_0\) is true, the data follow an expected pattern. The data do not.
+  Therefore \(H_0\) is false'' is valid logic. Replacing certainty by probability breaks it:
+  ``If a person is an American, it is highly unlikely that she is a member of Congress.
+  This person is a member of Congress. Therefore it is highly unlikely that she is an American.''
+  A small \(P(D \mid H_0)\) does not imply a small \(P(H_0 \mid D)\)
+  (\href{https://doi.org/10.1177/106591299905200309}{Gill 1999}).
+\item
+  \textbf{The inverse probability problem}: The \(p\)-value is \(P(D \mid H_0)\), the probability of the data
+  (or more extreme data) given \(H_0\). It is not \(P(H_0 \mid D)\), the probability that \(H_0\) is true given the data.
+  \hyperref[bayes_statistics]{Bayes' theorem} links the two: \(P(H_0 \mid D) = \frac{P(H_0)}{P(D)} P(D \mid H_0)\).
+  Without the prior \(P(H_0)\) we cannot get from one to the other.
+\item
+  \textbf{Low power and replication}: Even with a power of 80\%, \(p\)-values vary strongly from study to study
+  (\href{https://doi.org/10.1111/j.1745-6924.2008.00079.x}{Cumming 2008}). A \(p\)-value therefore says little
+  about the \(p\)-value of an exact replication. See the animation
+  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html}{Dance of the p-values}.
+\item
+  \textbf{Confidence intervals predict replications better}: About 83\% of the estimates of an exact replication
+  fall inside the 95\% confidence interval of the first experiment
+  (\href{https://doi.org/10.1111/j.1745-6924.2008.00079.x}{Cumming 2008}). The interval therefore tells us more
+  about what to expect in the future than the \(p\)-value does. In the animation
+  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/19_CI_naechste_Schaetzung.html}{The next estimate and the current confidence interval}
+  you set the confidence level and check by simulation how often the estimate of a repeated experiment falls inside the first interval.
+\item
+  \textbf{Testing against ``no effect''}: NHST tests against a null effect, often one that prior knowledge
+  already considers implausible, and it ignores such outside knowledge.
 \end{itemize}
 
-See \href{https://www.krigolsonteaching.com/uploads/4/3/8/4/43848243/kruschke2012jepg.pdf}{Kruschke} for more limitations of NHST.
+See \href{https://gwern.net/doc/statistics/bayes/2012-kruschke.pdf}{Kruschke} for more limitations of NHST.
 
-In practice, NHST should at last be accompanied by confidence intervals,
+In practice, NHST should at least be accompanied by confidence intervals,
 effect size calculations, and a focus on clinical relevance to provide
 a more comprehensive understanding of the results.
 
@@ -4064,7 +4098,7 @@ This \href{https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal}{vi
 
 \section{Example in the literature}\label{example-in-the-literature}
 
-\(p\)-values are omnipresent in the scientific literature. There rather few papers in our field that do not contain them.
+\(p\)-values are omnipresent in the scientific literature. There are rather few papers in our field that do not contain them.
 We \textbf{do not use \(p\)-values in descriptive tables}
 (see \href{https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/}{here} and
 \href{https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1}{here}).
@@ -4097,7 +4131,7 @@ we would ``expect'' (around) 40 false positives. We asked, what is the probabili
 Under \(H_0\), what is the probability to see the observed number (137) of
 false positives (in our case, this is the test statistic) or more?
 
-The answer was \(p = 5.551115 \cdot 10^{-16}\) (or less if one chooses \(\theta < 0.04\)).
+The answer was \(p = 2.3 \cdot 10^{-35}\) (see the first chapter; R prints this as \texttt{\textless{}\ 2.2e-16} below, which is just its display limit).
 
 A reasonable person would say, that this result did not happen by chance alone and
 therefore conclude, the true, but unknown false positive rate \(\theta\) is larger than 0.04.
@@ -4136,7 +4170,7 @@ The output in R tells us the following:
 \item
   alternative hypothesis: true probability of success is greater than 0.04, which we assume afterwards.
 \item
-  \(p\)-value \textless{} \(2.2e-16\). This value is smaller than the precision in R (`.Machine').
+  \(p\)-value \textless{} \(2.2e-16\). This value is smaller than the precision in R (\texttt{.Machine}).
 \item
   95 percent confidence interval: \(0.1194241\) to \(1.0000000\).
   The upper limit of \(1\) occurs since we have a one-sided test.
@@ -4188,13 +4222,13 @@ One could argue that this is bad style, since we should probably know the direct
   95 percent confidence interval: \(0.1162817\) to \(0.1598810\).
 \end{itemize}
 
-\textbf{Interpretation of this frequentist confidence interval (CI)}: When drawing repeated samples, in 95\% percent of the samples,
+\textbf{Interpretation of this frequentist confidence interval (CI)}: When drawing repeated samples, in 95\% of the samples,
 the so constructed interval (which will be different every time) contains the true but unknown
 parameter (see Illustration \href{https://en.wikipedia.org/wiki/Confidence_interval\#/media/File:Normal_distribution_50\%25_CI_illustration.svg}{here},
 animations of the frequentist nature \href{https://seeing-theory.brown.edu/frequentist-inference/index.html}{here}).
 
 Note, that the ``Exact binomial test'' was used. There were no approximations made. I would recommend always
-using \href{https://en.wikipedia.org/wiki/Exact_test}{exact tests} if available, since we are in the 21th century and computers are fast.
+using \href{https://en.wikipedia.org/wiki/Exact_test}{exact tests} if available, since we are in the 21st century and computers are fast.
 
 Again, \textbf{the \(\alpha\) level of \(0.05\) has nothing special (apart from convention) to it}.
 We can also use a \(\alpha = 0.14\) level. In this case, we construct confidence intervals
@@ -4374,7 +4408,7 @@ the resulting test statistic is (approximately) distributed according to a stand
 
 \[Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \sim N(0, 1).\]
 
-This value squared gives us the value of the test statistic above: \(0.36\).
+This value squared gives us the value of the test statistic \textbf{without continuity correction} above: \(0.36\) (with the correction, R reports \(0.25\)).
 
 \subsubsection{Or the same with binomial test}\label{or-the-same-with-binomial-test}
 
@@ -4466,12 +4500,14 @@ We get a slightly different \(p\)-value and confidence interval but the same con
 ## [1] 0.02999993
 \end{verbatim}
 
-  The confidence interval is indeed \(0.3739955\) to \(0.5681618\).
+  The exact confidence interval is \(0.3731683\) to \(0.5685327\).
+  (The interval from \texttt{prop.test} above, \(0.3739955\) to \(0.5681618\), is a slightly different, approximate interval.)
 \end{itemize}
 
 \subsection{More than one proportion}\label{proportions_test_more_samples}
 
-\(H_0: p_1 = p_2 = p_3 = p_4 = \frac{\sum smokers}{\sum patients} = 0.9370277\). Proportions are equal in all 4 groups.
+\(H_0: p_1 = p_2 = p_3 = p_4\). Proportions are equal in all 4 groups. The common value is not specified by \(H_0\),
+it is estimated from the pooled data by \(\frac{\sum smokers}{\sum patients} = 0.9370277\).
 
 \(H_1: \text{At least one of the proportions is different}\)
 
@@ -4532,9 +4568,15 @@ We get a slightly different \(p\)-value and confidence interval but the same con
 \item
   X-squared = 12.6, df = 3. The test statistic is distributed according to a \(\chi^2\) distribution
   with 3 \href{https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)}{degrees of freedom}.
-  See also \hyperref[exercise5_nhst]{exercise 5}. Three degrees of freedom since we know the last component of the
-  test statistic when 3 out of 4 are given.
-  Degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.
+  See also \hyperref[exercise5_nhst]{exercise 5}.
+
+  It is not easy to describe what degrees of freedom really are. The common phrase ``the number of values that are free to vary''
+  is only a rough picture. A geometric explanation is given in this video series by Sam Levey
+  (\href{https://www.youtube.com/watch?v=VDlnuO96p58}{1}, \href{https://www.youtube.com/watch?v=8e9aDMXRRlc}{2},
+  \href{https://www.youtube.com/watch?v=ExQJQPF_Fpk}{3}, \href{https://www.youtube.com/watch?v=hsZw9hJspTY}{4}).
+  For now, remember this: the degrees of freedom are a \textbf{parameter of the distribution of the test statistic under \(H_0\)},
+  and we can determine it from the setting. Here, the data form a \(4 \times 2\) table (smokers and non-smokers in 4 groups),
+  and \(df = (4-1)(2-1) = 3\).
 \end{itemize}
 
 \textbf{The \(p\)-value is calculated quickly:}
@@ -4697,7 +4739,7 @@ For example, the first cell (nosmoke in group A) in the table is calculated as f
 These are the expected values in this cell,
 if one would assume that the proportion of smokers does not depend on the group.
 Hence, one just multiplies the column (\(86/397\)) and row (\(25/397\)) proportions
-and multiples with the grand total (\(397\)) to get the absolute number of observations
+and multiplies with the grand total (\(397\)) to get the absolute number of observations
 in each cell under \(H_0\).
 
 \subsection{Fisher's exact test}\label{fishers-exact-test}
@@ -4809,7 +4851,7 @@ Let's perform a one sample \href{https://www.sthda.com/english/wiki/one-sample-t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ggqqplot}\NormalTok{(my\_data}\SpecialCharTok{$}\NormalTok{weight, }\AttributeTok{ylab =} \StringTok{"Men\textquotesingle{}s weight"}\NormalTok{,}
+\FunctionTok{ggqqplot}\NormalTok{(my\_data}\SpecialCharTok{$}\NormalTok{weight, }\AttributeTok{ylab =} \StringTok{"Mouse weight (g)"}\NormalTok{,}
          \AttributeTok{ggtheme =} \FunctionTok{theme\_minimal}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
@@ -4879,7 +4921,7 @@ Let's perform a one sample \href{https://www.sthda.com/english/wiki/one-sample-t
 ##     19.25
 \end{verbatim}
 
-Let' verify the test statistic by ``hand'' for the two-sided test:
+Let's verify the test statistic by ``hand'' for the two-sided test:
 
 \[t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}}\]
 
@@ -4912,14 +4954,14 @@ This matches the output of the \texttt{t.test} function in R.
 \textbf{\href{https://en.wikipedia.org/wiki/Student\%27s_t-test\#Assumptions}{Assumptions of the \(t\)-test}}:
 
 You will often see that researchers check if the \emph{data} is normally distributed.
-This is not strictly necessary. Merely \(\bar{X}\) must be normally distributed, which is
+This is not strictly necessary. Merely \(\bar{X}\) (instead of the raw data) must be normally distributed, which is
 often guaranteed by the
 \href{https://en.wikipedia.org/wiki/Central_limit_theorem}{central limit theorem} for a
 large enough sample size \(n\).
 
 \textbf{IF the data is normally distributed, then \(\bar{X}\) is exactly normally distributed}.
 This is always true
-and the reason for testing for normality of the data.
+and is probably the reason for testing for normality of the data.
 
 Another assumption is that \(\frac{s^2(n-1)}{\sigma^2} \sim \chi^2_{n-1}\)
 
@@ -5080,7 +5122,10 @@ Let's jump right in and use our example from the previous chapter where we perfo
 
 \begin{itemize}
 \item
-  The test statistic is a \(t\)-distribution with \(13.928\) degrees of freedom (under \(H_0\)).
+  The test statistic follows a \(t\)-distribution with \(13.928\) degrees of freedom (under \(H_0\)).
+  The non-integer value comes from the Welch correction: by default, \texttt{t.test} does not assume equal variances
+  in the two groups (``Welch Two Sample t-test''). With \texttt{var.equal\ =\ TRUE} one gets the classical pooled test
+  with \(n_1 + n_2 - 2 = 14\) degrees of freedom and \(p = 0.04624\), here almost the same.
 \item
   The value of the test statistic is \(2.1867\).
 \item
@@ -5091,7 +5136,7 @@ Let's jump right in and use our example from the previous chapter where we perfo
   \(p\)-value \(= 0.04634\). In the classical framework,
   this would be considered ``significant'' at the \(\alpha = 0.05\) level
   and one would reject the null hypothesis and accept the alternative hypothesis.
-  \textbf{In the Baysian framework, we abstained from making a decision}.
+  \textbf{In the Bayesian framework, we abstained from making a decision}.
 \item
   93\% confidence interval for the difference in means is rather wide:
   \(12.55847\) to \(232.44153\).
@@ -5112,47 +5157,47 @@ Let's jump right in and use our example from the previous chapter where we perfo
 \FunctionTok{library}\NormalTok{(ggplot2)}
 
 \CommentTok{\# Define degrees of freedom}
-\NormalTok{df }\OtherTok{\textless{}{-}} \FloatTok{13.928}
+\NormalTok{df\_t }\OtherTok{\textless{}{-}} \FloatTok{13.928}
 
-\CommentTok{\# Define the range for x and the critical t{-}values}
+\CommentTok{\# Define the range for x and the observed t{-}value}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{500}\NormalTok{)}
-\NormalTok{critical\_t }\OtherTok{\textless{}{-}} \FloatTok{2.1867}
+\NormalTok{t\_obs }\OtherTok{\textless{}{-}} \FloatTok{2.1867}
 
 \CommentTok{\# Create a data frame with x and corresponding density values}
 \NormalTok{t\_dist }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
   \AttributeTok{x =}\NormalTok{ x,}
-  \AttributeTok{density =} \FunctionTok{dt}\NormalTok{(x, df)}
+  \AttributeTok{density =} \FunctionTok{dt}\NormalTok{(x, df\_t)}
 \NormalTok{)}
 
 \CommentTok{\# Plot the t{-}distribution with shaded tail areas}
 \FunctionTok{ggplot}\NormalTok{(t\_dist, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ density)) }\SpecialCharTok{+}
   \CommentTok{\# Add the main t{-}distribution curve}
   \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
-  \CommentTok{\# Add shaded areas below the curve outside the critical t{-}values}
+  \CommentTok{\# Add shaded areas below the curve beyond the observed t{-}value}
   \FunctionTok{geom\_ribbon}\NormalTok{(}
-    \AttributeTok{data =} \FunctionTok{subset}\NormalTok{(t\_dist, x }\SpecialCharTok{\textless{}} \SpecialCharTok{{-}}\NormalTok{critical\_t),}
+    \AttributeTok{data =} \FunctionTok{subset}\NormalTok{(t\_dist, x }\SpecialCharTok{\textless{}} \SpecialCharTok{{-}}\NormalTok{t\_obs),}
     \FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =} \DecValTok{0}\NormalTok{, }\AttributeTok{ymax =}\NormalTok{ density),}
     \AttributeTok{fill =} \StringTok{"red"}\NormalTok{,}
     \AttributeTok{alpha =} \FloatTok{0.3}
 \NormalTok{  ) }\SpecialCharTok{+}
   \FunctionTok{geom\_ribbon}\NormalTok{(}
-    \AttributeTok{data =} \FunctionTok{subset}\NormalTok{(t\_dist, x }\SpecialCharTok{\textgreater{}}\NormalTok{ critical\_t),}
+    \AttributeTok{data =} \FunctionTok{subset}\NormalTok{(t\_dist, x }\SpecialCharTok{\textgreater{}}\NormalTok{ t\_obs),}
     \FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =} \DecValTok{0}\NormalTok{, }\AttributeTok{ymax =}\NormalTok{ density),}
     \AttributeTok{fill =} \StringTok{"red"}\NormalTok{,}
     \AttributeTok{alpha =} \FloatTok{0.3}
 \NormalTok{  ) }\SpecialCharTok{+}
-  \CommentTok{\# Add vertical lines for the critical t{-}values}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{critical\_t, critical\_t),}
+  \CommentTok{\# Add vertical lines for the observed t{-}value}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{t\_obs, t\_obs),}
              \AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
-  \CommentTok{\# Annotate the critical t{-}values}
-  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \SpecialCharTok{{-}}\NormalTok{critical\_t, }\AttributeTok{y =} \FloatTok{0.05}\NormalTok{,}
-           \AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"{-}t = "}\NormalTok{, critical\_t), }\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =}\NormalTok{ critical\_t, }\AttributeTok{y =} \FloatTok{0.05}\NormalTok{,}
-           \AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"t = "}\NormalTok{, critical\_t), }\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \CommentTok{\# Annotate the observed t{-}value}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \SpecialCharTok{{-}}\NormalTok{t\_obs, }\AttributeTok{y =} \FloatTok{0.05}\NormalTok{,}
+           \AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"{-}t = "}\NormalTok{, t\_obs), }\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =}\NormalTok{ t\_obs, }\AttributeTok{y =} \FloatTok{0.05}\NormalTok{,}
+           \AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"t = "}\NormalTok{, t\_obs), }\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
   \CommentTok{\# Add labels and style}
   \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{title =} \StringTok{"t{-}Distribution with Shaded Critical Areas (Two{-}Sided Test)"}\NormalTok{,}
-    \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Degrees of Freedom:"}\NormalTok{, df),}
+    \AttributeTok{title =} \StringTok{"t{-}Distribution with Shaded Tail Areas Beyond the Observed t (Two{-}Sided Test)"}\NormalTok{,}
+    \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Degrees of Freedom:"}\NormalTok{, df\_t),}
     \AttributeTok{x =} \StringTok{"t"}\NormalTok{,}
     \AttributeTok{y =} \StringTok{"Density"}
 \NormalTok{  ) }\SpecialCharTok{+}
@@ -5169,7 +5214,7 @@ Let's jump right in and use our example from the previous chapter where we perfo
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# p{-}value manually:}
-\FunctionTok{pt}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{2.1867}\NormalTok{, df) }\SpecialCharTok{*} \DecValTok{2}
+\FunctionTok{pt}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{2.1867}\NormalTok{, df\_t) }\SpecialCharTok{*} \DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5202,10 +5247,9 @@ i.e.~the true difference between pre- and post weight is on average smaller than
 
 \(H_1: \mu_D > \mu_0 = 5~kg\). Participants lost more than 5 kg on average.
 
-Aussumptions for the paired \(t\)-test:
+Assumptions for the paired \(t\)-test:
 - Interval or ratio scale
 - The differences are independent of each other
--
 
 Let's create some data and perform the test:
 
@@ -5397,7 +5441,7 @@ The correlation might therefore be a useful measure to describe the relationship
 \item
   df is the degrees of freedom (df= 30),
 \item
-  \(p\)-value of the \(t\)-test (\(p\)-value = \(1.29410^{-10}\)).
+  \(p\)-value of the \(t\)-test (\(p\)-value = \(1.294 \cdot 10^{-10}\)).
 \item
   conf.int is the confidence interval of the correlation coefficient at 96\% (conf.int = \([-0.9360192, -0.7362129]\))
   This is what is most interesting to us and should be interpreted in the context of the data.
@@ -5508,7 +5552,7 @@ Let's apply it to finding a confidence interval for the correlation coefficient 
 \end{verbatim}
 
 We used the variability \textbf{contained in the data} to estimate the variability of
-the correlation coefficient. As you can see in the histrogram, correlations close to 0 are
+the correlation coefficient. As you can see in the histogram, correlations close to 0 are
 very unlikely. The 96\% bootstrap confidence interval is \([-0.926, -0.782]\).
 
 You can also study the nice animation of the bootstrap \href{https://seeing-theory.brown.edu/frequentist-inference/index.html}{here}.
@@ -5518,7 +5562,7 @@ You can also study the nice animation of the bootstrap \href{https://seeing-theo
 For the Bayesian approach, we can use the \texttt{correlationBF} function from
 the \texttt{BayesFactor} package. In analogy to the classical test, we can ``test'' the null hypothesis
 by assuming a prior distribution for the correlation coefficient symmetric around the
-value 0 (slee prior plot below).
+value 0 (see prior plot below).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5629,7 +5673,7 @@ value 0 (slee prior plot below).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Independent{-}candidate M{-}H = Independent{-}candiate Metropolis{-}Hastings algorithm}
+\CommentTok{\# Independent{-}candidate M{-}H = Independent{-}candidate Metropolis{-}Hastings algorithm}
 
 \NormalTok{posterior\_samples }\SpecialCharTok{\%\textgreater{}\%}
 \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ rho)) }\SpecialCharTok{+}
@@ -5774,14 +5818,14 @@ that if a researcher wants to find statistical significance using \(\alpha = 0.0
 they should conduct a test with a large sample size \ldots{}''
 
 For the case of equal a priori probability of the \(H_0\) and \(H_1\) and equal consequence
-for both types or errors, the suggest to \href{https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0032734.g002}{choose alpha by minimizing}
+for both types of errors, they suggest to \href{https://journals.plos.org/plosone/article/figure?id=10.1371/journal.pone.0032734.g002}{choose alpha by minimizing}
 
 \[\omega = \frac{\alpha + \beta}{2}.\]
 
 \section{The frequentist confidence interval}\label{the-frequentist-confidence-interval}
 
-\textbf{In frequentist statistics, a \href{https://en.wikipedia.org/wiki/Confidence_interval}{confidence interval (CI)} is an interval which is expected to
-typically (with repeated sampling) contain the true but unknown parameter with a certain frequency (probability).}
+\textbf{In frequentist statistics, a \href{https://en.wikipedia.org/wiki/Confidence_interval}{confidence interval (CI)} is an interval computed by a procedure that, with repeated sampling,
+contains the true but unknown parameter in a certain percentage of the samples (the confidence level).}
 
 It is very important to understand that for every sample, the confidence interval is different and in the long run,
 these intervals will contain the true parameter in a certain percentage of cases.
@@ -5789,6 +5833,13 @@ these intervals will contain the true parameter in a certain percentage of cases
 This is a \href{https://en.wikipedia.org/wiki/Confidence_interval\#/media/File:Normal_distribution_50\%25_CI_illustration.svg}{nice visualization}
 of the concept.
 See also \hyperref[exercise7_nhst]{exercise 7}.
+
+\begin{quote}
+\textbf{Try it yourself.} In the animation
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/16_Konfidenzintervalle_frequentistisch.html}{Confidence intervals: what ``95 \%'' really means}
+each click draws a new sample from a distribution with known true mean and builds a confidence interval.
+The intervals pile up, and you can see how many of them contain the true mean and how many miss it.
+\end{quote}
 
 \textbf{1:1 relationship between \(p\)-values and confidence intervals:}
 
@@ -5805,8 +5856,8 @@ There is a 1:1 relationship between ``statistical significance'' and confidence 
   populations are equal (\(H_1: \mu_1 \ne \mu_2\)), and we get a \(p\)-value of 0.0433,
   then the 93\% confidence interval for the \textbf{difference in means} will not contain 0.
 \item
-  Example 3: If we test (\(\alpha = 0.05\)) the null hypothesis that the risk ratio for
-  lung cancer equas 1 in smokers vs.~non-smokers (\(H_1: RR \ne 1\)), and we get a
+  Example 3: If we test (\(\alpha = 0.03\)) the null hypothesis that the risk ratio for
+  lung cancer equals 1 in smokers vs.~non-smokers (\(H_1: RR \ne 1\)), and we get a
   \(p\)-value of 0.00032, then the 97\% confidence interval for the \textbf{risk ratio (RR)}
   will not contain 1.
 \end{itemize}
@@ -5814,7 +5865,7 @@ There is a 1:1 relationship between ``statistical significance'' and confidence 
 \section{Simulations based approaches}\label{simulations-based-approaches}
 
 Through the power of modern computers, we can simulate all kinds of hypothesis tests.
-We just assume that the null hypothesis is true and draw samples from the very distribution.
+We just assume that the null hypothesis is true and draw samples from that very distribution.
 In the old times, computational resources were scarce and one had to rely on
 \href{https://digital.library.adelaide.edu.au/server/api/core/bitstreams/21f22d02-4a39-4650-8f09-71434ad02897/content}{tables}
 that were precalculated.
@@ -5822,7 +5873,7 @@ that were precalculated.
 \href{https://github.com/jdegenfellner/ZHAW_Teaching/blob/main/Variability_of_Correlation_under_H_0.R}{This}
 shows you how the correlation coefficient behaves under the null hypothesis (that there is no correlation; \(\rho = 0\)).
 This is a very useful tool to understand the behavior of a test statistic under the null hypothesis.
-Of course, the probability that a correlation coefficient is exactly 0 is 0 since it's a continuous variable,
+Of course, it is hardly plausible that the true correlation is exactly 0,
 but in practice we are interested in ``indistinguishable from 0'' which is a small value.
 In the Bayesian framework from Kruschke, we defined a region of practical equivalence (ROPE) for this purpose.
 
@@ -5848,8 +5899,8 @@ Then try to simulate it. This helps to understand what constitutes a qualitative
 
 Setting: two sample \(t\)-test. Assume there is a small difference between the means of two groups.
 - Show via simulation that with increasing sample size, the \(p\)-value becomes smaller and
-smaller and will be ``significant'' at some point irresespective of how small the true mean
-difference is and how small the \(\alpha-\) level is.
+smaller and will be ``significant'' at some point irrespective of how small the true mean
+difference is and how small the \(\alpha\)-level is.
 
 \subsection{Exercise 3 - binomial test}\label{exercise3_nhst}
 
@@ -5860,7 +5911,7 @@ difference is and how small the \(\alpha-\) level is.
 \item
   Perform a two-sided binomial test with \(H_0: p = 0.5\).
 \item
-  Calculate the 90\% confidence interval for the sample proportion.
+  Calculate the 90\% confidence interval for the true proportion.
 \item
   Calculate the p-value for the two-sided test by ``hand'' (using dbinom/pbinom in R).
 \end{itemize}
@@ -5928,7 +5979,7 @@ The \(\chi^2\)-distribution is defined as the sum of squared standard normals.
 \begin{itemize}
 \tightlist
 \item
-  Very this by simulation in R.
+  Verify this by simulation in R.
 \item
   Draw 1000 samples of size 3 from a standard normal distribution.
 \item
@@ -5987,7 +6038,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
   ist \(10^{-4}\).
 \item
   Unter der Annahme der Gültigkeit obiger Verteilung wäre die Wahrscheinlichkeit mindestens einmal
-  \(1,2\) oder \(3\) zu sehen 99,9\%.
+  \(1\), \(2\) oder \(3\) zu sehen 99,9\%.
 \item
   Wählt man als Teststatistik die Anzahl der \(4\)er in der Stichprobe, so ist die Teststatistik
   unter der Annahme der Gültigkeit obiger Verteilung binomialverteilt.
@@ -6022,7 +6073,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 \item
   Die Alternativhypothese lautet: \(H_1: \mu_{group\_a} - \mu_{group\_b} > 0\).
 \item
-  Die Nullhypothese lautet: \(H_0: \mu_{group\_a} = \mu_{group\_b}\).
+  Die Nullhypothese lautet: \(H_0: \mu_{group\_a} - \mu_{group\_b} \le 0\).
 \end{itemize}
 
 \subsection{Frage 4}\label{frage-4-1}
@@ -6051,7 +6102,7 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 \item
   Es waren 64 ``Erfolge'' in 100 Versuchen.
 \item
-  Die Wahrscheinlichkeit, dass der ware aber unbekannte Parameter p im
+  Die Wahrscheinlichkeit, dass der wahre aber unbekannte Parameter p im
   Intervall \([0.5317140, 0.7356931]\) liegt, beträgt 97\%.
 \item
   Die Nullhypothese lautet: \(H_0: \text{p} \ge 0.75\).

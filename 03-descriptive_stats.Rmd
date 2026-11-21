@@ -149,6 +149,10 @@ not be able to tell if the data stems from a normal distribution.
 are not all that bad estimators for the true (but unknown) mean and standard deviation. Nicely enough,
 the Shapiro test would not reject the null hypothesis of normality in this case.
 
+Note the factor $\frac{1}{n-1}$ instead of $\frac{1}{n}$ in the sample standard deviation above.
+Why we divide by $n-1$ can be explained geometrically with the Pythagorean theorem.
+This [video](https://www.youtube.com/watch?v=8e9aDMXRRlc) shows how.
+
 Let's try the Shapiro test with a $t$-distribution with 3 degrees of freedom, which is not normal:
 ```{r}
 set.seed(1245) # to get the same plot every time
