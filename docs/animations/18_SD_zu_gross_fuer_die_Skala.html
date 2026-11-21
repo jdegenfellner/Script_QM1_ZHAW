@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD too large for the scale</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='white' stroke='%230f9d8a' stroke-width='3'/%3E%3Crect x='10' y='20' width='9' height='34' fill='%230f9d8a'/%3E%3Crect x='21' y='38' width='9' height='16' fill='%230f9d8a'/%3E%3Crect x='32' y='46' width='9' height='8' fill='%230f9d8a'/%3E%3Crect x='43' y='50' width='9' height='4' fill='%230f9d8a'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9; --grid:#e4e7eb;
+  --s1:#0a7a6b; --accent:#2a78d6; --btn:#eb6834; --last:#eb6834; --warn:#c92a2a;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350; --grid:#2a313b;
+    --s1:#37d4bd; --accent:#3987e5; --btn:#d95926; --last:#ff9a6b; --warn:#ff7a7a;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.3rem;margin:0 0 4px}
+.lead{color:var(--ink2);margin:0 0 12px;max-width:90ch}
+.row{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-bottom:10px}
+.lab{font-size:.88rem;color:var(--ink2);margin-right:8px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:6px 11px;font:inherit;font-size:.88rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:650}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:10px;font:inherit;font-size:.92rem;cursor:pointer}
+.btn.primary{background:var(--btn);border-color:var(--btn);color:#fff;font-weight:700}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sl{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:.92rem}
+.sl output{color:var(--ink);font-weight:700;min-width:3ch;text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:min(210px,45vw);accent-color:var(--accent)}
+.chk{display:inline-flex;gap:7px;align-items:center;font-size:.9rem;color:var(--ink2);cursor:pointer}
+.story{margin:-2px 0 10px;color:var(--ink2);font-size:.92rem;max-width:100ch}
+.story b{color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+@media (max-width:720px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{background:var(--card);border-radius:12px;padding:8px 12px}
+.card .k{font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.45rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.25}
+.card .s{font-size:.82rem;color:var(--ink2);min-height:2.5em}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:820px){.panels{grid-template-columns:1fr}}
+figure{margin:0;position:relative}
+svg{display:block;width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px}
+svg text{font:12.5px system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink2);paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+svg text.t{fill:var(--ink);font-weight:650;font-size:13.5px}
+svg text.w{fill:var(--warn);font-weight:650}
+svg .axis{stroke:var(--ink2);stroke-width:1}
+svg .grid{stroke:var(--grid);stroke-width:1}
+svg .edge{stroke:var(--ink2);stroke-width:1.2;stroke-dasharray:5 4}
+svg .bar{fill:var(--s1)}
+svg .barlast{fill:var(--last)}
+svg .inarea{fill:var(--accent);fill-opacity:.22}
+svg .outarea{fill:var(--warn);fill-opacity:.5}
+svg .curve{fill:none;stroke:var(--accent);stroke-width:2}
+svg .curve2{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 4}
+svg .sdin{stroke:var(--ink);stroke-width:3;fill:none}
+svg .sdout{stroke:var(--warn);stroke-width:3.5;fill:none}
+svg .meanline{stroke:var(--ink);stroke-width:1;stroke-dasharray:2 3}
+svg .meandot{fill:var(--ink)}
+svg .iqr{fill:none;stroke:var(--ink);stroke-width:1.6}
+svg .med{stroke:var(--ink);stroke-width:3}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 0;font-size:.84rem;color:var(--ink2)}
+.legend i{display:inline-block;vertical-align:middle;margin-right:6px}
+.sw{width:14px;height:12px}
+.tip{position:absolute;pointer-events:none;display:none;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:.84rem;box-shadow:0 2px 10px rgba(0,0,0,.14);white-space:nowrap;z-index:5;font-variant-numeric:tabular-nums}
+.msg{margin:10px 0 0;color:var(--ink);font-size:.95rem;min-height:4.4em;max-width:100ch}
+.note{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;color:var(--ink2);font-size:.92rem;margin-top:14px;max-width:100ch}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.raw{margin-top:8px;font-size:.88rem;color:var(--ink2);font-variant-numeric:tabular-nums;word-spacing:.15em;max-width:100ch}
+</style>
+</head>
+<body>
+<main>
+<h1>SD too large for the scale</h1>
+<p class="lead">Table 1 of a paper reports “mean (SD)”. Choose a physiotherapy variable and a realistic pattern of patients. The patients arrive one by one. Watch what the raw data look like and what the bell curve behind “mean (SD)” would claim.</p>
+
+<div class="row">
+  <span><span class="lab">Variable</span><span class="seg" id="vSeg" role="group" aria-label="Variable"></span></span>
+</div>
+<div class="row">
+  <span><span class="lab">Patients</span><span class="seg" id="pSeg" role="group" aria-label="Pattern of the patients"></span></span>
+</div>
+<p class="story" id="story"></p>
+<div class="row">
+  <label class="sl" for="nn">Sample size <i>n</i> <input id="nn" type="range" min="10" max="300" step="5" value="60"><output id="nnO"></output></label>
+  <span><span class="lab">Band around the mean</span><span class="seg" id="kSeg" role="group" aria-label="Width of the band"></span></span>
+  <label class="chk"><input type="checkbox" id="kMed">median and quartiles</label>
+  <label class="chk"><input type="checkbox" id="kNorm">bell curve on the raw data</label>
+</div>
+<div class="row">
+  <button class="btn primary" id="bNew" type="button">New sample</button>
+  <button class="btn" id="play" type="button" aria-pressed="false">⏸ Pause</button>
+  <span><span class="lab">Speed</span><span class="seg" id="sSeg" role="group" aria-label="Speed"></span></span>
+  <button class="btn" id="bAll" type="button">Show all patients</button>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="k">Table 1 would say</div><div class="v" id="c1">–</div><div class="s" id="c1s">&nbsp;</div></div>
+  <div class="card"><div class="k">SD divided by mean</div><div class="v" id="c2">–</div><div class="s" id="c2s">&nbsp;</div></div>
+  <div class="card"><div class="k">Largest possible SD</div><div class="v" id="c3">–</div><div class="s" id="c3s">&nbsp;</div></div>
+  <div class="card"><div class="k">Bell curve outside the scale</div><div class="v" id="c4">–</div><div class="s" id="c4s">&nbsp;</div></div>
+</div>
+
+<div class="panels">
+  <figure><svg id="svgA" viewBox="0 0 560 330" role="img" aria-label="Bell curve with the mean and SD from Table 1, and the part of it that lies outside the possible scale"></svg></figure>
+  <figure id="wrapB"><svg id="svgB" viewBox="0 0 560 330" role="img" aria-label="Histogram of the raw data of the patients with the same mean and SD band"></svg><div class="tip" id="tip" role="status"></div></figure>
+</div>
+<div class="legend">
+  <span><i class="sw" style="background:var(--s1)"></i>patients (the latest one in orange)</span>
+  <span><i class="sw" style="height:0;border-top:3px solid var(--ink);width:18px"></i>mean ± SD band (red where it leaves the scale)</span>
+  <span><i class="sw" style="background:repeating-linear-gradient(135deg,var(--warn) 0 2px,transparent 2px 6px);border:1px solid var(--warn)"></i>values that cannot occur</span>
+</div>
+<p class="msg" id="msg" aria-live="polite"></p>
+
+<details>
+  <summary>Raw data of the patients so far (sorted)</summary>
+  <div class="raw" id="raw"></div>
+</details>
+
+<div class="note">
+  <p><strong>What goes wrong.</strong> Mean ± SD describes a roughly bell-shaped distribution that can reach far in both directions. Most counts and patient-reported scores cannot. They have a floor (no pain, no fall, no needle), sometimes a ceiling (10 on a pain scale, 12 prescribed sessions), and real patients pile up at these limits or split into two groups. The mean is pulled towards the tail, and the SD adds the length of the tail to the width of the bulk. A reader who sees “2.4 (3.1)” pictures a bell curve and wrongly assumes that values below 0 exist.</p>
+  <p><strong>The SD is not free on a bounded scale.</strong> For data between a minimum <i>m</i> and a maximum <i>M</i> with mean x̄, the variance cannot exceed (<i>M</i> − x̄)(x̄ − <i>m</i>). This is the Bhatia–Davis inequality (Bhatia and Davis, <i>American Mathematical Monthly</i> 2000). For the sample SD the bound gets the factor <i>n</i>/(<i>n</i> − 1) under the root. An SD close to the cap means that nearly all values sit at the two ends of the scale. An SD above the cap is impossible and points to a typing error or to a different scale than stated.</p>
+  <p><strong>Counts and durations.</strong> Here the SD is often as large as the mean or larger, because many small values meet a few very large ones. The few large values dominate the mean, and even more the SD, because it squares the distances. Altman and Bland (<i>BMJ</i> 1996) described how to detect skewness from such summary numbers. The card “Bell curve outside the scale” gives the same information as a share instead of a rule.</p>
+  <p><strong>What to report instead.</strong> Show the distribution, either as a histogram or as the number of patients per value. Or give the median with the quartiles, the minimum and the maximum, and say how many patients sit at the floor or at the ceiling. Mean and SD can stay in the table for comparisons, but the reader needs the shape next to them. The SD stays a valid number, yet it describes such data poorly.</p>
+  <p><strong>Try this.</strong> (1) Pain after treatment: the band around the mean leaves the scale on the left. (2) Responders and non-responders: the SD comes close to the largest possible SD, and the mean sits where almost nobody is. (3) Switch to “Same protocol for everybody” or “Before treatment”: now mean and SD describe the data well. (4) Press “New sample” several times and watch how stable the picture is.</p>
+  <p>All data are simulated for teaching and are not taken from a study.</p>
+</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+function $(id){ return document.getElementById(id); }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+
+/* ---------- random numbers ---------- */
+function nrm(){ var u=0; while (u===0) u=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*Math.random()); }
+function gam(a){ if (a<1) return gam(a+1)*Math.pow(Math.random(),1/a); var d=a-1/3, c=1/Math.sqrt(9*d), x, v, u;
+  for (;;){ do { x=nrm(); v=1+c*x; } while (v<=0); v=v*v*v; u=Math.random(); if (u<1-0.0331*x*x*x*x || Math.log(u)<0.5*x*x+d*(1-v+Math.log(v))) return d*v; } }
+function beta(a,b){ var x=gam(a), y=gam(b); return x/(x+y); }
+function pois(l){ if (l<=0) return 0; if (l>30) return Math.max(0,Math.round(l+Math.sqrt(l)*nrm())); var L=Math.exp(-l), k=0, p=1; do { k++; p*=Math.random(); } while (p>L); return k-1; }
+function nbin(mu,size){ return pois(gam(size)*mu/size); }
+function R(x){ return Math.round(x); }
+
+/* ---------- normal distribution ---------- */
+function erf(x){ var s=x<0?-1:1; x=Math.abs(x); var t=1/(1+0.3275911*x); var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x); return s*y; }
+function Phi(z){ return 0.5*(1+erf(z/Math.SQRT2)); }
+
+/* ---------- variables and patterns (all invented for teaching) ---------- */
+var VARS=[
+ {key:"needles", name:"Needles per session", scale:"whole numbers from 0 upwards, no upper limit", unit:"needles", lo:0, hi:null, w:1, def:1, pats:[
+  ["sym","Same protocol for everybody","Every therapist follows the same dry-needling protocol, so nearly all sessions use a similar number of needles.",function(){ return R(8+2.6*nrm()); }],
+  ["floor","Mostly few, sometimes many","Most sessions use only a few needles, but some patients receive many.",function(){ return nbin(4,0.7); }],
+  ["bi","Two clinics, two habits","One clinic works with very few needles, the other with many.",function(){ return Math.random()<0.5?R(2+1.1*nrm()):R(15+3*nrm()); }],
+  ["ext","A few very long sessions","Almost all sessions use about 5 needles, a handful of long sessions use 25 or more.",function(){ return Math.random()<0.94?R(5+1.8*nrm()):R(32+8*nrm()); }]]},
+ {key:"nrs", name:"Pain (NRS 0 to 10)", scale:"whole numbers from 0 to 10", unit:"points", lo:0, hi:10, w:1, def:1, pats:[
+  ["sym","Before treatment","Patients with moderate pain before the first session.",function(){ return R(5.6+1.5*nrm()); }],
+  ["floor","After treatment, mostly pain free","Most patients are nearly pain free, a few still have pain.",function(){ return R(10*beta(0.45,2.6)); }],
+  ["ceil","Severe chronic pain","Most patients report very high pain, a few report less.",function(){ return R(10-10*beta(0.45,2.6)); }],
+  ["bi","Responders and non-responders","Half of the patients respond well, the other half hardly improve.",function(){ return Math.random()<0.5?R(10*beta(1,9)):R(10*beta(9,1.3)); }]]},
+ {key:"odi", name:"Disability (ODI 0 to 100)", scale:"whole numbers from 0 to 100 percent, shown in classes of 5", unit:"percent", lo:0, hi:100, w:5, def:1, pats:[
+  ["sym","Mixed outpatient cohort","Outpatients with low back pain and moderate disability.",function(){ return R(38+11*nrm()); }],
+  ["floor","After rehabilitation","Most patients are almost back to normal, some are still limited.",function(){ return R(100*beta(0.8,5.5)); }],
+  ["bi","Mild and severe cases","A mixed cohort with many mild and many severe cases and few in between.",function(){ return Math.random()<0.55?R(100*beta(2,13)):R(100*beta(8,3.5)); }]]},
+ {key:"falls", name:"Falls in 12 months", scale:"whole numbers from 0 upwards, no upper limit", unit:"falls", lo:0, hi:null, w:1, def:0, pats:[
+  ["floor","Community-dwelling older adults","Most older adults did not fall at all, a few fell repeatedly.",function(){ return nbin(0.9,0.25); }],
+  ["sym","Fall-clinic cohort","Everybody in the cohort fell at least sometimes.",function(){ return nbin(3,4); }],
+  ["ext","A few recurrent fallers","Nine of ten patients fell rarely, one in ten fell about ten times.",function(){ return Math.random()<0.9?pois(0.5):pois(10); }]]},
+ {key:"sessions", name:"Sessions attended (0 to 12)", scale:"whole numbers from 0 to 12 prescribed sessions", unit:"sessions", lo:0, hi:12, w:1, def:0, pats:[
+  ["bi","Dropouts and completers","Some patients stop after a few sessions, most complete the programme.",function(){ return Math.random()<0.3?R(2+1.5*nrm()):R(11.4+0.9*nrm()); }],
+  ["ceil","Highly adherent cohort","Nearly everybody attends all sessions, a few miss some.",function(){ return 12-nbin(0.9,0.5); }],
+  ["sym","Typical attendance","Attendance varies around eight sessions.",function(){ return R(8.2+2.4*nrm()); }]]},
+ {key:"duration", name:"Symptom duration (months)", scale:"months from 0 upwards, no upper limit, shown in classes", unit:"months", lo:0, hi:null, w:0, def:0, pats:[
+  ["floor","Acute and chronic patients mixed","Many patients come early, some have had symptoms for years.",function(){ return R(Math.exp(Math.log(5)+1.15*nrm())); }],
+  ["ext","Mostly recent, a few for years","Nine of ten patients have symptoms for a few months, one in ten for several years.",function(){ return Math.random()<0.9?R(Math.exp(Math.log(4)+0.5*nrm())):R(Math.exp(Math.log(70)+0.5*nrm())); }],
+  ["sym","Inclusion window of 3 to 6 months","The study only included patients whose symptoms began three to six months ago.",function(){ return R(4.5+0.9*nrm()); }]]}
+];
+
+/* ---------- state ---------- */
+var S={vi:0, pi:1, n:60, speed:1, k:2, showMed:false, showNorm:false, playing:true, data:[], shown:0, last:-1, rate:10};
+var SPEEDS=[[0,"slow",3],[1,"medium",10],[2,"fast",30],[3,"all at once",1e9]];
+var AX={xlo:0,xhi:1,ymax:1,w:1,off:0,eLo:0,eHi:Infinity,nb:1};
+var counts=[], FS=null;
+var W=560, H=330, L=40, RM=14, T=62, BM=62, PW=W-L-RM, PH=H-T-BM;
+
+function cur(){ return VARS[S.vi]; }
+function curPat(){ return cur().pats[S.pi]; }
+
+/* ---------- statistics ---------- */
+function stats(arr){ var n=arr.length; if (!n) return null; var s=0,i; for (i=0;i<n;i++) s+=arr[i]; var m=s/n, q=0; for (i=0;i<n;i++) q+=(arr[i]-m)*(arr[i]-m);
+  var sd=n>1?Math.sqrt(q/(n-1)):NaN, so=arr.slice().sort(function(a,b){ return a-b; });
+  function qt(p){ var h=(n-1)*p, f=Math.floor(h); return so[f]+(h-f)*(so[Math.min(n-1,f+1)]-so[f]); }
+  return {n:n,m:m,sd:sd,med:qt(0.5),q1:qt(0.25),q3:qt(0.75),min:so[0],max:so[n-1],sorted:so}; }
+function fmt(x,d){ if (x===null||x===undefined||isNaN(x)) return "–"; return x.toFixed(d===undefined?1:d).replace("-","−"); }
+function fmtPct(p){ if (p===null||isNaN(p)) return "–"; if (p>0 && p<0.005) return "<1 %"; return Math.round(100*p)+" %"; }
+function niceStep(range,target){ var raw=range/target, p=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)), f=raw/p; return (f<1.5?1:f<3?2:f<7?5:10)*p; }
+function binW(v,data){ if (v.w>0) return v.w; var mx=Math.max.apply(null,data), c=[1,2,3,4,6,12,24], i; for (i=0;i<c.length;i++) if (mx/c[i]<=24) return c[i]; return 24; }
+
+/* ---------- sample and axes ---------- */
+function binIdx(x){ var i=Math.floor((x-cur().lo+AX.off)/AX.w); if (cur().hi!==null){ var mx=Math.round((cur().hi-cur().lo)/AX.w)-1; if (AX.w===1) mx=cur().hi-cur().lo; i=Math.min(i,mx); } return i; }
+function newSample(keepShown){
+  var v=cur(), g=curPat()[3], d=[], i, x;
+  for (i=0;i<S.n;i++){ x=g(); if (!isFinite(x)) x=v.lo; x=Math.max(v.lo,x); if (v.hi!==null) x=Math.min(v.hi,x); d.push(x); }
+  S.data=d; FS=stats(d); AX.w=binW(v,d); AX.off=(AX.w===1?0.5:0);
+  AX.eLo=v.lo-AX.off; AX.eHi=(v.hi===null?Infinity:v.hi+AX.off);
+  counts=[]; for (i=0;i<d.length;i++){ var b=binIdx(d[i]); counts[b]=(counts[b]||0)+1; }
+  computeAxis();
+  S.last=-1; S.shown=S.speed===3?S.n:0; S.playing=(S.speed!==3);
+  syncPlay();
+}
+function computeAxis(){
+  var v=cur(), fs=FS, sd=Math.max(fs.sd,0.3), span0=(v.hi!==null?v.hi:fs.max)-v.lo, pad=(S.k+0.4)*sd;
+  if (span0<1) span0=1;
+  AX.xlo=Math.min(AX.eLo-0.05*span0, fs.m-pad);
+  AX.xhi=v.hi!==null?Math.max(AX.eHi+0.05*span0, fs.m+pad):Math.max(fs.max+AX.w, fs.m+pad);
+  var mc=0, i; for (i=0;i<counts.length;i++) if ((counts[i]||0)>mc) mc=counts[i];
+  AX.ymax=Math.max(mc, fs.n*AX.w/(sd*2.5066))*1.12;
+}
+function X(v){ return L+(v-AX.xlo)/(AX.xhi-AX.xlo)*PW; }
+function Y(c){ return H-BM-c/AX.ymax*PH; }
+
+/* ---------- drawing helpers ---------- */
+function axisSvg(){
+  var s="", step=niceStep(AX.xhi-AX.xlo,9), t, ys=niceStep(AX.ymax,4);
+  for (t=ys; t<AX.ymax; t+=ys) s+='<line class="grid" x1="'+L+'" x2="'+(W-RM)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/><text x="'+(L-6)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+t+'</text>';
+  s+='<line class="axis" x1="'+L+'" x2="'+(W-RM)+'" y1="'+(H-BM)+'" y2="'+(H-BM)+'"/><text x="'+(L-6)+'" y="'+(H-BM+4)+'" text-anchor="end">0</text>';
+  for (t=Math.ceil(AX.xlo/step)*step; t<=AX.xhi+1e-9; t+=step) s+='<line class="axis" x1="'+X(t)+'" x2="'+X(t)+'" y1="'+(H-BM)+'" y2="'+(H-BM+4)+'"/><text x="'+X(t)+'" y="'+(H-BM+17)+'" text-anchor="middle">'+fmt(Math.round(t*100)/100,0).replace(/\.0+$/,"")+'</text>';
+  return s;
+}
+function shadeSvg(pid){
+  var s='<defs><pattern id="'+pid+'" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" style="stroke:var(--warn);stroke-width:2;stroke-opacity:.5"/></pattern></defs>';
+  if (AX.eLo>AX.xlo) s+='<rect x="'+X(AX.xlo)+'" y="'+T+'" width="'+(X(AX.eLo)-X(AX.xlo))+'" height="'+PH+'" fill="url(#'+pid+')"/>';
+  if (isFinite(AX.eHi) && AX.eHi<AX.xhi) s+='<rect x="'+X(AX.eHi)+'" y="'+T+'" width="'+(X(AX.xhi)-X(AX.eHi))+'" height="'+PH+'" fill="url(#'+pid+')"/>';
+  return s;
+}
+function edgesSvg(){
+  var v=cur(), s='<line class="edge" x1="'+X(AX.eLo)+'" x2="'+X(AX.eLo)+'" y1="'+T+'" y2="'+(H-BM)+'"/><text x="'+(X(AX.eLo)+5)+'" y="'+(T+13)+'">scale minimum ('+v.lo+')</text>';
+  if (isFinite(AX.eHi)) s+='<line class="edge" x1="'+X(AX.eHi)+'" x2="'+X(AX.eHi)+'" y1="'+T+'" y2="'+(H-BM)+'"/><text x="'+(X(AX.eHi)-5)+'" y="'+(T+13)+'" text-anchor="end">scale maximum ('+v.hi+')</text>';
+  return s;
+}
+function sdBarSvg(st){
+  if (!st || !(st.sd>=0)) return "";
+  var a=st.m-S.k*st.sd, b=st.m+S.k*st.sd, y=46, s="";
+  function seg(x1,x2,cls){ if (x2>x1) s+='<line class="'+cls+'" x1="'+X(x1)+'" x2="'+X(x2)+'" y1="'+y+'" y2="'+y+'"/>'; }
+  seg(Math.max(a,AX.eLo),Math.min(b,AX.eHi),"sdin"); seg(a,Math.min(b,AX.eLo),"sdout"); seg(Math.max(a,AX.eHi),b,"sdout");
+  [a,b].forEach(function(e){ var out=(e<AX.eLo||e>AX.eHi); s+='<line class="'+(out?"sdout":"sdin")+'" x1="'+X(e)+'" x2="'+X(e)+'" y1="'+(y-6)+'" y2="'+(y+6)+'"/>'; });
+  s+='<line class="meanline" x1="'+X(st.m)+'" x2="'+X(st.m)+'" y1="'+(y+6)+'" y2="'+(H-BM)+'"/><circle class="meandot" cx="'+X(st.m)+'" cy="'+y+'" r="4.5"/>';
+  var lx=clamp(X(st.m),90,W-90);
+  s+='<text x="'+lx+'" y="'+(y-11)+'" text-anchor="middle">mean '+fmt(st.m)+' ± '+S.k+' SD ('+fmt(st.sd)+')</text>';
+  return s;
+}
+function curvePath(st,xa,xb,closed){
+  var steps=70, i, x, pts=[], pk;
+  for (i=0;i<=steps;i++){ x=xa+(xb-xa)*i/steps; var z=(x-st.m)/st.sd, c=st.n*AX.w*Math.exp(-0.5*z*z)/(st.sd*2.5066); pts.push([X(x),Math.max(T,Y(c))]); }
+  var d="M"+pts.map(function(p){ return p[0].toFixed(1)+","+p[1].toFixed(1); }).join(" L");
+  if (closed) d+=" L"+X(xb).toFixed(1)+","+(H-BM)+" L"+X(xa).toFixed(1)+","+(H-BM)+" Z";
+  return d;
+}
+
+/* ---------- panels ---------- */
+function drawA(st){
+  var s=shadeSvg("hA")+axisSvg()+edgesSvg();
+  s+='<text class="t" x="'+L+'" y="16">What “mean (SD)” suggests: a bell curve</text>';
+  if (st && st.n>=2 && st.sd>0){
+    var lo=AX.xlo, hi=AX.xhi, el=clamp(AX.eLo,lo,hi), eh=clamp(AX.eHi,lo,hi);
+    s+='<path class="inarea" d="'+curvePath(st,el,eh,true)+'"/>';
+    if (el>lo) s+='<path class="outarea" d="'+curvePath(st,lo,el,true)+'"/>';
+    if (eh<hi) s+='<path class="outarea" d="'+curvePath(st,eh,hi,true)+'"/>';
+    s+='<path class="curve" d="'+curvePath(st,lo,hi,false)+'"/>';
+    var below=Phi((AX.eLo-st.m)/st.sd), above=isFinite(AX.eHi)?1-Phi((AX.eHi-st.m)/st.sd):0;
+    s+='<text class="w" x="'+(W-RM)+'" y="'+(T+30)+'" text-anchor="end">'+fmtPct(below+above)+' of this bell curve lies outside the scale</text>';
+  }
+  s+=sdBarSvg(st);
+  $("svgA").innerHTML=s;
+}
+function drawB(st){
+  var s=shadeSvg("hB")+axisSvg(), v=cur(), i, c, x0, x1;
+  s+='<text class="t" x="'+L+'" y="16">What the raw data look like</text>';
+  var cnt=[]; for (i=0;i<S.shown;i++){ var b=binIdx(S.data[i]); cnt[b]=(cnt[b]||0)+1; }
+  var lastB=S.shown>0?binIdx(S.data[S.shown-1]):-1;
+  for (i=0;i<cnt.length;i++){ c=cnt[i]; if (!c) continue; x0=v.lo+i*AX.w-AX.off; x1=x0+AX.w;
+    var xa=X(x0)+0.5, wd=Math.max(1,X(x1)-X(x0)-1);
+    s+='<rect class="'+(i===lastB&&S.playing?"barlast":"bar")+'" x="'+xa.toFixed(1)+'" y="'+Y(c).toFixed(1)+'" width="'+wd.toFixed(1)+'" height="'+(H-BM-Y(c)).toFixed(1)+'"/>'; }
+  s+=edgesSvg();
+  if (S.showNorm && st && st.n>=2 && st.sd>0) s+='<path class="curve2" d="'+curvePath(st,AX.xlo,AX.xhi,false)+'"/>';
+  if (S.showMed && st){ var y=H-BM+38;
+    s+='<rect class="iqr" x="'+X(st.q1)+'" y="'+(y-6)+'" width="'+Math.max(1,X(st.q3)-X(st.q1))+'" height="12"/><line class="med" x1="'+X(st.med)+'" x2="'+X(st.med)+'" y1="'+(y-9)+'" y2="'+(y+9)+'"/>'+
+       (X(st.q3)+190>W-RM ? '<text x="'+(X(st.q1)-8)+'" y="'+(y+4)+'" text-anchor="end">' : '<text x="'+(X(st.q3)+8)+'" y="'+(y+4)+'">')+'median '+fmt(st.med,st.med%1?1:0)+', quartiles '+fmt(st.q1,st.q1%1?1:0)+' to '+fmt(st.q3,st.q3%1?1:0)+'</text>'; }
+  s+=sdBarSvg(st);
+  s+='<text x="'+(L-6)+'" y="'+(T-6)+'" text-anchor="end">n</text>';
+  $("svgB").innerHTML=s;
+}
+
+/* ---------- cards and message ---------- */
+function cards(st){
+  var v=cur(), n=st?st.n:0;
+  if (!st || n<2){ ["c1","c2","c3","c4"].forEach(function(id){ $(id).textContent="–"; $(id+"s").innerHTML="&nbsp;"; }); $("msg").textContent=n===0?"Waiting for the first patient.":"One patient so far. The SD needs at least two."; $("raw").textContent=st?st.sorted.join(", "):""; return; }
+  $("c1").textContent=fmt(st.m)+" ("+fmt(st.sd)+")"; $("c1s").textContent=v.name+", mean (SD), n = "+n;
+  $("c2").textContent=st.m>0?fmt(st.sd/st.m,2):"–"; $("c2s").textContent=st.m>0?(st.sd>=st.m?"the SD is as large as the mean or larger":"the SD is "+Math.round(100*st.sd/st.m)+" % of the mean"):"mean is 0";
+  var cap=null;
+  if (v.hi!==null){ var vp=(v.hi-st.m)*(st.m-v.lo); cap=Math.sqrt(Math.max(0,n/(n-1)*vp)); $("c3").textContent=fmt(cap,2); $("c3s").textContent=cap>0?"your SD is "+Math.round(100*st.sd/cap)+" % of it":"all values at one limit"; }
+  else { $("c3").textContent="none"; $("c3s").textContent="no upper limit, so only the lower limit of the scale matters"; }
+  var below=st.sd>0?Phi((AX.eLo-st.m)/st.sd):0, above=(st.sd>0&&isFinite(AX.eHi))?1-Phi((AX.eHi-st.m)/st.sd):0;
+  $("c4").textContent=fmtPct(below+above);
+  $("c4s").textContent=isFinite(AX.eHi)?fmtPct(below)+" below the minimum, "+fmtPct(above)+" above the maximum":fmtPct(below)+" below the minimum of "+v.lo;
+  var nLo=0, nHi=0, i; for (i=0;i<n;i++){ if (S.data[i]<=v.lo) nLo++; if (v.hi!==null && S.data[i]>=v.hi) nHi++; }
+  var msg="In the raw data "+nLo+" of "+n+" patients ("+fmtPct(nLo/n)+") sit exactly at the scale minimum of "+v.lo+(v.hi!==null?" and "+nHi+" ("+fmtPct(nHi/n)+") at the maximum of "+v.hi:"")+". The median is "+fmt(st.med,st.med%1?1:0)+" (quartiles "+fmt(st.q1,st.q1%1?1:0)+" to "+fmt(st.q3,st.q3%1?1:0)+"), the largest value is "+st.max+".";
+  msg+=" Mean "+fmt(st.m)+" with SD "+fmt(st.sd)+" suggests a bell curve of which "+fmtPct(below+above)+" lies outside the possible scale.";
+  if (cap!==null && cap>0) msg+=" The largest SD that is possible for this mean on this scale is "+fmt(cap,2)+".";
+  $("msg").textContent=msg;
+  $("raw").textContent=st.sorted.join(", ");
+}
+
+/* ---------- main draw ---------- */
+function draw(){
+  var st=stats(S.data.slice(0,S.shown));
+  drawA(st); drawB(st); cards(st);
+}
+
+/* ---------- animation loop ---------- */
+var last=null, acc=0;
+function frame(ts){
+  if (last===null) last=ts; var dt=Math.min(0.1,(ts-last)/1000); last=ts;
+  if (S.playing && S.shown<S.n){
+    acc+=dt*S.rate; var ch=false;
+    while (acc>=1 && S.shown<S.n){ acc-=1; S.shown++; ch=true; }
+    if (S.shown>=S.n){ S.playing=false; syncPlay(); ch=true; }
+    if (ch) draw();
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- hover ---------- */
+var tip=$("tip"), wrapB=$("wrapB"), svgB=$("svgB");
+svgB.addEventListener("mousemove",function(ev){
+  var rect=svgB.getBoundingClientRect(), sx=(ev.clientX-rect.left)*W/rect.width, sy=(ev.clientY-rect.top)*H/rect.height;
+  if (sx<L||sx>W-RM||sy<T||sy>H-BM||S.shown<1){ tip.style.display="none"; return; }
+  var xv=AX.xlo+(sx-L)/PW*(AX.xhi-AX.xlo), v=cur(), i=Math.floor((xv-v.lo+AX.off)/AX.w), c=0, k;
+  if (i<0){ tip.style.display="none"; return; }
+  for (k=0;k<S.shown;k++) if (binIdx(S.data[k])===i) c++;
+  var a=v.lo+i*AX.w, label=AX.w===1?(""+a):(a+" to "+(a+AX.w-1));
+  tip.innerHTML=v.name+": "+label+"<br>"+c+" of "+S.shown+" patients ("+fmtPct(c/S.shown)+")";
+  tip.style.display="block";
+  var wr=wrapB.getBoundingClientRect(), tx=ev.clientX-wr.left+14, ty=ev.clientY-wr.top+14;
+  if (tx+tip.offsetWidth>wr.width) tx=ev.clientX-wr.left-tip.offsetWidth-14;
+  tip.style.left=tx+"px"; tip.style.top=ty+"px";
+});
+svgB.addEventListener("mouseleave",function(){ tip.style.display="none"; });
+
+/* ---------- UI ---------- */
+function seg(id,items,getter,setter){
+  var e=$(id); e.innerHTML="";
+  items.forEach(function(it){ var b=document.createElement("button"); b.type="button"; b.textContent=it[1]; b.setAttribute("aria-pressed",String(getter()===it[0]));
+    b.addEventListener("click",function(){ setter(it[0]); }); e.appendChild(b); });
+}
+function syncPlay(){ var b=$("play"); b.textContent=S.playing?"⏸ Pause":(S.shown>=S.n?"↻ Replay":"▶ Play"); b.setAttribute("aria-pressed",String(S.playing)); }
+function syncUI(){
+  var v=cur();
+  seg("vSeg",VARS.map(function(x,i){ return [i,x.name]; }),function(){ return S.vi; },function(i){ S.vi=i; S.pi=VARS[i].def; syncUI(); newSample(); draw(); });
+  seg("pSeg",v.pats.map(function(x,i){ return [i,x[1]]; }),function(){ return S.pi; },function(i){ S.pi=i; syncUI(); newSample(); draw(); });
+  seg("kSeg",[[1,"± 1 SD"],[2,"± 2 SD"]],function(){ return S.k; },function(k){ S.k=k; computeAxis(); syncUI(); draw(); });
+  seg("sSeg",SPEEDS.map(function(x){ return [x[0],x[1]]; }),function(){ return S.speed; },function(i){ S.speed=i; S.rate=SPEEDS[i][2]; syncUI(); if (i===3){ S.shown=S.n; S.playing=false; syncPlay(); draw(); } });
+  $("story").innerHTML="<b>Scale:</b> "+v.scale+". <b>Story:</b> "+curPat()[2];
+  $("nn").value=S.n; $("nnO").textContent=S.n;
+}
+$("nn").addEventListener("input",function(){ S.n=parseInt(this.value,10); $("nnO").textContent=S.n; newSample(); draw(); });
+$("kMed").addEventListener("change",function(){ S.showMed=this.checked; draw(); });
+$("kNorm").addEventListener("change",function(){ S.showNorm=this.checked; draw(); });
+$("bNew").addEventListener("click",function(){ newSample(); draw(); });
+$("bAll").addEventListener("click",function(){ S.shown=S.n; S.playing=false; syncPlay(); draw(); });
+$("play").addEventListener("click",function(){ if (S.shown>=S.n){ S.shown=0; S.last=-1; } S.playing=!S.playing; if (S.speed===3){ S.shown=S.n; S.playing=false; } syncPlay(); draw(); });
+if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",draw);
+window.__SD={VARS:VARS,S:S,stats:stats,newSample:newSample,draw:draw,AX:AX};
+syncUI(); newSample(); draw();
+})();
+</script>
+</body>
+</html>
