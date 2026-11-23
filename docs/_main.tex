@@ -3459,7 +3459,9 @@ as opposed to the Frequentist \(t\)-test,
 which constitutes one line of code in R.
 
 We'll use the no longer maintained R package \href{https://cran.r-project.org/web/packages/BEST/index.html}{BEST}
-for a nice illustration. Later, we will use more up-to-date packages like \href{https://cran.r-project.org/web/packages/brms/index.html}{brms}
+for a nice illustration. BEST stands for \textbf{B}ayesian \textbf{E}stimation \textbf{S}upersedes the t-\textbf{T}est (the title of the R package).
+It implements the method of \href{https://doi.org/10.1037/a0029146}{Kruschke (2013)}, ``Bayesian estimation supersedes the t test''.
+Later, we will use more up-to-date packages like \href{https://cran.r-project.org/web/packages/brms/index.html}{brms}
 or \href{https://github.com/rmcelreath/rethinking}{rethinking} for modeling.
 
 \subsection{\texorpdfstring{Example - Bayesian \(t\)-test}{Example - Bayesian t-test}}\label{example---bayesian-t-test}
@@ -3614,19 +3616,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.767 130.802 129.406   93   32.2310 225.71                  
-## mu2         5.971   5.780   5.103   93  -82.0375  99.95                  
-## muDiff    124.796 124.919 122.588   93   -8.6846 257.84       0      95.7
-## sigma1    139.717 128.667 113.720   93   66.3547 225.28                  
-## sigma2    130.023 119.488 101.848   93   62.3792 210.76                  
-## sigmaDiff   9.694   8.723   7.240   93 -116.7189 137.98       0      56.6
-## nu         34.311  25.688   9.758   93    1.1751  83.66                  
-## log10nu     1.378   1.410   1.454   93    0.6641   2.06                  
-## effSz       0.967   0.956   0.941   93   -0.0848   2.01       0      95.7
+## mu1       130.472 130.863 133.187   93   32.3437 227.29                  
+## mu2         5.764   5.591   7.346   93  -85.0394  96.25                  
+## muDiff    124.708 124.794 121.582   93   -8.5215 259.08       0      95.5
+## sigma1    140.071 128.582 112.544   93   66.0126 227.52                  
+## sigma2    130.176 119.744 102.540   93   62.4040 212.24                  
+## sigmaDiff   9.895   8.607   7.119   93 -116.9500 142.12       0      56.4
+## nu         34.339  25.748  10.110   93    1.2017  83.81                  
+## log10nu     1.379   1.411   1.494   93    0.6662   2.06                  
+## effSz       0.963   0.954   0.904   93   -0.0695   2.02       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.48
+## muDiff        -20       20    4.52
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3875,24 +3877,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.103 sec elapsed
+## 1.098 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.708  0.706  0.735   93 -0.520  1.993                          
-## mu2        2.302  2.299  2.351   93  0.874  3.713                          
-## muDiff    -1.595 -1.587 -1.586   93 -3.471  0.311       0         6    -1.8
-## sigma1     2.043  1.922  1.776   93  1.091  3.096                          
-## sigma2     2.314  2.180  1.926   93  1.260  3.503                          
-## sigmaDiff -0.271 -0.253 -0.221   93 -1.982  1.401       0        37        
-## nu        35.934 27.357 11.956   93  1.472 86.025                          
-## log10nu    1.410  1.437  1.480   93  0.738  2.076                          
-## effSz     -0.750 -0.743 -0.689   93 -1.658  0.109       0         6        
+## mu1        0.716  0.711  0.710   93 -0.557  1.962                          
+## mu2        2.302  2.297  2.264   93  0.881  3.731                          
+## muDiff    -1.586 -1.590 -1.578   93 -3.475  0.333       0       6.3    -1.8
+## sigma1     2.046  1.925  1.762   93  1.083  3.105                          
+## sigma2     2.314  2.173  1.988   93  1.254  3.518                          
+## sigmaDiff -0.269 -0.245 -0.276   93 -2.018  1.391       0      37.4        
+## nu        35.795 27.203 11.511   93  1.453 85.561                          
+## log10nu    1.407  1.435  1.469   93  0.702  2.049                          
+## effSz     -0.748 -0.745 -0.748   93 -1.636  0.144       0       6.3        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

@@ -895,7 +895,9 @@ as opposed to the Frequentist $t$-test,
 which constitutes one line of code in R.
 
 We'll use the no longer maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
-for a nice illustration. Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html)
+for a nice illustration. BEST stands for **B**ayesian **E**stimation **S**upersedes the t-**T**est (the title of the R package).
+It implements the method of [Kruschke (2013)](https://doi.org/10.1037/a0029146), "Bayesian estimation supersedes the t test".
+Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html)
 or [rethinking](https://github.com/rmcelreath/rethinking) for modeling.
 
 ### Example - Bayesian $t$-test
