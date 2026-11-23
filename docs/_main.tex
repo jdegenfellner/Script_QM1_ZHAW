@@ -3227,35 +3227,35 @@ A manufacturer claims that the defect rate of their products is only 5\%, while 
 \textbf{Before} the result of a sample inspection is known, we assign both rates an equal 50-50 chance:
 
 \[
-\pi(0.05) = \pi(0.10) = 0.5
+p(\theta = 0.05) = p(\theta = 0.10) = 0.5
 \]
 
 Assume that in a sample of size 20, there are 3 defective items.
 Using the binomial distribution \(B(20, \theta)\), the data information is given as follows:
 
 \[
-p(3|\theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
+p(X = 3 \mid \theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
 \]
 
 \[
-p(3|\theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
+p(X = 3 \mid \theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
 \]
 
-The marginal distribution of \(X\) (the number of defective items in the sample) for \(x = 3\) is as follows:
+The marginal distribution of \(X\) (the number of defective items in the sample) for \(X = 3\) is as follows:
 
 \[
-m(3) = p(3|0.05)\pi(0.05) + p(3|0.10)\pi(0.10) = 0.1249
+p(X = 3) = p(X = 3 \mid \theta = 0.05) \cdot p(\theta = 0.05) + p(X = 3 \mid \theta = 0.10) \cdot p(\theta = 0.10) = 0.1249
 \]
 
 Here, we consider all parameters in the parameter space of interest. We are only interested in \(\theta = 0.05\)
 vs.~\(\theta = 0.10\) in this case.
 
 \[
-\pi(0.05 \mid X = 3) = \frac{p(3 \mid 0.05) \pi(0.05)}{m(3)} = 0.2387
+p(\theta = 0.05 \mid X = 3) = \frac{p(X = 3 \mid \theta = 0.05) \cdot p(\theta = 0.05)}{p(X = 3)} = 0.2387
 \]
 
 \[
-\pi(0.10 \mid X = 3) = \frac{p(3 \mid 0.10) \pi(0.10)}{m(3)} = \mathbf{0.7613}
+p(\theta = 0.10 \mid X = 3) = \frac{p(X = 3 \mid \theta = 0.10) \cdot p(\theta = 0.10)}{p(X = 3)} = \mathbf{0.7613}
 \]
 
 A priori, we had no preference for either of the two defect rates. After observing a relatively high
@@ -3305,7 +3305,7 @@ The calculations would be complex by hand, so we just use R. We want to understa
 can be put off until later (if at all necessary for us.)
 
 \[
-\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(11)}
+\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{p(X = 11)}
 \]
 
 \begin{itemize}
@@ -3316,7 +3316,7 @@ can be put off until later (if at all necessary for us.)
   in a sample of 20 given a certain defect rate \(\theta\).
   This would be the density function of a binomial distribution.
 \item
-  \(m(11)\) is the marginal distribution of the data for \(X = 11\)
+  \(p(X = 11)\) is the marginal likelihood (evidence), i.e.~the probability of the data for \(X = 11\)
   considering \textbf{all} possible defect rates between 0 and 1.
 \item
   \(\textit{p}(\theta \mid X = 11)\) is the posterior density of the defect
@@ -3605,20 +3605,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##             mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.93 130.806 133.462   93   36.4514 230.54                  
-## mu2         5.78   5.639   3.650   93  -86.5821  93.17                  
-## muDiff    125.15 124.999 122.573   93   -6.9955 259.07       0      95.7
-## sigma1    139.81 128.522 111.866   93   65.6592 225.69                  
-## sigma2    129.30 119.199 105.209   93   61.8845 208.93                  
-## sigmaDiff  10.51   8.928   6.402   93 -115.5147 137.69       0      56.9
-## nu         34.27  25.580  10.335   93    1.0020  83.44                  
-## log10nu     1.38   1.408   1.511   93    0.6523   2.06                  
-## effSz       0.97   0.959   0.948   93   -0.0586   2.03       0      95.7
+##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.469 130.592 132.050   93   31.0597 225.60                  
+## mu2         6.405   6.081  10.594   93  -85.6788  94.42                  
+## muDiff    124.065 124.488 128.581   93   -9.1663 258.63       0      95.4
+## sigma1    139.919 128.791 114.085   93   66.4268 225.95                  
+## sigma2    129.782 119.537 107.485   93   61.7908 209.04                  
+## sigmaDiff  10.137   8.829   7.741   93 -115.4314 138.50       0      56.6
+## nu         34.714  26.031  10.337   93    1.1427  84.56                  
+## log10nu     1.384   1.415   1.501   93    0.6581   2.05                  
+## effSz       0.961   0.952   0.942   93   -0.0711   2.02       0      95.4
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.47
+## muDiff        -20       20    4.59
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3773,7 +3773,7 @@ Difficulty levels of exercises:
 \subsection{{[}E{]} Exercise 1 - defective product rate}\label{exercise_defective_product_rate}
 
 Let's revisit \hyperref[example_defective_products]{Example 1} and change the prior probabilities to
-\(\pi(0.05) = 0.1\) and \(\pi(0.10) = 0.9\).
+\(p(\theta = 0.05) = 0.1\) and \(p(\theta = 0.10) = 0.9\).
 
 Calculate and plot the posterior probabilities for \(\theta = 0.05\) and \(\theta = 0.10\).
 
@@ -3786,7 +3786,7 @@ distribution} between 0 and 1
 (this has to be argued for more rigorously in practice). Hence,
 every value between 0 and 1 is equally likely:
 
-\(\pi(\theta) = 1\) for \(\theta \in [0,1]\).
+\(p(\theta) = 1\) for \(\theta \in [0,1]\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3867,20 +3867,20 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.102 sec elapsed
+## 1.006 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.711  0.706  0.704   93 -0.523  2.003                          
-## mu2        2.305  2.305  2.357   93  0.894  3.727                          
-## muDiff    -1.594 -1.598 -1.708   93 -3.488  0.294       0      5.95    -1.8
-## sigma1     2.045  1.924  1.736   93  1.098  3.113                          
-## sigma2     2.309  2.177  2.018   93  1.272  3.505                          
-## sigmaDiff -0.264 -0.242 -0.181   93 -1.958  1.424       0     37.48        
-## nu        36.186 27.551 11.661   93  1.490 86.794                          
-## log10nu    1.412  1.440  1.490   93  0.719  2.061                          
-## effSz     -0.751 -0.747 -0.752   93 -1.626  0.141       0      5.95        
+## mu1        0.714  0.708  0.750   93 -0.556  1.968                          
+## mu2        2.310  2.305  2.251   93  0.901  3.735                          
+## muDiff    -1.596 -1.594 -1.630   93 -3.514  0.279       0      6.08    -1.8
+## sigma1     2.037  1.919  1.767   93  1.105  3.114                          
+## sigma2     2.302  2.175  1.916   93  1.263  3.474                          
+## sigmaDiff -0.265 -0.248 -0.227   93 -1.911  1.426       0     36.98        
+## nu        36.340 27.656 11.159   93  1.445 87.238                          
+## log10nu    1.413  1.442  1.493   93  0.728  2.073                          
+## effSz     -0.755 -0.749 -0.743   93 -1.644  0.139       0      6.08        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       

@@ -163,35 +163,35 @@ A manufacturer claims that the defect rate of their products is only 5%, while t
 **Before** the result of a sample inspection is known, we assign both rates an equal 50-50 chance:
 
 \[
-\pi(0.05) = \pi(0.10) = 0.5
+p(\theta = 0.05) = p(\theta = 0.10) = 0.5
 \]
 
 Assume that in a sample of size 20, there are 3 defective items. 
 Using the binomial distribution \(B(20, \theta)\), the data information is given as follows:
 
 \[
-p(3|\theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
+p(X = 3 \mid \theta = 0.05) = \binom{20}{3} (0.05)^3 (0.95)^{17} = 0.0596
 \]
 
 \[
-p(3|\theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
+p(X = 3 \mid \theta = 0.10) = \binom{20}{3} (0.10)^3 (0.90)^{17} = 0.1901
 \]
 
-The marginal distribution of \(X\) (the number of defective items in the sample) for \(x = 3\) is as follows:
+The marginal distribution of \(X\) (the number of defective items in the sample) for \(X = 3\) is as follows:
 
 \[
-m(3) = p(3|0.05)\pi(0.05) + p(3|0.10)\pi(0.10) = 0.1249
+p(X = 3) = p(X = 3 \mid \theta = 0.05) \cdot p(\theta = 0.05) + p(X = 3 \mid \theta = 0.10) \cdot p(\theta = 0.10) = 0.1249
 \]
 
 Here, we consider all parameters in the parameter space of interest. We are only interested in $\theta = 0.05$
 vs. $\theta = 0.10$ in this case.
 
 \[
-\pi(0.05 \mid X = 3) = \frac{p(3 \mid 0.05) \pi(0.05)}{m(3)} = 0.2387
+p(\theta = 0.05 \mid X = 3) = \frac{p(X = 3 \mid \theta = 0.05) \cdot p(\theta = 0.05)}{p(X = 3)} = 0.2387
 \]
 
 \[
-\pi(0.10 \mid X = 3) = \frac{p(3 \mid 0.10) \pi(0.10)}{m(3)} = \mathbf{0.7613}
+p(\theta = 0.10 \mid X = 3) = \frac{p(X = 3 \mid \theta = 0.10) \cdot p(\theta = 0.10)}{p(X = 3)} = \mathbf{0.7613}
 \]
 
 A priori, we had no preference for either of the two defect rates. After observing a relatively high 
@@ -331,7 +331,7 @@ The calculations would be complex by hand, so we just use R. We want to understa
 can be put off until later (if at all necessary for us.)
 
 \[
-\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{m(11)}
+\textit{p}(\theta \mid X = 11) = \frac{\textit{p}(X = 11 \mid \theta) \cdot \text{Beta}(\theta \mid \alpha, \beta)}{p(X = 11)}
 \]
 
 - $\text{Beta}(\theta \mid \alpha, \beta)$ is the prior distribution (density) of the defect rate which captures our beliefs about the defect rate.
@@ -340,7 +340,7 @@ can be put off until later (if at all necessary for us.)
   in a sample of 20 given a certain defect rate $\theta$. 
   This would be the density function of a binomial distribution.
 
-- $m(11)$ is the marginal distribution of the data for $X = 11$ 
+- $p(X = 11)$ is the marginal likelihood (evidence), i.e. the probability of the data for $X = 11$ 
 considering **all** possible defect rates between 0 and 1.
 
 - $\textit{p}(\theta \mid X = 11)$ is the posterior density of the defect 
@@ -1052,7 +1052,7 @@ Difficulty levels of exercises:
 
 ### [E] Exercise 1 - defective product rate {#exercise_defective_product_rate}
 Let's revisit [Example 1](#example_defective_products) and change the prior probabilities to
-$\pi(0.05) = 0.1$ and $\pi(0.10) = 0.9$.
+$p(\theta = 0.05) = 0.1$ and $p(\theta = 0.10) = 0.9$.
 
 Calculate and plot the posterior probabilities for $\theta = 0.05$ and $\theta = 0.10$.
 
@@ -1064,7 +1064,7 @@ distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) bet
 (this has to be argued for more rigorously in practice). Hence, 
 every value between 0 and 1 is equally likely:
 
-$\pi(\theta) = 1$ for $\theta \in [0,1]$.
+$p(\theta) = 1$ for $\theta \in [0,1]$.
 
 ```{r, echo=TRUE}
 # Load required libraries
