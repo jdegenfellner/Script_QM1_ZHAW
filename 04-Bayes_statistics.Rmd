@@ -1110,6 +1110,10 @@ When publishing, many reviewers could be sceptical or unfamiliar with Bayesian s
 
 [Renwick et al. (2025)](https://doi.org/10.1111/sms.70130) compared six weeks of low-volume sprint interval training (three "all out" sprints of 20 seconds, three times a week) with no exercise in 37 insufficiently active young adults (17 training, 20 control). The preregistered randomized trial was analysed with a Bayesian hierarchical regression (written in Stan), so the results are given as posterior estimates with 95% credible intervals. For relative peak oxygen uptake, the training group improved by 5.6 mL/kg/min more than the control group (95% credible interval 2.2 to 8.1).
 
+### Low-intensity swimming with blood flow restriction over 5 weeks increases VO2peak: A randomized controlled trial using Bayesian informative prior distribution
+
+[Held et al. (2023)](https://doi.org/10.1080/17461391.2023.2180671) randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95% credible interval, so with this small sample the prior had little influence on the result.
+
 
 
 ## Exercises

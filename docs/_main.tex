@@ -3615,25 +3615,25 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##             mean median    mode HDI%    HDIlo  HDIup compVal %>compVal ROPElow
-## mu1       130.39 130.66 130.168   93   30.540 226.80                          
-## mu2         6.10   5.73   0.922   93  -84.507  95.58                          
-## muDiff    124.30 124.63 132.692   93   -8.716 259.06       0      95.5     -20
-## sigma1    140.48 129.10 111.822   93   66.591 229.13                          
-## sigma2    130.37 119.64 106.851   93   61.272 212.36                          
-## sigmaDiff  10.10   9.21  10.811   93 -118.077 138.94       0      56.7        
-## nu         34.04  25.56  10.083   93    1.079  82.87                          
-## log10nu     1.38   1.41   1.467   93    0.661   2.06                          
-## effSz       0.96   0.95   0.861   93   -0.101   1.99       0      95.5        
-##           ROPEhigh %InROPE
-## mu1                       
-## mu2                       
-## muDiff          20    4.59
-## sigma1                    
-## sigma2                    
-## sigmaDiff                 
-## nu                        
-## log10nu                   
+##              mean median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       131.220 131.07 129.622   93   36.0251 228.02                  
+## mu2         5.983   5.77   4.764   93  -82.5914  98.28                  
+## muDiff    125.237 125.25 122.580   93   -5.4750 259.36       0      95.7
+## sigma1    138.885 127.98 115.221   93   67.1705 224.44                  
+## sigma2    129.894 119.66 102.997   93   61.8197 209.06                  
+## sigmaDiff   8.991   8.12   5.282   93 -115.7137 136.45       0      56.1
+## nu         34.201  25.64   9.828   93    1.2097  83.35                  
+## log10nu     1.377   1.41   1.490   93    0.6392   2.04                  
+## effSz       0.971   0.96   0.918   93   -0.0941   1.99       0      95.7
+##           ROPElow ROPEhigh %InROPE
+## mu1                               
+## mu2                               
+## muDiff        -20       20    4.43
+## sigma1                            
+## sigma2                            
+## sigmaDiff                         
+## nu                                
+## log10nu                           
 ## effSz
 \end{verbatim}
 
@@ -3786,6 +3786,10 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 
 \href{https://doi.org/10.1111/sms.70130}{Renwick et al.~(2025)} compared six weeks of low-volume sprint interval training (three ``all out'' sprints of 20 seconds, three times a week) with no exercise in 37 insufficiently active young adults (17 training, 20 control). The preregistered randomized trial was analysed with a Bayesian hierarchical regression (written in Stan), so the results are given as posterior estimates with 95\% credible intervals. For relative peak oxygen uptake, the training group improved by 5.6 mL/kg/min more than the control group (95\% credible interval 2.2 to 8.1).
 
+\subsection{Low-intensity swimming with blood flow restriction over 5 weeks increases VO2peak: A randomized controlled trial using Bayesian informative prior distribution}\label{low-intensity-swimming-with-blood-flow-restriction-over-5-weeks-increases-vo2peak-a-randomized-controlled-trial-using-bayesian-informative-prior-distribution}
+
+\href{https://doi.org/10.1080/17461391.2023.2180671}{Held et al.~(2023)} randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95\% credible interval, so with this small sample the prior had little influence on the result.
+
 \section{Exercises}\label{exercises-3}
 
 Difficulty levels of exercises:
@@ -3895,19 +3899,19 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.716  0.710  0.704   93 -0.534  1.984                          
-## mu2        2.298  2.294  2.252   93  0.891  3.738                          
-## muDiff    -1.582 -1.581 -1.551   93 -3.509  0.316       0      6.32    -1.8
-## sigma1     2.043  1.925  1.740   93  1.099  3.107                          
-## sigma2     2.311  2.175  1.998   93  1.278  3.526                          
-## sigmaDiff -0.268 -0.244 -0.153   93 -1.974  1.410       0     37.32        
-## nu        36.032 27.690 11.511   93  1.363 85.515                          
-## log10nu    1.413  1.442  1.524   93  0.734  2.063                          
-## effSz     -0.746 -0.742 -0.701   93 -1.648  0.135       0      6.32        
+## mu1        0.715  0.709  0.604   93 -0.512  1.998                          
+## mu2        2.305  2.305  2.303   93  0.880  3.728                          
+## muDiff    -1.590 -1.592 -1.556   93 -3.502  0.298       0      6.22    -1.8
+## sigma1     2.042  1.922  1.754   93  1.078  3.102                          
+## sigma2     2.305  2.172  1.969   93  1.266  3.477                          
+## sigmaDiff -0.263 -0.246 -0.205   93 -1.914  1.454       0     37.30        
+## nu        36.251 27.661 11.847   93  1.329 86.409                          
+## log10nu    1.414  1.442  1.533   93  0.727  2.062                          
+## effSz     -0.750 -0.747 -0.728   93 -1.623  0.147       0      6.22        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.5
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

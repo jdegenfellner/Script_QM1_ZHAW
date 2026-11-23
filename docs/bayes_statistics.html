@@ -274,6 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9" data-path="bayes_statistics.html"><a href="bayes_statistics.html#bayes_literature_examples"><i class="fa fa-check"></i><b>3.9</b> Examples of Bayesian analysis in the literature</a>
 <ul>
 <li class="chapter" data-level="3.9.1" data-path="bayes_statistics.html"><a href="bayes_statistics.html#six-weeks-of-low-volume-sprint-interval-training-improves-peak-oxygen-uptake-compared-to-a-non-exercise-control-a-randomized-controlled-trial"><i class="fa fa-check"></i><b>3.9.1</b> Six Weeks of Low-Volume Sprint Interval Training Improves Peak Oxygen Uptake Compared to a Non-Exercise Control: A Randomized Controlled Trial</a></li>
+<li class="chapter" data-level="3.9.2" data-path="bayes_statistics.html"><a href="bayes_statistics.html#low-intensity-swimming-with-blood-flow-restriction-over-5-weeks-increases-vo2peak-a-randomized-controlled-trial-using-bayesian-informative-prior-distribution"><i class="fa fa-check"></i><b>3.9.2</b> Low-intensity swimming with blood flow restriction over 5 weeks increases VO2peak: A randomized controlled trial using Bayesian informative prior distribution</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="bayes_statistics.html"><a href="bayes_statistics.html#exercises-3"><i class="fa fa-check"></i><b>3.10</b> Exercises</a>
 <ul>
@@ -409,8 +410,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
 The two branches ending in a positive test (green and orange) add up to <span class="math inline">\(\mathbb{P}(Tpos)\)</span>,
 and the posterior probability is the green share of this sum.</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-c16f284ddbf4575c876e" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-c16f284ddbf4575c876e">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-efb4eb01ba10d43c408e" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-efb4eb01ba10d43c408e">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>In the animation <a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/20_Bayes_Baum_Sens_Spez.html">Bayes’ theorem as a tree</a>
 you can set the prevalence, the sensitivity and the specificity yourself and watch how the tree and the posterior probability change.</p>
 <p>Summarized, we have:</p>
@@ -733,20 +734,20 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.870 130.910 131.792   93   35.3696 227.63                  
-## mu2         5.854   5.653   5.515   93  -83.3828  95.29                  
-## muDiff    125.015 125.005 122.444   93   -8.4667 255.22       0      95.8
-## sigma1    139.282 128.261 111.050   93   64.9181 223.53                  
-## sigma2    129.316 119.022 105.686   93   61.4783 208.71                  
-## sigmaDiff   9.966   8.497   5.021   93 -113.6993 137.81       0      56.6
-## nu         34.071  25.482   9.949   93    1.1810  82.55                  
-## log10nu     1.375   1.406   1.469   93    0.6580   2.05                  
-## effSz       0.971   0.959   0.928   93   -0.0779   2.01       0      95.8
+<pre><code>##              mean median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.772 130.77 124.154   93   32.9441 226.54                  
+## mu2         6.113   6.03   6.620   93  -85.4928  93.95                  
+## muDiff    124.659 124.77 120.943   93  -10.9444 254.39       0      95.7
+## sigma1    139.511 128.02 111.730   93   65.7836 226.51                  
+## sigma2    129.634 119.40 102.521   93   62.3717 209.45                  
+## sigmaDiff   9.877   8.45   6.778   93 -116.4647 137.80       0      56.2
+## nu         34.316  25.69   9.835   93    1.1867  84.10                  
+## log10nu     1.378   1.41   1.477   93    0.6525   2.05                  
+## effSz       0.967   0.96   0.978   93   -0.0836   2.00       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.39
+## muDiff        -20       20    4.58
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -871,6 +872,10 @@ When publishing, many reviewers could be sceptical or unfamiliar with Bayesian s
 <h3><span class="header-section-number">3.9.1</span> Six Weeks of Low-Volume Sprint Interval Training Improves Peak Oxygen Uptake Compared to a Non-Exercise Control: A Randomized Controlled Trial<a href="bayes_statistics.html#six-weeks-of-low-volume-sprint-interval-training-improves-peak-oxygen-uptake-compared-to-a-non-exercise-control-a-randomized-controlled-trial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="https://doi.org/10.1111/sms.70130">Renwick et al. (2025)</a> compared six weeks of low-volume sprint interval training (three “all out” sprints of 20 seconds, three times a week) with no exercise in 37 insufficiently active young adults (17 training, 20 control). The preregistered randomized trial was analysed with a Bayesian hierarchical regression (written in Stan), so the results are given as posterior estimates with 95% credible intervals. For relative peak oxygen uptake, the training group improved by 5.6 mL/kg/min more than the control group (95% credible interval 2.2 to 8.1).</p>
 </div>
+<div id="low-intensity-swimming-with-blood-flow-restriction-over-5-weeks-increases-vo2peak-a-randomized-controlled-trial-using-bayesian-informative-prior-distribution" class="section level3 hasAnchor" number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> Low-intensity swimming with blood flow restriction over 5 weeks increases VO2peak: A randomized controlled trial using Bayesian informative prior distribution<a href="bayes_statistics.html#low-intensity-swimming-with-blood-flow-restriction-over-5-weeks-increases-vo2peak-a-randomized-controlled-trial-using-bayesian-informative-prior-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://doi.org/10.1080/17461391.2023.2180671">Held et al. (2023)</a> randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95% credible interval, so with this small sample the prior had little influence on the result.</p>
+</div>
 </div>
 <div id="exercises-3" class="section level2 hasAnchor" number="3.10">
 <h2><span class="header-section-number">3.10</span> Exercises<a href="bayes_statistics.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -948,21 +953,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.08 sec elapsed</code></pre>
+<pre><code>## 1.108 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.708  0.703  0.697   93 -0.543  1.964                          
-## mu2        2.299  2.295  2.310   93  0.866  3.695                          
-## muDiff    -1.591 -1.588 -1.556   93 -3.482  0.313       0      6.15    -1.8
-## sigma1     2.039  1.921  1.738   93  1.099  3.118                          
-## sigma2     2.307  2.170  2.000   93  1.267  3.507                          
-## sigmaDiff -0.268 -0.250 -0.308   93 -1.961  1.425       0     37.32        
-## nu        36.225 27.677 11.622   93  1.604 86.719                          
-## log10nu    1.412  1.442  1.504   93  0.720  2.070                          
-## effSz     -0.751 -0.746 -0.712   93 -1.651  0.120       0      6.15        
+## mu1        0.706  0.701  0.693   93 -0.547  1.971                          
+## mu2        2.300  2.299  2.364   93  0.904  3.707                          
+## muDiff    -1.593 -1.598 -1.629   93 -3.473  0.314       0      6.04    -1.8
+## sigma1     2.043  1.922  1.722   93  1.109  3.140                          
+## sigma2     2.300  2.165  1.933   93  1.272  3.492                          
+## sigmaDiff -0.257 -0.235 -0.157   93 -1.991  1.400       0     37.69        
+## nu        36.162 27.643 12.126   93  1.509 86.272                          
+## log10nu    1.412  1.442  1.547   93  0.726  2.075                          
+## effSz     -0.753 -0.749 -0.736   93 -1.653  0.122       0      6.04        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8      58
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
