@@ -57,7 +57,7 @@ $$
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos \cap Dpos)}{\mathbb{P}(Tpos)}.
 $$
 
-which is also true by the definition of conditional probability. 
+which is true by the definition of conditional probability.
 
 One can rewrite the denominator as:
 
@@ -105,6 +105,9 @@ digraph {
 }
 ")
 ```
+
+In the animation [Bayes' theorem as a tree](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/20_Bayes_Baum_Sens_Spez.html)
+you can set the prevalence, the sensitivity and the specificity yourself and watch how the tree and the posterior probability change.
 
 Summarized, we have:
 
