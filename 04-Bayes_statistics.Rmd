@@ -457,6 +457,9 @@ ggplot(plot_data, aes(x = theta)) +
 ```
 </details>
 
+In the animation [Beta prior and posterior](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/21_Beta_Prior_Posterior.html)
+you can set the mode of the prior and the number of defective items (0 to 20) yourself and watch how the posterior changes.
+
 As we can see, the posterior distribution has a new peak at $0.38$. If we had to guess
 now, we would probably say that the defect rate is around 38%.
 We have updated our beliefs about the defect rate based on the new data.

@@ -3329,6 +3329,9 @@ R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/m
 
 \pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-36-1.pdf}}
 
+In the animation \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/21_Beta_Prior_Posterior.html}{Beta prior and posterior}
+you can set the mode of the prior and the number of defective items (0 to 20) yourself and watch how the posterior changes.
+
 As we can see, the posterior distribution has a new peak at \(0.38\). If we had to guess
 now, we would probably say that the defect rate is around 38\%.
 We have updated our beliefs about the defect rate based on the new data.
@@ -3601,19 +3604,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.667 130.902 131.75   93   33.1687 228.18                  
-## mu2         5.776   5.736   5.20   93  -86.6594  93.90                  
-## muDiff    124.892 125.177 127.57   93   -7.9821 257.28       0      95.7
-## sigma1    139.882 128.555 112.05   93   66.5414 227.74                  
-## sigma2    130.000 119.630 103.08   93   62.8709 211.10                  
-## sigmaDiff   9.882   8.598   7.04   93 -118.2430 136.99       0      56.4
-## nu         34.542  25.792   9.54   93    1.0718  84.58                  
-## log10nu     1.380   1.411   1.51   93    0.6548   2.06                  
-## effSz       0.966   0.958   1.00   93   -0.0665   2.01       0      95.7
+## mu1       130.851 130.801 129.86   93   34.5417 228.33                  
+## mu2         5.449   5.418   6.16   93  -87.0995  95.19                  
+## muDiff    125.402 125.576 131.91   93   -7.6347 258.52       0      95.7
+## sigma1    139.274 128.406 113.39   93   65.9008 223.92                  
+## sigma2    129.811 119.559 103.91   93   61.0202 209.81                  
+## sigmaDiff   9.464   8.562   8.76   93 -118.4450 133.09       0      56.4
+## nu         34.545  25.906   9.83   93    1.1592  84.09                  
+## log10nu     1.381   1.413   1.51   93    0.6732   2.07                  
+## effSz       0.972   0.963   0.93   93   -0.0623   2.03       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.48
+## muDiff        -20       20    4.47
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3862,24 +3865,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 0.995 sec elapsed
+## 1.002 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.713  0.706  0.727   93 -0.513  1.983                          
-## mu2        2.299  2.299  2.330   93  0.848  3.711                          
-## muDiff    -1.586 -1.589 -1.596   93 -3.458  0.344       0      6.25    -1.8
-## sigma1     2.035  1.919  1.734   93  1.116  3.116                          
-## sigma2     2.316  2.176  1.979   93  1.268  3.529                          
-## sigmaDiff -0.281 -0.252 -0.221   93 -1.977  1.405       0     37.00        
-## nu        36.004 27.528 12.065   93  1.532 86.239                          
-## log10nu    1.411  1.440  1.530   93  0.719  2.059                          
-## effSz     -0.748 -0.744 -0.717   93 -1.636  0.145       0      6.25        
+## mu1        0.711  0.705  0.706   93 -0.525  1.995                          
+## mu2        2.299  2.296  2.303   93  0.890  3.746                          
+## muDiff    -1.588 -1.585 -1.514   93 -3.542  0.281       0      6.28    -1.8
+## sigma1     2.039  1.920  1.737   93  1.082  3.104                          
+## sigma2     2.315  2.179  1.956   93  1.251  3.500                          
+## sigmaDiff -0.276 -0.251 -0.183   93 -1.977  1.419       0     36.95        
+## nu        36.230 27.487 11.520   93  1.504 87.083                          
+## log10nu    1.412  1.439  1.528   93  0.738  2.087                          
+## effSz     -0.750 -0.743 -0.724   93 -1.660  0.127       0      6.28        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
