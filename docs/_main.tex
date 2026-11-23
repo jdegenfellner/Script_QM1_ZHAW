@@ -3223,9 +3223,6 @@ how the Bayes theorem works.
 
 \subsection{Example 1 - defective products}\label{example_defective_products}
 
-(Example from Script ``Statistik und Wahrscheinlichkeitstheorie using R'',
-S.331 ff, Werner Gurker)
-
 A manufacturer claims that the defect rate of their products is only 5\%, while the customer believes it to be 10\%.
 \textbf{Before} the result of a sample inspection is known, we assign both rates an equal 50-50 chance:
 
@@ -3603,20 +3600,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.295 131.043 129.314   93   36.0111 230.61                  
-## mu2         5.881   5.935   7.302   93  -83.3721  95.98                  
-## muDiff    125.414 125.652 127.670   93   -5.8360 260.44       0      95.7
-## sigma1    139.869 128.264 113.935   93   65.1859 226.30                  
-## sigma2    129.929 119.257 105.480   93   61.3031 209.98                  
-## sigmaDiff   9.940   8.564   3.552   93 -116.9281 139.75       0      56.4
-## nu         34.140  25.612   9.508   93    1.0551  82.64                  
-## log10nu     1.375   1.408   1.475   93    0.6493   2.05                  
-## effSz       0.971   0.962   0.987   93   -0.0642   2.03       0      95.7
+##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.667 130.902 131.75   93   33.1687 228.18                  
+## mu2         5.776   5.736   5.20   93  -86.6594  93.90                  
+## muDiff    124.892 125.177 127.57   93   -7.9821 257.28       0      95.7
+## sigma1    139.882 128.555 112.05   93   66.5414 227.74                  
+## sigma2    130.000 119.630 103.08   93   62.8709 211.10                  
+## sigmaDiff   9.882   8.598   7.04   93 -118.2430 136.99       0      56.4
+## nu         34.542  25.792   9.54   93    1.0718  84.58                  
+## log10nu     1.380   1.411   1.51   93    0.6548   2.06                  
+## effSz       0.966   0.958   1.00   93   -0.0665   2.01       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.38
+## muDiff        -20       20    4.48
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3865,24 +3862,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.011 sec elapsed
+## 0.995 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.717  0.708  0.643   93 -0.564  1.951                          
-## mu2        2.305  2.299  2.358   93  0.886  3.738                          
-## muDiff    -1.588 -1.589 -1.560   93 -3.480  0.334       0      6.27    -1.8
-## sigma1     2.044  1.925  1.726   93  1.107  3.124                          
-## sigma2     2.308  2.176  1.966   93  1.245  3.478                          
-## sigmaDiff -0.263 -0.242 -0.193   93 -1.959  1.426       0     37.41        
-## nu        36.314 27.589 11.269   93  1.543 86.860                          
-## log10nu    1.414  1.441  1.522   93  0.741  2.085                          
-## effSz     -0.748 -0.746 -0.729   93 -1.622  0.151       0      6.27        
+## mu1        0.713  0.706  0.727   93 -0.513  1.983                          
+## mu2        2.299  2.299  2.330   93  0.848  3.711                          
+## muDiff    -1.586 -1.589 -1.596   93 -3.458  0.344       0      6.25    -1.8
+## sigma1     2.035  1.919  1.734   93  1.116  3.116                          
+## sigma2     2.316  2.176  1.979   93  1.268  3.529                          
+## sigmaDiff -0.281 -0.252 -0.221   93 -1.977  1.405       0     37.00        
+## nu        36.004 27.528 12.065   93  1.532 86.239                          
+## log10nu    1.411  1.440  1.530   93  0.719  2.059                          
+## effSz     -0.748 -0.744 -0.717   93 -1.636  0.145       0      6.25        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

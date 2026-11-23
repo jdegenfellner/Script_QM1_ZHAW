@@ -159,9 +159,6 @@ how the Bayes theorem works.
 
 ### Example 1 - defective products {#example_defective_products}
 
-(Example from Script “Statistik und Wahrscheinlichkeitstheorie using R”, 
-S.331 ff, Werner Gurker)
-
 A manufacturer claims that the defect rate of their products is only 5%, while the customer believes it to be 10%. 
 **Before** the result of a sample inspection is known, we assign both rates an equal 50-50 chance:
 
