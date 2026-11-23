@@ -1104,7 +1104,11 @@ When publishing, many reviewers could be sceptical or unfamiliar with Bayesian s
 
 - **Subjectivity**: The choice of the prior distribution can be subjective.
 
+## Examples of Bayesian analysis in the literature {#bayes_literature_examples}
 
+### Six Weeks of Low-Volume Sprint Interval Training Improves Peak Oxygen Uptake Compared to a Non-Exercise Control: A Randomized Controlled Trial
+
+[Renwick et al. (2025)](https://doi.org/10.1111/sms.70130) compared six weeks of low-volume sprint interval training (three "all out" sprints of 20 seconds, three times a week) with no exercise in 37 insufficiently active young adults (17 training, 20 control). The preregistered randomized trial was analysed with a Bayesian hierarchical regression (written in Stan), so the results are given as posterior estimates with 95% credible intervals. For relative peak oxygen uptake, the training group improved by 5.6 mL/kg/min more than the control group (95% credible interval 2.2 to 8.1).
 
 
 

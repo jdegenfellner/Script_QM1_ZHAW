@@ -74,6 +74,8 @@ more-complex-parameter-spaces
 advantagesdisadvantages-of-bayesian-statistics
 some-advantages
 some-disadvantages
+bayes_literature_examples
+six-weeks-of-low-volume-sprint-interval-training-improves-peak-oxygen-uptake-compared-to-a-non-exercise-control-a-randomized-controlled-trial
 exercises-3
 exercise_defective_product_rate
 h-exercise-2---bayesian-updating

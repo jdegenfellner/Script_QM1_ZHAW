@@ -3615,25 +3615,25 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
-## mu1       130.521 130.566 127.781   93   35.194 230.43                  
-## mu2         5.443   5.523   5.010   93  -85.035  94.59                  
-## muDiff    125.078 125.028 133.413   93   -7.767 258.49       0      95.7
-## sigma1    140.349 128.960 114.810   93   65.621 226.74                  
-## sigma2    129.844 119.507 103.153   93   61.870 210.44                  
-## sigmaDiff  10.505   9.317   7.853   93 -118.370 137.74       0      56.9
-## nu         34.323  25.785  10.062   93    1.083  83.81                  
-## log10nu     1.378   1.411   1.494   93    0.673   2.08                  
-## effSz       0.966   0.956   0.922   93   -0.078   2.00       0      95.7
-##           ROPElow ROPEhigh %InROPE
-## mu1                               
-## mu2                               
-## muDiff        -20       20    4.37
-## sigma1                            
-## sigma2                            
-## sigmaDiff                         
-## nu                                
-## log10nu                           
+##             mean median    mode HDI%    HDIlo  HDIup compVal %>compVal ROPElow
+## mu1       130.39 130.66 130.168   93   30.540 226.80                          
+## mu2         6.10   5.73   0.922   93  -84.507  95.58                          
+## muDiff    124.30 124.63 132.692   93   -8.716 259.06       0      95.5     -20
+## sigma1    140.48 129.10 111.822   93   66.591 229.13                          
+## sigma2    130.37 119.64 106.851   93   61.272 212.36                          
+## sigmaDiff  10.10   9.21  10.811   93 -118.077 138.94       0      56.7        
+## nu         34.04  25.56  10.083   93    1.079  82.87                          
+## log10nu     1.38   1.41   1.467   93    0.661   2.06                          
+## effSz       0.96   0.95   0.861   93   -0.101   1.99       0      95.5        
+##           ROPEhigh %InROPE
+## mu1                       
+## mu2                       
+## muDiff          20    4.59
+## sigma1                    
+## sigma2                    
+## sigmaDiff                 
+## nu                        
+## log10nu                   
 ## effSz
 \end{verbatim}
 
@@ -3780,6 +3780,12 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
   \textbf{Subjectivity}: The choice of the prior distribution can be subjective.
 \end{itemize}
 
+\section{Examples of Bayesian analysis in the literature}\label{bayes_literature_examples}
+
+\subsection{Six Weeks of Low-Volume Sprint Interval Training Improves Peak Oxygen Uptake Compared to a Non-Exercise Control: A Randomized Controlled Trial}\label{six-weeks-of-low-volume-sprint-interval-training-improves-peak-oxygen-uptake-compared-to-a-non-exercise-control-a-randomized-controlled-trial}
+
+\href{https://doi.org/10.1111/sms.70130}{Renwick et al.~(2025)} compared six weeks of low-volume sprint interval training (three ``all out'' sprints of 20 seconds, three times a week) with no exercise in 37 insufficiently active young adults (17 training, 20 control). The preregistered randomized trial was analysed with a Bayesian hierarchical regression (written in Stan), so the results are given as posterior estimates with 95\% credible intervals. For relative peak oxygen uptake, the training group improved by 5.6 mL/kg/min more than the control group (95\% credible interval 2.2 to 8.1).
+
 \section{Exercises}\label{exercises-3}
 
 Difficulty levels of exercises:
@@ -3884,24 +3890,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 0.99 sec elapsed
+## 1 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.712  0.708  0.676   93 -0.527  1.979                          
-## mu2        2.300  2.300  2.322   93  0.876  3.754                          
-## muDiff    -1.587 -1.591 -1.670   93 -3.512  0.311       0       6.3    -1.8
-## sigma1     2.035  1.923  1.735   93  1.096  3.074                          
-## sigma2     2.314  2.177  1.977   93  1.280  3.530                          
-## sigmaDiff -0.279 -0.250 -0.220   93 -1.976  1.398       0      36.9        
-## nu        35.679 27.047 11.504   93  1.369 84.915                          
-## log10nu    1.405  1.432  1.496   93  0.713  2.058                          
-## effSz     -0.749 -0.744 -0.727   93 -1.633  0.156       0       6.3        
+## mu1        0.716  0.710  0.704   93 -0.534  1.984                          
+## mu2        2.298  2.294  2.252   93  0.891  3.738                          
+## muDiff    -1.582 -1.581 -1.551   93 -3.509  0.316       0      6.32    -1.8
+## sigma1     2.043  1.925  1.740   93  1.099  3.107                          
+## sigma2     2.311  2.175  1.998   93  1.278  3.526                          
+## sigmaDiff -0.268 -0.244 -0.153   93 -1.974  1.410       0     37.32        
+## nu        36.032 27.690 11.511   93  1.363 85.515                          
+## log10nu    1.413  1.442  1.524   93  0.734  2.063                          
+## effSz     -0.746 -0.742 -0.701   93 -1.648  0.135       0      6.32        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8    58.5
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
