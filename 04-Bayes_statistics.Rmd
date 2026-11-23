@@ -755,8 +755,7 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
   ) +
   labs(
     title = "Posterior Distribution with 93% HDI",
-    subtitle = paste0("93% HDI: [", round(hdi[1], 4),
-                      ", ", round(hdi[2], 4), "]"),
+    subtitle = "Bold bar: the 93% HDI (one interval)",
     x = expression(theta),
     y = "Density"
   ) +
@@ -766,7 +765,13 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     plot.subtitle = element_text(hjust = 0.5)
   ) +
   geom_vline(xintercept = hdi[1], linetype = "dashed", color = "darkred") +
-  geom_vline(xintercept = hdi[2], linetype = "dashed", color = "darkred")
+  geom_vline(xintercept = hdi[2], linetype = "dashed", color = "darkred") +
+  # The HDI itself: one interval on the x-axis (bold bar with label)
+  annotate("segment", x = hdi[1], xend = hdi[2], y = -0.3, yend = -0.3,
+           color = "#b84a00", linewidth = 3.5, lineend = "butt") +
+  annotate("text", x = mean(hdi), y = -0.65, color = "#b84a00", fontface = "bold", size = 4.2,
+           label = sprintf("[%.2f, %.2f]", hdi[1], hdi[2])) +
+  scale_y_continuous(breaks = 0:5, limits = c(-0.85, NA))
 ```
 </details>
 
@@ -777,8 +782,7 @@ beliefs and the observed data.
 Note that the HDI does not necessarily have to be symmetric around the peak 
 of the distribution. 
 
-There could be, for instance, two peaks in the distribution, as you can see
-[here](https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png) for instance.
+There could be, for instance, two peaks in the distribution, as you can see in the figure below.
 In that case, the HDI would consist of two intervals. One could readily imagine
 a real life case for such a distribution: 
 
@@ -786,6 +790,69 @@ Think of a group of people where the
 measurement of interest is the 100 m sprint time. There could be two groups of people: 
 The hobby runners and the professional athletes. The distribution of the sprint times would
 probably be bimodal showing two peaks for the two groups.
+
+<details open>
+<summary>R codes are in the [git](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd) repository</summary>
+
+```{r hdi-bimodal, echo=FALSE}
+library(ggplot2)
+
+# Mixture of two groups: professional athletes (35 %) and hobby runners (65 %)
+x <- seq(8, 19, length.out = 4000)
+dens <- 0.35 * dnorm(x, mean = 10.8, sd = 0.35) + 0.65 * dnorm(x, mean = 15, sd = 0.9)
+dx <- x[2] - x[1]
+mass <- dens * dx
+
+# 95% HDI: all values with the highest density until 95% of the mass is covered
+ord <- order(dens, decreasing = TRUE)
+inside <- logical(length(x))
+inside[ord[cumsum(mass[ord]) <= 0.95]] <- TRUE
+
+# Quantile-based 95% interval for comparison
+cdf <- cumsum(mass) / sum(mass)
+q <- c(x[which(cdf >= 0.025)[1]], x[which(cdf >= 0.975)[1]])
+
+# Intervals of the HDI (consecutive runs)
+runs <- rle(inside)
+ends <- cumsum(runs$lengths); starts <- ends - runs$lengths + 1
+hdi_int <- data.frame(lo = x[starts[runs$values]], hi = x[ends[runs$values]])
+
+plot_data <- data.frame(x = x, density = dens, interval = rep(seq_along(runs$lengths), runs$lengths))
+ggplot(plot_data, aes(x = x, y = density)) +
+  geom_ribbon(data = plot_data[inside, ], aes(ymin = 0, ymax = density, group = interval),
+              fill = "orange", alpha = 0.6) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  geom_vline(xintercept = q, linetype = "dashed", color = "darkred") +
+  # The HDI itself: two intervals on the x-axis (thick bars with labels)
+  geom_segment(data = hdi_int, aes(x = lo, xend = hi, y = -0.03, yend = -0.03),
+               color = "#b84a00", linewidth = 3.5, lineend = "butt") +
+  geom_text(data = hdi_int, aes(x = (lo + hi) / 2, y = -0.065,
+                                label = sprintf("[%.1f, %.1f]", lo, hi)),
+            color = "#b84a00", fontface = "bold", size = 4.2) +
+  # The quantile-based interval: one single interval
+  annotate("segment", x = q[1], xend = q[2], y = -0.105, yend = -0.105,
+           color = "darkred", linewidth = 1, linetype = "dashed") +
+  annotate("text", x = mean(q), y = -0.135, color = "darkred", size = 4.2,
+           label = sprintf("quantile-based interval [%.1f, %.1f]", q[1], q[2])) +
+  labs(
+    title = "A distribution with two peaks: 100 m sprint times",
+    subtitle = "Bold bars: the two intervals of the 95% HDI",
+    x = "100 m sprint time (seconds)",
+    y = "Density"
+  ) +
+  scale_y_continuous(breaks = seq(0, 0.4, 0.1), limits = c(-0.15, 0.42)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+```
+</details>
+
+The 95% HDI consists of two separate **intervals**, one for each group (bold bars on the x-axis). 
+The orange areas under the curve only show the probability mass that belongs to these intervals. 
+The HDI leaves out the unlikely times in between. The dashed interval is quantile-based: 
+it is one single interval and also contains these unlikely times.
 
 There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.

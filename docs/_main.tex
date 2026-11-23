@@ -3401,8 +3401,7 @@ beliefs and the observed data.
 Note that the HDI does not necessarily have to be symmetric around the peak
 of the distribution.
 
-There could be, for instance, two peaks in the distribution, as you can see
-\href{https://bookdown.org/content/3686/04_files/figure-html/unnamed-chunk-30-1.png}{here} for instance.
+There could be, for instance, two peaks in the distribution, as you can see in the figure below.
 In that case, the HDI would consist of two intervals. One could readily imagine
 a real life case for such a distribution:
 
@@ -3410,6 +3409,15 @@ Think of a group of people where the
 measurement of interest is the 100 m sprint time. There could be two groups of people:
 The hobby runners and the professional athletes. The distribution of the sprint times would
 probably be bimodal showing two peaks for the two groups.
+
+R codes are in the \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/04-Bayes_statistics.Rmd}{git} repository
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/hdi-bimodal-1.pdf}}
+
+The 95\% HDI consists of two separate \textbf{intervals}, one for each group (bold bars on the x-axis).
+The orange areas under the curve only show the probability mass that belongs to these intervals.
+The HDI leaves out the unlikely times in between. The dashed interval is quantile-based:
+it is one single interval and also contains these unlikely times.
 
 There are other ways, one can construct credible intervals.
 We could also use the quantiles of the posterior distribution to construct a credible interval.
@@ -3606,19 +3614,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.469 130.592 132.050   93   31.0597 225.60                  
-## mu2         6.405   6.081  10.594   93  -85.6788  94.42                  
-## muDiff    124.065 124.488 128.581   93   -9.1663 258.63       0      95.4
-## sigma1    139.919 128.791 114.085   93   66.4268 225.95                  
-## sigma2    129.782 119.537 107.485   93   61.7908 209.04                  
-## sigmaDiff  10.137   8.829   7.741   93 -115.4314 138.50       0      56.6
-## nu         34.714  26.031  10.337   93    1.1427  84.56                  
-## log10nu     1.384   1.415   1.501   93    0.6581   2.05                  
-## effSz       0.961   0.952   0.942   93   -0.0711   2.02       0      95.4
+## mu1       130.767 130.802 129.406   93   32.2310 225.71                  
+## mu2         5.971   5.780   5.103   93  -82.0375  99.95                  
+## muDiff    124.796 124.919 122.588   93   -8.6846 257.84       0      95.7
+## sigma1    139.717 128.667 113.720   93   66.3547 225.28                  
+## sigma2    130.023 119.488 101.848   93   62.3792 210.76                  
+## sigmaDiff   9.694   8.723   7.240   93 -116.7189 137.98       0      56.6
+## nu         34.311  25.688   9.758   93    1.1751  83.66                  
+## log10nu     1.378   1.410   1.454   93    0.6641   2.06                  
+## effSz       0.967   0.956   0.941   93   -0.0848   2.01       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.59
+## muDiff        -20       20    4.48
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3867,24 +3875,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.006 sec elapsed
+## 1.103 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.714  0.708  0.750   93 -0.556  1.968                          
-## mu2        2.310  2.305  2.251   93  0.901  3.735                          
-## muDiff    -1.596 -1.594 -1.630   93 -3.514  0.279       0      6.08    -1.8
-## sigma1     2.037  1.919  1.767   93  1.105  3.114                          
-## sigma2     2.302  2.175  1.916   93  1.263  3.474                          
-## sigmaDiff -0.265 -0.248 -0.227   93 -1.911  1.426       0     36.98        
-## nu        36.340 27.656 11.159   93  1.445 87.238                          
-## log10nu    1.413  1.442  1.493   93  0.728  2.073                          
-## effSz     -0.755 -0.749 -0.743   93 -1.644  0.139       0      6.08        
+## mu1        0.708  0.706  0.735   93 -0.520  1.993                          
+## mu2        2.302  2.299  2.351   93  0.874  3.713                          
+## muDiff    -1.595 -1.587 -1.586   93 -3.471  0.311       0         6    -1.8
+## sigma1     2.043  1.922  1.776   93  1.091  3.096                          
+## sigma2     2.314  2.180  1.926   93  1.260  3.503                          
+## sigmaDiff -0.271 -0.253 -0.221   93 -1.982  1.401       0        37        
+## nu        35.934 27.357 11.956   93  1.472 86.025                          
+## log10nu    1.410  1.437  1.480   93  0.738  2.076                          
+## effSz     -0.750 -0.743 -0.689   93 -1.658  0.109       0         6        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
