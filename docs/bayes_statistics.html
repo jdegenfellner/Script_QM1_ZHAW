@@ -405,8 +405,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
 The two branches ending in a positive test (green and orange) add up to <span class="math inline">\(\mathbb{P}(Tpos)\)</span>,
 and the posterior probability is the green share of this sum.</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-472f4c986630b18f708e" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-472f4c986630b18f708e">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-099d6733bc18dd8f3c4f" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-099d6733bc18dd8f3c4f">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>In the animation <a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/20_Bayes_Baum_Sens_Spez.html">Bayes’ theorem as a tree</a>
 you can set the prevalence, the sensitivity and the specificity yourself and watch how the tree and the posterior probability change.</p>
 <p>Summarized, we have:</p>
@@ -549,7 +549,9 @@ In the graph, there is also the observed defect rate of 55%. This observed rate 
 draws our prior beliefs towards the observed rate.</p>
 <ul>
 <li><p><strong>The more data we observe</strong>, the more the posterior distribution would be
-drawn towards the observed rate, because we would be surer due to the large sample size.</p></li>
+drawn towards the observed rate, because we would be surer due to the large sample size.
+With enough data the prior hardly matters anymore, and the Bayesian and the frequentist analysis
+converge to practically the same result.</p></li>
 <li><p><strong>The stronger our prior beliefs</strong> in a certain value (or range) of <span class="math inline">\(\theta\)</span>, the less we are
 convinced by new data.</p></li>
 </ul>
@@ -717,19 +719,19 @@ script is run since it’s simulation based.</p></li>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
 <pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.759 130.936 130.758   93   34.4635 228.69                  
-## mu2         6.134   5.821   3.022   93  -82.2029  98.08                  
-## muDiff    124.625 125.057 128.641   93   -7.6676 257.79       0      95.7
-## sigma1    139.286 128.295 110.801   93   65.9195 224.30                  
-## sigma2    129.500 119.221 105.293   93   62.6636 209.41                  
-## sigmaDiff   9.786   8.944  11.440   93 -112.8407 139.47       0      56.6
-## nu         34.441  25.862  10.593   93    1.0469  83.54                  
-## log10nu     1.380   1.413   1.473   93    0.6620   2.06                  
-## effSz       0.968   0.958   0.927   93   -0.0743   2.01       0      95.7
+## mu1       130.660 130.927 131.316   93   33.1372 227.54                  
+## mu2         6.211   5.931   4.731   93  -83.7810  95.71                  
+## muDiff    124.449 124.788 128.479   93   -8.5140 258.13       0      95.6
+## sigma1    139.827 128.661 110.912   93   66.8806 226.63                  
+## sigma2    130.051 119.620 104.308   93   61.6331 210.08                  
+## sigmaDiff   9.776   8.598   7.174   93 -119.0489 137.98       0      56.3
+## nu         34.147  25.635  10.002   93    1.2593  83.07                  
+## log10nu     1.377   1.409   1.464   93    0.6627   2.06                  
+## effSz       0.964   0.954   0.938   93   -0.0788   2.01       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.43
+## muDiff        -20       20     4.5
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -922,21 +924,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.082 sec elapsed</code></pre>
-<pre><code>##             mean median  mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.714  0.709  0.77   93 -0.530  1.999                          
-## mu2        2.306  2.301  2.24   93  0.900  3.715                          
-## muDiff    -1.592 -1.597 -1.73   93 -3.476  0.294       0      6.06    -1.8
-## sigma1     2.036  1.918  1.76   93  1.093  3.092                          
-## sigma2     2.302  2.167  1.99   93  1.267  3.478                          
-## sigmaDiff -0.266 -0.242 -0.24   93 -1.967  1.387       0     37.47        
-## nu        36.018 27.591 11.79   93  1.491 85.567                          
-## log10nu    1.411  1.441  1.48   93  0.725  2.064                          
-## effSz     -0.753 -0.751 -0.76   93 -1.618  0.154       0      6.06        
+<pre><code>## 1.092 sec elapsed</code></pre>
+<pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
+## mu1        0.707  0.707  0.643   93 -0.559  1.967                          
+## mu2        2.301  2.295  2.282   93  0.883  3.711                          
+## muDiff    -1.594 -1.589 -1.461   93 -3.477  0.297       0      6.04    -1.8
+## sigma1     2.042  1.922  1.692   93  1.090  3.111                          
+## sigma2     2.306  2.173  1.982   93  1.245  3.472                          
+## sigmaDiff -0.264 -0.246 -0.214   93 -2.007  1.371       0     37.22        
+## nu        35.943 27.272 12.071   93  1.539 86.371                          
+## log10nu    1.408  1.436  1.490   93  0.721  2.070                          
+## effSz     -0.752 -0.746 -0.731   93 -1.635  0.137       0      6.04        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    57.9
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

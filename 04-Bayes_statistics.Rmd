@@ -414,7 +414,7 @@ ggplot(plot_data, aes(x = theta)) +
     name = "Distributions"
   ) +
   labs(
-    title = "Prior and Posterior Distributions of Theta",
+    title = expression(bold(paste("Prior and Posterior Distributions of ", theta))),
     x = expression(theta),
     y = "Density"
   ) +
@@ -468,6 +468,8 @@ draws our prior beliefs towards the observed rate.
 
 - **The more data we observe**, the more the posterior distribution would be 
 drawn towards the observed rate, because we would be surer due to the large sample size.
+With enough data the prior hardly matters anymore, and the Bayesian and the frequentist analysis
+converge to practically the same result.
 
 - **The stronger our prior beliefs** in a certain value (or range) of $\theta$, the less we are 
 convinced by new data.
@@ -546,8 +548,8 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     alpha = 0.6
   ) +
   labs(
-    title = "Posterior Distribution of Theta",
-    subtitle = "Shaded area shows P(0.3 ≤ Theta ≤ 0.5)",
+    title = expression(bold(paste("Posterior Distribution of ", theta))),
+    subtitle = expression("Shaded area shows P(0.3" <= theta ~ phantom("") <= "0.5)"),
     x = expression(theta),
     y = "Density"
   ) +
@@ -555,7 +557,8 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     "text",
     x = 0.4,  # Position of the annotation text along the x-axis
     y = max(posterior_data$density) * 0.5,  # Position along the y-axis
-    label = paste0("P(0.3 ≤ Theta ≤ 0.5) = ", round(prob_theta_numerical, 4)),
+    label = paste0("'P(0.3' <= theta ~ phantom('') <= '0.5) = ", round(prob_theta_numerical, 4), "'"),
+    parse = TRUE,
     color = "black",
     size = 4,
     hjust = 0
@@ -638,8 +641,8 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     alpha = 0.6
   ) +
   labs(
-    title = "Posterior Distribution of Theta",
-    subtitle = "Shaded area shows P(0.0 ≤ Theta ≤ 0.25)",
+    title = expression(bold(paste("Posterior Distribution of ", theta))),
+    subtitle = expression("Shaded area shows P(0.0" <= theta ~ phantom("") <= "0.25)"),
     x = expression(theta),
     y = "Density"
   ) +
@@ -647,7 +650,8 @@ ggplot(posterior_data, aes(x = theta, y = density)) +
     "text",
     x = 0.15,  # Position of the annotation text along the x-axis
     y = max(posterior_data$density) * 0.4,  # Position along the y-axis
-    label = paste0("P(0.0 ≤ Theta ≤ 0.25) = ", round(prob_theta_numerical, 4)),
+    label = paste0("'P(0.0' <= theta ~ phantom('') <= '0.25) = ", round(prob_theta_numerical, 4), "'"),
+    parse = TRUE,
     color = "black",
     size = 4,
     hjust = 0

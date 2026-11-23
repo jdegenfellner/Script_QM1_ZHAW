@@ -3342,6 +3342,8 @@ draws our prior beliefs towards the observed rate.
 \item
   \textbf{The more data we observe}, the more the posterior distribution would be
   drawn towards the observed rate, because we would be surer due to the large sample size.
+  With enough data the prior hardly matters anymore, and the Bayesian and the frequentist analysis
+  converge to practically the same result.
 \item
   \textbf{The stronger our prior beliefs} in a certain value (or range) of \(\theta\), the less we are
   convinced by new data.
@@ -3603,16 +3605,16 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.851 130.801 129.86   93   34.5417 228.33                  
-## mu2         5.449   5.418   6.16   93  -87.0995  95.19                  
-## muDiff    125.402 125.576 131.91   93   -7.6347 258.52       0      95.7
-## sigma1    139.274 128.406 113.39   93   65.9008 223.92                  
-## sigma2    129.811 119.559 103.91   93   61.0202 209.81                  
-## sigmaDiff   9.464   8.562   8.76   93 -118.4450 133.09       0      56.4
-## nu         34.545  25.906   9.83   93    1.1592  84.09                  
-## log10nu     1.381   1.413   1.51   93    0.6732   2.07                  
-## effSz       0.972   0.963   0.93   93   -0.0623   2.03       0      95.7
+##             mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.93 130.806 133.462   93   36.4514 230.54                  
+## mu2         5.78   5.639   3.650   93  -86.5821  93.17                  
+## muDiff    125.15 124.999 122.573   93   -6.9955 259.07       0      95.7
+## sigma1    139.81 128.522 111.866   93   65.6592 225.69                  
+## sigma2    129.30 119.199 105.209   93   61.8845 208.93                  
+## sigmaDiff  10.51   8.928   6.402   93 -115.5147 137.69       0      56.9
+## nu         34.27  25.580  10.335   93    1.0020  83.44                  
+## log10nu     1.38   1.408   1.511   93    0.6523   2.06                  
+## effSz       0.97   0.959   0.948   93   -0.0586   2.03       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
@@ -3865,24 +3867,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.002 sec elapsed
+## 1.102 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.711  0.705  0.706   93 -0.525  1.995                          
-## mu2        2.299  2.296  2.303   93  0.890  3.746                          
-## muDiff    -1.588 -1.585 -1.514   93 -3.542  0.281       0      6.28    -1.8
-## sigma1     2.039  1.920  1.737   93  1.082  3.104                          
-## sigma2     2.315  2.179  1.956   93  1.251  3.500                          
-## sigmaDiff -0.276 -0.251 -0.183   93 -1.977  1.419       0     36.95        
-## nu        36.230 27.487 11.520   93  1.504 87.083                          
-## log10nu    1.412  1.439  1.528   93  0.738  2.087                          
-## effSz     -0.750 -0.743 -0.724   93 -1.660  0.127       0      6.28        
+## mu1        0.711  0.706  0.704   93 -0.523  2.003                          
+## mu2        2.305  2.305  2.357   93  0.894  3.727                          
+## muDiff    -1.594 -1.598 -1.708   93 -3.488  0.294       0      5.95    -1.8
+## sigma1     2.045  1.924  1.736   93  1.098  3.113                          
+## sigma2     2.309  2.177  2.018   93  1.272  3.505                          
+## sigmaDiff -0.264 -0.242 -0.181   93 -1.958  1.424       0     37.48        
+## nu        36.186 27.551 11.661   93  1.490 86.794                          
+## log10nu    1.412  1.440  1.490   93  0.719  2.061                          
+## effSz     -0.751 -0.747 -0.752   93 -1.626  0.141       0      5.95        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -5655,7 +5657,7 @@ value 0 (see prior plot below).
   \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
     \AttributeTok{title =} \StringTok{"Shifted Scaled Beta Prior Distribution for Correlation"}\NormalTok{,}
-    \AttributeTok{x =} \StringTok{"Correlation (rho)"}\NormalTok{,}
+    \AttributeTok{x =} \FunctionTok{expression}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Correlation ("}\NormalTok{, rho, }\StringTok{")"}\NormalTok{)),}
     \AttributeTok{y =} \StringTok{"Density"}
 \NormalTok{  ) }\SpecialCharTok{+}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
@@ -5697,8 +5699,8 @@ value 0 (see prior plot below).
                  \AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{fill =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{title =} \StringTok{"Posterior Distribution of Correlation (rho)"}\NormalTok{,}
-    \AttributeTok{x =} \StringTok{"Correlation (rho)"}\NormalTok{,}
+    \AttributeTok{title =} \FunctionTok{expression}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Posterior Distribution of Correlation ("}\NormalTok{, rho, }\StringTok{")"}\NormalTok{)),}
+    \AttributeTok{x =} \FunctionTok{expression}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Correlation ("}\NormalTok{, rho, }\StringTok{")"}\NormalTok{)),}
     \AttributeTok{y =} \StringTok{"Density"}
 \NormalTok{  ) }\SpecialCharTok{+}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}

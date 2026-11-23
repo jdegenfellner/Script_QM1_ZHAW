@@ -1377,7 +1377,7 @@ value 0 (see prior plot below).</p>
 <span id="cb223-27"><a href="nhst.html#cb223-27" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
 <span id="cb223-28"><a href="nhst.html#cb223-28" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb223-29"><a href="nhst.html#cb223-29" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Shifted Scaled Beta Prior Distribution for Correlation&quot;</span>,</span>
-<span id="cb223-30"><a href="nhst.html#cb223-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
+<span id="cb223-30"><a href="nhst.html#cb223-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Correlation (&quot;</span>, rho, <span class="st">&quot;)&quot;</span>)),</span>
 <span id="cb223-31"><a href="nhst.html#cb223-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
 <span id="cb223-32"><a href="nhst.html#cb223-32" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb223-33"><a href="nhst.html#cb223-33" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -1405,8 +1405,8 @@ value 0 (see prior plot below).</p>
 <span id="cb226-6"><a href="nhst.html#cb226-6" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb226-7"><a href="nhst.html#cb226-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
 <span id="cb226-8"><a href="nhst.html#cb226-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb226-9"><a href="nhst.html#cb226-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior Distribution of Correlation (rho)&quot;</span>,</span>
-<span id="cb226-10"><a href="nhst.html#cb226-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Correlation (rho)&quot;</span>,</span>
+<span id="cb226-9"><a href="nhst.html#cb226-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Posterior Distribution of Correlation (&quot;</span>, rho, <span class="st">&quot;)&quot;</span>)),</span>
+<span id="cb226-10"><a href="nhst.html#cb226-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Correlation (&quot;</span>, rho, <span class="st">&quot;)&quot;</span>)),</span>
 <span id="cb226-11"><a href="nhst.html#cb226-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
 <span id="cb226-12"><a href="nhst.html#cb226-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb226-13"><a href="nhst.html#cb226-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>

@@ -968,7 +968,7 @@ ggplot(aes(x = rho, y = density)) +
   geom_line(color = "blue", linewidth = 1.2) +
   labs(
     title = "Shifted Scaled Beta Prior Distribution for Correlation",
-    x = "Correlation (rho)",
+    x = expression(paste("Correlation (", rho, ")")),
     y = "Density"
   ) +
   theme_minimal() +
@@ -995,8 +995,8 @@ ggplot(aes(x = rho)) +
                  bins = 30, fill = "lightblue", color = "black") +
   geom_density(color = "blue", linewidth = 1.2) +
   labs(
-    title = "Posterior Distribution of Correlation (rho)",
-    x = "Correlation (rho)",
+    title = expression(paste("Posterior Distribution of Correlation (", rho, ")")),
+    x = expression(paste("Correlation (", rho, ")")),
     y = "Density"
   ) +
   theme_minimal() +
