@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##             mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.95 130.809 129.355   93   34.5808 228.20                  
-## mu2         5.65   5.525   4.591   93  -84.6234  96.03                  
-## muDiff    125.30 125.228 118.375   93   -6.7929 260.42       0      95.7
-## sigma1    139.34 128.359 112.726   93   67.1300 226.44                  
-## sigma2    129.95 119.640 104.756   93   61.4739 210.59                  
-## sigmaDiff   9.39   8.708   9.679   93 -116.1635 139.17       0      56.5
-## nu         34.42  25.769  10.383   93    1.2282  83.60                  
-## log10nu     1.38   1.411   1.515   93    0.6639   2.06                  
-## effSz       0.97   0.958   0.921   93   -0.0815   2.00       0      95.7
+##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
+## mu1       130.521 130.566 127.781   93   35.194 230.43                  
+## mu2         5.443   5.523   5.010   93  -85.035  94.59                  
+## muDiff    125.078 125.028 133.413   93   -7.767 258.49       0      95.7
+## sigma1    140.349 128.960 114.810   93   65.621 226.74                  
+## sigma2    129.844 119.507 103.153   93   61.870 210.44                  
+## sigmaDiff  10.505   9.317   7.853   93 -118.370 137.74       0      56.9
+## nu         34.323  25.785  10.062   93    1.083  83.81                  
+## log10nu     1.378   1.411   1.494   93    0.673   2.08                  
+## effSz       0.966   0.956   0.922   93   -0.078   2.00       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.42
+## muDiff        -20       20    4.37
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3709,6 +3709,9 @@ The posterior distribution is the prior for the next coin toss et cetera.
 One can see that we are converging to the ``truth'' (which is normally not known).
 
 Code can be found \href{https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R}{here.}
+
+In the animation \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/22_Bayes_Updating_Muenzwurf.html}{Bayesian updating: coin tosses}
+you can toss the coin step by step yourself, choose different priors and watch how the posterior changes with every toss.
 
 \begin{verbatim}
 ## Linking to ImageMagick 6.9.13.29
@@ -3881,24 +3884,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.023 sec elapsed
+## 0.99 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.714  0.708  0.670   93 -0.540  1.973                          
-## mu2        2.299  2.296  2.249   93  0.876  3.721                          
-## muDiff    -1.585 -1.585 -1.554   93 -3.517  0.302       0      6.31    -1.8
-## sigma1     2.042  1.921  1.772   93  1.093  3.100                          
-## sigma2     2.308  2.174  1.948   93  1.274  3.493                          
-## sigmaDiff -0.266 -0.245 -0.172   93 -1.953  1.404       0     37.32        
-## nu        36.043 27.712 11.738   93  1.598 86.029                          
-## log10nu    1.413  1.443  1.538   93  0.741  2.077                          
-## effSz     -0.748 -0.746 -0.759   93 -1.653  0.130       0      6.31        
+## mu1        0.712  0.708  0.676   93 -0.527  1.979                          
+## mu2        2.300  2.300  2.322   93  0.876  3.754                          
+## muDiff    -1.587 -1.591 -1.670   93 -3.512  0.311       0       6.3    -1.8
+## sigma1     2.035  1.923  1.735   93  1.096  3.074                          
+## sigma2     2.314  2.177  1.977   93  1.280  3.530                          
+## sigmaDiff -0.279 -0.250 -0.220   93 -1.976  1.398       0      36.9        
+## nu        35.679 27.047 11.504   93  1.369 84.915                          
+## log10nu    1.405  1.432  1.496   93  0.713  2.058                          
+## effSz     -0.749 -0.744 -0.727   93 -1.633  0.156       0       6.3        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

@@ -1036,6 +1036,9 @@ One can see that we are converging to the "truth" (which is normally not known).
 
 Code can be found [here.](https://github.com/jdegenfellner/Script_QM1_ZHAW/blob/main/R_codes_with_long_compute_time/posterior.R)
 
+In the animation [Bayesian updating: coin tosses](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/22_Bayes_Updating_Muenzwurf.html)
+you can toss the coin step by step yourself, choose different priors and watch how the posterior changes with every toss.
+
 ```{r testing, fig.cap="Bayesian updating: the posterior converges towards the true value as more coin tosses are observed.", echo=FALSE}
 library(magick)
 img <- magick::image_read("./images/bayesian_updating_sequential.gif")
