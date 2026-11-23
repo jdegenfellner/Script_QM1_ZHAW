@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2026-11-21}
+\date{2026-11-23}
 
 \begin{document}
 \maketitle
@@ -3093,6 +3093,16 @@ Welche der folgenden Aussage(n) ist/sind korrekt (0-4 korrekte Antworten)?
 
 \chapter{Bayes statistics}\label{bayes_statistics}
 
+The theorem is named after \href{https://en.wikipedia.org/wiki/Thomas_Bayes}{Thomas Bayes} (c.~1701 to 1761),
+an English Presbyterian minister with a talent for mathematics. He had worked on the problem of how to infer
+an unknown probability from observed outcomes, but he never published his result. After his death, his friend
+Richard Price found the manuscript among his papers, edited it and had it read before the Royal Society in 1763
+(\href{https://en.wikipedia.org/wiki/An_Essay_Towards_Solving_a_Problem_in_the_Doctrine_of_Chances}{\emph{An Essay towards solving a Problem in the Doctrine of Chances}}).
+The general form of the theorem and its use for statistical inference were developed much further by
+Pierre-Simon Laplace, starting in 1774. So the idea is more than 250 years old, and for most of the 20th century
+it was overshadowed by the frequentist methods of the previous chapter, mainly because the computations were hard.
+Modern computers changed that.
+
 To gain a richer understanding, I can recommend (optionally) reading the introductory chapters in
 John Kruschke's book \href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Doing Bayesian Data Analysis}.
 
@@ -3588,19 +3598,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.098 130.945 131.497   93   34.4462 228.09                  
-## mu2         6.164   5.968   3.558   93  -82.2278  97.40                  
-## muDiff    124.934 124.863 122.594   93   -5.9261 259.27       0      95.8
-## sigma1    139.281 128.273 114.615   93   66.0998 224.25                  
-## sigma2    130.396 119.384 103.346   93   60.2951 209.33                  
-## sigmaDiff   8.885   8.433   8.673   93 -116.4027 137.55       0      56.3
-## nu         34.365  25.774   9.523   93    1.0888  83.67                  
-## log10nu     1.378   1.411   1.534   93    0.6676   2.07                  
-## effSz       0.967   0.959   0.986   93   -0.0614   2.02       0      95.8
+## mu1       131.042 131.029 129.791   93   32.2045 226.73                  
+## mu2         6.161   5.808   5.080   93  -83.1169  96.60                  
+## muDiff    124.881 125.049 124.796   93   -7.2885 257.78       0      95.7
+## sigma1    139.803 128.359 112.764   93   65.2764 226.01                  
+## sigma2    129.197 119.186 106.350   93   61.9258 208.60                  
+## sigmaDiff  10.606   8.859   4.220   93 -116.6690 138.55       0      56.6
+## nu         34.271  25.615  10.048   93    1.2719  83.95                  
+## log10nu     1.377   1.408   1.475   93    0.6738   2.07                  
+## effSz       0.969   0.958   0.935   93   -0.0596   2.03       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.43
+## muDiff        -20       20    4.37
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3849,24 +3859,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.011 sec elapsed
+## 1.008 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.716  0.713  0.747   93 -0.512  2.017                          
-## mu2        2.305  2.302  2.300   93  0.911  3.758                          
-## muDiff    -1.589 -1.592 -1.574   93 -3.544  0.254       0      6.19    -1.8
-## sigma1     2.042  1.923  1.737   93  1.110  3.132                          
-## sigma2     2.309  2.174  2.024   93  1.277  3.522                          
-## sigmaDiff -0.267 -0.242 -0.204   93 -1.964  1.424       0     37.45        
-## nu        36.070 27.543 11.125   93  1.459 86.069                          
-## log10nu    1.411  1.440  1.510   93  0.729  2.071                          
-## effSz     -0.749 -0.746 -0.733   93 -1.638  0.138       0      6.19        
+## mu1        0.709  0.705  0.731   93 -0.559  1.942                          
+## mu2        2.298  2.294  2.247   93  0.888  3.711                          
+## muDiff    -1.589 -1.589 -1.584   93 -3.459  0.308       0      6.08    -1.8
+## sigma1     2.035  1.920  1.726   93  1.091  3.095                          
+## sigma2     2.301  2.173  1.970   93  1.276  3.480                          
+## sigmaDiff -0.266 -0.244 -0.204   93 -1.948  1.384       0     37.13        
+## nu        36.239 27.447 11.630   93  1.423 86.874                          
+## log10nu    1.411  1.438  1.468   93  0.716  2.068                          
+## effSz     -0.751 -0.747 -0.753   93 -1.615  0.159       0      6.08        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

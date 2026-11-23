@@ -23,7 +23,7 @@
 <meta name="author" content="Jürgen Degenfellner" />
 
 
-<meta name="date" content="2026-11-21" />
+<meta name="date" content="2026-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,6 +350,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="bayes_statistics" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Bayes statistics<a href="bayes_statistics.html#bayes_statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The theorem is named after <a href="https://en.wikipedia.org/wiki/Thomas_Bayes">Thomas Bayes</a> (c. 1701 to 1761),
+an English Presbyterian minister with a talent for mathematics. He had worked on the problem of how to infer
+an unknown probability from observed outcomes, but he never published his result. After his death, his friend
+Richard Price found the manuscript among his papers, edited it and had it read before the Royal Society in 1763
+(<a href="https://en.wikipedia.org/wiki/An_Essay_Towards_Solving_a_Problem_in_the_Doctrine_of_Chances"><em>An Essay towards solving a Problem in the Doctrine of Chances</em></a>).
+The general form of the theorem and its use for statistical inference were developed much further by
+Pierre-Simon Laplace, starting in 1774. So the idea is more than 250 years old, and for most of the 20th century
+it was overshadowed by the frequentist methods of the previous chapter, mainly because the computations were hard.
+Modern computers changed that.</p>
 <p>To gain a richer understanding, I can recommend (optionally) reading the introductory chapters in
 John Kruschke’s book <a href="https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf">Doing Bayesian Data Analysis</a>.</p>
 <p>As stated in the first chapter, Bayesian statistics is based on the idea that
@@ -393,8 +402,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
 The two branches ending in a positive test (green and orange) add up to <span class="math inline">\(\mathbb{P}(Tpos)\)</span>,
 and the posterior probability is the green share of this sum.</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-6e2b69e753745b16f5c9" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6e2b69e753745b16f5c9">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-3948109af2a3ca47fbb7" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3948109af2a3ca47fbb7">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Summarized, we have:</p>
 <p><span class="math display">\[
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot
@@ -702,25 +711,25 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
-## mu1       130.804 130.980 130.190   93   33.5066 228.73                  
-## mu2         6.402   6.130   6.241   93  -83.6190  96.34                  
-## muDiff    124.402 124.642 122.815   93   -8.3300 257.92       0      95.5
-## sigma1    140.185 128.950 111.503   93   66.4099 227.83                  
-## sigma2    129.708 119.511 107.466   93   61.3226 208.81                  
-## sigmaDiff  10.477   8.975   7.394   93 -115.5428 137.55       0      56.8
-## nu         34.084  25.447   9.752   93    1.0879  83.28                  
-## log10nu     1.375   1.406   1.477   93    0.6639   2.06                  
-## effSz       0.963   0.954   0.982   93   -0.0704   2.02       0      95.5
-##           ROPElow ROPEhigh %InROPE
-## mu1                               
-## mu2                               
-## muDiff        -20       20     4.5
-## sigma1                            
-## sigma2                            
-## sigmaDiff                         
-## nu                                
-## log10nu                           
+<pre><code>##              mean  median   mode HDI%    HDIlo  HDIup compVal %&gt;compVal ROPElow
+## mu1       130.759 130.865 132.01   93   32.230 226.45                          
+## mu2         6.144   5.936   6.78   93  -84.101  96.84                          
+## muDiff    124.615 124.947 127.13   93   -7.076 260.25       0      95.6     -20
+## sigma1    139.535 128.446 114.70   93   66.652 227.11                          
+## sigma2    129.936 119.572 104.39   93   62.432 210.64                          
+## sigmaDiff   9.598   8.611  10.75   93 -115.129 138.93       0      56.4        
+## nu         34.272  25.629   9.65   93    1.037  83.44                          
+## log10nu     1.376   1.409   1.49   93    0.663   2.07                          
+## effSz       0.966   0.956   1.00   93   -0.107   2.00       0      95.6        
+##           ROPEhigh %InROPE
+## mu1                       
+## mu2                       
+## muDiff          20    4.54
+## sigma1                    
+## sigma2                    
+## sigmaDiff                 
+## nu                        
+## log10nu                   
 ## effSz</code></pre>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
@@ -908,21 +917,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.09 sec elapsed</code></pre>
+<pre><code>## 1.099 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.713  0.709  0.729   93 -0.561  1.956                          
-## mu2        2.295  2.293  2.302   93  0.827  3.685                          
-## muDiff    -1.582 -1.582 -1.565   93 -3.434  0.379       0      6.23    -1.8
-## sigma1     2.037  1.921  1.722   93  1.106  3.105                          
-## sigma2     2.316  2.179  1.966   93  1.263  3.513                          
-## sigmaDiff -0.279 -0.252 -0.227   93 -1.994  1.396       0     36.96        
-## nu        36.289 27.618 11.489   93  1.624 86.683                          
-## log10nu    1.413  1.441  1.546   93  0.738  2.080                          
-## effSz     -0.746 -0.742 -0.754   93 -1.641  0.138       0      6.23        
+## mu1        0.709  0.706  0.742   93 -0.546  1.975                          
+## mu2        2.297  2.291  2.269   93  0.904  3.750                          
+## muDiff    -1.588 -1.584 -1.548   93 -3.478  0.324       0      6.17    -1.8
+## sigma1     2.036  1.920  1.726   93  1.123  3.104                          
+## sigma2     2.307  2.173  1.948   93  1.271  3.503                          
+## sigmaDiff -0.271 -0.249 -0.277   93 -1.914  1.429       0     37.08        
+## nu        36.029 27.444 11.606   93  1.288 85.772                          
+## log10nu    1.410  1.438  1.471   93  0.725  2.067                          
+## effSz     -0.751 -0.746 -0.727   93 -1.655  0.124       0      6.17        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.5
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

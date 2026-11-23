@@ -1,5 +1,15 @@
 # Bayes statistics {#bayes_statistics}
 
+The theorem is named after [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes) (c. 1701 to 1761),
+an English Presbyterian minister with a talent for mathematics. He had worked on the problem of how to infer
+an unknown probability from observed outcomes, but he never published his result. After his death, his friend
+Richard Price found the manuscript among his papers, edited it and had it read before the Royal Society in 1763
+([*An Essay towards solving a Problem in the Doctrine of Chances*](https://en.wikipedia.org/wiki/An_Essay_Towards_Solving_a_Problem_in_the_Doctrine_of_Chances)).
+The general form of the theorem and its use for statistical inference were developed much further by
+Pierre-Simon Laplace, starting in 1774. So the idea is more than 250 years old, and for most of the 20th century
+it was overshadowed by the frequentist methods of the previous chapter, mainly because the computations were hard.
+Modern computers changed that.
+
 To gain a richer understanding, I can recommend (optionally) reading the introductory chapters in 
 John Kruschke's book [Doing Bayesian Data Analysis](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf).
 
