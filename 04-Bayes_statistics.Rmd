@@ -895,7 +895,7 @@ as opposed to the Frequentist $t$-test,
 which constitutes one line of code in R.
 
 We'll use the no longer maintained R package [BEST](https://cran.r-project.org/web/packages/BEST/index.html)
-for a nice illustration. BEST stands for **B**ayesian **E**stimation **S**upersedes the t-**T**est (the title of the R package).
+for a nice illustration. BEST stands for **B**ayesian **E**stimation **S**upersedes the t-**T**est.
 It implements the method of [Kruschke (2013)](https://doi.org/10.1037/a0029146), "Bayesian estimation supersedes the t test".
 Later, we will use more up-to-date packages like [brms](https://cran.r-project.org/web/packages/brms/index.html)
 or [rethinking](https://github.com/rmcelreath/rethinking) for modeling.
@@ -981,40 +981,33 @@ of the posterior distribution that is greater than 0. We can say, with a probabi
 The true difference can be greater than 0, but still rather small and clinically irrelevant.
 
 Would we conclude that the two groups differ in their means?
-According to [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf) (p.336): 
+According to [Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), there are three possible decisions, depending on how the ROPE and the HDI are positioned relative to each other:
 
-**"A parameter value is declared to be not credible, 
-or rejected, if its entire ROPE lies outside the highest density interval 
-(HDI) of the posterior distribution of that parameter."**
+1. **The value is rejected** ([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.336):
 
-This is not the case here. We would not conclude, that the means between the groups differ.
-One could argue, that this rule seems rather strict considering, that ~95% of the 
-posterior distribution of the differences is greater than 0.
+   > "A parameter value is declared to be not credible, or rejected, if its entire ROPE lies outside the highest density interval (HDI) of the posterior distribution of that parameter."
 
-As opposed to the Frequentist $t$-test, we can also find evidence for **practical equivalence**,
-that is, that the means in the two groups are practically the same (not exactly equal).
-This is a nice feature of the Bayesian $t$-test.
+   **This is not the case here.** We would not conclude, that the means between the groups differ.
+   One could argue, that this rule seems rather strict considering, that ~95% of the 
+   posterior distribution of the differences is greater than 0.
 
-**"A parameter value is declared to be accepted for practical purposes if that value’s 
-ROPE completely contains the X% HDI of the posterior of that parameter."**
+2. **The value is accepted for practical purposes**:
+   As opposed to the Frequentist $t$-test, we can also find evidence for **practical equivalence**,
+   that is, that the means in the two groups are practically the same (not exactly equal).
+   This is a nice feature of the Bayesian $t$-test.
 
-This is also not the case here. The 93% HDI lies outside the ROPE to a large part.
+   > "A parameter value is declared to be accepted for practical purposes if that value's ROPE completely contains the X% HDI of the posterior of that parameter."
 
-Note, "The decision rule for accepting the null value says merely that the most 
-credible values are practically equivalent to the null value according to the 
-chosen ROPE, not necessarily that the null value has high credibility."
-([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)
+   **This is also not the case here.** The 93% HDI lies outside the ROPE to a large part.
 
+   Note, "The decision rule for accepting the null value says merely that the most credible values are practically equivalent to the null value according to the chosen ROPE, not necessarily that the null value has high credibility." ([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)
 
-We are above in the situation, that we cannot make a clear decision. 
-The ROPE does not fully contain the 93% HDI, and the 93% HDI is not 
-completely outside the ROPE.
+3. **The decision is withheld**:
 
-**“When the HDI and ROPE overlap, with the ROPE not completely 
-containing the HDI, then neither of the above decision rules is satisfied, 
-and we withhold a decision. This means merely that the current data are insufficient to 
-yield a clear decision one way or the other, according to the stated decision criteria."**
-([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)"
+   > "When the HDI and ROPE overlap, with the ROPE not completely containing the HDI, then neither of the above decision rules is satisfied, and we withhold a decision. This means merely that the current data are insufficient to yield a clear decision one way or the other, according to the stated decision criteria." ([Kruschke](https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf), p.337)
+
+   **This is our situation.** The ROPE does not fully contain the 93% HDI, and the 93% HDI is not 
+   completely outside the ROPE. We cannot make a clear decision.
 
 
 What have we learned so far: 

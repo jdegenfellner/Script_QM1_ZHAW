@@ -3459,7 +3459,7 @@ as opposed to the Frequentist \(t\)-test,
 which constitutes one line of code in R.
 
 We'll use the no longer maintained R package \href{https://cran.r-project.org/web/packages/BEST/index.html}{BEST}
-for a nice illustration. BEST stands for \textbf{B}ayesian \textbf{E}stimation \textbf{S}upersedes the t-\textbf{T}est (the title of the R package).
+for a nice illustration. BEST stands for \textbf{B}ayesian \textbf{E}stimation \textbf{S}upersedes the t-\textbf{T}est.
 It implements the method of \href{https://doi.org/10.1037/a0029146}{Kruschke (2013)}, ``Bayesian estimation supersedes the t test''.
 Later, we will use more up-to-date packages like \href{https://cran.r-project.org/web/packages/brms/index.html}{brms}
 or \href{https://github.com/rmcelreath/rethinking}{rethinking} for modeling.
@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.472 130.863 133.187   93   32.3437 227.29                  
-## mu2         5.764   5.591   7.346   93  -85.0394  96.25                  
-## muDiff    124.708 124.794 121.582   93   -8.5215 259.08       0      95.5
-## sigma1    140.071 128.582 112.544   93   66.0126 227.52                  
-## sigma2    130.176 119.744 102.540   93   62.4040 212.24                  
-## sigmaDiff   9.895   8.607   7.119   93 -116.9500 142.12       0      56.4
-## nu         34.339  25.748  10.110   93    1.2017  83.81                  
-## log10nu     1.379   1.411   1.494   93    0.6662   2.06                  
-## effSz       0.963   0.954   0.904   93   -0.0695   2.02       0      95.5
+##             mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.95 130.809 129.355   93   34.5808 228.20                  
+## mu2         5.65   5.525   4.591   93  -84.6234  96.03                  
+## muDiff    125.30 125.228 118.375   93   -6.7929 260.42       0      95.7
+## sigma1    139.34 128.359 112.726   93   67.1300 226.44                  
+## sigma2    129.95 119.640 104.756   93   61.4739 210.59                  
+## sigmaDiff   9.39   8.708   9.679   93 -116.1635 139.17       0      56.5
+## nu         34.42  25.769  10.383   93    1.2282  83.60                  
+## log10nu     1.38   1.411   1.515   93    0.6639   2.06                  
+## effSz       0.97   0.958   0.921   93   -0.0815   2.00       0      95.7
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.52
+## muDiff        -20       20    4.42
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3643,39 +3643,43 @@ of the posterior distribution that is greater than 0. We can say, with a probabi
 The true difference can be greater than 0, but still rather small and clinically irrelevant.
 
 Would we conclude that the two groups differ in their means?
-According to \href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke} (p.336):
+According to \href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke}, there are three possible decisions, depending on how the ROPE and the HDI are positioned relative to each other:
 
-\textbf{``A parameter value is declared to be not credible,
-or rejected, if its entire ROPE lies outside the highest density interval
-(HDI) of the posterior distribution of that parameter.''}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{The value is rejected} (\href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke}, p.336):
 
-This is not the case here. We would not conclude, that the means between the groups differ.
-One could argue, that this rule seems rather strict considering, that \textasciitilde95\% of the
-posterior distribution of the differences is greater than 0.
+  \begin{quote}
+  ``A parameter value is declared to be not credible, or rejected, if its entire ROPE lies outside the highest density interval (HDI) of the posterior distribution of that parameter.''
+  \end{quote}
 
-As opposed to the Frequentist \(t\)-test, we can also find evidence for \textbf{practical equivalence},
-that is, that the means in the two groups are practically the same (not exactly equal).
-This is a nice feature of the Bayesian \(t\)-test.
+  \textbf{This is not the case here.} We would not conclude, that the means between the groups differ.
+  One could argue, that this rule seems rather strict considering, that \textasciitilde95\% of the
+  posterior distribution of the differences is greater than 0.
+\item
+  \textbf{The value is accepted for practical purposes}:
+  As opposed to the Frequentist \(t\)-test, we can also find evidence for \textbf{practical equivalence},
+  that is, that the means in the two groups are practically the same (not exactly equal).
+  This is a nice feature of the Bayesian \(t\)-test.
 
-\textbf{``A parameter value is declared to be accepted for practical purposes if that value's
-ROPE completely contains the X\% HDI of the posterior of that parameter.''}
+  \begin{quote}
+  ``A parameter value is declared to be accepted for practical purposes if that value's ROPE completely contains the X\% HDI of the posterior of that parameter.''
+  \end{quote}
 
-This is also not the case here. The 93\% HDI lies outside the ROPE to a large part.
+  \textbf{This is also not the case here.} The 93\% HDI lies outside the ROPE to a large part.
 
-Note, ``The decision rule for accepting the null value says merely that the most
-credible values are practically equivalent to the null value according to the
-chosen ROPE, not necessarily that the null value has high credibility.''
-(\href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke}, p.337)
+  Note, ``The decision rule for accepting the null value says merely that the most credible values are practically equivalent to the null value according to the chosen ROPE, not necessarily that the null value has high credibility.'' (\href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke}, p.337)
+\item
+  \textbf{The decision is withheld}:
 
-We are above in the situation, that we cannot make a clear decision.
-The ROPE does not fully contain the 93\% HDI, and the 93\% HDI is not
-completely outside the ROPE.
+  \begin{quote}
+  ``When the HDI and ROPE overlap, with the ROPE not completely containing the HDI, then neither of the above decision rules is satisfied, and we withhold a decision. This means merely that the current data are insufficient to yield a clear decision one way or the other, according to the stated decision criteria.'' (\href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke}, p.337)
+  \end{quote}
 
-\textbf{``When the HDI and ROPE overlap, with the ROPE not completely
-containing the HDI, then neither of the above decision rules is satisfied,
-and we withhold a decision. This means merely that the current data are insufficient to
-yield a clear decision one way or the other, according to the stated decision criteria.''}
-(\href{https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf}{Kruschke}, p.337)''
+  \textbf{This is our situation.} The ROPE does not fully contain the 93\% HDI, and the 93\% HDI is not
+  completely outside the ROPE. We cannot make a clear decision.
+\end{enumerate}
 
 What have we learned so far:
 
@@ -3877,24 +3881,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.098 sec elapsed
+## 1.023 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.716  0.711  0.710   93 -0.557  1.962                          
-## mu2        2.302  2.297  2.264   93  0.881  3.731                          
-## muDiff    -1.586 -1.590 -1.578   93 -3.475  0.333       0       6.3    -1.8
-## sigma1     2.046  1.925  1.762   93  1.083  3.105                          
-## sigma2     2.314  2.173  1.988   93  1.254  3.518                          
-## sigmaDiff -0.269 -0.245 -0.276   93 -2.018  1.391       0      37.4        
-## nu        35.795 27.203 11.511   93  1.453 85.561                          
-## log10nu    1.407  1.435  1.469   93  0.702  2.049                          
-## effSz     -0.748 -0.745 -0.748   93 -1.636  0.144       0       6.3        
+## mu1        0.714  0.708  0.670   93 -0.540  1.973                          
+## mu2        2.299  2.296  2.249   93  0.876  3.721                          
+## muDiff    -1.585 -1.585 -1.554   93 -3.517  0.302       0      6.31    -1.8
+## sigma1     2.042  1.921  1.772   93  1.093  3.100                          
+## sigma2     2.308  2.174  1.948   93  1.274  3.493                          
+## sigmaDiff -0.266 -0.245 -0.172   93 -1.953  1.404       0     37.32        
+## nu        36.043 27.712 11.738   93  1.598 86.029                          
+## log10nu    1.413  1.443  1.538   93  0.741  2.077                          
+## effSz     -0.748 -0.746 -0.759   93 -1.653  0.130       0      6.31        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
