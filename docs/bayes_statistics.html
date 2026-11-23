@@ -372,8 +372,11 @@ p(\theta | \text{data}) = \frac{p(\text{data} | \theta) \cdot p(\theta)}{p(\text
 \]</span></p>
 <p>where:</p>
 <ul>
-<li><p><span class="math inline">\(p(\theta | \text{data})\)</span> is the <strong>posterior probability (respectively the posterior distribution of the parameter)</strong>:
-the updated probability of the parameter <span class="math inline">\(\theta\)</span> given the observed data.</p></li>
+<li><p><span class="math inline">\(p(\theta | \text{data})\)</span> is the <strong>posterior distribution</strong> of the parameter: our updated knowledge about <span class="math inline">\(\theta\)</span>
+after seeing the data. It tells us, for every possible value of <span class="math inline">\(\theta\)</span>, how plausible that value is.
+If <span class="math inline">\(\theta\)</span> has only a few possible values (e.g., “the therapy works” or “it does not”), the posterior assigns
+a probability to each of them. If <span class="math inline">\(\theta\)</span> is continuous (e.g., an effect size), the posterior is a density curve,
+and probabilities are areas under this curve, for example <span class="math inline">\(\mathbb{P}(\theta &gt; 0 \,|\, \text{data})\)</span>.</p></li>
 <li><p><span class="math inline">\(p(\text{data} | \theta)\)</span> is the <strong>likelihood</strong>: the probability of observing the data given a certain value of the parameter <span class="math inline">\(\theta\)</span>.</p></li>
 <li><p><span class="math inline">\(p(\theta)\)</span> is the <strong>prior probability (respectively the prior distribution of the parameter)</strong>: the initial belief about the parameter <span class="math inline">\(\theta\)</span> before seeing the data.</p></li>
 <li><p><span class="math inline">\(p(\text{data})\)</span> is the <strong>marginal likelihood</strong> or <strong>evidence</strong>: the probability of observing the data under all possible parameter values.</p></li>
@@ -402,8 +405,8 @@ To see this, just draw a binary tree starting with disease status (pos/neg) and 
 Here it is for a test with a sensitivity of 95 %, a specificity of 90 % and a prevalence of 2 %.
 The two branches ending in a positive test (green and orange) add up to <span class="math inline">\(\mathbb{P}(Tpos)\)</span>,
 and the posterior probability is the green share of this sum.</p>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-3948109af2a3ca47fbb7" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-3948109af2a3ca47fbb7">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-16e763d402fc608821ec" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-16e763d402fc608821ec">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB, nodesep = 0.35, ranksep = 0.75, fontname = Helvetica]\n  node  [fontname = Helvetica, fontsize = 13, shape = box, style = \"rounded,filled\",\n         penwidth = 2, margin = \"0.22,0.13\"]\n  edge  [fontname = Helvetica, fontsize = 13, color = \"#52606d\", penwidth = 1.6, arrowsize = 0.8]\n\n  S  [label = \"Person tested\\nfor a disease\", shape = ellipse, fillcolor = \"#f6f7f9\", color = \"#52606d\"]\n\n  Dp [label = \"Disease present\\n(Dpos)\", fillcolor = \"#cfdef5\", color = \"#2a78d6\"]\n  Dn [label = \"Disease absent\\n(Dneg)\",  fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  TP [label = \"Dpos and Tpos: true positive (TP)\\n0.02 × 0.95 = 0.019\", fillcolor = \"#0f9d8a\", color = \"#0f9d8a\", fontcolor = white]\n  FN [label = \"Dpos and Tneg: false negative\\n0.02 × 0.05 = 0.001\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n  FP [label = \"Dneg and Tpos: false positive (FP)\\n0.98 × 0.10 = 0.098\", fillcolor = \"#f9d9cd\", color = \"#eb6834\"]\n  TN [label = \"Dneg and Tneg: true negative\\n0.98 × 0.90 = 0.882\", fillcolor = \"#e4e7eb\", color = \"#52606d\"]\n\n  R  [label = \"P(Tpos) = TP + FP = 0.019 + 0.098 = 0.117\\n\\nP(Dpos | Tpos) = TP / (TP + FP) = 0.019 / 0.117 = 0.162\",\n      shape = box, style = \"filled\", fillcolor = \"#fbe3b5\", color = \"#c9501f\"]\n\n  S  -> Dp [label = \"  P(Dpos) = 0.02  \", fontcolor = \"#2a78d6\"]\n  S  -> Dn [label = \"  P(Dneg) = 0.98  \"]\n  Dp -> TP [label = \"  P(Tpos | Dpos) = 0.95  \", fontcolor = \"#0f9d8a\"]\n  Dp -> FN [label = \"  P(Tneg | Dpos) = 0.05  \"]\n  Dn -> FP [label = \"  P(Tpos | Dneg) = 0.10  \", fontcolor = \"#c9501f\"]\n  Dn -> TN [label = \"  P(Tneg | Dneg) = 0.90  \"]\n\n  TP -> R [style = dashed, color = \"#0f9d8a\", penwidth = 2.2]\n  FP -> R [style = dashed, color = \"#eb6834\", penwidth = 2.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Summarized, we have:</p>
 <p><span class="math display">\[
 \mathbb{P}(Dpos|Tpos) = \frac{\mathbb{P}(Tpos|Dpos) \cdot
@@ -711,25 +714,25 @@ script is run since it’s simulation based.</p></li>
 <p>We can do more:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bayes_statistics.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(BESTout, <span class="at">ROPEm =</span> d_0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> a, <span class="at">compValm =</span> <span class="dv">0</span>,</span>
 <span id="cb103-2"><a href="bayes_statistics.html#cb103-2" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">5</span>, <span class="at">credMass =</span> <span class="fl">0.93</span>) <span class="co"># summary.BEST()</span></span></code></pre></div>
-<pre><code>##              mean  median   mode HDI%    HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1       130.759 130.865 132.01   93   32.230 226.45                          
-## mu2         6.144   5.936   6.78   93  -84.101  96.84                          
-## muDiff    124.615 124.947 127.13   93   -7.076 260.25       0      95.6     -20
-## sigma1    139.535 128.446 114.70   93   66.652 227.11                          
-## sigma2    129.936 119.572 104.39   93   62.432 210.64                          
-## sigmaDiff   9.598   8.611  10.75   93 -115.129 138.93       0      56.4        
-## nu         34.272  25.629   9.65   93    1.037  83.44                          
-## log10nu     1.376   1.409   1.49   93    0.663   2.07                          
-## effSz       0.966   0.956   1.00   93   -0.107   2.00       0      95.6        
-##           ROPEhigh %InROPE
-## mu1                       
-## mu2                       
-## muDiff          20    4.54
-## sigma1                    
-## sigma2                    
-## sigmaDiff                 
-## nu                        
-## log10nu                   
+<pre><code>##              mean  median    mode HDI%     HDIlo  HDIup compVal %&gt;compVal
+## mu1       130.687 130.925 133.398   93   32.0875 226.31                  
+## mu2         5.966   5.742   6.879   93  -83.2852  95.27                  
+## muDiff    124.721 125.160 134.854   93   -6.3464 259.21       0      95.7
+## sigma1    139.525 128.188 111.424   93   66.6390 225.27                  
+## sigma2    129.247 119.149 101.999   93   61.1593 208.36                  
+## sigmaDiff  10.277   8.892   5.335   93 -114.1130 137.90       0      56.8
+## nu         34.465  25.868   9.863   93    1.0351  83.72                  
+## log10nu     1.380   1.413   1.503   93    0.6499   2.05                  
+## effSz       0.969   0.958   0.978   93   -0.0947   2.00       0      95.7
+##           ROPElow ROPEhigh %InROPE
+## mu1                               
+## mu2                               
+## muDiff        -20       20    4.43
+## sigma1                            
+## sigma2                            
+## sigmaDiff                         
+## nu                                
+## log10nu                           
 ## effSz</code></pre>
 <p>If you look at the row “muDiff” and the column “%&gt;compVal”. This is the percentage
 of the posterior distribution that is greater than 0. We can say, with a probability of
@@ -917,21 +920,21 @@ For example, <span class="math inline">\(\mathbb{P}(\theta \in (0.25,0.75)) = 0.
 <p>Wir führen einen Bayesian <span class="math inline">\(t\)</span>-test auf Gleichheit der Mittelwerte der beiden Gruppen durch:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <pre><code>## Waiting for parallel processing to complete...done.</code></pre>
-<pre><code>## 1.099 sec elapsed</code></pre>
+<pre><code>## 1.086 sec elapsed</code></pre>
 <pre><code>##             mean median   mode HDI%  HDIlo  HDIup compVal %&gt;compVal ROPElow
-## mu1        0.709  0.706  0.742   93 -0.546  1.975                          
-## mu2        2.297  2.291  2.269   93  0.904  3.750                          
-## muDiff    -1.588 -1.584 -1.548   93 -3.478  0.324       0      6.17    -1.8
-## sigma1     2.036  1.920  1.726   93  1.123  3.104                          
-## sigma2     2.307  2.173  1.948   93  1.271  3.503                          
-## sigmaDiff -0.271 -0.249 -0.277   93 -1.914  1.429       0     37.08        
-## nu        36.029 27.444 11.606   93  1.288 85.772                          
-## log10nu    1.410  1.438  1.471   93  0.725  2.067                          
-## effSz     -0.751 -0.746 -0.727   93 -1.655  0.124       0      6.17        
+## mu1        0.709  0.704  0.705   93 -0.541  1.977                          
+## mu2        2.301  2.299  2.299   93  0.874  3.727                          
+## muDiff    -1.592 -1.589 -1.628   93 -3.498  0.302       0      6.08    -1.8
+## sigma1     2.034  1.918  1.750   93  1.104  3.094                          
+## sigma2     2.306  2.173  1.958   93  1.271  3.485                          
+## sigmaDiff -0.272 -0.250 -0.241   93 -1.956  1.402       0     37.05        
+## nu        36.348 27.651 11.088   93  1.384 87.092                          
+## log10nu    1.414  1.442  1.527   93  0.732  2.073                          
+## effSz     -0.752 -0.746 -0.744   93 -1.634  0.139       0      6.08        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 

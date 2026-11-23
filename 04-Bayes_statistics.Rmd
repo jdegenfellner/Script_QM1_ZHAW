@@ -27,8 +27,11 @@ $$
 
 where:
 
-- \( p(\theta | \text{data}) \) is the **posterior probability (respectively the posterior distribution of the parameter)**: 
-the updated probability of the parameter \( \theta \) given the observed data.
+- \( p(\theta | \text{data}) \) is the **posterior distribution** of the parameter: our updated knowledge about \( \theta \)
+after seeing the data. It tells us, for every possible value of \( \theta \), how plausible that value is.
+If \( \theta \) has only a few possible values (e.g., "the therapy works" or "it does not"), the posterior assigns
+a probability to each of them. If \( \theta \) is continuous (e.g., an effect size), the posterior is a density curve,
+and probabilities are areas under this curve, for example \( \mathbb{P}(\theta > 0 \,|\, \text{data}) \).
 
 - \( p(\text{data} | \theta) \) is the **likelihood**: the probability of observing the data given a certain value of the parameter \( \theta \).
 
