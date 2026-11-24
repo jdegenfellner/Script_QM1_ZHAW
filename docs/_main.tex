@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.605 130.611 123.648   93   34.5340 227.20                  
-## mu2         5.973   5.702   2.816   93  -82.5969  96.05                  
-## muDiff    124.632 125.009 126.237   93   -8.2911 257.23       0      95.6
-## sigma1    139.671 128.499 111.709   93   66.3524 226.67                  
-## sigma2    129.640 119.409 104.224   93   63.1350 210.65                  
-## sigmaDiff  10.032   8.516   4.523   93 -113.6714 139.53       0      56.4
-## nu         34.225  25.504   9.546   93    1.1904  83.43                  
-## log10nu     1.375   1.407   1.467   93    0.6529   2.06                  
-## effSz       0.967   0.956   0.919   93   -0.0798   2.01       0      95.6
+##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
+## mu1       130.583 130.755 132.082   93   34.554 227.18                  
+## mu2         6.188   5.927   7.936   93  -85.408  94.23                  
+## muDiff    124.395 124.882 132.941   93   -8.800 257.18       0      95.6
+## sigma1    139.560 128.283 116.260   93   66.115 226.40                  
+## sigma2    130.009 119.681 102.882   93   62.137 210.32                  
+## sigmaDiff   9.551   8.463   8.971   93 -116.288 137.61       0      56.3
+## nu         34.336  25.601   9.814   93    1.055  83.63                  
+## log10nu     1.377   1.408   1.487   93    0.658   2.06                  
+## effSz       0.963   0.956   0.962   93   -0.105   1.99       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.38
+## muDiff        -20       20    4.37
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,20 +3894,20 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.188 sec elapsed
+## 1.036 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.707  0.702  0.668   93 -0.558  1.933                          
-## mu2        2.298  2.298  2.353   93  0.875  3.690                          
-## muDiff    -1.592 -1.591 -1.630   93 -3.472  0.281       0      5.97    -1.8
-## sigma1     2.032  1.919  1.714   93  1.085  3.086                          
-## sigma2     2.304  2.170  1.973   93  1.282  3.514                          
-## sigmaDiff -0.272 -0.251 -0.288   93 -1.960  1.390       0     37.11        
-## nu        36.238 27.791 12.313   93  1.495 86.302                          
-## log10nu    1.413  1.444  1.528   93  0.726  2.067                          
-## effSz     -0.753 -0.747 -0.719   93 -1.630  0.139       0      5.97        
+## mu1        0.706  0.702  0.719   93 -0.545  1.971                          
+## mu2        2.295  2.292  2.297   93  0.844  3.702                          
+## muDiff    -1.589 -1.593 -1.615   93 -3.522  0.280       0      6.17    -1.8
+## sigma1     2.039  1.921  1.739   93  1.109  3.133                          
+## sigma2     2.306  2.170  1.971   93  1.257  3.498                          
+## sigmaDiff -0.267 -0.239 -0.162   93 -1.969  1.428       0     37.46        
+## nu        35.825 27.292 11.668   93  1.367 85.115                          
+## log10nu    1.407  1.436  1.516   93  0.718  2.060                          
+## effSz     -0.751 -0.747 -0.730   93 -1.653  0.137       0      6.17        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
@@ -4199,15 +4199,24 @@ you can change both estimates and their standard errors and watch the three \(p\
 \item
   \textbf{Low power and replication}: Even with a power of 80\%, \(p\)-values vary strongly from study to study
   (\href{https://doi.org/10.1111/j.1745-6924.2008.00079.x}{Cumming 2008}). A \(p\)-value therefore says little
-  about the \(p\)-value of an exact replication. See the animation
-  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html}{Dance of the p-values}.
+  about the \(p\)-value of an exact replication.
+
+  \begin{quote}
+  \textbf{Try it yourself.} In the animation
+  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html}{Dance of the p-values}
+  you see how much the \(p\)-value varies from one exact replication to the next.
+  \end{quote}
 \item
   \textbf{Confidence intervals predict replications better}: About 83\% of the estimates of an exact replication
   fall inside the 95\% confidence interval of the first experiment
   (\href{https://doi.org/10.1111/j.1745-6924.2008.00079.x}{Cumming 2008}). The interval therefore tells us more
-  about what to expect in the future than the \(p\)-value does. In the animation
+  about what to expect in the future than the \(p\)-value does.
+
+  \begin{quote}
+  \textbf{Try it yourself.} In the animation
   \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/19_CI_naechste_Schaetzung.html}{The next estimate and the current confidence interval}
   you set the confidence level and check by simulation how often the estimate of a repeated experiment falls inside the first interval.
+  \end{quote}
 \item
   \textbf{Testing against ``no effect''}: NHST tests against a null effect, often one that prior knowledge
   already considers implausible, and it ignores such outside knowledge.

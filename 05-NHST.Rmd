@@ -171,15 +171,20 @@ he rather gives his mind to each particular case in the light of his evidence an
 
 - **Low power and replication**: Even with a power of 80%, $p$-values vary strongly from study to study
   ([Cumming 2008](https://doi.org/10.1111/j.1745-6924.2008.00079.x)). A $p$-value therefore says little
-  about the $p$-value of an exact replication. See the animation
-  [Dance of the p-values](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html).
+  about the $p$-value of an exact replication.
+
+  > **Try it yourself.** In the animation
+  > [Dance of the p-values](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/17_Dance_of_the_p_values.html)
+  > you see how much the $p$-value varies from one exact replication to the next.
 
 - **Confidence intervals predict replications better**: About 83% of the estimates of an exact replication
   fall inside the 95% confidence interval of the first experiment
   ([Cumming 2008](https://doi.org/10.1111/j.1745-6924.2008.00079.x)). The interval therefore tells us more
-  about what to expect in the future than the $p$-value does. In the animation
-  [The next estimate and the current confidence interval](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/19_CI_naechste_Schaetzung.html)
-  you set the confidence level and check by simulation how often the estimate of a repeated experiment falls inside the first interval.
+  about what to expect in the future than the $p$-value does.
+
+  > **Try it yourself.** In the animation
+  > [The next estimate and the current confidence interval](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/19_CI_naechste_Schaetzung.html)
+  > you set the confidence level and check by simulation how often the estimate of a repeated experiment falls inside the first interval.
 
 - **Testing against "no effect"**: NHST tests against a null effect, often one that prior knowledge
   already considers implausible, and it ignores such outside knowledge.
