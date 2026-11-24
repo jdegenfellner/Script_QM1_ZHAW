@@ -283,7 +283,8 @@ With some experience, one would probably not test for lower when seeing the obse
 **Interpretation of this frequentist confidence interval (CI)**: When drawing repeated samples, in 95% of the samples,
 the so constructed interval (which will be different every time) contains the true but unknown 
 parameter (see Illustration [here](https://en.wikipedia.org/wiki/Confidence_interval#/media/File:Normal_distribution_50%25_CI_illustration.svg),
-animations of the frequentist nature [here](https://seeing-theory.brown.edu/frequentist-inference/index.html)). 
+animations of the frequentist nature [here](https://seeing-theory.brown.edu/frequentist-inference/index.html) and in
+[our animation of confidence intervals](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/16_Konfidenzintervalle_frequentistisch.html)). 
 
 Note, that the "Exact binomial test" was used. There were no approximations made. I would recommend always
 using [exact tests](https://en.wikipedia.org/wiki/Exact_test) if available, since we are in the 21st century and computers are fast.
