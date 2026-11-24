@@ -369,6 +369,35 @@ there is no association (Misconception 2 <a href="https://sixsigmadsi.com/wp-con
 Sometimes one counter example is enough to reject a hypothesis like “all swans are white”.
 Seeing one <a href="https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg">black swan</a>
 proves the hypothesis wrong.</p>
+<p><strong>The four possible outcomes of a test.</strong> Before we go through the key concepts,
+look at the whole decision problem in one picture.
+Either <span class="math inline">\(H_0\)</span> is true or it is false, and we do not know which.
+Our test then either rejects <span class="math inline">\(H_0\)</span> or it does not.
+This gives four outcomes: two correct decisions and two errors.</p>
+<div class="float">
+<img src="images/H0_tree.png" alt="H0 and the truth: the four possible outcomes of a test" />
+<div class="figcaption">H0 and the truth: the four possible outcomes of a test</div>
+</div>
+<ul>
+<li>If <span class="math inline">\(H_0\)</span> is true (probability <span class="math inline">\(P(H_0)\)</span>), we reject it with probability <span class="math inline">\(\alpha\)</span>.
+This is a <strong>type 1 error</strong> (false positive).
+With probability <span class="math inline">\(1 - \alpha\)</span> we correctly do not reject.</li>
+<li>If <span class="math inline">\(H_0\)</span> is false (probability <span class="math inline">\(1 - P(H_0)\)</span>), we fail to reject it with probability <span class="math inline">\(\beta\)</span>.
+This is a <strong>type 2 error</strong> (false negative).
+With probability <span class="math inline">\(1 - \beta\)</span> we correctly reject. The number <span class="math inline">\(1 - \beta\)</span> is the <strong>power</strong>.</li>
+</ul>
+<p>Multiplying along the branches gives the probability of each outcome.
+The probability of a wrong decision, a false positive or a false negative, is
+<span class="math inline">\(P(H_0)\,\alpha + (1 - P(H_0))\,\beta\)</span>.
+<span class="math inline">\(P(H_0)\)</span> can be read as the share of true null hypotheses among all hypotheses a field tests.
+How many of the rejections concern a true null hypothesis depends on all three numbers, not on <span class="math inline">\(\alpha\)</span> alone.</p>
+<blockquote>
+<p><strong>Try it yourself.</strong> In the animation
+<a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/23_H0_Baum_Fehlerarten.html">H0 and the truth: the tree of the four outcomes</a>
+you set <span class="math inline">\(P(H_0)\)</span>, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> and watch the tree, the four probabilities,
+the probability of a wrong decision and the share of false rejections change.
+The section <a href="nhst.html#error_types">Type 1 and Type 2 errors</a> returns to this.</p>
+</blockquote>
 <p><strong>Key concepts</strong>:</p>
 <ul>
 <li><p><strong>Null Hypothesis <span class="math inline">\(H_0\)</span></strong>: This represents the assumption of some specific effect or no effect at all.
@@ -1494,7 +1523,8 @@ Correct inference (true positive)
 </tr>
 </tbody>
 </table>
-<p>In the dichotomous world of hypothesis testing, we can make <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors">two types of errors</a>:</p>
+<p>The tree at the <a href="nhst.html#nhst">beginning of this chapter</a> shows how the four outcomes fit together.
+In the dichotomous world of hypothesis testing, we can make <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors">two types of errors</a>:</p>
 <ul>
 <li>A type 1 error (false positive) occurs when we reject the null hypothesis when it is actually true.</li>
 <li>A type 2 error (false negative) occurs when we do not reject the null hypothesis when it is actually false.</li>

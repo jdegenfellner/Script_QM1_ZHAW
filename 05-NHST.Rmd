@@ -19,6 +19,33 @@ Sometimes one counter example is enough to reject a hypothesis like "all swans a
 Seeing one [black swan](https://en.wikipedia.org/wiki/Falsifiability#/media/File:Black_Swans.jpg) 
 proves the hypothesis wrong.
 
+**The four possible outcomes of a test.** Before we go through the key concepts, 
+look at the whole decision problem in one picture. 
+Either $H_0$ is true or it is false, and we do not know which. 
+Our test then either rejects $H_0$ or it does not. 
+This gives four outcomes: two correct decisions and two errors.
+
+![H0 and the truth: the four possible outcomes of a test](./images/H0_tree.png)
+
+- If $H_0$ is true (probability $P(H_0)$), we reject it with probability $\alpha$. 
+  This is a **type 1 error** (false positive). 
+  With probability $1 - \alpha$ we correctly do not reject.
+- If $H_0$ is false (probability $1 - P(H_0)$), we fail to reject it with probability $\beta$. 
+  This is a **type 2 error** (false negative). 
+  With probability $1 - \beta$ we correctly reject. The number $1 - \beta$ is the **power**.
+
+Multiplying along the branches gives the probability of each outcome. 
+The probability of a wrong decision, a false positive or a false negative, is 
+$P(H_0)\,\alpha + (1 - P(H_0))\,\beta$. 
+$P(H_0)$ can be read as the share of true null hypotheses among all hypotheses a field tests.
+How many of the rejections concern a true null hypothesis depends on all three numbers, not on $\alpha$ alone.
+
+> **Try it yourself.** In the animation
+> [H0 and the truth: the tree of the four outcomes](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/23_H0_Baum_Fehlerarten.html)
+> you set $P(H_0)$, $\alpha$ and $\beta$ and watch the tree, the four probabilities, 
+> the probability of a wrong decision and the share of false rejections change. 
+> The section [Type 1 and Type 2 errors](#error_types) returns to this.
+
 **Key concepts**:
 
 - **Null Hypothesis $H_0$**: This represents the assumption of some specific effect or no effect at all. 
@@ -1054,6 +1081,7 @@ kable(data, format = "html", align = "c", row.names = FALSE,
                     "Null hypothesis (H0) is false"))
 ```
 
+The tree at the [beginning of this chapter](#nhst) shows how the four outcomes fit together. 
 In the dichotomous world of hypothesis testing, we can make [two types of errors](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors):
 
 - A type 1 error (false positive) occurs when we reject the null hypothesis when it is actually true.

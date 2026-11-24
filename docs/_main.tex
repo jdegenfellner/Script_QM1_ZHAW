@@ -3615,25 +3615,25 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
-## mu1       130.693 130.776 127.983   93   34.039 227.75                  
-## mu2         5.992   5.542   2.525   93  -82.554  98.67                  
-## muDiff    124.701 124.938 123.782   93   -9.381 257.02       0      95.6
-## sigma1    140.085 128.318 111.638   93   66.408 227.79                  
-## sigma2    130.249 119.366 104.203   93   60.170 210.07                  
-## sigmaDiff   9.836   8.542   8.564   93 -115.034 141.59       0      56.4
-## nu         34.058  25.637   9.535   93    1.127  82.76                  
-## log10nu     1.375   1.409   1.445   93    0.645   2.04                  
-## effSz       0.966   0.953   0.952   93   -0.064   2.02       0      95.6
-##           ROPElow ROPEhigh %InROPE
-## mu1                               
-## mu2                               
-## muDiff        -20       20    4.52
-## sigma1                            
-## sigma2                            
-## sigmaDiff                         
-## nu                                
-## log10nu                           
+##              mean  median   mode HDI%    HDIlo  HDIup compVal %>compVal ROPElow
+## mu1       131.032 131.137 129.70   93   32.464 225.85                          
+## mu2         6.295   6.102   5.67   93  -81.135  99.42                          
+## muDiff    124.737 124.855 120.99   93   -9.522 254.53       0      95.7     -20
+## sigma1    138.877 128.156 113.13   93   65.279 223.34                          
+## sigma2    129.701 119.564 106.25   93   61.777 209.25                          
+## sigmaDiff   9.176   8.236   7.16   93 -117.704 133.33       0      56.1        
+## nu         34.413  25.621   9.73   93    1.087  83.92                          
+## log10nu     1.377   1.409   1.49   93    0.654   2.05                          
+## effSz       0.968   0.959   1.00   93   -0.083   1.99       0      95.7        
+##           ROPEhigh %InROPE
+## mu1                       
+## mu2                       
+## muDiff          20    4.46
+## sigma1                    
+## sigma2                    
+## sigmaDiff                 
+## nu                        
+## log10nu                   
 ## effSz
 \end{verbatim}
 
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.075 sec elapsed
+## 0.998 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.713  0.709  0.679   93 -0.519  1.985                          
-## mu2        2.293  2.294  2.373   93  0.890  3.728                          
-## muDiff    -1.580 -1.580 -1.580   93 -3.470  0.317       0      6.24    -1.8
-## sigma1     2.038  1.920  1.725   93  1.106  3.112                          
-## sigma2     2.311  2.174  1.954   93  1.257  3.503                          
-## sigmaDiff -0.272 -0.251 -0.265   93 -2.001  1.366       0     37.10        
-## nu        36.036 27.562 11.388   93  1.379 86.054                          
-## log10nu    1.411  1.440  1.541   93  0.724  2.058                          
-## effSz     -0.747 -0.741 -0.767   93 -1.640  0.140       0      6.24        
+## mu1        0.711  0.710  0.726   93 -0.526  1.989                          
+## mu2        2.300  2.296  2.305   93  0.864  3.737                          
+## muDiff    -1.589 -1.592 -1.579   93 -3.496  0.330       0      6.29    -1.8
+## sigma1     2.037  1.921  1.755   93  1.081  3.090                          
+## sigma2     2.314  2.178  1.969   93  1.264  3.513                          
+## sigmaDiff -0.277 -0.254 -0.168   93 -2.021  1.389       0     36.83        
+## nu        36.146 27.532 11.417   93  1.525 86.561                          
+## log10nu    1.411  1.440  1.537   93  0.720  2.066                          
+## effSz     -0.749 -0.748 -0.772   93 -1.616  0.165       0      6.29        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.7
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4004,6 +4004,44 @@ Underlying NHST is the idea of \href{https://en.wikipedia.org/wiki/Falsifiabilit
 Sometimes one counter example is enough to reject a hypothesis like ``all swans are white''.
 Seeing one \href{https://en.wikipedia.org/wiki/Falsifiability\#/media/File:Black_Swans.jpg}{black swan}
 proves the hypothesis wrong.
+
+\textbf{The four possible outcomes of a test.} Before we go through the key concepts,
+look at the whole decision problem in one picture.
+Either \(H_0\) is true or it is false, and we do not know which.
+Our test then either rejects \(H_0\) or it does not.
+This gives four outcomes: two correct decisions and two errors.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={H0 and the truth: the four possible outcomes of a test}]{./images/H0_tree.png}}
+\caption{H0 and the truth: the four possible outcomes of a test}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  If \(H_0\) is true (probability \(P(H_0)\)), we reject it with probability \(\alpha\).
+  This is a \textbf{type 1 error} (false positive).
+  With probability \(1 - \alpha\) we correctly do not reject.
+\item
+  If \(H_0\) is false (probability \(1 - P(H_0)\)), we fail to reject it with probability \(\beta\).
+  This is a \textbf{type 2 error} (false negative).
+  With probability \(1 - \beta\) we correctly reject. The number \(1 - \beta\) is the \textbf{power}.
+\end{itemize}
+
+Multiplying along the branches gives the probability of each outcome.
+The probability of a wrong decision, a false positive or a false negative, is
+\(P(H_0)\,\alpha + (1 - P(H_0))\,\beta\).
+\(P(H_0)\) can be read as the share of true null hypotheses among all hypotheses a field tests.
+How many of the rejections concern a true null hypothesis depends on all three numbers, not on \(\alpha\) alone.
+
+\begin{quote}
+\textbf{Try it yourself.} In the animation
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/23_H0_Baum_Fehlerarten.html}{H0 and the truth: the tree of the four outcomes}
+you set \(P(H_0)\), \(\alpha\) and \(\beta\) and watch the tree, the four probabilities,
+the probability of a wrong decision and the share of false rejections change.
+The section \hyperref[error_types]{Type 1 and Type 2 errors} returns to this.
+\end{quote}
 
 \textbf{Key concepts}:
 
@@ -5826,6 +5864,7 @@ Type I error (false positive)
 Correct inference (true positive)
 (probability = 1 - β)
 
+The tree at the \hyperref[nhst]{beginning of this chapter} shows how the four outcomes fit together.
 In the dichotomous world of hypothesis testing, we can make \href{https://en.wikipedia.org/wiki/Type_I_and_type_II_errors}{two types of errors}:
 
 \begin{itemize}

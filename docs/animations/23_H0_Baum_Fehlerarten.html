@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H0 and the truth: Type I and Type II errors as a tree</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232a78d6'/%3E%3Cpath d='M32 12v14M32 26L16 46M32 26l16 20' stroke='white' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9;
+  --blue:#2a78d6; --blueFill:#cfdef5; --teal:#0f9d8a; --orange:#eb6834; --orangeFill:#fbd9cd;
+  --okFill:#d3efdc; --ok:#2a9d5c; --badFill:#fbdcdc; --bad:#d64545; --grey:#52606d; --greyFill:#e4e7eb; --res:#fbe3b5; --resLine:#d9732b; --accent:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350;
+    --blue:#4a95f0; --blueFill:#1e3a60; --teal:#2ec4ae; --orange:#f08a5d; --orangeFill:#4a2a1e;
+    --okFill:#1b4630; --ok:#4cc585; --badFill:#4f2424; --bad:#f07878; --grey:#a3adb8; --greyFill:#2a313b; --res:#4a3a1a; --resLine:#e0a050; --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.3rem;margin:0 0 4px}
+.lead{color:var(--ink2);margin:0 0 12px;max-width:90ch}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 22px;margin:10px 0}
+@media (max-width:760px){.controls{grid-template-columns:1fr}}
+.sl{background:var(--card);border-radius:12px;padding:8px 14px}
+.sl label{display:flex;justify-content:space-between;gap:8px;font-size:.9rem;color:var(--ink2)}
+.sl output{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.sl input{width:100%;accent-color:var(--accent);margin:6px 0 0}
+.sl small{display:block;color:var(--ink2);font-size:.78rem}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px;align-items:center}
+.presets span{font-size:.88rem;color:var(--ink2)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:10px;font:inherit;font-size:.88rem;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:12px;padding:8px 14px}
+.card .k{font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.25}
+.card .s{font-size:.82rem;color:var(--ink2)}
+.card.main .v{color:var(--teal)}
+svg{display:block;width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px}
+svg text{font:12.5px system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink)}
+svg .el{paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}
+svg .nt{font-size:12.5px;text-anchor:middle}
+svg .nb{font-weight:650}
+svg .tw{fill:#fff}
+.edge{fill:none;stroke:var(--grey);stroke-linecap:round}
+.dash{fill:none;stroke-width:2;stroke-dasharray:6 5}
+.freq{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:.95rem}
+.freq b{font-variant-numeric:tabular-nums}
+.note{color:var(--ink2);font-size:.9rem;margin-top:10px;max-width:95ch}
+.sr{position:absolute;left:-9999px}
+.card.main .v{color:var(--bad)}
+.card.err{border-left:4px solid var(--bad)}
+.card.err .v{color:var(--bad)}
+</style></head>
+<body>
+<main>
+<h1>H₀ and the truth: a tree of the four possible outcomes</h1>
+<p class="lead">A hypothesis test is carried out. Either the null hypothesis H₀ is true or it is false, and the test either rejects H₀ or does not. Set how often H₀ is true, the significance level α and the type 2 error probability β. The tree, the branch thickness and the result follow immediately.</p>
+
+<div class="controls">
+  <div class="sl"><label for="pi">P(H₀ true) <output id="o_pi"></output></label>
+    <input id="pi" type="range" min="0.01" max="0.99" step="0.01" value="0.5">
+    <small>How often is the tested null hypothesis true? (prior)</small></div>
+  <div class="sl"><label for="al">α, type 1 error probability <output id="o_al"></output></label>
+    <input id="al" type="range" min="0.001" max="0.2" step="0.001" value="0.05">
+    <small>P(reject H₀ | H₀ true)</small></div>
+  <div class="sl"><label for="be">β, type 2 error probability <output id="o_be"></output></label>
+    <input id="be" type="range" min="0.01" max="0.9" step="0.01" value="0.2">
+    <small>P(not reject H₀ | H₀ false). Power = 1 − β: <b id="o_pow"></b></small></div>
+</div>
+
+<div class="presets"><span>Examples:</span>
+  <button class="btn" data-p="0.5,0.05,0.2">Textbook (50 %, α 5 %, power 80 %)</button>
+  <button class="btn" data-p="0.9,0.05,0.2">Most nulls are true (90 %)</button>
+  <button class="btn" data-p="0.5,0.05,0.7">Low power (30 %)</button>
+  <button class="btn" data-p="0.5,0.005,0.2">Stricter α (0.5 %)</button>
+</div>
+
+<div class="cards">
+  <div class="card err"><div class="k">P(wrong decision)</div><div class="v" id="c_err"></div><div class="s">False positive or false negative: P(H₀)·α + (1 − P(H₀))·β</div></div>
+  <div class="card main"><div class="k">P(H₀ true | H₀ rejected)</div><div class="v" id="c_fdr"></div><div class="s">Share of true nulls among all rejections</div></div>
+  <div class="card"><div class="k">P(H₀ rejected)</div><div class="v" id="c_rej"></div><div class="s">Share of all tests that reject H₀</div></div>
+  <div class="card"><div class="k">P(H₀ false | H₀ not rejected)</div><div class="v" id="c_miss"></div><div class="s">Share of false nulls among all non-rejections</div></div>
+</div>
+
+<svg id="tree" viewBox="0 0 890 516" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">Probability tree for a hypothesis test</title>
+  <desc id="desc">Branches from the question whether H0 is true to the four outcomes of a test: correct decision, type 1 error, type 2 error, correct decision, with probabilities that update with the sliders.</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--grey)"/></marker>
+    <marker id="ahT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--orange)"/></marker>
+  </defs>
+
+  <path id="e_root_a" class="edge" d="M392 70 L248 122" marker-end="url(#ah)"/>
+  <path id="e_root_b" class="edge" d="M468 70 L612 122" marker-end="url(#ah)"/>
+  <path id="e_a_tn" class="edge" d="M178 168 L112 236" marker-end="url(#ah)"/>
+  <path id="e_a_fp" class="edge" d="M242 168 L308 236" marker-end="url(#ah)"/>
+  <path id="e_b_fn" class="edge" d="M618 168 L542 236" marker-end="url(#ah)"/>
+  <path id="e_b_tp" class="edge" d="M682 168 L758 236" marker-end="url(#ah)"/>
+  <path class="dash" stroke="var(--grey)" d="M315 304 C330 334 380 350 400 362" marker-end="url(#ah)"/>
+  <path class="dash" stroke="var(--grey)" d="M765 304 C760 334 600 350 520 362" marker-end="url(#ah)"/>
+
+  <text class="el nt" x="300" y="88" id="l_a" style="fill:var(--blue)"></text>
+  <text class="el nt" x="590" y="84" id="l_b"></text>
+  <text class="el nt" x="138" y="198" id="l_tn" style="text-anchor:end"></text>
+  <text class="el nt" x="284" y="198" id="l_fp" style="text-anchor:start;fill:var(--bad);font-weight:700"></text>
+  <text class="el nt" x="568" y="198" id="l_fn" style="text-anchor:end"></text>
+  <text class="el nt" x="724" y="198" id="l_tp" style="text-anchor:start;fill:var(--ok);font-weight:700"></text>
+
+  <ellipse cx="430" cy="48" rx="74" ry="28" fill="var(--card)" stroke="var(--grey)" stroke-width="2"/>
+  <text class="nt nb" x="430" y="53">Is H₀ true?</text>
+
+  <rect x="140" y="124" width="140" height="46" rx="12" fill="var(--blueFill)" stroke="var(--blue)" stroke-width="2"/>
+  <text class="nt nb" x="210" y="144">H₀ is true</text><text class="nt" x="210" y="160">(no effect)</text>
+  <rect x="580" y="124" width="140" height="46" rx="12" fill="var(--greyFill)" stroke="var(--grey)" stroke-width="2"/>
+  <text class="nt nb" x="650" y="144">H₀ is false</text><text class="nt" x="650" y="160">(an effect exists)</text>
+
+  <rect x="10" y="238" width="190" height="64" rx="12" fill="var(--okFill)" stroke="var(--ok)" stroke-width="2"/>
+  <text class="nt nb" x="105" y="257">Not reject H₀</text><text class="nt nb" x="105" y="273">correct (true negative)</text><text class="nt" id="n_tn" x="105" y="291"></text>
+  <rect x="220" y="238" width="190" height="64" rx="12" fill="var(--badFill)" stroke="var(--bad)" stroke-width="2"/>
+  <text class="nt nb" x="315" y="257">Reject H₀</text><text class="nt nb" x="315" y="273">type 1 error (false positive)</text><text class="nt" id="n_fp" x="315" y="291"></text>
+  <rect x="440" y="238" width="190" height="64" rx="12" fill="var(--badFill)" stroke="var(--bad)" stroke-width="2"/>
+  <text class="nt nb" x="535" y="257">Not reject H₀</text><text class="nt nb" x="535" y="273">type 2 error (false negative)</text><text class="nt" id="n_fn" x="535" y="291"></text>
+  <rect x="670" y="238" width="190" height="64" rx="12" fill="var(--okFill)" stroke="var(--ok)" stroke-width="2"/>
+  <text class="nt nb" x="765" y="257">Reject H₀</text><text class="nt nb" x="765" y="273">correct (true positive)</text><text class="nt" id="n_tp" x="765" y="291"></text>
+
+  <rect x="170" y="364" width="520" height="132" rx="6" fill="var(--res)" stroke="var(--resLine)" stroke-width="2"/>
+  <text class="nt nb" id="r0" x="430" y="390"></text>
+  <text class="nt" id="r1" x="430" y="418"></text>
+  <text class="nt nb" id="r2" x="430" y="446"></text>
+  <text class="nt nb" id="r3" x="430" y="474"></text>
+</svg>
+
+<div class="freq" id="freq"></div>
+
+<p class="note">Reading the tree: the first split is the prior, how often H₀ is true. The second split holds the error probabilities: α if H₀ is true, β if H₀ is false. Green leaves are correct decisions, red leaves are wrong decisions. The two dashed arrows collect the rejections of H₀. The true rejections are the share 1 − β (the power) of all false nulls, the false rejections are the share α of all true nulls. How many of the rejections are false depends on all three numbers, not on α alone. This is the same tree as in Bayes' theorem.</p>
+</main>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const pi=$('pi'), al=$('al'), be=$('be');
+  function f(v){ if(v===0) return '0'; if(v>=0.01) return v.toFixed(3); if(v>=0.001) return v.toFixed(4); return v.toFixed(5); }
+  function fp(v){ const p=v*100; if(p>=10) return p.toFixed(1)+' %'; if(p>=1) return p.toFixed(2)+' %'; return p.toFixed(3)+' %'; }
+  function w(p){ return (1.2+6*p).toFixed(2); }
+  function update(){
+    const P=+pi.value, a=+al.value, b=+be.value;
+    const TN=P*(1-a), FP=P*a, FN=(1-P)*b, TP=(1-P)*(1-b);
+    const rej=FP+TP, fdr=FP/rej, nrej=TN+FN, miss=FN/nrej;
+    $('o_pi').textContent=fp(P); $('o_al').textContent=fp(a); $('o_be').textContent=fp(b); $('o_pow').textContent=fp(1-b);
+    $('l_a').textContent='P(H₀ true) = '+f(P);
+    $('l_b').textContent='P(H₀ false) = '+f(1-P);
+    $('l_tn').textContent='1 − α = '+f(1-a);
+    $('l_fp').textContent='α = '+f(a);
+    $('l_fn').textContent='β = '+f(b);
+    $('l_tp').textContent='1 − β = '+f(1-b);
+    $('n_tn').textContent=f(P)+' × '+f(1-a)+' = '+f(TN);
+    $('n_fp').textContent=f(P)+' × '+f(a)+' = '+f(FP);
+    $('n_fn').textContent=f(1-P)+' × '+f(b)+' = '+f(FN);
+    $('n_tp').textContent=f(1-P)+' × '+f(1-b)+' = '+f(TP);
+    const err=FP+FN;
+    $('r0').textContent='P(wrong decision) = FP + FN = '+f(FP)+' + '+f(FN)+' = '+f(err);
+    $('r1').textContent='P(reject H₀) = '+f(FP)+' + '+f(TP)+' = '+f(rej);
+    $('r2').textContent='P(H₀ true | rejected) = '+f(FP)+' / '+f(rej)+' = '+f(fdr);
+    $('r3').textContent='P(H₀ false | not rejected) = '+f(FN)+' / '+f(nrej)+' = '+f(miss);
+    const set=(id,v)=>$(id).setAttribute('stroke-width',w(v));
+    set('e_root_a',P); set('e_root_b',1-P); set('e_a_tn',1-a); set('e_a_fp',a); set('e_b_fn',b); set('e_b_tp',1-b);
+    $('c_err').textContent=fp(err); $('c_fdr').textContent=fp(fdr); $('c_rej').textContent=fp(rej); $('c_miss').textContent=fp(miss);
+    const N=1000, n=x=>{const v=x*N; return v>=10?Math.round(v):v.toFixed(v>=1?1:2);};
+    $('freq').innerHTML='Imagine <b>1000</b> tested hypotheses: in about <b>'+n(P)+'</b> the null hypothesis is true (<b>'+n(FP)+'</b> are rejected by mistake, <b>'+n(TN)+'</b> are not rejected) and in <b>'+n(1-P)+'</b> it is false (<b>'+n(TP)+'</b> are rejected, <b>'+n(FN)+'</b> are missed). '
+      +'In total <b>'+n(err)+'</b> of the 1000 decisions are wrong (<b>'+fp(err)+'</b>). Of the <b>'+n(rej)+'</b> rejections, <b>'+n(FP)+'</b> concern a true null hypothesis, that is <b>'+fp(fdr)+'</b>.';
+  }
+  [pi,al,be].forEach(el=>el.addEventListener('input',update));
+  document.querySelectorAll('.presets .btn').forEach(bn=>bn.addEventListener('click',()=>{
+    const [p,a,b]=bn.dataset.p.split(',');
+    pi.value=p; al.value=a; be.value=b; update();
+  }));
+  update();
+})();
+</script>
+</body>
+</html>
