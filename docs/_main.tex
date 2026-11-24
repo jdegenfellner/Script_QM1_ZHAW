@@ -3616,19 +3616,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.742 130.837 132.433   93   34.3662 225.80                  
-## mu2         5.961   5.694   6.899   93  -84.0700  96.39                  
-## muDiff    124.781 124.960 126.202   93   -7.7970 257.95       0      95.6
-## sigma1    139.453 128.163 110.038   93   66.8048 225.65                  
-## sigma2    130.104 119.682 106.950   93   61.2842 209.41                  
-## sigmaDiff   9.349   8.539   9.037   93 -112.3036 141.49       0      56.4
-## nu         34.381  25.716  10.068   93    1.0894  83.80                  
-## log10nu     1.379   1.410   1.502   93    0.6584   2.06                  
-## effSz       0.966   0.958   0.958   93   -0.0878   1.99       0      95.6
+## mu1       130.605 130.611 123.648   93   34.5340 227.20                  
+## mu2         5.973   5.702   2.816   93  -82.5969  96.05                  
+## muDiff    124.632 125.009 126.237   93   -8.2911 257.23       0      95.6
+## sigma1    139.671 128.499 111.709   93   66.3524 226.67                  
+## sigma2    129.640 119.409 104.224   93   63.1350 210.65                  
+## sigmaDiff  10.032   8.516   4.523   93 -113.6714 139.53       0      56.4
+## nu         34.225  25.504   9.546   93    1.1904  83.43                  
+## log10nu     1.375   1.407   1.467   93    0.6529   2.06                  
+## effSz       0.967   0.956   0.919   93   -0.0798   2.01       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.46
+## muDiff        -20       20    4.38
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.151 sec elapsed
+## 1.188 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.719  0.713  0.626   93 -0.538  1.977                          
-## mu2        2.297  2.299  2.285   93  0.848  3.721                          
-## muDiff    -1.578 -1.582 -1.559   93 -3.480  0.348       0      6.43    -1.8
-## sigma1     2.040  1.920  1.711   93  1.109  3.124                          
-## sigma2     2.312  2.174  1.962   93  1.260  3.496                          
-## sigmaDiff -0.272 -0.247 -0.227   93 -1.973  1.424       0     37.15        
-## nu        36.346 27.616 12.386   93  1.619 87.090                          
-## log10nu    1.414  1.441  1.555   93  0.721  2.069                          
-## effSz     -0.746 -0.743 -0.742   93 -1.644  0.145       0      6.43        
+## mu1        0.707  0.702  0.668   93 -0.558  1.933                          
+## mu2        2.298  2.298  2.353   93  0.875  3.690                          
+## muDiff    -1.592 -1.591 -1.630   93 -3.472  0.281       0      5.97    -1.8
+## sigma1     2.032  1.919  1.714   93  1.085  3.086                          
+## sigma2     2.304  2.170  1.973   93  1.282  3.514                          
+## sigmaDiff -0.272 -0.251 -0.288   93 -1.960  1.390       0     37.11        
+## nu        36.238 27.791 12.313   93  1.495 86.302                          
+## log10nu    1.413  1.444  1.528   93  0.726  2.067                          
+## effSz     -0.753 -0.747 -0.719   93 -1.630  0.139       0      5.97        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.5
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4157,6 +4157,16 @@ you can change both estimates and their standard errors and watch the three \(p\
   were often not published. This leads to a distorted view of the literature. All rigorously
   conducted studies should be published, irrespective of the results. Estimates of parameters will also be \textbf{overestimated}
   when focusing on ``significant'' results only.
+
+  \begin{quote}
+  \textbf{Try it yourself.} In the animation
+  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/26_Publikationsbias_Forest_Plot.html}{Publication bias: forest plot and meta-analysis}
+  many studies of the same question are simulated. You set the true effect (0 means that \(H_0\) is true),
+  the sample size and the share of unwanted results that still get published.
+  A meta-analysis of all studies recovers the true effect, a meta-analysis of the published studies alone
+  does not: it overestimates the effect, because selection by \(p\)-value keeps the studies that happened
+  to overshoot.
+  \end{quote}
 \item
   \textbf{\href{https://de.wikipedia.org/wiki/P-Hacking}{\(p\)-hacking}}: In the pursuit for ``significant'' results
   (which results in publications, which results in tenure), it is natural to do everything to get them.
@@ -4166,6 +4176,14 @@ you can change both estimates and their standard errors and watch the three \(p\
   Swiss lottery is rather small and I would take a large bet against it. But every week, someone wins (approximately).
   After the fact, one should not be surprised \emph{that} someone won,
   since it follows from the \href{https://en.wikipedia.org/wiki/Law_of_large_numbers}{law of large numbers}.
+
+  \begin{quote}
+  \textbf{Try it yourself.} In the animation
+  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/05_Hundert_Tests_H0_wahr.html}{100 true null hypotheses}
+  each tile is one test in which there is no effect at all. Choose \(\alpha = 5\,\%\) and press the button:
+  in every run a few tiles light up, and at least one lights up in \(99.4\,\%\) of the runs (\(1 - 0.95^{100}\)).
+  Anyone who reports only the lit tiles reports lottery winners.
+  \end{quote}
 \item
   \textbf{The probabilistic modus tollens}: ``If \(H_0\) is true, the data follow an expected pattern. The data do not.
   Therefore \(H_0\) is false'' is valid logic. Replacing certainty by probability breaks it:

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publication bias: forest plot and meta-analysis</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232a78d6'/%3E%3Cpath d='M32 12v14M32 26L16 46M32 26l16 20' stroke='white' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --card:#f6f7f9; --ink:#1f2933; --ink2:#52606d; --line:#cbd2d9;
+  --blue:#2a78d6; --blueFill:#cfdef5; --teal:#0f9d8a; --orange:#eb6834; --orangeFill:#fbd9cd;
+  --okFill:#d3efdc; --ok:#2a9d5c; --badFill:#fbdcdc; --bad:#d64545; --grey:#52606d; --greyFill:#e4e7eb; --res:#fbe3b5; --resLine:#d9732b; --accent:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14181d; --card:#1c222a; --ink:#e6e9ee; --ink2:#a3adb8; --line:#3a4350;
+    --blue:#4a95f0; --blueFill:#1e3a60; --teal:#2ec4ae; --orange:#f08a5d; --orangeFill:#4a2a1e;
+    --okFill:#1b4630; --ok:#4cc585; --badFill:#4f2424; --bad:#f07878; --grey:#a3adb8; --greyFill:#2a313b; --res:#4a3a1a; --resLine:#e0a050; --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.3rem;margin:0 0 4px}
+.lead{color:var(--ink2);margin:0 0 12px;max-width:90ch}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 22px;margin:10px 0}
+@media (max-width:760px){.controls{grid-template-columns:1fr}}
+.sl{background:var(--card);border-radius:12px;padding:8px 14px}
+.sl label{display:flex;justify-content:space-between;gap:8px;font-size:.9rem;color:var(--ink2)}
+.sl output{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.sl input{width:100%;accent-color:var(--accent);margin:6px 0 0}
+.sl small{display:block;color:var(--ink2);font-size:.78rem}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px;align-items:center}
+.presets span{font-size:.88rem;color:var(--ink2)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:10px;font:inherit;font-size:.88rem;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:12px;padding:8px 14px}
+.card .k{font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.card .v{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.25}
+.card .s{font-size:.82rem;color:var(--ink2)}
+.card.main .v{color:var(--teal)}
+svg{display:block;width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px}
+svg text{font:12.5px system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink)}
+svg .el{paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}
+svg .nt{font-size:12.5px;text-anchor:middle}
+svg .nb{font-weight:650}
+svg .tw{fill:#fff}
+.edge{fill:none;stroke:var(--grey);stroke-linecap:round}
+.dash{fill:none;stroke-width:2;stroke-dasharray:6 5}
+.freq{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:.95rem}
+.freq b{font-variant-numeric:tabular-nums}
+.note{color:var(--ink2);font-size:.9rem;margin-top:10px;max-width:95ch}
+.sr{position:absolute;left:-9999px}
+.card.main .v{color:var(--bad)}
+.card.err{border-left:4px solid var(--bad)}
+.card.err .v{color:var(--bad)}
+
+.controls{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.controls{grid-template-columns:1fr}}
+@media (max-width:900px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.controls{grid-template-columns:1fr}}
+.cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.card .v{font-size:1.5rem}
+.cA .v{color:var(--blue)} .cB .v{color:var(--orange)} .cD .v{color:var(--ink)}
+.verdict{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:.98rem}
+.dot-a{color:var(--blue)}
+
+.cA .v{color:var(--blue)} .cB .v{color:var(--teal)} .cD .v{color:var(--orange)}
+.cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+.cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--ink2);margin:6px 2px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-2px;margin-right:5px}
+</style>
+</head>
+<body>
+<main>
+<h1>Publication bias: what the literature shows when mostly “significant” results appear</h1>
+<p class="lead">Many studies of the same question are run. Each one estimates the effect with some noise. Set the true effect (0 means that H₀ is true), the sample size and how many of the unwanted results, those that are not “significant” in the hoped-for direction, are published anyway. The forest plot shows all studies. Filled dots were published, hollow dots stay in the drawer.</p>
+
+<div class="controls">
+  <div class="sl"><label for="d">True effect (in SD units) <output id="o_d"></output></label>
+    <input id="d" type="range" min="-0.5" max="1" step="0.05" value="0">
+    <small>0: no effect, H₀ is true</small></div>
+  <div class="sl"><label for="q">Unwanted results that get published <output id="o_q"></output></label>
+    <input id="q" type="range" min="0" max="1" step="0.05" value="0.1">
+    <small>0 %: only wanted results appear. 100 %: everything appears</small></div>
+  <div class="sl"><label for="n">Typical sample size per group <output id="o_n"></output></label>
+    <input id="n" type="range" min="10" max="300" step="5" value="30"></div>
+  <div class="sl"><label for="k">Number of studies <output id="o_k"></output></label>
+    <input id="k" type="range" min="10" max="200" step="5" value="50"></div>
+  <div class="sl"><label for="al">Level α <output id="o_al"></output></label>
+    <input id="al" type="range" min="0.01" max="0.1" step="0.005" value="0.05"></div>
+  <div class="sl" style="display:flex;align-items:center"><button class="btn" id="redraw" style="width:100%">Draw new studies</button></div>
+</div>
+
+<div class="presets"><span>Examples:</span>
+  <button class="btn" data-p="0,0.1,30">No effect, 10 % of the rest published</button>
+  <button class="btn" data-p="0,1,30">No effect, everything published</button>
+  <button class="btn" data-p="0.2,0.1,30">Small true effect 0.2</button>
+  <button class="btn" data-p="0.2,0.1,200">Small effect, large studies</button>
+</div>
+
+<div class="cards">
+  <div class="card cA"><div class="k">Meta-analysis of all studies: overall effect</div><div class="v" id="c_all"></div><div class="s" id="s_all"></div></div>
+  <div class="card cB"><div class="k">Meta-analysis of published studies only: overall effect</div><div class="v" id="c_pub"></div><div class="s" id="s_pub"></div></div>
+  <div class="card cD"><div class="k">Overestimate through selection</div><div class="v" id="c_over"></div><div class="s" id="s_over"></div></div>
+</div>
+
+<div class="legend">
+  <span><i style="background:var(--orange)"></i>published, “significant” in the wanted direction</span>
+  <span><i style="background:var(--blue)"></i>published, other result</span>
+  <span><i style="background:transparent;border:2px solid var(--grey)"></i>not published (file drawer)</span>
+</div>
+<svg id="plot" viewBox="0 0 890 640" role="img" aria-labelledby="t1 d1">
+  <title id="t1">Forest plot of all studies</title>
+  <desc id="d1">Estimates with confidence intervals of all simulated studies, sorted by precision, published studies filled and unpublished studies hollow, and the pooled estimates of all studies and of published studies only.</desc>
+  <g id="g"></g>
+</svg>
+
+<div class="verdict" id="verdict"></div>
+
+<p class="note">Each study compares two groups of size n with standard deviation 1 (effects in SD units). The estimate is the true effect plus random noise with standard error √(2/n); the sample size varies between studies. The meta-analysis pools the studies with inverse-variance weights (fixed effect, since all studies share one true effect). A result is “wanted” if its p-value is below α and the estimate is positive. Only wanted results are always published, all other results are published with the share set above. The noise is fixed for a given set of studies, so moving a slider changes only the setting, not the random draw. The pooled estimate of the published studies is too large because selection by p-value keeps the studies that happened to overshoot (<a href="https://doi.org/10.1177/1745691614551642">Gelman and Carlin 2014</a>, “type M error”).</p>
+</main>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const dI=$('d'),qI=$('q'),nI=$('n'),kI=$('k'),aI=$('al');
+  function erf(x){const s=x<0?-1:1;x=Math.abs(x);const t=1/(1+0.3275911*x);const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
+  const Phi=z=>0.5*(1+erf(z/Math.SQRT2));
+  function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  let seed=2026, Z=[],Lg=[],U=[];
+  function draw(){ const r=mulberry(seed); Z=[];Lg=[];U=[]; for(let i=0;i<200;i++){const u1=r()||1e-9,u2=r(); Z.push(Math.sqrt(-2*Math.log(u1))*Math.cos(2*Math.PI*u2)); Lg.push((r()-0.5)*1.4); U.push(r());} }
+  const f2=v=>(Math.abs(v)<5e-3?0:v).toFixed(2);
+  const fpv=p=>p<0.001?'< 0.001':p.toFixed(3);
+  const pOf=m=>2*(1-Phi(Math.abs(m.est/m.se)));
+  const NS='http://www.w3.org/2000/svg';
+  function el(n,a,txt){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(txt!==undefined)e.textContent=txt;return e;}
+  function pool(arr){ let sw=0,swy=0; arr.forEach(s=>{const w=1/(s.se*s.se); sw+=w; swy+=w*s.est;}); const se=1/Math.sqrt(sw); const est=swy/sw; return {est,se,lo:est-1.96*se,hi:est+1.96*se}; }
+
+  function update(){
+    const d=+dI.value,q=+qI.value,n=+nI.value,K=+kI.value,a=+aI.value;
+    $('o_d').textContent=f2(d); $('o_q').textContent=Math.round(q*100)+' %'; $('o_n').textContent=n; $('o_k').textContent=K; $('o_al').textContent=a.toFixed(3);
+    const st=[]; for(let i=0;i<K;i++){ const ni=Math.max(4,Math.round(n*Math.exp(Lg[i]))); const se=Math.sqrt(2/ni); const est=d+se*Z[i]; const z=est/se; const p=2*(1-Phi(Math.abs(z))); const wanted=(p<a&&est>0); const pub=wanted||U[i]<q; st.push({se,est,lo:est-1.96*se,hi:est+1.96*se,wanted,pub}); }
+    st.sort((x,y)=>x.se-y.se);
+    const all=pool(st), pubs=st.filter(s=>s.pub), npub=pubs.length, nw=st.filter(s=>s.wanted).length;
+    const pp=npub?pool(pubs):null;
+    $('c_all').textContent=f2(all.est); $('s_all').textContent='95 % interval '+f2(all.lo)+' to '+f2(all.hi)+', p = '+fpv(pOf(all))+'; true effect '+f2(d);
+    if(pp){ $('c_pub').textContent=f2(pp.est); $('s_pub').textContent='95 % interval '+f2(pp.lo)+' to '+f2(pp.hi)+', p = '+fpv(pOf(pp))+'; '+npub+' of '+K+' studies published'; $('c_over').textContent=(pp.est-d>=0?'+':'−')+f2(Math.abs(pp.est-d)); $('s_over').textContent='published pooled estimate minus true effect'; }
+    else { $('c_pub').textContent='–'; $('s_pub').textContent='nothing published'; $('c_over').textContent='–'; $('s_over').textContent=''; }
+
+    // forest plot
+    const g=$('g'); g.innerHTML='';
+    const W=890,L=40,R=30,T=40; const rowH=Math.max(5,Math.min(11,480/K)); const plotH=K*rowH; const sumY=T+plotH+34; const H=sumY+110;
+    $('plot').setAttribute('viewBox','0 0 '+W+' '+H);
+    let xmin=-1.2,xmax=1.2; st.forEach(s=>{xmin=Math.min(xmin,s.lo);xmax=Math.max(xmax,s.hi);}); xmin=Math.max(xmin,-3); xmax=Math.min(xmax,3);
+    const X=v=>L+(Math.min(Math.max(v,xmin),xmax)-xmin)/(xmax-xmin)*(W-L-R);
+    const step=(function(){const raw=(xmax-xmin)/8,p=Math.pow(10,Math.floor(Math.log10(raw))),qq=raw/p;return (qq<1.5?1:qq<3?2:qq<7?5:10)*p;})();
+    for(let t=Math.ceil(xmin/step)*step;t<=xmax+1e-9;t+=step){g.appendChild(el('line',{x1:X(t),x2:X(t),y1:T-6,y2:sumY+90,stroke:'var(--line)'}));g.appendChild(el('text',{x:X(t),y:sumY+108,'text-anchor':'middle',style:'fill:var(--ink2)'},(+t.toFixed(4)).toString()));}
+    g.appendChild(el('line',{x1:X(0),x2:X(0),y1:T-10,y2:sumY+90,stroke:'var(--grey)','stroke-width':2,'stroke-dasharray':'6 4'}));
+    g.appendChild(el('text',{x:X(0),y:T-16,'text-anchor':'middle',style:'fill:var(--ink2)'},'0'));
+    if(Math.abs(d)>1e-9){ g.appendChild(el('line',{x1:X(d),x2:X(d),y1:T-10,y2:sumY+90,stroke:'var(--teal)','stroke-width':2.5}));
+      g.appendChild(el('text',{x:X(d),y:T-16,'text-anchor':'middle',style:'fill:var(--teal);font-weight:700'},'true effect '+f2(d))); }
+    st.forEach((s,i)=>{ const y=T+i*rowH+rowH/2; const col=!s.pub?'var(--grey)':(s.wanted?'var(--orange)':'var(--blue)'); const r=Math.min(4,rowH/2.2);
+      g.appendChild(el('line',{x1:X(s.lo),x2:X(s.hi),y1:y,y2:y,stroke:col,'stroke-width':s.pub?1.6:1,opacity:s.pub?1:0.65}));
+      g.appendChild(el('circle',{cx:X(s.est),cy:y,r:r,fill:s.pub?col:'var(--bg)',stroke:col,'stroke-width':1.5})); });
+    g.appendChild(el('text',{x:L,y:T+plotH+16,style:'fill:var(--ink2);font-size:11.5px'},'studies sorted by precision, most precise on top'));
+    function diamond(sm,y,col,label){ g.appendChild(el('polygon',{points:X(sm.lo)+','+y+' '+X(sm.est)+','+(y-10)+' '+X(sm.hi)+','+y+' '+X(sm.est)+','+(y+10),fill:col,opacity:0.9}));
+      g.appendChild(el('text',{x:X(sm.est),y:y-16,'text-anchor':'middle',class:'el nt',style:'font-weight:700'},label+' '+f2(sm.est))); }
+    diamond(all,sumY+18,'var(--ink)','meta-analysis, all studies');
+    if(pp) diamond(pp,sumY+68,'var(--blue)','meta-analysis, published only');
+
+    // verdict
+    let msg='Of <b>'+K+'</b> studies, <b>'+nw+'</b> gave a result that is “significant” in the wanted direction, and <b>'+npub+'</b> were published. ';
+    if(pp){ msg+='The meta-analysis of all studies gives an overall effect of <b>'+f2(all.est)+'</b> (true effect '+f2(d)+'). The meta-analysis of the published studies alone gives <b>'+f2(pp.est)+'</b> (95 % interval '+f2(pp.lo)+' to '+f2(pp.hi)+', p = '+fpv(pOf(pp))+'), an overestimate of <b>'+f2(pp.est-d)+'</b>. '; }
+    if(pp && q<1 && pp.est-d>0.05) msg+='The studies themselves are fine. The distortion comes only from which of them reach the literature.';
+    else if(q>=1) msg+='With all results published, the pooled estimate stays close to the truth.';
+    $('verdict').innerHTML=msg;
+  }
+  [dI,qI,nI,kI,aI].forEach(e=>e.addEventListener('input',update));
+  $('redraw').addEventListener('click',()=>{seed=Math.floor(Math.random()*1e9);draw();update();});
+  document.querySelectorAll('.presets .btn').forEach(b=>b.addEventListener('click',()=>{const [d,q,n]=b.dataset.p.split(',').map(Number);dI.value=d;qI.value=q;nI.value=n;update();}));
+  draw(); update();
+})();
+</script>
+</body>
+</html>

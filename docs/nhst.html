@@ -480,7 +480,16 @@ than any difference that matters in practice.</p>
 <li><p><strong><a href="https://en.wikipedia.org/wiki/Publication_bias">Publication bias</a></strong>: Many journals tended to publish studies with “significant” results. “Not significant” results
 were often not published. This leads to a distorted view of the literature. All rigorously
 conducted studies should be published, irrespective of the results. Estimates of parameters will also be <strong>overestimated</strong>
-when focusing on “significant” results only.</p></li>
+when focusing on “significant” results only.</p>
+<blockquote>
+<p><strong>Try it yourself.</strong> In the animation
+<a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/26_Publikationsbias_Forest_Plot.html">Publication bias: forest plot and meta-analysis</a>
+many studies of the same question are simulated. You set the true effect (0 means that <span class="math inline">\(H_0\)</span> is true),
+the sample size and the share of unwanted results that still get published.
+A meta-analysis of all studies recovers the true effect, a meta-analysis of the published studies alone
+does not: it overestimates the effect, because selection by <span class="math inline">\(p\)</span>-value keeps the studies that happened
+to overshoot.</p>
+</blockquote></li>
 <li><p><strong><a href="https://de.wikipedia.org/wiki/P-Hacking"><span class="math inline">\(p\)</span>-hacking</a></strong>: In the pursuit for “significant” results
 (which results in publications, which results in tenure), it is natural to do everything to get them.
 This can include data dredging, selective reporting, and other questionable practices.
@@ -488,7 +497,14 @@ In my humble opinion, very often, researchers are not to blame but incentives. I
 that probabilities are defined <em>before</em> an event has happened. The probability for the esteemed reader to win the
 Swiss lottery is rather small and I would take a large bet against it. But every week, someone wins (approximately).
 After the fact, one should not be surprised <em>that</em> someone won,
-since it follows from the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers</a>.</p></li>
+since it follows from the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers</a>.</p>
+<blockquote>
+<p><strong>Try it yourself.</strong> In the animation
+<a href="https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/05_Hundert_Tests_H0_wahr.html">100 true null hypotheses</a>
+each tile is one test in which there is no effect at all. Choose <span class="math inline">\(\alpha = 5\,\%\)</span> and press the button:
+in every run a few tiles light up, and at least one lights up in <span class="math inline">\(99.4\,\%\)</span> of the runs (<span class="math inline">\(1 - 0.95^{100}\)</span>).
+Anyone who reports only the lit tiles reports lottery winners.</p>
+</blockquote></li>
 <li><p><strong>The probabilistic modus tollens</strong>: “If <span class="math inline">\(H_0\)</span> is true, the data follow an expected pattern. The data do not.
 Therefore <span class="math inline">\(H_0\)</span> is false” is valid logic. Replacing certainty by probability breaks it:
 “If a person is an American, it is highly unlikely that she is a member of Congress.

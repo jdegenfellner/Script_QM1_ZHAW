@@ -134,6 +134,14 @@ he rather gives his mind to each particular case in the light of his evidence an
   conducted studies should be published, irrespective of the results. Estimates of parameters will also be **overestimated**
   when focusing on "significant" results only.
 
+  > **Try it yourself.** In the animation
+  > [Publication bias: forest plot and meta-analysis](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/26_Publikationsbias_Forest_Plot.html)
+  > many studies of the same question are simulated. You set the true effect (0 means that $H_0$ is true), 
+  > the sample size and the share of unwanted results that still get published. 
+  > A meta-analysis of all studies recovers the true effect, a meta-analysis of the published studies alone 
+  > does not: it overestimates the effect, because selection by $p$-value keeps the studies that happened 
+  > to overshoot.
+
 - **[$p$-hacking](https://de.wikipedia.org/wiki/P-Hacking)**: In the pursuit for "significant" results 
   (which results in publications, which results in tenure), it is natural to do everything to get them. 
   This can include data dredging, selective reporting, and other questionable practices. 
@@ -142,6 +150,12 @@ he rather gives his mind to each particular case in the light of his evidence an
   Swiss lottery is rather small and I would take a large bet against it. But every week, someone wins (approximately).
   After the fact, one should not be surprised *that* someone won, 
   since it follows from the [law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers).
+
+  > **Try it yourself.** In the animation
+  > [100 true null hypotheses](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/05_Hundert_Tests_H0_wahr.html)
+  > each tile is one test in which there is no effect at all. Choose $\alpha = 5\,\%$ and press the button: 
+  > in every run a few tiles light up, and at least one lights up in $99.4\,\%$ of the runs ($1 - 0.95^{100}$).
+  > Anyone who reports only the lit tiles reports lottery winners.
 
 - **The probabilistic modus tollens**: "If $H_0$ is true, the data follow an expected pattern. The data do not.
   Therefore $H_0$ is false" is valid logic. Replacing certainty by probability breaks it:
