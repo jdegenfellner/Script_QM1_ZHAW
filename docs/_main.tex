@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.500 130.832 134.40   93   33.5509 228.09                  
-## mu2         6.291   6.053   5.98   93  -84.5193  95.91                  
-## muDiff    124.209 124.512 128.09   93   -9.5796 255.57       0      95.5
-## sigma1    139.943 128.598 113.49   93   65.4114 226.71                  
-## sigma2    129.862 119.454 103.59   93   61.9215 210.23                  
-## sigmaDiff  10.081   8.781   5.59   93 -119.8247 136.53       0      56.5
-## nu         34.448  25.668  10.35   93    1.3173  84.41                  
-## log10nu     1.378   1.409   1.54   93    0.6670   2.07                  
-## effSz       0.962   0.951   0.92   93   -0.0715   2.02       0      95.5
+##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.758 130.971 132.170   93   33.6623 227.55                  
+## mu2         6.356   6.222   4.784   93  -84.6319  97.06                  
+## muDiff    124.402 124.357 119.445   93   -9.6165 258.35       0      95.5
+## sigma1    140.311 128.743 111.588   93   67.0041 228.07                  
+## sigma2    129.972 119.419 103.980   93   61.4858 210.38                  
+## sigmaDiff  10.339   9.022   8.840   93 -117.6372 139.79       0      56.6
+## nu         34.267  25.680   9.546   93    1.1417  83.28                  
+## log10nu     1.378   1.410   1.484   93    0.6700   2.07                  
+## effSz       0.962   0.952   0.899   93   -0.0655   2.03       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.52
+## muDiff        -20       20    4.53
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.127 sec elapsed
+## 1.047 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.712  0.706  0.685   93 -0.534  1.980                          
-## mu2        2.302  2.300  2.312   93  0.875  3.713                          
-## muDiff    -1.590 -1.591 -1.598   93 -3.459  0.329       0      6.15    -1.8
-## sigma1     2.041  1.922  1.744   93  1.121  3.131                          
-## sigma2     2.307  2.172  1.950   93  1.266  3.499                          
-## sigmaDiff -0.266 -0.244 -0.217   93 -1.953  1.418       0     37.36        
-## nu        36.015 27.497 11.098   93  1.408 86.136                          
-## log10nu    1.411  1.439  1.511   93  0.739  2.082                          
-## effSz     -0.751 -0.746 -0.797   93 -1.640  0.138       0      6.15        
+## mu1        0.712  0.708  0.747   93 -0.555  1.943                          
+## mu2        2.306  2.304  2.317   93  0.862  3.705                          
+## muDiff    -1.594 -1.595 -1.594   93 -3.518  0.276       0      6.12    -1.8
+## sigma1     2.039  1.922  1.754   93  1.100  3.110                          
+## sigma2     2.315  2.176  1.951   93  1.262  3.526                          
+## sigmaDiff -0.277 -0.248 -0.188   93 -1.987  1.409       0     37.05        
+## nu        35.943 27.368 11.755   93  1.387 86.041                          
+## log10nu    1.410  1.437  1.529   93  0.726  2.066                          
+## effSz     -0.751 -0.747 -0.740   93 -1.634  0.139       0      6.12        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4124,8 +4124,21 @@ The section \hyperref[error_types]{Type 1 and Type 2 errors} returns to this.
   rather than real relevance. It happened to me not only once that a colleague
   looked at me with a sad facial expression announcing that the \(p\)-value was ``not significant''.
   This should be not an issue at all. The focus should be on doing useful analyses in the most
-  rigorous way possible. Note that the \href{https://www.tandfonline.com/doi/abs/10.1198/000313006x152649?casa_token=mn4mIBOnoaIAAAAA:RmZ3RZ6prFHNPWte07aNMKidAsQGmqsjPdCQCpXraH8MCmFuftZmXTsLNzeSLFmXdgJm0Xd8dklEKZdPUw}{difference between ``significant'' and ``not significant'' is
+  rigorous way possible. Note that the \href{https://doi.org/10.1198/000313006X152649}{difference between ``significant'' and ``not significant'' is
   itself not significant}.
+\end{itemize}
+
+\begin{quote}
+\textbf{Try it yourself.} Suppose a treatment effect is estimated in two independent groups:
+25 (standard error 10) in group A and 10 (standard error 10) in group B.
+Group A gives \(p = 0.012\), group B gives \(p = 0.32\).
+The difference of 15 has a standard error of \(\sqrt{10^2 + 10^2} \approx 14.1\) and gives \(p = 0.29\).
+In the animation
+\href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/24_Signifikant_Nicht_Signifikant_Differenz.html}{``Significant'' versus ``not significant''}
+you can change both estimates and their standard errors and watch the three \(p\)-values and intervals.
+\end{quote}
+
+\begin{itemize}
 \item
   \textbf{Sample size influence}: Large samples can make small, clinically irrelevant
   differences ``statistically significant''. Example: Given an arbitrarily small difference between means of two groups. There is

@@ -108,7 +108,15 @@ he rather gives his mind to each particular case in the light of his evidence an
   looked at me with a sad facial expression announcing that the $p$-value was "not significant".
   This should be not an issue at all. The focus should be on doing useful analyses in the most
   rigorous way possible. Note that the [difference between "significant" and "not significant" is
-  itself not significant](https://www.tandfonline.com/doi/abs/10.1198/000313006x152649?casa_token=mn4mIBOnoaIAAAAA:RmZ3RZ6prFHNPWte07aNMKidAsQGmqsjPdCQCpXraH8MCmFuftZmXTsLNzeSLFmXdgJm0Xd8dklEKZdPUw).
+  itself not significant](https://doi.org/10.1198/000313006X152649).
+
+  > **Try it yourself.** Suppose a treatment effect is estimated in two independent groups: 
+  > 25 (standard error 10) in group A and 10 (standard error 10) in group B. 
+  > Group A gives $p = 0.012$, group B gives $p = 0.32$. 
+  > The difference of 15 has a standard error of $\sqrt{10^2 + 10^2} \approx 14.1$ and gives $p = 0.29$. 
+  > In the animation
+  > ["Significant" versus "not significant"](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/24_Signifikant_Nicht_Signifikant_Differenz.html)
+  > you can change both estimates and their standard errors and watch the three $p$-values and intervals.
 	
 - **Sample size influence**: Large samples can make small, clinically irrelevant 
   differences "statistically significant". Example: Given an arbitrarily small difference between means of two groups. There is 
