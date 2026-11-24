@@ -3615,25 +3615,25 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median   mode HDI%    HDIlo  HDIup compVal %>compVal ROPElow
-## mu1       131.032 131.137 129.70   93   32.464 225.85                          
-## mu2         6.295   6.102   5.67   93  -81.135  99.42                          
-## muDiff    124.737 124.855 120.99   93   -9.522 254.53       0      95.7     -20
-## sigma1    138.877 128.156 113.13   93   65.279 223.34                          
-## sigma2    129.701 119.564 106.25   93   61.777 209.25                          
-## sigmaDiff   9.176   8.236   7.16   93 -117.704 133.33       0      56.1        
-## nu         34.413  25.621   9.73   93    1.087  83.92                          
-## log10nu     1.377   1.409   1.49   93    0.654   2.05                          
-## effSz       0.968   0.959   1.00   93   -0.083   1.99       0      95.7        
-##           ROPEhigh %InROPE
-## mu1                       
-## mu2                       
-## muDiff          20    4.46
-## sigma1                    
-## sigma2                    
-## sigmaDiff                 
-## nu                        
-## log10nu                   
+##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.500 130.832 134.40   93   33.5509 228.09                  
+## mu2         6.291   6.053   5.98   93  -84.5193  95.91                  
+## muDiff    124.209 124.512 128.09   93   -9.5796 255.57       0      95.5
+## sigma1    139.943 128.598 113.49   93   65.4114 226.71                  
+## sigma2    129.862 119.454 103.59   93   61.9215 210.23                  
+## sigmaDiff  10.081   8.781   5.59   93 -119.8247 136.53       0      56.5
+## nu         34.448  25.668  10.35   93    1.3173  84.41                  
+## log10nu     1.378   1.409   1.54   93    0.6670   2.07                  
+## effSz       0.962   0.951   0.92   93   -0.0715   2.02       0      95.5
+##           ROPElow ROPEhigh %InROPE
+## mu1                               
+## mu2                               
+## muDiff        -20       20    4.52
+## sigma1                            
+## sigma2                            
+## sigmaDiff                         
+## nu                                
+## log10nu                           
 ## effSz
 \end{verbatim}
 
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 0.998 sec elapsed
+## 1.127 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.711  0.710  0.726   93 -0.526  1.989                          
-## mu2        2.300  2.296  2.305   93  0.864  3.737                          
-## muDiff    -1.589 -1.592 -1.579   93 -3.496  0.330       0      6.29    -1.8
-## sigma1     2.037  1.921  1.755   93  1.081  3.090                          
-## sigma2     2.314  2.178  1.969   93  1.264  3.513                          
-## sigmaDiff -0.277 -0.254 -0.168   93 -2.021  1.389       0     36.83        
-## nu        36.146 27.532 11.417   93  1.525 86.561                          
-## log10nu    1.411  1.440  1.537   93  0.720  2.066                          
-## effSz     -0.749 -0.748 -0.772   93 -1.616  0.165       0      6.29        
+## mu1        0.712  0.706  0.685   93 -0.534  1.980                          
+## mu2        2.302  2.300  2.312   93  0.875  3.713                          
+## muDiff    -1.590 -1.591 -1.598   93 -3.459  0.329       0      6.15    -1.8
+## sigma1     2.041  1.922  1.744   93  1.121  3.131                          
+## sigma2     2.307  2.172  1.950   93  1.266  3.499                          
+## sigmaDiff -0.266 -0.244 -0.217   93 -1.953  1.418       0     37.36        
+## nu        36.015 27.497 11.098   93  1.408 86.136                          
+## log10nu    1.411  1.439  1.511   93  0.739  2.082                          
+## effSz     -0.751 -0.746 -0.797   93 -1.640  0.138       0      6.15        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.2
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4076,6 +4076,11 @@ The section \hyperref[error_types]{Type 1 and Type 2 errors} returns to this.
   To quote \href{https://link.springer.com/chapter/10.1007/978-1-4612-4380-9_6}{Ronald Fisher} (p.44):
   ``The value for which P = .05, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this
   point as a limit in judging whether a deviation is to be considered significant or not.''
+  Three decades later, Fisher saw this differently: ``No scientific worker has a fixed level of
+  significance at which from year to year, and in all circumstances, he rejects hypotheses;
+  he rather gives his mind to each particular case in the light of his evidence and his ideas''
+  (Fisher 1956, p.~42, as quoted by
+  \href{https://doi.org/10.1177/2515245918771329}{Gigerenzer 2018}).
 \end{itemize}
 
 \textbf{How NHST works}:
