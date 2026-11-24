@@ -122,6 +122,13 @@ he rather gives his mind to each particular case in the light of his evidence an
   differences "statistically significant". Example: Given an arbitrarily small difference between means of two groups. There is 
   always a sample size that makes the difference "significant". See [Exercise 2](#exercise2_nhst).
 
+  > **Try it yourself.** In the animation
+  > [Sample size and the $p$-value](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/25_Stichprobengroesse_p_Wert.html)
+  > two groups differ by a fixed small amount, for example 1 point with a standard deviation of 10. 
+  > You change only the sample size per group. The estimate stays the same, the interval around it 
+  > shrinks, and the $p$-value falls towards zero, although the difference remains far smaller 
+  > than any difference that matters in practice.
+
 - **[Publication bias](https://en.wikipedia.org/wiki/Publication_bias)**: Many journals tended to publish studies with "significant" results. "Not significant" results
   were often not published. This leads to a distorted view of the literature. All rigorously
   conducted studies should be published, irrespective of the results. Estimates of parameters will also be **overestimated**

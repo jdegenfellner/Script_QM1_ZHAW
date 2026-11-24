@@ -3616,19 +3616,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.758 130.971 132.170   93   33.6623 227.55                  
-## mu2         6.356   6.222   4.784   93  -84.6319  97.06                  
-## muDiff    124.402 124.357 119.445   93   -9.6165 258.35       0      95.5
-## sigma1    140.311 128.743 111.588   93   67.0041 228.07                  
-## sigma2    129.972 119.419 103.980   93   61.4858 210.38                  
-## sigmaDiff  10.339   9.022   8.840   93 -117.6372 139.79       0      56.6
-## nu         34.267  25.680   9.546   93    1.1417  83.28                  
-## log10nu     1.378   1.410   1.484   93    0.6700   2.07                  
-## effSz       0.962   0.952   0.899   93   -0.0655   2.03       0      95.5
+## mu1       130.742 130.837 132.433   93   34.3662 225.80                  
+## mu2         5.961   5.694   6.899   93  -84.0700  96.39                  
+## muDiff    124.781 124.960 126.202   93   -7.7970 257.95       0      95.6
+## sigma1    139.453 128.163 110.038   93   66.8048 225.65                  
+## sigma2    130.104 119.682 106.950   93   61.2842 209.41                  
+## sigmaDiff   9.349   8.539   9.037   93 -112.3036 141.49       0      56.4
+## nu         34.381  25.716  10.068   93    1.0894  83.80                  
+## log10nu     1.379   1.410   1.502   93    0.6584   2.06                  
+## effSz       0.966   0.958   0.958   93   -0.0878   1.99       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.53
+## muDiff        -20       20    4.46
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.047 sec elapsed
+## 1.151 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.712  0.708  0.747   93 -0.555  1.943                          
-## mu2        2.306  2.304  2.317   93  0.862  3.705                          
-## muDiff    -1.594 -1.595 -1.594   93 -3.518  0.276       0      6.12    -1.8
-## sigma1     2.039  1.922  1.754   93  1.100  3.110                          
-## sigma2     2.315  2.176  1.951   93  1.262  3.526                          
-## sigmaDiff -0.277 -0.248 -0.188   93 -1.987  1.409       0     37.05        
-## nu        35.943 27.368 11.755   93  1.387 86.041                          
-## log10nu    1.410  1.437  1.529   93  0.726  2.066                          
-## effSz     -0.751 -0.747 -0.740   93 -1.634  0.139       0      6.12        
+## mu1        0.719  0.713  0.626   93 -0.538  1.977                          
+## mu2        2.297  2.299  2.285   93  0.848  3.721                          
+## muDiff    -1.578 -1.582 -1.559   93 -3.480  0.348       0      6.43    -1.8
+## sigma1     2.040  1.920  1.711   93  1.109  3.124                          
+## sigma2     2.312  2.174  1.962   93  1.260  3.496                          
+## sigmaDiff -0.272 -0.247 -0.227   93 -1.973  1.424       0     37.15        
+## nu        36.346 27.616 12.386   93  1.619 87.090                          
+## log10nu    1.414  1.441  1.555   93  0.721  2.069                          
+## effSz     -0.746 -0.743 -0.742   93 -1.644  0.145       0      6.43        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.5
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4143,6 +4143,15 @@ you can change both estimates and their standard errors and watch the three \(p\
   \textbf{Sample size influence}: Large samples can make small, clinically irrelevant
   differences ``statistically significant''. Example: Given an arbitrarily small difference between means of two groups. There is
   always a sample size that makes the difference ``significant''. See \hyperref[exercise2_nhst]{Exercise 2}.
+
+  \begin{quote}
+  \textbf{Try it yourself.} In the animation
+  \href{https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/25_Stichprobengroesse_p_Wert.html}{Sample size and the \(p\)-value}
+  two groups differ by a fixed small amount, for example 1 point with a standard deviation of 10.
+  You change only the sample size per group. The estimate stays the same, the interval around it
+  shrinks, and the \(p\)-value falls towards zero, although the difference remains far smaller
+  than any difference that matters in practice.
+  \end{quote}
 \item
   \textbf{\href{https://en.wikipedia.org/wiki/Publication_bias}{Publication bias}}: Many journals tended to publish studies with ``significant'' results. ``Not significant'' results
   were often not published. This leads to a distorted view of the literature. All rigorously
