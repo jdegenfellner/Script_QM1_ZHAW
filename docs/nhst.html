@@ -629,7 +629,9 @@ This is no coincidence: confidence intervals and hypothesis tests are equivalent
 <ul>
 <li>alternative = “two.sided”, this indicates that we are interested in both directions (higher or lower than <span class="math inline">\(0.04\)</span>).
 With some experience, one would probably not test for lower when seeing the observed number of 137.</li>
-<li>95 percent confidence interval: <span class="math inline">\(0.1162817\)</span> to <span class="math inline">\(0.1598810\)</span>.</li>
+<li>95 percent confidence interval: <span class="math inline">\(0.1162817\)</span> to <span class="math inline">\(0.1598810\)</span>.
+Again, the interval contains (up to a tiny difference in how the exact test is constructed)
+all values <span class="math inline">\(\theta_0\)</span> for which the two-sided test of <span class="math inline">\(H_0: \theta = \theta_0\)</span> would not reject <span class="math inline">\(H_0\)</span> at the 5% level.</li>
 </ul>
 <p><strong>Interpretation of this frequentist confidence interval (CI)</strong>: When drawing repeated samples, in 95% of the samples,
 the so constructed interval (which will be different every time) contains the true but unknown
@@ -1624,6 +1626,22 @@ See also <a href="nhst.html#exercise7_nhst">exercise 7</a>.</p>
 each click draws a new sample from a distribution with known true mean and builds a confidence interval.
 The intervals pile up, and you can see how many of them contain the true mean and how many miss it.</p>
 </blockquote>
+<p><strong>Common misunderstandings of confidence intervals:</strong>
+<a href="https://doi.org/10.3758/s13423-013-0572-3">Hoekstra et al. (2014)</a> asked 120 researchers and 442 students to judge
+six statements about a confidence interval. All six statements were false, and on average both groups
+endorsed more than three of them.</p>
+<p>The most popular misunderstanding is: “The probability that the true parameter lies in <em>this</em> interval is 95%.”
+The 95% belong to the <strong>procedure</strong>, not to the one interval in front of you: if we repeated the study many times,
+about 95% of the intervals constructed in this way would contain the parameter.
+Once the interval has been computed, the parameter is either in it or not, and the interval itself does not tell us which.
+A statement about the probability of the parameter given the data needs a prior and leads to a
+Bayesian credible interval (see the chapter on <a href="bayes_statistics.html#bayes_statistics">Bayesian statistics</a>).</p>
+<p>Two further misunderstandings:</p>
+<ul>
+<li>The interval is <strong>not</strong> a range that contains 95% of the data. It is a statement about the parameter, not about individual observations.</li>
+<li>The interval does <strong>not</strong> contain the estimate of an exact replication with 95% probability.
+This happens in about 83% of the cases (<a href="https://doi.org/10.1111/j.1745-6924.2008.00079.x">Cumming 2008</a>).</li>
+</ul>
 <p><strong>1:1 relationship between <span class="math inline">\(p\)</span>-values and confidence intervals:</strong></p>
 <p>There is a 1:1 relationship between “statistical significance” and confidence intervals.</p>
 <ul>

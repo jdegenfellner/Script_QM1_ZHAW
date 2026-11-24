@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
-## mu1       130.858 131.028 130.616   93   33.433 227.95                  
-## mu2         5.911   5.648   1.896   93  -85.843  93.95                  
-## muDiff    124.947 125.277 126.921   93   -7.248 259.10       0      95.7
-## sigma1    140.061 128.814 112.836   93   67.179 228.38                  
-## sigma2    129.555 119.390 105.348   93   61.239 209.23                  
-## sigmaDiff  10.505   9.208  10.560   93 -114.483 139.89       0      56.9
-## nu         34.833  26.106   9.926   93    1.175  84.99                  
-## log10nu     1.383   1.417   1.519   93    0.664   2.07                  
-## effSz       0.968   0.959   0.969   93   -0.065   2.03       0      95.7
+##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.753 130.852 131.46   93   32.9189 228.54                  
+## mu2         5.855   5.835   5.43   93  -85.9390  95.99                  
+## muDiff    124.899 124.749 117.47   93   -9.1265 259.38       0      95.6
+## sigma1    139.772 128.323 111.70   93   65.3294 225.73                  
+## sigma2    130.463 119.832 104.17   93   60.8198 209.69                  
+## sigmaDiff   9.308   8.104   4.88   93 -116.7588 139.79       0      56.1
+## nu         34.366  25.664   9.58   93    1.0813  84.01                  
+## log10nu     1.377   1.409   1.49   93    0.6593   2.06                  
+## effSz       0.966   0.957   0.95   93   -0.0729   2.02       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.32
+## muDiff        -20       20    4.53
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.314 sec elapsed
+## 1.184 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.718  0.713  0.702   93 -0.528  1.982                          
-## mu2        2.305  2.303  2.288   93  0.879  3.702                          
-## muDiff    -1.587 -1.588 -1.602   93 -3.461  0.313       0      6.12    -1.8
-## sigma1     2.041  1.924  1.770   93  1.092  3.105                          
-## sigma2     2.302  2.170  1.998   93  1.254  3.471                          
-## sigmaDiff -0.261 -0.245 -0.258   93 -1.959  1.411       0     37.36        
-## nu        36.136 27.472 11.744   93  1.396 86.353                          
-## log10nu    1.413  1.439  1.515   93  0.731  2.066                          
-## effSz     -0.750 -0.747 -0.770   93 -1.653  0.120       0      6.12        
+## mu1        0.711  0.709  0.679   93 -0.553  1.947                          
+## mu2        2.298  2.296  2.321   93  0.871  3.721                          
+## muDiff    -1.587 -1.590 -1.619   93 -3.498  0.273       0      6.11    -1.8
+## sigma1     2.031  1.919  1.740   93  1.102  3.085                          
+## sigma2     2.304  2.170  1.954   93  1.253  3.474                          
+## sigmaDiff -0.273 -0.246 -0.195   93 -1.911  1.405       0     37.14        
+## nu        35.673 27.319 11.076   93  1.454 84.864                          
+## log10nu    1.407  1.436  1.484   93  0.726  2.067                          
+## effSz     -0.751 -0.745 -0.697   93 -1.648  0.130       0      6.11        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.3
+## muDiff         1.8    58.4
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4366,6 +4366,8 @@ One could argue that this is bad style, since we should probably know the direct
   With some experience, one would probably not test for lower when seeing the observed number of 137.
 \item
   95 percent confidence interval: \(0.1162817\) to \(0.1598810\).
+  Again, the interval contains (up to a tiny difference in how the exact test is constructed)
+  all values \(\theta_0\) for which the two-sided test of \(H_0: \theta = \theta_0\) would not reject \(H_0\) at the 5\% level.
 \end{itemize}
 
 \textbf{Interpretation of this frequentist confidence interval (CI)}: When drawing repeated samples, in 95\% of the samples,
@@ -5988,6 +5990,29 @@ See also \hyperref[exercise7_nhst]{exercise 7}.
 each click draws a new sample from a distribution with known true mean and builds a confidence interval.
 The intervals pile up, and you can see how many of them contain the true mean and how many miss it.
 \end{quote}
+
+\textbf{Common misunderstandings of confidence intervals:}
+\href{https://doi.org/10.3758/s13423-013-0572-3}{Hoekstra et al.~(2014)} asked 120 researchers and 442 students to judge
+six statements about a confidence interval. All six statements were false, and on average both groups
+endorsed more than three of them.
+
+The most popular misunderstanding is: ``The probability that the true parameter lies in \emph{this} interval is 95\%.''
+The 95\% belong to the \textbf{procedure}, not to the one interval in front of you: if we repeated the study many times,
+about 95\% of the intervals constructed in this way would contain the parameter.
+Once the interval has been computed, the parameter is either in it or not, and the interval itself does not tell us which.
+A statement about the probability of the parameter given the data needs a prior and leads to a
+Bayesian credible interval (see the chapter on \hyperref[bayes_statistics]{Bayesian statistics}).
+
+Two further misunderstandings:
+
+\begin{itemize}
+\tightlist
+\item
+  The interval is \textbf{not} a range that contains 95\% of the data. It is a statement about the parameter, not about individual observations.
+\item
+  The interval does \textbf{not} contain the estimate of an exact replication with 95\% probability.
+  This happens in about 83\% of the cases (\href{https://doi.org/10.1111/j.1745-6924.2008.00079.x}{Cumming 2008}).
+\end{itemize}
 
 \textbf{1:1 relationship between \(p\)-values and confidence intervals:}
 
