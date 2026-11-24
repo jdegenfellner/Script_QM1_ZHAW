@@ -259,6 +259,7 @@ The output in R tells us the following:
   The upper limit of $1$ occurs since we have a one-sided test. 
   The interval contains exactly those values $\theta_0$ for which the one-sided test of $H_0: \theta \le \theta_0$ 
   would not reject $H_0$ at the 5% level. 
+  This is no coincidence: confidence intervals and hypothesis tests are equivalent.
   95% is just convention and has no special meaning.
 - Sample estimates: Estimating the true (but unknown) proportion $\theta$ from the sample would just be: 
 $\hat{\theta} = \frac{137}{1000} = 0.137$

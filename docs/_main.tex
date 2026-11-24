@@ -3616,19 +3616,19 @@ We can do more:
 
 \begin{verbatim}
 ##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       130.873 131.094 133.676   93   34.7292 228.67                  
-## mu2         5.920   5.624   3.025   93  -82.8501  97.76                  
-## muDiff    124.952 125.074 124.630   93   -8.4807 258.03       0      95.6
-## sigma1    139.466 128.520 109.179   93   65.5871 226.50                  
-## sigma2    129.667 119.288 104.043   93   62.2435 210.26                  
-## sigmaDiff   9.799   8.881   4.795   93 -118.1998 136.56       0      56.6
-## nu         33.923  25.597   9.482   93    1.1146  82.55                  
-## log10nu     1.375   1.408   1.495   93    0.6620   2.05                  
-## effSz       0.969   0.961   0.971   93   -0.0819   2.01       0      95.6
+## mu1       130.926 131.142 132.087   93   32.3252 227.23                  
+## mu2         6.289   6.123   8.987   93  -81.2308  98.51                  
+## muDiff    124.637 124.843 117.575   93  -11.1582 255.94       0      95.6
+## sigma1    139.592 128.629 112.096   93   65.4871 225.10                  
+## sigma2    129.451 119.033 106.804   93   62.0465 208.69                  
+## sigmaDiff  10.141   8.975   6.376   93 -116.2268 136.38       0      56.7
+## nu         34.175  25.684  10.262   93    1.1078  82.67                  
+## log10nu     1.377   1.410   1.489   93    0.6486   2.04                  
+## effSz       0.968   0.957   0.944   93   -0.0734   2.02       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.41
+## muDiff        -20       20    4.45
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.408 sec elapsed
+## 1.324 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.711  0.706  0.676   93 -0.522  2.009                          
-## mu2        2.307  2.304  2.331   93  0.905  3.736                          
-## muDiff    -1.597 -1.591 -1.568   93 -3.536  0.279       0      5.99    -1.8
-## sigma1     2.047  1.926  1.738   93  1.112  3.148                          
-## sigma2     2.303  2.171  1.978   93  1.250  3.471                          
-## sigmaDiff -0.257 -0.241 -0.152   93 -1.973  1.389       0     37.49        
-## nu        36.271 27.671 11.389   93  1.730 86.706                          
-## log10nu    1.413  1.442  1.531   93  0.718  2.060                          
-## effSz     -0.753 -0.748 -0.784   93 -1.649  0.133       0      5.99        
+## mu1        0.712  0.706  0.679   93 -0.539  1.975                          
+## mu2        2.302  2.297  2.257   93  0.887  3.722                          
+## muDiff    -1.590 -1.589 -1.572   93 -3.510  0.265       0      6.06    -1.8
+## sigma1     2.041  1.923  1.737   93  1.103  3.123                          
+## sigma2     2.303  2.174  1.927   93  1.238  3.459                          
+## sigmaDiff -0.262 -0.243 -0.230   93 -1.960  1.382       0     37.40        
+## nu        36.113 27.593 11.058   93  1.568 86.684                          
+## log10nu    1.412  1.441  1.530   93  0.725  2.066                          
+## effSz     -0.751 -0.746 -0.728   93 -1.621  0.147       0      6.06        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.3
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4319,6 +4319,7 @@ The output in R tells us the following:
   The upper limit of \(1\) occurs since we have a one-sided test.
   The interval contains exactly those values \(\theta_0\) for which the one-sided test of \(H_0: \theta \le \theta_0\)
   would not reject \(H_0\) at the 5\% level.
+  This is no coincidence: confidence intervals and hypothesis tests are equivalent.
   95\% is just convention and has no special meaning.
 \item
   Sample estimates: Estimating the true (but unknown) proportion \(\theta\) from the sample would just be:
