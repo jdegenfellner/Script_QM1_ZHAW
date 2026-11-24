@@ -257,9 +257,11 @@ The output in R tells us the following:
 - $p$-value < $2.2e-16$. This value is smaller than the precision in R (`.Machine`).
 - 95 percent confidence interval: $0.1194241$ to $1.0000000$. 
   The upper limit of $1$ occurs since we have a one-sided test. 
+  The interval contains exactly those values $\theta_0$ for which the one-sided test of $H_0: \theta \le \theta_0$ 
+  would not reject $H_0$ at the 5% level. 
   95% is just convention and has no special meaning.
-- Sample estimates: Estimating the true (but unknown) proportion from the sample would just be: 
-$\frac{137}{1000} = 0.137$
+- Sample estimates: Estimating the true (but unknown) proportion $\theta$ from the sample would just be: 
+$\hat{\theta} = \frac{137}{1000} = 0.137$
 
 **Two-sided test**:
 
