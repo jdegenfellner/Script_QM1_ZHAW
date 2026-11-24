@@ -206,6 +206,12 @@ $p$-values are omnipresent in the scientific literature. There are rather few pa
 We **do not use $p$-values in descriptive tables** 
 (see [here](https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/) and 
 [here](https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1)).
+In a randomized controlled trial this is the so-called **Table 1 fallacy**: because of randomization 
+we know that both groups come from the same population, so any baseline difference is due to chance. 
+A test of baseline differences therefore tests a hypothesis that is true by design 
+([Senn 1994](https://doi.org/10.1002/sim.4780131703)), and the 
+[CONSORT 2010 explanation](https://doi.org/10.1136/bmj.c869) advises against it as well. 
+Replacing the $p$-values by credible intervals or probabilities does not change this. 
 
 [Here](https://www.tandfonline.com/doi/full/10.1080/09593980601023754#d1e100) is an example from the literature.
 Table 2 lists studies and one column contains $p$-values. Note, that it is not good practice to present $p$-values 

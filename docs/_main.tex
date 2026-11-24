@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
-## mu1       130.583 130.755 132.082   93   34.554 227.18                  
-## mu2         6.188   5.927   7.936   93  -85.408  94.23                  
-## muDiff    124.395 124.882 132.941   93   -8.800 257.18       0      95.6
-## sigma1    139.560 128.283 116.260   93   66.115 226.40                  
-## sigma2    130.009 119.681 102.882   93   62.137 210.32                  
-## sigmaDiff   9.551   8.463   8.971   93 -116.288 137.61       0      56.3
-## nu         34.336  25.601   9.814   93    1.055  83.63                  
-## log10nu     1.377   1.408   1.487   93    0.658   2.06                  
-## effSz       0.963   0.956   0.962   93   -0.105   1.99       0      95.6
+##             mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       131.11 131.172 130.609   93   33.6359 227.12                  
+## mu2         6.07   6.005   7.199   93  -83.3882  95.42                  
+## muDiff    125.04 125.092 126.825   93   -6.2534 258.88       0      95.8
+## sigma1    139.45 128.351 113.568   93   66.0200 227.18                  
+## sigma2    129.27 119.067 102.689   93   62.5387 209.34                  
+## sigmaDiff  10.17   8.688   7.208   93 -114.7787 138.49       0      56.7
+## nu         34.24  25.595   9.219   93    1.0371  83.73                  
+## log10nu     1.38   1.408   1.465   93    0.6630   2.07                  
+## effSz       0.97   0.958   0.923   93   -0.0513   2.03       0      95.8
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.37
+## muDiff        -20       20    4.43
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.036 sec elapsed
+## 1.196 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.706  0.702  0.719   93 -0.545  1.971                          
-## mu2        2.295  2.292  2.297   93  0.844  3.702                          
-## muDiff    -1.589 -1.593 -1.615   93 -3.522  0.280       0      6.17    -1.8
-## sigma1     2.039  1.921  1.739   93  1.109  3.133                          
-## sigma2     2.306  2.170  1.971   93  1.257  3.498                          
-## sigmaDiff -0.267 -0.239 -0.162   93 -1.969  1.428       0     37.46        
-## nu        35.825 27.292 11.668   93  1.367 85.115                          
-## log10nu    1.407  1.436  1.516   93  0.718  2.060                          
-## effSz     -0.751 -0.747 -0.730   93 -1.653  0.137       0      6.17        
+## mu1        0.713  0.710  0.718   93 -0.547  1.963                          
+## mu2        2.301  2.296  2.272   93  0.878  3.724                          
+## muDiff    -1.588 -1.593 -1.641   93 -3.463  0.346       0      6.26    -1.8
+## sigma1     2.041  1.923  1.730   93  1.089  3.115                          
+## sigma2     2.311  2.179  1.983   93  1.273  3.510                          
+## sigmaDiff -0.271 -0.247 -0.178   93 -1.957  1.424       0     37.12        
+## nu        35.946 27.419 11.391   93  1.357 85.919                          
+## log10nu    1.410  1.438  1.526   93  0.716  2.056                          
+## effSz     -0.749 -0.744 -0.718   93 -1.620  0.162       0      6.26        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.2
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4239,6 +4239,12 @@ This \href{https://www.youtube.com/watch?v=FZ2_hzMyJpY&ab_channel=VeryNormal}{vi
 We \textbf{do not use \(p\)-values in descriptive tables}
 (see \href{https://epitodate.com/the-balance-test-fallacy-why-you-shouldnt-put-p-values-in-table-1/}{here} and
 \href{https://www.acpjournals.org/doi/10.7326/0003-4819-147-8-200710160-00010-w1}{here}).
+In a randomized controlled trial this is the so-called \textbf{Table 1 fallacy}: because of randomization
+we know that both groups come from the same population, so any baseline difference is due to chance.
+A test of baseline differences therefore tests a hypothesis that is true by design
+(\href{https://doi.org/10.1002/sim.4780131703}{Senn 1994}), and the
+\href{https://doi.org/10.1136/bmj.c869}{CONSORT 2010 explanation} advises against it as well.
+Replacing the \(p\)-values by credible intervals or probabilities does not change this.
 
 \href{https://www.tandfonline.com/doi/full/10.1080/09593980601023754\#d1e100}{Here} is an example from the literature.
 Table 2 lists studies and one column contains \(p\)-values. Note, that it is not good practice to present \(p\)-values
