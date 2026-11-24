@@ -1112,7 +1112,7 @@ When publishing, many reviewers could be sceptical or unfamiliar with Bayesian s
 
 ### Low-intensity swimming with blood flow restriction over 5 weeks increases VO2peak: A randomized controlled trial using Bayesian informative prior distribution
 
-[Held et al. (2023)](https://doi.org/10.1080/17461391.2023.2180671) randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95% credible interval, so with this small sample the prior had little influence on the result.
+[Held et al. (2023)](https://doi.org/10.1080/17461391.2023.2180671) randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95% credible interval.
 
 
 

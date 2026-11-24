@@ -127,7 +127,7 @@
 
 \title{Quantitative Methods 1, ZHAW}
 \author{Jürgen Degenfellner}
-\date{2026-11-23}
+\date{2026-11-24}
 
 \begin{document}
 \maketitle
@@ -3615,20 +3615,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.220 131.07 129.622   93   36.0251 228.02                  
-## mu2         5.983   5.77   4.764   93  -82.5914  98.28                  
-## muDiff    125.237 125.25 122.580   93   -5.4750 259.36       0      95.7
-## sigma1    138.885 127.98 115.221   93   67.1705 224.44                  
-## sigma2    129.894 119.66 102.997   93   61.8197 209.06                  
-## sigmaDiff   8.991   8.12   5.282   93 -115.7137 136.45       0      56.1
-## nu         34.201  25.64   9.828   93    1.2097  83.35                  
-## log10nu     1.377   1.41   1.490   93    0.6392   2.04                  
-## effSz       0.971   0.96   0.918   93   -0.0941   1.99       0      95.7
+##              mean  median    mode HDI%    HDIlo  HDIup compVal %>compVal
+## mu1       130.693 130.776 127.983   93   34.039 227.75                  
+## mu2         5.992   5.542   2.525   93  -82.554  98.67                  
+## muDiff    124.701 124.938 123.782   93   -9.381 257.02       0      95.6
+## sigma1    140.085 128.318 111.638   93   66.408 227.79                  
+## sigma2    130.249 119.366 104.203   93   60.170 210.07                  
+## sigmaDiff   9.836   8.542   8.564   93 -115.034 141.59       0      56.4
+## nu         34.058  25.637   9.535   93    1.127  82.76                  
+## log10nu     1.375   1.409   1.445   93    0.645   2.04                  
+## effSz       0.966   0.953   0.952   93   -0.064   2.02       0      95.6
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.43
+## muDiff        -20       20    4.52
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3788,7 +3788,7 @@ is not an issue and we can make use of the flexibility and intuitive interpretat
 
 \subsection{Low-intensity swimming with blood flow restriction over 5 weeks increases VO2peak: A randomized controlled trial using Bayesian informative prior distribution}\label{low-intensity-swimming-with-blood-flow-restriction-over-5-weeks-increases-vo2peak-a-randomized-controlled-trial-using-bayesian-informative-prior-distribution}
 
-\href{https://doi.org/10.1080/17461391.2023.2180671}{Held et al.~(2023)} randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95\% credible interval, so with this small sample the prior had little influence on the result.
+\href{https://doi.org/10.1080/17461391.2023.2180671}{Held et al.~(2023)} randomized 18 trained male swimmers to five weeks of low-intensity swimming with blood flow restriction (10 swimmers) or to the same training without it (8 swimmers). For the effect on peak oxygen uptake, they used an informative prior, a normal distribution with mean 0.343 and standard deviation 0.840 L/min taken from their earlier study with rowers, and compared it with the default prior of the R package rstanarm. Both priors led to nearly the same posterior, with a median difference of about 0.3 L/min between the groups and a wide 95\% credible interval.
 
 \section{Exercises}\label{exercises-3}
 
@@ -3894,24 +3894,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1 sec elapsed
+## 1.075 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
 ##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.715  0.709  0.604   93 -0.512  1.998                          
-## mu2        2.305  2.305  2.303   93  0.880  3.728                          
-## muDiff    -1.590 -1.592 -1.556   93 -3.502  0.298       0      6.22    -1.8
-## sigma1     2.042  1.922  1.754   93  1.078  3.102                          
-## sigma2     2.305  2.172  1.969   93  1.266  3.477                          
-## sigmaDiff -0.263 -0.246 -0.205   93 -1.914  1.454       0     37.30        
-## nu        36.251 27.661 11.847   93  1.329 86.409                          
-## log10nu    1.414  1.442  1.533   93  0.727  2.062                          
-## effSz     -0.750 -0.747 -0.728   93 -1.623  0.147       0      6.22        
+## mu1        0.713  0.709  0.679   93 -0.519  1.985                          
+## mu2        2.293  2.294  2.373   93  0.890  3.728                          
+## muDiff    -1.580 -1.580 -1.580   93 -3.470  0.317       0      6.24    -1.8
+## sigma1     2.038  1.920  1.725   93  1.106  3.112                          
+## sigma2     2.311  2.174  1.954   93  1.257  3.503                          
+## sigmaDiff -0.272 -0.251 -0.265   93 -2.001  1.366       0     37.10        
+## nu        36.036 27.562 11.388   93  1.379 86.054                          
+## log10nu    1.411  1.440  1.541   93  0.724  2.058                          
+## effSz     -0.747 -0.741 -0.767   93 -1.640  0.140       0      6.24        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.1
+## muDiff         1.8    58.7
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
