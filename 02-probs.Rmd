@@ -1072,8 +1072,10 @@ Difficulty levels of exercises:
 
 ### [D] Exercise 2 - Bayes-teaser {#exercise2}
 Use Bayes' theorem to calculate the posterior probability of the therapy's effectiveness in the physiotherapy example above ([Example](#example1_physio)).
-For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter 
+For simplicity, let's just test two $\theta$-values: 0.3 (as in the previous study) and 0.4. We assign 50% in the prior knowledge that the parameter
 $\theta=0.3$, and 50% to $\theta=0.4$ since we trust our colleagues as well.
+The trial in the example found the following: of the 50 patients, 22 showed a clinically relevant improvement in mobility.
+These are your data. Calculate $p(\theta = 0.3 \mid \text{data})$ and $p(\theta = 0.4 \mid \text{data})$.
 
 ### [E] Exercise 3 - Find journals and papers {#exercise3}
 **Note: This is among the most important exercises of the course:**
