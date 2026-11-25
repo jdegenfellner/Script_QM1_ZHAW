@@ -34,42 +34,42 @@
     
 
 \begin{center}
-\begin{tikzpicture}[level distance=3cm, sibling distance=3.5cm, 
-  edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}, 
-  scale=0.9, transform shape]
-    % Root node (Start of the experiment)
-    \node {\small Start}
-    % Level 1: Researcher 1
-    child {
-        node {\small R1pos}
-        % Level 2: Researcher 2
-        child { 
-            node {\small R2pos}
-            % Level 3: Researcher 3
-            child { node[rotate=45] {\small R3pos} }
-            child { node[rotate=-45] {\small R3neg} }
-        }
-        child { 
-            node {\small R2neg}
-            child { node[rotate=45] {\small R3pos} }
-            child { node[rotate=-45] {\small R3neg} }
-        }
+\begin{tikzpicture}[
+  grow'=right,
+  level distance=2.6cm,
+  level 1/.style={sibling distance=4.4cm},
+  level 2/.style={sibling distance=2.2cm},
+  level 3/.style={sibling distance=1.1cm},
+  every node/.style={font=\small},
+  edge from parent/.style={draw, thick},
+  res/.style={rectangle, rounded corners, draw, inner sep=3pt},
+  leaf/.style={anchor=west}
+  ]
+  \node[res] {Start}
+    child { node[res] {R1 pos}
+      child { node[res] {R2 pos}
+        child { node[leaf] {R3 pos \quad $(+,+,+)$} }
+        child { node[leaf] {R3 neg \quad $(+,+,-)$} }
+      }
+      child { node[res] {R2 neg}
+        child { node[leaf] {R3 pos \quad $(+,-,+)$} }
+        child { node[leaf] {R3 neg \quad $(+,-,-)$} }
+      }
     }
-    child {
-        node {\small R1neg}
-        child {
-            node {\small R2pos}
-            child { node[rotate=45] {\small R3pos} }
-            child { node[rotate=-45] {\small R3neg} }
-        }
-        child {
-            node {\small R2neg}
-            child { node[rotate=45] {\small R3pos} }
-            child { node[rotate=-45] {\small R3neg} }
-        }
+    child { node[res] {R1 neg}
+      child { node[res] {R2 pos}
+        child { node[leaf] {R3 pos \quad $(-,+,+)$} }
+        child { node[leaf] {R3 neg \quad $(-,+,-)$} }
+      }
+      child { node[res] {R2 neg}
+        child { node[leaf] {R3 pos \quad $(-,-,+)$} }
+        child { node[leaf] {R3 neg \quad $(-,-,-)$} }
+      }
     };
 \end{tikzpicture}
 \end{center}
+
+Here "$+$" stands for "pos" and "$-$" for "neg". The first entry belongs to researcher 1, the second to researcher 2, the third to researcher 3.
     \item \textbf{Which elementary events are in the following event: "Researcher 3 finds a positive effect"?}
     
     The event that "Researcher 3 finds a positive effect" consists of all outcomes where the third researcher's result is "pos". Thus, the event set is:
