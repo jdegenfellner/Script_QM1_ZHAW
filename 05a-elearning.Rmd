@@ -1,0 +1,91 @@
+# eLearning 30.11. - 4.12. {-#elearning_30_11}
+
+## 1. Bayes: how many rollators does the hospital have? {-}
+
+A hospital numbers its rollators $1, 2, 3, \dots, N$. Nobody knows how many there are.
+On your ward you find three rollators at random. They have the numbers **12**, **25** and **31**.
+Before seeing these numbers we assume: the hospital has at least 20 and at most 100 rollators,
+and every number in between is equally plausible.
+
+a) **Prior.** Which values can $N$ take, and how probable is each value before we see the data?
+
+b) **Likelihood.** The probability of finding exactly these three rollators, if the hospital has $n$ rollators, is
+   $$P(\text{data} \mid N = n) = \frac{1}{\binom{n}{3}} \quad \text{for } n \ge 31, \qquad \text{and 0 for } n < 31.$$
+   Explain why the formula has this form for $n \ge 31$, and why it is 0 for $n < 31$.
+
+c) **Posterior in R.** Let an AI write R code that computes the posterior with Bayes' theorem and plots it.
+   What is the most probable $N$? What are the posterior mean and a 95% credible interval?
+   As a check, let the AI also write a simulation: draw $N$ from the prior, find three rollators at random,
+   and keep the hospitals in which the highest number found is 31.
+
+d) **Symbolic check.** Let an AI or [Wolfram Alpha](https://www.wolframalpha.com) compute the same results exactly.
+   Do they agree with R?
+
+e) **Prior.** What changes if the hospital can have up to 200 rollators?
+
+> **Try it yourself.** In the animation
+> [How many rollators does the hospital have?](https://jdegenfellner.github.io/Script_QM1_ZHAW/animations/27_Rollatoren_German_Tank.html)
+> the app secretly chooses the number of rollators. With every click you find one more rollator,
+> and you can watch how each number changes the posterior.
+
+## 2. Reading {-}
+
+- Greenland et al. (2016): [Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations](https://doi.org/10.1007/s10654-016-0149-3).
+- Optional: Goodman (2008): [A dirty dozen: twelve P-value misconceptions](https://doi.org/10.1053/j.seminhematol.2008.04.003).
+- Optional: Wasserstein, Schirm and Lazar (2019): [Moving to a world beyond "p < 0.05"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913).
+- Optional: Gigerenzer (2004): [Mindless statistics](https://doi.org/10.1016/j.socec.2004.09.033).
+
+## 3. Review the material {-}
+
+Go carefully through the material of the last two classroom days:
+[Bayesian statistics](#bayes_statistics) and [NHST](#nhst), up to the
+[proportions test for more than one proportion](#proportions_test_more_samples).
+The chi-squared test for independence is not part of this review. We will go through it in detail in class.
+
+## 4. Find a paper for our journal club {-}
+
+Find a quantitative article from your field that (ideally) really interests you, preferably one with **code and data**.
+**Please send me your article by email** (PDF or link).
+We plan an "extended" journal club in which we discuss, analyse, criticise and reproduce some of these papers.
+**Five** of you should therefore volunteer to present their article and share their thoughts about it
+(if no volunteers come forward, we can also extend the material and the exam gets bigger :D).
+You can use questions such as the following as a guideline, but you are not limited to them:
+
+- What is the article about?
+- Who were the patients?
+- How relevant is the research question?
+- Can you follow every step?
+- Can you recalculate the results?
+- What is good and what is bad about the article?
+- What can you take away for your master's thesis, and which mistakes can you avoid?
+
+**Recommendation.** First read the article carefully yourself and annotate it. Then let a strong LLM (e.g., Fable 5.2) review it.
+Give it the full PDF including the supplement, and instruct it with the things that you deem important about a scientific paper
+(you may also ask an AI to extend your list). For example:
+
+- **Dichotomous thinking** should be caught ("significant", "the CI included zero", ...).
+- **Table 1 fallacy.** In a randomised controlled trial, were the baseline differences between the groups
+  tested with hypothesis tests (p-values in Table 1)?
+- **Reporting guidelines.** Were the appropriate guidelines for this type of study cited and checked
+  (e.g., CONSORT, STROBE, PRISMA, see the [EQUATOR Network](https://www.equator-network.org))?
+- **Over-interpretation.** Do the abstract and the conclusion claim more than the results show?
+  Is causal language used for observational data?
+- **Numbers.** Do the numbers in the abstract, text, tables and figures agree? Do the group sizes add up?
+  Are the standard deviations possible for the scale (see the [first eLearning](#elearning_9_11))?
+  Let the LLM recalculate in R whatever can be recalculated from the reported numbers.
+- **Protocol.** Was the study registered beforehand, and do the primary outcome and the analysis match the registration?
+- **Code and data.** Are they openly available? "Available on reasonable request" does not count.
+  Authors need a good reason not to share their data. The code must **always** be available.
+- **Clinical relevance.** How large is the effect, how uncertain is it, and would it matter to a patient?
+- **Sources.** You can also download (via ZHAW VPN) all (or most) PDFs the paper references
+  and instruct the LLM to check every statement against the original source.
+
+LLMs make mistakes too. Ask for the exact place (page, table, quote) for every point and check it in the paper yourself.
+A second LLM (or a fresh chat) can criticise the first review.
+
+Finally, compare your personal notes with the review. What did the LLM find that you did not
+(don't worry, this is a long list, also for me)?
+
+## 5. Questions {-}
+
+Feel free to contact me at any time with questions.
