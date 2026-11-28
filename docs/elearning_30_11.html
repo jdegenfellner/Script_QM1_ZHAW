@@ -388,6 +388,88 @@ Do they agree with R?</p></li>
 the app secretly chooses the number of rollators. With every click you find one more rollator,
 and you can watch how each number changes the posterior.</p>
 </blockquote>
+<details>
+<summary>
+<strong>Solution</strong>
+</summary>
+<p><strong>a)</strong> <span class="math inline">\(N\)</span> can be <span class="math inline">\(20, 21, \dots, 100\)</span>. These are 81 values, so each has prior probability <span class="math inline">\(1/81\)</span>.</p>
+<p><strong>b)</strong> From <span class="math inline">\(n\)</span> rollators, <span class="math inline">\(\binom{n}{3}\)</span> different groups of three can be found, and each group is equally likely.
+Exactly one of them is the group <span class="math inline">\(\{12, 25, 31\}\)</span>, so the probability is <span class="math inline">\(1/\binom{n}{3}\)</span>.
+If the hospital had fewer than 31 rollators, rollator number 31 would not exist, so the probability is 0.</p>
+<p><strong>c) and d)</strong> Bayes’ theorem: posterior <span class="math inline">\(=\)</span> prior <span class="math inline">\(\times\)</span> likelihood, divided by the sum over all possible <span class="math inline">\(N\)</span>.
+The prior <span class="math inline">\(1/81\)</span> is the same for every <span class="math inline">\(n\)</span> and cancels. Every <span class="math inline">\(N\)</span> below 31 is ruled out. For <span class="math inline">\(n = 31, \dots, 100\)</span>
+<span class="math display">\[P(N = n \mid \text{data}) = \frac{1/\binom{n}{3}}{\sum_{j=31}^{100} 1/\binom{j}{3}} = \frac{95700}{301 \cdot \binom{n}{3}}.\]</span>
+The sum in the denominator is <span class="math inline">\(301/95700 \approx 0.0031\)</span>. The larger the hospital, the less likely it is to find exactly these three rollators.
+Therefore <span class="math inline">\(N = 31\)</span> is the most probable value.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Quantity</th>
+<th align="left">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Most probable <span class="math inline">\(N\)</span></td>
+<td align="left">31</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(N = 31 \mid \text{data})\)</span></td>
+<td align="left"><span class="math inline">\(660/9331 \approx 0.07\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Posterior mean</td>
+<td align="left"><span class="math inline">\(2000/43 \approx 46.5\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">95% credible interval</td>
+<td align="left">31 to 90</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="elearning_30_11.html#cb110-1" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">100</span>                                  <span class="co"># possible values of N</span></span>
+<span id="cb110-2"><a href="elearning_30_11.html#cb110-2" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">81</span>, <span class="dv">81</span>)                           <span class="co"># uniform prior</span></span>
+<span id="cb110-3"><a href="elearning_30_11.html#cb110-3" tabindex="-1"></a>lik   <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(n <span class="sc">&gt;=</span> <span class="dv">31</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="fu">choose</span>(n, <span class="dv">3</span>), <span class="dv">0</span>)    <span class="co"># likelihood</span></span>
+<span id="cb110-4"><a href="elearning_30_11.html#cb110-4" tabindex="-1"></a>post  <span class="ot">&lt;-</span> prior <span class="sc">*</span> lik <span class="sc">/</span> <span class="fu">sum</span>(prior <span class="sc">*</span> lik)          <span class="co"># Bayes&#39; theorem</span></span>
+<span id="cb110-5"><a href="elearning_30_11.html#cb110-5" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="elearning_30_11.html#cb110-6" tabindex="-1"></a>n[<span class="fu">which.max</span>(post)]                               <span class="co"># most probable N</span></span></code></pre></div>
+<pre><code>## [1] 31</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="elearning_30_11.html#cb112-1" tabindex="-1"></a><span class="fu">sum</span>(n <span class="sc">*</span> post)                                    <span class="co"># posterior mean</span></span></code></pre></div>
+<pre><code>## [1] 46.51163</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="elearning_30_11.html#cb114-1" tabindex="-1"></a><span class="fu">c</span>(n[<span class="fu">which</span>(<span class="fu">cumsum</span>(post) <span class="sc">&gt;=</span> <span class="fl">0.025</span>)[<span class="dv">1</span>]],</span>
+<span id="cb114-2"><a href="elearning_30_11.html#cb114-2" tabindex="-1"></a>  n[<span class="fu">which</span>(<span class="fu">cumsum</span>(post) <span class="sc">&gt;=</span> <span class="fl">0.975</span>)[<span class="dv">1</span>]])            <span class="co"># 95% credible interval</span></span></code></pre></div>
+<pre><code>## [1] 31 90</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="elearning_30_11.html#cb116-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.2</span>, <span class="fl">4.4</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb116-2"><a href="elearning_30_11.html#cb116-2" tabindex="-1"></a><span class="fu">plot</span>(n, post, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">4</span>, <span class="at">lend =</span> <span class="dv">1</span>,</span>
+<span id="cb116-3"><a href="elearning_30_11.html#cb116-3" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">ifelse</span>(n <span class="sc">&gt;=</span> <span class="dv">31</span> <span class="sc">&amp;</span> n <span class="sc">&lt;=</span> <span class="dv">90</span>, <span class="st">&quot;#2a78d6&quot;</span>, <span class="st">&quot;#9aa5b1&quot;</span>),</span>
+<span id="cb116-4"><a href="elearning_30_11.html#cb116-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Number of rollators N&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
+<span id="cb116-5"><a href="elearning_30_11.html#cb116-5" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.075</span>), <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">bty =</span> <span class="st">&quot;l&quot;</span>)</span>
+<span id="cb116-6"><a href="elearning_30_11.html#cb116-6" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">31</span>, <span class="dv">41</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>))</span>
+<span id="cb116-7"><a href="elearning_30_11.html#cb116-7" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="fl">19.5</span>, n <span class="sc">+</span> <span class="fl">0.5</span>), <span class="fu">c</span>(prior[<span class="dv">1</span>], prior), <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;#0f9d8a&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb116-8"><a href="elearning_30_11.html#cb116-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">sum</span>(n <span class="sc">*</span> post), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.8</span>, <span class="at">col =</span> <span class="st">&quot;#d9480f&quot;</span>)</span>
+<span id="cb116-9"><a href="elearning_30_11.html#cb116-9" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb116-10"><a href="elearning_30_11.html#cb116-10" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;posterior (inside 95% interval)&quot;</span>, <span class="st">&quot;posterior (outside)&quot;</span>,</span>
+<span id="cb116-11"><a href="elearning_30_11.html#cb116-11" tabindex="-1"></a>                  <span class="st">&quot;prior 1/81&quot;</span>, <span class="st">&quot;posterior mean&quot;</span>),</span>
+<span id="cb116-12"><a href="elearning_30_11.html#cb116-12" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#2a78d6&quot;</span>, <span class="st">&quot;#9aa5b1&quot;</span>, <span class="st">&quot;#0f9d8a&quot;</span>, <span class="st">&quot;#d9480f&quot;</span>),</span>
+<span id="cb116-13"><a href="elearning_30_11.html#cb116-13" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">1.5</span>, <span class="fl">1.8</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/rollator-posterior-1.png" alt="" width="691.2" /></p>
+<p>Simulation as a check: draw <span class="math inline">\(N\)</span> from the prior, find three rollators at random,
+and keep the hospitals in which the highest number found is 31.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="elearning_30_11.html#cb117-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb117-2"><a href="elearning_30_11.html#cb117-2" tabindex="-1"></a>N_sim <span class="ot">&lt;-</span> <span class="fu">sample</span>(n, <span class="fl">1e6</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb117-3"><a href="elearning_30_11.html#cb117-3" tabindex="-1"></a>m_sim <span class="ot">&lt;-</span> <span class="fu">vapply</span>(N_sim, <span class="cf">function</span>(N) <span class="fu">max</span>(<span class="fu">sample.int</span>(N, <span class="dv">3</span>)), <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
+<span id="cb117-4"><a href="elearning_30_11.html#cb117-4" tabindex="-1"></a>keep  <span class="ot">&lt;-</span> N_sim[m_sim <span class="sc">==</span> <span class="dv">31</span>]</span>
+<span id="cb117-5"><a href="elearning_30_11.html#cb117-5" tabindex="-1"></a><span class="fu">length</span>(keep)                                     <span class="co"># number of hospitals kept</span></span></code></pre></div>
+<pre><code>## [1] 17026</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="elearning_30_11.html#cb119-1" tabindex="-1"></a><span class="fu">mean</span>(keep)                                       <span class="co"># close to the exact 46.5</span></span></code></pre></div>
+<pre><code>## [1] 46.54775</code></pre>
+<p>Wolfram Alpha:</p>
+<pre class="text"><code>sum 1/binomial(n,3) for n=31 to 100                       -&gt; 301/95700
+(1/binomial(31,3)) / (301/95700)                          -&gt; 660/9331 = 0.07
+(sum n/binomial(n,3) for n=31 to 100) / (301/95700)       -&gt; 2000/43 = 46.5</code></pre>
+<p><strong>e)</strong> With up to 200 rollators the posterior mean rises to 52 and the 95% credible interval widens to 31 to 138.
+Three rollators are little information about large values of <span class="math inline">\(N\)</span>, so the prior still matters.</p>
+</details>
 </div>
 <div id="reading" class="section level2 unnumbered hasAnchor">
 <h2>2. Reading<a href="elearning_30_11.html#reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>

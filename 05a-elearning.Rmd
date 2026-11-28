@@ -28,6 +28,79 @@ e) **Prior.** What changes if the hospital can have up to 200 rollators?
 > the app secretly chooses the number of rollators. With every click you find one more rollator,
 > and you can watch how each number changes the posterior.
 
+<details>
+<summary>**Solution**</summary>
+
+**a)** $N$ can be $20, 21, \dots, 100$. These are 81 values, so each has prior probability $1/81$.
+
+**b)** From $n$ rollators, $\binom{n}{3}$ different groups of three can be found, and each group is equally likely.
+Exactly one of them is the group $\{12, 25, 31\}$, so the probability is $1/\binom{n}{3}$.
+If the hospital had fewer than 31 rollators, rollator number 31 would not exist, so the probability is 0.
+
+**c) and d)** Bayes' theorem: posterior $=$ prior $\times$ likelihood, divided by the sum over all possible $N$.
+The prior $1/81$ is the same for every $n$ and cancels. Every $N$ below 31 is ruled out. For $n = 31, \dots, 100$
+$$P(N = n \mid \text{data}) = \frac{1/\binom{n}{3}}{\sum_{j=31}^{100} 1/\binom{j}{3}} = \frac{95700}{301 \cdot \binom{n}{3}}.$$
+The sum in the denominator is $301/95700 \approx 0.0031$. The larger the hospital, the less likely it is to find exactly these three rollators.
+Therefore $N = 31$ is the most probable value.
+
+| Quantity | Result |
+|:---|:---|
+| Most probable $N$ | 31 |
+| $P(N = 31 \mid \text{data})$ | $660/9331 \approx 0.07$ |
+| Posterior mean | $2000/43 \approx 46.5$ |
+| 95% credible interval | 31 to 90 |
+
+```{r rollator-posterior, fig.width=7.2, fig.height=3.6}
+n     <- 20:100                                  # possible values of N
+prior <- rep(1/81, 81)                           # uniform prior
+lik   <- ifelse(n >= 31, 1 / choose(n, 3), 0)    # likelihood
+post  <- prior * lik / sum(prior * lik)          # Bayes' theorem
+
+n[which.max(post)]                               # most probable N
+sum(n * post)                                    # posterior mean
+c(n[which(cumsum(post) >= 0.025)[1]],
+  n[which(cumsum(post) >= 0.975)[1]])            # 95% credible interval
+
+par(mar = c(4.2, 4.4, 1, 1), las = 1)
+plot(n, post, type = "h", lwd = 4, lend = 1,
+     col = ifelse(n >= 31 & n <= 90, "#2a78d6", "#9aa5b1"),
+     xlab = "Number of rollators N", ylab = "Probability",
+     ylim = c(0, 0.075), xaxt = "n", bty = "l")
+axis(1, at = c(20, 31, 41, 50, 60, 70, 80, 90, 100))
+lines(c(19.5, n + 0.5), c(prior[1], prior), type = "s", lty = 2, col = "#0f9d8a", lwd = 1.5)
+abline(v = sum(n * post), lty = 2, lwd = 1.8, col = "#d9480f")
+legend("topright", bty = "n",
+       legend = c("posterior (inside 95% interval)", "posterior (outside)",
+                  "prior 1/81", "posterior mean"),
+       col = c("#2a78d6", "#9aa5b1", "#0f9d8a", "#d9480f"),
+       lty = c(1, 1, 2, 2), lwd = c(4, 4, 1.5, 1.8))
+```
+
+Simulation as a check: draw $N$ from the prior, find three rollators at random,
+and keep the hospitals in which the highest number found is 31.
+
+```{r rollator-simulation}
+set.seed(2026)
+N_sim <- sample(n, 1e6, replace = TRUE)
+m_sim <- vapply(N_sim, function(N) max(sample.int(N, 3)), numeric(1))
+keep  <- N_sim[m_sim == 31]
+length(keep)                                     # number of hospitals kept
+mean(keep)                                       # close to the exact 46.5
+```
+
+Wolfram Alpha:
+
+```text
+sum 1/binomial(n,3) for n=31 to 100                       -> 301/95700
+(1/binomial(31,3)) / (301/95700)                          -> 660/9331 = 0.07
+(sum n/binomial(n,3) for n=31 to 100) / (301/95700)       -> 2000/43 = 46.5
+```
+
+**e)** With up to 200 rollators the posterior mean rises to 52 and the 95% credible interval widens to 31 to 138.
+Three rollators are little information about large values of $N$, so the prior still matters.
+
+</details>
+
 ## 2. Reading {-}
 
 - Greenland et al. (2016): [Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations](https://doi.org/10.1007/s10654-016-0149-3).

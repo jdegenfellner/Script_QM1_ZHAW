@@ -111,6 +111,8 @@
 \usepackage{tikz}
 \newcommand{\pandocbounded}[1]{#1}
 \usetikzlibrary{arrows,shapes,backgrounds,calc,positioning,fit}
+% Pandoc writes \def\LTcaptype{none} for tables without caption; the custom template lacks this counter.
+\makeatletter\@ifundefined{c@none}{\newcounter{none}}{}\makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -3617,20 +3619,20 @@ We can do more:
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median    mode HDI%     HDIlo  HDIup compVal %>compVal
-## mu1       131.020 131.064 132.988   93   32.3508 226.29                  
-## mu2         6.018   5.743   5.669   93  -83.6553  96.32                  
-## muDiff    125.002 125.031 126.968   93  -10.5898 254.87       0      95.8
-## sigma1    139.610 128.390 113.154   93   65.9344 226.04                  
-## sigma2    129.648 119.245 107.902   93   62.0637 209.57                  
-## sigmaDiff   9.963   8.875   5.378   93 -118.1911 135.95       0      56.6
-## nu         34.208  25.712   9.623   93    1.1004  83.25                  
-## log10nu     1.378   1.410   1.526   93    0.6552   2.05                  
-## effSz       0.969   0.959   0.919   93   -0.0677   2.02       0      95.8
+##              mean  median   mode HDI%     HDIlo  HDIup compVal %>compVal
+## mu1       130.373 130.714 130.61   93   31.2818 225.04                  
+## mu2         6.095   5.699   5.05   93  -83.9925  96.77                  
+## muDiff    124.278 124.761 120.60   93  -10.1933 256.68       0      95.5
+## sigma1    139.440 128.608 114.31   93   65.4734 223.97                  
+## sigma2    129.736 119.593 106.79   93   61.6388 208.32                  
+## sigmaDiff   9.704   8.541   6.54   93 -116.3184 135.33       0      56.4
+## nu         34.555  26.013  10.68   93    1.2135  84.18                  
+## log10nu     1.383   1.415   1.51   93    0.6624   2.06                  
+## effSz       0.964   0.958   0.97   93   -0.0783   2.01       0      95.5
 ##           ROPElow ROPEhigh %InROPE
 ## mu1                               
 ## mu2                               
-## muDiff        -20       20    4.38
+## muDiff        -20       20    4.65
 ## sigma1                            
 ## sigma2                            
 ## sigmaDiff                         
@@ -3896,24 +3898,24 @@ Wir führen einen Bayesian \(t\)-test auf Gleichheit der Mittelwerte der beiden 
 \end{verbatim}
 
 \begin{verbatim}
-## 1.012 sec elapsed
+## 1.075 sec elapsed
 \end{verbatim}
 
 \begin{verbatim}
-##             mean median   mode HDI%  HDIlo  HDIup compVal %>compVal ROPElow
-## mu1        0.716  0.712  0.695   93 -0.539  1.981                          
-## mu2        2.306  2.303  2.360   93  0.904  3.722                          
-## muDiff    -1.590 -1.586 -1.549   93 -3.532  0.273       0      6.14    -1.8
-## sigma1     2.037  1.922  1.694   93  1.107  3.116                          
-## sigma2     2.311  2.173  1.982   93  1.278  3.514                          
-## sigmaDiff -0.273 -0.247 -0.211   93 -1.968  1.407       0     37.22        
-## nu        35.822 27.407 11.788   93  1.560 85.168                          
-## log10nu    1.408  1.438  1.507   93  0.703  2.046                          
-## effSz     -0.750 -0.743 -0.704   93 -1.629  0.155       0      6.14        
+##             mean median   mode HDI%  HDIlo HDIup compVal %>compVal ROPElow
+## mu1        0.713  0.708  0.704   93 -0.537  1.98                          
+## mu2        2.304  2.302  2.281   93  0.869  3.71                          
+## muDiff    -1.591 -1.590 -1.526   93 -3.548  0.26       0      6.06    -1.8
+## sigma1     2.044  1.921  1.739   93  1.108  3.15                          
+## sigma2     2.309  2.173  1.967   93  1.274  3.50                          
+## sigmaDiff -0.265 -0.247 -0.294   93 -1.960  1.44       0     37.38        
+## nu        35.976 27.341 11.905   93  1.453 86.29                          
+## log10nu    1.410  1.437  1.507   93  0.729  2.06                          
+## effSz     -0.751 -0.747 -0.792   93 -1.638  0.15       0      6.06        
 ##           ROPEhigh %InROPE
 ## mu1                       
 ## mu2                       
-## muDiff         1.8    58.4
+## muDiff         1.8    58.1
 ## sigma1                    
 ## sigma2                    
 ## sigmaDiff                 
@@ -4023,6 +4025,131 @@ and every number in between is equally plausible.
 the app secretly chooses the number of rollators. With every click you find one more rollator,
 and you can watch how each number changes the posterior.
 \end{quote}
+
+\textbf{Solution}
+
+\textbf{a)} \(N\) can be \(20, 21, \dots, 100\). These are 81 values, so each has prior probability \(1/81\).
+
+\textbf{b)} From \(n\) rollators, \(\binom{n}{3}\) different groups of three can be found, and each group is equally likely.
+Exactly one of them is the group \(\{12, 25, 31\}\), so the probability is \(1/\binom{n}{3}\).
+If the hospital had fewer than 31 rollators, rollator number 31 would not exist, so the probability is 0.
+
+\textbf{c) and d)} Bayes' theorem: posterior \(=\) prior \(\times\) likelihood, divided by the sum over all possible \(N\).
+The prior \(1/81\) is the same for every \(n\) and cancels. Every \(N\) below 31 is ruled out. For \(n = 31, \dots, 100\)
+\[P(N = n \mid \text{data}) = \frac{1/\binom{n}{3}}{\sum_{j=31}^{100} 1/\binom{j}{3}} = \frac{95700}{301 \cdot \binom{n}{3}}.\]
+The sum in the denominator is \(301/95700 \approx 0.0031\). The larger the hospital, the less likely it is to find exactly these three rollators.
+Therefore \(N = 31\) is the most probable value.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Quantity & Result \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Most probable \(N\) & 31 \\
+\(P(N = 31 \mid \text{data})\) & \(660/9331 \approx 0.07\) \\
+Posterior mean & \(2000/43 \approx 46.5\) \\
+95\% credible interval & 31 to 90 \\
+\end{longtable}
+}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n     }\OtherTok{\textless{}{-}} \DecValTok{20}\SpecialCharTok{:}\DecValTok{100}                                  \CommentTok{\# possible values of N}
+\NormalTok{prior }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{81}\NormalTok{, }\DecValTok{81}\NormalTok{)                           }\CommentTok{\# uniform prior}
+\NormalTok{lik   }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(n }\SpecialCharTok{\textgreater{}=} \DecValTok{31}\NormalTok{, }\DecValTok{1} \SpecialCharTok{/} \FunctionTok{choose}\NormalTok{(n, }\DecValTok{3}\NormalTok{), }\DecValTok{0}\NormalTok{)    }\CommentTok{\# likelihood}
+\NormalTok{post  }\OtherTok{\textless{}{-}}\NormalTok{ prior }\SpecialCharTok{*}\NormalTok{ lik }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(prior }\SpecialCharTok{*}\NormalTok{ lik)          }\CommentTok{\# Bayes\textquotesingle{} theorem}
+
+\NormalTok{n[}\FunctionTok{which.max}\NormalTok{(post)]                               }\CommentTok{\# most probable N}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(n }\SpecialCharTok{*}\NormalTok{ post)                                    }\CommentTok{\# posterior mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 46.51163
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{c}\NormalTok{(n[}\FunctionTok{which}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(post) }\SpecialCharTok{\textgreater{}=} \FloatTok{0.025}\NormalTok{)[}\DecValTok{1}\NormalTok{]],}
+\NormalTok{  n[}\FunctionTok{which}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(post) }\SpecialCharTok{\textgreater{}=} \FloatTok{0.975}\NormalTok{)[}\DecValTok{1}\NormalTok{]])            }\CommentTok{\# 95\% credible interval}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31 90
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{, }\FloatTok{4.4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{las =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(n, post, }\AttributeTok{type =} \StringTok{"h"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{4}\NormalTok{, }\AttributeTok{lend =} \DecValTok{1}\NormalTok{,}
+     \AttributeTok{col =} \FunctionTok{ifelse}\NormalTok{(n }\SpecialCharTok{\textgreater{}=} \DecValTok{31} \SpecialCharTok{\&}\NormalTok{ n }\SpecialCharTok{\textless{}=} \DecValTok{90}\NormalTok{, }\StringTok{"\#2a78d6"}\NormalTok{, }\StringTok{"\#9aa5b1"}\NormalTok{),}
+     \AttributeTok{xlab =} \StringTok{"Number of rollators N"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Probability"}\NormalTok{,}
+     \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.075}\NormalTok{), }\AttributeTok{xaxt =} \StringTok{"n"}\NormalTok{, }\AttributeTok{bty =} \StringTok{"l"}\NormalTok{)}
+\FunctionTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{at =} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{41}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{100}\NormalTok{))}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{19.5}\NormalTok{, n }\SpecialCharTok{+} \FloatTok{0.5}\NormalTok{), }\FunctionTok{c}\NormalTok{(prior[}\DecValTok{1}\NormalTok{], prior), }\AttributeTok{type =} \StringTok{"s"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"\#0f9d8a"}\NormalTok{, }\AttributeTok{lwd =} \FloatTok{1.5}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \FunctionTok{sum}\NormalTok{(n }\SpecialCharTok{*}\NormalTok{ post), }\AttributeTok{lty =} \DecValTok{2}\NormalTok{, }\AttributeTok{lwd =} \FloatTok{1.8}\NormalTok{, }\AttributeTok{col =} \StringTok{"\#d9480f"}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{,}
+       \AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"posterior (inside 95\% interval)"}\NormalTok{, }\StringTok{"posterior (outside)"}\NormalTok{,}
+                  \StringTok{"prior 1/81"}\NormalTok{, }\StringTok{"posterior mean"}\NormalTok{),}
+       \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#2a78d6"}\NormalTok{, }\StringTok{"\#9aa5b1"}\NormalTok{, }\StringTok{"\#0f9d8a"}\NormalTok{, }\StringTok{"\#d9480f"}\NormalTok{),}
+       \AttributeTok{lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{), }\AttributeTok{lwd =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\FloatTok{1.8}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/rollator-posterior-1.pdf}}
+
+Simulation as a check: draw \(N\) from the prior, find three rollators at random,
+and keep the hospitals in which the highest number found is 31.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+\NormalTok{N\_sim }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(n, }\FloatTok{1e6}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{m\_sim }\OtherTok{\textless{}{-}} \FunctionTok{vapply}\NormalTok{(N\_sim, }\ControlFlowTok{function}\NormalTok{(N) }\FunctionTok{max}\NormalTok{(}\FunctionTok{sample.int}\NormalTok{(N, }\DecValTok{3}\NormalTok{)), }\FunctionTok{numeric}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\NormalTok{keep  }\OtherTok{\textless{}{-}}\NormalTok{ N\_sim[m\_sim }\SpecialCharTok{==} \DecValTok{31}\NormalTok{]}
+\FunctionTok{length}\NormalTok{(keep)                                     }\CommentTok{\# number of hospitals kept}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17026
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(keep)                                       }\CommentTok{\# close to the exact 46.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 46.54775
+\end{verbatim}
+
+Wolfram Alpha:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum 1/binomial(n,3) for n=31 to 100                       {-}\textgreater{} 301/95700}
+\NormalTok{(1/binomial(31,3)) / (301/95700)                          {-}\textgreater{} 660/9331 = 0.07}
+\NormalTok{(sum n/binomial(n,3) for n=31 to 100) / (301/95700)       {-}\textgreater{} 2000/43 = 46.5}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{e)} With up to 200 rollators the posterior mean rises to 52 and the 95\% credible interval widens to 31 to 138.
+Three rollators are little information about large values of \(N\), so the prior still matters.
 
 \section*{2. Reading}\label{reading}
 \addcontentsline{toc}{section}{2. Reading}
